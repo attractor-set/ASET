@@ -1,0 +1,66 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/constitution.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_coordination_proofs": {
+      "items": {
+        "pattern": "^sha256:[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "accepted_patches": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "constitution_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "coordination_classes": {
+      "additionalProperties": {
+        "enum": [
+          "MONOTONE_LOCAL",
+          "INVARIANT_CONFLUENT",
+          "COORDINATION_REQUIRED"
+        ]
+      },
+      "type": "object"
+    },
+    "identity_immunities": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "policy_version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "rules": {
+      "additionalProperties": {
+        "pattern": "^sha256:[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "constitution_id",
+    "policy_version",
+    "identity_immunities",
+    "coordination_classes",
+    "accepted_coordination_proofs",
+    "accepted_patches",
+    "rules"
+  ],
+  "type": "object"
+}

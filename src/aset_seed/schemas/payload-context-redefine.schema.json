@@ -1,0 +1,121 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-context-redefine.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "proposal": {
+      "additionalProperties": false,
+      "properties": {
+        "parent_context_id": {
+          "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+        },
+        "proposal_nonce": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "replacements": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "context_genesis_nonce": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "depends_on_context_ids": {
+                "items": {
+                  "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "initial_authorities": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "capability_kind": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "holder_principal_id": {
+                      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+                    },
+                    "scope": {
+                      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/scope"
+                    }
+                  },
+                  "required": [
+                    "capability_kind",
+                    "holder_principal_id",
+                    "scope"
+                  ],
+                  "type": "object"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "old_context_id": {
+                "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+              }
+            },
+            "required": [
+              "old_context_id",
+              "context_genesis_nonce",
+              "initial_authorities",
+              "depends_on_context_ids"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "target_context_id": {
+          "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+        }
+      },
+      "required": [
+        "parent_context_id",
+        "target_context_id",
+        "proposal_nonce",
+        "replacements"
+      ],
+      "type": "object"
+    },
+    "proposal_digest": {
+      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/digest"
+    },
+    "withdrawal_authorizations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "context_id": {
+            "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+          },
+          "member_principal_id": {
+            "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/id"
+          },
+          "proof_digest": {
+            "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/digest"
+          },
+          "proposal_digest": {
+            "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json#/$defs/digest"
+          }
+        },
+        "required": [
+          "context_id",
+          "member_principal_id",
+          "proposal_digest",
+          "proof_digest"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "proposal",
+    "proposal_digest",
+    "withdrawal_authorizations"
+  ],
+  "type": "object"
+}

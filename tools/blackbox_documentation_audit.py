@@ -279,19 +279,23 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         assert isinstance(status, dict)
         status_ok = (
             status.get("repository_production_readiness")
-            == "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+            == "DOCUMENTATION_AND_BOUNDED_RUNTIME_PRODUCTION_READY"
             and status.get("current_stable_seed_release") == "0.1-rc11"
-            and status.get("seed_runtime_production") == "HOLD"
-            and status.get("next_seed_status") == "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+            and status.get("seed_runtime_production")
+            == "PRODUCTION_READY_SINGLE_NODE_SQLITE_PROFILE"
+            and status.get("next_seed_status") == "RC12_RELEASE_CANDIDATE_READY"
+            and status.get("machine_readable_canon") == "NORMATIVE_CANON_COMPLETE"
             and status.get("external_third_party_audit") == "PENDING"
             and status.get("assurance_boundary", {}).get(
                 "repository_publication_and_documentation_operations"
             )
             == "PRODUCTION_READY"
             and status.get("assurance_boundary", {}).get(
-                "seed_runtime_or_deployment"
+                "seed_runtime_single_node_sqlite"
             )
-            == "NOT_CLAIMED"
+            == "PRODUCTION_READY_BOUNDED_PROFILE"
+            and status.get("assurance_boundary", {}).get("distributed_consensus")
+            == "OUT_OF_SCOPE"
         )
         details = json.dumps(status.get("assurance_boundary", {}), sort_keys=True)
     except Exception as error:
@@ -484,6 +488,7 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
             {item["id"] for item in model["concepts"]}
             | {item["id"] for item in model["requirements"]}
             | {item["id"] for item in model["invariants"]}
+            | {item["id"] for item in model["transitions"]}
         )
         edition_ok = True
         edition_details: list[str] = []
@@ -535,8 +540,10 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
             summary["rc11_requirements"] == 26
             and summary["rc11_transition_kinds"] == 18
             and summary["rc11_schemas"] == 39
+            and summary["fully_migrated_to_rc12"] == 83
+            and summary["deferred_with_explicit_disposition"] == 0
             and summary["unclassified"] == 0
-            and coverage["target_status"] == "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+            and coverage["target_status"] == "RC12_RELEASE_CANDIDATE_READY"
         )
         details = json.dumps(summary, sort_keys=True)
     except Exception as error:
@@ -546,6 +553,7 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
 
     # Required docs and local links
     required = {
+        "AGENTS.md",
         "README.md",
         "README.ru.md",
         "README.pt-BR.md",
@@ -557,6 +565,16 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         "audit/PDCA_HISTORY.md",
         "audit/FINDING_CLOSURE_MATRIX.json",
         "seed/canonical/decisions/ADR-001-semantic-canon-authority.md",
+        "docs/runtime/PRODUCTION_PROFILE.md",
+        "docs/runtime/DEPLOYMENT_CHECKLIST.md",
+        "docs/runtime/THREAT_MODEL.md",
+        "seed/canonical/release/RC12_RELEASE_CANDIDATE.json",
+        "audit/RC12_FINAL_BLACKBOX_AUDIT.md",
+        "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
+        "audit/REFACTORING_LOG.md",
+        "seed/canonical/protocol/protocol-profile.json",
+        "seed/canonical/conformance/conformance-profile.json",
+        "seed/canonical/formal/SeedRC12.tla",
     }
     missing_required = sorted(
         path for path in required if EXPECTED_ROOT + path not in files
@@ -643,6 +661,8 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
                 "pull_request:",
                 "push:",
                 "blackbox_documentation_audit.py",
+                "blackbox_runtime_audit.py",
+                "run_rc12_coverage.py",
                 "permissions:\n  contents: read",
             )
         ) and all(
@@ -682,6 +702,179 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         git_bytes_ok,
         details,
     )
+
+
+    # Complete rc12 canon, protocol bindings and bounded runtime.
+    try:
+        model = strict_json(file("seed/canonical/source/seed-model.json"))
+        protocol = strict_json(file("seed/canonical/protocol/protocol-profile.json"))
+        conformance = strict_json(file("seed/canonical/conformance/conformance-profile.json"))
+        assert isinstance(model, dict)
+        assert isinstance(protocol, dict)
+        assert isinstance(conformance, dict)
+        envelope = strict_json(
+            file("seed/canonical/release/RC12_RELEASE_CANDIDATE.json")
+        )
+        assert isinstance(envelope, dict)
+        canon_ok = (
+            model.get("version") == "0.1-rc12"
+            and model.get("status") == "RC12_RELEASE_CANDIDATE_READY"
+            and len(model.get("concepts", [])) >= 20
+            and len(model.get("requirements", [])) >= 38
+            and len(model.get("invariants", [])) >= 29
+            and len(model.get("transitions", [])) == 18
+            and protocol.get("schema_count") == 39
+            and conformance.get("case_count") == 55
+            and envelope.get("status") == "RC12_RELEASE_CANDIDATE_READY"
+            and envelope.get("counts", {}).get("migrated_rc11_assets") == 83
+        )
+        details = (
+            f"concepts={len(model.get('concepts', []))}; "
+            f"requirements={len(model.get('requirements', []))}; "
+            f"invariants={len(model.get('invariants', []))}; "
+            f"transitions={len(model.get('transitions', []))}; "
+            f"schemas={protocol.get('schema_count')}; cases={conformance.get('case_count')}"
+        )
+    except Exception as error:
+        canon_ok = False
+        details = str(error)
+    audit.record("BB-021", "complete rc12 machine canon", canon_ok, details)
+
+    try:
+        protocol = strict_json(file("seed/canonical/protocol/protocol-profile.json"))
+        assert isinstance(protocol, dict)
+        mismatches = []
+        for item in protocol["schemas"]:
+            canonical_data = file(item["path"])
+            runtime_data = file("src/aset_seed/schemas/" + item["name"])
+            if item["sha256"] != "sha256:" + sha256(canonical_data):
+                mismatches.append("canonical:" + item["name"])
+            if runtime_data != canonical_data:
+                mismatches.append("runtime:" + item["name"])
+        protocol_ok = not mismatches and len(protocol["schemas"]) == 39
+        details = f"schemas={len(protocol['schemas'])}; mismatches={len(mismatches)}"
+    except Exception as error:
+        protocol_ok = False
+        details = str(error)
+    audit.record("BB-022", "canonical/runtime protocol byte identity", protocol_ok, details)
+
+    try:
+        pyproject = file("pyproject.toml").decode("utf-8")
+        runtime_files = {
+            "src/aset_seed/__init__.py",
+            "src/aset_seed/core.py",
+            "src/aset_seed/runtime.py",
+            "src/aset_seed/store.py",
+            "src/aset_seed/proofs.py",
+            "src/aset_seed/cli.py",
+        }
+        runtime_ok = all(EXPECTED_ROOT + path in files for path in runtime_files)
+        runtime_ok = runtime_ok and 'aset-seed = "aset_seed.cli:main"' in pyproject
+        runtime_ok = runtime_ok and 'package-dir = {"" = "src"}' in pyproject
+        present_runtime_files = sum(
+            EXPECTED_ROOT + path in files for path in runtime_files
+        )
+        details = (
+            f"runtime_files={present_runtime_files}/{len(runtime_files)}"
+        )
+    except Exception as error:
+        runtime_ok = False
+        details = str(error)
+    audit.record("BB-023", "installable executable runtime", runtime_ok, details)
+
+    try:
+        model = strict_json(file("seed/canonical/source/seed-model.json"))
+        assert isinstance(model, dict)
+        profile = model["runtime_profile"]
+        boundary_ok = (
+            profile["status"] == "PRODUCTION_READY_BOUNDED_PROFILE"
+            and profile["proof_boundary"]["required"] is True
+            and profile["proof_boundary"]["default"] == "REJECT_ALL"
+            and "distributed consensus" in profile["excluded"]
+            and "automatic network effects" in profile["excluded"]
+        )
+        details = json.dumps(profile, sort_keys=True)[:600]
+    except Exception as error:
+        boundary_ok = False
+        details = str(error)
+    audit.record("BB-024", "bounded runtime claim is explicit", boundary_ok, details)
+
+    try:
+        formal_ok = all(
+            EXPECTED_ROOT + path in files
+            for path in (
+                "seed/canonical/formal/SeedRC12.tla",
+                "seed/canonical/formal/SeedRC12.cfg",
+                "tools/model_check_rc12.py",
+            )
+        )
+        tla = file("seed/canonical/formal/SeedRC12.tla").decode("utf-8")
+        formal_ok = formal_ok and all(
+            token in tla
+            for token in ("Init ==", "Next ==", "AttemptBound ==", "OutcomeVerified ==")
+        )
+        details = "TLA+ projection and executable bounded checker present"
+    except Exception as error:
+        formal_ok = False
+        details = str(error)
+    audit.record("BB-025", "formal safety projection", formal_ok, details)
+
+    try:
+        forbidden_imports = {"socket", "requests", "httpx", "urllib.request", "subprocess"}
+        observed = []
+        for name, data in files.items():
+            if not name.startswith(EXPECTED_ROOT + "src/aset_seed/") or not name.endswith(".py"):
+                continue
+            tree = ast.parse(data.decode("utf-8"), filename=name)
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    observed.extend(
+                        alias.name
+                        for alias in node.names
+                        if alias.name in forbidden_imports
+                    )
+                elif isinstance(node, ast.ImportFrom) and node.module in forbidden_imports:
+                    observed.append(node.module)
+        no_effects_ok = not observed
+        details = f"forbidden_runtime_imports={sorted(set(observed))}"
+    except Exception as error:
+        no_effects_ok = False
+        details = str(error)
+    audit.record("BB-026", "runtime has no implicit network/effect adapter", no_effects_ok, details)
+
+    try:
+        limitations = strict_json(file("seed/canonical/assurance/limitations.json"))
+        assert isinstance(limitations, dict)
+        limitation_statuses = {item["id"]: item["status"] for item in limitations["limitations"]}
+        limits_ok = (
+            limitation_statuses.get("LIMIT-002") == "CLOSED_FOR_PROFILE"
+            and limitation_statuses.get("LIMIT-005") == "PENDING"
+            and limitation_statuses.get("LIMIT-007") == "DEPLOYMENT_RESPONSIBILITY"
+        )
+        details = json.dumps(limitation_statuses, sort_keys=True)
+    except Exception as error:
+        limits_ok = False
+        details = str(error)
+    audit.record("BB-027", "residual limitations are explicit", limits_ok, details)
+
+    try:
+        gates = strict_json(file("seed/canonical/assurance/repository-release-gates.json"))
+        assert isinstance(gates, dict)
+        names = {item["name"] for item in gates["gates"]}
+        expected = {
+            "rc12_canon_completeness",
+            "rc11_semantic_regression",
+            "bounded_formal_model_check",
+            "installable_wheel",
+            "blackbox_runtime_audit",
+            "blackbox_adversarial_rejection",
+        }
+        gate_complete = expected.issubset(names) and len(gates["gates"]) >= 19
+        details = f"gates={len(gates['gates'])}; required_present={expected.issubset(names)}"
+    except Exception as error:
+        gate_complete = False
+        details = str(error)
+    audit.record("BB-028", "rc12 production gates complete", gate_complete, details)
 
     return report(audit, snapshot, archive_digest)
 

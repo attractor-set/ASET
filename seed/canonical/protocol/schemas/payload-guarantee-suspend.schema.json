@@ -1,0 +1,22 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-guarantee-suspend.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "child_context_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "reason_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "child_context_id",
+    "reason_digest"
+  ],
+  "type": "object"
+}

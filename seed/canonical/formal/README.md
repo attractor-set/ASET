@@ -1,14 +1,3 @@
-# Formal-model status
+# Formal assurance
 
-`SeedBootstrap.tla` is a wiring scaffold only.
-
-It is not the complete ASET Seed transition semantics and must not
-be cited as a proof of rc11 or rc12 correctness.
-
-Before a formal gate may report PASS:
-
-- the complete transition relation must be modeled;
-- safety and liveness properties must be mapped to requirement IDs;
-- the TLA+ toolchain must be pinned by digest;
-- expected counterexamples must be included;
-- TLC and/or Apalache outputs must be retained as evidence.
+`SeedRC12.tla` is a bounded safety abstraction of the production profile. The executable `tools/model_check_rc12.py` explores the corresponding finite transition system in CI. It does not replace the concrete 55-vector conformance suite or prove deployment-specific key management, distributed consensus, or physical truth.

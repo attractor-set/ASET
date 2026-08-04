@@ -4,6 +4,10 @@
   "additionalProperties": false,
   "properties": {
     "assurance_boundary": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "minProperties": 9,
       "type": "object"
     },
     "current_stable_seed_release": {
@@ -35,16 +39,16 @@
       ]
     },
     "machine_readable_canon": {
-      "const": "CANON_CANDIDATE"
+      "const": "NORMATIVE_CANON_COMPLETE"
     },
     "next_seed_status": {
-      "const": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+      "const": "RC12_RELEASE_CANDIDATE_READY"
     },
     "next_seed_version": {
-      "type": "string"
+      "const": "0.1-rc12"
     },
     "reference_implementation": {
-      "const": "CANDIDATE"
+      "const": "PRODUCTION_READY_BOUNDED_PROFILE"
     },
     "repository": {
       "const": "ASET"
@@ -53,28 +57,49 @@
       "const": "PASS_REQUIRED_ON_EVERY_MAIN_CHANGE"
     },
     "repository_production_readiness": {
-      "const": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+      "const": "DOCUMENTATION_AND_BOUNDED_RUNTIME_PRODUCTION_READY"
     },
     "repository_role": {
-      "const": "SPECIFICATION_AND_RELEASE_ASSURANCE"
+      "const": "SPECIFICATION_AND_BOUNDED_REFERENCE_RUNTIME"
     },
     "repository_url": {
       "const": "https://github.com/attractor-set/ASET"
     },
+    "runtime_profile_id": {
+      "const": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1"
+    },
     "schema_version": {
-      "const": 2
+      "const": 3
     },
     "seed_runtime_production": {
-      "const": "HOLD"
+      "const": "PRODUCTION_READY_SINGLE_NODE_SQLITE_PROFILE"
+    },
+    "wire_compatibility_profile": {
+      "const": "ASET-SEED-WIRE-0.1-RC11-COMPAT"
     }
   },
   "required": [
     "document_type",
     "schema_version",
     "repository",
+    "repository_url",
+    "repository_role",
     "repository_production_readiness",
+    "repository_production_gate",
     "current_stable_seed_release",
+    "current_stable_seed_status",
+    "next_seed_version",
+    "next_seed_status",
+    "machine_readable_canon",
+    "reference_implementation",
     "seed_runtime_production",
+    "runtime_profile_id",
+    "wire_compatibility_profile",
+    "external_third_party_audit",
+    "expanded_rc11",
+    "frozen_seed_bundle_sha256",
+    "frozen_seed_documentation_sha256",
+    "generated_languages",
     "assurance_boundary"
   ],
   "title": "ASET repository status",

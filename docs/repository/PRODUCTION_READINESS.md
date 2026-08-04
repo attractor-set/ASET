@@ -1,54 +1,28 @@
-
-# Production readiness of the ASET specification repository
+# Production readiness of ASET Seed 0.1-rc12 candidate
 
 ## Claim
 
-This repository is production-ready for the controlled publication, preservation, review, validation, and release assurance of ASET Seed documentation.
-
-The claim is intentionally narrower than Seed runtime production readiness.
+This repository is production-ready for specification publication and for the bounded executable profile `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`.
 
 | Scope | Status |
 |---|---|
-| Public specification repository operations | `PRODUCTION_READY` |
-| Deterministic documentation publication | `PRODUCTION_READY` |
-| Frozen rc11 preservation and verification | `PRODUCTION_READY` |
-| Black-box documentation audit | `REQUIRED` |
-| rc11 semantic documentation | `PASS_WITH_LIMITATIONS` |
-| rc12 canonical migration | `IN_DEVELOPMENT` |
-| Seed runtime implementation | `HOLD` |
-| Deployment, durability, concurrency and consensus | `NOT_CLAIMED` |
-| External third-party certification | `PENDING` |
+| Repository publication and deterministic release assurance | `PRODUCTION_READY` |
+| Frozen rc11 preservation and regression | `PASS_WITH_LIMITATIONS` |
+| Complete rc12 machine canon | `RC12_RELEASE_CANDIDATE_READY` |
+| Single-node SQLite runtime | `PRODUCTION_READY_BOUNDED_PROFILE` |
+| Distributed consensus and multi-primary operation | `OUT_OF_SCOPE` |
+| Physical-world truth and automatic external effects | `OUT_OF_SCOPE` |
+| Deployment key management and infrastructure | `DEPLOYMENT_RESPONSIBILITY` |
+| External third-party audit or certification | `PENDING` |
 
-## Release gates
+The runtime claim requires one operating-system host, a local durable filesystem, SQLite WAL, `synchronous=FULL`, serialized write transactions, explicit proof verification, controlled backup and restore, and operational acceptance of the deployment checklist.
 
-A change is eligible for merge to `main` only when all repository gates pass:
+## Mandatory release gates
 
-1. strict JSON and machine-readable model validation;
-2. RDF, SHACL and TBX validation;
-3. deterministic language-edition parity;
-4. terminology policy;
-5. frozen rc11 bundle integrity;
-6. expanded rc11 byte identity against the frozen documentation archive;
-7. Git clean-filter byte identity for every expanded rc11 file;
-8. unit tests and static Python checks;
-9. deterministic repository snapshot construction;
-10. independent black-box documentation audit of the snapshot;
-11. adversarial mutation rejection by the black-box auditor;
-12. exact manifest coverage and digest verification;
-13. zero unresolved blocking findings.
+The fail-closed registry contains 19 mandatory gates covering machine-canon completeness, generated views, rc11 integrity, exact 83/83 migration, semantic regression, branch coverage, bounded model checking, tests, static checks, wheel installation, deterministic snapshot construction, documentation and runtime black-box audits, adversarial rejection, and zero blocking findings.
 
-## Fail-closed rule
+A missing, skipped, indeterminate, or failed gate blocks promotion. Internal reports cannot override a failed snapshot-only audit.
 
-A missing, skipped, indeterminate, or failed mandatory check blocks promotion. The gate may report only `PASS` or `FAIL`; absence of evidence is not a pass.
+## Residual assurance boundary
 
-## Separation of claims
-
-Repository readiness must never be used as evidence that the reference state machine is a production datastore or that cryptographic proof verification, concurrent serialization, distributed consensus, operational recovery, or external certification has been completed.
-
-## Evidence
-
-- `audit/PDCA_HISTORY.md`
-- `audit/FINDING_CLOSURE_MATRIX.json`
-- `audit/BLACKBOX_DOCUMENTATION_AUDIT.json`
-- `seed/canonical/assurance/repository-release-gates.json`
-- deterministic snapshot and checksum in `dist/` during CI
+The bounded model check is not an unbounded proof. HMAC verification is a concrete local profile, not a public-key federation PKI. Deployment operators remain responsible for secrets, filesystem durability, monitoring, restore rehearsal, and process isolation. External audit remains pending and must not be inferred from internal independent harnesses.

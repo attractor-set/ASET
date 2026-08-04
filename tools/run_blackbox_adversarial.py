@@ -49,7 +49,7 @@ def rebuild_manifest(files: dict[str, bytes]) -> None:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Repository-Production-Readiness-v1.1",
+        "package": "ASET-Seed-0.1-rc12-Production-Candidate",
         "repository_root": "ASET",
     }
     files[prefix + "MANIFEST.json"] = (
@@ -104,10 +104,8 @@ def mutate_secret(files: dict[str, bytes]) -> None:
 def mutate_status_overclaim(files: dict[str, bytes]) -> None:
     name = "ASET/REPOSITORY_STATUS.json"
     data = json.loads(files[name].decode("utf-8"))
-    data["seed_runtime_production"] = "READY"
-    files[name] = (
-        json.dumps(data, sort_keys=True, indent=2) + "\n"
-    ).encode("utf-8")
+    data["seed_runtime_production"] = "UNIVERSAL_DISTRIBUTED_PRODUCTION_READY"
+    files[name] = (json.dumps(data, sort_keys=True, indent=2) + "\n").encode("utf-8")
 
 
 def mutate_open_finding(files: dict[str, bytes]) -> None:
@@ -134,6 +132,54 @@ def mutate_git_normalization_policy(files: dict[str, bytes]) -> None:
     )
 
 
+def mutate_migration_gap(files: dict[str, bytes]) -> None:
+    name = "ASET/seed/canonical/migration/RC11_TO_RC12_SEMANTIC_COVERAGE.json"
+    data = json.loads(files[name].decode("utf-8"))
+    data["summary"]["fully_migrated_to_rc12"] = 82
+    data["summary"]["unclassified"] = 1
+    files[name] = (json.dumps(data, sort_keys=True, indent=2) + "\n").encode("utf-8")
+
+
+def mutate_protocol_schema(files: dict[str, bytes]) -> None:
+    name = "ASET/src/aset_seed/schemas/transition.schema.json"
+    files[name] += b" "
+
+
+def mutate_runtime_missing(files: dict[str, bytes]) -> None:
+    del files["ASET/src/aset_seed/runtime.py"]
+
+
+def mutate_runtime_boundary(files: dict[str, bytes]) -> None:
+    name = "ASET/seed/canonical/source/seed-model.json"
+    data = json.loads(files[name].decode("utf-8"))
+    data["runtime_profile"]["excluded"].remove("distributed consensus")
+    text = json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+    files[name] = text.encode("utf-8")
+
+
+def mutate_formal_missing(files: dict[str, bytes]) -> None:
+    del files["ASET/seed/canonical/formal/SeedRC12.tla"]
+
+
+def mutate_implicit_effect(files: dict[str, bytes]) -> None:
+    name = "ASET/src/aset_seed/runtime.py"
+    files[name] = b"import socket\n" + files[name]
+
+
+def mutate_limitations(files: dict[str, bytes]) -> None:
+    name = "ASET/seed/canonical/assurance/limitations.json"
+    data = json.loads(files[name].decode("utf-8"))
+    data["limitations"] = [item for item in data["limitations"] if item["id"] != "LIMIT-005"]
+    files[name] = (json.dumps(data, sort_keys=True, indent=2) + "\n").encode("utf-8")
+
+
+def mutate_gate_registry(files: dict[str, bytes]) -> None:
+    name = "ASET/seed/canonical/assurance/repository-release-gates.json"
+    data = json.loads(files[name].decode("utf-8"))
+    data["gates"] = [item for item in data["gates"] if item["name"] != "blackbox_runtime_audit"]
+    files[name] = (json.dumps(data, sort_keys=True, indent=2) + "\n").encode("utf-8")
+
+
 MUTATIONS = [
     ("missing_required_document", "BB-015", mutate_missing_required),
     ("generated_edition_drift", "BB-013", mutate_generated_drift),
@@ -142,6 +188,14 @@ MUTATIONS = [
     ("runtime_overclaim", "BB-006", mutate_status_overclaim),
     ("open_blocking_finding", "BB-008", mutate_open_finding),
     ("git_normalization_policy", "BB-020", mutate_git_normalization_policy),
+    ("migration_gap", "BB-014", mutate_migration_gap),
+    ("protocol_schema_drift", "BB-022", mutate_protocol_schema),
+    ("runtime_missing", "BB-023", mutate_runtime_missing),
+    ("runtime_boundary_overclaim", "BB-024", mutate_runtime_boundary),
+    ("formal_projection_missing", "BB-025", mutate_formal_missing),
+    ("implicit_effect_adapter", "BB-026", mutate_implicit_effect),
+    ("limitation_erased", "BB-027", mutate_limitations),
+    ("gate_registry_incomplete", "BB-028", mutate_gate_registry),
 ]
 
 

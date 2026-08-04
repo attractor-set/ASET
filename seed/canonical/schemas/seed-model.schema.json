@@ -1,10 +1,39 @@
 {
-  "$id": "https://aset.example/spec/seed/canonical-model.schema.json",
+  "$defs": {
+    "localized": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "pt-BR": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ru": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "ru",
+        "en",
+        "pt-BR"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/seed-model.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "assurance": {
+      "minProperties": 7,
+      "type": "object"
+    },
     "canonicality": {
-      "minProperties": 1,
+      "minProperties": 7,
       "type": "object"
     },
     "concepts": {
@@ -12,54 +41,14 @@
         "additionalProperties": false,
         "properties": {
           "definitions": {
-            "additionalProperties": false,
-            "properties": {
-              "en": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "pt-BR": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "ru": {
-                "minLength": 1,
-                "type": "string"
-              }
-            },
-            "required": [
-              "ru",
-              "en",
-              "pt-BR"
-            ],
-            "type": "object"
+            "$ref": "#/$defs/localized"
           },
           "id": {
-            "pattern": "^seed\\.[a-z0-9_]+$",
+            "pattern": "^seed\\.[a-z0-9_]+",
             "type": "string"
           },
           "labels": {
-            "additionalProperties": false,
-            "properties": {
-              "en": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "pt-BR": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "ru": {
-                "minLength": 1,
-                "type": "string"
-              }
-            },
-            "required": [
-              "ru",
-              "en",
-              "pt-BR"
-            ],
-            "type": "object"
+            "$ref": "#/$defs/localized"
           },
           "symbol": {
             "pattern": "^[A-Za-z][A-Za-z0-9]*$",
@@ -74,8 +63,11 @@
         ],
         "type": "object"
       },
-      "minItems": 1,
+      "minItems": 20,
       "type": "array"
+    },
+    "conformance_profile_ref": {
+      "const": "seed/canonical/conformance/conformance-profile.json"
     },
     "invariants": {
       "items": {
@@ -86,36 +78,24 @@
             "type": "string"
           },
           "texts": {
-            "additionalProperties": false,
-            "properties": {
-              "en": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "pt-BR": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "ru": {
-                "minLength": 1,
-                "type": "string"
-              }
+            "$ref": "#/$defs/localized"
+          },
+          "verification": {
+            "items": {
+              "type": "string"
             },
-            "required": [
-              "ru",
-              "en",
-              "pt-BR"
-            ],
-            "type": "object"
+            "minItems": 1,
+            "type": "array"
           }
         },
         "required": [
           "id",
-          "texts"
+          "texts",
+          "verification"
         ],
         "type": "object"
       },
-      "minItems": 1,
+      "minItems": 29,
       "type": "array"
     },
     "languages": {
@@ -126,23 +106,31 @@
       ]
     },
     "model_id": {
-      "minLength": 1,
-      "type": "string"
+      "const": "ASET-SEED-CANON-RC12"
     },
     "predecessor": {
-      "minLength": 1,
-      "type": "string"
+      "const": "ASET Seed 0.1-rc11"
+    },
+    "protocol_profile_ref": {
+      "const": "seed/canonical/protocol/protocol-profile.json"
     },
     "publication": {
-      "minProperties": 1,
+      "required": [
+        "titles",
+        "headings"
+      ],
       "type": "object"
     },
     "requirements": {
       "items": {
         "additionalProperties": false,
         "properties": {
+          "area": {
+            "minLength": 1,
+            "type": "string"
+          },
           "id": {
-            "pattern": "^SEED-[A-Z-]+-[0-9]{3}$",
+            "pattern": "^ASET-SEED-[A-Z-]+[0-9]{3}$",
             "type": "string"
           },
           "modality": {
@@ -154,7 +142,11 @@
             ]
           },
           "predicate": {
-            "pattern": "^[a-z][a-z0-9_]+$",
+            "pattern": "^[a-z][a-z0-9_]+",
+            "type": "string"
+          },
+          "source": {
+            "minLength": 1,
             "type": "string"
           },
           "subject": {
@@ -162,51 +154,104 @@
             "type": "string"
           },
           "texts": {
-            "additionalProperties": false,
-            "properties": {
-              "en": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "pt-BR": {
-                "minLength": 1,
-                "type": "string"
-              },
-              "ru": {
-                "minLength": 1,
-                "type": "string"
-              }
+            "$ref": "#/$defs/localized"
+          },
+          "verification": {
+            "items": {
+              "type": "string"
             },
-            "required": [
-              "ru",
-              "en",
-              "pt-BR"
-            ],
-            "type": "object"
+            "minItems": 1,
+            "type": "array"
           }
         },
         "required": [
           "id",
-          "subject",
+          "area",
           "modality",
+          "subject",
           "predicate",
-          "texts"
+          "texts",
+          "verification",
+          "source"
         ],
         "type": "object"
       },
-      "minItems": 1,
+      "minItems": 38,
       "type": "array"
     },
+    "runtime_profile": {
+      "required": [
+        "profile_id",
+        "status",
+        "implementation_version",
+        "semantic_compatibility",
+        "wire_schema_version",
+        "storage",
+        "proof_boundary",
+        "excluded",
+        "entrypoints",
+        "health_checks"
+      ],
+      "type": "object"
+    },
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "status": {
-      "minLength": 1,
-      "type": "string"
+      "const": "RC12_RELEASE_CANDIDATE_READY"
+    },
+    "transitions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "authorization_rule": {
+            "type": "string"
+          },
+          "created_artifacts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "handler": {
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^SEED-TX-[0-9]{3}$",
+            "type": "string"
+          },
+          "kind": {
+            "pattern": "^[A-Z_]+$",
+            "type": "string"
+          },
+          "payload_schema": {
+            "type": "string"
+          },
+          "semantic_disposition": {
+            "const": "PRESERVED_EXACTLY_FROM_RC11"
+          },
+          "wire_schema_version": {
+            "const": "0.1-rc11"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "payload_schema",
+          "handler",
+          "authorization_rule",
+          "created_artifacts",
+          "wire_schema_version",
+          "semantic_disposition"
+        ],
+        "type": "object"
+      },
+      "maxItems": 18,
+      "minItems": 18,
+      "type": "array"
     },
     "version": {
-      "minLength": 1,
-      "type": "string"
+      "const": "0.1-rc12"
     }
   },
   "required": [
@@ -220,8 +265,13 @@
     "publication",
     "concepts",
     "requirements",
-    "invariants"
+    "invariants",
+    "transitions",
+    "protocol_profile_ref",
+    "conformance_profile_ref",
+    "runtime_profile",
+    "assurance"
   ],
-  "title": "ASET Seed canonical model bootstrap schema",
+  "title": "ASET Seed rc12 canonical model",
   "type": "object"
 }

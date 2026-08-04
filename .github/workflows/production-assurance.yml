@@ -1,5 +1,4 @@
-
-name: ASET documentation production assurance
+name: ASET Seed rc12 production assurance
 
 on:
   pull_request:
@@ -28,19 +27,25 @@ jobs:
       - name: Install validation dependencies
         run: python -m pip install -r requirements-ci.txt
 
-      - name: Run production repository gate
+      - name: Run fail-closed production gate
         run: python tools/production_gate.py
 
-      - name: Upload black-box evidence
+      - name: Upload production evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: aset-documentation-production-assurance
-          if-no-files-found: error
+          name: aset-seed-rc12-production-assurance
+          if-no-files-found: warn
           path: |
             dist/ASET-Repository-Snapshot.zip
             dist/ASET-Repository-Snapshot.zip.sha256
+            dist/wheels/*.whl
+            dist/rc12-conformance-results.json
+            dist/rc12-coverage.json
+            dist/rc12-model-check.json
             dist/blackbox-documentation-audit.json
             dist/blackbox-documentation-audit.md
+            dist/blackbox-runtime-audit.json
+            dist/blackbox-runtime-audit.md
             dist/blackbox-adversarial-results.json
             dist/production-gate.json

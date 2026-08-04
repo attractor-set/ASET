@@ -1,8 +1,13 @@
 {
   "assurance_boundary": {
-    "rc12_semantic_completeness": "NOT_CLAIMED",
+    "deployment_key_management": "DEPLOYMENT_RESPONSIBILITY",
+    "distributed_consensus": "OUT_OF_SCOPE",
+    "external_certification": "PENDING",
+    "physical_world_truth": "OUT_OF_SCOPE",
+    "rc12_machine_canon": "COMPLETE_RELEASE_CANDIDATE",
+    "rc12_semantic_migration": "83_OF_83_MIGRATED",
     "repository_publication_and_documentation_operations": "PRODUCTION_READY",
-    "seed_runtime_or_deployment": "NOT_CLAIMED",
+    "seed_runtime_single_node_sqlite": "PRODUCTION_READY_BOUNDED_PROFILE",
     "seed_semantics_rc11": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS"
   },
   "current_stable_seed_release": "0.1-rc11",
@@ -17,15 +22,17 @@
     "en",
     "pt-BR"
   ],
-  "machine_readable_canon": "CANON_CANDIDATE",
-  "next_seed_status": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED",
-  "next_seed_version": "0.1-rc12-development",
-  "reference_implementation": "CANDIDATE",
+  "machine_readable_canon": "NORMATIVE_CANON_COMPLETE",
+  "next_seed_status": "RC12_RELEASE_CANDIDATE_READY",
+  "next_seed_version": "0.1-rc12",
+  "reference_implementation": "PRODUCTION_READY_BOUNDED_PROFILE",
   "repository": "ASET",
   "repository_production_gate": "PASS_REQUIRED_ON_EVERY_MAIN_CHANGE",
-  "repository_production_readiness": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY",
-  "repository_role": "SPECIFICATION_AND_RELEASE_ASSURANCE",
+  "repository_production_readiness": "DOCUMENTATION_AND_BOUNDED_RUNTIME_PRODUCTION_READY",
+  "repository_role": "SPECIFICATION_AND_BOUNDED_REFERENCE_RUNTIME",
   "repository_url": "https://github.com/attractor-set/ASET",
-  "schema_version": 2,
-  "seed_runtime_production": "HOLD"
+  "runtime_profile_id": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1",
+  "schema_version": 3,
+  "seed_runtime_production": "PRODUCTION_READY_SINGLE_NODE_SQLITE_PROFILE",
+  "wire_compatibility_profile": "ASET-SEED-WIRE-0.1-RC11-COMPAT"
 }

@@ -1,172 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tbx xmlns="urn:iso:std:iso:30042:ed-2" type="TBX-Basic">
-  <tbxHeader>
-    <fileDesc>
-      <titleStmt>
-        <title>ASET Seed terminology bootstrap</title>
-      </titleStmt>
-    </fileDesc>
-  </tbxHeader>
+  <tbxHeader><fileDesc><titleStmt><title>ASET Seed 0.1-rc12 terminology</title></titleStmt></fileDesc></tbxHeader>
   <text><body style="dca">
+    <conceptEntry id="seed.trust_space">
+      <langSec xml:lang="ru"><termSec><term>пространство доверия</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>trust space</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>espaço de confiança</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.genesis">
+      <langSec xml:lang="ru"><termSec><term>генезис</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>genesis</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>gênese</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.constitution">
+      <langSec xml:lang="ru"><termSec><term>конституция доверия</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>trust constitution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>constituição de confiança</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
     <conceptEntry id="seed.context">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>контекст</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>context</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>contexto</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>контекст</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>context</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>contexto</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.context_descriptor">
+      <langSec xml:lang="ru"><termSec><term>описатель контекста</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>context descriptor</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>descritor de contexto</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.authority">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>институциональное полномочие</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>institutional authority</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>autoridade institucional</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>институциональное полномочие</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>institutional authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>autoridade institucional</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.authority_binding">
+      <langSec xml:lang="ru"><termSec><term>связка полномочия</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>authority binding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>vínculo de autoridade</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.decision">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>решение</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>decision</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>decisão</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>решение</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>decision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>decisão</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.permit">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>разрешение</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>permit</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>permissão</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>разрешение</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>permit</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>permissão</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.execution_intent">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>намерение исполнения</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>execution intent</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>intenção de execução</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>намерение исполнения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>execution intent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>intenção de execução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.permit_use_receipt">
+      <langSec xml:lang="ru"><termSec><term>квитанция использования разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>permit-use receipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>comprovante de uso da permissão</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.observation">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>наблюдение</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>observation</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>observação</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>наблюдение</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>observation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>observação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.verification">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>проверка</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>verification</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>verificação</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>проверка</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>verification</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>verificação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.outcome">
-      <langSec xml:lang="ru">
-        <termSec>
-          <term>итоговое признание</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="en">
-        <termSec>
-          <term>outcome</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
-      <langSec xml:lang="pt-BR">
-        <termSec>
-          <term>reconhecimento final</term>
-          <termNote type="administrativeStatus">preferred</termNote>
-        </termSec>
-      </langSec>
+      <langSec xml:lang="ru"><termSec><term>итоговое признание</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>outcome</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>reconhecimento final</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.transition">
+      <langSec xml:lang="ru"><termSec><term>переход состояния</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>state transition</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>transição de estado</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.transition_record">
+      <langSec xml:lang="ru"><termSec><term>запись перехода</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>transition record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>registro de transição</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.export_receipt">
+      <langSec xml:lang="ru"><termSec><term>квитанция экспорта</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>export receipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>comprovante de exportação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.import_record">
+      <langSec xml:lang="ru"><termSec><term>запись импорта</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>import record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>registro de importação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.local_commit">
+      <langSec xml:lang="ru"><termSec><term>локальный коммит</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>local commit</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>commit local</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.reconciliation_receipt">
+      <langSec xml:lang="ru"><termSec><term>квитанция согласования</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>reconciliation receipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>comprovante de reconciliação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.dependency_edge">
+      <langSec xml:lang="ru"><termSec><term>ребро зависимости</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>dependency edge</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>aresta de dependência</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.membership_withdrawal_record">
+      <langSec xml:lang="ru"><termSec><term>запись выхода участника</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>membership-withdrawal record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>registro de retirada de membro</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.context_redefinition_record">
+      <langSec xml:lang="ru"><termSec><term>запись переопределения контекста</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>context-redefinition record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>registro de redefinição de contexto</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.correction_record">
+      <langSec xml:lang="ru"><termSec><term>запись исправления</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>correction record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>registro de correção</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.state_root">
+      <langSec xml:lang="ru"><termSec><term>корень состояния</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>state root</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>raiz de estado</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.proof">
+      <langSec xml:lang="ru"><termSec><term>доказательство аутентификации</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>authentication proof</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>prova de autenticação</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="seed.runtime_store">
+      <langSec xml:lang="ru"><termSec><term>устойчивое хранилище исполнения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>durable runtime store</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>armazenamento durável de execução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
   </body></text>
 </tbx>

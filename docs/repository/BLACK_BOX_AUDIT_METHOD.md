@@ -1,25 +1,17 @@
+# Black-box audit method
 
-# Black-box documentation audit method
+The final `Check` step of every PDCA cycle evaluates only the deterministic repository snapshot and the public runtime interface. It does not trust internal pass records or import the repository validator.
 
-The black-box auditor receives only the built repository snapshot and external expected anchors. It does not import repository validation modules and does not trust generated internal pass reports.
+## Documentation black-box boundary
 
-The audit independently checks:
+The snapshot auditor performs 28 independent checks: archive safety and CRC; exact manifest scope and hashes; license and citation; claim boundaries; mandatory gates and findings; frozen and expanded rc11 byte identity; requirements, traceability and conformance inventories; strict JSON; Python syntax; generated multilingual parity; migration completeness; required documents and local links; terminology and secret scanning; workflows; Git byte preservation; rc12 canon counts; canonical/runtime schema identity; installable runtime presence; bounded-profile exclusions; formal projection; absence of implicit effect adapters; residual limitations; and complete production-gate registration.
 
-- ZIP path safety, duplicate entries and CRC;
-- exact manifest scope, file sizes and SHA-256 digests;
-- full Apache-2.0 license and citation URL;
-- public repository status and assurance boundaries;
-- frozen rc11 bundle identity;
-- byte-exact rc11 expanded tree materialization;
-- Git attributes that prevent clean-filter normalization of frozen release bytes;
-- strict JSON parsing with duplicate-member rejection;
-- generated language edition status, version, canonical digest and semantic-ID parity;
-- foreign-term policy;
-- rc11 requirements, verification and traceability set identity;
-- Python syntax of tracked tools and tests;
-- local Markdown-link resolution;
-- common secret and private-key patterns;
-- mandatory production-readiness documents and release gates;
-- absence of unresolved blocking audit findings.
+## Runtime black-box boundary
 
-The auditor emits machine-readable JSON and a concise Markdown report. Any mandatory failure produces a nonzero result. A separate adversarial runner mutates the snapshot while rebuilding its manifest and verifies that the auditor rejects required-document removal, generated-edition drift, frozen rc11 drift, secret insertion, runtime overclaim, an open blocking finding, and removal of the frozen-byte Git policy.
+The runtime auditor extracts the built snapshot and uses only `python -m aset_seed`. It verifies durable initialization, fail-closed invalid proof handling, accepted signed transition commit, replay idempotency, process-reopen validation, database and audit health, consistent backup, and audit-tampering detection.
+
+## Adversarial step
+
+The mutation harness rebuilds a valid manifest after each malicious change. It must still reject removal or drift of required documents, generated editions, frozen rc11 bytes, Git byte policy, migration coverage, runtime files, protocol schemas, formal model, limitation records and release gates; it also rejects a secret marker, readiness overclaim, open blocking finding, and implicit network/effect import.
+
+Any failed mandatory check forms a finding for the next PDCA cycle. A cycle may close only with zero failed black-box checks and zero open blocking findings.
