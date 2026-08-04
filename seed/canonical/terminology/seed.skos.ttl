@@ -2,52 +2,220 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 aset:SeedConceptScheme a skos:ConceptScheme ;
-    skos:prefLabel "ASET Seed concept scheme"@en .
+    skos:prefLabel "ASET Seed 0.1-rc12 concept scheme"@en .
+
+aset:trust_space a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.trust_space" ;
+    skos:prefLabel "пространство доверия"@ru ;
+    skos:prefLabel "trust space"@en ;
+    skos:prefLabel "espaço de confiança"@pt-BR ;
+    skos:definition "The state of one Genesis lineage with an isolated normative history."@en .
+
+aset:genesis a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.genesis" ;
+    skos:prefLabel "генезис"@ru ;
+    skos:prefLabel "genesis"@en ;
+    skos:prefLabel "gênese"@pt-BR ;
+    skos:definition "Immutable initial material anchoring a trust-space identity."@en .
+
+aset:constitution a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.constitution" ;
+    skos:prefLabel "конституция доверия"@ru ;
+    skos:prefLabel "trust constitution"@en ;
+    skos:prefLabel "constituição de confiança"@pt-BR ;
+    skos:definition "The canonical policy of admissible authority, procedures, and transitions."@en .
 
 aset:context a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.context" ;
     skos:prefLabel "контекст"@ru ;
     skos:prefLabel "context"@en ;
-    skos:prefLabel "contexto"@pt-BR .
+    skos:prefLabel "contexto"@pt-BR ;
+    skos:definition "A normative namespace with immutable ContextID and local state."@en .
+
+aset:context_descriptor a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.context_descriptor" ;
+    skos:prefLabel "описатель контекста"@ru ;
+    skos:prefLabel "context descriptor"@en ;
+    skos:prefLabel "descritor de contexto"@pt-BR ;
+    skos:definition "A protocol record of context identity, parent, address, member, and lifecycle."@en .
 
 aset:authority a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.authority" ;
     skos:prefLabel "институциональное полномочие"@ru ;
     skos:prefLabel "institutional authority"@en ;
-    skos:prefLabel "autoridade institucional"@pt-BR .
+    skos:prefLabel "autoridade institucional"@pt-BR ;
+    skos:definition "An active institutional power in an exact context, scope, and state."@en .
+
+aset:authority_binding a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.authority_binding" ;
+    skos:prefLabel "связка полномочия"@ru ;
+    skos:prefLabel "authority binding"@en ;
+    skos:prefLabel "vínculo de autoridade"@pt-BR ;
+    skos:definition "A protocol record binding an authority holder, kind, scope, epoch, and provenance."@en .
 
 aset:decision a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.decision" ;
     skos:prefLabel "решение"@ru ;
     skos:prefLabel "decision"@en ;
-    skos:prefLabel "decisão"@pt-BR .
+    skos:prefLabel "decisão"@pt-BR ;
+    skos:definition "A recorded normative choice or declaration of readiness."@en .
 
 aset:permit a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.permit" ;
     skos:prefLabel "разрешение"@ru ;
     skos:prefLabel "permit"@en ;
-    skos:prefLabel "permissão"@pt-BR .
+    skos:prefLabel "permissão"@pt-BR ;
+    skos:definition "A bounded authorization to submit the result of a specific action."@en .
 
 aset:execution_intent a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.execution_intent" ;
     skos:prefLabel "намерение исполнения"@ru ;
     skos:prefLabel "execution intent"@en ;
-    skos:prefLabel "intenção de execução"@pt-BR .
+    skos:prefLabel "intenção de execução"@pt-BR ;
+    skos:definition "A materialized use of a permit for a specific attempt."@en .
+
+aset:permit_use_receipt a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.permit_use_receipt" ;
+    skos:prefLabel "квитанция использования разрешения"@ru ;
+    skos:prefLabel "permit-use receipt"@en ;
+    skos:prefLabel "comprovante de uso da permissão"@pt-BR ;
+    skos:definition "Immutable evidence that a specific permit attempt was consumed."@en .
 
 aset:observation a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.observation" ;
     skos:prefLabel "наблюдение"@ru ;
     skos:prefLabel "observation"@en ;
-    skos:prefLabel "observação"@pt-BR .
+    skos:prefLabel "observação"@pt-BR ;
+    skos:definition "A claim about an action result or external fact bound to evidence."@en .
 
 aset:verification a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.verification" ;
     skos:prefLabel "проверка"@ru ;
     skos:prefLabel "verification"@en ;
-    skos:prefLabel "verificação"@pt-BR .
+    skos:prefLabel "verificação"@pt-BR ;
+    skos:definition "Recognition that a claim passed the prescribed verification procedure."@en .
 
 aset:outcome a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.outcome" ;
     skos:prefLabel "итоговое признание"@ru ;
     skos:prefLabel "outcome"@en ;
-    skos:prefLabel "reconhecimento final"@pt-BR .
+    skos:prefLabel "reconhecimento final"@pt-BR ;
+    skos:definition "The final institutional recognition of an action result."@en .
+
+aset:transition a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.transition" ;
+    skos:prefLabel "переход состояния"@ru ;
+    skos:prefLabel "state transition"@en ;
+    skos:prefLabel "transição de estado"@pt-BR ;
+    skos:definition "An atomic candidate change to the canonical state of one context."@en .
+
+aset:transition_record a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.transition_record" ;
+    skos:prefLabel "запись перехода"@ru ;
+    skos:prefLabel "transition record"@en ;
+    skos:prefLabel "registro de transição"@pt-BR ;
+    skos:definition "An immutable record of an accepted transition, its causes, and created artifacts."@en .
+
+aset:export_receipt a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.export_receipt" ;
+    skos:prefLabel "квитанция экспорта"@ru ;
+    skos:prefLabel "export receipt"@en ;
+    skos:prefLabel "comprovante de exportação"@pt-BR ;
+    skos:definition "A source-local commitment transferable to another context as evidence."@en .
+
+aset:import_record a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.import_record" ;
+    skos:prefLabel "запись импорта"@ru ;
+    skos:prefLabel "import record"@en ;
+    skos:prefLabel "registro de importação"@pt-BR ;
+    skos:definition "A local record accepting foreign evidence without importing its outcome automatically."@en .
+
+aset:local_commit a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.local_commit" ;
+    skos:prefLabel "локальный коммит"@ru ;
+    skos:prefLabel "local commit"@en ;
+    skos:prefLabel "commit local"@pt-BR ;
+    skos:definition "A pre-classified transition admissible during a network partition."@en .
+
+aset:reconciliation_receipt a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.reconciliation_receipt" ;
+    skos:prefLabel "квитанция согласования"@ru ;
+    skos:prefLabel "reconciliation receipt"@en ;
+    skos:prefLabel "comprovante de reconciliação"@pt-BR ;
+    skos:definition "A record of local-commit validation, confirmed prefix, and detected forks."@en .
+
+aset:dependency_edge a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.dependency_edge" ;
+    skos:prefLabel "ребро зависимости"@ru ;
+    skos:prefLabel "dependency edge"@en ;
+    skos:prefLabel "aresta de dependência"@pt-BR ;
+    skos:definition "A typed directed relation of normative or non-normative dependency between contexts."@en .
+
+aset:membership_withdrawal_record a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.membership_withdrawal_record" ;
+    skos:prefLabel "запись выхода участника"@ru ;
+    skos:prefLabel "membership-withdrawal record"@en ;
+    skos:prefLabel "registro de retirada de membro"@pt-BR ;
+    skos:definition "An immutable record of voluntary exit or context replacement."@en .
+
+aset:context_redefinition_record a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.context_redefinition_record" ;
+    skos:prefLabel "запись переопределения контекста"@ru ;
+    skos:prefLabel "context-redefinition record"@en ;
+    skos:prefLabel "registro de redefinição de contexto"@pt-BR ;
+    skos:definition "A complete record of the atomic replacement of an exact set of interdependent contexts."@en .
+
+aset:correction_record a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.correction_record" ;
+    skos:prefLabel "запись исправления"@ru ;
+    skos:prefLabel "correction record"@en ;
+    skos:prefLabel "registro de correção"@pt-BR ;
+    skos:definition "An append-only record withdrawing or replacing a verification before final outcome."@en .
+
+aset:state_root a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.state_root" ;
+    skos:prefLabel "корень состояния"@ru ;
+    skos:prefLabel "state root"@en ;
+    skos:prefLabel "raiz de estado"@pt-BR ;
+    skos:definition "A domain-separated hash of the complete canonical trust-space state."@en .
+
+aset:proof a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.proof" ;
+    skos:prefLabel "доказательство аутентификации"@ru ;
+    skos:prefLabel "authentication proof"@en ;
+    skos:prefLabel "prova de autenticação"@pt-BR ;
+    skos:definition "Externally verifiable evidence bound to a principal and exact transition."@en .
+
+aset:runtime_store a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:notation "seed.runtime_store" ;
+    skos:prefLabel "устойчивое хранилище исполнения"@ru ;
+    skos:prefLabel "durable runtime store"@en ;
+    skos:prefLabel "armazenamento durável de execução"@pt-BR ;
+    skos:definition "A transactional store for state and the append-only transition-attempt audit log."@en .

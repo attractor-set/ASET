@@ -1,22 +1,28 @@
-
 # ASET
 
-ASET é um projeto orientado pela especificação: a especificação pública antecede e governa as implementações.
+ASET é um projeto orientado pela especificação: a especificação antecede e governa a semântica permitida das implementações.
 
-## Especificação estável
+## Linhas de release
 
-A documentação estável atual do ASET Seed é a versão **0.1-rc11**. O release é preservado como pacote imutável e como árvore expandida byte a byte para leitura direta no GitHub.
+**ASET Seed 0.1-rc11** continua sendo o release estável, imutável e auditado. **ASET Seed 0.1-rc12** é o candidato completo do cânone legível por máquina e inclui um runtime instalável para um perfil operacional limitado.
 
-- Release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
-- Especificação: [`seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md`](seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md)
-- Auditoria: [`seed/releases/0.1-rc11/expanded/audit/`](seed/releases/0.1-rc11/expanded/audit/)
-- Conjunto de conformidade: [`seed/releases/0.1-rc11/expanded/conformance/`](seed/releases/0.1-rc11/expanded/conformance/)
-- Perfil legível por máquina: [`seed/releases/0.1-rc11/expanded/machine/`](seed/releases/0.1-rc11/expanded/machine/)
+- rc11 congelado: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
+- Cânone rc12: [`seed/canonical/`](seed/canonical/)
+- Especificação rc12 gerada: [`docs/generated/pt-BR/ASET_Seed_0.1-rc12.md`](docs/generated/pt-BR/ASET_Seed_0.1-rc12.md)
+- Runtime: [`src/aset_seed/`](src/aset_seed/)
+- Perfil de produção: [`docs/runtime/PRODUCTION_PROFILE.md`](docs/runtime/PRODUCTION_PROFILE.md)
+- Lista de implantação: [`docs/runtime/DEPLOYMENT_CHECKLIST.md`](docs/runtime/DEPLOYMENT_CHECKLIST.md)
 
-## Prontidão do repositório
+## Limite do candidato rc12
 
-O processo de publicação, validação, garantia de release e auditoria da documentação está pronto para operação. Toda alteração em `main` deve passar por geração determinística, validação semântica e de esquemas, verificação do release congelado, testes, análise estática, construção de snapshot determinístico e auditoria black-box independente da documentação.
+O cânone rc12 contém 27 conceitos, 40 requisitos, 37 invariantes, 18 tipos de transição, 39 JSON Schemas estritos e 55 casos de conformidade vinculados. A superfície semântica rc11 foi migrada 83/83, sem item adiado ou não classificado. As edições em russo, inglês e português brasileiro são geradas de uma única fonte de máquina.
 
-Essa afirmação se aplica ao **repositório de documentação**, não a uma implementação de produção do Seed. O runtime permanece em `HOLD`, a auditoria externa de terceira parte permanece `PENDING` e o cânone rc12 continua sendo um esqueleto de desenvolvimento não publicado.
+O perfil executável está pronto para produção somente no limite `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`: um host, escritores SQLite serializados, WAL com `synchronous=FULL`, CLI local ou API incorporada, verificação explícita de provas, estado durável e auditoria append-only encadeada por hash. O verificador padrão rejeita todas as transições.
 
-Consulte [`docs/repository/PRODUCTION_READINESS.md`](docs/repository/PRODUCTION_READINESS.md).
+A afirmação exclui consenso distribuído, operação multi-primary, efeitos automáticos de rede ou físicos, verdade do mundo físico, gestão de chaves da implantação e certificação externa. A auditoria externa de terceira parte permanece `PENDING`.
+
+Execute a verificação completa com:
+
+```text
+python tools/production_gate.py
+```

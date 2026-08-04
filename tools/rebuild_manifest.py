@@ -15,11 +15,14 @@ EXCLUDED_PARTS = {
     ".pytest_cache",
     ".ruff_cache",
     "dist",
+    "build",
 }
 
 
 def included(relative: Path) -> bool:
-    if relative.as_posix() == "MANIFEST.json":
+    if relative.as_posix() in {"MANIFEST.json", ".coverage"}:
+        return False
+    if any(part.endswith(".egg-info") for part in relative.parts):
         return False
     return not any(part in EXCLUDED_PARTS for part in relative.parts)
 
@@ -55,7 +58,7 @@ def build_manifest() -> dict[str, object]:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Repository-Production-Readiness-v1.1",
+        "package": "ASET-Seed-0.1-rc12-Production-Candidate",
         "repository_root": "ASET",
     }
 

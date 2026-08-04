@@ -1,37 +1,38 @@
+# ASET Seed release process
 
-# Release process
-
-## Stable and development lines
+## Protected lines
 
 - `seed/releases/0.1-rc11/` is immutable historical release material.
-- `seed/canonical/` is mutable development material for a future release.
-- Generated documents are derived artifacts and must not be edited directly.
+- `seed/canonical/` is the rc12 normative candidate source and generated semantic projections.
+- `src/aset_seed/` is the bounded reference runtime bound to the canonical protocol profile.
+- Generated language editions and ontology/terminology views must not be edited manually.
 
 ## Pull-request path
 
-1. branch from current protected `main`;
-2. modify canonical sources, policies, tools, or repository documentation;
-3. regenerate derived editions where applicable;
-4. run `python tools/production_gate.py`;
-5. attach black-box evidence to the pull request;
-6. resolve all review conversations;
-7. merge only after required checks pass.
+1. branch from the exact protected `main`;
+2. state assumptions, scope, and measurable acceptance criteria;
+3. make only changes traceable to those criteria;
+4. regenerate derived views;
+5. run `python tools/production_gate.py`;
+6. inspect the final documentation and runtime black-box reports as the last PDCA check;
+7. record and close every blocking finding;
+8. merge only after mandatory CI succeeds.
 
-## Release-candidate path
+## rc12 release-candidate path
 
-1. classify the semantic difference;
-2. complete migration and traceability records;
-3. freeze the candidate source and conformance suite digests;
-4. run the full production gate in a clean environment;
-5. run independent black-box audit against the built snapshot;
-6. complete owner approval and independent audit;
-7. create a protected annotated tag;
-8. publish immutable release assets and checksums.
+1. require 83/83 migration coverage with zero deferred or unclassified item;
+2. bind exact canon, schema, conformance, formal, implementation, suite, and wheel identities;
+3. run the full gate in a clean checkout;
+4. perform deployment-profile review and backup/restore rehearsal;
+5. retain external third-party audit status explicitly;
+6. create a protected annotated tag only after owner approval;
+7. publish immutable source snapshot, wheel, evidence, release envelope, and checksums.
 
 ## Prohibited operations
 
-- rewriting frozen release bytes;
-- bypassing failed or missing checks;
-- claiming runtime production readiness from documentation evidence;
-- editing generated language editions manually;
-- replacing an existing protected release tag.
+- rewriting rc11 release bytes or protected tags;
+- weakening a gate to make a candidate pass;
+- editing generated artifacts instead of the canonical source;
+- using repository readiness as evidence of distributed or universal runtime safety;
+- enabling automatic external effects inside Seed;
+- storing deployment secrets in the repository.

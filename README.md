@@ -1,49 +1,38 @@
-
 # ASET
 
 ASET is a specification-first project for governed contextual transformation and verifiable execution.
 
-## Stable specification
+## Release lines
 
-The current stable ASET Seed documentation release is **0.1-rc11**. It is preserved as immutable release bytes and as a byte-exact expanded tree for direct review on GitHub.
+**ASET Seed 0.1-rc11** remains the immutable audited stable release. **ASET Seed 0.1-rc12** is the complete machine-canon release candidate and includes an installable bounded production runtime.
 
-- Frozen release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
-- Expanded specification: [`seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md`](seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md)
-- Audit evidence: [`seed/releases/0.1-rc11/expanded/audit/`](seed/releases/0.1-rc11/expanded/audit/)
-- Conformance corpus: [`seed/releases/0.1-rc11/expanded/conformance/`](seed/releases/0.1-rc11/expanded/conformance/)
-- Machine-readable profile: [`seed/releases/0.1-rc11/expanded/machine/`](seed/releases/0.1-rc11/expanded/machine/)
+- Frozen rc11 release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
+- rc12 machine canon: [`seed/canonical/`](seed/canonical/)
+- Generated rc12 specification: [`docs/generated/en/ASET_Seed_0.1-rc12.md`](docs/generated/en/ASET_Seed_0.1-rc12.md)
+- Bounded runtime: [`src/aset_seed/`](src/aset_seed/)
+- Deployment profile: [`docs/runtime/PRODUCTION_PROFILE.md`](docs/runtime/PRODUCTION_PROFILE.md)
+- Deployment checklist: [`docs/runtime/DEPLOYMENT_CHECKLIST.md`](docs/runtime/DEPLOYMENT_CHECKLIST.md)
 
-## Repository readiness
+## rc12 candidate scope
 
-The repository publication, validation, release-assurance, and documentation-audit process is production-ready. Every change to `main` is expected to pass deterministic generation, schema and semantic validation, frozen-release integrity, test and static checks, deterministic snapshot construction, and an independent black-box documentation audit.
+The rc12 canon contains 27 concepts, 40 requirements, 37 invariants, 18 transition kinds, 39 strict JSON Schemas, and 55 bound conformance cases. The rc11 semantic surface is explicitly migrated 83/83 with no deferred or unclassified item. Russian, English, and Brazilian Portuguese editions are generated from one machine source.
 
-This repository-readiness claim does **not** claim that a Seed runtime is production-ready. Runtime production status remains `HOLD`; external third-party audit remains `PENDING`; the rc12 machine-readable canon remains a non-released development scaffold.
+The executable profile is production-ready only within `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`: one host, serialized SQLite writers, WAL with `synchronous=FULL`, local CLI or embedded API, explicit proof verification, durable state and append-only hash-chained audit records. The default proof verifier rejects every transition.
 
-See [`docs/repository/PRODUCTION_READINESS.md`](docs/repository/PRODUCTION_READINESS.md).
+This claim excludes distributed consensus, multi-primary operation, automatic network or physical effects, physical-world truth, deployment key management, and external certification. External third-party audit remains `PENDING`.
 
-## Next-release development
+## Required assurance
 
-The next Seed release is developed under [`seed/canonical/`](seed/canonical/). Generated Russian, English, and Brazilian Portuguese editions are derived from the same candidate canonical model. The migration coverage register explicitly records what is preserved, deferred, or not yet represented.
+Every candidate change is required to pass generated-view parity, schema and SHACL validation, exact frozen rc11 preservation, 55-case semantic regression, 252 branch guards, at least 90% core branch coverage, bounded model checking, unit and concurrency tests, Ruff, wheel installation, deterministic snapshot construction, documentation black-box audit, runtime black-box audit, adversarial mutation rejection, and zero blocking findings.
+
+Run:
+
+```text
+python tools/production_gate.py
+```
 
 ## Languages
 
 - [Русский](README.ru.md)
 - English
 - [Português do Brasil](README.pt-BR.md)
-
-## Required checks
-
-```text
-canonical validation
-frozen rc11 integrity
-expanded rc11 byte identity
-generated-edition parity
-terminology policy
-unit tests and static checks
-deterministic snapshot
-black-box documentation audit
-adversarial black-box rejection suite
-production repository gate
-```
-
-Frozen release bytes are never rewritten.

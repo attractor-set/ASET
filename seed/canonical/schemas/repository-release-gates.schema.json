@@ -21,7 +21,7 @@
             "type": "string"
           },
           "id": {
-            "pattern": "^REPO-GATE-[0-9]{3}$"
+            "pattern": "^ASET-GATE-[0-9]{3}$"
           },
           "mandatory": {
             "const": true
@@ -39,15 +39,15 @@
         ],
         "type": "object"
       },
-      "minItems": 10,
+      "minItems": 19,
       "type": "array",
       "uniqueItems": true
     },
     "profile": {
-      "const": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+      "const": "ASET_SEED_RC12_BOUNDED_PRODUCTION_CANDIDATE"
     },
     "schema_version": {
-      "const": 1
+      "const": 2
     }
   },
   "required": [

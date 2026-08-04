@@ -15,11 +15,13 @@ def load(relative: str):
 def test_repository_and_runtime_claims_are_separate():
     status = load("REPOSITORY_STATUS.json")
     assert status["repository_production_readiness"] == (
-        "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+        "DOCUMENTATION_AND_BOUNDED_RUNTIME_PRODUCTION_READY"
     )
-    assert status["seed_runtime_production"] == "HOLD"
+    assert status["seed_runtime_production"] == (
+        "PRODUCTION_READY_SINGLE_NODE_SQLITE_PROFILE"
+    )
     assert status["next_seed_status"] == (
-        "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+        "RC12_RELEASE_CANDIDATE_READY"
     )
 
 
@@ -30,7 +32,7 @@ def test_all_repository_gates_are_mandatory_and_unique():
     )
     identifiers = [gate["id"] for gate in data["gates"]]
     assert data["fail_closed"] is True
-    assert len(identifiers) >= 10
+    assert len(identifiers) == 19
     assert len(identifiers) == len(set(identifiers))
     assert all(gate["mandatory"] is True for gate in data["gates"])
 
@@ -44,9 +46,11 @@ def test_rc11_to_rc12_register_has_no_unclassified_items():
     assert summary["rc11_requirements"] == 26
     assert summary["rc11_transition_kinds"] == 18
     assert summary["rc11_schemas"] == 39
+    assert summary["fully_migrated_to_rc12"] == 83
+    assert summary["deferred_with_explicit_disposition"] == 0
     assert summary["unclassified"] == 0
     assert data["target_status"] == (
-        "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+        "RC12_RELEASE_CANDIDATE_READY"
     )
 
 
@@ -73,6 +77,7 @@ def test_blackbox_auditor_is_standalone():
     ).read_text(encoding="utf-8")
     assert "from tools" not in source
     assert "import tools" not in source
+
 
 def test_expanded_rc11_git_storage_is_byte_exact():
     result = subprocess.run(

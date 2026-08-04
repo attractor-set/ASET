@@ -1,21 +1,17 @@
-# Canonical Seed development area
+# ASET Seed 0.1-rc12 canonical area
 
-Status: `BOOTSTRAP_SCAFFOLD_NOT_RELEASED`
+Status: `RC12_RELEASE_CANDIDATE_READY`
 
-This area provides the authoring and validation architecture for a future ASET Seed release. It is not yet a complete extraction of rc11 and must not be cited as the current stable specification.
+This directory is the complete machine-readable canonical candidate for ASET Seed 0.1-rc12. It preserves the audited rc11 wire semantics and identity domains while making the full requirements, invariants, transition catalogue, protocol schemas, conformance bindings, terminology, formal safety projection, and bounded production runtime profile explicit and machine-checkable.
 
-The current stable documentation remains the frozen rc11 release under `seed/releases/0.1-rc11/`.
+The bounded production claim covers the single-node SQLite profile only. External proof-key management, distributed consensus, physical-world truth, deployment hardening, and independent third-party certification remain outside this claim.
 
-## Components
+## Canon hierarchy
 
-- `source/seed-model.json` — structured canonical source candidate;
-- `schemas/` — structural and repository-assurance validation;
-- `ontology/` — RDF/OWL semantic vocabulary;
-- `shapes/` — SHACL constraints;
-- `terminology/` — SKOS and TBX terminology;
-- `formal/` — formal transition-model work;
-- `migration/` — explicit rc11-to-rc12 dispositions;
-- `assurance/` — release gates and known limitations;
-- `decisions/` — canonicality and architecture decisions.
+1. `source/seed-model.json`;
+2. protocol schemas and profiles;
+3. requirements, invariants, transition and conformance bindings in the model;
+4. generated RU, EN, and pt-BR editions;
+5. diagrams and examples.
 
-A future semantic freeze requires complete requirement and transition traceability, executable conformance coverage, formal evidence, deterministic publications, independent black-box audit, and a clean-room release audit.
+Frozen rc11 bytes under `seed/releases/0.1-rc11/` remain immutable.

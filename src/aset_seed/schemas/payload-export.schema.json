@@ -1,0 +1,34 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-export.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claim_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "outcome_ref": {
+      "oneOf": [
+        {
+          "maxLength": 300,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_export_root": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_export_root",
+    "claim_digest",
+    "outcome_ref"
+  ],
+  "type": "object"
+}

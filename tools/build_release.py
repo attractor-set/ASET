@@ -18,14 +18,16 @@ EXCLUDED_PARTS = {
     ".pytest_cache",
     ".ruff_cache",
     "dist",
+    "build",
 }
 
 
 def included(path: Path) -> bool:
-    return not any(
-        part in EXCLUDED_PARTS
-        for part in path.parts
-    )
+    if path.as_posix() == ".coverage":
+        return False
+    if any(part.endswith(".egg-info") for part in path.parts):
+        return False
+    return not any(part in EXCLUDED_PARTS for part in path.parts)
 
 
 def sha256_file(path: Path) -> str:

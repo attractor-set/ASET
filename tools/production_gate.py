@@ -1,23 +1,48 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
+WHEELS = DIST / "wheels"
 
 COMMANDS = [
     [sys.executable, "tools/generate_editions.py", "--check"],
+    [sys.executable, "tools/generate_semantic_views.py", "--check"],
     [sys.executable, "tools/check_language.py"],
+    [sys.executable, "tools/validate_rc12_canon.py"],
+    [sys.executable, "tools/build_rc12_envelope.py", "--check"],
     [sys.executable, "tools/verify_frozen_release.py"],
     [sys.executable, "tools/materialize_rc11.py", "--check"],
     [sys.executable, "tools/materialize_rc11.py", "--check-git"],
+    [
+        sys.executable,
+        "tools/run_rc12_conformance.py",
+        "--output",
+        "dist/rc12-conformance-results.json",
+    ],
+    [sys.executable, "tools/model_check_rc12.py", "--output", "dist/rc12-model-check.json"],
+    [sys.executable, "tools/run_rc12_coverage.py"],
     [sys.executable, "tools/rebuild_manifest.py", "--check"],
     [sys.executable, "tools/validate_repository.py"],
     [sys.executable, "-m", "pytest", "-q"],
-    [sys.executable, "-m", "ruff", "check", "tools", "tests"],
+    [sys.executable, "-m", "ruff", "check", "tools", "tests", "src/aset_seed"],
+    [
+        sys.executable,
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        ".",
+        "-w",
+        "dist/wheels",
+    ],
+    [sys.executable, "tools/verify_wheel.py"],
     [sys.executable, "tools/build_release.py"],
     [
         sys.executable,
@@ -27,6 +52,15 @@ COMMANDS = [
         "dist/blackbox-documentation-audit.json",
         "--output-md",
         "dist/blackbox-documentation-audit.md",
+    ],
+    [
+        sys.executable,
+        "tools/blackbox_runtime_audit.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output-json",
+        "dist/blackbox-runtime-audit.json",
+        "--output-md",
+        "dist/blackbox-runtime-audit.md",
     ],
     [
         sys.executable,
@@ -40,17 +74,13 @@ COMMANDS = [
 
 def main() -> int:
     DIST.mkdir(parents=True, exist_ok=True)
+    if WHEELS.exists():
+        shutil.rmtree(WHEELS)
     results: list[dict[str, object]] = []
     status = 0
 
     for command in COMMANDS:
-        result = subprocess.run(
-            command,
-            cwd=ROOT,
-            text=True,
-            capture_output=True,
-            check=False,
-        )
+        result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
         record = {
             "command": command,
             "returncode": result.returncode,
@@ -68,8 +98,9 @@ def main() -> int:
             break
 
     report = {
-        "document_type": "aset-production-repository-gate",
-        "version": 1,
+        "document_type": "aset-seed-rc12-production-gate",
+        "version": 2,
+        "profile": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1",
         "verdict": "PASS" if status == 0 else "FAIL",
         "commands": results,
     }

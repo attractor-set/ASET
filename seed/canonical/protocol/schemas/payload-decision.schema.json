@@ -1,0 +1,60 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-decision.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "conditions_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "decision_kind": {
+      "enum": [
+        "READINESS_EXECUTE",
+        "READINESS_ACCEPT_RESPONSIBILITY",
+        "ISSUE_PERMIT",
+        "CONFIRM_OUTCOME",
+        "AMEND",
+        "SUSPEND_GUARANTEE",
+        "TERMINATE_CONTEXT",
+        "TRANSFER_AUTHORITY"
+      ]
+    },
+    "related_ref": {
+      "oneOf": [
+        {
+          "maxLength": 300,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "scope": {
+      "items": {
+        "maxLength": 120,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "subject_principal_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_kind",
+    "subject_principal_id",
+    "scope",
+    "conditions_digest",
+    "related_ref"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,73 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/authority-binding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "authority_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "capability_kind": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "context_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "grant_provenance": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "holder_principal_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "scope": {
+      "items": {
+        "maxLength": 120,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "scope_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ACTIVE",
+        "TRANSFERRED",
+        "REVOKED",
+        "SUSPENDED"
+      ]
+    }
+  },
+  "required": [
+    "authority_id",
+    "context_id",
+    "capability_kind",
+    "scope",
+    "scope_digest",
+    "holder_principal_id",
+    "authority_epoch",
+    "status",
+    "grant_provenance"
+  ],
+  "type": "object"
+}

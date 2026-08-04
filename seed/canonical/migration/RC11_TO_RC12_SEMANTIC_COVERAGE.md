@@ -1,14 +1,13 @@
+# ASET Seed rc11 → rc12 semantic coverage
 
-# rc11 to rc12 semantic coverage
+Status: `RC12_RELEASE_CANDIDATE_READY`
 
-This register prevents silent loss of rc11 obligations while the rc12 machine-readable canon is incomplete.
+All 83 tracked rc11 semantic assets are represented in the rc12 canonical model. Frozen rc11 bytes remain unchanged.
 
-| Category | rc11 items | Fully migrated | Explicitly deferred | Unclassified |
+| Class | Count | Migrated | Deferred | Unclassified |
 |---|---:|---:|---:|---:|
-| Requirements | 26 | 0 | 26 | 0 |
-| Transition kinds | 18 | 0 | 18 | 0 |
-| Schemas | 39 | 0 | 39 | 0 |
+| Requirements | 26 | 26 | 0 | 0 |
+| Transition kinds | 18 | 18 | 0 | 0 |
+| JSON Schemas | 39 | 39 | 0 | 0 |
 
-The frozen rc11 release remains the current stable normative documentation. An explicit deferred disposition is not a claim of rc12 completeness. rc12 cannot be frozen until every deferred item is replaced by a mapped canonical element and verification evidence.
-
-The machine-readable register is [`RC11_TO_RC12_SEMANTIC_COVERAGE.json`](RC11_TO_RC12_SEMANTIC_COVERAGE.json).
+The rc12 release intentionally preserves the rc11 wire profile and identity domains. The normative change is the complete machine-canon authority, multilingual generation, executable packaging, and bounded production runtime profile.

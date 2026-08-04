@@ -1,28 +1,25 @@
-
-# Documentation repository operations runbook
+# ASET Seed repository and bounded-runtime runbook
 
 ## CI failure
 
-1. identify the first failed mandatory gate;
-2. reproduce locally with `python tools/production_gate.py`;
-3. do not weaken the gate or edit generated evidence;
-4. correct the canonical source, tool, policy, or package input;
-5. rebuild the manifest and snapshot;
-6. rerun the black-box audit;
-7. record the finding and closure when the defect affected a published candidate.
+Reproduce the first failed command from `dist/production-gate.json`. Correct the source defect; do not edit evidence or relax the gate. Regenerate views and manifest, then repeat the entire gate so the final step is a fresh black-box audit.
 
-## Frozen release mismatch
+## Frozen rc11 mismatch
 
-Treat any rc11 digest mismatch as a release-integrity incident. Do not regenerate or repair files in place. Restore the exact frozen bytes from an independently verified copy and compare the release envelope.
+Treat any digest mismatch as a release-integrity incident. Do not regenerate or repair frozen files in place. Restore exact bytes from an independently verified release asset and confirm both archive and Git-stored expanded identities.
 
-## Generated edition mismatch
+## Canon or generated-view mismatch
 
-Change the canonical model or generator, regenerate all three editions, and rerun parity and terminology checks. Manual editing of generated documents is prohibited.
+Change only the machine source, generator, or explicit binding responsible for the defect. Regenerate all RU, EN, and pt-BR editions plus ontology, SKOS, TBX and SHACL views. Never patch a generated edition manually.
 
-## Suspected secret exposure
+## Runtime health failure
 
-Stop publication, rotate the credential outside the repository, remove it from all reachable Git history using an approved incident procedure, and document the event without reproducing the secret.
+Stop new writes when database integrity or audit-chain integrity is not `PASS`. Preserve the database and WAL files, collect version and filesystem evidence, and restore only from a validated backup. Never repair accepted history by direct SQL.
+
+## Proof or key uncertainty
+
+The default response is fail closed. Rotate or replace deployment secrets outside the repository, update the explicit proof profile, and re-run an isolated acceptance transition. Uncertain key provenance does not authorize bypassing proof verification.
 
 ## Failed black-box audit
 
-The snapshot is not releasable. The internal validation result cannot override the black-box result. Open or update a finding, correct the source, and repeat the PDCA cycle.
+The candidate is not releasable. Open a blocking finding, identify the smallest causal change, apply it, run regression, and use the new black-box report to plan the next PDCA cycle.

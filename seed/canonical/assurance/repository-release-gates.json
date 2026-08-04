@@ -1,89 +1,139 @@
 {
   "claim_boundary": {
     "excluded": [
-      "runtime production",
-      "deployment assurance",
       "distributed consensus",
-      "external certification",
-      "rc12 semantic completeness"
+      "automatic external effects",
+      "physical-world truth",
+      "deployment-specific key management",
+      "external certification"
     ],
     "included": [
-      "documentation publication",
+      "machine-readable rc12 canon",
+      "deterministic official editions",
+      "rc11 wire-semantic compatibility",
+      "single-node SQLite durable runtime",
       "release integrity",
-      "repository operations",
-      "audit reproducibility"
+      "black-box documentation and runtime assurance"
     ]
   },
   "document_type": "aset-repository-release-gates",
   "fail_closed": true,
   "gates": [
     {
-      "evidence": "tools/validate_repository.py",
-      "id": "REPO-GATE-001",
+      "evidence": "python tools/validate_repository.py",
+      "id": "ASET-GATE-001",
       "mandatory": true,
       "name": "strict_machine_data"
     },
     {
-      "evidence": "tools/generate_editions.py --check",
-      "id": "REPO-GATE-002",
+      "evidence": "python tools/validate_rc12_canon.py",
+      "id": "ASET-GATE-002",
+      "mandatory": true,
+      "name": "rc12_canon_completeness"
+    },
+    {
+      "evidence": "python tools/generate_editions.py --check",
+      "id": "ASET-GATE-003",
       "mandatory": true,
       "name": "generated_edition_parity"
     },
     {
-      "evidence": "tools/check_language.py",
-      "id": "REPO-GATE-003",
+      "evidence": "python tools/generate_semantic_views.py --check",
+      "id": "ASET-GATE-004",
+      "mandatory": true,
+      "name": "semantic_view_parity"
+    },
+    {
+      "evidence": "python tools/check_language.py",
+      "id": "ASET-GATE-005",
       "mandatory": true,
       "name": "terminology_policy"
     },
     {
-      "evidence": "tools/verify_frozen_release.py",
-      "id": "REPO-GATE-004",
+      "evidence": "python tools/verify_frozen_release.py",
+      "id": "ASET-GATE-006",
       "mandatory": true,
       "name": "frozen_rc11_bundle_integrity"
     },
     {
-      "evidence": "tools/materialize_rc11.py --check",
-      "id": "REPO-GATE-005",
+      "evidence": "python tools/materialize_rc11.py --check",
+      "id": "ASET-GATE-007",
       "mandatory": true,
       "name": "expanded_rc11_byte_identity"
     },
     {
-      "evidence": "python -m pytest -q",
-      "id": "REPO-GATE-006",
+      "evidence": "python tools/materialize_rc11.py --check-git",
+      "id": "ASET-GATE-008",
       "mandatory": true,
-      "name": "tests"
+      "name": "git_stored_rc11_byte_identity"
     },
     {
-      "evidence": "python -m ruff check tools tests",
-      "id": "REPO-GATE-007",
+      "evidence": "python tools/run_rc12_conformance.py",
+      "id": "ASET-GATE-009",
+      "mandatory": true,
+      "name": "rc11_semantic_regression"
+    },
+    {
+      "evidence": "python tools/run_rc12_branch_suite.py",
+      "id": "ASET-GATE-010",
+      "mandatory": true,
+      "name": "rc12_branch_guard_regression"
+    },
+    {
+      "evidence": "python tools/model_check_rc12.py --depth 7",
+      "id": "ASET-GATE-011",
+      "mandatory": true,
+      "name": "bounded_formal_model_check"
+    },
+    {
+      "evidence": "python -m pytest -q",
+      "id": "ASET-GATE-012",
+      "mandatory": true,
+      "name": "unit_and_integration_tests"
+    },
+    {
+      "evidence": "python -m ruff check tools tests src/aset_seed",
+      "id": "ASET-GATE-013",
       "mandatory": true,
       "name": "static_python_checks"
     },
     {
-      "evidence": "tools/build_release.py",
-      "id": "REPO-GATE-008",
+      "evidence": "python -m pip wheel --no-build-isolation --no-deps .",
+      "id": "ASET-GATE-014",
+      "mandatory": true,
+      "name": "installable_wheel"
+    },
+    {
+      "evidence": "python tools/build_release.py",
+      "id": "ASET-GATE-015",
       "mandatory": true,
       "name": "deterministic_snapshot"
     },
     {
-      "evidence": "tools/blackbox_documentation_audit.py",
-      "id": "REPO-GATE-009",
+      "evidence": "python tools/blackbox_documentation_audit.py dist/ASET-Repository-Snapshot.zip",
+      "id": "ASET-GATE-016",
       "mandatory": true,
       "name": "blackbox_documentation_audit"
     },
     {
-      "evidence": "audit/FINDING_CLOSURE_MATRIX.json",
-      "id": "REPO-GATE-010",
+      "evidence": "python tools/blackbox_runtime_audit.py dist/ASET-Repository-Snapshot.zip",
+      "id": "ASET-GATE-017",
       "mandatory": true,
-      "name": "zero_open_blocking_findings"
+      "name": "blackbox_runtime_audit"
     },
     {
-      "evidence": "tools/run_blackbox_adversarial.py",
-      "id": "REPO-GATE-011",
+      "evidence": "python tools/run_blackbox_adversarial.py dist/ASET-Repository-Snapshot.zip",
+      "id": "ASET-GATE-018",
       "mandatory": true,
       "name": "blackbox_adversarial_rejection"
+    },
+    {
+      "evidence": "audit/FINDING_CLOSURE_MATRIX.json",
+      "id": "ASET-GATE-019",
+      "mandatory": true,
+      "name": "zero_open_blocking_findings"
     }
   ],
-  "profile": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY",
-  "schema_version": 1
+  "profile": "ASET_SEED_RC12_BOUNDED_PRODUCTION_CANDIDATE",
+  "schema_version": 2
 }

@@ -2,48 +2,55 @@
   "document_type": "aset-seed-assurance-limitations",
   "limitations": [
     {
-      "closure_criteria": "Cryptographic proof profile and interoperable verification vectors are frozen and independently audited.",
-      "description": "Proof digest verification is represented by an abstract verifier interface.",
+      "closure_criteria": "A separately versioned public-key proof profile, key lifecycle, revocation model, and interoperable vectors are frozen and externally audited.",
+      "description": "The runtime provides HMAC_SHA256_V1 and pinned pre-verified proof profiles, while federation-wide public-key identity and key lifecycle remain deployment-specific.",
       "id": "LIMIT-001",
-      "scope": "rc11-reference",
-      "status": "OPEN_ACCEPTED"
+      "scope": "proof-verification",
+      "status": "PARTIALLY_CLOSED_BOUNDED_PROFILE"
     },
     {
-      "closure_criteria": "Production datastore implementation passes fault-injection, recovery, concurrency and refinement suites.",
-      "description": "Crash durability and concurrent serialization are not proven by the documentation reference state machine.",
+      "closure_criteria": "Closed for ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1; other stores require independent conformance.",
+      "description": "The SQLite profile implements serialized writers, WAL, synchronous FULL, atomic state-and-audit commits, integrity checking, reopen regression, and consistent backup.",
       "id": "LIMIT-002",
-      "scope": "runtime",
-      "status": "OPEN_BLOCKING_RUNTIME_PRODUCTION"
+      "scope": "single-node-runtime",
+      "status": "CLOSED_FOR_PROFILE"
     },
     {
-      "closure_criteria": "A separate coordination profile is specified, implemented and audited where consensus is required.",
-      "description": "Distributed consensus is outside the minimal Seed profile.",
+      "closure_criteria": "Specify, implement, and audit a separate coordination profile when consensus is required.",
+      "description": "Distributed consensus is not part of the minimal Seed or the bounded runtime profile.",
       "id": "LIMIT-003",
-      "scope": "federation",
+      "scope": "distributed-coordination",
+      "status": "OUT_OF_SCOPE_ACCEPTED"
+    },
+    {
+      "closure_criteria": "Complete unbounded formal refinement and breach-propagation proofs for a separately scoped assurance level.",
+      "description": "Critical lifecycle properties are bounded-model checked, but universal breach propagation and unbounded refinement proofs are not claimed.",
+      "id": "LIMIT-004",
+      "scope": "formal-assurance",
       "status": "OPEN_ACCEPTED"
     },
     {
-      "closure_criteria": "The transition model and breach properties are mapped to semantic IDs and model-checked with retained evidence.",
-      "description": "Universal breach propagation model checking is incomplete.",
-      "id": "LIMIT-004",
-      "scope": "formal",
-      "status": "OPEN_BLOCKING_RC12_FREEZE"
-    },
-    {
-      "closure_criteria": "Independent external audit report is published and bound to exact release bytes.",
-      "description": "External third-party audit is pending.",
+      "closure_criteria": "Publish an external audit report bound to the exact release archive, source commit, and test-suite digest.",
+      "description": "Independent external third-party audit of exact rc12 release bytes has not been completed.",
       "id": "LIMIT-005",
-      "scope": "assurance",
-      "status": "OPEN"
+      "scope": "external-assurance",
+      "status": "PENDING"
     },
     {
-      "closure_criteria": "Migration coverage, schemas, requirements, conformance and formal model all pass independent clean-room audit.",
-      "description": "The rc12 canonical model is a development scaffold, not a complete semantic migration.",
+      "closure_criteria": "Closed by 83/83 migration coverage, 55/55 semantic regression, generated-view parity, and black-box audit.",
+      "description": "All 26 rc11 requirements, 18 transition kinds, and 39 schemas are represented in the rc12 machine canon with no deferred or unclassified entry.",
       "id": "LIMIT-006",
-      "scope": "rc12",
-      "status": "OPEN_BLOCKING_RC12_FREEZE"
+      "scope": "rc12-canon",
+      "status": "CLOSED_FOR_CANDIDATE"
+    },
+    {
+      "closure_criteria": "Each deployment must complete and retain the operational acceptance checklist in docs/runtime/DEPLOYMENT_CHECKLIST.md.",
+      "description": "Host hardening, secret provisioning, backup retention, access control, monitoring integration, and incident response depend on the deployment environment.",
+      "id": "LIMIT-007",
+      "scope": "deployment",
+      "status": "DEPLOYMENT_RESPONSIBILITY"
     }
   ],
-  "schema_version": 1,
-  "version": "repository-readiness-baseline-1"
+  "schema_version": 2,
+  "version": "0.1-rc12-candidate"
 }
