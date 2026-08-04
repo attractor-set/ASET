@@ -1,0 +1,82 @@
+{
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/repository-status.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assurance_boundary": {
+      "type": "object"
+    },
+    "current_stable_seed_release": {
+      "const": "0.1-rc11"
+    },
+    "current_stable_seed_status": {
+      "const": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS"
+    },
+    "document_type": {
+      "const": "aset-repository-status"
+    },
+    "expanded_rc11": {
+      "const": "BYTE_EXACT_MATERIALIZATION"
+    },
+    "external_third_party_audit": {
+      "const": "PENDING"
+    },
+    "frozen_seed_bundle_sha256": {
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "frozen_seed_documentation_sha256": {
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "generated_languages": {
+      "const": [
+        "ru",
+        "en",
+        "pt-BR"
+      ]
+    },
+    "machine_readable_canon": {
+      "const": "CANON_CANDIDATE"
+    },
+    "next_seed_status": {
+      "const": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED"
+    },
+    "next_seed_version": {
+      "type": "string"
+    },
+    "reference_implementation": {
+      "const": "CANDIDATE"
+    },
+    "repository": {
+      "const": "ASET"
+    },
+    "repository_production_gate": {
+      "const": "PASS_REQUIRED_ON_EVERY_MAIN_CHANGE"
+    },
+    "repository_production_readiness": {
+      "const": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+    },
+    "repository_role": {
+      "const": "SPECIFICATION_AND_RELEASE_ASSURANCE"
+    },
+    "repository_url": {
+      "const": "https://github.com/attractor-set/ASET"
+    },
+    "schema_version": {
+      "const": 2
+    },
+    "seed_runtime_production": {
+      "const": "HOLD"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "repository",
+    "repository_production_readiness",
+    "current_stable_seed_release",
+    "seed_runtime_production",
+    "assurance_boundary"
+  ],
+  "title": "ASET repository status",
+  "type": "object"
+}

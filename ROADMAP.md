@@ -1,35 +1,28 @@
+
 # Roadmap
 
-## Stage 0 — repository bootstrap
+## Completed repository-readiness baseline
 
-- preserve Seed 0.1-rc11 exact bytes;
-- establish repository governance;
-- enable baseline semantic checks.
+- immutable rc11 archive verification;
+- byte-exact expanded rc11 tree;
+- deterministic multilingual publication scaffold;
+- protected branch and tags;
+- deterministic snapshot and manifest;
+- independent black-box documentation audit;
+- fail-closed production repository gate;
+- PDCA history and finding closure records;
+- CI dependency monitoring.
 
-## Stage 1 — canonical extraction
+## rc12 semantic migration
 
-- map every rc11 concept to stable identifiers;
-- map all requirements and invariants;
-- establish RDF, SHACL, JSON Schema and terminology parity;
-- retain traceability to rc11.
+- complete requirement-by-requirement rc11 disposition;
+- full transition catalogue and rejection-code registry;
+- complete canonical schemas and constraints;
+- executable positive, negative and adversarial conformance corpus;
+- complete formal transition model and model-checking evidence;
+- independent clean-room audit;
+- owner-approved immutable release.
 
-## Stage 2 — formal transition model
+## Runtime readiness
 
-- complete the TLA+ model;
-- pin the formal toolchain by digest;
-- add expected-pass and expected-fail model-checking cases.
-
-## Stage 3 — three-language publication
-
-- complete Russian edition;
-- complete English edition;
-- complete Brazilian Portuguese edition;
-- perform independent editorial review in each language.
-
-## Stage 4 — Seed 0.1-rc12 audit
-
-- clean-room build;
-- semantic-difference review;
-- conformance and adversarial checks;
-- independent audit;
-- exact-byte release decision.
+Runtime durability, concurrency, cryptographic verification, consensus, deployment operations and external certification remain separate future work.

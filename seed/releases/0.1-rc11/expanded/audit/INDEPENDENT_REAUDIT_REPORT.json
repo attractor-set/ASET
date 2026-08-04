@@ -1,0 +1,64 @@
+{
+  "document_type": "aset-seed-independent-final-audit",
+  "documentation_freeze": "APPROVE",
+  "external_third_party_audit": "PENDING",
+  "limitations": [
+    "abstract proof verifier",
+    "no production durability/concurrency proof",
+    "no distributed consensus",
+    "universal breach model checking pending",
+    "external certification pending"
+  ],
+  "production": "HOLD",
+  "results": {
+    "blackbox": [
+      25,
+      25
+    ],
+    "branch_guards": [
+      252,
+      252
+    ],
+    "branch_percent": 90.94292803970224,
+    "case_schema": [
+      55,
+      55
+    ],
+    "conformance": [
+      55,
+      55
+    ],
+    "covered_branches": [
+      733,
+      806
+    ],
+    "docx_a11y": {
+      "high": 0,
+      "low": 0,
+      "medium": 0
+    },
+    "docx_pages_reviewed": [
+      16,
+      16
+    ],
+    "independent_checks": [
+      367,
+      367
+    ],
+    "pdf_pages_reviewed": [
+      16,
+      16
+    ],
+    "pdf_preflight": "PASS",
+    "reachable_state_schema": [
+      55,
+      55
+    ],
+    "release_assurance": [
+      2,
+      2
+    ]
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "version": "0.1-rc11"
+}

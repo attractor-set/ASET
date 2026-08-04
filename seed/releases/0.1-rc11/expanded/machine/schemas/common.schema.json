@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "authn": {
+      "additionalProperties": false,
+      "properties": {
+        "proof_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "signer_principal_id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "signer_principal_id",
+        "proof_digest"
+      ],
+      "type": "object"
+    },
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "nonNegativeInt": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "positiveInt": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "scope": {
+      "items": {
+        "maxLength": 120,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,569 @@
+{
+  "coverage_policy": "Every rc11 normative requirement, transition kind and schema has an explicit disposition before rc12 freeze.",
+  "document_type": "aset-seed-rc11-to-rc12-semantic-coverage",
+  "requirements": [
+    {
+      "area": "Schema",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-001",
+      "rc11_text": "Public API MUST enforce strict schemas and fail closed.",
+      "rc12_semantic_ids": [
+        "SEED-DOC-REQ-001",
+        "SEED-DOC-REQ-002",
+        "SEED-REQ-001",
+        "SEED-REQ-002",
+        "SEED-REQ-003",
+        "SEED-REQ-004"
+      ],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Identity",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-002",
+      "rc11_text": "TrustSpaceID and ContextID MUST be derived from canonical Genesis material.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "State",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-003",
+      "rc11_text": "Every accepted transition MUST be atomic and followed by whole-state validation.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Authority",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-004",
+      "rc11_text": "Active Authority scopes for one Context/capability MUST NOT overlap.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Permit",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-005",
+      "rc11_text": "PermitTerms MUST bind readiness and issue Decision.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Policy",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-006",
+      "rc11_text": "Permit success predicate MUST resolve in active Constitution rules.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Verification",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-007",
+      "rc11_text": "Verification policy MUST equal Permit success predicate.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Outcome",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-008",
+      "rc11_text": "Outcome MUST aggregate the complete effective PASS Verification set.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Correction",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-009",
+      "rc11_text": "Correction MUST target only non-final Verification.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Causality",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-010",
+      "rc11_text": "Causal parents MUST be derived from typed artifact references.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Partition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-011",
+      "rc11_text": "Ordinary transitions MUST fail in SUSPENDED Context.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Reconciliation",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-012",
+      "rc11_text": "Known local commits MUST be complete and fork evidence preserved.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Dependency",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-013",
+      "rc11_text": "NORMATIVE dependency endpoints MUST be ACTIVE.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Withdrawal",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-014",
+      "rc11_text": "Standalone withdrawal MUST be member-signed and MUST NOT break an active normative dependant.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-015",
+      "rc11_text": "AffectedSiblingSet MUST be computed transitively from pre-state.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-016",
+      "rc11_text": "Proposal digest MUST bind the full embedded proposal.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-017",
+      "rc11_text": "Every affected member MUST authorize the exact proposal.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-018",
+      "rc11_text": "Parent MUST hold REDEFINE_CONTEXT Authority.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-019",
+      "rc11_text": "Redefinition MUST commit atomically or leave State unchanged.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-020",
+      "rc11_text": "Successors MUST preserve parent, alias, member and kind while receiving new ContextID.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Redefinition",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-021",
+      "rc11_text": "Dependencies among affected siblings MUST remap to successors.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Audit",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-022",
+      "rc11_text": "Governance records MUST retain full proposal and proof digests.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Transfer",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-023",
+      "rc11_text": "Authority transfer MUST use a same-context positive action trail and new-holder readiness.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Coverage",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-024",
+      "rc11_text": "Reference runtime branch coverage MUST be at least 90 percent for freeze.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Release",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-025",
+      "rc11_text": "Coverage and publication QA MUST be bound to exact source/document bytes.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    },
+    {
+      "area": "Freeze",
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "normative_effect": "No rc11 semantic change. The requirement remains authoritative only in frozen rc11 until explicit rc12 migration.",
+      "rc11_reference": "ASET-SEED-REQ-026",
+      "rc11_text": "Freeze requires clean-room validation of the deterministic archive.",
+      "rc12_semantic_ids": [],
+      "verification": [
+        "expanded_rc11_byte_identity",
+        "rc11_requirements_traceability_identity"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "schemas": [
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "authority-binding.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "common.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "conformance-case.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "constitution.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "context-descriptor.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "context-redefinition-record.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "correction-record.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "decision.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "execution-intent.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "export-receipt.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "import-observation.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "membership-withdrawal-record.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "observation.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "outcome.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-authority-transfer.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-context-redefine.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-context-terminate.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-correction.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-decision.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-export.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-guarantee-suspend.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-import.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-member-context-genesis.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-membership-withdraw.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-observation.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-outcome.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-partition-local-transition.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-permit-attenuate.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-permit-issue.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-permit-use.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-reconcile.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "payload-verification.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "permit-use-receipt.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "permit.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "reconciliation-receipt.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "root-genesis.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "transition.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "trust-space-state.schema.json"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "verification.schema.json"
+    }
+  ],
+  "source_release": "0.1-rc11",
+  "summary": {
+    "deferred_with_explicit_disposition": 83,
+    "fully_migrated_to_rc12": 0,
+    "rc11_requirements": 26,
+    "rc11_schemas": 39,
+    "rc11_transition_kinds": 18,
+    "unclassified": 0
+  },
+  "target_development_line": "0.1-rc12-development",
+  "target_status": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED",
+  "transition_kinds": [
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "MEMBER_CONTEXT_GENESIS"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "DECISION"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "PERMIT_ISSUE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "PERMIT_ATTENUATE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "PERMIT_USE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "OBSERVATION"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "VERIFICATION"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "OUTCOME"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "EXPORT"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "IMPORT"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "GUARANTEE_SUSPEND"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "PARTITION_LOCAL_TRANSITION"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "RECONCILE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "MEMBERSHIP_WITHDRAW"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "CONTEXT_REDEFINE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "CONTEXT_TERMINATE"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "CORRECTION"
+    },
+    {
+      "disposition": "PRESERVED_IN_FROZEN_RC11_DEFERRED_FOR_RC12_CANON",
+      "name": "AUTHORITY_TRANSFER"
+    }
+  ]
+}

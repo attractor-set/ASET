@@ -1,0 +1,78 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/conformance-case.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate": {
+      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/transition.schema.json"
+    },
+    "case_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "expected": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state_changed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "accepted",
+        "code",
+        "state_changed"
+      ],
+      "type": "object"
+    },
+    "initial_genesis": {
+      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/root-genesis.schema.json"
+    },
+    "postconditions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "equals": {},
+          "path": {
+            "pattern": "^/",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "equals"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "setup": {
+      "items": {
+        "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/transition.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "case_id",
+    "description",
+    "initial_genesis",
+    "setup",
+    "candidate",
+    "expected",
+    "postconditions"
+  ],
+  "type": "object"
+}

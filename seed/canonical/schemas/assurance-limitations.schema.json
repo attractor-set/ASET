@@ -1,0 +1,57 @@
+{
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/assurance-limitations.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "aset-seed-assurance-limitations"
+    },
+    "limitations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "closure_criteria": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^LIMIT-[0-9]{3}$"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "status",
+          "description",
+          "closure_criteria"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "version",
+    "limitations"
+  ],
+  "type": "object"
+}

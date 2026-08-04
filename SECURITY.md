@@ -1,25 +1,24 @@
+
 # Security policy
 
 ## Supported scope
 
-This repository contains a frozen documentation release,
-a candidate reference implementation inside that release,
-and a next-release semantic scaffold.
-
-It is not a production security boundary.
+The repository supports secure publication and integrity verification of ASET Seed documentation. The current stable documentation release is rc11 and remains `PASS_WITH_LIMITATIONS`.
 
 ## Reporting
 
-Report suspected vulnerabilities privately to the repository owner.
-Do not publish exploit details before coordinated review.
+Report suspected vulnerabilities privately to the repository owner through GitHub Security Advisories when available. Do not publish exploit details before coordinated review.
 
-## Explicit limitations
+## Repository controls
 
-The reference implementation does not establish:
+- protected `main` and protected published tags;
+- least-privilege GitHub Actions permissions;
+- dependency monitoring;
+- deterministic release artifacts;
+- SHA-256-bound manifests;
+- black-box audit of release snapshots;
+- common secret-pattern scanning.
 
-- production cryptographic identity verification;
-- key custody;
-- durable concurrent transactions;
-- distributed consensus;
-- implementation-refinement proof;
-- external certification.
+## Explicit runtime limitations
+
+The repository does not establish production cryptographic identity verification, key custody, durable concurrent transactions, distributed consensus, implementation-refinement proof, operational disaster recovery, or external certification.

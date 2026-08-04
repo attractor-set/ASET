@@ -1,0 +1,27 @@
+requirement_id,area,normative_text
+ASET-SEED-REQ-001,Schema,Public API MUST enforce strict schemas and fail closed.
+ASET-SEED-REQ-002,Identity,TrustSpaceID and ContextID MUST be derived from canonical Genesis material.
+ASET-SEED-REQ-003,State,Every accepted transition MUST be atomic and followed by whole-state validation.
+ASET-SEED-REQ-004,Authority,Active Authority scopes for one Context/capability MUST NOT overlap.
+ASET-SEED-REQ-005,Permit,PermitTerms MUST bind readiness and issue Decision.
+ASET-SEED-REQ-006,Policy,Permit success predicate MUST resolve in active Constitution rules.
+ASET-SEED-REQ-007,Verification,Verification policy MUST equal Permit success predicate.
+ASET-SEED-REQ-008,Outcome,Outcome MUST aggregate the complete effective PASS Verification set.
+ASET-SEED-REQ-009,Correction,Correction MUST target only non-final Verification.
+ASET-SEED-REQ-010,Causality,Causal parents MUST be derived from typed artifact references.
+ASET-SEED-REQ-011,Partition,Ordinary transitions MUST fail in SUSPENDED Context.
+ASET-SEED-REQ-012,Reconciliation,Known local commits MUST be complete and fork evidence preserved.
+ASET-SEED-REQ-013,Dependency,NORMATIVE dependency endpoints MUST be ACTIVE.
+ASET-SEED-REQ-014,Withdrawal,Standalone withdrawal MUST be member-signed and MUST NOT break an active normative dependant.
+ASET-SEED-REQ-015,Redefinition,AffectedSiblingSet MUST be computed transitively from pre-state.
+ASET-SEED-REQ-016,Redefinition,Proposal digest MUST bind the full embedded proposal.
+ASET-SEED-REQ-017,Redefinition,Every affected member MUST authorize the exact proposal.
+ASET-SEED-REQ-018,Redefinition,Parent MUST hold REDEFINE_CONTEXT Authority.
+ASET-SEED-REQ-019,Redefinition,Redefinition MUST commit atomically or leave State unchanged.
+ASET-SEED-REQ-020,Redefinition,"Successors MUST preserve parent, alias, member and kind while receiving new ContextID."
+ASET-SEED-REQ-021,Redefinition,Dependencies among affected siblings MUST remap to successors.
+ASET-SEED-REQ-022,Audit,Governance records MUST retain full proposal and proof digests.
+ASET-SEED-REQ-023,Transfer,Authority transfer MUST use a same-context positive action trail and new-holder readiness.
+ASET-SEED-REQ-024,Coverage,Reference runtime branch coverage MUST be at least 90 percent for freeze.
+ASET-SEED-REQ-025,Release,Coverage and publication QA MUST be bound to exact source/document bytes.
+ASET-SEED-REQ-026,Freeze,Freeze requires clean-room validation of the deterministic archive.

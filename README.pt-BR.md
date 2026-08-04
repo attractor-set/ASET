@@ -1,45 +1,22 @@
+
 # ASET
 
-O ASET é um projeto no qual a especificação precede a implementação
-e define o comportamento admissível.
+ASET é um projeto orientado pela especificação: a especificação pública antecede e governa as implementações.
 
-## Estado do repositório
+## Especificação estável
 
-- O ASET Seed 0.1-rc11 é preservado como versão histórica imutável.
-- O cânone legível por máquina da próxima versão do Seed está
-  em desenvolvimento.
-- As edições em russo, inglês e português do Brasil são geradas
-  diretamente a partir do mesmo modelo canônico.
-- A implementação de referência permanece candidata.
-- O estado de produção permanece `HOLD`.
+A documentação estável atual do ASET Seed é a versão **0.1-rc11**. O release é preservado como pacote imutável e como árvore expandida byte a byte para leitura direta no GitHub.
 
-## Ordem normativa
+- Release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
+- Especificação: [`seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md`](seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md)
+- Auditoria: [`seed/releases/0.1-rc11/expanded/audit/`](seed/releases/0.1-rc11/expanded/audit/)
+- Conjunto de conformidade: [`seed/releases/0.1-rc11/expanded/conformance/`](seed/releases/0.1-rc11/expanded/conformance/)
+- Perfil legível por máquina: [`seed/releases/0.1-rc11/expanded/machine/`](seed/releases/0.1-rc11/expanded/machine/)
 
-Para versões posteriores à migração canônica:
+## Prontidão do repositório
 
-1. modelo semântico legível por máquina;
-2. restrições e invariantes legíveis por máquina;
-3. edições oficiais geradas em língua natural;
-4. materiais explicativos.
+O processo de publicação, validação, garantia de release e auditoria da documentação está pronto para operação. Toda alteração em `main` deve passar por geração determinística, validação semântica e de esquemas, verificação do release congelado, testes, análise estática, construção de snapshot determinístico e auditoria black-box independente da documentação.
 
-Uma versão congelada não pode ser alterada retroativamente.
+Essa afirmação se aplica ao **repositório de documentação**, não a uma implementação de produção do Seed. O runtime permanece em `HOLD`, a auditoria externa de terceira parte permanece `PENDING` e o cânone rc12 continua sendo um esqueleto de desenvolvimento não publicado.
 
-## Línguas
-
-- [Русский](README.ru.md)
-- [English](README.md)
-- Português do Brasil
-
-## Diretórios principais
-
-- `seed/releases/` — versões imutáveis do Seed;
-- `seed/canonical/` — trabalho canônico da próxima versão;
-- `docs/generated/` — edições geradas;
-- `tools/` — ferramentas de validação e publicação;
-- `.github/workflows/` — verificações de integração contínua.
-
-## Limite das garantias
-
-O congelamento da documentação não implica prontidão para produção,
-verificação criptográfica implantada, armazenamento concorrente
-durável, consenso distribuído ou certificação por terceira parte.
+Consulte [`docs/repository/PRODUCTION_READINESS.md`](docs/repository/PRODUCTION_READINESS.md).

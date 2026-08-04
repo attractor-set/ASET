@@ -1,0 +1,31 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-import.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "export_ref": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "local_permit_ref": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "local_receipt_ref": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "export_ref",
+    "local_permit_ref",
+    "local_receipt_ref"
+  ],
+  "type": "object"
+}

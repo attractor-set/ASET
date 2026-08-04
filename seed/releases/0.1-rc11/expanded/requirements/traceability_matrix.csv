@@ -1,0 +1,27 @@
+requirement_id,specification_section,verification_evidence
+ASET-SEED-REQ-001,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-002,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-003,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-004,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-005,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-006,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-007,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-008,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-009,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-010,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-011,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-012,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-013,20,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-014,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-015,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-016,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-017,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-018,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-019,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-020,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-021,17,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-022,20,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-023,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-024,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-025,normative specification,conformance + independent + blackbox + branch suite
+ASET-SEED-REQ-026,normative specification,conformance + independent + blackbox + branch suite
