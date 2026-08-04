@@ -11,5 +11,7 @@ The project uses evidence-driven Deming cycles. Each cycle ends with a full blac
 | [08](pdca/PDCA-08-RELEASE-CANDIDATE.md) | release candidate and fail-closed production gates | exact envelope, wheel, snapshot, documentation/runtime/adversarial audits | protected PR and external audit |
 | [09](pdca/PDCA-09-LINT-GATE-CORRECTION.md) | close the target Ruff gate without semantic expansion | nine lint findings corrected; full production and final black-box gates required | protected PR and external audit |
 | [10](pdca/PDCA-10-ENVELOPE-REBUILD-ORDERING.md) | restore release metadata after runtime-byte correction | release envelope rebuilt before manifest; complete production and black-box gates required | protected PR and external audit |
+| [11](pdca/PDCA-11-PREFREEZE-BLOCKER-CLOSURE.md) | close independent hostile pre-freeze findings | eight findings closed; expanded snapshot audit emitted four additional boundary/assurance gaps | final pre-freeze assurance |
+| [12](pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md) | close final boundary gaps and establish technical freeze entry | 23 fail-closed gates, expanded runtime and mutation audits, zero blockers required | exact-byte clean-room freeze and owner approval |
 
-Current classification: `RC12_RELEASE_CANDIDATE_READY` for `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`. External third-party audit remains `PENDING`.
+Current classification: `READY_FOR_EXACT_BYTE_FREEZE` technically, while owner approval, exact-byte clean-room freeze, protected tag creation, and external third-party audit remain pending.

@@ -27,28 +27,6 @@ class RejectAllProofVerifier:
         return False
 
 
-@dataclass(frozen=True)
-class PinnedProofVerifier:
-    accepted: frozenset[tuple[str, str]]
-    profile_id: str = "PINNED_PREVERIFIED_DIGEST_V1"
-
-    @classmethod
-    def from_pairs(cls, pairs: list[tuple[str, str]]) -> PinnedProofVerifier:
-        return cls(frozenset(pairs))
-
-    def verify(self, transition: dict) -> bool:
-        authn = transition.get("authn")
-        if not isinstance(authn, dict):
-            return False
-        principal = authn.get("signer_principal_id")
-        digest = authn.get("proof_digest")
-        return (
-            isinstance(principal, str)
-            and isinstance(digest, str)
-            and (principal, digest) in self.accepted
-        )
-
-
 def proof_material(transition: dict) -> bytes:
     material = copy.deepcopy(transition)
     material.pop("transition_id", None)

@@ -1,0 +1,116 @@
+{
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/rc12-freeze-entry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blocking_findings": {
+      "const": 0
+    },
+    "controlling_audit": {
+      "const": "audit/RC12_FINAL_BLACKBOX_AUDIT.json"
+    },
+    "controlling_envelope": {
+      "const": "seed/canonical/release/RC12_RELEASE_CANDIDATE.json"
+    },
+    "document_type": {
+      "const": "aset-seed-rc12-freeze-entry"
+    },
+    "exact_byte_freeze": {
+      "const": "NOT_EXECUTED"
+    },
+    "external_third_party_audit": {
+      "const": "PENDING"
+    },
+    "machine_canon": {
+      "additionalProperties": false,
+      "properties": {
+        "concepts": {
+          "const": 27
+        },
+        "conformance_bindings": {
+          "const": 55
+        },
+        "invariants": {
+          "const": 37
+        },
+        "protocol_schemas": {
+          "const": 39
+        },
+        "rc11_migration": {
+          "const": "83/83"
+        },
+        "requirements": {
+          "const": 40
+        },
+        "transitions": {
+          "const": 18
+        }
+      },
+      "required": [
+        "concepts",
+        "requirements",
+        "invariants",
+        "transitions",
+        "protocol_schemas",
+        "conformance_bindings",
+        "rc11_migration"
+      ],
+      "type": "object"
+    },
+    "owner_freeze_approval": {
+      "const": "PENDING"
+    },
+    "required_evidence": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "residual_limitations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "runtime_profile": {
+      "const": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "stable_predecessor": {
+      "const": "0.1-rc11"
+    },
+    "technical_status": {
+      "const": "READY_FOR_EXACT_BYTE_FREEZE"
+    },
+    "version": {
+      "const": "0.1-rc12"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "version",
+    "technical_status",
+    "owner_freeze_approval",
+    "exact_byte_freeze",
+    "stable_predecessor",
+    "runtime_profile",
+    "external_third_party_audit",
+    "blocking_findings",
+    "machine_canon",
+    "required_evidence",
+    "residual_limitations",
+    "controlling_envelope",
+    "controlling_audit"
+  ],
+  "title": "ASET Seed rc12 technical freeze-entry decision",
+  "type": "object"
+}

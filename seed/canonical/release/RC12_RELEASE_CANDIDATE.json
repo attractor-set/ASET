@@ -13,13 +13,13 @@
   "key_artifacts": [
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:0c607ede371862c5806efb7c687b12ccb80565065a95e32c359558af8e967a3b",
-      "size_bytes": 81930
+      "sha256": "sha256:12915777077f15d658e7f9d712fe8f54c86381067212f057cbfc9fd4f820a211",
+      "size_bytes": 82628
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
-      "sha256": "sha256:6e1077575b603525e9b512f681d4b3111b3b0e8f85e3cc35473089e75c853a74",
-      "size_bytes": 17439
+      "sha256": "sha256:b439bd2e6ece13fddd936862d61cc63f3fc063c5b452ca3000695d3fb33d30be",
+      "size_bytes": 17403
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
@@ -47,9 +47,29 @@
       "size_bytes": 1848
     },
     {
+      "path": "seed/canonical/assurance/repository-release-gates.json",
+      "sha256": "sha256:7ebdd2d406b7223b09423f198b105436ddea53f1d2d3917b88712ba312acfd1a",
+      "size_bytes": 4795
+    },
+    {
+      "path": "seed/canonical/assurance/limitations.json",
+      "sha256": "sha256:b4ff01d56beb70cab842015e98db7513e43131ae29160e1151cb089ddb1ab632",
+      "size_bytes": 3097
+    },
+    {
+      "path": "seed/canonical/release/RC12_FREEZE_ENTRY.json",
+      "sha256": "sha256:387d29374ef73ee1b825a7ef236e164bd129edb59fd596a7ebf7a90fefad8c7b",
+      "size_bytes": 1628
+    },
+    {
+      "path": "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
+      "sha256": "sha256:08bb6324a4c6968a1852f02547ab14184067dd4ced024503a4b51aa259812aae",
+      "size_bytes": 1180
+    },
+    {
       "path": "pyproject.toml",
-      "sha256": "sha256:10e188e288948ce2caed77a57476e1f954dea049a7e583a5fb8b16f157ffb1a1",
-      "size_bytes": 782
+      "sha256": "sha256:5de6a7878febbf51341e9762b5fe7fe65b0587630fbf15b025d1e5bb84f2b433",
+      "size_bytes": 781
     }
   ],
   "limitations_registry": "seed/canonical/assurance/limitations.json",
@@ -254,8 +274,8 @@
   "runtime_artifacts": [
     {
       "path": "src/aset_seed/__init__.py",
-      "sha256": "sha256:92d8939e3d0585969e2b7f05c8d59e736cdf6416a0ca03ea603f3ec5ef326836",
-      "size_bytes": 843
+      "sha256": "sha256:1fc2fa372b508c429c5400c4c071e9f543824fccf56881e6c22b5fa000b78235",
+      "size_bytes": 795
     },
     {
       "path": "src/aset_seed/__main__.py",
@@ -264,8 +284,8 @@
     },
     {
       "path": "src/aset_seed/cli.py",
-      "sha256": "sha256:58b4d608a681eb34ef41afad4ebbe620ee51203350fd24b77731f5acf300f807",
-      "size_bytes": 3927
+      "sha256": "sha256:5c26be48fb52361ab653997df16299592ebbddcf2fc9136c7857cabd017101dd",
+      "size_bytes": 3984
     },
     {
       "path": "src/aset_seed/core.py",
@@ -279,18 +299,18 @@
     },
     {
       "path": "src/aset_seed/proofs.py",
-      "sha256": "sha256:ebeb2aa8e759e0a1ff7024c48c2815fb038512a3626fae39584a7052434fecda",
-      "size_bytes": 3394
+      "sha256": "sha256:a27afc9d0805ae19cff1fb9e55567a0b48847db67b0a2314bddf81f6c7b7ad7b",
+      "size_bytes": 2705
     },
     {
       "path": "src/aset_seed/runtime.py",
-      "sha256": "sha256:8f766a407c57977091944aeea14633954740283cc12f7609982a2b3e52093bb2",
-      "size_bytes": 11637
+      "sha256": "sha256:00908563d4f464e425b01e06ca3456f1dfa6e748315dba54a0bfdbafceabb340",
+      "size_bytes": 15761
     },
     {
       "path": "src/aset_seed/store.py",
-      "sha256": "sha256:01acaf06f5794bfc0ec7bee16cb6d4cbee545cf77f7abdc068e7e067f81c955f",
-      "size_bytes": 5719
+      "sha256": "sha256:1aba4c2af55b9e2734395cb795eb99ec260d3d1addf320b8d73fcd35cd9d686d",
+      "size_bytes": 6083
     },
     {
       "path": "src/aset_seed/schemas/authority-binding.schema.json",

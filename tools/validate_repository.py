@@ -20,6 +20,8 @@ GATES = ROOT / "seed/canonical/assurance/repository-release-gates.json"
 GATES_SCHEMA = ROOT / "seed/canonical/schemas/repository-release-gates.schema.json"
 LIMITATIONS = ROOT / "seed/canonical/assurance/limitations.json"
 LIMITATIONS_SCHEMA = ROOT / "seed/canonical/schemas/assurance-limitations.schema.json"
+FREEZE_ENTRY = ROOT / "seed/canonical/release/RC12_FREEZE_ENTRY.json"
+FREEZE_ENTRY_SCHEMA = ROOT / "seed/canonical/schemas/rc12-freeze-entry.schema.json"
 MIGRATION = ROOT / "seed/canonical/migration/RC11_TO_RC12_SEMANTIC_COVERAGE.json"
 FINDINGS = ROOT / "audit/FINDING_CLOSURE_MATRIX.json"
 SKOS = ROOT / "seed/canonical/terminology/seed.skos.ttl"
@@ -41,6 +43,7 @@ REQUIRED_DOCS = [
     ROOT / "docs/runtime/DEPLOYMENT_CHECKLIST.md",
     ROOT / "docs/runtime/THREAT_MODEL.md",
     ROOT / "seed/canonical/release/RC12_RELEASE_CANDIDATE.json",
+    ROOT / "seed/canonical/release/RC12_FREEZE_ENTRY.json",
     ROOT / "audit/PDCA_HISTORY.md",
     ROOT / "seed/canonical/decisions/ADR-001-semantic-canon-authority.md",
     ROOT / "seed/canonical/protocol/protocol-profile.json",
@@ -103,6 +106,7 @@ def main() -> int:
     status = validate_instance(STATUS, STATUS_SCHEMA, errors)
     gates = validate_instance(GATES, GATES_SCHEMA, errors)
     limitations = validate_instance(LIMITATIONS, LIMITATIONS_SCHEMA, errors)
+    freeze_entry = validate_instance(FREEZE_ENTRY, FREEZE_ENTRY_SCHEMA, errors)
     migration = strict_load(MIGRATION)
     findings = strict_load(FINDINGS)
 
@@ -133,8 +137,8 @@ def main() -> int:
         errors.append("rc12 canonical counts differ from the frozen candidate profile")
 
     gate_ids = [gate["id"] for gate in gates["gates"]]
-    if not unique(gate_ids) or len(gate_ids) != 19:
-        errors.append("repository gate registry must contain 19 unique gates")
+    if not unique(gate_ids) or len(gate_ids) != 23:
+        errors.append("repository gate registry must contain 23 unique gates")
     if not gates.get("fail_closed") or not all(gate["mandatory"] for gate in gates["gates"]):
         errors.append("repository gates must be mandatory and fail closed")
 
@@ -147,6 +151,14 @@ def main() -> int:
     )
     if not external_audit_pending:
         errors.append("external third-party audit limitation must remain PENDING")
+
+    if (
+        freeze_entry.get("technical_status") != "READY_FOR_EXACT_BYTE_FREEZE"
+        or freeze_entry.get("owner_freeze_approval") != "PENDING"
+        or freeze_entry.get("exact_byte_freeze") != "NOT_EXECUTED"
+        or freeze_entry.get("blocking_findings") != 0
+    ):
+        errors.append("rc12 technical freeze entry is not correctly bounded")
 
     expected_migration = {
         "rc11_requirements": 26,

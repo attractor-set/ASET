@@ -8,7 +8,7 @@ This checklist applies only to the bounded single-node SQLite profile. It does n
 
 - [ ] The deployed wheel was built from an exact reviewed rc12 candidate commit.
 - [ ] `python tools/production_gate.py` passed on that commit.
-- [ ] The deployment uses Python 3.12 and a supported `jsonschema` release.
+- [ ] The deployment uses Python 3.12 and the release-bound dependency `jsonschema==4.26.0`.
 - [ ] The SQLite database is on a local durable filesystem; network filesystems are prohibited.
 - [ ] Only one operating-system host writes the database.
 - [ ] The database and backup paths are restricted to the service account (`0600` on POSIX).
@@ -21,7 +21,7 @@ This checklist applies only to the bounded single-node SQLite profile. It does n
 
 1. Initialize a new database from a reviewed Root Genesis.
 2. Record the returned `trust_space_id` and initial state root.
-3. Run `aset-seed --db <path> health` and require database integrity `ok` and audit chain `PASS`.
+3. Run `aset-seed --db <path> health` and require database integrity `ok`, state validation `PASS`, and audit chain `PASS`.
 4. Submit one signed non-effectful acceptance transition in a disposable trust space.
 5. Validate the resulting state and create a backup.
 6. Restore the backup in an isolated path and repeat health and state validation.

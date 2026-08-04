@@ -11,9 +11,9 @@
       "machine-readable rc12 canon",
       "deterministic official editions",
       "rc11 wire-semantic compatibility",
-      "single-node SQLite durable runtime",
       "release integrity",
-      "black-box documentation and runtime assurance"
+      "black-box documentation and runtime assurance",
+      "single-node SQLite durable runtime with semantic health and audited hostile boundaries"
     ]
   },
   "document_type": "aset-repository-release-gates",
@@ -132,6 +132,30 @@
       "id": "ASET-GATE-019",
       "mandatory": true,
       "name": "zero_open_blocking_findings"
+    },
+    {
+      "evidence": "python -m pytest -q tests/test_prefreeze_hardening.py",
+      "id": "ASET-GATE-020",
+      "mandatory": true,
+      "name": "prefreeze_hostile_runtime_regression"
+    },
+    {
+      "evidence": "python tools/run_runtime_adversarial.py dist/ASET-Repository-Snapshot.zip",
+      "id": "ASET-GATE-021",
+      "mandatory": true,
+      "name": "runtime_adversarial_rejection"
+    },
+    {
+      "evidence": "pyproject.toml + requirements-ci.txt + BB-030",
+      "id": "ASET-GATE-022",
+      "mandatory": true,
+      "name": "exact_runtime_dependency_binding"
+    },
+    {
+      "evidence": "seed/canonical/release/RC12_FREEZE_ENTRY.json + BB-032",
+      "id": "ASET-GATE-023",
+      "mandatory": true,
+      "name": "rc12_technical_freeze_entry"
     }
   ],
   "profile": "ASET_SEED_RC12_BOUNDED_PRODUCTION_CANDIDATE",

@@ -72,6 +72,9 @@ jobs:
             dist/ASET-Repository-Snapshot.zip \
             --output-json dist/blackbox-runtime-audit.json \
             --output-md dist/blackbox-runtime-audit.md
+          python tools/run_runtime_adversarial.py \
+            dist/ASET-Repository-Snapshot.zip \
+            --output dist/runtime-adversarial-results.json
           python tools/run_blackbox_adversarial.py \
             dist/ASET-Repository-Snapshot.zip \
             --output dist/blackbox-adversarial-results.json
@@ -92,4 +95,5 @@ jobs:
             dist/blackbox-documentation-audit.md
             dist/blackbox-runtime-audit.json
             dist/blackbox-runtime-audit.md
+            dist/runtime-adversarial-results.json
             dist/blackbox-adversarial-results.json

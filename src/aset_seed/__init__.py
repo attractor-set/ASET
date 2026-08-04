@@ -16,7 +16,7 @@ from .core import (
 from .core import (
     VERSION as WIRE_VERSION,
 )
-from .proofs import HmacSha256ProofVerifier, PinnedProofVerifier, RejectAllProofVerifier
+from .proofs import HmacSha256ProofVerifier, RejectAllProofVerifier
 from .runtime import DurableSeedRuntime
 
 __all__ = [
@@ -31,7 +31,6 @@ __all__ = [
     "validate_state",
     "validate_transition",
     "HmacSha256ProofVerifier",
-    "PinnedProofVerifier",
     "RejectAllProofVerifier",
     "DurableSeedRuntime",
 ]

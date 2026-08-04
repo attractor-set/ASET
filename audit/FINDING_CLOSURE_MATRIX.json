@@ -146,10 +146,94 @@
       "severity": "P0",
       "status": "CLOSED",
       "title": "lint correction changed envelope-bound runtime bytes after release metadata was generated"
+    },
+    {
+      "closure": "Removed the unsafe pinned-digest verifier from the production API and canon; bundled admission now uses reject-all or exact-content HMAC, with black-box proof-profile enforcement.",
+      "id": "RC12-PF-001",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Pinned proof could authorize modified transition"
+    },
+    {
+      "closure": "Added semantic validation of every stored state, trust-space identity, current root, and stored root; CLI health now requires state_validation PASS.",
+      "id": "RC12-PF-002",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Health passed schema-invalid or root-inconsistent state"
+    },
+    {
+      "closure": "Audit oversized JSON transition documents by exact SHA-256 digest and byte size inside the trust-space transaction; clarified non-JSON and unknown-space boundaries.",
+      "id": "RC12-PF-003",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "Oversized transition attempts were not audited"
+    },
+    {
+      "closure": "Added a stable INPUT_NOT_JSON_VALUE boundary rejection before transition admission and regression coverage.",
+      "id": "RC12-PF-004",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "Embedded API leaked TypeError for non-JSON values"
+    },
+    {
+      "closure": "Isolated verifier exceptions as stable PROOF_VERIFIER_ERROR results, preserved state, and recorded them in the audit chain.",
+      "id": "RC12-PF-005",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "Proof-verifier exceptions escaped the runtime boundary"
+    },
+    {
+      "closure": "Refuse backup unless database, semantic-state, and audit-chain health checks all pass.",
+      "id": "RC12-PF-006",
+      "severity": "P2",
+      "status": "CLOSED",
+      "title": "Backup accepted logically invalid persisted state"
+    },
+    {
+      "closure": "Reject symbolic-link database paths and require a private regular file using lstat and O_NOFOLLOW where available.",
+      "id": "RC12-PF-007",
+      "severity": "P2",
+      "status": "CLOSED",
+      "title": "Database symlink path was accepted"
+    },
+    {
+      "closure": "Pinned the wheel runtime dependency to jsonschema==4.26.0 and bound the same version in CI and deployment documentation.",
+      "id": "RC12-PF-008",
+      "severity": "P2",
+      "status": "CLOSED",
+      "title": "Runtime dependency set was not exact"
+    },
+    {
+      "closure": "Validate the identifier type and exact ts:<64 lowercase hex> profile before database access; return stable TRUST_SPACE_ID_INVALID and cover it in unit, black-box, and mutation tests.",
+      "id": "RC12-PF-009",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "Invalid trust-space identifier escaped into SQLite binding"
+    },
+    {
+      "closure": "Centralized strict stored-state decoding and validation, bound state identity/root to redundant columns, and require the same guard for get_state, idempotent initialize, apply, health, and backup.",
+      "id": "RC12-PF-010",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Corrupted stored state remained reachable through read, initialize, or execution paths"
+    },
+    {
+      "closure": "Updated strict repository validation, tests, and snapshot black-box expectations to the complete 23-gate pre-freeze registry.",
+      "id": "RC12-PF-011",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Repository validator retained the obsolete 19-gate count after hostile gates were added"
+    },
+    {
+      "closure": "Added modified-after-proof unit and public CLI black-box cases plus a controlled verifier mutation that must be detected.",
+      "id": "RC12-PF-012",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "Exact-content HMAC binding lacked direct hostile regression and mutation coverage"
     }
   ],
   "document_type": "aset-repository-finding-closure-matrix",
   "open_blocking_findings": [],
   "residual_limitations_ref": "seed/canonical/assurance/limitations.json",
-  "version": "rc12-production-candidate-1"
+  "version": "rc12-technical-freeze-entry-candidate"
 }

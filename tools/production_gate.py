@@ -64,6 +64,13 @@ COMMANDS = [
     ],
     [
         sys.executable,
+        "tools/run_runtime_adversarial.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output",
+        "dist/runtime-adversarial-results.json",
+    ],
+    [
+        sys.executable,
         "tools/run_blackbox_adversarial.py",
         "dist/ASET-Repository-Snapshot.zip",
         "--output",

@@ -16,7 +16,7 @@ class StoreError(RuntimeError):
 
 
 def _reserve_private_file(path: Path) -> None:
-    flags = os.O_CREAT | os.O_EXCL | os.O_RDWR
+    flags = os.O_CREAT | os.O_EXCL | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
     descriptor = os.open(path, flags, 0o600)
     os.close(descriptor)
 
@@ -24,7 +24,12 @@ def _reserve_private_file(path: Path) -> None:
 def _require_private_posix_file(path: Path, label: str) -> None:
     if os.name != "posix":
         return
-    mode = stat.S_IMODE(path.stat().st_mode)
+    status = path.lstat()
+    if stat.S_ISLNK(status.st_mode):
+        raise StoreError(f"{label} must not be a symbolic link")
+    if not stat.S_ISREG(status.st_mode):
+        raise StoreError(f"{label} must be a regular file")
+    mode = stat.S_IMODE(status.st_mode)
     if mode & 0o077:
         raise StoreError(f"{label} must not be group/world accessible")
 
@@ -36,6 +41,8 @@ class SqliteStore:
         self.path = Path(path)
         self.busy_timeout_ms = busy_timeout_ms
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        if self.path.is_symlink():
+            raise StoreError("database file must not be a symbolic link")
         if not self.path.exists():
             _reserve_private_file(self.path)
         _require_private_posix_file(self.path, "database file")
