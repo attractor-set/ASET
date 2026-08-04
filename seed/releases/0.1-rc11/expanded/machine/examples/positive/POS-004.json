@@ -1,0 +1,259 @@
+{
+  "candidate": {
+    "authn": {
+      "proof_digest": "sha256:deec344933cbe218f86bf3ee81342a75defa55e37214a8be15e7f0b4e0aedc08",
+      "signer_principal_id": "principal:responsible"
+    },
+    "causal_parents": [
+      "tx:04caabe057c83c4b0fa691679310bd8c38daf5bb81be95cd023b131d72a690cd",
+      "tx:241bd82aac02628039ad516bec3943b883df83c631739f48c2c9f6b54d7b74d0",
+      "tx:d68f1a9e258de7dd45a9098c44276bd1234369045ae90613a0707ce010682699"
+    ],
+    "constitution_epoch": 0,
+    "context_id": "ctx:18b62079f21b9557a8535e808d24b1a9df69737f45a14d20b3d4bb1546c64922",
+    "expected_local_ordinal": 3,
+    "kind": "PERMIT_ISSUE",
+    "parent_state_root": "sha256:c43bd6a03bcc4155bb350d04e2165188f6d20ad273f54b892d95c75c3d80cd1c",
+    "payload": {
+      "caveats": {
+        "purpose": "test"
+      },
+      "decision_ref": "dec:c98ac4fd55ff9a705e9d9f1d2720907592461507d69603b8f6cc68f4775ed257",
+      "delegate_principal_id": "principal:delegate",
+      "max_attempts": 2,
+      "readiness_ref": "dec:f81bd40360914a9a4304866bb6d0c73d754d290e887265f6d639b5ee42ef4d9c",
+      "scope": [
+        "task:execute"
+      ],
+      "stop_on_positive": true,
+      "success_predicate_digest": "sha256:cc75134587dcd7fa8aa4d1e55a355e8643d61136a3d58fee8d4c57b23a9440e3",
+      "task_digest": "sha256:f7a1c9472a53168862e3dce19d99378f37385abc8be1a6effe1506ecb43f7003",
+      "validity_end_ordinal": 1000
+    },
+    "schema_version": "0.1-rc11",
+    "transition_id": "tx:8cfedc69be3a05e6a2ebc222dc84d2e0c18f4d409495f92a9de8effb463d4e3c",
+    "trust_space_id": "ts:1609bab738b98092e3d8032e7e55fc2e52a56700bce2abb266c83fbdde1e5878"
+  },
+  "case_id": "POS-004",
+  "description": "Permit issuance binds issuer, readiness, delegate, scope and attempt policy.",
+  "expected": {
+    "accepted": true,
+    "code": "ACCEPTED",
+    "state_changed": true
+  },
+  "initial_genesis": {
+    "bootstrap_policy": {
+      "allowed_context_kinds": [
+        "FEDERATION"
+      ],
+      "allowed_initial_capabilities": [
+        "CREATE_MEMBER_CONTEXT",
+        "ISSUE_PERMIT",
+        "VERIFY",
+        "CONFIRM_OUTCOME",
+        "EXPORT",
+        "IMPORT",
+        "SUSPEND_GUARANTEE",
+        "RECONCILE",
+        "REDEFINE_CONTEXT",
+        "TERMINATE_CONTEXT",
+        "TRANSFER_AUTHORITY"
+      ],
+      "max_admissions": 1,
+      "validator_principal_id": "principal:bootstrap"
+    },
+    "constitution": {
+      "accepted_coordination_proofs": [
+        "sha256:a4ce6f8a8a3ea88cbc11a2b96ef662e83ca21e5c84109644b962e4236b2ef478"
+      ],
+      "accepted_patches": [],
+      "constitution_id": "constitution:root",
+      "coordination_classes": {
+        "APPEND_EVIDENCE": "MONOTONE_LOCAL",
+        "APPEND_OBSERVATION": "MONOTONE_LOCAL",
+        "AUTHORITY_CHANGE": "COORDINATION_REQUIRED",
+        "CONTEXT_REDEFINE": "COORDINATION_REQUIRED",
+        "SAFE_COUNTER": "INVARIANT_CONFLUENT"
+      },
+      "identity_immunities": [
+        "/seed_semantics_id",
+        "/trust_space_id",
+        "/root_context_id",
+        "/contexts/*/genesis_digest",
+        "/contexts/*/parent_context_id"
+      ],
+      "policy_version": 1,
+      "rules": {
+        "rule:bootstrap": "sha256:5219664ad4a9acbf0b7a143ca79ce141f5e87fdb8752efb740163f89c2b9a2ca",
+        "rule:permit": "sha256:4143c4f029ca389a681115121da329498ac2278ae1a3663976a23fcebe486ef4",
+        "rule:verification": "sha256:cc75134587dcd7fa8aa4d1e55a355e8643d61136a3d58fee8d4c57b23a9440e3"
+      }
+    },
+    "expected_constitution_digest": "sha256:f43d179174218db9e891925e96c22f349993f8ace8c169e1f7d3404dc42e9674",
+    "expected_root_context_id": "ctx:6c94166c411b9579e2d06af3157708d3bdc1cc4d4179bad7cfb4c79dc878b441",
+    "expected_root_genesis_digest": "sha256:5584c7d80898c97627e6100b1f6bc7bcf23c90f373d722b1fc46f5fe03bad79a",
+    "expected_trust_space_id": "ts:1609bab738b98092e3d8032e7e55fc2e52a56700bce2abb266c83fbdde1e5878",
+    "external_anchor_digest": "sha256:57da8a3caad7a8de81074ec503dc647ef56e4510d1f2deddb0e2ffda8735392d",
+    "root_context_nonce": "root-nonce-001",
+    "schema_version": "0.1-rc11",
+    "seed_semantics_id": "aset-seed:0.1-rc11"
+  },
+  "postconditions": [],
+  "setup": [
+    {
+      "authn": {
+        "proof_digest": "sha256:e3cff0abcfb4ea1d04a2ba1717cd1c747c4c39bff191129dc82c50aafbdb7358",
+        "signer_principal_id": "principal:bootstrap"
+      },
+      "causal_parents": [],
+      "constitution_epoch": 0,
+      "context_id": "ctx:6c94166c411b9579e2d06af3157708d3bdc1cc4d4179bad7cfb4c79dc878b441",
+      "expected_local_ordinal": 1,
+      "kind": "MEMBER_CONTEXT_GENESIS",
+      "parent_state_root": "sha256:fc65383cffe7f067c6fd1ea829653b86c7449fb279da12d12151670272ad9bb9",
+      "payload": {
+        "context_genesis_nonce": "f-nonce",
+        "context_kind": "FEDERATION",
+        "depends_on_context_ids": [],
+        "initial_authorities": [
+          {
+            "capability_kind": "CREATE_MEMBER_CONTEXT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "ISSUE_PERMIT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "VERIFY",
+            "holder_principal_id": "principal:validator",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "CONFIRM_OUTCOME",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "EXPORT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "IMPORT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "SUSPEND_GUARANTEE",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "RECONCILE",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "REDEFINE_CONTEXT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "TERMINATE_CONTEXT",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          },
+          {
+            "capability_kind": "TRANSFER_AUTHORITY",
+            "holder_principal_id": "principal:responsible",
+            "scope": [
+              "*"
+            ]
+          }
+        ],
+        "local_alias": "f",
+        "member_principal_id": "principal:responsible",
+        "parent_context_id": "ctx:6c94166c411b9579e2d06af3157708d3bdc1cc4d4179bad7cfb4c79dc878b441"
+      },
+      "schema_version": "0.1-rc11",
+      "transition_id": "tx:241bd82aac02628039ad516bec3943b883df83c631739f48c2c9f6b54d7b74d0",
+      "trust_space_id": "ts:1609bab738b98092e3d8032e7e55fc2e52a56700bce2abb266c83fbdde1e5878"
+    },
+    {
+      "authn": {
+        "proof_digest": "sha256:20c2b2037ea6097fd81c10043da270f01ed756e845e20c08adbaf7d103f30857",
+        "signer_principal_id": "principal:delegate"
+      },
+      "causal_parents": [
+        "tx:241bd82aac02628039ad516bec3943b883df83c631739f48c2c9f6b54d7b74d0"
+      ],
+      "constitution_epoch": 0,
+      "context_id": "ctx:18b62079f21b9557a8535e808d24b1a9df69737f45a14d20b3d4bb1546c64922",
+      "expected_local_ordinal": 1,
+      "kind": "DECISION",
+      "parent_state_root": "sha256:1309809e0f9f2a896a83f9f4fc919b9b95322f00490a059569686dfe2a100f01",
+      "payload": {
+        "conditions_digest": "sha256:0b2daa8f57dfdd3d0e62cdcbd0cc11c718dba59eaf84e19efea90ac383be5859",
+        "decision_kind": "READINESS_EXECUTE",
+        "related_ref": null,
+        "scope": [
+          "task:execute"
+        ],
+        "subject_principal_id": "principal:delegate"
+      },
+      "schema_version": "0.1-rc11",
+      "transition_id": "tx:04caabe057c83c4b0fa691679310bd8c38daf5bb81be95cd023b131d72a690cd",
+      "trust_space_id": "ts:1609bab738b98092e3d8032e7e55fc2e52a56700bce2abb266c83fbdde1e5878"
+    },
+    {
+      "authn": {
+        "proof_digest": "sha256:635cb08e01969836b90bd1940bb25ef2883efe8fd4a3433640bbce75ec849ed3",
+        "signer_principal_id": "principal:responsible"
+      },
+      "causal_parents": [
+        "tx:04caabe057c83c4b0fa691679310bd8c38daf5bb81be95cd023b131d72a690cd",
+        "tx:241bd82aac02628039ad516bec3943b883df83c631739f48c2c9f6b54d7b74d0"
+      ],
+      "constitution_epoch": 0,
+      "context_id": "ctx:18b62079f21b9557a8535e808d24b1a9df69737f45a14d20b3d4bb1546c64922",
+      "expected_local_ordinal": 2,
+      "kind": "DECISION",
+      "parent_state_root": "sha256:a5f2dd64754f0b75e68b054142d53598868b90aa3aba6cb52dd94dfc953f1c03",
+      "payload": {
+        "conditions_digest": "sha256:0b2daa8f57dfdd3d0e62cdcbd0cc11c718dba59eaf84e19efea90ac383be5859",
+        "decision_kind": "ISSUE_PERMIT",
+        "related_ref": "dec:f81bd40360914a9a4304866bb6d0c73d754d290e887265f6d639b5ee42ef4d9c",
+        "scope": [
+          "task:execute"
+        ],
+        "subject_principal_id": "principal:delegate"
+      },
+      "schema_version": "0.1-rc11",
+      "transition_id": "tx:d68f1a9e258de7dd45a9098c44276bd1234369045ae90613a0707ce010682699",
+      "trust_space_id": "ts:1609bab738b98092e3d8032e7e55fc2e52a56700bce2abb266c83fbdde1e5878"
+    }
+  ]
+}

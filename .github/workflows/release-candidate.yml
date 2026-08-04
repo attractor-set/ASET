@@ -1,3 +1,4 @@
+
 name: ASET Seed release candidate
 
 on:
@@ -14,29 +15,33 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
 
-      - run: python -m pip install -r requirements-ci.txt
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-ci.txt
 
-      - run: python tools/generate_editions.py --check
+      - name: Run production repository gate
+        run: python tools/production_gate.py
 
-      - run: python tools/validate_repository.py
-
-      - run: python -m pytest -q
-
-      - run: python tools/build_release.py
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload release-candidate evidence
+        uses: actions/upload-artifact@v4
         with:
           name: aset-seed-release-candidate
+          if-no-files-found: error
           path: |
             dist/ASET-Repository-Snapshot.zip
             dist/ASET-Repository-Snapshot.zip.sha256
+            dist/blackbox-documentation-audit.json
+            dist/blackbox-documentation-audit.md
+            dist/blackbox-adversarial-results.json
+            dist/production-gate.json
 
 # A signed GitHub Release is intentionally not created automatically.
-# Owner approval and independent audit remain separate release gates.
+# Owner approval and independent release audit remain separate gates.

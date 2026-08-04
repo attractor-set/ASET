@@ -1,0 +1,162 @@
+{
+  "document_type": "aset-seed-requirements-register",
+  "requirements": [
+    {
+      "area": "Schema",
+      "id": "ASET-SEED-REQ-001",
+      "normative": true,
+      "text": "Public API MUST enforce strict schemas and fail closed."
+    },
+    {
+      "area": "Identity",
+      "id": "ASET-SEED-REQ-002",
+      "normative": true,
+      "text": "TrustSpaceID and ContextID MUST be derived from canonical Genesis material."
+    },
+    {
+      "area": "State",
+      "id": "ASET-SEED-REQ-003",
+      "normative": true,
+      "text": "Every accepted transition MUST be atomic and followed by whole-state validation."
+    },
+    {
+      "area": "Authority",
+      "id": "ASET-SEED-REQ-004",
+      "normative": true,
+      "text": "Active Authority scopes for one Context/capability MUST NOT overlap."
+    },
+    {
+      "area": "Permit",
+      "id": "ASET-SEED-REQ-005",
+      "normative": true,
+      "text": "PermitTerms MUST bind readiness and issue Decision."
+    },
+    {
+      "area": "Policy",
+      "id": "ASET-SEED-REQ-006",
+      "normative": true,
+      "text": "Permit success predicate MUST resolve in active Constitution rules."
+    },
+    {
+      "area": "Verification",
+      "id": "ASET-SEED-REQ-007",
+      "normative": true,
+      "text": "Verification policy MUST equal Permit success predicate."
+    },
+    {
+      "area": "Outcome",
+      "id": "ASET-SEED-REQ-008",
+      "normative": true,
+      "text": "Outcome MUST aggregate the complete effective PASS Verification set."
+    },
+    {
+      "area": "Correction",
+      "id": "ASET-SEED-REQ-009",
+      "normative": true,
+      "text": "Correction MUST target only non-final Verification."
+    },
+    {
+      "area": "Causality",
+      "id": "ASET-SEED-REQ-010",
+      "normative": true,
+      "text": "Causal parents MUST be derived from typed artifact references."
+    },
+    {
+      "area": "Partition",
+      "id": "ASET-SEED-REQ-011",
+      "normative": true,
+      "text": "Ordinary transitions MUST fail in SUSPENDED Context."
+    },
+    {
+      "area": "Reconciliation",
+      "id": "ASET-SEED-REQ-012",
+      "normative": true,
+      "text": "Known local commits MUST be complete and fork evidence preserved."
+    },
+    {
+      "area": "Dependency",
+      "id": "ASET-SEED-REQ-013",
+      "normative": true,
+      "text": "NORMATIVE dependency endpoints MUST be ACTIVE."
+    },
+    {
+      "area": "Withdrawal",
+      "id": "ASET-SEED-REQ-014",
+      "normative": true,
+      "text": "Standalone withdrawal MUST be member-signed and MUST NOT break an active normative dependant."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-015",
+      "normative": true,
+      "text": "AffectedSiblingSet MUST be computed transitively from pre-state."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-016",
+      "normative": true,
+      "text": "Proposal digest MUST bind the full embedded proposal."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-017",
+      "normative": true,
+      "text": "Every affected member MUST authorize the exact proposal."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-018",
+      "normative": true,
+      "text": "Parent MUST hold REDEFINE_CONTEXT Authority."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-019",
+      "normative": true,
+      "text": "Redefinition MUST commit atomically or leave State unchanged."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-020",
+      "normative": true,
+      "text": "Successors MUST preserve parent, alias, member and kind while receiving new ContextID."
+    },
+    {
+      "area": "Redefinition",
+      "id": "ASET-SEED-REQ-021",
+      "normative": true,
+      "text": "Dependencies among affected siblings MUST remap to successors."
+    },
+    {
+      "area": "Audit",
+      "id": "ASET-SEED-REQ-022",
+      "normative": true,
+      "text": "Governance records MUST retain full proposal and proof digests."
+    },
+    {
+      "area": "Transfer",
+      "id": "ASET-SEED-REQ-023",
+      "normative": true,
+      "text": "Authority transfer MUST use a same-context positive action trail and new-holder readiness."
+    },
+    {
+      "area": "Coverage",
+      "id": "ASET-SEED-REQ-024",
+      "normative": true,
+      "text": "Reference runtime branch coverage MUST be at least 90 percent for freeze."
+    },
+    {
+      "area": "Release",
+      "id": "ASET-SEED-REQ-025",
+      "normative": true,
+      "text": "Coverage and publication QA MUST be bound to exact source/document bytes."
+    },
+    {
+      "area": "Freeze",
+      "id": "ASET-SEED-REQ-026",
+      "normative": true,
+      "text": "Freeze requires clean-room validation of the deterministic archive."
+    }
+  ],
+  "version": "0.1-rc11"
+}

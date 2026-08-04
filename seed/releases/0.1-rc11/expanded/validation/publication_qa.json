@@ -1,0 +1,29 @@
+{
+  "document_type": "aset-seed-publication-qa",
+  "documents": {
+    "docx": {
+      "a11y": {
+        "high": 0,
+        "low": 0,
+        "medium": 0
+      },
+      "pages": 16,
+      "path": "docs/ASET_Seed_Specification_0.1-rc11.docx",
+      "sha256": "sha256:eb97cc26b426cdc0e6cd9b2fc63cc39cc76f656134a4ef609507a016e492266e",
+      "visual_review_pages": 16
+    },
+    "markdown": {
+      "path": "docs/ASET_Seed_Specification_0.1-rc11.md",
+      "sha256": "sha256:1f8375014b89c7a01a70c561716470eba1b3df7d076679428aa4d9d525abaf39"
+    },
+    "pdf": {
+      "pages": 16,
+      "path": "docs/ASET_Seed_Specification_0.1-rc11.pdf",
+      "preflight": "PASS",
+      "sha256": "sha256:a06d8125c0e0a2036079480b9c8a60ee9b2ef0302351c12d5e02afcdb3d8f75e",
+      "visual_review_pages": 16
+    }
+  },
+  "pass": true,
+  "version": "0.1-rc11"
+}

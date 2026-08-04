@@ -1,3 +1,4 @@
+
 name: ASET Seed semantic CI
 
 on:
@@ -33,6 +34,12 @@ jobs:
       - name: Validate semantic repository
         run: python tools/validate_repository.py
 
+      - name: Verify expanded rc11 identity
+        run: python tools/materialize_rc11.py --check
+
+      - name: Verify Git-stored rc11 identity
+        run: python tools/materialize_rc11.py --check-git
+
       - name: Run tests
         run: python -m pytest -q
 
@@ -42,10 +49,21 @@ jobs:
       - name: Build deterministic repository snapshot
         run: python tools/build_release.py
 
-      - name: Upload validation snapshot
+      - name: Run independent black-box documentation audit
+        run: >-
+          python tools/blackbox_documentation_audit.py
+          dist/ASET-Repository-Snapshot.zip
+          --output-json dist/blackbox-documentation-audit.json
+          --output-md dist/blackbox-documentation-audit.md
+
+      - name: Upload validation evidence
         uses: actions/upload-artifact@v4
         with:
-          name: aset-repository-snapshot
+          name: aset-repository-assurance
+          if-no-files-found: error
           path: |
             dist/ASET-Repository-Snapshot.zip
             dist/ASET-Repository-Snapshot.zip.sha256
+            dist/blackbox-documentation-audit.json
+            dist/blackbox-documentation-audit.md
+            dist/blackbox-adversarial-results.json

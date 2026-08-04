@@ -1,0 +1,5 @@
+{
+  "checks_total": 367,
+  "checks_passed": 367,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

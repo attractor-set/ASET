@@ -1,0 +1,89 @@
+{
+  "claim_boundary": {
+    "excluded": [
+      "runtime production",
+      "deployment assurance",
+      "distributed consensus",
+      "external certification",
+      "rc12 semantic completeness"
+    ],
+    "included": [
+      "documentation publication",
+      "release integrity",
+      "repository operations",
+      "audit reproducibility"
+    ]
+  },
+  "document_type": "aset-repository-release-gates",
+  "fail_closed": true,
+  "gates": [
+    {
+      "evidence": "tools/validate_repository.py",
+      "id": "REPO-GATE-001",
+      "mandatory": true,
+      "name": "strict_machine_data"
+    },
+    {
+      "evidence": "tools/generate_editions.py --check",
+      "id": "REPO-GATE-002",
+      "mandatory": true,
+      "name": "generated_edition_parity"
+    },
+    {
+      "evidence": "tools/check_language.py",
+      "id": "REPO-GATE-003",
+      "mandatory": true,
+      "name": "terminology_policy"
+    },
+    {
+      "evidence": "tools/verify_frozen_release.py",
+      "id": "REPO-GATE-004",
+      "mandatory": true,
+      "name": "frozen_rc11_bundle_integrity"
+    },
+    {
+      "evidence": "tools/materialize_rc11.py --check",
+      "id": "REPO-GATE-005",
+      "mandatory": true,
+      "name": "expanded_rc11_byte_identity"
+    },
+    {
+      "evidence": "python -m pytest -q",
+      "id": "REPO-GATE-006",
+      "mandatory": true,
+      "name": "tests"
+    },
+    {
+      "evidence": "python -m ruff check tools tests",
+      "id": "REPO-GATE-007",
+      "mandatory": true,
+      "name": "static_python_checks"
+    },
+    {
+      "evidence": "tools/build_release.py",
+      "id": "REPO-GATE-008",
+      "mandatory": true,
+      "name": "deterministic_snapshot"
+    },
+    {
+      "evidence": "tools/blackbox_documentation_audit.py",
+      "id": "REPO-GATE-009",
+      "mandatory": true,
+      "name": "blackbox_documentation_audit"
+    },
+    {
+      "evidence": "audit/FINDING_CLOSURE_MATRIX.json",
+      "id": "REPO-GATE-010",
+      "mandatory": true,
+      "name": "zero_open_blocking_findings"
+    },
+    {
+      "evidence": "tools/run_blackbox_adversarial.py",
+      "id": "REPO-GATE-011",
+      "mandatory": true,
+      "name": "blackbox_adversarial_rejection"
+    }
+  ],
+  "profile": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY",
+  "schema_version": 1
+}

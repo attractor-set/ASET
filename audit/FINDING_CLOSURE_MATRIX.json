@@ -1,0 +1,57 @@
+{
+  "closed_findings": [
+    {
+      "closure": "Added byte-exact expanded rc11 tree and independent identity check.",
+      "id": "REPO-AUD-001",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Stable rc11 not fully browseable"
+    },
+    {
+      "closure": "Added independent black-box auditor and mandatory CI gate.",
+      "id": "REPO-AUD-002",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "No snapshot black-box documentation audit"
+    },
+    {
+      "closure": "Added explicit claim boundary and status schema.",
+      "id": "REPO-AUD-003",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Repository and runtime production claims not separated"
+    },
+    {
+      "closure": "Added complete requirement, transition-kind and schema disposition register.",
+      "id": "REPO-AUD-004",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "No explicit rc11-to-rc12 disposition register"
+    },
+    {
+      "closure": "Added machine-readable mandatory release gates and production gate orchestrator.",
+      "id": "REPO-AUD-005",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "No operational release gate registry"
+    },
+    {
+      "closure": "Added release, black-box audit and incident runbooks.",
+      "id": "REPO-AUD-006",
+      "severity": "P1",
+      "status": "CLOSED",
+      "title": "No repository operations runbook"
+    },
+    {
+      "closure": "Marked the frozen release tree -text, added Git-filter byte preflight, fresh-checkout regression coverage and an adversarial audit.",
+      "id": "REPO-AUD-007",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Git line-ending normalization changed frozen rc11 CSV bytes"
+    }
+  ],
+  "document_type": "aset-repository-finding-closure-matrix",
+  "open_blocking_findings": [],
+  "residual_limitations_ref": "seed/canonical/assurance/limitations.json",
+  "version": "production-readiness-baseline-1.1"
+}

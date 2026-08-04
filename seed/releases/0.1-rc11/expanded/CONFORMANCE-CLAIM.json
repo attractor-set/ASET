@@ -1,0 +1,30 @@
+{
+  "blackbox_checks": {
+    "passed": 25,
+    "total": 25
+  },
+  "branch_coverage": {
+    "covered": 733,
+    "minimum": 90.0,
+    "percent": 90.94292803970224,
+    "total": 806
+  },
+  "branch_guards": {
+    "passed": 252,
+    "total": 252
+  },
+  "claim_boundary": "source-bound working candidate; final archive clean-room gate pending",
+  "conformance_cases": {
+    "passed": 55,
+    "total": 55
+  },
+  "document_type": "aset-seed-conformance-claim",
+  "external_audit": "PENDING",
+  "independent_checks": {
+    "passed": 367,
+    "total": 367
+  },
+  "production": "HOLD",
+  "status": "DOCUMENTATION_FREEZE_READY",
+  "version": "0.1-rc11"
+}

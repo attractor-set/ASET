@@ -1,0 +1,62 @@
+{
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/repository-release-gates.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claim_boundary": {
+      "type": "object"
+    },
+    "document_type": {
+      "const": "aset-repository-release-gates"
+    },
+    "fail_closed": {
+      "const": true
+    },
+    "gates": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^REPO-GATE-[0-9]{3}$"
+          },
+          "mandatory": {
+            "const": true
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "mandatory",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "minItems": 10,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "profile": {
+      "const": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "profile",
+    "fail_closed",
+    "gates",
+    "claim_boundary"
+  ],
+  "type": "object"
+}

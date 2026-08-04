@@ -1,9 +1,17 @@
 {
-  "bootstrap_version": "0.1",
+  "assurance_boundary": {
+    "rc12_semantic_completeness": "NOT_CLAIMED",
+    "repository_publication_and_documentation_operations": "PRODUCTION_READY",
+    "seed_runtime_or_deployment": "NOT_CLAIMED",
+    "seed_semantics_rc11": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS"
+  },
+  "current_stable_seed_release": "0.1-rc11",
+  "current_stable_seed_status": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS",
   "document_type": "aset-repository-status",
+  "expanded_rc11": "BYTE_EXACT_MATERIALIZATION",
   "external_third_party_audit": "PENDING",
   "frozen_seed_bundle_sha256": "sha256:a0a534125e27f491747dc46f080f418226798dadadee31d5d55b495e6e18ab43",
-  "frozen_seed_release": "0.1-rc11",
+  "frozen_seed_documentation_sha256": "sha256:3a2f06183790dd6ec06b1d2ad47653aa368ee9e62a1ec71f76c60cab508b5600",
   "generated_languages": [
     "ru",
     "en",
@@ -12,7 +20,12 @@
   "machine_readable_canon": "CANON_CANDIDATE",
   "next_seed_status": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED",
   "next_seed_version": "0.1-rc12-development",
-  "production": "HOLD",
   "reference_implementation": "CANDIDATE",
-  "repository": "ASET"
+  "repository": "ASET",
+  "repository_production_gate": "PASS_REQUIRED_ON_EVERY_MAIN_CHANGE",
+  "repository_production_readiness": "DOCUMENTATION_REPOSITORY_PRODUCTION_READY",
+  "repository_role": "SPECIFICATION_AND_RELEASE_ASSURANCE",
+  "repository_url": "https://github.com/attractor-set/ASET",
+  "schema_version": 2,
+  "seed_runtime_production": "HOLD"
 }

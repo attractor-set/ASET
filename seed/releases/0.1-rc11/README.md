@@ -1,21 +1,14 @@
-# ASET Seed 0.1-rc11 frozen release
 
-This directory preserves the exact complete release bundle.
+# ASET Seed 0.1-rc11
 
-Complete release bundle SHA-256:
+Status: immutable frozen historical release; independent final audit `PASS_WITH_LIMITATIONS`; production runtime `HOLD`.
 
-`a0a534125e27f491747dc46f080f418226798dadadee31d5d55b495e6e18ab43`
+## Representations
 
-Inner documentation archive SHA-256:
+- `delivery/` — complete immutable release bundle and checksum;
+- `materialized/` — principal publication and audit files extracted for convenience;
+- `expanded/` — byte-exact expansion of `ASET-Seed-Documentation-v0.1-rc11.zip`, verified by `tools/materialize_rc11.py --check`.
 
-`3a2f06183790dd6ec06b1d2ad47653aa368ee9e62a1ec71f76c60cab508b5600`
+The expanded tree improves reviewability but does not create a new release. Any byte mismatch against the frozen documentation archive is a release-integrity failure.
 
-Status:
-
-- documentation freeze: APPROVE;
-- reference implementation: CANDIDATE;
-- production: HOLD;
-- external third-party audit: PENDING.
-
-Files in this directory are immutable.
-Any change requires a new release directory.
+Start with [`expanded/docs/ASET_SEED_SPECIFICATION.md`](expanded/docs/ASET_SEED_SPECIFICATION.md).

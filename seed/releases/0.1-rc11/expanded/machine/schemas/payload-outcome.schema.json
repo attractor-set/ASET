@@ -1,0 +1,36 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-outcome.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "outcome_class": {
+      "enum": [
+        "POSITIVE",
+        "NEGATIVE"
+      ]
+    },
+    "permit_ref": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "verification_refs": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "permit_ref",
+    "verification_refs",
+    "outcome_class"
+  ],
+  "type": "object"
+}

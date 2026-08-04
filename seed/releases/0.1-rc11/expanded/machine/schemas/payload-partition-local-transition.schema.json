@@ -1,0 +1,37 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-partition-local-transition.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "commit_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "coordination_proof_digest": {
+      "oneOf": [
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "operation_class": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "parent_export_root": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "operation_class",
+    "parent_export_root",
+    "commit_digest",
+    "coordination_proof_digest"
+  ],
+  "type": "object"
+}

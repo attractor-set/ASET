@@ -1,0 +1,12 @@
+{
+  "clipping": 0,
+  "document_type": "aset-seed-visual-qa",
+  "docx_pages": 16,
+  "docx_sha256": "sha256:eb97cc26b426cdc0e6cd9b2fc63cc39cc76f656134a4ef609507a016e492266e",
+  "missing_glyphs": 0,
+  "overlap": 0,
+  "pdf_pages": 16,
+  "pdf_sha256": "sha256:a06d8125c0e0a2036079480b9c8a60ee9b2ef0302351c12d5e02afcdb3d8f75e",
+  "review": "PASS",
+  "version": "0.1-rc11"
+}

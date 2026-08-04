@@ -1,28 +1,29 @@
+
 # ASET
 
-ASET is a specification-first project for governed contextual
-transformation and verifiable execution.
+ASET is a specification-first project for governed contextual transformation and verifiable execution.
 
-## Repository status
+## Stable specification
 
-- ASET Seed 0.1-rc11 is preserved as an immutable historical release.
-- The machine-readable canon for the next Seed release is under
-  development.
-- Russian, English and Brazilian Portuguese editions are generated
-  directly from the same canonical model.
-- The reference implementation is a candidate.
-- Production status remains HOLD.
+The current stable ASET Seed documentation release is **0.1-rc11**. It is preserved as immutable release bytes and as a byte-exact expanded tree for direct review on GitHub.
 
-## Canonicality
+- Frozen release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
+- Expanded specification: [`seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md`](seed/releases/0.1-rc11/expanded/docs/ASET_SEED_SPECIFICATION.md)
+- Audit evidence: [`seed/releases/0.1-rc11/expanded/audit/`](seed/releases/0.1-rc11/expanded/audit/)
+- Conformance corpus: [`seed/releases/0.1-rc11/expanded/conformance/`](seed/releases/0.1-rc11/expanded/conformance/)
+- Machine-readable profile: [`seed/releases/0.1-rc11/expanded/machine/`](seed/releases/0.1-rc11/expanded/machine/)
 
-For releases created after the canonical migration:
+## Repository readiness
 
-1. machine-readable semantic model;
-2. machine-readable constraints and invariants;
-3. generated official language editions;
-4. explanatory material.
+The repository publication, validation, release-assurance, and documentation-audit process is production-ready. Every change to `main` is expected to pass deterministic generation, schema and semantic validation, frozen-release integrity, test and static checks, deterministic snapshot construction, and an independent black-box documentation audit.
 
-A frozen release cannot be changed retroactively.
+This repository-readiness claim does **not** claim that a Seed runtime is production-ready. Runtime production status remains `HOLD`; external third-party audit remains `PENDING`; the rc12 machine-readable canon remains a non-released development scaffold.
+
+See [`docs/repository/PRODUCTION_READINESS.md`](docs/repository/PRODUCTION_READINESS.md).
+
+## Next-release development
+
+The next Seed release is developed under [`seed/canonical/`](seed/canonical/). Generated Russian, English, and Brazilian Portuguese editions are derived from the same candidate canonical model. The migration coverage register explicitly records what is preserved, deferred, or not yet represented.
 
 ## Languages
 
@@ -30,16 +31,19 @@ A frozen release cannot be changed retroactively.
 - English
 - [Português do Brasil](README.pt-BR.md)
 
-## Main directories
+## Required checks
 
-- `seed/releases/` — immutable Seed releases;
-- `seed/canonical/` — next-release canonical work;
-- `docs/generated/` — generated language editions;
-- `tools/` — validation and publication tools;
-- `.github/workflows/` — continuous-integration checks.
+```text
+canonical validation
+frozen rc11 integrity
+expanded rc11 byte identity
+generated-edition parity
+terminology policy
+unit tests and static checks
+deterministic snapshot
+black-box documentation audit
+adversarial black-box rejection suite
+production repository gate
+```
 
-## Assurance boundary
-
-Documentation freeze does not imply production readiness,
-cryptographic deployment assurance, durable concurrent storage,
-distributed consensus or third-party certification.
+Frozen release bytes are never rewritten.

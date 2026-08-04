@@ -1,0 +1,102 @@
+{
+  "$id": "https://spec.aset.example/seed/0.1-rc11/schemas/root-genesis.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bootstrap_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_context_kinds": {
+          "items": {
+            "enum": [
+              "FEDERATION",
+              "SUBJECT",
+              "ORGANIZATION",
+              "AI_AGENT"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "allowed_initial_capabilities": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "max_admissions": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "validator_principal_id": {
+          "maxLength": 300,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "validator_principal_id",
+        "max_admissions",
+        "allowed_context_kinds",
+        "allowed_initial_capabilities"
+      ],
+      "type": "object"
+    },
+    "constitution": {
+      "$ref": "https://spec.aset.example/seed/0.1-rc11/schemas/constitution.schema.json"
+    },
+    "expected_constitution_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "expected_root_context_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "expected_root_genesis_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "expected_trust_space_id": {
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "external_anchor_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "root_context_nonce": {
+      "maxLength": 200,
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "0.1-rc11"
+    },
+    "seed_semantics_id": {
+      "const": "aset-seed:0.1-rc11"
+    }
+  },
+  "required": [
+    "schema_version",
+    "seed_semantics_id",
+    "constitution",
+    "external_anchor_digest",
+    "root_context_nonce",
+    "bootstrap_policy",
+    "expected_constitution_digest",
+    "expected_root_genesis_digest",
+    "expected_root_context_id",
+    "expected_trust_space_id"
+  ],
+  "type": "object"
+}

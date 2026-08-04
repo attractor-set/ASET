@@ -1,0 +1,4 @@
+{
+  "checks_total": 25,
+  "checks_passed": 25
+}

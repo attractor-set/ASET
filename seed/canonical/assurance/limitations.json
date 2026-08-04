@@ -1,0 +1,49 @@
+{
+  "document_type": "aset-seed-assurance-limitations",
+  "limitations": [
+    {
+      "closure_criteria": "Cryptographic proof profile and interoperable verification vectors are frozen and independently audited.",
+      "description": "Proof digest verification is represented by an abstract verifier interface.",
+      "id": "LIMIT-001",
+      "scope": "rc11-reference",
+      "status": "OPEN_ACCEPTED"
+    },
+    {
+      "closure_criteria": "Production datastore implementation passes fault-injection, recovery, concurrency and refinement suites.",
+      "description": "Crash durability and concurrent serialization are not proven by the documentation reference state machine.",
+      "id": "LIMIT-002",
+      "scope": "runtime",
+      "status": "OPEN_BLOCKING_RUNTIME_PRODUCTION"
+    },
+    {
+      "closure_criteria": "A separate coordination profile is specified, implemented and audited where consensus is required.",
+      "description": "Distributed consensus is outside the minimal Seed profile.",
+      "id": "LIMIT-003",
+      "scope": "federation",
+      "status": "OPEN_ACCEPTED"
+    },
+    {
+      "closure_criteria": "The transition model and breach properties are mapped to semantic IDs and model-checked with retained evidence.",
+      "description": "Universal breach propagation model checking is incomplete.",
+      "id": "LIMIT-004",
+      "scope": "formal",
+      "status": "OPEN_BLOCKING_RC12_FREEZE"
+    },
+    {
+      "closure_criteria": "Independent external audit report is published and bound to exact release bytes.",
+      "description": "External third-party audit is pending.",
+      "id": "LIMIT-005",
+      "scope": "assurance",
+      "status": "OPEN"
+    },
+    {
+      "closure_criteria": "Migration coverage, schemas, requirements, conformance and formal model all pass independent clean-room audit.",
+      "description": "The rc12 canonical model is a development scaffold, not a complete semantic migration.",
+      "id": "LIMIT-006",
+      "scope": "rc12",
+      "status": "OPEN_BLOCKING_RC12_FREEZE"
+    }
+  ],
+  "schema_version": 1,
+  "version": "repository-readiness-baseline-1"
+}

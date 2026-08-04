@@ -1,0 +1,42 @@
+{
+  "canonical_profile": {
+    "domain_separation": true,
+    "encoding": "UTF-8 JSON",
+    "hash": "SHA-256",
+    "length_framing": true,
+    "numbers": "integers only",
+    "object_keys": "sorted",
+    "unicode": "NFC"
+  },
+  "document_type": "aset-seed-machine-specification",
+  "invariants": [
+    "root Constitution epoch is zero and immutable",
+    "live aliases map exactly ACTIVE Contexts",
+    "active Authority scopes do not overlap",
+    "active Permit and Authority require ACTIVE Context",
+    "Permit success predicate is an active Constitution rule",
+    "Verification policy equals Permit success predicate",
+    "Outcome uses complete effective PASS Verification set",
+    "NORMATIVE dependency endpoints are ACTIVE",
+    "standalone withdrawal has no active normative dependant",
+    "redefinition uses exact transitive affected sibling set",
+    "redefinition carries full canonical proposal and every member authorization",
+    "redefinition is atomic and preserves identity fields while changing ContextID",
+    "Authority transfer action lineage is same-context"
+  ],
+  "limitations": [
+    "abstract proof verifier",
+    "no production datastore/durability/concurrency proof",
+    "no distributed consensus",
+    "no universal breach model checker",
+    "external certification pending"
+  ],
+  "normative_document": "docs/ASET_SEED_SPECIFICATION.md",
+  "public_api": [
+    "initialize_state",
+    "apply_transition",
+    "compute_state_root",
+    "validate_state"
+  ],
+  "version": "0.1-rc11"
+}
