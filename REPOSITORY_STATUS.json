@@ -1,0 +1,18 @@
+{
+  "bootstrap_version": "0.1",
+  "document_type": "aset-repository-status",
+  "external_third_party_audit": "PENDING",
+  "frozen_seed_bundle_sha256": "sha256:a0a534125e27f491747dc46f080f418226798dadadee31d5d55b495e6e18ab43",
+  "frozen_seed_release": "0.1-rc11",
+  "generated_languages": [
+    "ru",
+    "en",
+    "pt-BR"
+  ],
+  "machine_readable_canon": "CANON_CANDIDATE",
+  "next_seed_status": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED",
+  "next_seed_version": "0.1-rc12-development",
+  "production": "HOLD",
+  "reference_implementation": "CANDIDATE",
+  "repository": "ASET"
+}

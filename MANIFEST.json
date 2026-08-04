@@ -1,0 +1,314 @@
+{
+  "document_type": "aset-repository-bootstrap-manifest",
+  "files": [
+    {
+      "path": ".editorconfig",
+      "sha256": "sha256:b9e48b18cfabaf42517785188b1fb697330c193100c5ab0174663432e9f738e2",
+      "size_bytes": 224
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "sha256:77dfd46d2b81d64eddb2b3fc3fc7d3963e850c3088bbc7dd334225ed0e19c5a3",
+      "size_bytes": 187
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/semantic-change.yml",
+      "sha256": "sha256:1ae9b97b182fbab88c4a5fb999f96f46f401072da612e8d08de45b133352dd76",
+      "size_bytes": 896
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "sha256:2f39f02eac30a2e2adf3b7b08fce7bd966212e114839c91f9b282af38c353f71",
+      "size_bytes": 675
+    },
+    {
+      "path": ".github/workflows/release-candidate.yml",
+      "sha256": "sha256:fe62d3ab028246316f352401c55b894113f44a4c0f7ede852cc423d31eff706e",
+      "size_bytes": 935
+    },
+    {
+      "path": ".github/workflows/seed-ci.yml",
+      "sha256": "sha256:0afef46e76129cc6908ecd9dd6e983304a5ce5a78b4535b718ba22324f2b90d2",
+      "size_bytes": 1180
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "sha256:280fcd4bf2780e9b28b84b20ac06b98da83a629d0cfbb7cfb1a27fd9156544de",
+      "size_bytes": 76
+    },
+    {
+      "path": "CANONICALITY.md",
+      "sha256": "sha256:89ffba37b0bdd1d3a6083f5469cdb97a1354c56efb79ac080f3914ada421237c",
+      "size_bytes": 950
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "sha256:eb2046aaf701fa523f57941186fe70ba2b559ae91344262558a08ad22faa6989",
+      "size_bytes": 225
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "sha256:af9cb4a6514ef970082a064e421964eb9b5004980fc6e18139f882fe252e4bf0",
+      "size_bytes": 517
+    },
+    {
+      "path": "GOVERNANCE.md",
+      "sha256": "sha256:33c7970d6915e52d9a3772aa7e079cfaa60e532abec6034e82f57f6220e45105",
+      "size_bytes": 458
+    },
+    {
+      "path": "LANGUAGE_POLICY.md",
+      "sha256": "sha256:c6e9ca0b71a5e4487f30bb8c6e4aa7a591970ee1191530baf870369329cbf01c",
+      "size_bytes": 1233
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "sha256:5284357b225d46fc54cc55f51dbe227209290df6a5c83baa4440f0f7e68ec4c5",
+      "size_bytes": 188
+    },
+    {
+      "path": "README.md",
+      "sha256": "sha256:b021d6db93cc0dcc2b5f7b654967129c5d2ff8c415b00e39a25ea4efac560fb9",
+      "size_bytes": 1326
+    },
+    {
+      "path": "README.pt-BR.md",
+      "sha256": "sha256:8328ca1b3fd95bf693d30c2f574348e871bb34ed495605bb892c88bb8872c075",
+      "size_bytes": 1482
+    },
+    {
+      "path": "README.ru.md",
+      "sha256": "sha256:b13b386f8e7a6a15b55dbaad58311d3d6015bd97ef0bb2c5ce8226d8c0b96b61",
+      "size_bytes": 2458
+    },
+    {
+      "path": "REPOSITORY_STATUS.json",
+      "sha256": "sha256:342769bb86ea79d47f7a23a8af523038eb64e0019c51d33b61a0b1c26a8431d1",
+      "size_bytes": 570
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "sha256:0d0fe378b873c7f8c312642f1749f841da766a7880f1e8ed37edd082976d66bc",
+      "size_bytes": 913
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "sha256:29cac52bc59c70959628d43c5b9d99bc578b1a9e0a455a14eeaca9c7b693f165",
+      "size_bytes": 638
+    },
+    {
+      "path": "docs/generated/README.md",
+      "sha256": "sha256:19e195faf5df898b5af226de3f6bb2fa6c3cdced55b3279efd1ee67df18ca5ac",
+      "size_bytes": 122
+    },
+    {
+      "path": "docs/generated/en/ASET_Seed_Next.md",
+      "sha256": "sha256:359d48e65782e80bb16f2568e28d5d89f0a742ae2a45376ddd2fb14fb0f0f007",
+      "size_bytes": 2894
+    },
+    {
+      "path": "docs/generated/pt-BR/ASET_Seed_Next.md",
+      "sha256": "sha256:0d0231f377213c8f52327f0c3a7fadf6cd1068611b650b23e7a7f8f0eedcad13",
+      "size_bytes": 3261
+    },
+    {
+      "path": "docs/generated/ru/ASET_Seed_Next.md",
+      "sha256": "sha256:7df47e2f6cb5165fb38e1c7cf7e144bd7069b6f18c8543ef1a8347c28bb25a20",
+      "size_bytes": 4994
+    },
+    {
+      "path": "docs/repository/BRANCH_PROTECTION.md",
+      "sha256": "sha256:e43d6d6520935a64afdf6e70ce5c1497f9d52ea0dd07d7d34cb4c7208f659d0a",
+      "size_bytes": 318
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "sha256:1981618bdbab11b4dbd13df433b86ccf12513f9f0ad26b30dac70892ad9a5ecd",
+      "size_bytes": 327
+    },
+    {
+      "path": "requirements-ci.txt",
+      "sha256": "sha256:758ad7997204f27cafcab347ba2bb8ad93897d0f9d1897e4858840ad1181e22a",
+      "size_bytes": 76
+    },
+    {
+      "path": "seed/canonical/README.md",
+      "sha256": "sha256:9521ca543f0ccff3a6d3a5281e3d03a9e3b2d0a5fcea0bdfe55b70222d841e44",
+      "size_bytes": 619
+    },
+    {
+      "path": "seed/canonical/formal/README.md",
+      "sha256": "sha256:6efd4a85875e5d93c575a22925fcdcb38919744c42917a6fea3a68d07cb1923b",
+      "size_bytes": 499
+    },
+    {
+      "path": "seed/canonical/formal/SeedBootstrap.cfg",
+      "sha256": "sha256:e6ef020e118b298adb25015a335a360450bde33ebf2794b35032ce80aecea282",
+      "size_bytes": 95
+    },
+    {
+      "path": "seed/canonical/formal/SeedBootstrap.tla",
+      "sha256": "sha256:eed849079a74056710d47d8d243131305742e86acd6995b1272e598c0dc05e6a",
+      "size_bytes": 512
+    },
+    {
+      "path": "seed/canonical/ontology/seed.ttl",
+      "sha256": "sha256:c09eb19722997754a02d4f80b1b5e0e2ff193014130e058835d9d4f154976157",
+      "size_bytes": 1480
+    },
+    {
+      "path": "seed/canonical/schemas/seed-model.schema.json",
+      "sha256": "sha256:2f6f62a4b4c1828dcce4cf59e9ad8e83e4b577fc196e7c65503c4806ae0a86d3",
+      "size_bytes": 5031
+    },
+    {
+      "path": "seed/canonical/shapes/seed.shacl.ttl",
+      "sha256": "sha256:f12250898f2fbc565ae66d361b20a88d247f9da39c2b6a42515946260c4d79d8",
+      "size_bytes": 404
+    },
+    {
+      "path": "seed/canonical/source/seed-model.json",
+      "sha256": "sha256:116a1c077515462774f11e18b90632bc8d02885c4ed83c5b36f9e06305101ec7",
+      "size_bytes": 12413
+    },
+    {
+      "path": "seed/canonical/terminology/foreign-terms.json",
+      "sha256": "sha256:36b0efb5423ee36747e2726ccd6a16559b8e2ff771a720ed9c6a18c9544f6f92",
+      "size_bytes": 1255
+    },
+    {
+      "path": "seed/canonical/terminology/seed.skos.ttl",
+      "sha256": "sha256:b17baba8409866eb7494b66e9b259f0d6276c7d31819b24e09848bf1fd12a0be",
+      "size_bytes": 1906
+    },
+    {
+      "path": "seed/canonical/terminology/seed.tbx",
+      "sha256": "sha256:f8e5071a2a57d6e9aede0709faa2538a8d7eeaae16842430ecced181150fef00",
+      "size_bytes": 5472
+    },
+    {
+      "path": "seed/releases/0.1-rc11/README.md",
+      "sha256": "sha256:1474c6ceb79ae1349ac0d0a9d35bda525239a300ded47899ed6e3525dbec8ed9",
+      "size_bytes": 531
+    },
+    {
+      "path": "seed/releases/0.1-rc11/delivery/ASET-Seed-v0.1-rc11-Complete-Release-Bundle.zip",
+      "sha256": "sha256:a0a534125e27f491747dc46f080f418226798dadadee31d5d55b495e6e18ab43",
+      "size_bytes": 870593
+    },
+    {
+      "path": "seed/releases/0.1-rc11/delivery/ASET-Seed-v0.1-rc11-Complete-Release-Bundle.zip.sha256",
+      "sha256": "sha256:7e39742b70785c74050e4bb5932098a4a6aded509c3b089e8eca4fdb8f2ac4f7",
+      "size_bytes": 114
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Clean-Room-Audit-v0.1-rc11.json",
+      "sha256": "sha256:f11d94ec925c11613b37631eb4cef7e43dd3d0354233c88fd3774216660e1d78",
+      "size_bytes": 1294
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Documentation-v0.1-rc11.zip",
+      "sha256": "sha256:3a2f06183790dd6ec06b1d2ad47653aa368ee9e62a1ec71f76c60cab508b5600",
+      "size_bytes": 627839
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Documentation-v0.1-rc11.zip.sha256",
+      "sha256": "sha256:3bc64b5c188f010419548fc1d59fc3ce5591e40af532b7acb61585651ce42989",
+      "size_bytes": 132
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Independent-Final-Audit-Evidence-v0.1-rc11.zip",
+      "sha256": "sha256:846334c2c7577f535c3ec89faf2e174b044c6eb5a51675ea55af5ee037ccb289",
+      "size_bytes": 58485
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Independent-Final-Audit-Evidence-v0.1-rc11.zip.sha256",
+      "sha256": "sha256:061d7d066a5558c1a5aa2750a17652629b5f95f3c10db1542a94e4e4c9dabe3a",
+      "size_bytes": 123
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Independent-Final-Audit-v0.1-rc11.json",
+      "sha256": "sha256:682f3591287c7a9f0b348e962d60cf91bcdd5048f69165d5c2fa71a86f12ed8d",
+      "size_bytes": 1522
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Independent-Final-Audit-v0.1-rc11.md",
+      "sha256": "sha256:5090fdc418eeb1fbd62c0173d99894781ab92fabeda6995b407f7787b7e885b5",
+      "size_bytes": 2404
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET-Seed-Release-Envelope-v0.1-rc11.json",
+      "sha256": "sha256:358d021e2fdb1e0f006bbd827040570553c4b9ee9ee672e920fa73a19f9311ad",
+      "size_bytes": 1745
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET_Seed_Specification_0.1-rc11.docx",
+      "sha256": "sha256:eb97cc26b426cdc0e6cd9b2fc63cc39cc76f656134a4ef609507a016e492266e",
+      "size_bytes": 55973
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET_Seed_Specification_0.1-rc11.md",
+      "sha256": "sha256:1f8375014b89c7a01a70c561716470eba1b3df7d076679428aa4d9d525abaf39",
+      "size_bytes": 45748
+    },
+    {
+      "path": "seed/releases/0.1-rc11/materialized/ASET_Seed_Specification_0.1-rc11.pdf",
+      "sha256": "sha256:a06d8125c0e0a2036079480b9c8a60ee9b2ef0302351c12d5e02afcdb3d8f75e",
+      "size_bytes": 272363
+    },
+    {
+      "path": "seed/releases/README.md",
+      "sha256": "sha256:eefcf41ea86728157c601fd922a98908a19f3d63fc520457f29fb859dd632fe9",
+      "size_bytes": 166
+    },
+    {
+      "path": "tests/test_canonical_model.py",
+      "sha256": "sha256:ef26698e026c952899e5d26b85a601a67520446c54277d627222790417168487",
+      "size_bytes": 1179
+    },
+    {
+      "path": "tools/__init__.py",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "tools/build_release.py",
+      "sha256": "sha256:819ab1904d2b3abdd4624389f23c93f41e68591505b6de7f70cba9b4ea214e2f",
+      "size_bytes": 1887
+    },
+    {
+      "path": "tools/check_language.py",
+      "sha256": "sha256:40cce28371ba10fd7fe227a31f491698e3c5dd942ca8a25f5c5134bf832aab0a",
+      "size_bytes": 1436
+    },
+    {
+      "path": "tools/generate_editions.py",
+      "sha256": "sha256:eb82fbe4f931296218d6144b0adf8161f0983f55dbfabd1905bb91b54903827d",
+      "size_bytes": 4761
+    },
+    {
+      "path": "tools/semantic_diff.py",
+      "sha256": "sha256:b51f78479f28587ecab9282495fb190dd17665321b7302bb901efe14c296f012",
+      "size_bytes": 1970
+    },
+    {
+      "path": "tools/validate_repository.py",
+      "sha256": "sha256:82fb31ce2f1ec44ba03ec95c8315f1a841a61e8f19454fe731c430e0ea530952",
+      "size_bytes": 4544
+    },
+    {
+      "path": "tools/verify_frozen_release.py",
+      "sha256": "sha256:1771f2aae887cf25371a4cef3a0fe04a73ba62bf4257928159cf59c815444e80",
+      "size_bytes": 1035
+    }
+  ],
+  "files_count": 61,
+  "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
+  "package": "ASET-Repository-Bootstrap-v0.1",
+  "repository_root": "ASET"
+}

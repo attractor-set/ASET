@@ -1,0 +1,227 @@
+{
+  "$id": "https://aset.example/spec/seed/canonical-model.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonicality": {
+      "minProperties": 1,
+      "type": "object"
+    },
+    "concepts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "definitions": {
+            "additionalProperties": false,
+            "properties": {
+              "en": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pt-BR": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "ru": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "ru",
+              "en",
+              "pt-BR"
+            ],
+            "type": "object"
+          },
+          "id": {
+            "pattern": "^seed\\.[a-z0-9_]+$",
+            "type": "string"
+          },
+          "labels": {
+            "additionalProperties": false,
+            "properties": {
+              "en": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pt-BR": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "ru": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "ru",
+              "en",
+              "pt-BR"
+            ],
+            "type": "object"
+          },
+          "symbol": {
+            "pattern": "^[A-Za-z][A-Za-z0-9]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "symbol",
+          "labels",
+          "definitions"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "invariants": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^SEED-INV-[0-9]{3}$",
+            "type": "string"
+          },
+          "texts": {
+            "additionalProperties": false,
+            "properties": {
+              "en": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pt-BR": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "ru": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "ru",
+              "en",
+              "pt-BR"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "texts"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "languages": {
+      "const": [
+        "ru",
+        "en",
+        "pt-BR"
+      ]
+    },
+    "model_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "predecessor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "publication": {
+      "minProperties": 1,
+      "type": "object"
+    },
+    "requirements": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^SEED-[A-Z-]+-[0-9]{3}$",
+            "type": "string"
+          },
+          "modality": {
+            "enum": [
+              "MUST",
+              "MUST_NOT",
+              "SHOULD",
+              "MAY"
+            ]
+          },
+          "predicate": {
+            "pattern": "^[a-z][a-z0-9_]+$",
+            "type": "string"
+          },
+          "subject": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "texts": {
+            "additionalProperties": false,
+            "properties": {
+              "en": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "pt-BR": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "ru": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "ru",
+              "en",
+              "pt-BR"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "subject",
+          "modality",
+          "predicate",
+          "texts"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "model_id",
+    "version",
+    "status",
+    "predecessor",
+    "canonicality",
+    "languages",
+    "publication",
+    "concepts",
+    "requirements",
+    "invariants"
+  ],
+  "title": "ASET Seed canonical model bootstrap schema",
+  "type": "object"
+}

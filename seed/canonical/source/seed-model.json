@@ -1,0 +1,301 @@
+{
+  "canonicality": {
+    "frozen_rc11": "HISTORICAL_IMMUTABLE_RELEASE",
+    "generated_language_editions": "DERIVED",
+    "machine_readable_model": "CANON_CANDIDATE",
+    "production": "HOLD"
+  },
+  "concepts": [
+    {
+      "definitions": {
+        "en": "A normative namespace with immutable identity and a resolvable address.",
+        "pt-BR": "Um espaço de nomes normativo com identidade imutável e endereço resolvível.",
+        "ru": "Нормативное пространство имён с неизменяемой идентичностью и разрешаемым адресом."
+      },
+      "id": "seed.context",
+      "labels": {
+        "en": "context",
+        "pt-BR": "contexto",
+        "ru": "контекст"
+      },
+      "symbol": "Context"
+    },
+    {
+      "definitions": {
+        "en": "An active institutional power in an exact context and state.",
+        "pt-BR": "Um poder institucional vigente em um contexto e estado exatos.",
+        "ru": "Действующее институциональное полномочие в точном контексте и состоянии."
+      },
+      "id": "seed.authority",
+      "labels": {
+        "en": "institutional authority",
+        "pt-BR": "autoridade institucional",
+        "ru": "институциональное полномочие"
+      },
+      "symbol": "Authority"
+    },
+    {
+      "definitions": {
+        "en": "A recorded normative choice or declaration of readiness.",
+        "pt-BR": "Uma escolha normativa registrada ou uma declaração de prontidão.",
+        "ru": "Зафиксированный нормативный выбор или заявление о готовности."
+      },
+      "id": "seed.decision",
+      "labels": {
+        "en": "decision",
+        "pt-BR": "decisão",
+        "ru": "решение"
+      },
+      "symbol": "Decision"
+    },
+    {
+      "definitions": {
+        "en": "A bounded authorization to submit the result of a specific action.",
+        "pt-BR": "Uma autorização limitada para apresentar o resultado de uma ação específica.",
+        "ru": "Ограниченное разрешение на предъявление результата конкретного действия."
+      },
+      "id": "seed.permit",
+      "labels": {
+        "en": "permit",
+        "pt-BR": "permissão",
+        "ru": "разрешение"
+      },
+      "symbol": "Permit"
+    },
+    {
+      "definitions": {
+        "en": "A materialized use of a permit for a specific attempt.",
+        "pt-BR": "Um uso materializado de uma permissão para uma tentativa específica.",
+        "ru": "Материализованное использование разрешения для конкретной попытки."
+      },
+      "id": "seed.execution_intent",
+      "labels": {
+        "en": "execution intent",
+        "pt-BR": "intenção de execução",
+        "ru": "намерение исполнения"
+      },
+      "symbol": "ExecutionIntent"
+    },
+    {
+      "definitions": {
+        "en": "A claim about the result of an action or an external fact.",
+        "pt-BR": "Uma afirmação sobre o resultado de uma ação ou sobre um fato externo.",
+        "ru": "Утверждение о результате действия или внешнем факте."
+      },
+      "id": "seed.observation",
+      "labels": {
+        "en": "observation",
+        "pt-BR": "observação",
+        "ru": "наблюдение"
+      },
+      "symbol": "Observation"
+    },
+    {
+      "definitions": {
+        "en": "Recognition that a claim passed the prescribed verification procedure.",
+        "pt-BR": "Reconhecimento de que uma afirmação passou pelo procedimento de verificação previsto.",
+        "ru": "Признание того, что утверждение прошло предписанную процедуру проверки."
+      },
+      "id": "seed.verification",
+      "labels": {
+        "en": "verification",
+        "pt-BR": "verificação",
+        "ru": "проверка"
+      },
+      "symbol": "Verification"
+    },
+    {
+      "definitions": {
+        "en": "The final institutional recognition of an action result.",
+        "pt-BR": "O reconhecimento institucional final do resultado de uma ação.",
+        "ru": "Окончательное институциональное признание результата действия."
+      },
+      "id": "seed.outcome",
+      "labels": {
+        "en": "outcome",
+        "pt-BR": "reconhecimento final",
+        "ru": "итоговое признание"
+      },
+      "symbol": "Outcome"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "SEED-INV-001",
+      "texts": {
+        "en": "Every accepted transition belongs to exactly one context.",
+        "pt-BR": "Cada transição aceita pertence a exatamente um contexto.",
+        "ru": "Каждый принятый переход принадлежит ровно одному контексту."
+      }
+    },
+    {
+      "id": "SEED-INV-002",
+      "texts": {
+        "en": "One authority key has at most one active holder.",
+        "pt-BR": "Uma chave de autoridade possui no máximo um titular vigente.",
+        "ru": "Для одного ключа полномочия допускается не более одного действующего носителя."
+      }
+    },
+    {
+      "id": "SEED-INV-003",
+      "texts": {
+        "en": "A permit attempt is never consumed more than once.",
+        "pt-BR": "Uma tentativa vinculada a uma permissão nunca é consumida mais de uma vez.",
+        "ru": "Одна попытка по разрешению не может быть израсходована более одного раза."
+      }
+    },
+    {
+      "id": "SEED-INV-004",
+      "texts": {
+        "en": "Historical ancestry is not active membership.",
+        "pt-BR": "A ancestralidade histórica não constitui vínculo de participação vigente.",
+        "ru": "Историческое происхождение не является действующим отношением членства."
+      }
+    },
+    {
+      "id": "SEED-INV-005",
+      "texts": {
+        "en": "No outcome exists without an effective verification set.",
+        "pt-BR": "Nenhum reconhecimento final existe sem um conjunto efetivo de verificações.",
+        "ru": "Итоговое признание не существует без действительного набора проверок."
+      }
+    }
+  ],
+  "languages": [
+    "ru",
+    "en",
+    "pt-BR"
+  ],
+  "model_id": "ASET-SEED-CANON-BOOTSTRAP",
+  "predecessor": "ASET Seed 0.1-rc11",
+  "publication": {
+    "headings": {
+      "canonical_model_sha256": {
+        "en": "Canonical model SHA-256",
+        "pt-BR": "SHA-256 do modelo canônico",
+        "ru": "SHA-256 канонической модели"
+      },
+      "concepts": {
+        "en": "Concepts",
+        "pt-BR": "Conceitos",
+        "ru": "Понятия"
+      },
+      "identifier": {
+        "en": "Identifier",
+        "pt-BR": "Identificador",
+        "ru": "Идентификатор"
+      },
+      "invariants": {
+        "en": "Invariants",
+        "pt-BR": "Invariantes",
+        "ru": "Инварианты"
+      },
+      "modality": {
+        "en": "Canonical modality",
+        "pt-BR": "Modalidade canônica",
+        "ru": "Каноническая модальность"
+      },
+      "notice": {
+        "en": "This document is generated automatically. Manual editing is prohibited.",
+        "pt-BR": "Este documento é gerado automaticamente. A edição manual é proibida.",
+        "ru": "Документ создан автоматически. Ручное редактирование запрещено."
+      },
+      "predicate": {
+        "en": "Predicate",
+        "pt-BR": "Predicado",
+        "ru": "Предикат"
+      },
+      "requirements": {
+        "en": "Requirements",
+        "pt-BR": "Requisitos",
+        "ru": "Требования"
+      },
+      "status": {
+        "en": "Status",
+        "pt-BR": "Estado",
+        "ru": "Статус"
+      },
+      "version": {
+        "en": "Version",
+        "pt-BR": "Versão",
+        "ru": "Версия"
+      }
+    },
+    "titles": {
+      "en": "ASET Seed — machine-readable normative canon",
+      "pt-BR": "ASET Seed — cânone normativo legível por máquina",
+      "ru": "ASET Seed — машиночитаемый нормативный канон"
+    }
+  },
+  "requirements": [
+    {
+      "id": "SEED-REQ-001",
+      "modality": "MUST",
+      "predicate": "belong_to_exactly_one_context",
+      "subject": "seed.transition",
+      "texts": {
+        "en": "Each transition MUST belong to exactly one context.",
+        "pt-BR": "Cada transição DEVE pertencer a exatamente um contexto.",
+        "ru": "Каждый переход ДОЛЖЕН принадлежать ровно одному контексту."
+      }
+    },
+    {
+      "id": "SEED-REQ-002",
+      "modality": "MUST",
+      "predicate": "use_recognized_policy",
+      "subject": "seed.verification",
+      "texts": {
+        "en": "A verification MUST use a rule recognized by the active trust-space constitution.",
+        "pt-BR": "A verificação DEVE usar uma regra reconhecida pela constituição vigente do espaço de confiança.",
+        "ru": "Проверка ДОЛЖНА использовать правило, признанное действующей конституцией пространства доверия."
+      }
+    },
+    {
+      "id": "SEED-REQ-003",
+      "modality": "MUST_NOT",
+      "predicate": "exist_without_valid_trail",
+      "subject": "seed.outcome",
+      "texts": {
+        "en": "An outcome MUST NOT be accepted without a valid trail from decision through verification.",
+        "pt-BR": "O reconhecimento final NÃO DEVE ser aceito sem uma cadeia válida desde a decisão até a verificação.",
+        "ru": "Итоговое признание НЕ ДОЛЖНО приниматься без действительной цепочки от решения до проверки."
+      }
+    },
+    {
+      "id": "SEED-REQ-004",
+      "modality": "MUST_NOT",
+      "predicate": "cross_context_without_local_recognition",
+      "subject": "seed.authority_transfer",
+      "texts": {
+        "en": "A cross-context authority transfer MUST NOT be accepted without local re-recognition.",
+        "pt-BR": "Uma transferência de autoridade entre contextos NÃO DEVE ser aceita sem novo reconhecimento local.",
+        "ru": "Передача полномочия между контекстами НЕ ДОЛЖНА приниматься без локального повторного признания."
+      }
+    },
+    {
+      "id": "SEED-DOC-REQ-001",
+      "modality": "MUST",
+      "predicate": "derive_from_machine_readable_canon",
+      "subject": "seed.generated_edition",
+      "texts": {
+        "en": "Each official language edition MUST be deterministically derived from the machine-readable canon.",
+        "pt-BR": "Cada edição oficial em língua natural DEVE ser gerada de forma determinística a partir do cânone legível por máquina.",
+        "ru": "Каждая официальная языковая редакция ДОЛЖНА детерминированно строиться из машиночитаемого канона."
+      }
+    },
+    {
+      "id": "SEED-DOC-REQ-002",
+      "modality": "MUST_NOT",
+      "predicate": "use_unnecessary_foreign_term",
+      "subject": "seed.terminology",
+      "texts": {
+        "en": "Unnecessary foreign terminology MUST NOT be used when an exact and established native term exists; protocol identifiers are exempt.",
+        "pt-BR": "Um termo estrangeiro desnecessário NÃO DEVE ser usado quando houver termo nativo exato e consolidado; identificadores de protocolo são exceções.",
+        "ru": "Иностранный термин НЕ ДОЛЖЕН использоваться, если существует точный и устойчивый русский термин; протокольные идентификаторы являются исключением."
+      }
+    }
+  ],
+  "schema_version": 1,
+  "status": "BOOTSTRAP_SCAFFOLD_NOT_RELEASED",
+  "version": "0.1-rc12-development"
+}

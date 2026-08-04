@@ -1,0 +1,51 @@
+name: ASET Seed semantic CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-ci.txt
+
+      - name: Check generated language editions
+        run: python tools/generate_editions.py --check
+
+      - name: Validate semantic repository
+        run: python tools/validate_repository.py
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Static Python checks
+        run: python -m ruff check tools tests
+
+      - name: Build deterministic repository snapshot
+        run: python tools/build_release.py
+
+      - name: Upload validation snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: aset-repository-snapshot
+          path: |
+            dist/ASET-Repository-Snapshot.zip
+            dist/ASET-Repository-Snapshot.zip.sha256

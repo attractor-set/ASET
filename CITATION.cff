@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use ASET, cite the exact frozen release."
+title: "ASET"
+type: software
+version: "0.1"
+date-released: 2026-08-04
+license: Apache-2.0
+repository-code: "https://github.com/attractor-set/ASET"

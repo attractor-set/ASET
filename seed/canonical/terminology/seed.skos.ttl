@@ -1,0 +1,53 @@
+@prefix aset: <https://aset.example/seed#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+aset:SeedConceptScheme a skos:ConceptScheme ;
+    skos:prefLabel "ASET Seed concept scheme"@en .
+
+aset:context a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "контекст"@ru ;
+    skos:prefLabel "context"@en ;
+    skos:prefLabel "contexto"@pt-BR .
+
+aset:authority a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "институциональное полномочие"@ru ;
+    skos:prefLabel "institutional authority"@en ;
+    skos:prefLabel "autoridade institucional"@pt-BR .
+
+aset:decision a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "решение"@ru ;
+    skos:prefLabel "decision"@en ;
+    skos:prefLabel "decisão"@pt-BR .
+
+aset:permit a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "разрешение"@ru ;
+    skos:prefLabel "permit"@en ;
+    skos:prefLabel "permissão"@pt-BR .
+
+aset:execution_intent a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "намерение исполнения"@ru ;
+    skos:prefLabel "execution intent"@en ;
+    skos:prefLabel "intenção de execução"@pt-BR .
+
+aset:observation a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "наблюдение"@ru ;
+    skos:prefLabel "observation"@en ;
+    skos:prefLabel "observação"@pt-BR .
+
+aset:verification a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "проверка"@ru ;
+    skos:prefLabel "verification"@en ;
+    skos:prefLabel "verificação"@pt-BR .
+
+aset:outcome a skos:Concept ;
+    skos:inScheme aset:SeedConceptScheme ;
+    skos:prefLabel "итоговое признание"@ru ;
+    skos:prefLabel "outcome"@en ;
+    skos:prefLabel "reconhecimento final"@pt-BR .

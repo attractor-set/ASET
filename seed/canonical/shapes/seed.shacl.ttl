@@ -1,0 +1,14 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix aset: <https://aset.example/seed#> .
+
+aset:SeedConceptShape
+    a sh:NodeShape ;
+    sh:targetClass skos:Concept ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 3 ;
+        sh:maxCount 3 ;
+        sh:uniqueLang true ;
+        sh:languageIn ( "ru" "en" "pt-BR" ) ;
+    ] .
