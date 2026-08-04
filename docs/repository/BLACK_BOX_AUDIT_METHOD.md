@@ -11,6 +11,7 @@ The audit independently checks:
 - public repository status and assurance boundaries;
 - frozen rc11 bundle identity;
 - byte-exact rc11 expanded tree materialization;
+- Git attributes that prevent clean-filter normalization of frozen release bytes;
 - strict JSON parsing with duplicate-member rejection;
 - generated language edition status, version, canonical digest and semantic-ID parity;
 - foreign-term policy;
@@ -21,4 +22,4 @@ The audit independently checks:
 - mandatory production-readiness documents and release gates;
 - absence of unresolved blocking audit findings.
 
-The auditor emits machine-readable JSON and a concise Markdown report. Any mandatory failure produces a nonzero result. A separate adversarial runner mutates the snapshot while rebuilding its manifest and verifies that the auditor rejects required-document removal, generated-edition drift, frozen rc11 drift, secret insertion, runtime overclaim, and an open blocking finding.
+The auditor emits machine-readable JSON and a concise Markdown report. Any mandatory failure produces a nonzero result. A separate adversarial runner mutates the snapshot while rebuilding its manifest and verifies that the auditor rejects required-document removal, generated-edition drift, frozen rc11 drift, secret insertion, runtime overclaim, an open blocking finding, and removal of the frozen-byte Git policy.

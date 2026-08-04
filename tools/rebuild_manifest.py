@@ -55,7 +55,7 @@ def build_manifest() -> dict[str, object]:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Repository-Production-Readiness-v1",
+        "package": "ASET-Repository-Production-Readiness-v1.1",
         "repository_root": "ASET",
     }
 

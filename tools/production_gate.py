@@ -13,6 +13,7 @@ COMMANDS = [
     [sys.executable, "tools/check_language.py"],
     [sys.executable, "tools/verify_frozen_release.py"],
     [sys.executable, "tools/materialize_rc11.py", "--check"],
+    [sys.executable, "tools/materialize_rc11.py", "--check-git"],
     [sys.executable, "tools/rebuild_manifest.py", "--check"],
     [sys.executable, "tools/validate_repository.py"],
     [sys.executable, "-m", "pytest", "-q"],

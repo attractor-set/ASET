@@ -37,6 +37,9 @@ jobs:
       - name: Verify expanded rc11 identity
         run: python tools/materialize_rc11.py --check
 
+      - name: Verify Git-stored rc11 identity
+        run: python tools/materialize_rc11.py --check-git
+
       - name: Run tests
         run: python -m pytest -q
 

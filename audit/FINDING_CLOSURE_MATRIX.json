@@ -41,10 +41,17 @@
       "severity": "P1",
       "status": "CLOSED",
       "title": "No repository operations runbook"
+    },
+    {
+      "closure": "Marked the frozen release tree -text, added Git-filter byte preflight, fresh-checkout regression coverage and an adversarial audit.",
+      "id": "REPO-AUD-007",
+      "severity": "P0",
+      "status": "CLOSED",
+      "title": "Git line-ending normalization changed frozen rc11 CSV bytes"
     }
   ],
   "document_type": "aset-repository-finding-closure-matrix",
   "open_blocking_findings": [],
   "residual_limitations_ref": "seed/canonical/assurance/limitations.json",
-  "version": "production-readiness-baseline-1"
+  "version": "production-readiness-baseline-1.1"
 }

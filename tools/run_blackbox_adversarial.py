@@ -49,7 +49,7 @@ def rebuild_manifest(files: dict[str, bytes]) -> None:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Repository-Production-Readiness-v1",
+        "package": "ASET-Repository-Production-Readiness-v1.1",
         "repository_root": "ASET",
     }
     files[prefix + "MANIFEST.json"] = (
@@ -125,6 +125,15 @@ def mutate_open_finding(files: dict[str, bytes]) -> None:
     ).encode("utf-8")
 
 
+def mutate_git_normalization_policy(files: dict[str, bytes]) -> None:
+    name = "ASET/.gitattributes"
+    files[name] = files[name].replace(
+        b"seed/releases/** -text -diff",
+        b"seed/releases/** -diff",
+        1,
+    )
+
+
 MUTATIONS = [
     ("missing_required_document", "BB-015", mutate_missing_required),
     ("generated_edition_drift", "BB-013", mutate_generated_drift),
@@ -132,6 +141,7 @@ MUTATIONS = [
     ("common_secret", "BB-017", mutate_secret),
     ("runtime_overclaim", "BB-006", mutate_status_overclaim),
     ("open_blocking_finding", "BB-008", mutate_open_finding),
+    ("git_normalization_policy", "BB-020", mutate_git_normalization_policy),
 ]
 
 

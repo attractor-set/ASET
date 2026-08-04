@@ -5,5 +5,5 @@
 *.tla text eol=lf
 *.tbx text eol=lf
 *.zip binary
-seed/releases/** -diff
+seed/releases/** -text -diff
 docs/generated/** linguist-generated=true

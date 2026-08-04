@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import io
 import shutil
+import subprocess
 import zipfile
 from pathlib import Path, PurePosixPath
 
@@ -108,6 +109,72 @@ def check() -> int:
     return 0
 
 
+def git_blob_hash(data: bytes) -> str:
+    result = subprocess.run(
+        ["git", "hash-object", "--stdin"],
+        cwd=ROOT,
+        input=data,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.decode("utf-8", errors="replace"))
+    return result.stdout.decode("ascii").strip()
+
+
+def git_filtered_hash(path: Path, relative: str) -> str:
+    result = subprocess.run(
+        [
+            "git",
+            "hash-object",
+            "--filters",
+            f"--path={relative}",
+            str(path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.decode("utf-8", errors="replace"))
+    return result.stdout.decode("ascii").strip()
+
+
+def check_git_storage() -> int:
+    probe = subprocess.run(
+        ["git", "rev-parse", "--is-inside-work-tree"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if probe.returncode != 0 or probe.stdout.strip() != "true":
+        raise RuntimeError("repository Git work tree is unavailable")
+
+    expected = expected_files()
+    errors: list[str] = []
+
+    for name, data in sorted(expected.items()):
+        path = EXPANDED / name
+        if not path.is_file():
+            errors.append(f"missing:{name}")
+            continue
+        repo_relative = path.relative_to(ROOT).as_posix()
+        expected_blob = git_blob_hash(data)
+        filtered_blob = git_filtered_hash(path, repo_relative)
+        if expected_blob != filtered_blob:
+            errors.append(f"filtered:{name}")
+
+    if errors:
+        for error in errors:
+            print(f"RC11_GIT_STORAGE_ERROR={error}")
+        return 1
+
+    print(f"RC11_GIT_STORAGE_FILES={len(expected)}")
+    print("RC11_GIT_STORAGE_BYTE_IDENTITY=PASS")
+    return 0
+
+
 def write_expanded() -> int:
     expected = expected_files()
     if EXPANDED.exists():
@@ -118,7 +185,10 @@ def write_expanded() -> int:
         destination.write_bytes(data)
     print(f"RC11_EXPANDED_FILES={len(expected)}")
     print("RC11_EXPANDED_MATERIALIZATION=PASS")
-    return check()
+    status = check()
+    if status != 0:
+        return status
+    return check_git_storage()
 
 
 def main() -> int:
@@ -126,9 +196,14 @@ def main() -> int:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--write", action="store_true")
+    mode.add_argument("--check-git", action="store_true")
     args = parser.parse_args()
     try:
-        return check() if args.check else write_expanded()
+        if args.check:
+            return check()
+        if args.check_git:
+            return check_git_storage()
+        return write_expanded()
     except Exception as error:
         print(f"RC11_EXPANDED_FATAL={error}")
         return 1

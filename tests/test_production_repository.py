@@ -73,3 +73,14 @@ def test_blackbox_auditor_is_standalone():
     ).read_text(encoding="utf-8")
     assert "from tools" not in source
     assert "import tools" not in source
+
+def test_expanded_rc11_git_storage_is_byte_exact():
+    result = subprocess.run(
+        [sys.executable, "tools/materialize_rc11.py", "--check-git"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "RC11_GIT_STORAGE_BYTE_IDENTITY=PASS" in result.stdout

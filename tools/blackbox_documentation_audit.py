@@ -659,6 +659,30 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         details = str(error)
     audit.record("BB-019", "continuous assurance workflow", workflows_ok, details)
 
+    # Git clean/smudge policy for byte-exact frozen releases
+    try:
+        attributes = file(".gitattributes").decode("utf-8")
+        required_rule = "seed/releases/** -text -diff"
+        git_bytes_ok = required_rule in {
+            line.strip()
+            for line in attributes.splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        }
+        details = (
+            "frozen release tree bypasses text normalization"
+            if git_bytes_ok
+            else "required -text rule is absent"
+        )
+    except Exception as error:
+        git_bytes_ok = False
+        details = str(error)
+    audit.record(
+        "BB-020",
+        "Git byte preservation for frozen releases",
+        git_bytes_ok,
+        details,
+    )
+
     return report(audit, snapshot, archive_digest)
 
 

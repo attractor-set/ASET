@@ -54,3 +54,21 @@ Final audit result is recorded in `audit/BLACKBOX_DOCUMENTATION_AUDIT.json` and 
 ### Act
 
 Freeze this repository-readiness change as a pull request against protected `main`. Runtime and rc12 semantic limitations remain explicitly open and outside the repository-readiness claim.
+
+## Cycle 4 — committed-byte and fresh-checkout correction
+
+### Plan
+
+Analyze the GitHub Actions failure as a black-box consumer of committed repository bytes rather than trusting the pre-commit working tree.
+
+### Do
+
+Reproduce the failure from a fresh Git checkout. The global `text=auto eol=lf` rule converted four CRLF CSV files from the frozen rc11 archive to LF in Git objects, while the local materialization check still observed the original working-tree bytes. Mark the entire frozen release tree `-text`, add a Git clean-filter byte preflight, and expose it in validation, tests and CI.
+
+### Check — black-box documentation audit
+
+The fresh-checkout regression must report 174/174 expanded files byte-exact, `MANIFEST_CHECK=PASS`, snapshot audit 20/20 PASS, and seven adversarial mutations rejected. The new adversarial case removes the `-text` rule and must fail `BB-020`.
+
+### Act
+
+Close `REPO-AUD-007`, publish package v1.1, and apply a non-rewriting corrective commit to the existing pull-request branch. No force-push or frozen source archive mutation is permitted.

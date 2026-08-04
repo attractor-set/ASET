@@ -29,12 +29,13 @@ A change is eligible for merge to `main` only when all repository gates pass:
 4. terminology policy;
 5. frozen rc11 bundle integrity;
 6. expanded rc11 byte identity against the frozen documentation archive;
-7. unit tests and static Python checks;
-8. deterministic repository snapshot construction;
-9. independent black-box documentation audit of the snapshot;
-10. adversarial mutation rejection by the black-box auditor;
-11. exact manifest coverage and digest verification;
-12. zero unresolved blocking findings.
+7. Git clean-filter byte identity for every expanded rc11 file;
+8. unit tests and static Python checks;
+9. deterministic repository snapshot construction;
+10. independent black-box documentation audit of the snapshot;
+11. adversarial mutation rejection by the black-box auditor;
+12. exact manifest coverage and digest verification;
+13. zero unresolved blocking findings.
 
 ## Fail-closed rule
 

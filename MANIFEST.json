@@ -8,8 +8,8 @@
     },
     {
       "path": ".gitattributes",
-      "sha256": "sha256:77dfd46d2b81d64eddb2b3fc3fc7d3963e850c3088bbc7dd334225ed0e19c5a3",
-      "size_bytes": 187
+      "sha256": "sha256:b53c0b99fa754efbec9354632ddd46fdd8680acc0db8cc9f7d8be94bbfdf3f5d",
+      "size_bytes": 193
     },
     {
       "path": ".github/ISSUE_TEMPLATE/semantic-change.yml",
@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:3137e9ec9e10eae72ce569e412afdc4c0cc7466e38ab6484ce0e2c74f88b24b7",
-      "size_bytes": 1765
+      "sha256": "sha256:c780cdc8dbc3a4f16153e46b7b3f1df1d46ab363287680279f4eb2f815fed277",
+      "size_bytes": 1870
     },
     {
       "path": ".gitignore",
@@ -113,18 +113,18 @@
     },
     {
       "path": "audit/FINDING_CLOSURE_MATRIX.json",
-      "sha256": "sha256:a058b26d179219f9d891a5e49d669add1c8ac69b1707d1fa915f2455498a0d07",
-      "size_bytes": 1648
+      "sha256": "sha256:5d95f3496d0d4ceb4feea412f4996987018f6cadfd7a190e3a0933a883de6b8a",
+      "size_bytes": 1970
     },
     {
       "path": "audit/FINDING_CLOSURE_MATRIX.md",
-      "sha256": "sha256:07b8d7af97b224027a7f28a09618e6dc68434cfa7fcafe295a710258650ced71",
-      "size_bytes": 1059
+      "sha256": "sha256:e28d4b8fdf347d1b7d86a9bd9c3538bb254d8cfb325a742b4a4376ca7a771e37",
+      "size_bytes": 1235
     },
     {
       "path": "audit/PDCA_HISTORY.md",
-      "sha256": "sha256:aec49869bd3675064a1111d4c01e05dac88e6cce391ec40bb3949eb957d8d311",
-      "size_bytes": 2324
+      "sha256": "sha256:986f1b338088f455c14fdf8032eacfa474c2176ea4e705db9fbe06287bfd48b2",
+      "size_bytes": 3408
     },
     {
       "path": "audit/README.md",
@@ -153,8 +153,8 @@
     },
     {
       "path": "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
-      "sha256": "sha256:62a0d80a314365821c329141de535dc9bab8cfbf0aa099e50d653c84105a845a",
-      "size_bytes": 1391
+      "sha256": "sha256:ba6c1673014f9964df2f0ad0a3a0b3a91c69cd81caf1f8f1de53cf34b633df7c",
+      "size_bytes": 1512
     },
     {
       "path": "docs/repository/BRANCH_PROTECTION.md",
@@ -173,8 +173,8 @@
     },
     {
       "path": "docs/repository/PRODUCTION_READINESS.md",
-      "sha256": "sha256:b51283baf08fd51d072b3f79068c4b3be5e614e96151162aa9cfae0e4c9b5208",
-      "size_bytes": 2224
+      "sha256": "sha256:f059b6ab1063b50d5820b4a4c8571a0307315764b0298056aa66107621a5567a",
+      "size_bytes": 2289
     },
     {
       "path": "docs/repository/RELEASE_PROCESS.md",
@@ -1238,8 +1238,8 @@
     },
     {
       "path": "tests/test_production_repository.py",
-      "sha256": "sha256:d7ba44bd0bf6a327eec58acc4d7ead6340ba16d264ca5a852971d54404c8e592",
-      "size_bytes": 2212
+      "sha256": "sha256:f8f7aae8eaa4a267f2ed326a2aacc0b71e19d1e2bce332dfda9bb639b956bb0e",
+      "size_bytes": 2588
     },
     {
       "path": "tools/__init__.py",
@@ -1248,8 +1248,8 @@
     },
     {
       "path": "tools/blackbox_documentation_audit.py",
-      "sha256": "sha256:aac03e1d0d0e8734b532514b68f398205e38ff9c9786358ed8a9f8d4412c5f7b",
-      "size_bytes": 24522
+      "sha256": "sha256:6a74ce602d0117bce37a902d1cefe890397a6598375440a39e6336bedbe0edb9",
+      "size_bytes": 25291
     },
     {
       "path": "tools/build_release.py",
@@ -1268,23 +1268,23 @@
     },
     {
       "path": "tools/materialize_rc11.py",
-      "sha256": "sha256:40617a49f5da356cb248e0999ad82e47af4c022c158a94568fa32cdb2f4f7294",
-      "size_bytes": 4333
+      "sha256": "sha256:540695ac46f5fe30a5725aa7c5907eafecf8f6bbb4bc7b8d161666574445a739",
+      "size_bytes": 6469
     },
     {
       "path": "tools/production_gate.py",
-      "sha256": "sha256:ecf609b24808c64306709307ae84db2192b5bee8cc0841140cc0dbc2c06132cc",
-      "size_bytes": 2532
+      "sha256": "sha256:56313b3420fd1fb6e549f8c94a8999823ebbc8afae6885eaab7b8fa3efc0ed5b",
+      "size_bytes": 2598
     },
     {
       "path": "tools/rebuild_manifest.py",
-      "sha256": "sha256:09664e7bdf4b4a60762ea2a334d1adc92b3b5fd786c49a9b6e6d8487cb665df3",
-      "size_bytes": 2535
+      "sha256": "sha256:4e9a7d35d345d1ddd6c4eb258a1a761404c07051f6847f9eb2555bb7b4f2d6a2",
+      "size_bytes": 2537
     },
     {
       "path": "tools/run_blackbox_adversarial.py",
-      "sha256": "sha256:b2c731d86df8c33b0a0784828aabd21afb4728e42edb5ff83e1f3978436db948",
-      "size_bytes": 6857
+      "sha256": "sha256:e7ced4eff030de1585778d16c0787db0e22bdfbfa1419c7d530c3cbf064efb7d",
+      "size_bytes": 7173
     },
     {
       "path": "tools/semantic_diff.py",
@@ -1293,8 +1293,8 @@
     },
     {
       "path": "tools/validate_repository.py",
-      "sha256": "sha256:eabaff2a8c1f858c3e11fed0712006ac861d27e1bd30cf67f3725250a09d9915",
-      "size_bytes": 7674
+      "sha256": "sha256:4167675bfe1aeeb1abb931bb92105ef0bebea01ccb749a34aa5b3bbeacabdc3b",
+      "size_bytes": 7744
     },
     {
       "path": "tools/verify_frozen_release.py",
@@ -1304,6 +1304,6 @@
   ],
   "files_count": 260,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
-  "package": "ASET-Repository-Production-Readiness-v1",
+  "package": "ASET-Repository-Production-Readiness-v1.1",
   "repository_root": "ASET"
 }
