@@ -3,7 +3,7 @@
   "limitations": [
     {
       "closure_criteria": "A separately versioned public-key proof profile, key lifecycle, revocation model, and interoperable vectors are frozen and externally audited.",
-      "description": "The runtime provides HMAC_SHA256_V1 and pinned pre-verified proof profiles, while federation-wide public-key identity and key lifecycle remain deployment-specific.",
+      "description": "The bundled production proof profile is HMAC_SHA256_V1 and binds the exact canonical transition content; federation-wide public-key identity and key lifecycle remain deployment-specific.",
       "id": "LIMIT-001",
       "scope": "proof-verification",
       "status": "PARTIALLY_CLOSED_BOUNDED_PROFILE"
@@ -37,11 +37,11 @@
       "status": "PENDING"
     },
     {
-      "closure_criteria": "Closed by 83/83 migration coverage, 55/55 semantic regression, generated-view parity, and black-box audit.",
+      "closure_criteria": "Closed by 83/83 migration coverage, 55/55 semantic regression, generated-view parity, hostile-boundary regression, and independent snapshot black-box audits.",
       "description": "All 26 rc11 requirements, 18 transition kinds, and 39 schemas are represented in the rc12 machine canon with no deferred or unclassified entry.",
       "id": "LIMIT-006",
       "scope": "rc12-canon",
-      "status": "CLOSED_FOR_CANDIDATE"
+      "status": "CLOSED_FOR_TECHNICAL_FREEZE_ENTRY"
     },
     {
       "closure_criteria": "Each deployment must complete and retain the operational acceptance checklist in docs/runtime/DEPLOYMENT_CHECKLIST.md.",
@@ -52,5 +52,5 @@
     }
   ],
   "schema_version": 2,
-  "version": "0.1-rc12-candidate"
+  "version": "0.1-rc12-prefreeze"
 }

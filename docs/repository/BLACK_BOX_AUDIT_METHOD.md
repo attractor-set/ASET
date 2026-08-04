@@ -8,10 +8,12 @@ The snapshot auditor performs 28 independent checks: archive safety and CRC; exa
 
 ## Runtime black-box boundary
 
-The runtime auditor extracts the built snapshot and uses only `python -m aset_seed`. It verifies durable initialization, fail-closed invalid proof handling, accepted signed transition commit, replay idempotency, process-reopen validation, database and audit health, consistent backup, and audit-tampering detection.
+The runtime auditor extracts the built snapshot and uses only `python -m aset_seed`. It verifies durable initialization, fail-closed invalid proof handling, accepted signed transition commit, replay idempotency, process-reopen validation, database and audit health, consistent semantic backup, exact-content HMAC binding, invalid identifier handling, corrupt-state isolation, and audit-tampering detection.
 
 ## Adversarial step
 
 The mutation harness rebuilds a valid manifest after each malicious change. It must still reject removal or drift of required documents, generated editions, frozen rc11 bytes, Git byte policy, migration coverage, runtime files, protocol schemas, formal model, limitation records and release gates; it also rejects a secret marker, readiness overclaim, open blocking finding, and implicit network/effect import.
 
 Any failed mandatory check forms a finding for the next PDCA cycle. A cycle may close only with zero failed black-box checks and zero open blocking findings.
+
+The final documentation audit also verifies that technical freeze readiness is explicit while owner approval and exact-byte freeze remain pending.

@@ -16,6 +16,10 @@ KEY_FILES = [
     "seed/canonical/formal/SeedRC12.tla",
     "seed/canonical/formal/SeedRC12.cfg",
     "REPOSITORY_STATUS.json",
+    "seed/canonical/assurance/repository-release-gates.json",
+    "seed/canonical/assurance/limitations.json",
+    "seed/canonical/release/RC12_FREEZE_ENTRY.json",
+    "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
     "pyproject.toml",
 ]
 

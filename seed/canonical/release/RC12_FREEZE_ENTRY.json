@@ -1,0 +1,42 @@
+{
+  "blocking_findings": 0,
+  "controlling_audit": "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
+  "controlling_envelope": "seed/canonical/release/RC12_RELEASE_CANDIDATE.json",
+  "document_type": "aset-seed-rc12-freeze-entry",
+  "exact_byte_freeze": "NOT_EXECUTED",
+  "external_third_party_audit": "PENDING",
+  "machine_canon": {
+    "concepts": 27,
+    "conformance_bindings": 55,
+    "invariants": 37,
+    "protocol_schemas": 39,
+    "rc11_migration": "83/83",
+    "requirements": 40,
+    "transitions": 18
+  },
+  "owner_freeze_approval": "PENDING",
+  "required_evidence": [
+    "python tools/validate_rc12_canon.py",
+    "python tools/run_rc12_conformance.py",
+    "python tools/run_rc12_branch_suite.py",
+    "python tools/model_check_rc12.py --depth 7",
+    "python -m pytest -q",
+    "python tools/blackbox_documentation_audit.py dist/ASET-Repository-Snapshot.zip",
+    "python tools/blackbox_runtime_audit.py dist/ASET-Repository-Snapshot.zip",
+    "python tools/run_runtime_adversarial.py dist/ASET-Repository-Snapshot.zip",
+    "python tools/run_blackbox_adversarial.py dist/ASET-Repository-Snapshot.zip",
+    "python tools/production_gate.py"
+  ],
+  "residual_limitations": [
+    "external third-party audit pending",
+    "distributed consensus out of scope",
+    "multi-primary operation out of scope",
+    "unbounded formal refinement not claimed",
+    "deployment key management remains deployment responsibility"
+  ],
+  "runtime_profile": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1",
+  "schema_version": 1,
+  "stable_predecessor": "0.1-rc11",
+  "technical_status": "READY_FOR_EXACT_BYTE_FREEZE",
+  "version": "0.1-rc12"
+}

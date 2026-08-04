@@ -4,7 +4,7 @@
 
 **Status:** `RC12_RELEASE_CANDIDATE_READY`
 
-**Canonical model SHA-256:** `sha256:1ca83a0b1208eca014a977bfbe516cf9eead21f9db31ba36fcabdf9adf9c00f1`
+**Canonical model SHA-256:** `sha256:5ef8e5a27a42586467c73dbef71ee075a2138d3361d11fd1603254e5bf68b014`
 
 > This document is generated automatically from the machine canon. Manual editing is prohibited.
 
@@ -482,7 +482,7 @@ Predicate: `use_full_durability_profile`
 
 ### `ASET-SEED-PRT-005`
 
-The JSON boundary MUST reject duplicate keys, non-UTF-8 input, and documents over the configured limit.
+The embedded runtime MUST reject non-JSON values with a stable code before transition admission; strict JSON documents MUST reject duplicate members.
 
 Canonical modality: `MUST`
 
@@ -492,7 +492,7 @@ Predicate: `reject_ambiguous_json`
 
 ### `ASET-SEED-PRT-006`
 
-Every transition attempt MUST be appended to a hash-chained audit log with before and after state roots.
+Every JSON transition document targeting an existing trust space MUST be appended to its hash-chained audit log; oversized documents MAY be represented by their exact digest and byte size.
 
 Canonical modality: `MUST`
 
@@ -502,7 +502,7 @@ Predicate: `maintain_hash_chained_audit`
 
 ### `ASET-SEED-PRT-007`
 
-The runtime MUST create a consistent backup through the SQLite backup API.
+The runtime MUST create a SQLite backup only after database, state, and audit-chain health validation passes.
 
 Canonical modality: `MUST`
 

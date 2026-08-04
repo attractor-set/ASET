@@ -39,7 +39,7 @@
         ],
         "type": "object"
       },
-      "minItems": 19,
+      "minItems": 23,
       "type": "array",
       "uniqueItems": true
     },

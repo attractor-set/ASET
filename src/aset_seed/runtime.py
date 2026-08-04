@@ -1,20 +1,22 @@
-
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
+import re
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 from . import core
-from .jsonio import dumps_canonical
+from .jsonio import dumps_canonical, loads_strict
 from .proofs import ProofVerifier, RejectAllProofVerifier
 from .store import PROFILE_ID, SqliteStore, StoreError
 
 MAX_TRANSITION_BYTES = 8 * 1024 * 1024
 ZERO_HASH = "sha256:" + "0" * 64
+TRUST_SPACE_ID_PATTERN = re.compile(r"^ts:[0-9a-f]{64}$")
 
 
 @dataclass(frozen=True)
@@ -25,7 +27,17 @@ class RuntimeStatus:
     seed_semantics_id: str
     proof_profile: str
     database_integrity: str
+    state_validation: str
     audit_chain: str
+
+
+def _rejection(code: str) -> dict[str, Any]:
+    return {
+        "accepted": False,
+        "code": code,
+        "state_changed": False,
+        "artifacts": [],
+    }
 
 
 class DurableSeedRuntime:
@@ -43,6 +55,29 @@ class DurableSeedRuntime:
     def _now() -> str:
         return datetime.now(UTC).isoformat(timespec="microseconds").replace("+00:00", "Z")
 
+    @staticmethod
+    def _trust_space_id_is_valid(value: object) -> bool:
+        return isinstance(value, str) and TRUST_SPACE_ID_PATTERN.fullmatch(value) is not None
+
+    @staticmethod
+    def _decode_stored_state(row) -> dict[str, Any]:
+        try:
+            text = row["state_json"]
+            state = loads_strict(
+                text,
+                max_bytes=max(1, len(text.encode("utf-8"))),
+            )
+            if not isinstance(state, dict):
+                raise ValueError("stored state is not an object")
+            core.validate_state(state)
+            if state["trust_space_id"] != row["trust_space_id"]:
+                raise ValueError("stored trust-space identity mismatch")
+            if state["current_state_root"] != row["state_root"]:
+                raise ValueError("stored state-root mismatch")
+        except (KeyError, TypeError, ValueError, UnicodeError, core.SeedError) as error:
+            raise StoreError("stored state validation failed") from error
+        return state
+
     def initialize(self, genesis: dict[str, Any]) -> dict[str, Any]:
         state = core.initialize_state(copy.deepcopy(genesis))
         trust_space_id = state["trust_space_id"]
@@ -50,13 +85,17 @@ class DurableSeedRuntime:
         now = self._now()
         with self.store.transaction() as connection:
             existing = connection.execute(
-                "SELECT state_json, state_root FROM trust_spaces WHERE trust_space_id=?",
+                """
+                SELECT trust_space_id, state_json, state_root
+                FROM trust_spaces WHERE trust_space_id=?
+                """,
                 (trust_space_id,),
             ).fetchone()
             if existing is not None:
+                existing_state = self._decode_stored_state(existing)
                 if existing["state_root"] != state["current_state_root"]:
                     raise StoreError("trust space already exists with a different root")
-                return json.loads(existing["state_json"])
+                return existing_state
             connection.execute(
                 """
                 INSERT INTO trust_spaces(
@@ -68,17 +107,22 @@ class DurableSeedRuntime:
         return state
 
     def get_state(self, trust_space_id: str) -> dict[str, Any]:
+        if not self._trust_space_id_is_valid(trust_space_id):
+            raise StoreError("trust space identifier is invalid")
         connection = self.store.connect()
         try:
             row = connection.execute(
-                "SELECT state_json FROM trust_spaces WHERE trust_space_id=?",
+                """
+                SELECT trust_space_id, state_json, state_root
+                FROM trust_spaces WHERE trust_space_id=?
+                """,
                 (trust_space_id,),
             ).fetchone()
         finally:
             connection.close()
         if row is None:
             raise StoreError("trust space is unknown")
-        return json.loads(row["state_json"])
+        return self._decode_stored_state(row)
 
     def _last_audit_hash(self, connection, trust_space_id: str) -> str:
         row = connection.execute(
@@ -147,49 +191,79 @@ class DurableSeedRuntime:
             ),
         )
 
-    def apply(self, trust_space_id: str, transition: dict[str, Any]) -> dict[str, Any]:
-        serialized = dumps_canonical(transition).encode("utf-8")
-        if len(serialized) > MAX_TRANSITION_BYTES:
-            return {
-                "accepted": False,
-                "code": "TRANSITION_TOO_LARGE",
-                "state_changed": False,
-                "artifacts": [],
-            }
+    def apply(self, trust_space_id: object, transition: object) -> dict[str, Any]:
+        if not self._trust_space_id_is_valid(trust_space_id):
+            return _rejection("TRUST_SPACE_ID_INVALID")
+        try:
+            serialized = dumps_canonical(transition).encode("utf-8")
+        except (TypeError, ValueError, UnicodeError):
+            # A non-JSON Python object is not a transition document and cannot be
+            # represented safely in the normative transition audit chain.
+            return _rejection("INPUT_NOT_JSON_VALUE")
+
         now = self._now()
         with self.store.transaction() as connection:
             row = connection.execute(
-                "SELECT state_json, state_root, revision FROM trust_spaces WHERE trust_space_id=?",
+                """
+                SELECT trust_space_id, state_json, state_root, revision
+                FROM trust_spaces WHERE trust_space_id=?
+                """,
                 (trust_space_id,),
             ).fetchone()
             if row is None:
-                raise StoreError("trust space is unknown")
-            state = json.loads(row["state_json"])
+                # No trust-space-local audit chain exists for this identifier.
+                return _rejection("TRUST_SPACE_UNKNOWN")
+
             before_root = row["state_root"]
-            try:
-                core.validate_transition(transition)
-            except core.SeedError as error:
-                result = {
-                    "accepted": False,
-                    "code": error.code,
-                    "state_changed": False,
-                    "artifacts": [],
+            audit_transition = transition
+            if len(serialized) > MAX_TRANSITION_BYTES:
+                audit_transition = {
+                    "document_type": "aset-seed-oversized-transition-reference",
+                    "transition_id": (
+                        transition.get("transition_id", "MISSING")
+                        if isinstance(transition, dict)
+                        else "MISSING"
+                    ),
+                    "sha256": "sha256:" + hashlib.sha256(serialized).hexdigest(),
+                    "size_bytes": len(serialized),
                 }
+                result = _rejection("TRANSITION_TOO_LARGE")
+            elif not isinstance(transition, dict):
+                audit_transition = {
+                    "document_type": "aset-seed-malformed-transition-reference",
+                    "sha256": "sha256:" + hashlib.sha256(serialized).hexdigest(),
+                    "size_bytes": len(serialized),
+                }
+                result = _rejection("MALFORMED_TRANSITION")
             else:
-                if not self.proof_verifier.verify(transition):
-                    result = {
-                        "accepted": False,
-                        "code": "PROOF_REJECTED",
-                        "state_changed": False,
-                        "artifacts": [],
-                    }
+                try:
+                    state = self._decode_stored_state(row)
+                except StoreError:
+                    result = _rejection("STORED_STATE_INVALID")
                 else:
-                    result = core.apply_transition(state, copy.deepcopy(transition))
+                    try:
+                        core.validate_transition(transition)
+                    except core.SeedError as error:
+                        result = _rejection(error.code)
+                    else:
+                        try:
+                            proof_accepted = self.proof_verifier.verify(transition) is True
+                        except Exception:
+                            result = _rejection("PROOF_VERIFIER_ERROR")
+                        else:
+                            if not proof_accepted:
+                                result = _rejection("PROOF_REJECTED")
+                            else:
+                                result = core.apply_transition(
+                                    state,
+                                    copy.deepcopy(transition),
+                                )
+
             after_root = before_root
             if result["accepted"] and result["state_changed"]:
                 new_state = result["state"]
                 after_root = new_state["current_state_root"]
-                connection.execute(
+                cursor = connection.execute(
                     """
                     UPDATE trust_spaces
                     SET state_json=?, state_root=?, revision=?, updated_at=?
@@ -204,13 +278,13 @@ class DurableSeedRuntime:
                         row["revision"],
                     ),
                 )
-                result = {key: value for key, value in result.items() if key != "state"}
-            else:
-                result = {key: value for key, value in result.items() if key != "state"}
+                if cursor.rowcount != 1:
+                    raise StoreError("serialized state update failed")
+            result = {key: value for key, value in result.items() if key != "state"}
             self._record_attempt(
                 connection,
                 trust_space_id=trust_space_id,
-                transition=transition,
+                transition=audit_transition,
                 result=result,
                 before_root=before_root,
                 after_root=after_root,
@@ -281,6 +355,21 @@ class DurableSeedRuntime:
             return False
         return last_after_root is None or last_after_root == state_row["state_root"]
 
+    def _validate_stored_states(self) -> bool:
+        connection = self.store.connect()
+        try:
+            rows = connection.execute(
+                "SELECT trust_space_id, state_json, state_root FROM trust_spaces"
+            ).fetchall()
+        finally:
+            connection.close()
+        for row in rows:
+            try:
+                self._decode_stored_state(row)
+            except StoreError:
+                return False
+        return True
+
     def health(self) -> RuntimeStatus:
         connection = self.store.connect()
         try:
@@ -293,6 +382,7 @@ class DurableSeedRuntime:
             ]
         finally:
             connection.close()
+        state_ok = self._validate_stored_states()
         audit_ok = all(self.verify_audit_chain(space) for space in spaces)
         return RuntimeStatus(
             profile_id=PROFILE_ID,
@@ -301,8 +391,16 @@ class DurableSeedRuntime:
             seed_semantics_id=core.SEED_SEMANTICS_ID,
             proof_profile=self.proof_verifier.profile_id,
             database_integrity=str(integrity),
+            state_validation="PASS" if state_ok else "FAIL",
             audit_chain="PASS" if audit_ok else "FAIL",
         )
 
     def backup(self, destination: Path) -> None:
+        status = self.health()
+        if (
+            status.database_integrity != "ok"
+            or status.state_validation != "PASS"
+            or status.audit_chain != "PASS"
+        ):
+            raise StoreError("backup refused because runtime health validation failed")
         self.store.backup(destination)

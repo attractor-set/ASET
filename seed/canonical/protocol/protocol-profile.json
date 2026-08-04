@@ -13,8 +13,7 @@
   "profile_id": "ASET-SEED-WIRE-0.1-RC11-COMPAT",
   "proof_profiles": [
     "EXTERNAL_PROOF_VERIFIER",
-    "HMAC_SHA256_V1",
-    "PINNED_PREVERIFIED_DIGEST_V1"
+    "HMAC_SHA256_V1"
   ],
   "rc12_semantic_release": "0.1-rc12",
   "schema_count": 39,

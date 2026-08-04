@@ -40,6 +40,9 @@ jobs:
             dist/ASET-Repository-Snapshot.zip.sha256
             dist/blackbox-documentation-audit.json
             dist/blackbox-documentation-audit.md
+            dist/blackbox-runtime-audit.json
+            dist/blackbox-runtime-audit.md
+            dist/runtime-adversarial-results.json
             dist/blackbox-adversarial-results.json
             dist/production-gate.json
 

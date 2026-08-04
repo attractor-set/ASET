@@ -20,7 +20,11 @@ One operating-system host, one local durable filesystem, the reviewed Python whe
 - replay does not consume state twice;
 - database metadata prevents opening a file under the wrong runtime profile;
 - audit records are hash chained and tampering is detected by health checks;
-- backup uses the SQLite backup API and validates integrity;
+- health checks validate database integrity, semantic state, stored state roots, and audit chains;
+- backup uses the SQLite backup API only after all runtime health checks pass;
+- oversized transition documents are represented in the audit chain by exact digest and byte size;
+- proof-verifier exceptions fail closed with a stable audited result;
+- database symbolic links are rejected in the POSIX profile;
 - secret files must not be group/world accessible on POSIX;
 - the runtime imports no network or automatic external-effect adapter.
 

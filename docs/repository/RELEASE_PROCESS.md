@@ -24,9 +24,12 @@
 2. bind exact canon, schema, conformance, formal, implementation, suite, and wheel identities;
 3. run the full gate in a clean checkout;
 4. perform deployment-profile review and backup/restore rehearsal;
-5. retain external third-party audit status explicitly;
-6. create a protected annotated tag only after owner approval;
-7. publish immutable source snapshot, wheel, evidence, release envelope, and checksums.
+5. require `RC12_FREEZE_ENTRY.json` to report technical readiness while keeping owner approval and exact-byte freeze pending;
+6. retain external third-party audit status explicitly;
+7. perform the clean-room exact-byte freeze cycle;
+8. create a protected annotated tag only after owner approval;
+9. publish immutable source snapshot, wheel, evidence, release envelope, and checksums;
+10. rerun mandatory workflows against the exact tag target.
 
 ## Prohibited operations
 

@@ -32,7 +32,7 @@ def test_all_repository_gates_are_mandatory_and_unique():
     )
     identifiers = [gate["id"] for gate in data["gates"]]
     assert data["fail_closed"] is True
-    assert len(identifiers) == 19
+    assert len(identifiers) == 23
     assert len(identifiers) == len(set(identifiers))
     assert all(gate["mandatory"] is True for gate in data["gates"])
 
@@ -89,3 +89,15 @@ def test_expanded_rc11_git_storage_is_byte_exact():
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "RC11_GIT_STORAGE_BYTE_IDENTITY=PASS" in result.stdout
+
+
+def test_rc12_technical_freeze_entry_is_bounded():
+    data = json.loads(
+        (ROOT / "seed/canonical/release/RC12_FREEZE_ENTRY.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert data["technical_status"] == "READY_FOR_EXACT_BYTE_FREEZE"
+    assert data["owner_freeze_approval"] == "PENDING"
+    assert data["exact_byte_freeze"] == "NOT_EXECUTED"
+    assert data["blocking_findings"] == 0

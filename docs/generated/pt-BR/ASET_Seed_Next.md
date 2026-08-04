@@ -4,7 +4,7 @@
 
 **Estado:** `RC12_RELEASE_CANDIDATE_READY`
 
-**SHA-256 do modelo canônico:** `sha256:1ca83a0b1208eca014a977bfbe516cf9eead21f9db31ba36fcabdf9adf9c00f1`
+**SHA-256 do modelo canônico:** `sha256:5ef8e5a27a42586467c73dbef71ee075a2138d3361d11fd1603254e5bf68b014`
 
 > Este documento é gerado automaticamente a partir do cânone de máquina. A edição manual é proibida.
 
@@ -482,7 +482,7 @@ Predicado: `use_full_durability_profile`
 
 ### `ASET-SEED-PRT-005`
 
-A fronteira JSON DEVE rejeitar chaves duplicadas, entrada não UTF-8 e documentos acima do limite configurado.
+O runtime incorporado DEVE rejeitar valores não JSON com um código estável antes da admissão da transição; documentos JSON estritos DEVEM rejeitar membros duplicados.
 
 Modalidade canônica: `MUST`
 
@@ -492,7 +492,7 @@ Predicado: `reject_ambiguous_json`
 
 ### `ASET-SEED-PRT-006`
 
-Cada tentativa de transição DEVE ser adicionada a um log encadeado por hash com as raízes de estado anterior e posterior.
+Cada documento JSON de transição destinado a um espaço de confiança existente DEVE ser adicionado ao seu log encadeado por hash; documentos excedentes PODEM ser representados pelo resumo exato e tamanho em bytes.
 
 Modalidade canônica: `MUST`
 
@@ -502,7 +502,7 @@ Predicado: `maintain_hash_chained_audit`
 
 ### `ASET-SEED-PRT-007`
 
-O runtime DEVE criar um backup consistente por meio da API de backup do SQLite.
+O runtime DEVE criar um backup SQLite somente após a aprovação das verificações de integridade do banco, estado e cadeia de auditoria.
 
 Modalidade canônica: `MUST`
 

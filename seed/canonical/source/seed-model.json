@@ -1513,9 +1513,9 @@
       "source": "ASET Seed rc12 production profile",
       "subject": "seed.runtime",
       "texts": {
-        "en": "The JSON boundary MUST reject duplicate keys, non-UTF-8 input, and documents over the configured limit.",
-        "pt-BR": "A fronteira JSON DEVE rejeitar chaves duplicadas, entrada não UTF-8 e documentos acima do limite configurado.",
-        "ru": "Граница загрузки JSON ДОЛЖНА отклонять повторяющиеся ключи, не-UTF-8 и документы сверх установленного лимита."
+        "en": "The embedded runtime MUST reject non-JSON values with a stable code before transition admission; strict JSON documents MUST reject duplicate members.",
+        "pt-BR": "O runtime incorporado DEVE rejeitar valores não JSON com um código estável antes da admissão da transição; documentos JSON estritos DEVEM rejeitar membros duplicados.",
+        "ru": "Встроенная среда исполнения ОБЯЗАНА отклонять значения вне JSON стабильным кодом до допуска перехода; строгие JSON-документы ОБЯЗАНЫ отклонять повторяющиеся поля."
       },
       "verification": [
         "rc12-runtime-tests",
@@ -1531,9 +1531,9 @@
       "source": "ASET Seed rc12 production profile",
       "subject": "seed.runtime_store",
       "texts": {
-        "en": "Every transition attempt MUST be appended to a hash-chained audit log with before and after state roots.",
-        "pt-BR": "Cada tentativa de transição DEVE ser adicionada a um log encadeado por hash com as raízes de estado anterior e posterior.",
-        "ru": "Каждая попытка перехода ДОЛЖНА добавляться в хеш-связанный журнал с корнями состояния до и после."
+        "en": "Every JSON transition document targeting an existing trust space MUST be appended to its hash-chained audit log; oversized documents MAY be represented by their exact digest and byte size.",
+        "pt-BR": "Cada documento JSON de transição destinado a um espaço de confiança existente DEVE ser adicionado ao seu log encadeado por hash; documentos excedentes PODEM ser representados pelo resumo exato e tamanho em bytes.",
+        "ru": "Каждый JSON-документ перехода, адресованный существующему пространству доверия, ОБЯЗАН добавляться в его хеш-связанный журнал; документ сверх лимита МОЖЕТ быть представлен точным хешем и размером в байтах."
       },
       "verification": [
         "rc12-runtime-tests",
@@ -1549,9 +1549,9 @@
       "source": "ASET Seed rc12 production profile",
       "subject": "seed.runtime_store",
       "texts": {
-        "en": "The runtime MUST create a consistent backup through the SQLite backup API.",
-        "pt-BR": "O runtime DEVE criar um backup consistente por meio da API de backup do SQLite.",
-        "ru": "Среда исполнения ДОЛЖНА создавать согласованную резервную копию средствами SQLite backup API."
+        "en": "The runtime MUST create a SQLite backup only after database, state, and audit-chain health validation passes.",
+        "pt-BR": "O runtime DEVE criar um backup SQLite somente após a aprovação das verificações de integridade do banco, estado e cadeia de auditoria.",
+        "ru": "Среда исполнения ОБЯЗАНА создавать резервную копию SQLite только после успешной проверки базы, состояния и цепочки аудита."
       },
       "verification": [
         "rc12-runtime-tests",
@@ -1712,8 +1712,7 @@
       "default": "REJECT_ALL",
       "key_management": "deployment responsibility",
       "provided_profiles": [
-        "HMAC_SHA256_V1",
-        "PINNED_PREVERIFIED_DIGEST_V1"
+        "HMAC_SHA256_V1"
       ],
       "required": true
     },

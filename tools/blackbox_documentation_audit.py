@@ -569,6 +569,7 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         "docs/runtime/DEPLOYMENT_CHECKLIST.md",
         "docs/runtime/THREAT_MODEL.md",
         "seed/canonical/release/RC12_RELEASE_CANDIDATE.json",
+        "seed/canonical/release/RC12_FREEZE_ENTRY.json",
         "audit/RC12_FINAL_BLACKBOX_AUDIT.md",
         "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
         "audit/REFACTORING_LOG.md",
@@ -868,13 +869,142 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
             "installable_wheel",
             "blackbox_runtime_audit",
             "blackbox_adversarial_rejection",
+            "prefreeze_hostile_runtime_regression",
+            "runtime_adversarial_rejection",
+            "exact_runtime_dependency_binding",
+            "rc12_technical_freeze_entry",
         }
-        gate_complete = expected.issubset(names) and len(gates["gates"]) >= 19
+        gate_complete = expected.issubset(names) and len(gates["gates"]) >= 23
         details = f"gates={len(gates['gates'])}; required_present={expected.issubset(names)}"
     except Exception as error:
         gate_complete = False
         details = str(error)
     audit.record("BB-028", "rc12 production gates complete", gate_complete, details)
+
+    try:
+        model = strict_json(file("seed/canonical/source/seed-model.json"))
+        protocol = strict_json(file("seed/canonical/protocol/protocol-profile.json"))
+        proofs_source = file("src/aset_seed/proofs.py").decode("utf-8")
+        init_source = file("src/aset_seed/__init__.py").decode("utf-8")
+        assert isinstance(model, dict) and isinstance(protocol, dict)
+        safe_profiles_ok = (
+            model["runtime_profile"]["proof_boundary"]["provided_profiles"]
+            == ["HMAC_SHA256_V1"]
+            and set(protocol["proof_profiles"])
+            == {"EXTERNAL_PROOF_VERIFIER", "HMAC_SHA256_V1"}
+            and "PinnedProofVerifier" not in proofs_source
+            and "PinnedProofVerifier" not in init_source
+        )
+        details = json.dumps(
+            {
+                "runtime_profiles": model["runtime_profile"]["proof_boundary"][
+                    "provided_profiles"
+                ],
+                "protocol_profiles": protocol["proof_profiles"],
+            },
+            sort_keys=True,
+        )
+    except Exception as error:
+        safe_profiles_ok = False
+        details = str(error)
+    audit.record(
+        "BB-029",
+        "production proof profiles bind exact content",
+        safe_profiles_ok,
+        details,
+    )
+
+    try:
+        pyproject = file("pyproject.toml").decode("utf-8")
+        ci_requirements = file("requirements-ci.txt").decode("utf-8")
+        deployment = file("docs/runtime/DEPLOYMENT_CHECKLIST.md").decode("utf-8")
+        dependency_ok = (
+            'dependencies = ["jsonschema==4.26.0"]' in pyproject
+            and "jsonschema==4.26.0" in ci_requirements
+            and "jsonschema==4.26.0" in deployment
+            and "jsonschema>=" not in pyproject
+        )
+        details = "pyproject, CI requirements, and deployment checklist bind jsonschema==4.26.0"
+    except Exception as error:
+        dependency_ok = False
+        details = str(error)
+    audit.record("BB-030", "exact runtime dependency binding", dependency_ok, details)
+
+    try:
+        hardening_tests = file("tests/test_prefreeze_hardening.py").decode("utf-8")
+        runtime_auditor = file("tools/blackbox_runtime_audit.py").decode("utf-8")
+        required_tests = {
+            "test_health_fails_on_schema_invalid_persisted_state",
+            "test_oversized_transition_is_rejected_and_audited_by_digest",
+            "test_non_json_embedded_input_returns_stable_boundary_rejection",
+            "test_proof_verifier_exception_is_stable_and_audited",
+            "test_backup_rejects_logically_invalid_state",
+            "test_existing_database_symlink_is_rejected",
+            "test_invalid_trust_space_identifier_returns_stable_boundary_rejection",
+            "test_corrupted_stored_state_is_not_returned_or_executed",
+            "test_hmac_proof_is_bound_to_exact_transition_content",
+        }
+        required_runtime_checks = {
+            "RT-BB-009",
+            "RT-BB-010",
+            "RT-BB-011",
+            "RT-BB-012",
+            "RT-BB-013",
+            "RT-BB-014",
+            "RT-BB-015",
+            "RT-BB-016",
+            "RT-BB-017",
+            "RT-BB-018",
+        }
+        hostile_ok = all(name in hardening_tests for name in required_tests) and all(
+            name in runtime_auditor for name in required_runtime_checks
+        )
+        regression_count = sum(name in hardening_tests for name in required_tests)
+        blackbox_count = sum(
+            name in runtime_auditor for name in required_runtime_checks
+        )
+        details = (
+            f"regressions={regression_count}/{len(required_tests)}; "
+            f"blackbox={blackbox_count}/{len(required_runtime_checks)}"
+        )
+    except Exception as error:
+        hostile_ok = False
+        details = str(error)
+    audit.record("BB-031", "prefreeze hostile-boundary regression coverage", hostile_ok, details)
+
+    try:
+        freeze_entry = strict_json(
+            file("seed/canonical/release/RC12_FREEZE_ENTRY.json")
+        )
+        assert isinstance(freeze_entry, dict)
+        freeze_ok = (
+            freeze_entry.get("technical_status")
+            == "READY_FOR_EXACT_BYTE_FREEZE"
+            and freeze_entry.get("owner_freeze_approval") == "PENDING"
+            and freeze_entry.get("exact_byte_freeze") == "NOT_EXECUTED"
+            and freeze_entry.get("blocking_findings") == 0
+            and freeze_entry.get("external_third_party_audit") == "PENDING"
+            and freeze_entry.get("machine_canon", {}).get("rc11_migration")
+            == "83/83"
+        )
+        details = json.dumps(
+            {
+                "technical_status": freeze_entry.get("technical_status"),
+                "owner_freeze_approval": freeze_entry.get("owner_freeze_approval"),
+                "exact_byte_freeze": freeze_entry.get("exact_byte_freeze"),
+                "blocking_findings": freeze_entry.get("blocking_findings"),
+            },
+            sort_keys=True,
+        )
+    except Exception as error:
+        freeze_ok = False
+        details = str(error)
+    audit.record(
+        "BB-032",
+        "rc12 technical freeze entry is explicit and bounded",
+        freeze_ok,
+        details,
+    )
 
     return report(audit, snapshot, archive_digest)
 

@@ -1,14 +1,12 @@
 {
-  "claim": "PRODUCTION_READY_BOUNDED_PROFILE_AFTER_ALL_MANDATORY_GATES_PASS",
-  "controlling_evidence": "generated dist reports from exact release candidate bytes",
-  "document_type": "aset-seed-rc12-final-blackbox-audit-declaration",
+  "claim": "TECHNICALLY_READY_FOR_EXACT_BYTE_FREEZE_AFTER_ALL_MANDATORY_GATES_PASS",
+  "controlling_evidence": "generated dist reports from exact candidate snapshot bytes",
+  "document_type": "aset-seed-rc12-final-prefreeze-blackbox-declaration",
+  "exact_byte_freeze": "NOT_EXECUTED",
   "external_third_party_audit": "PENDING",
+  "owner_freeze_approval": "PENDING",
   "profile": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1",
   "required_evidence": {
-    "adversarial_mutations_rejected": {
-      "passed": 15,
-      "total": 15
-    },
     "bounded_model": {
       "states": 281,
       "transitions": 832
@@ -18,26 +16,32 @@
       "total": 252
     },
     "core_branch_coverage": {
-      "covered": 730,
-      "percent": 90.57072,
-      "total": 806
+      "minimum_percent": 90.0
+    },
+    "documentation_adversarial_mutations": {
+      "passed": 15,
+      "total": 15
     },
     "documentation_blackbox": {
-      "passed": 28,
-      "total": 28
+      "passed": 32,
+      "total": 32
+    },
+    "open_blocking_findings": 0,
+    "runtime_adversarial_mutations": {
+      "passed": 9,
+      "total": 9
     },
     "runtime_blackbox": {
-      "passed": 8,
-      "total": 8
+      "passed": 18,
+      "total": 18
     },
     "semantic_conformance": {
       "passed": 55,
       "total": 55
     },
     "tests": {
-      "passed": 30,
-      "total": 30
+      "minimum_passed": 45
     }
   },
-  "version": "0.1-rc12-candidate"
+  "version": "0.1-rc12-prefreeze"
 }

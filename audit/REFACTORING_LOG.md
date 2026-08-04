@@ -15,5 +15,9 @@ The refactoring rule for rc12 was surgical: preserve audited semantics, remove o
 | Cross-checked audit result columns, revision count, and persisted state root | Prevent tampering with redundant audit fields or detaching the ledger from current state | audit tampering and revision-binding tests |
 | Excluded build, coverage, cache, and packaging artifacts from release scope | Keep snapshots reproducible | deterministic manifest and black-box archive checks |
 | Reduced the build backend to pinned setuptools and corrected CI tool pins | Remove an unnecessary build dependency and prevent an impossible install gate | package metadata check and target CI install |
+| Centralized stable runtime rejections in `_rejection` | Remove repeated result dictionaries without changing admission semantics | hostile boundary unit and black-box tests |
+| Reused `_decode_stored_state` across read, initialize, execute, health, and backup | One validation rule is easier to audit than five divergent paths | corrupt-state regression and mutation tests |
+| Kept the proof boundary to reject-all plus one exact-content HMAC profile | Remove unsafe and redundant authorization surface | modified-after-proof regression and black-box mutation |
+| Reused health as the backup admission gate | Avoid a second partial backup-validation implementation | corrupt-state backup rejection and restored-backup health |
 
 No frozen rc11 file is changed by these refactorings.

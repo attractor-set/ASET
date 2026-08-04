@@ -98,6 +98,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(json.dumps(status, sort_keys=True))
             healthy = (
                 status["database_integrity"] == "ok"
+                and status["state_validation"] == "PASS"
                 and status["audit_chain"] == "PASS"
             )
             return 0 if healthy else 1
