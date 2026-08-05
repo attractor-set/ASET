@@ -13,6 +13,17 @@
 - PDCA history and finding closure records;
 - CI dependency monitoring.
 
+## IP provenance and commercialization foundation
+
+Completed baseline:
+
+- public trilingual [`BACKGROUND_IP_SCHEDULE`](BACKGROUND_IP_SCHEDULE.md);
+- exact pre-Schedule Git and manifest identity;
+- machine-readable asset inventory and strict schema;
+- explicit creator, pseudonym and current-rights-holder separation;
+- Brazilian independent-creation and APPD&I boundary;
+- confidential-annex and future-assignment rules.
+
 ## rc12 semantic migration
 
 - complete requirement-by-requirement rc11 disposition;

@@ -5,14 +5,16 @@
   "abstract": "ASET defines an open, implementation-neutral accountability semantics that binds authority, context, proposals, permits, gates, transitions and evidence into verifiable trails for heterogeneous systems composed of people, AI agents, organizations and software services.",
   "alternateName": "Authority-Signed Evidence Trail",
   "author": {
-    "@type": "Organization",
-    "name": "Attractor Set",
+    "@type": "Person",
+    "alternateName": "Attractor Set",
+    "name": "Dzmitry Prychyna",
     "url": "https://github.com/attractor-set"
   },
   "codeRepository": "https://github.com/attractor-set/ASET",
   "copyrightHolder": {
-    "@type": "Organization",
-    "name": "Attractor Set",
+    "@type": "Person",
+    "alternateName": "Attractor Set",
+    "name": "Dzmitry Prychyna",
     "url": "https://github.com/attractor-set"
   },
   "datePublished": "2026-08-04",
@@ -49,8 +51,9 @@
   ],
   "license": "https://spdx.org/licenses/Apache-2.0.html",
   "maintainer": {
-    "@type": "Organization",
-    "name": "Attractor Set",
+    "@type": "Person",
+    "alternateName": "Attractor Set",
+    "name": "Dzmitry Prychyna",
     "url": "https://github.com/attractor-set"
   },
   "name": "ASET",
@@ -58,6 +61,12 @@
     "Python",
     "TLA+"
   ],
+  "publisher": {
+    "@type": "Person",
+    "alternateName": "Attractor Set",
+    "name": "Dzmitry Prychyna",
+    "url": "https://github.com/attractor-set"
+  },
   "runtimePlatform": "Python 3.12",
   "url": "https://github.com/attractor-set/ASET",
   "version": "0.1-rc12"

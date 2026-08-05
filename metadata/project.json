@@ -25,6 +25,12 @@
     ]
   },
   "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "creator": {
+    "type": "Person",
+    "name": "Dzmitry Prychyna",
+    "alternate_name": "Attractor Set",
+    "url": "https://github.com/attractor-set"
+  },
   "document_type": "aset-project-metadata",
   "expanded_name": "Authority-Signed Evidence Trail",
   "languages": [
@@ -39,8 +45,9 @@
     "TLA+"
   ],
   "publisher": {
-    "name": "Attractor Set",
-    "type": "Organization",
+    "type": "Person",
+    "name": "Dzmitry Prychyna",
+    "alternate_name": "Attractor Set",
     "url": "https://github.com/attractor-set"
   },
   "release": {

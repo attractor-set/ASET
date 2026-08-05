@@ -17,6 +17,7 @@
     "languages",
     "programming_languages",
     "runtime_platform",
+    "creator",
     "publisher",
     "about"
   ],
@@ -102,15 +103,38 @@
       "type": "string",
       "minLength": 1
     },
+    "creator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name", "alternate_name", "url"],
+      "properties": {
+        "type": {
+          "const": "Person"
+        },
+        "name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "alternate_name": {
+          "const": "Attractor Set"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
     "publisher": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type", "name", "url"],
+      "required": ["type", "name", "alternate_name", "url"],
       "properties": {
         "type": {
-          "const": "Organization"
+          "const": "Person"
         },
         "name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "alternate_name": {
           "const": "Attractor Set"
         },
         "url": {

@@ -78,30 +78,38 @@ def validate_source(source: dict[str, object]) -> None:
             raise ValueError(f"invalid GitHub topic: {topic!r}")
 
 
+def codemeta_party(source: dict[str, object]) -> dict[str, object]:
+    return {
+        "@type": source["type"],
+        "alternateName": source["alternate_name"],
+        "name": source["name"],
+        "url": source["url"],
+    }
+
+
 def codemeta(source: dict[str, object]) -> dict[str, object]:
     repository = source["repository"]
     release = source["release"]
+    creator = source["creator"]
     publisher = source["publisher"]
     about = source["about"]
     assert isinstance(repository, dict)
     assert isinstance(release, dict)
+    assert isinstance(creator, dict)
     assert isinstance(publisher, dict)
     assert isinstance(about, dict)
 
-    organization = {
-        "@type": publisher["type"],
-        "name": publisher["name"],
-        "url": publisher["url"],
-    }
+    creator_party = codemeta_party(creator)
+    publisher_party = codemeta_party(publisher)
     return {
         "@context": "https://w3id.org/codemeta/3.1",
         "@id": repository["url"],
         "@type": "SoftwareSourceCode",
         "abstract": source["abstract"],
         "alternateName": source["expanded_name"],
-        "author": organization,
+        "author": creator_party,
         "codeRepository": repository["url"],
-        "copyrightHolder": organization,
+        "copyrightHolder": creator_party,
         "datePublished": release["date_released"],
         "description": source["description"],
         "developmentStatus": release["development_status"],
@@ -111,8 +119,9 @@ def codemeta(source: dict[str, object]) -> dict[str, object]:
         "issueTracker": repository["issues"],
         "keywords": about["topics"],
         "license": "https://spdx.org/licenses/Apache-2.0.html",
-        "maintainer": organization,
+        "maintainer": publisher_party,
         "name": source["name"],
+        "publisher": publisher_party,
         "programmingLanguage": source["programming_languages"],
         "runtimePlatform": source["runtime_platform"],
         "url": repository["url"],

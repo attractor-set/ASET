@@ -78,3 +78,23 @@ def test_all_generated_repository_views_have_committed_parity():
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "REPOSITORY_VIEWS_PARITY=PASS" in result.stdout
+
+def test_creator_and_pseudonym_are_not_modeled_as_an_organization():
+    project = load("metadata/project.json")
+    codemeta = load("codemeta.json")
+
+    creator = project["creator"]
+    publisher = project["publisher"]
+    assert isinstance(creator, dict)
+    assert isinstance(publisher, dict)
+    assert creator == publisher
+    assert creator["type"] == "Person"
+    assert creator["name"] == "Dzmitry Prychyna"
+    assert creator["alternate_name"] == "Attractor Set"
+
+    for field in ("author", "copyrightHolder", "maintainer", "publisher"):
+        party = codemeta[field]
+        assert isinstance(party, dict)
+        assert party["@type"] == "Person"
+        assert party["name"] == "Dzmitry Prychyna"
+        assert party["alternateName"] == "Attractor Set"
