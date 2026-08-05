@@ -1662,6 +1662,11 @@
       "size_bytes": 2604
     },
     {
+      "path": "docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md",
+      "sha256": "sha256:fc749c3010ec3fbe6360dae7ce178370468d79ca2c21d289ff78e1569d29a0c8",
+      "size_bytes": 2604
+    },
+    {
       "path": "docs/reference-python.md",
       "sha256": "sha256:427217314f948199ce9fcdd25d2acde76bd7814cea8bc26afaf4bdc2164661b8",
       "size_bytes": 1030
