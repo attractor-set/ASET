@@ -1,0 +1,28 @@
+{
+  "reference_id": "ASET-PYTHON-REFERENCE-CRITICAL-PATH-V1",
+  "normative_status": "NON_NORMATIVE_EXECUTABLE_INTERPRETATION",
+  "implemented_requirements": {
+    "ASET-SEED-REQ-001": ["aset_reference.kernel.apply_transition", "aset_reference.canonical.freeze_json"],
+    "ASET-SEED-REQ-003": ["aset_reference.kernel.apply_transition"],
+    "ASET-SEED-REQ-005": ["aset_reference.kernel.apply_transition"],
+    "ASET-SEED-REQ-008": ["aset_reference.kernel.apply_transition"],
+    "ASET-SEED-REQ-011": ["aset_reference.kernel.apply_transition"],
+    "SEED-INV-011": ["aset_reference.kernel.apply_transition"],
+    "SEED-INV-014": ["aset_reference.kernel.apply_transition"]
+  },
+  "verified_by": [
+    "tests/reference/test_kernel.py",
+    "test-vectors/reference/accepted-basic.json",
+    "test-vectors/reference/rejected-cases.json",
+    "tools/blackbox_reference_audit.py"
+  ],
+  "excluded": [
+    "persistence",
+    "database transactions",
+    "networking",
+    "external effects",
+    "clock and randomness",
+    "identity and key management",
+    "distributed coordination"
+  ]
+}

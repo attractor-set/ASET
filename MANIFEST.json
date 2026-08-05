@@ -1343,8 +1343,8 @@
     },
     {
       "path": "audit/REFACTORING_LOG.md",
-      "sha256": "sha256:11776922b85777ab64e3f933e718f605bd6841512630c9dfa4d1918b3bfd1339",
-      "size_bytes": 2978
+      "sha256": "sha256:d7363d54045d4e250606bb2ca99984b07b406f0938547b3c0ffdbac0b866a014",
+      "size_bytes": 488
     },
     {
       "path": "audit/components/PDCA-13-BLACKBOX.json",
@@ -1465,6 +1465,16 @@
       "path": "audit/pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md",
       "sha256": "sha256:bb903a0d966d1bdcf29005fc0e8e5757c7cc0cded4e0edf09916c8c4d35b9cec",
       "size_bytes": 2367
+    },
+    {
+      "path": "audit/reference/PDCA.md",
+      "sha256": "sha256:b6fba727791026f766bd92688198b73840374f098cf32f803812d45ac3543938",
+      "size_bytes": 2523
+    },
+    {
+      "path": "audit/reference/traceability.json",
+      "sha256": "sha256:8d566861baae81f73c16df28eb4d0f0d81c4f43c37906f75c72cd5ade1cd8ab5",
+      "size_bytes": 1084
     },
     {
       "path": "docs/generated/README.md",
@@ -1620,6 +1630,11 @@
       "path": "docs/generated/ru/ASET_System_0.1-rc1.md",
       "sha256": "sha256:436ddac2b580cfad02ce63734999a7face5ce144e7e9b3fe40ffa3958e93aaa2",
       "size_bytes": 2272
+    },
+    {
+      "path": "docs/reference-python.md",
+      "sha256": "sha256:427217314f948199ce9fcdd25d2acde76bd7814cea8bc26afaf4bdc2164661b8",
+      "size_bytes": 1030
     },
     {
       "path": "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
@@ -2957,6 +2972,26 @@
       "size_bytes": 462
     },
     {
+      "path": "src/aset_reference/__init__.py",
+      "sha256": "sha256:b402d6587b47cd93df7a2d6744dec73083049a7246d3056faae288420255cd30",
+      "size_bytes": 393
+    },
+    {
+      "path": "src/aset_reference/canonical.py",
+      "sha256": "sha256:07b1667d91247bceb49dd0baa7bc1a6c9ba640973c4adb4998f0f130838f278c",
+      "size_bytes": 2008
+    },
+    {
+      "path": "src/aset_reference/kernel.py",
+      "sha256": "sha256:44ae0fcb00d658382c7e8c49bca4112116717176fcef1cf88149e412d81e8993",
+      "size_bytes": 4183
+    },
+    {
+      "path": "src/aset_reference/model.py",
+      "sha256": "sha256:c390c76adf1c46e09168082eb919c57fb7b96e5ed641198961b564804ce7368f",
+      "size_bytes": 2495
+    },
+    {
       "path": "src/aset_seed/__init__.py",
       "sha256": "sha256:1fc2fa372b508c429c5400c4c071e9f543824fccf56881e6c22b5fa000b78235",
       "size_bytes": 795
@@ -3192,6 +3227,26 @@
       "size_bytes": 6083
     },
     {
+      "path": "test-vectors/reference/accepted-basic.json",
+      "sha256": "sha256:bea84c7e5f58ad00b55523294a22eae8ecad5db06d0f16d479de3049aa6fc08a",
+      "size_bytes": 712
+    },
+    {
+      "path": "test-vectors/reference/rejected-cases.json",
+      "sha256": "sha256:35b264e5483bb5d7151e59553bc6f31440436353600118145772404be1f9de5b",
+      "size_bytes": 583
+    },
+    {
+      "path": "tests/reference/test_kernel.py",
+      "sha256": "sha256:a974b2c469a0d079ebe93c1f4ec1ac34e47f5233b8ccee9b714b43d87d138ee5",
+      "size_bytes": 3772
+    },
+    {
+      "path": "tests/reference/test_vectors.py",
+      "sha256": "sha256:bec69b98f699aab884c8e0d2fb23f781e24842b1e4e691a5ba4eb007be43e27f",
+      "size_bytes": 2592
+    },
+    {
       "path": "tests/test_canonical_model.py",
       "sha256": "sha256:bcf4563d93aef985cbd0bdbd4b466574f84e3df51de6ad44dca34e8f264119c1",
       "size_bytes": 895
@@ -3240,6 +3295,11 @@
       "path": "tools/blackbox_documentation_audit.py",
       "sha256": "sha256:ecbace45e7c74b04ef675b3d40aea70fb2f4132839118bf7f50dcc33c1358dc4",
       "size_bytes": 39590
+    },
+    {
+      "path": "tools/blackbox_reference_audit.py",
+      "sha256": "sha256:b1734b2df9547cba6179cc2cb3fa5c6b5b894ad324e890016d64606793f34ca5",
+      "size_bytes": 1701
     },
     {
       "path": "tools/blackbox_runtime_audit.py",
@@ -3372,7 +3432,7 @@
       "size_bytes": 3078
     }
   ],
-  "files_count": 674,
+  "files_count": 686,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Production-Candidate",
   "repository_root": "ASET"
