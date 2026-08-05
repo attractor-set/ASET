@@ -1,10 +1,28 @@
 # ASET System Composition 0.1-rc1
 
 - `status`: `COMPONENT_COMPOSITION_CANDIDATE`
-- `canonical_digest`: `sha256:a33087b02bcbdd72511a8a782cc375e3e41b3624a86d20abb82d436f8711464b`
+- `canonical_digest`: `sha256:6dedadead02549026132d9f622d3f13c72f7d3292b7bee316ef2fd15f7dc1a97`
 - `seed_version`: `0.1-rc12`
 
-## Components
+## Papel do ASET Seed
+
+- `classification`: `MINIMAL_SEMANTIC_NUCLEUS`
+- `implementation_neutral`: `True`
+- `normative_function`: `Define os conceitos vinculados à autoridade, as condições de validade, os invariantes e a semântica de transições necessários para sistemas compatíveis com o ASET.`
+- `composition_rule`: `Sistemas ASET completos e perfis de implementação compatíveis podem usar componentes internos ou externos independentes. Toda transição que reivindique significado autoritativo no ASET, incluindo a autorização de uma mudança significativa de estado, o registro autoritativo de sua execução, sua verificação ou seu reconhecimento como Outcome, deve estar em conformidade com a semântica do Seed.`
+- `extension_rule`: `Cânones de componentes e perfis de implementação podem refinar conceitos do Seed e introduzir controles adicionais, mas não devem enfraquecer, fundir ou contornar as distinções e os invariantes do Seed.`
+- `claim_boundary`: `O Seed estabelece a validade normativa e a rastreabilidade de transições autoritativas. Por si só, ele não estabelece a verdade factual, a completude ou a correção externa de observações, evidências ou dados de origem.`
+
+### Capacidades não fornecidas pelo Seed
+
+- `planejamento`
+- `memória de longo prazo`
+- `orquestração de agentes e fluxos de trabalho`
+- `infraestrutura de execução de efeitos externos`
+- `infraestrutura de aquisição de evidências`
+- `análise de processos`
+
+## Componentes
 
 - `aset.context` `0.1-rc1` — `sha256:450cac15f64c2b3ed3f7c6399c1a456da0c84faf2dcdb911075bd03219e1cd36`
 - `aset.core` `0.1-rc1` — `sha256:10a14bd8f18a51c48b56d0b8cbfc90fa862239eae5d47dbc68b8b39e890c289b`

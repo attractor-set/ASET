@@ -1,10 +1,28 @@
 # ASET System Composition 0.1-rc1
 
 - `status`: `COMPONENT_COMPOSITION_CANDIDATE`
-- `canonical_digest`: `sha256:a33087b02bcbdd72511a8a782cc375e3e41b3624a86d20abb82d436f8711464b`
+- `canonical_digest`: `sha256:6dedadead02549026132d9f622d3f13c72f7d3292b7bee316ef2fd15f7dc1a97`
 - `seed_version`: `0.1-rc12`
 
-## Components
+## Роль ASET Seed
+
+- `classification`: `MINIMAL_SEMANTIC_NUCLEUS`
+- `implementation_neutral`: `True`
+- `normative_function`: `Определяет связанные с полномочиями понятия, условия действительности, инварианты и семантику переходов, необходимые для совместимых с ASET систем.`
+- `composition_rule`: `Полные системы ASET и совместимые профили реализации могут использовать независимые внутренние или внешние компоненты. Любой переход, претендующий на авторитетное значение в ASET, включая авторизацию значимого изменения состояния, авторитетную фиксацию его исполнения, его верификацию или признание как Outcome, должен соответствовать семантике Seed.`
+- `extension_rule`: `Компонентные каноны и профили реализации могут уточнять понятия Seed и вводить дополнительные меры контроля, но не должны ослаблять, объединять или обходить различия и инварианты Seed.`
+- `claim_boundary`: `Seed устанавливает нормативную действительность и прослеживаемость авторитетных переходов. Сам по себе он не устанавливает фактическую истинность, полноту или внешнюю корректность наблюдений, evidence или исходных данных.`
+
+### Возможности, не предоставляемые Seed
+
+- `планирование`
+- `долговременная память`
+- `оркестрация агентов и рабочих процессов`
+- `инфраструктура выполнения внешних эффектов`
+- `инфраструктура получения evidence`
+- `аналитика процессов`
+
+## Компоненты
 
 - `aset.context` `0.1-rc1` — `sha256:450cac15f64c2b3ed3f7c6399c1a456da0c84faf2dcdb911075bd03219e1cd36`
 - `aset.core` `0.1-rc1` — `sha256:10a14bd8f18a51c48b56d0b8cbfc90fa862239eae5d47dbc68b8b39e890c289b`
@@ -28,7 +46,7 @@
 - `GATE-TASK-CLOSE` — producer `aset.monade`, authority `aset.core`, schema `aset.protocol`
 - `GATE-MEM-MUTATE` — producer `aset.memory`, authority `aset.core`, schema `aset.protocol`
 
-## Workflow
+## Рабочий процесс
 
 1. Memory projection
 1. Master PlanProposal + ExpectedChangePatch

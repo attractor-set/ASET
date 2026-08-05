@@ -12,3 +12,9 @@
 - Added one thin orchestration command over the existing generators rather than replacing their independent, testable responsibilities.
 - Kept multilingual explanatory README text static; only deterministic repository-discovery and machine-derived views are generated.
 - Kept GitHub repository mutation outside ordinary CI and exposed it as an explicit administrator-authorized operation.
+## Seed semantic nucleus
+
+- Added one closed `seed_role` object to the existing System Composition canon instead of introducing a parallel architecture registry.
+- Kept Seed implementation-neutral and left planning, memory, orchestration, execution infrastructure, evidence acquisition and analytics outside its provided capabilities.
+- Reused the existing Seed compatibility bridge and generated-view pipeline rather than creating a new integration framework.
+- Strengthened the existing component black-box check instead of increasing the audit surface with a redundant check identifier.

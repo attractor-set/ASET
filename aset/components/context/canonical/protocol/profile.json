@@ -1,5 +1,5 @@
 {
-  "canonical_digest": "sha256:490c3a7c2d4e4e05f19337ccee55aed01c5d2092b1d3c02b1872667c5277a0c8",
+  "canonical_digest": "sha256:9cc65b96e58cecfca953d392ced63f56cac73796f2f78fb09785f7353f1ce1fe",
   "component_id": "aset.context",
   "component_version": "0.1-rc1",
   "document_type": "aset-component-protocol-profile",
@@ -157,7 +157,7 @@
   ],
   "schema_version": 1,
   "seed_bridge": {
-    "canonical_digest": "sha256:b54f3cf3e7cbef323618bf0fc7e6e7c30516850df5c4264431662e77cdd32c1d",
+    "canonical_digest": "sha256:8171aa8bc7e5e2323bf06d7bf27a41b8a2d625714f5618b0afaa85a63a1ad466",
     "profile": "aset/shared/seed-bridge/seed-compatibility-profile.json",
     "version": "0.1-rc12"
   }

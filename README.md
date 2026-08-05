@@ -4,6 +4,12 @@ ASET is an open specification and reference implementation for Authority-Signed 
 
 The specification defines a shared accountability semantics for governed contextual transformation and verifiable execution. It is authoritative over implementations.
 
+## ASET Seed as the semantic nucleus
+
+ASET Seed is the minimal, implementation-neutral semantic nucleus of ASET. It defines the authority-bound concepts, validity conditions, invariants and transition semantics from which complete ASET systems and compatible implementation profiles can grow.
+
+Components may provide planning, memory, orchestration, external-effect execution, evidence acquisition and analytics. Seed determines when their work acquires authoritative ASET significance. See [`docs/architecture/SEED_ROLE.md`](docs/architecture/SEED_ROLE.md).
+
 ## Release lines
 
 **ASET Seed 0.1-rc11** remains the immutable audited stable release. **ASET Seed 0.1-rc12** is the complete machine-canon release candidate and includes an installable bounded production runtime.

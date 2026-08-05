@@ -526,15 +526,32 @@ def audit_snapshot(snapshot_path: str) -> dict[str, object]:
             str(item["component_id"]): str(item["version"])
             for item in system["components"]
         }
+        seed_role = system["seed_role"]
+        expected_capabilities = {
+            "planning",
+            "long-term memory",
+            "agent and workflow orchestration",
+            "external-effect execution infrastructure",
+            "evidence acquisition infrastructure",
+            "process analytics",
+        }
         compatible = (
             len(component_versions) == 7
             and system["seed_compatibility"]["version"] == "0.1-rc12"
+            and seed_role["seed_version"] == "0.1-rc12"
+            and seed_role["classification"] == "MINIMAL_SEMANTIC_NUCLEUS"
+            and seed_role["implementation_neutral"] is True
+            and set(seed_role["capabilities_not_provided_by_seed"])
+            == expected_capabilities
             and all(
                 re.fullmatch(r"0\.1-rc[1-9][0-9]*", version)
                 for version in component_versions.values()
             )
         )
-        details = f"components={component_versions}; seed=0.1-rc12"
+        details = (
+            f"components={component_versions}; seed=0.1-rc12; "
+            f"role={seed_role['classification']}"
+        )
     except Exception as error:
         compatible = False
         details = str(error)
@@ -580,6 +597,7 @@ def audit_snapshot(snapshot_path: str) -> dict[str, object]:
             "compatibility_matrix",
             "context_namespace",
             "seed_compatibility",
+            "seed_role",
             "source_baseline",
             "state_machines",
         ):
