@@ -59,10 +59,15 @@ def main() -> int:
         compression=zipfile.ZIP_DEFLATED,
         compresslevel=9,
     ) as archive:
-        for path in sorted(files):
+        for path in sorted(
+            files,
+            key=lambda item: (
+                Path("ASET") / item.relative_to(ROOT)
+            ).as_posix(),
+        ):
             relative = path.relative_to(ROOT)
             info = zipfile.ZipInfo(
-                str(Path("ASET") / relative),
+                (Path("ASET") / relative).as_posix(),
                 FIXED,
             )
             info.compress_type = zipfile.ZIP_DEFLATED

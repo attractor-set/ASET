@@ -1,21 +1,41 @@
-"""Storage-free executable reference for the ASET critical transition path."""
+"""Full deterministic semantic critical-path reference for ASET."""
 
-from .kernel import apply_transition
+from .engine import (
+    EFFECT_CLASSES,
+    GATE_WRITES,
+    DeterministicConnector,
+    ReferenceError,
+    ReferenceMachine,
+    run_critical_path,
+)
 from .model import (
+    Artifact,
     Context,
-    Evidence,
+    CoreResolution,
+    CriticalPathResult,
+    EffectRecord,
+    GateCrossing,
+    GovernedPatch,
     Permit,
-    Proposal,
-    TransitionAccepted,
-    TransitionRejected,
+    PermitUseReceipt,
 )
 
+__version__ = "0.2.0"
+
 __all__ = [
+    "EFFECT_CLASSES",
+    "GATE_WRITES",
+    "Artifact",
     "Context",
-    "Evidence",
+    "CoreResolution",
+    "CriticalPathResult",
+    "DeterministicConnector",
+    "EffectRecord",
+    "GateCrossing",
+    "GovernedPatch",
     "Permit",
-    "Proposal",
-    "TransitionAccepted",
-    "TransitionRejected",
-    "apply_transition",
+    "PermitUseReceipt",
+    "ReferenceError",
+    "ReferenceMachine",
+    "run_critical_path",
 ]

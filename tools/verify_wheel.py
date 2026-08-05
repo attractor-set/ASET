@@ -43,6 +43,10 @@ def main() -> int:
         "aset_seed/runtime.py",
         "aset_seed/store.py",
         "aset_seed/proofs.py",
+        "aset_reference/__init__.py",
+        "aset_reference/canonical.py",
+        "aset_reference/model.py",
+        "aset_reference/engine.py",
     }
     if not required.issubset(names) or len(schema_names) != 39:
         print(f"WHEEL_ERROR=content:schemas={len(schema_names)}")
@@ -78,9 +82,11 @@ def main() -> int:
                 sys.executable,
                 "-c",
                 (
-                    "import importlib.resources as r; import aset_seed; "
+                    "import importlib.resources as r; import aset_reference, aset_seed; "
                     "p=r.files('aset_seed').joinpath('schemas'); "
                     "assert len(list(p.glob('*.json'))) == 39; "
+                    "assert aset_reference.__version__ == '0.2.0'; "
+                    "assert aset_reference.run_critical_path('SUCCESS').outcome is not None; "
                     "print(aset_seed.__version__)"
                 ),
             ],
@@ -98,6 +104,7 @@ def main() -> int:
 
     print(f"WHEEL={wheel}")
     print("WHEEL_SCHEMAS=39")
+    print("WHEEL_REFERENCE_IMPORT=PASS")
     print("WHEEL_INSTALL_IMPORT=PASS")
     return 0
 
