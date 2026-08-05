@@ -1,0 +1,9 @@
+{
+  "candidate_model_sha256": "sha256:cbd1420cb4951686f389123a88084b5bed7ff6a4e3ec523d77c79f7655c8c1be",
+  "change_class": "BREAKING",
+  "decision_ref": "seed/canonical/decisions/ADR-002-model-based-conformance-and-implementation-neutrality.md",
+  "document_type": "aset-canon-change-declaration",
+  "rationale": "The active candidate removes implementation-specific runtime requirements and invariants from the normative Seed canon while preserving them in a separate non-normative implementation profile.",
+  "schema_version": 1,
+  "supersession_ref": "seed/canonical/release/RC12_RUNTIME_CANDIDATE_SUPERSESSION.json"
+}

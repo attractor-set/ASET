@@ -1,60 +1,63 @@
-name: ASET Seed rc12 production assurance
+name: ASET formal and adversarial assurance
 
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  production-assurance:
+  formal-assurance:
     runs-on: ubuntu-24.04
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install validation dependencies
-        run: python -m pip install -r requirements-ci.txt
-
-      - name: Install project
-        run: python -m pip install --no-deps --editable .
-
-      - name: Run fail-closed production gate
-        run: python tools/production_gate.py
-
-      - name: Upload production evidence
-        if: always()
-        uses: actions/upload-artifact@v4
+      - uses: actions/setup-java@v4
         with:
-          name: aset-seed-rc12-production-assurance
+          distribution: temurin
+          java-version: "21"
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Download pinned TLA+ tools
+        run: |
+          curl --fail --location --retry 3 \
+            --output "$RUNNER_TEMP/tla2tools.jar" \
+            https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+          echo "bee4a54f3ee3d4afc347c3240ec2d9e93b075104  $RUNNER_TEMP/tla2tools.jar" | sha1sum --check
+      - name: Run independent formal models
+        timeout-minutes: 5
+        run: |
+          python tools/model_check_rc12.py --output dist/rc12-model-check.json
+          python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json
+          python tools/model_check_components.py --check
+          python tools/run_tlc.py \
+            --jar "$RUNNER_TEMP/tla2tools.jar" \
+            --workers 2 \
+            --timeout-seconds 180 \
+            --output dist/tlc-model-check.json
+      - name: Run component black-box assurance
+        run: |
+          python tools/build_release.py
+          python tools/blackbox_component_audit.py \
+            dist/ASET-Repository-Snapshot.zip \
+            --output-json dist/blackbox-component-audit.json \
+            --output-md dist/blackbox-component-audit.md
+          python tools/run_component_blackbox_adversarial.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aset-formal-adversarial-assurance
           if-no-files-found: warn
           path: |
-            dist/ASET-Repository-Snapshot.zip
-            dist/ASET-Repository-Snapshot.zip.sha256
-            dist/wheels/*.whl
-            dist/rc12-conformance-results.json
-            dist/rc12-coverage.json
             dist/rc12-model-check.json
-            dist/reference-conformance-results.json
-            dist/reference-model-check.json
-            dist/blackbox-reference-audit.json
-            dist/blackbox-reference-audit.md
-            dist/reference-blackbox-adversarial-results.json
-            dist/blackbox-documentation-audit.json
-            dist/blackbox-documentation-audit.md
-            dist/blackbox-runtime-audit.json
-            dist/blackbox-runtime-audit.md
-            dist/runtime-adversarial-results.json
-            dist/blackbox-adversarial-results.json
-            dist/production-gate.json
+            dist/assurance-traceability.json
+            dist/tlc-model-check.json
+            dist/blackbox-component-audit.json
+            dist/blackbox-component-audit.md

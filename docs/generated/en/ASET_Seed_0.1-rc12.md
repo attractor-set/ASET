@@ -4,14 +4,14 @@
 
 **Status:** `RC12_RELEASE_CANDIDATE_READY`
 
-**Canonical model SHA-256:** `sha256:5ef8e5a27a42586467c73dbef71ee075a2138d3361d11fd1603254e5bf68b014`
+**Canonical model SHA-256:** `sha256:4e633a5cfe17872d8edadd51780c01924647a5c80e6a693f1af5d768e36e5faa`
 
 > This document is generated automatically from the machine canon. Manual editing is prohibited.
 
 ## Assurance boundaries
 
-- `runtime_profile`: `PRODUCTION_READY_BOUNDED_PROFILE`
-- `production_claim_scope`: `single-node SQLite bounded profile only`
+- `implementation_status`: `IMPLEMENTATION_NEUTRAL`
+- `implementation_precedence`: `NONE`
 - `external_third_party_audit`: `PENDING`
 
 ## Concepts
@@ -188,7 +188,7 @@ Canonical modality: `MUST`
 
 Predicate: `enforce_strict_schemas_fail_closed`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-002`
 
@@ -198,7 +198,7 @@ Canonical modality: `MUST`
 
 Predicate: `derive_identity_from_genesis`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-003`
 
@@ -208,7 +208,7 @@ Canonical modality: `MUST`
 
 Predicate: `commit_atomically_and_validate_state`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-004`
 
@@ -218,7 +218,7 @@ Canonical modality: `MUST_NOT`
 
 Predicate: `prevent_active_scope_overlap`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-005`
 
@@ -228,7 +228,7 @@ Canonical modality: `MUST`
 
 Predicate: `bind_permit_terms`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-006`
 
@@ -238,7 +238,7 @@ Canonical modality: `MUST`
 
 Predicate: `resolve_success_policy`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-007`
 
@@ -248,7 +248,7 @@ Canonical modality: `MUST`
 
 Predicate: `match_verification_policy`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-008`
 
@@ -258,7 +258,7 @@ Canonical modality: `MUST`
 
 Predicate: `aggregate_complete_effective_verifications`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-009`
 
@@ -268,7 +268,7 @@ Canonical modality: `MUST`
 
 Predicate: `limit_correction_to_nonfinal_verification`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-010`
 
@@ -278,7 +278,7 @@ Canonical modality: `MUST`
 
 Predicate: `derive_causal_parents`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-011`
 
@@ -288,7 +288,7 @@ Canonical modality: `MUST_NOT`
 
 Predicate: `block_ordinary_transition_in_suspended_context`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-012`
 
@@ -298,7 +298,7 @@ Canonical modality: `MUST`
 
 Predicate: `reconcile_complete_known_commits`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-013`
 
@@ -308,7 +308,7 @@ Canonical modality: `MUST`
 
 Predicate: `require_active_normative_endpoints`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-014`
 
@@ -318,7 +318,7 @@ Canonical modality: `MUST`
 
 Predicate: `protect_normative_dependants_on_withdrawal`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-015`
 
@@ -328,7 +328,7 @@ Canonical modality: `MUST`
 
 Predicate: `compute_affected_sibling_closure`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-016`
 
@@ -338,7 +338,7 @@ Canonical modality: `MUST`
 
 Predicate: `bind_full_redefinition_proposal`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-017`
 
@@ -348,7 +348,7 @@ Canonical modality: `MUST`
 
 Predicate: `require_all_member_authorizations`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-018`
 
@@ -358,7 +358,7 @@ Canonical modality: `MUST`
 
 Predicate: `require_parent_redefinition_authority`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-019`
 
@@ -368,7 +368,7 @@ Canonical modality: `MUST`
 
 Predicate: `commit_redefinition_atomically`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-020`
 
@@ -378,7 +378,7 @@ Canonical modality: `MUST`
 
 Predicate: `preserve_successor_identity_fields`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-021`
 
@@ -388,7 +388,7 @@ Canonical modality: `MUST`
 
 Predicate: `remap_affected_dependencies`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-022`
 
@@ -398,7 +398,7 @@ Canonical modality: `MUST`
 
 Predicate: `retain_governance_evidence`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-023`
 
@@ -408,7 +408,7 @@ Canonical modality: `MUST`
 
 Predicate: `bind_same_context_authority_transfer`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-024`
 
@@ -418,7 +418,7 @@ Canonical modality: `MUST`
 
 Predicate: `meet_branch_coverage_threshold`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-025`
 
@@ -428,7 +428,7 @@ Canonical modality: `MUST`
 
 Predicate: `bind_assurance_to_exact_bytes`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-026`
 
@@ -438,127 +438,7 @@ Canonical modality: `MUST`
 
 Predicate: `perform_clean_room_release_validation`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
-
-### `ASET-SEED-PRT-001`
-
-The runtime MUST require an explicitly configured proof verifier and fail closed when it is absent.
-
-Canonical modality: `MUST`
-
-Predicate: `require_explicit_proof_verifier`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-002`
-
-State mutation and audit recording MUST commit in one durable-store transaction.
-
-Canonical modality: `MUST`
-
-Predicate: `atomically_persist_state_and_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-003`
-
-Concurrent writers to one store MUST be serialized before state read and mutation.
-
-Canonical modality: `MUST`
-
-Predicate: `serialize_writers`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-004`
-
-The SQLite profile MUST use WAL, synchronous=FULL, and integrity checking.
-
-Canonical modality: `MUST`
-
-Predicate: `use_full_durability_profile`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-005`
-
-The embedded runtime MUST reject non-JSON values with a stable code before transition admission; strict JSON documents MUST reject duplicate members.
-
-Canonical modality: `MUST`
-
-Predicate: `reject_ambiguous_json`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-006`
-
-Every JSON transition document targeting an existing trust space MUST be appended to its hash-chained audit log; oversized documents MAY be represented by their exact digest and byte size.
-
-Canonical modality: `MUST`
-
-Predicate: `maintain_hash_chained_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-007`
-
-The runtime MUST create a SQLite backup only after database, state, and audit-chain health validation passes.
-
-Canonical modality: `MUST`
-
-Predicate: `support_consistent_backup`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-008`
-
-A database MUST be bound to the exact store-schema version and runtime profile.
-
-Canonical modality: `MUST`
-
-Predicate: `bind_database_profile`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-009`
-
-The runtime MUST expose state validation, database integrity, and audit-chain health checks.
-
-Canonical modality: `MUST`
-
-Predicate: `expose_health_validation`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-010`
-
-The Seed core MUST NOT perform network, tool, or physical external effects by itself.
-
-Canonical modality: `MUST_NOT`
-
-Predicate: `perform_implicit_external_effects`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-011`
-
-The rc12 implementation MUST preserve the acceptance and rejection of all 55 rc11 reference vectors without changing frozen bytes.
-
-Canonical modality: `MUST`
-
-Predicate: `preserve_rc11_wire_semantics`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-012`
-
-An rc12 candidate MUST pass an independent black-box documentation and runtime audit from the built archive.
-
-Canonical modality: `MUST`
-
-Predicate: `pass_blackbox_release_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-DOC-001`
 
@@ -568,7 +448,7 @@ Canonical modality: `MUST`
 
 Predicate: `derive_editions_from_canon`
 
-`verification`: `generated-edition-parity`, `semantic-id-parity`
+`verification`: `ASET-VERIFY-GENERATED-EDITION-PARITY`, `ASET-VERIFY-SEMANTIC-ID-PARITY`
 
 ### `ASET-SEED-DOC-002`
 
@@ -578,7 +458,7 @@ Canonical modality: `MUST`
 
 Predicate: `preserve_semantic_identifiers`
 
-`verification`: `generated-edition-parity`, `semantic-id-parity`
+`verification`: `ASET-VERIFY-GENERATED-EDITION-PARITY`, `ASET-VERIFY-SEMANTIC-ID-PARITY`
 
 ## Invariants
 
@@ -611,14 +491,6 @@ Predicate: `preserve_semantic_identifiers`
 - `SEED-INV-027` — Governance records contain the complete proposal and authentication evidence.
 - `SEED-INV-028` — Authority transfer has a complete action trail in the same context.
 - `SEED-INV-029` — Context-internal roots and the global state root exactly match canonical state.
-- `SEED-INV-030` — Durable state and its accepted-attempt audit record commit in one transaction.
-- `SEED-INV-031` — A rejected attempt does not change the durable state root.
-- `SEED-INV-032` — Every audit entry contains the hash of the previous entry for the same trust space.
-- `SEED-INV-033` — A database is bound to one runtime profile and one store-schema version.
-- `SEED-INV-034` — Without positive proof verification, a transition does not reach the semantic core.
-- `SEED-INV-035` — Reopening the store preserves the same state root and a valid audit chain.
-- `SEED-INV-036` — A backup passes SQLite integrity_check and contains the same store profile.
-- `SEED-INV-037` — The public runtime performs no external effects beyond result recognition.
 
 ## Transitions
 
@@ -730,10 +602,9 @@ Predicate: `preserve_semantic_identifiers`
 - `authorization_rule`: TRANSFER_AUTHORITY plus same-context positive action trail
 - `created_artifacts`: `AuthorityBinding`
 
-## Runtime profile
+## Implementation boundary
 
-- `profile_id`: `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`
-- `status`: `PRODUCTION_READY_BOUNDED_PROFILE`
-- `implementation_version`: `0.1-rc12`
-- `wire_schema_version`: `0.1-rc11`
-- `proof_default`: `REJECT_ALL`
+- `normative_status`: `IMPLEMENTATION_NEUTRAL`
+- `implementation_precedence`: `NONE`
+- `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
+- `unspecified_by_seed`: `programming language`, `storage backend`, `deployment topology`, `consensus protocol`, `network transport`, `cryptographic provider`, `operational user interface`

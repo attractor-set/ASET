@@ -72,7 +72,8 @@
         "BRIDGE",
         "MIGRATION",
         "SEED_BASELINE",
-        "PROTOCOL_REGISTRY"
+        "PROTOCOL_REGISTRY",
+        "CANON_PACKAGE"
       ]
     }
   },

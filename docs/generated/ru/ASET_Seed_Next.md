@@ -4,14 +4,14 @@
 
 **Статус:** `RC12_RELEASE_CANDIDATE_READY`
 
-**SHA-256 канонической модели:** `sha256:5ef8e5a27a42586467c73dbef71ee075a2138d3361d11fd1603254e5bf68b014`
+**SHA-256 канонической модели:** `sha256:4e633a5cfe17872d8edadd51780c01924647a5c80e6a693f1af5d768e36e5faa`
 
 > Документ создан автоматически из машинного канона. Ручное редактирование запрещено.
 
 ## Границы гарантий
 
-- `runtime_profile`: `PRODUCTION_READY_BOUNDED_PROFILE`
-- `production_claim_scope`: `single-node SQLite bounded profile only`
+- `implementation_status`: `IMPLEMENTATION_NEUTRAL`
+- `implementation_precedence`: `NONE`
 - `external_third_party_audit`: `PENDING`
 
 ## Понятия
@@ -188,7 +188,7 @@
 
 Предикат: `enforce_strict_schemas_fail_closed`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-002`
 
@@ -198,7 +198,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `derive_identity_from_genesis`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-003`
 
@@ -208,7 +208,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `commit_atomically_and_validate_state`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-004`
 
@@ -218,7 +218,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `prevent_active_scope_overlap`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-005`
 
@@ -228,7 +228,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `bind_permit_terms`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-006`
 
@@ -238,7 +238,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `resolve_success_policy`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-007`
 
@@ -248,7 +248,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `match_verification_policy`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-008`
 
@@ -258,7 +258,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `aggregate_complete_effective_verifications`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-009`
 
@@ -268,7 +268,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `limit_correction_to_nonfinal_verification`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-010`
 
@@ -278,7 +278,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `derive_causal_parents`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-011`
 
@@ -288,7 +288,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `block_ordinary_transition_in_suspended_context`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-012`
 
@@ -298,7 +298,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `reconcile_complete_known_commits`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-013`
 
@@ -308,7 +308,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `require_active_normative_endpoints`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-014`
 
@@ -318,7 +318,7 @@ TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонич�
 
 Предикат: `protect_normative_dependants_on_withdrawal`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-015`
 
@@ -328,7 +328,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `compute_affected_sibling_closure`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-016`
 
@@ -338,7 +338,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `bind_full_redefinition_proposal`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-017`
 
@@ -348,7 +348,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `require_all_member_authorizations`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-018`
 
@@ -358,7 +358,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `require_parent_redefinition_authority`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-019`
 
@@ -368,7 +368,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `commit_redefinition_atomically`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-020`
 
@@ -378,7 +378,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `preserve_successor_identity_fields`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-021`
 
@@ -388,7 +388,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `remap_affected_dependencies`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-022`
 
@@ -398,7 +398,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `retain_governance_evidence`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-023`
 
@@ -408,7 +408,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `bind_same_context_authority_transfer`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-024`
 
@@ -418,7 +418,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `meet_branch_coverage_threshold`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-025`
 
@@ -428,7 +428,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `bind_assurance_to_exact_bytes`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-REQ-026`
 
@@ -438,127 +438,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `perform_clean_room_release_validation`
 
-`verification`: `rc11-conformance-55`, `rc12-core-regression`, `rc12-blackbox`
-
-### `ASET-SEED-PRT-001`
-
-Исполняемая среда ДОЛЖНА требовать явно настроенный проверяющий механизм доказательств и закрываться при его отсутствии.
-
-Каноническая модальность: `MUST`
-
-Предикат: `require_explicit_proof_verifier`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-002`
-
-Изменение состояния и запись журнала ДОЛЖНЫ фиксироваться одной транзакцией устойчивого хранилища.
-
-Каноническая модальность: `MUST`
-
-Предикат: `atomically_persist_state_and_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-003`
-
-Конкурирующие писатели одного хранилища ДОЛЖНЫ сериализоваться до чтения и изменения состояния.
-
-Каноническая модальность: `MUST`
-
-Предикат: `serialize_writers`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-004`
-
-Профиль SQLite ДОЛЖЕН использовать WAL, synchronous=FULL и проверку целостности.
-
-Каноническая модальность: `MUST`
-
-Предикат: `use_full_durability_profile`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-005`
-
-Встроенная среда исполнения ОБЯЗАНА отклонять значения вне JSON стабильным кодом до допуска перехода; строгие JSON-документы ОБЯЗАНЫ отклонять повторяющиеся поля.
-
-Каноническая модальность: `MUST`
-
-Предикат: `reject_ambiguous_json`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-006`
-
-Каждый JSON-документ перехода, адресованный существующему пространству доверия, ОБЯЗАН добавляться в его хеш-связанный журнал; документ сверх лимита МОЖЕТ быть представлен точным хешем и размером в байтах.
-
-Каноническая модальность: `MUST`
-
-Предикат: `maintain_hash_chained_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-007`
-
-Среда исполнения ОБЯЗАНА создавать резервную копию SQLite только после успешной проверки базы, состояния и цепочки аудита.
-
-Каноническая модальность: `MUST`
-
-Предикат: `support_consistent_backup`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-008`
-
-База данных ДОЛЖНА быть связана с точной версией схемы и профилем среды исполнения.
-
-Каноническая модальность: `MUST`
-
-Предикат: `bind_database_profile`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-009`
-
-Среда исполнения ДОЛЖНА предоставлять проверку состояния, целостности базы и цепочки аудита.
-
-Каноническая модальность: `MUST`
-
-Предикат: `expose_health_validation`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-010`
-
-Ядро Seed НЕ ДОЛЖНО само выполнять сеть, инструменты или физические внешние эффекты.
-
-Каноническая модальность: `MUST_NOT`
-
-Предикат: `perform_implicit_external_effects`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-011`
-
-Реализация rc12 ДОЛЖНА сохранять принятие и отклонение всех 55 эталонных векторов rc11 без изменения замороженных байтов.
-
-Каноническая модальность: `MUST`
-
-Предикат: `preserve_rc11_wire_semantics`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
-
-### `ASET-SEED-PRT-012`
-
-Кандидат rc12 ДОЛЖЕН проходить независимую блэк-бокс проверку документации и среды исполнения из собранного архива.
-
-Каноническая модальность: `MUST`
-
-Предикат: `pass_blackbox_release_audit`
-
-`verification`: `rc12-runtime-tests`, `rc12-runtime-blackbox`, `rc12-adversarial`
+`verification`: `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-SPECIFICATION-TESTS`, `ASET-VERIFY-COMPONENT-BLACKBOX`
 
 ### `ASET-SEED-DOC-001`
 
@@ -568,7 +448,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `derive_editions_from_canon`
 
-`verification`: `generated-edition-parity`, `semantic-id-parity`
+`verification`: `ASET-VERIFY-GENERATED-EDITION-PARITY`, `ASET-VERIFY-SEMANTIC-ID-PARITY`
 
 ### `ASET-SEED-DOC-002`
 
@@ -578,7 +458,7 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 
 Предикат: `preserve_semantic_identifiers`
 
-`verification`: `generated-edition-parity`, `semantic-id-parity`
+`verification`: `ASET-VERIFY-GENERATED-EDITION-PARITY`, `ASET-VERIFY-SEMANTIC-ID-PARITY`
 
 ## Инварианты
 
@@ -611,14 +491,6 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 - `SEED-INV-027` — Записи управления содержат полное предложение и доказательства аутентификации.
 - `SEED-INV-028` — Передача полномочия имеет полную цепочку действия в том же контексте.
 - `SEED-INV-029` — Внутренние корни контекстов и глобальный корень состояния точно соответствуют каноническому состоянию.
-- `SEED-INV-030` — Устойчивое состояние и запись принятой попытки фиксируются одной транзакцией.
-- `SEED-INV-031` — Отклонённая попытка не изменяет корень устойчивого состояния.
-- `SEED-INV-032` — Каждая запись журнала содержит хеш предыдущей записи того же пространства доверия.
-- `SEED-INV-033` — База данных связана с одним профилем исполнения и одной версией схемы хранилища.
-- `SEED-INV-034` — Без положительной проверки доказательства переход не достигает семантического ядра.
-- `SEED-INV-035` — Повторное открытие хранилища сохраняет тот же корень состояния и действительную цепочку аудита.
-- `SEED-INV-036` — Резервная копия проходит SQLite integrity_check и содержит тот же профиль хранилища.
-- `SEED-INV-037` — Публичная среда исполнения не выполняет внешние эффекты за границей признания результата.
 
 ## Переходы
 
@@ -730,10 +602,9 @@ AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно и
 - `authorization_rule`: TRANSFER_AUTHORITY plus same-context positive action trail
 - `created_artifacts`: `AuthorityBinding`
 
-## Исполняемый профиль
+## Граница реализации
 
-- `profile_id`: `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`
-- `status`: `PRODUCTION_READY_BOUNDED_PROFILE`
-- `implementation_version`: `0.1-rc12`
-- `wire_schema_version`: `0.1-rc11`
-- `proof_default`: `REJECT_ALL`
+- `normative_status`: `IMPLEMENTATION_NEUTRAL`
+- `implementation_precedence`: `NONE`
+- `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
+- `unspecified_by_seed`: `programming language`, `storage backend`, `deployment topology`, `consensus protocol`, `network transport`, `cryptographic provider`, `operational user interface`

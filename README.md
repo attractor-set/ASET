@@ -1,82 +1,43 @@
+[English](README.md) · [Русский](README.ru.md) · [Português do Brasil](README.pt-BR.md)
+
 # ASET
 
-ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.
+ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.
 
-The specification defines a shared accountability semantics for governed contextual transformation and verifiable execution. It is authoritative over implementations.
+## What defines ASET
 
-## ASET Seed as the semantic nucleus
+ASET is defined by the machine-readable canon, normative schemas, validity conditions, invariants, transition semantics and conformance corpus. No implementation, programming language, storage engine, checker or deployment profile has semantic precedence.
 
-ASET Seed is the minimal, implementation-neutral semantic nucleus of ASET. It defines the authority-bound concepts, validity conditions, invariants and transition semantics from which complete ASET systems and compatible implementation profiles can grow.
+- Machine canon: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
+- Canon package identity: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
+- Formal projection: [`seed/canonical/formal/`](seed/canonical/formal/)
+- Conformance corpus: [`seed/canonical/conformance/`](seed/canonical/conformance/)
+- Component canons: [`aset/README.md`](aset/README.md)
 
-Components may provide planning, memory, orchestration, external-effect execution, evidence acquisition and analytics. Seed determines when their work acquires authoritative ASET significance. See [`docs/architecture/SEED_ROLE.md`](docs/architecture/SEED_ROLE.md).
+## Model-based implementation conformance
+
+Independent implementations are tested as black boxes through `ASET-IMPLEMENTATION-CONFORMANCE-V1`. The implementation returns observable results; an external runner consumes a pinned canon package and determines the verdict. Candidate-canon consistency and compatibility with an approved canon are separate gates.
+
+```text
+python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapter "/path/to/implementation-adapter"
+```
+
+Storage, durability, concurrency, recovery, consensus, networking and key custody belong to implementation profiles. Profiles may strengthen operational guarantees but may not weaken Seed semantics.
+
+## Implementations
+
+Implementations are maintained independently from this specification. A minimal non-normative Python + SQLite educational profile is intended for the separate `aset-python-sqlite` repository. Its use does not make Python or SQLite part of ASET.
 
 ## Release lines
 
-**ASET Seed 0.1-rc11** remains the immutable audited stable release. **ASET Seed 0.1-rc12** is the complete machine-canon release candidate and includes an installable bounded production runtime.
+ASET Seed 0.1-rc11 remains the immutable historical stable release. The rc12 machine-canon line is being prepared as an implementation-neutral specification and conformance package. Historical runtime candidate evidence is retained but is not the current repository role.
 
-- Frozen rc11 release: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
-- rc12 machine canon: [`seed/canonical/`](seed/canonical/)
-- Generated rc12 specification: [`docs/generated/en/ASET_Seed_0.1-rc12.md`](docs/generated/en/ASET_Seed_0.1-rc12.md)
-- Bounded runtime: [`src/aset_seed/`](src/aset_seed/)
-- Deployment profile: [`docs/runtime/PRODUCTION_PROFILE.md`](docs/runtime/PRODUCTION_PROFILE.md)
-- Deployment checklist: [`docs/runtime/DEPLOYMENT_CHECKLIST.md`](docs/runtime/DEPLOYMENT_CHECKLIST.md)
-
-## rc12 candidate scope
-
-The rc12 canon contains 27 concepts, 40 requirements, 37 invariants, 18 transition kinds, 39 strict JSON Schemas, and 55 bound conformance cases. The rc11 semantic surface is explicitly migrated 83/83 with no deferred or unclassified item. Russian, English, and Brazilian Portuguese editions are generated from one machine source.
-
-The executable profile is production-ready only within `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`: one host, serialized SQLite writers, WAL with `synchronous=FULL`, local CLI or embedded API, explicit proof verification, durable state and append-only hash-chained audit records. The default proof verifier rejects every transition.
-
-This claim excludes distributed consensus, multi-primary operation, automatic network or physical effects, physical-world truth, deployment key management, and external certification. External third-party audit remains `PENDING`.
-
-## Required assurance
-
-Every candidate change is required to pass generated-view parity, schema and SHACL validation, exact frozen rc11 preservation, 55-case semantic regression, 252 branch guards, at least 90% core branch coverage, bounded model checking, unit and concurrency tests, Ruff, wheel installation, deterministic snapshot construction, documentation black-box audit, runtime black-box audit, adversarial mutation rejection, and zero blocking findings.
-
-Run:
+## Validation
 
 ```text
-python tools/production_gate.py
+python tools/repository_release_gate.py
 ```
 
-## Languages
+## Authorship, licence and rights
 
-- [Русский](README.ru.md)
-- English
-- [Português do Brasil](README.pt-BR.md)
-
-## Project metadata
-
-- Canonical project identity: [`metadata/project.json`](metadata/project.json)
-- CodeMeta projection: [`codemeta.json`](codemeta.json)
-- GitHub About projection: [`.github/repository-metadata.json`](.github/repository-metadata.json)
-
-Regenerate all derived documentation and repository metadata with:
-
-```text
-python tools/generate_repository_views.py
-```
-
-## Authorship and Background IP
-
-ASET was independently created by **Dzmitry Prychyna**, publicly known under the pseudonym **Attractor Set**. Attractor Set is the public project identity, not a separate legal entity. The public pre-existing-IP boundary is recorded in the [ASET Background IP Schedule](BACKGROUND_IP_SCHEDULE.md), its [Brazilian Portuguese edition](BACKGROUND_IP_SCHEDULE.pt-BR.md), and the [machine-readable inventory](governance/ip/background-ip-schedule.json).
-
-The Schedule does not change the Apache 2.0 licence and is not an assignment or legal opinion. Future company, university, grant and investment arrangements must distinguish this Background IP from project-specific foreground intellectual property.
-
-## Full ASET component canons
-
-The full ASET 1.5-rc11 machine specification is preserved as exact source evidence and decomposed into independently versioned candidate canons for System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol. The component line is `0.1-rc1` and is explicitly bound to ASET Seed `0.1-rc12`.
-
-- Component canon index: [`aset/README.md`](aset/README.md)
-- System composition: [`aset/system/`](aset/system/)
-- Seed compatibility bridge: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
-
-The decomposition preserves the rc11 inventory exactly: 177 requirements, 57 invariants, 52 artifacts, 11 gates and 57 schemas. It has 26 component conformance cases and eight bounded formal projections. These are specification-candidate claims only; independent implementation and production conformance are not claimed.
-
-## Python semantic critical-path reference
-
-A non-normative, storage-free Python reference now executes the complete deterministic
-semantic path from Context projection through governed dispatch, Observation, Evidence,
-Verification and conditional Outcome recognition. See
-[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
-It is an interoperability and assurance artifact, not a production deployment claim.
+ASET was independently created by **Dzmitry Prychyna**, publicly known as **Attractor Set**. The project is licensed under Apache License 2.0. Licensing grants permissions under that licence; it does not transfer authorship or ownership. See [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) and [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).

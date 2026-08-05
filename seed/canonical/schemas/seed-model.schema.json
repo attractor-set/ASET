@@ -69,6 +69,49 @@
     "conformance_profile_ref": {
       "const": "seed/canonical/conformance/conformance-profile.json"
     },
+    "implementation_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "conformance_protocol_ref": {
+          "const": "seed/canonical/conformance/implementation-conformance-protocol.json"
+        },
+        "implementation_precedence": {
+          "const": "NONE"
+        },
+        "normative_status": {
+          "const": "IMPLEMENTATION_NEUTRAL"
+        },
+        "profile_rule": {
+          "minLength": 80,
+          "type": "string"
+        },
+        "required_observables": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 5,
+          "type": "array"
+        },
+        "unspecified_by_seed": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 7,
+          "type": "array"
+        }
+      },
+      "required": [
+        "normative_status",
+        "implementation_precedence",
+        "conformance_protocol_ref",
+        "required_observables",
+        "unspecified_by_seed",
+        "profile_rule"
+      ],
+      "type": "object"
+    },
     "invariants": {
       "items": {
         "additionalProperties": false,
@@ -176,23 +219,8 @@
         ],
         "type": "object"
       },
-      "minItems": 38,
+      "minItems": 28,
       "type": "array"
-    },
-    "runtime_profile": {
-      "required": [
-        "profile_id",
-        "status",
-        "implementation_version",
-        "semantic_compatibility",
-        "wire_schema_version",
-        "storage",
-        "proof_boundary",
-        "excluded",
-        "entrypoints",
-        "health_checks"
-      ],
-      "type": "object"
     },
     "schema_version": {
       "const": 2
@@ -269,8 +297,8 @@
     "transitions",
     "protocol_profile_ref",
     "conformance_profile_ref",
-    "runtime_profile",
-    "assurance"
+    "assurance",
+    "implementation_boundary"
   ],
   "title": "ASET Seed rc12 canonical model",
   "type": "object"

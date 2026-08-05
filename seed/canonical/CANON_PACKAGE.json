@@ -1,0 +1,56 @@
+{
+  "canon_id": "ASET-SEED-CANON-RC12",
+  "canon_version": "0.1-rc12",
+  "conformance_protocol": "ASET-IMPLEMENTATION-CONFORMANCE-V1",
+  "document_type": "aset-canon-package",
+  "files": [
+    {
+      "path": "seed/canonical/source/seed-model.json",
+      "sha256": "sha256:cbd1420cb4951686f389123a88084b5bed7ff6a4e3ec523d77c79f7655c8c1be"
+    },
+    {
+      "path": "seed/canonical/schemas/seed-model.schema.json",
+      "sha256": "sha256:6f501c896bf32d967357041e4e148cc0367aa55ce467886170a1a254d61a28c1"
+    },
+    {
+      "path": "seed/canonical/protocol/protocol-profile.json",
+      "sha256": "sha256:b439bd2e6ece13fddd936862d61cc63f3fc063c5b452ca3000695d3fb33d30be"
+    },
+    {
+      "path": "seed/canonical/conformance/conformance-profile.json",
+      "sha256": "sha256:2a90c2b620b29f01de277f2f55c92cb9638a5e41055515fa2ceaba1c6094ccee"
+    },
+    {
+      "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
+      "sha256": "sha256:b3471f8387c43c7d1b642e6a9b1433142001838c90542718b5d86a2a40b74622"
+    },
+    {
+      "path": "seed/canonical/conformance/model-based-conformance.json",
+      "sha256": "sha256:d3ab01ba64f783412698e225e8384fa44ebb4d243ce8f12313a749540dfa6daa"
+    },
+    {
+      "path": "seed/canonical/schemas/implementation-conformance-protocol.schema.json",
+      "sha256": "sha256:f7481fc7ddaa2726df52026220b75f897c92116b377798e24311d1cdf4e75315"
+    },
+    {
+      "path": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
+      "sha256": "sha256:a7476169825e13b2ce036f8a7f500e52dbd50b7f2490ab6da86131010c1a7ded"
+    },
+    {
+      "path": "seed/canonical/assurance/verification-registry.json",
+      "sha256": "sha256:63e0d6ebed7594ecbcb77cfc63f7e124a59030f1f3a7a401b9c995f66130cde0"
+    },
+    {
+      "path": "seed/canonical/formal/SeedRC12.tla",
+      "sha256": "sha256:a94408e12ed4ca06fc5e0ee816dff4eba8acac22c6370f7027fe76c628db6573"
+    },
+    {
+      "path": "seed/canonical/formal/SeedRC12.cfg",
+      "sha256": "sha256:4f8c0f53530247ed4306f9ca00376d3d4bb9962ee870c0a477aff198fb9f278a"
+    }
+  ],
+  "implementation_precedence": "NONE",
+  "normative_source": "seed/canonical/source/seed-model.json",
+  "package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
+  "schema_version": 1
+}

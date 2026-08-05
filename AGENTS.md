@@ -46,8 +46,8 @@ Regular refactoring is required only when it strengthens or simplifies the model
 ## ASET Seed boundaries
 
 - The current stable release is immutable ASET Seed 0.1-rc11 until a separately identified rc12 release is frozen.
-- The rc12 production claim is limited to `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`.
-- The bounded profile is one OS host, local durable storage, SQLite WAL, `synchronous=FULL`, serialized writers, local CLI/embedded API, and explicit proof verification.
+- The specification repository makes no embedded runtime production claim.
+- Implementation-profile guarantees are external to the Seed canon and must be claimed and tested separately.
 - The default proof verifier rejects all proofs.
 - Do not add implicit network, subprocess, tool, or physical-effect execution to the Seed runtime.
 - Do not claim distributed consensus, multi-primary safety, physical-world truth, deployment key management, universal formal proof, or external certification.

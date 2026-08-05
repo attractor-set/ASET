@@ -50,8 +50,8 @@ def render(model: dict, language: str) -> str:
         "",
         f'## {headings["assurance"][language]}',
         "",
-        f'- `runtime_profile`: `{model["runtime_profile"]["status"]}`',
-        f'- `production_claim_scope`: `{model["assurance"]["production_claim_scope"]}`',
+        f'- `implementation_status`: `{model["implementation_boundary"]["normative_status"]}`',
+        f'- `implementation_precedence`: `{model["implementation_boundary"]["implementation_precedence"]}`',
         f'- `external_third_party_audit`: `{model["assurance"]["external_third_party_audit"]}`',
         "",
         f'## {headings["concepts"][language]}',
@@ -107,13 +107,12 @@ def render(model: dict, language: str) -> str:
         )
     lines.extend(
         [
-            f'## {headings["runtime"][language]}',
+            f'## {headings["implementation_boundary"][language]}',
             "",
-            f'- `profile_id`: `{model["runtime_profile"]["profile_id"]}`',
-            f'- `status`: `{model["runtime_profile"]["status"]}`',
-            f'- `implementation_version`: `{model["runtime_profile"]["implementation_version"]}`',
-            f'- `wire_schema_version`: `{model["runtime_profile"]["wire_schema_version"]}`',
-            f'- `proof_default`: `{model["runtime_profile"]["proof_boundary"]["default"]}`',
+            f'- `normative_status`: `{model["implementation_boundary"]["normative_status"]}`',
+            f'- `implementation_precedence`: `{model["implementation_boundary"]["implementation_precedence"]}`',
+            f'- `conformance_protocol_ref`: `{model["implementation_boundary"]["conformance_protocol_ref"]}`',
+            "- `unspecified_by_seed`: " + ", ".join(f"`{item}`" for item in model["implementation_boundary"]["unspecified_by_seed"]),
             "",
         ]
     )

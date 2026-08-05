@@ -2,7 +2,7 @@
 ----------------------------- MODULE SeedRC12 -----------------------------
 EXTENDS Naturals, FiniteSets, Sequences
 
-CONSTANTS Contexts, Permits
+CONSTANTS Contexts, Permits, MaxAuditLength
 VARIABLES lifecycle, authorityActive, permitActive, attempts, maxAttempts,
           verified, outcome, auditLength
 
@@ -21,12 +21,14 @@ Init ==
 
 GrantAuthority(c) ==
   /\ lifecycle[c] = "ACTIVE"
+  /\ ~authorityActive[c]
   /\ authorityActive' = [authorityActive EXCEPT ![c] = TRUE]
   /\ UNCHANGED <<lifecycle, permitActive, attempts, maxAttempts, verified, outcome>>
   /\ auditLength' = auditLength + 1
 
 IssuePermit(p) ==
   /\ ~permitActive[p]
+  /\ ~outcome[p]
   /\ permitActive' = [permitActive EXCEPT ![p] = TRUE]
   /\ UNCHANGED <<lifecycle, authorityActive, attempts, maxAttempts, verified, outcome>>
   /\ auditLength' = auditLength + 1
@@ -40,12 +42,14 @@ UsePermit(p) ==
 
 Verify(p) ==
   /\ attempts[p] > 0
+  /\ ~verified[p]
   /\ verified' = [verified EXCEPT ![p] = TRUE]
   /\ UNCHANGED <<lifecycle, authorityActive, permitActive, attempts, maxAttempts, outcome>>
   /\ auditLength' = auditLength + 1
 
 RecognizeOutcome(p) ==
   /\ verified[p]
+  /\ ~outcome[p]
   /\ outcome' = [outcome EXCEPT ![p] = TRUE]
   /\ permitActive' = [permitActive EXCEPT ![p] = FALSE]
   /\ UNCHANGED <<lifecycle, authorityActive, attempts, maxAttempts, verified>>
@@ -58,18 +62,21 @@ Withdraw(c) ==
   /\ UNCHANGED <<permitActive, attempts, maxAttempts, verified, outcome>>
   /\ auditLength' = auditLength + 1
 
-Next ==
-  \/ \E c \in Contexts : GrantAuthority(c)
-  \/ \E p \in Permits : IssuePermit(p)
-  \/ \E p \in Permits : UsePermit(p)
-  \/ \E p \in Permits : Verify(p)
-  \/ \E p \in Permits : RecognizeOutcome(p)
-  \/ \E c \in Contexts : Withdraw(c)
+Step ==
+  /\ auditLength < MaxAuditLength
+  /\ \/ \E c \in Contexts : GrantAuthority(c)
+     \/ \E p \in Permits : IssuePermit(p)
+     \/ \E p \in Permits : UsePermit(p)
+     \/ \E p \in Permits : Verify(p)
+     \/ \E p \in Permits : RecognizeOutcome(p)
+     \/ \E c \in Contexts : Withdraw(c)
+
+Next == Step \/ UNCHANGED vars
 
 AttemptBound == \A p \in Permits : attempts[p] <= maxAttempts[p]
 OutcomeVerified == \A p \in Permits : outcome[p] => verified[p]
 InactiveNoAuthority == \A c \in Contexts : lifecycle[c] # "ACTIVE" => ~authorityActive[c]
-AuditMonotone == auditLength >= 0
+AuditMonotone == auditLength \in 0..MaxAuditLength
 
 Spec == Init /\ [][Next]_vars
 =============================================================================

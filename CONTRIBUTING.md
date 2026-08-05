@@ -1,32 +1,21 @@
-# Contributing
+# Contributing to ASET
 
-Contributions are accepted through reviewed pull requests.
+ASET is specification-first. Changes must preserve the distinction between normative canon, generated views, non-normative tooling and external implementation profiles.
 
-Before submitting:
+Before opening a pull request:
 
-```text
+```bash
+python -m pip install -r requirements-ci.txt
 python tools/generate_repository_views.py
-python tools/generate_repository_views.py --check
-python tools/validate_repository.py
-python -m pytest -q
+python tools/build_canon_package.py
+python tools/rebuild_manifest.py
+python tools/repository_release_gate.py
 ```
 
-Normative changes must include:
+Canon changes must be classified as no semantic change, monotonic extension or breaking normative change. No implementation, programming language, checker or storage backend may be granted semantic precedence.
 
-- stable identifiers;
-- machine-readable semantics;
-- updated constraints;
-- positive and negative examples;
-- all three language forms;
-- a semantic-change explanation.
+Historical release evidence, protected tags and frozen rc11 bytes must never be rewritten.
 
-Do not edit generated views, including `docs/generated/`, `codemeta.json` and `.github/repository-metadata.json`, manually.
-Do not modify files below a frozen release directory.
+## Rights and provenance
 
-## Intellectual-property provenance
-
-The pre-existing ASET boundary is recorded in [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md). New contributions are not automatically added to that Background IP inventory.
-
-A contributor must have the right to submit the contribution and must not include employer, client or third-party confidential material. Contributions are accepted under the repository's Apache 2.0 licence unless a separate written agreement applies. Project-specific ownership, assignment or university foreground-IP terms must be handled outside the pull request and referenced explicitly.
-
-Do not commit personal identifiers, signatures, employment contracts, private assignment instruments or confidential evidence.
+Contributions are licensed under `LICENSE`. Existing project Background IP and provenance declarations are recorded in `BACKGROUND_IP_SCHEDULE.md` and `governance/ip/background-ip-schedule.json`; contribution does not transfer ownership of pre-existing material unless a separate written agreement says so.

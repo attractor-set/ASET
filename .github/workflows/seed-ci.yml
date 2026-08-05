@@ -1,120 +1,52 @@
-name: ASET Seed semantic CI
+name: ASET candidate canon CI
 
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  validate:
+  candidate-consistency:
     runs-on: ubuntu-24.04
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install validation dependencies
-        run: python -m pip install -r requirements-ci.txt
-
-      - name: Install project
-        run: python -m pip install --no-deps --editable .
-
-      - name: Check generated documentation and project metadata
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Check generated views and language policy
         run: |
           python tools/generate_repository_views.py --check
           python tools/check_language.py
-
-      - name: Validate rc12 machine canon and repository
+      - name: Validate candidate canon package
         run: |
           python tools/validate_rc12_canon.py
-          python tools/validate_repository.py
-
-      - name: Verify frozen rc11 identity
+          python tools/build_canon_package.py --check
+          python tools/validate_canon_package.py
+      - name: Run bounded model and traceability checks
         run: |
-          python tools/verify_frozen_release.py
-          python tools/materialize_rc11.py --check
-          python tools/materialize_rc11.py --check-git
-
-      - name: Run rc11 semantic regression on rc12 core
-        run: python tools/run_rc12_coverage.py
-
-      - name: Run bounded formal model check
-        run: python tools/model_check_rc12.py --output dist/rc12-model-check.json
-
-      - name: Run Python reference conformance and model checks
+          python tools/model_check_rc12.py --output dist/rc12-model-check.json
+          python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json
+      - name: Run specification tests and static analysis
         run: |
-          python tools/run_reference_conformance.py \
-            --output dist/reference-conformance-results.json
-          python tools/model_check_reference.py \
-            --output dist/reference-model-check.json
-
-      - name: Run regression tests
-        run: python -m pytest -q
-
-      - name: Static Python checks
-        run: python -m ruff check tools tests src/aset_seed src/aset_reference
-
-      - name: Build installable wheel
-        run: python -m pip wheel --no-deps --no-build-isolation . -w dist/wheels
-
-      - name: Build deterministic repository snapshot
-        run: python tools/build_release.py
-
-      - name: Run independent black-box audits
-        run: |
-          python tools/blackbox_reference_audit.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output-json dist/blackbox-reference-audit.json \
-            --output-md dist/blackbox-reference-audit.md
-          python tools/run_reference_blackbox_adversarial.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output dist/reference-blackbox-adversarial-results.json
-          python tools/blackbox_documentation_audit.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output-json dist/blackbox-documentation-audit.json \
-            --output-md dist/blackbox-documentation-audit.md
-          python tools/blackbox_runtime_audit.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output-json dist/blackbox-runtime-audit.json \
-            --output-md dist/blackbox-runtime-audit.md
-          python tools/run_runtime_adversarial.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output dist/runtime-adversarial-results.json
-          python tools/run_blackbox_adversarial.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output dist/blackbox-adversarial-results.json
-
-      - name: Upload validation evidence
-        uses: actions/upload-artifact@v4
+          python -m pytest -q
+          python -m ruff check tools tests
+          python tools/static_python_sanity.py
+      - name: Audit active documentation claims
+        run: python tools/blackbox_documentation_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: aset-seed-rc12-assurance
-          if-no-files-found: error
+          name: aset-candidate-canon-ci
+          if-no-files-found: warn
           path: |
-            dist/ASET-Repository-Snapshot.zip
-            dist/ASET-Repository-Snapshot.zip.sha256
-            dist/wheels/*.whl
-            dist/rc12-conformance-results.json
-            dist/rc12-coverage.json
             dist/rc12-model-check.json
-            dist/reference-conformance-results.json
-            dist/reference-model-check.json
-            dist/blackbox-reference-audit.json
-            dist/blackbox-reference-audit.md
-            dist/reference-blackbox-adversarial-results.json
+            dist/assurance-traceability.json
             dist/blackbox-documentation-audit.json
-            dist/blackbox-documentation-audit.md
-            dist/blackbox-runtime-audit.json
-            dist/blackbox-runtime-audit.md
-            dist/runtime-adversarial-results.json
-            dist/blackbox-adversarial-results.json

@@ -7,7 +7,7 @@
       "additionalProperties": {
         "type": "string"
       },
-      "minProperties": 9,
+      "minProperties": 8,
       "type": "object"
     },
     "current_stable_seed_release": {
@@ -18,6 +18,9 @@
     },
     "document_type": {
       "const": "aset-repository-status"
+    },
+    "embedded_runtime": {
+      "const": "NOT_PROVIDED"
     },
     "expanded_rc11": {
       "const": "BYTE_EXACT_MATERIALIZATION"
@@ -38,6 +41,9 @@
         "pt-BR"
       ]
     },
+    "implementation_precedence": {
+      "const": "NONE"
+    },
     "machine_readable_canon": {
       "const": "NORMATIVE_CANON_COMPLETE"
     },
@@ -48,31 +54,25 @@
       "const": "0.1-rc12"
     },
     "reference_implementation": {
-      "const": "PRODUCTION_READY_BOUNDED_PROFILE"
+      "const": "NOT_INCLUDED_IN_SPECIFICATION_REPOSITORY"
     },
     "repository": {
       "const": "ASET"
     },
-    "repository_production_gate": {
-      "const": "PASS_REQUIRED_ON_EVERY_MAIN_CHANGE"
+    "repository_release_gate": {
+      "const": "REPOSITORY_RELEASE_GATE_REQUIRED_ON_EVERY_MAIN_CHANGE"
     },
-    "repository_production_readiness": {
-      "const": "DOCUMENTATION_AND_BOUNDED_RUNTIME_PRODUCTION_READY"
+    "repository_release_readiness": {
+      "const": "SPECIFICATION_AND_CONFORMANCE_PACKAGE_READY"
     },
     "repository_role": {
-      "const": "SPECIFICATION_AND_BOUNDED_REFERENCE_RUNTIME"
+      "const": "NORMATIVE_SPECIFICATION_CONFORMANCE_AND_FORMAL_MODELS"
     },
     "repository_url": {
       "const": "https://github.com/attractor-set/ASET"
     },
-    "runtime_profile_id": {
-      "const": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1"
-    },
     "schema_version": {
       "const": 3
-    },
-    "seed_runtime_production": {
-      "const": "PRODUCTION_READY_SINGLE_NODE_SQLITE_PROFILE"
     },
     "wire_compatibility_profile": {
       "const": "ASET-SEED-WIRE-0.1-RC11-COMPAT"
@@ -84,16 +84,16 @@
     "repository",
     "repository_url",
     "repository_role",
-    "repository_production_readiness",
-    "repository_production_gate",
+    "repository_release_readiness",
+    "repository_release_gate",
     "current_stable_seed_release",
     "current_stable_seed_status",
     "next_seed_version",
     "next_seed_status",
     "machine_readable_canon",
     "reference_implementation",
-    "seed_runtime_production",
-    "runtime_profile_id",
+    "embedded_runtime",
+    "implementation_precedence",
     "wire_compatibility_profile",
     "external_third_party_audit",
     "expanded_rc11",

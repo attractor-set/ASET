@@ -100,9 +100,9 @@ def validate_static() -> tuple[dict[str, object], list[str]]:
                 paths.update(path for path in asset_paths if isinstance(path, str))
         if len(identifiers) != len(set(identifiers)):
             errors.append("duplicate asset identifiers")
-        for relative in sorted(paths):
-            if not (ROOT / relative).exists():
-                errors.append(f"missing-scheduled-path:{relative}")
+        # Scheduled paths identify the immutable baseline. A later repository refactor
+        # may move or remove a current path without erasing the Background IP record.
+        # Exact baseline existence is checked only by validate_git().
 
     expected_tokens = {
         "Dzmitry Prychyna",
