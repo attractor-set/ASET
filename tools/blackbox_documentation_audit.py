@@ -16,6 +16,11 @@ ACTIVE_FILES = [
     ROOT / "docs/repository/PRODUCTION_READINESS.md",
     ROOT / "docs/repository/OPERATIONS_RUNBOOK.md",
     ROOT / "docs/repository/RELEASE_PROCESS.md",
+    ROOT / "audit/README.md",
+    ROOT / "audit/ACTIVE_AUDIT_INDEX.md",
+    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md",
+    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md",
+    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md",
 ]
 ACTIVE_GLOBS = [
     "docs/generated/*/ASET_Seed_0.1-rc12.md",
@@ -48,6 +53,24 @@ def main() -> int:
                         "offset": match.start(),
                     }
                 )
+
+    audit_index_path = ROOT / "audit/ACTIVE_AUDIT_INDEX.json"
+    try:
+        audit_index = json.loads(audit_index_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        findings.append({"file": "audit/ACTIVE_AUDIT_INDEX.json", "finding": f"invalid_audit_index:{type(error).__name__}"})
+    else:
+        active = set(audit_index.get("active_controlling_records", []))
+        historical = set(audit_index.get("historical_noncontrolling_records", []))
+        excluded = set(audit_index.get("index_exclusions", []))
+        actual = {path.relative_to(ROOT).as_posix() for path in (ROOT / "audit").rglob("*") if path.is_file()}
+        if active & historical:
+            findings.append({"file": "audit/ACTIVE_AUDIT_INDEX.json", "finding": "audit_classification_overlap"})
+        if active | historical | excluded != actual:
+            findings.append({"file": "audit/ACTIVE_AUDIT_INDEX.json", "finding": "audit_classification_incomplete"})
+        if audit_index.get("active_candidate", {}).get("implementation_precedence") != "NONE":
+            findings.append({"file": "audit/ACTIVE_AUDIT_INDEX.json", "finding": "implementation_precedence_not_none"})
+
     for name in ("README.md", "README.ru.md", "README.pt-BR.md"):
         first = (ROOT / name).read_text(encoding="utf-8").splitlines()[0]
         if first != LANGUAGE_NAV:

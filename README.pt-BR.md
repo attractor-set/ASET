@@ -20,6 +20,11 @@ Implementações independentes são testadas como caixas-pretas por `ASET-IMPLEM
 
 Armazenamento, durabilidade, concorrência, recuperação, consenso, rede e custódia de chaves pertencem aos perfis de implementação e não definem o Seed.
 
+## Exemplo completo
+
+Um exemplo completo e não normativo de patch de repositório controlado por um agente de IA está disponível em [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md). O cânone legível por máquina e o corpus de conformance permanecem autoritativos.
+
+
 ## Implementações
 
 As implementações são mantidas separadamente da especificação. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) é a implementação de referência não normativa e o perfil educacional em Python + SQLite. Ela não possui precedência semântica, e Python e SQLite não passam a fazer parte da definição do ASET.
