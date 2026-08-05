@@ -42,3 +42,9 @@ Prefer:
 Automated checks are mandatory for every change.
 Human editorial approval in all three languages is mandatory
 before a documentation freeze.
+
+## Static governance documents
+
+The Background IP Schedule has manually maintained English, Russian and Brazilian Portuguese editions because it contains jurisdiction-sensitive governance language. The machine-readable inventory in `governance/ip/background-ip-schedule.json` is the canonical technical source for identifiers, baseline hashes, asset classes and declared status.
+
+A change to one language edition requires review of all three editions. Legal terminology must preserve the distinction between creator, author, economic-rights holder, pseudonym, Background IP and project foreground IP.

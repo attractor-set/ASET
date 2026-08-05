@@ -47,6 +47,12 @@ Para regenerar toda a documentação derivada e os metadados do repositório, ex
 python tools/generate_repository_views.py
 ```
 
+## Autoria e propriedade intelectual preexistente
+
+O ASET foi criado de forma independente por **Dzmitry Prychyna**, conhecido publicamente pelo pseudônimo **Attractor Set**. Attractor Set é a identidade pública do projeto, não uma pessoa jurídica distinta. A fronteira pública da propriedade intelectual preexistente está registrada no [Quadro de PI Preexistente do ASET](BACKGROUND_IP_SCHEDULE.pt-BR.md), na [edição em inglês](BACKGROUND_IP_SCHEDULE.md) e no [inventário legível por máquina](governance/ip/background-ip-schedule.json).
+
+O Quadro não altera a licença Apache 2.0 e não constitui cessão nem parecer jurídico. Futuros instrumentos com sociedade, universidade, agência de fomento ou investidor devem separar esta PI preexistente da propriedade intelectual resultante do projeto.
+
 ## Cânones de componentes do ASET completo
 
 A especificação completa legível por máquina do ASET 1.5-rc11 é preservada como evidência-fonte exata e decomposta em cânones candidatos versionados de forma independente para System Composition, Context, Core, Monade, Memory, Master, Model Gateway e Protocol. A linha de componentes é `0.1-rc1` e está vinculada explicitamente ao ASET Seed `0.1-rc12`.

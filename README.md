@@ -57,6 +57,12 @@ Regenerate all derived documentation and repository metadata with:
 python tools/generate_repository_views.py
 ```
 
+## Authorship and Background IP
+
+ASET was independently created by **Dzmitry Prychyna**, publicly known under the pseudonym **Attractor Set**. Attractor Set is the public project identity, not a separate legal entity. The public pre-existing-IP boundary is recorded in the [ASET Background IP Schedule](BACKGROUND_IP_SCHEDULE.md), its [Brazilian Portuguese edition](BACKGROUND_IP_SCHEDULE.pt-BR.md), and the [machine-readable inventory](governance/ip/background-ip-schedule.json).
+
+The Schedule does not change the Apache 2.0 licence and is not an assignment or legal opinion. Future company, university, grant and investment arrangements must distinguish this Background IP from project-specific foreground intellectual property.
+
 ## Full ASET component canons
 
 The full ASET 1.5-rc11 machine specification is preserved as exact source evidence and decomposed into independently versioned candidate canons for System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol. The component line is `0.1-rc1` and is explicitly bound to ASET Seed `0.1-rc12`.

@@ -27,6 +27,7 @@ COMMANDS = [
     [sys.executable, "tools/model_check_rc12.py", "--output", "dist/rc12-model-check.json"],
     [sys.executable, "tools/run_rc12_coverage.py"],
     [sys.executable, "tools/rebuild_manifest.py", "--check"],
+    [sys.executable, "tools/validate_background_ip.py"],
     [sys.executable, "tools/validate_repository.py"],
     [sys.executable, "tools/run_component_conformance.py", "--check"],
     [sys.executable, "tools/model_check_components.py", "--check"],

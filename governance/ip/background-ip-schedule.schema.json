@@ -1,0 +1,319 @@
+{
+  "$defs": {
+    "asset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_classes": {
+          "items": {
+            "pattern": "^[A-Z0-9_]+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "asset_id": {
+          "pattern": "^BI-[0-9]{3}$",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "paths": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "qualification": {
+          "minLength": 10,
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset_classes",
+        "asset_id",
+        "name",
+        "paths"
+      ],
+      "type": "object"
+    },
+    "brazilProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "applicable_frameworks": {
+          "const": [
+            "LEI_9609_1998",
+            "LEI_9610_1998",
+            "LEI_10973_2004",
+            "DECRETO_9283_2018"
+          ],
+          "type": "array"
+        },
+        "future_company_assignment_required": {
+          "const": true
+        },
+        "inpi_registration_required_for_protection": {
+          "const": false
+        },
+        "inpi_registration_status": {
+          "enum": [
+            "NOT_FILED",
+            "FILED",
+            "REGISTERED"
+          ]
+        },
+        "recommended_contract_annex": {
+          "const": "PROPRIEDADE_INTELECTUAL_PREEXISTENTE"
+        },
+        "university_partnership_rule": {
+          "minLength": 40,
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicable_frameworks",
+        "future_company_assignment_required",
+        "inpi_registration_required_for_protection",
+        "inpi_registration_status",
+        "recommended_contract_annex",
+        "university_partnership_rule"
+      ],
+      "type": "object"
+    },
+    "creator": {
+      "additionalProperties": false,
+      "properties": {
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "pseudonym_is_separate_legal_entity": {
+          "const": false
+        },
+        "public_profile_url": {
+          "format": "uri",
+          "type": "string"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        }
+      },
+      "required": [
+        "legal_name",
+        "public_profile_url",
+        "public_pseudonym",
+        "pseudonym_is_separate_legal_entity"
+      ],
+      "type": "object"
+    },
+    "independentCreation": {
+      "additionalProperties": false,
+      "properties": {
+        "client_deliverable": {
+          "const": false
+        },
+        "commissioned_by_current_employer": {
+          "const": false
+        },
+        "current_employer_confidential_information_used": {
+          "const": false
+        },
+        "current_employer_directed_or_supervised": {
+          "const": false
+        },
+        "current_employer_funding_used": {
+          "const": false
+        },
+        "current_employer_resources_used": {
+          "const": false
+        },
+        "developed_outside_employment_scope": {
+          "const": true
+        },
+        "own_equipment_accounts_storage_tools_and_time_used": {
+          "const": true
+        },
+        "statement_basis": {
+          "const": "DECLARATION_BY_CREATOR"
+        }
+      },
+      "required": [
+        "client_deliverable",
+        "commissioned_by_current_employer",
+        "current_employer_confidential_information_used",
+        "current_employer_directed_or_supervised",
+        "current_employer_funding_used",
+        "current_employer_resources_used",
+        "developed_outside_employment_scope",
+        "own_equipment_accounts_storage_tools_and_time_used",
+        "statement_basis"
+      ],
+      "type": "object"
+    },
+    "repository": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_commit_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "baseline_manifest_files_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "baseline_manifest_path": {
+          "const": "MANIFEST.json"
+        },
+        "baseline_manifest_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "baseline_source": {
+          "const": "GITHUB_BRANCH_ARCHIVE_COMMIT_COMMENT"
+        },
+        "name": {
+          "const": "ASET"
+        },
+        "url": {
+          "const": "https://github.com/attractor-set/ASET"
+        }
+      },
+      "required": [
+        "baseline_commit_sha",
+        "baseline_manifest_files_count",
+        "baseline_manifest_path",
+        "baseline_manifest_sha256",
+        "baseline_source",
+        "name",
+        "url"
+      ],
+      "type": "object"
+    },
+    "rightsHolder": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_to_legal_entity": {
+          "const": false
+        },
+        "basis": {
+          "const": "INDEPENDENT_CREATION"
+        },
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        },
+        "type": {
+          "const": "NATURAL_PERSON"
+        }
+      },
+      "required": [
+        "assignment_to_legal_entity",
+        "basis",
+        "legal_name",
+        "public_pseudonym",
+        "type"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/governance/ip/background-ip-schedule.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "amendment_rule": {
+      "const": "NEW_VERSION_NEW_CUTOFF_PRESERVE_PRIOR_SCHEDULES_AND_PASS_PRODUCTION_GATE"
+    },
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/asset"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "brazil_profile": {
+      "$ref": "#/$defs/brazilProfile"
+    },
+    "confidential_evidence_rule": {
+      "minLength": 40,
+      "type": "string"
+    },
+    "creator": {
+      "$ref": "#/$defs/creator"
+    },
+    "current_rights_holder": {
+      "$ref": "#/$defs/rightsHolder"
+    },
+    "document_type": {
+      "const": "aset-background-ip-schedule"
+    },
+    "effective_date": {
+      "format": "date",
+      "type": "string"
+    },
+    "exclusions": {
+      "items": {
+        "minLength": 3,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "future_ip_rule": {
+      "const": "WORK_CREATED_AFTER_THE_BASELINE_COMMIT_IS_NOT_AUTOMATICALLY_BACKGROUND_IP"
+    },
+    "independent_creation_declaration": {
+      "$ref": "#/$defs/independentCreation"
+    },
+    "jurisdiction_profile": {
+      "const": "BR"
+    },
+    "legal_effect": {
+      "const": "EVIDENTIARY_INVENTORY_NOT_ASSIGNMENT_REGISTRATION_TRADEMARK_REGISTRATION_OR_LEGAL_OPINION"
+    },
+    "license_boundary": {
+      "const": "APACHE_2_0_PERMISSIONS_REMAIN_UNCHANGED_AND_DO_NOT_BY_THEMSELVES_TRANSFER_AUTHORSHIP_OR_OWNERSHIP"
+    },
+    "repository": {
+      "$ref": "#/$defs/repository"
+    },
+    "schedule_version": {
+      "const": "1.0"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "PUBLIC_EVIDENTIARY_INVENTORY"
+    }
+  },
+  "required": [
+    "amendment_rule",
+    "assets",
+    "brazil_profile",
+    "confidential_evidence_rule",
+    "creator",
+    "current_rights_holder",
+    "document_type",
+    "effective_date",
+    "exclusions",
+    "future_ip_rule",
+    "independent_creation_declaration",
+    "jurisdiction_profile",
+    "legal_effect",
+    "license_boundary",
+    "repository",
+    "schedule_version",
+    "schema_version",
+    "status"
+  ],
+  "title": "ASET Background IP Schedule",
+  "type": "object"
+}
