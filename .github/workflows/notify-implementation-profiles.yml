@@ -1,0 +1,86 @@
+name: Notify implementation profiles
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - seed/canonical/CANON_PACKAGE.json
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-python-sqlite:
+    name: notify-python-sqlite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout approved ASET revision
+        uses: actions/checkout@v4
+
+      - name: Read and validate canon identity
+        id: canon
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          DIGEST="$(
+            python - <<'PY'
+          import json
+          from pathlib import Path
+
+          package = json.loads(
+              Path("seed/canonical/CANON_PACKAGE.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          digest = package["package_digest"]
+
+          if (
+              not isinstance(digest, str)
+              or not digest.startswith("sha256:")
+              or len(digest) != 71
+          ):
+              raise SystemExit("invalid CANON_PACKAGE package_digest")
+
+          print(digest)
+          PY
+          )"
+
+          printf 'ASET_REF=%s\n' "$GITHUB_SHA"
+          printf 'ASET_PACKAGE_DIGEST=%s\n' "$DIGEST"
+
+          printf 'digest=%s\n' "$DIGEST" >> "$GITHUB_OUTPUT"
+
+      - name: Notify aset-python-sqlite
+        env:
+          GH_TOKEN: ${{ secrets.ASET_PROFILE_AUTOMATION_TOKEN }}
+          PACKAGE_DIGEST: ${{ steps.canon.outputs.digest }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PAYLOAD="$(
+            jq -n \
+              --arg ref "$GITHUB_SHA" \
+              --arg digest "$PACKAGE_DIGEST" \
+              '{
+                event_type: "aset-canon-updated",
+                client_payload: {
+                  ref: $ref,
+                  package_digest: $digest
+                }
+              }'
+          )"
+
+          printf '%s\n' "$PAYLOAD" |
+            gh api \
+              --method POST \
+              repos/attractor-set/aset-python-sqlite/dispatches \
+              --input -
+
+          printf 'ASET_PROFILE_NOTIFICATION=PASS\n'
