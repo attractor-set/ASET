@@ -26,7 +26,7 @@ python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapte
 
 ## Реализации
 
-Реализации поддерживаются отдельно от спецификации. Минимальный non-normative учебный профиль Python + SQLite предназначен для отдельного репозитория `aset-python-sqlite`. Python и SQLite не становятся частью определения ASET.
+Реализации поддерживаются отдельно от спецификации. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) — ненормативная референсная реализация и учебный профиль на Python + SQLite. Она не имеет семантического приоритета; Python и SQLite не становятся частью определения ASET.
 
 ## Лицензия и права
 

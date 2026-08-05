@@ -18,3 +18,9 @@
 - Kept Seed implementation-neutral and left planning, memory, orchestration, execution infrastructure, evidence acquisition and analytics outside its provided capabilities.
 - Reused the existing Seed compatibility bridge and generated-view pipeline rather than creating a new integration framework.
 - Strengthened the existing component black-box check instead of increasing the audit surface with a redundant check identifier.
+
+## Assurance-toolchain neutrality and reference implementation discovery
+
+- Rephrased the active System Composition environment invariant so that it binds an externally committed assurance-toolchain and dependency closure without prescribing Python or any implementation runtime.
+- Replaced Python-specific environment descriptions in active component and system verification cases with implementation-neutral assurance-toolchain descriptions; frozen rc11 source evidence remains unchanged.
+- Linked the separate non-normative [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) reference implementation from all curated root README editions and the roadmap without granting it semantic precedence.
