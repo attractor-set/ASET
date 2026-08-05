@@ -15,4 +15,6 @@ The project uses evidence-driven Deming cycles. Each cycle ends with a full blac
 | [12](pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md) | close final boundary gaps and establish technical freeze entry | 23 fail-closed gates, expanded runtime and mutation audits, zero blockers required | exact-byte clean-room freeze and owner approval |
 | [13](pdca/PDCA-13-PROJECT-METADATA-AND-DOCUMENTATION-GENERATION.md) | unify project identity and derived documentation generation | 87 tests; documentation 33/33, component 27/27, reference 10/10 and runtime 18/18 black-box checks pass | protected CI and administrator-applied GitHub About |
 
+| [14](pdca/PDCA-14-SEED-SEMANTIC-NUCLEUS.md) | define Seed as the minimal semantic nucleus of complete ASET systems | machine-readable composition role, closed schema, bridge constraints and generated multilingual views | protected CI and independent implementation-profile conformance |
+
 Current classification: `READY_FOR_EXACT_BYTE_FREEZE` technically, while owner approval, exact-byte clean-room freeze, protected tag creation, and external third-party audit remain pending.

@@ -18,6 +18,12 @@ ASET Seed 0.1-rc11 remains the immutable current stable release. Its delivery ar
 
 The executable runtime is a conforming implementation of the bounded profile. It is not a second source of semantics.
 
+## Full ASET composition canon
+
+`aset/system/canonical/source/system-composition-model.json` is the normative machine-readable source for the architectural role of Seed within complete ASET systems. Its `seed_role` object defines Seed as the minimal, implementation-neutral semantic nucleus and states the composition, extension and claim boundaries for compatible component canons and implementation profiles.
+
+This composition canon does not modify or supersede `seed/canonical/`. Component integration acquires authoritative ASET significance only through conformance to Seed semantics. Generated System Composition editions are deterministic projections of the composition canon.
+
 ## Conflict rule
 
 A generated edition, protocol copy, runtime schema, formal projection, conformance binding, or executable behavior that conflicts with the canonical model is invalid. The release gate must fail closed.

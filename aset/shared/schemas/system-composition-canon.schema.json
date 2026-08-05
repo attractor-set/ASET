@@ -358,6 +358,64 @@
       ],
       "type": "object"
     },
+    "seedRole": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities_not_provided_by_seed": {
+          "items": {
+            "enum": [
+              "planning",
+              "long-term memory",
+              "agent and workflow orchestration",
+              "external-effect execution infrastructure",
+              "evidence acquisition infrastructure",
+              "process analytics"
+            ],
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "claim_boundary": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "classification": {
+          "const": "MINIMAL_SEMANTIC_NUCLEUS"
+        },
+        "composition_rule": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "extension_rule": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "implementation_neutral": {
+          "const": true
+        },
+        "normative_function": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "seed_version": {
+          "const": "0.1-rc12"
+        }
+      },
+      "required": [
+        "seed_version",
+        "classification",
+        "implementation_neutral",
+        "normative_function",
+        "composition_rule",
+        "extension_rule",
+        "claim_boundary",
+        "capabilities_not_provided_by_seed"
+      ],
+      "type": "object"
+    },
     "sourceBaseline": {
       "additionalProperties": false,
       "properties": {
@@ -535,6 +593,9 @@
     "seed_compatibility": {
       "$ref": "#/$defs/seedCompatibility"
     },
+    "seed_role": {
+      "$ref": "#/$defs/seedRole"
+    },
     "source_baseline": {
       "$ref": "#/$defs/sourceBaseline"
     },
@@ -579,6 +640,7 @@
     "status",
     "source_baseline",
     "seed_compatibility",
+    "seed_role",
     "components",
     "compatibility_matrix",
     "context_namespace",

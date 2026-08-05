@@ -113,6 +113,40 @@ def main() -> int:
             errors.append(f"schema:{name}:{error}")
         validate_digest(name, value, errors)
 
+    seed_role = system.get("seed_role")
+    expected_capabilities = {
+        "planning",
+        "long-term memory",
+        "agent and workflow orchestration",
+        "external-effect execution infrastructure",
+        "evidence acquisition infrastructure",
+        "process analytics",
+    }
+    if not isinstance(seed_role, dict):
+        errors.append("Seed role absent")
+    else:
+        if seed_role.get("seed_version") != system["seed_compatibility"]["version"]:
+            errors.append("Seed role version differs from compatibility bridge")
+        if seed_role.get("classification") != "MINIMAL_SEMANTIC_NUCLEUS":
+            errors.append("Seed role classification differs")
+        if seed_role.get("implementation_neutral") is not True:
+            errors.append("Seed role implementation neutrality differs")
+        if set(seed_role.get("capabilities_not_provided_by_seed", [])) != expected_capabilities:
+            errors.append("Seed role capability boundary differs")
+
+    required_guarantee = (
+        "Components may perform the work; Seed determines when that work acquires "
+        "authoritative ASET significance."
+    )
+    required_limitation = (
+        "Component integration alone does not establish ASET compatibility without "
+        "conformance to the Seed semantic lifecycle."
+    )
+    if required_guarantee not in bridge["guarantees"]:
+        errors.append("Seed bridge authoritative-significance guarantee absent")
+    if required_limitation not in bridge["limitations"]:
+        errors.append("Seed bridge integration limitation absent")
+
     components: dict[str, dict[str, object]] = {}
     component_ids: list[str] = []
     operation_ids: list[str] = []

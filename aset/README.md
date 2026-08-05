@@ -1,6 +1,8 @@
 # ASET component canons
 
-This directory decomposes the exact ASET 1.5-rc11 monolithic machine specification into independently versioned component canons above ASET Seed 0.1-rc12.
+ASET Seed is the minimal, implementation-neutral semantic nucleus of ASET. This directory defines independently versioned component canons that may grow around that nucleus while remaining explicitly bound to Seed transition semantics.
+
+The component canons decompose the exact ASET 1.5-rc11 monolithic machine specification into System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol profiles above ASET Seed 0.1-rc12.
 
 Component line: `0.1-rc1`.
 

@@ -1,5 +1,5 @@
 {
-  "canonical_digest": "sha256:b54f3cf3e7cbef323618bf0fc7e6e7c30516850df5c4264431662e77cdd32c1d",
+  "canonical_digest": "sha256:8171aa8bc7e5e2323bf06d7bf27a41b8a2d625714f5618b0afaa85a63a1ad466",
   "classification_rules": [
     {
       "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
@@ -89,11 +89,14 @@
   "guarantees": [
     "Component primitives create no authority, execution validity, or recognized Outcome except through their declared Seed mapping.",
     "Expectation admission and external-effect dispatch use different documents, gates, and Permits.",
-    "Memory retrieval, Master planning, and AttractorDescriptor remain advisory."
+    "Memory retrieval, Master planning, and AttractorDescriptor remain advisory.",
+    "Complete ASET systems may compose independent internal or external components, but authoritative transitions remain conformant to Seed concepts, validity conditions, invariants and lifecycle distinctions.",
+    "Components may perform the work; Seed determines when that work acquires authoritative ASET significance."
   ],
   "limitations": [
     "Compatibility is specified against Seed 0.1-rc12 candidate semantics; owner approval and exact-byte Seed rc12 freeze remain separate.",
-    "This profile does not claim distributed consensus, physical-world truth, production key custody, or connector idempotency."
+    "This profile does not claim distributed consensus, physical-world truth, production key custody, or connector idempotency.",
+    "Component integration alone does not establish ASET compatibility without conformance to the Seed semantic lifecycle."
   ],
   "primitive_mappings": [
     {

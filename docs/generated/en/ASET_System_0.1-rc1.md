@@ -1,8 +1,26 @@
 # ASET System Composition 0.1-rc1
 
 - `status`: `COMPONENT_COMPOSITION_CANDIDATE`
-- `canonical_digest`: `sha256:a33087b02bcbdd72511a8a782cc375e3e41b3624a86d20abb82d436f8711464b`
+- `canonical_digest`: `sha256:6dedadead02549026132d9f622d3f13c72f7d3292b7bee316ef2fd15f7dc1a97`
 - `seed_version`: `0.1-rc12`
+
+## ASET Seed role
+
+- `classification`: `MINIMAL_SEMANTIC_NUCLEUS`
+- `implementation_neutral`: `True`
+- `normative_function`: `Defines the authority-bound concepts, validity conditions, invariants and transition semantics required for ASET-compatible systems.`
+- `composition_rule`: `Complete ASET systems and compatible implementation profiles may use independent internal or external components. Any transition that claims authoritative ASET significance, including the authorization of a meaningful state change, the authoritative recording of its execution, its verification or its recognition as an outcome, must conform to Seed semantics.`
+- `extension_rule`: `Component canons and implementation profiles may refine Seed concepts and introduce additional controls, but must not weaken, merge or bypass Seed distinctions and invariants.`
+- `claim_boundary`: `Seed establishes the normative validity and traceability of authoritative transitions. It does not by itself establish the factual truth, completeness or external correctness of observations, evidence or source data.`
+
+### Capabilities not provided by Seed
+
+- `planning`
+- `long-term memory`
+- `agent and workflow orchestration`
+- `external-effect execution infrastructure`
+- `evidence acquisition infrastructure`
+- `process analytics`
 
 ## Components
 
