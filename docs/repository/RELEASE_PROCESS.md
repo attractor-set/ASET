@@ -5,14 +5,14 @@
 - `seed/releases/0.1-rc11/` is immutable historical release material.
 - `seed/canonical/` is the rc12 normative candidate source and generated semantic projections.
 - `src/aset_seed/` is the bounded reference runtime bound to the canonical protocol profile.
-- Generated language editions and ontology/terminology views must not be edited manually.
+- Generated language editions, ontology/terminology views, `codemeta.json` and `.github/repository-metadata.json` must not be edited manually.
 
 ## Pull-request path
 
 1. branch from the exact protected `main`;
 2. state assumptions, scope, and measurable acceptance criteria;
 3. make only changes traceable to those criteria;
-4. regenerate derived views;
+4. regenerate derived views with `python tools/generate_repository_views.py`;
 5. run `python tools/production_gate.py`;
 6. inspect the final documentation and runtime black-box reports as the last PDCA check;
 7. record and close every blocking finding;

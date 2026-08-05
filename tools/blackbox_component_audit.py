@@ -477,10 +477,12 @@ def audit_snapshot(snapshot_path: str) -> dict[str, object]:
 
     try:
         validator_text = get("tools/validate_repository.py").decode("utf-8")
+        generator_text = get("tools/generate_repository_views.py").decode("utf-8")
         gate_text = get("tools/production_gate.py").decode("utf-8")
         integration_markers = (
             "tools/validate_component_canons.py" in validator_text,
-            "tools/generate_component_views.py" in validator_text,
+            "tools/generate_repository_views.py" in validator_text,
+            "tools/generate_component_views.py" in generator_text,
             "tools/run_component_conformance.py" in gate_text,
             "tools/model_check_components.py" in gate_text,
             "tools/blackbox_component_audit.py" in gate_text,

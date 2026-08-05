@@ -13,5 +13,6 @@ The project uses evidence-driven Deming cycles. Each cycle ends with a full blac
 | [10](pdca/PDCA-10-ENVELOPE-REBUILD-ORDERING.md) | restore release metadata after runtime-byte correction | release envelope rebuilt before manifest; complete production and black-box gates required | protected PR and external audit |
 | [11](pdca/PDCA-11-PREFREEZE-BLOCKER-CLOSURE.md) | close independent hostile pre-freeze findings | eight findings closed; expanded snapshot audit emitted four additional boundary/assurance gaps | final pre-freeze assurance |
 | [12](pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md) | close final boundary gaps and establish technical freeze entry | 23 fail-closed gates, expanded runtime and mutation audits, zero blockers required | exact-byte clean-room freeze and owner approval |
+| [13](pdca/PDCA-13-PROJECT-METADATA-AND-DOCUMENTATION-GENERATION.md) | unify project identity and derived documentation generation | 87 tests; documentation 33/33, component 27/27, reference 10/10 and runtime 18/18 black-box checks pass | protected CI and administrator-applied GitHub About |
 
 Current classification: `READY_FOR_EXACT_BYTE_FREEZE` technically, while owner approval, exact-byte clean-room freeze, protected tag creation, and external third-party audit remain pending.

@@ -10,7 +10,7 @@ Treat any digest mismatch as a release-integrity incident. Do not regenerate or 
 
 ## Canon or generated-view mismatch
 
-Change only the machine source, generator, or explicit binding responsible for the defect. Regenerate all RU, EN, and pt-BR editions plus ontology, SKOS, TBX and SHACL views. Never patch a generated edition manually.
+Change only the machine source, project metadata source, generator, or explicit binding responsible for the defect. Run `python tools/generate_repository_views.py` to regenerate project discovery metadata, all RU, EN, and pt-BR editions, and ontology, SKOS, TBX and SHACL views. Never patch a generated view manually.
 
 ## Runtime health failure
 
@@ -23,3 +23,13 @@ The default response is fail closed. Rotate or replace deployment secrets outsid
 ## Failed black-box audit
 
 The candidate is not releasable. Open a blocking finding, identify the smallest causal change, apply it, run regression, and use the new black-box report to plan the next PDCA cycle.
+
+## GitHub About synchronization
+
+`metadata/project.json` is the source for the repository description and exact topic set. Regenerate local projections first. A repository administrator may then apply the same values explicitly with:
+
+```text
+python tools/generate_project_metadata.py --apply-github
+```
+
+This operation replaces the GitHub topic set with the canonical list. It is intentionally not executed by ordinary CI because repository-administration changes are external effects and require an authorized operator.

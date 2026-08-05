@@ -22,9 +22,17 @@ The executable runtime is a conforming implementation of the bounded profile. It
 
 A generated edition, protocol copy, runtime schema, formal projection, conformance binding, or executable behavior that conflicts with the canonical model is invalid. The release gate must fail closed.
 
+## Project identity metadata
+
+`metadata/project.json` is the canonical repository-discovery source for the project name, the Authority-Signed Evidence Trail expansion, the GitHub About description, repository topics and CodeMeta projection. `codemeta.json`, `.github/repository-metadata.json` and `docs/generated/README.md` are deterministic generated views of that source.
+
+The explanatory introductions in `README.md`, `README.ru.md` and `README.pt-BR.md` remain curated static documentation. Their claims must remain consistent with the canonical project metadata, but they are not generated because translation and explanatory context require review.
+
 ## Generated files
 
-Files under `docs/generated/`, generated semantic views, release envelopes, manifests, and machine audit reports must be reproduced by their generators and must not be edited manually.
+Files under `docs/generated/`, generated semantic views, CodeMeta and repository-discovery projections, release envelopes, manifests, and machine audit reports must be reproduced by their generators and must not be edited manually.
+
+Regenerate all derived repository views with `python tools/generate_repository_views.py`. Verify committed parity with `python tools/generate_repository_views.py --check`.
 
 ## Claim boundary
 

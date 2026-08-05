@@ -1,0 +1,59 @@
+{
+  "abstract": "ASET defines an open, implementation-neutral accountability semantics that binds authority, context, proposals, permits, gates, transitions and evidence into verifiable trails for heterogeneous systems composed of people, AI agents, organizations and software services.",
+  "about": {
+    "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+    "topics": [
+      "accountability",
+      "ai-governance",
+      "audit-trail",
+      "authority-signed-evidence-trail",
+      "authorization",
+      "conformance-testing",
+      "data-provenance",
+      "formal-methods",
+      "human-ai-collaboration",
+      "json-schema",
+      "open-standard",
+      "python",
+      "reference-implementation",
+      "sociotechnical-systems",
+      "specification-first",
+      "state-transitions",
+      "tla-plus",
+      "trust-infrastructure",
+      "trustworthy-ai"
+    ]
+  },
+  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "document_type": "aset-project-metadata",
+  "expanded_name": "Authority-Signed Evidence Trail",
+  "languages": [
+    "en",
+    "ru",
+    "pt-BR"
+  ],
+  "license": "Apache-2.0",
+  "name": "ASET",
+  "programming_languages": [
+    "Python",
+    "TLA+"
+  ],
+  "publisher": {
+    "name": "Attractor Set",
+    "type": "Organization",
+    "url": "https://github.com/attractor-set"
+  },
+  "release": {
+    "date_released": "2026-08-04",
+    "development_status": "active",
+    "version": "0.1-rc12"
+  },
+  "repository": {
+    "actions": "https://github.com/attractor-set/ASET/actions",
+    "issues": "https://github.com/attractor-set/ASET/issues",
+    "slug": "attractor-set/ASET",
+    "url": "https://github.com/attractor-set/ASET"
+  },
+  "runtime_platform": "Python 3.12",
+  "schema_version": 1
+}

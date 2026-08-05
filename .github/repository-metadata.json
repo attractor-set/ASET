@@ -1,0 +1,25 @@
+{
+  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "repository": "attractor-set/ASET",
+  "topics": [
+    "accountability",
+    "ai-governance",
+    "audit-trail",
+    "authority-signed-evidence-trail",
+    "authorization",
+    "conformance-testing",
+    "data-provenance",
+    "formal-methods",
+    "human-ai-collaboration",
+    "json-schema",
+    "open-standard",
+    "python",
+    "reference-implementation",
+    "sociotechnical-systems",
+    "specification-first",
+    "state-transitions",
+    "tla-plus",
+    "trust-infrastructure",
+    "trustworthy-ai"
+  ]
+}

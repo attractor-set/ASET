@@ -11,8 +11,7 @@ DIST = ROOT / "dist"
 WHEELS = DIST / "wheels"
 
 COMMANDS = [
-    [sys.executable, "tools/generate_editions.py", "--check"],
-    [sys.executable, "tools/generate_semantic_views.py", "--check"],
+    [sys.executable, "tools/generate_repository_views.py", "--check"],
     [sys.executable, "tools/check_language.py"],
     [sys.executable, "tools/validate_rc12_canon.py"],
     [sys.executable, "tools/build_rc12_envelope.py", "--check"],

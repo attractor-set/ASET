@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/attractor-set/ASET/metadata/project.schema.json",
+  "title": "ASET project metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "schema_version",
+    "name",
+    "expanded_name",
+    "description",
+    "abstract",
+    "repository",
+    "release",
+    "license",
+    "languages",
+    "programming_languages",
+    "runtime_platform",
+    "publisher",
+    "about"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "aset-project-metadata"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "name": {
+      "const": "ASET"
+    },
+    "expanded_name": {
+      "const": "Authority-Signed Evidence Trail"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 350
+    },
+    "abstract": {
+      "type": "string",
+      "minLength": 80
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "url", "issues", "actions"],
+      "properties": {
+        "slug": {
+          "const": "attractor-set/ASET"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "issues": {
+          "type": "string",
+          "format": "uri"
+        },
+        "actions": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "date_released", "development_status"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date_released": {
+          "type": "string",
+          "format": "date"
+        },
+        "development_status": {
+          "const": "active"
+        }
+      }
+    },
+    "license": {
+      "const": "Apache-2.0"
+    },
+    "languages": {
+      "type": "array",
+      "const": ["en", "ru", "pt-BR"]
+    },
+    "programming_languages": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "runtime_platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publisher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name", "url"],
+      "properties": {
+        "type": {
+          "const": "Organization"
+        },
+        "name": {
+          "const": "Attractor Set"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "about": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "topics"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 350
+        },
+        "topics": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        }
+      }
+    }
+  }
+}

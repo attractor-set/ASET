@@ -1006,6 +1006,49 @@ def audit_snapshot(snapshot: Path) -> dict[str, object]:
         details,
     )
 
+    try:
+        project_metadata = strict_json(file("metadata/project.json"))
+        codemeta = strict_json(file("codemeta.json"))
+        repository_metadata = strict_json(
+            file(".github/repository-metadata.json")
+        )
+        readme = file("README.md").decode("utf-8")
+        assert isinstance(project_metadata, dict)
+        assert isinstance(codemeta, dict)
+        assert isinstance(repository_metadata, dict)
+        about = project_metadata.get("about", {})
+        assert isinstance(about, dict)
+        description = project_metadata.get("description")
+        topics = about.get("topics")
+        metadata_ok = (
+            description == about.get("description")
+            and description == codemeta.get("description")
+            and description == repository_metadata.get("description")
+            and description in readme
+            and codemeta.get("@context")
+            == "https://w3id.org/codemeta/3.1"
+            and codemeta.get("alternateName")
+            == "Authority-Signed Evidence Trail"
+            and codemeta.get("keywords") == topics
+            and repository_metadata.get("topics") == topics
+            and isinstance(topics, list)
+            and 1 <= len(topics) <= 20
+            and len(topics) == len(set(topics))
+        )
+        details = (
+            f"description_parity={description == codemeta.get('description')}; "
+            f"topics={len(topics) if isinstance(topics, list) else 0}"
+        )
+    except Exception as error:
+        metadata_ok = False
+        details = str(error)
+    audit.record(
+        "BB-033",
+        "project identity, CodeMeta and GitHub About parity",
+        metadata_ok,
+        details,
+    )
+
     return report(audit, snapshot, archive_digest)
 
 
