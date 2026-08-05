@@ -13,7 +13,7 @@
 
 - maintain the non-normative [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) reference implementation and educational profile in its separate repository;
 - add independent implementations in other languages and storage technologies;
-- establish cross-implementation differential conformance;
+- execute the acceptance plan in [`docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md`](docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md) with an independently engineered Rust/PostgreSQL profile;
 - keep durability, consensus, confidential computation and deployment guarantees profile-specific.
 
 ## Full ASET component specification line

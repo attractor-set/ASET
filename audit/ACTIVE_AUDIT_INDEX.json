@@ -1,0 +1,65 @@
+{
+  "active_candidate": {
+    "canon_package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
+    "implementation_precedence": "NONE",
+    "repository_role": "NORMATIVE_SPECIFICATION_CONFORMANCE_AND_FORMAL_MODELS",
+    "seed_version": "0.1-rc12",
+    "status": "IMPLEMENTATION_NEUTRAL_RELEASE_CANDIDATE"
+  },
+  "active_controlling_records": [
+    "audit/REFACTORING_LOG.md",
+    "audit/components/PDCA-13-BLACKBOX.json",
+    "audit/components/PDCA-13-BLACKBOX.md",
+    "audit/components/PDCA-13-CANON-DECOMPOSITION.md",
+    "audit/components/PDCA-14-BLACKBOX.json",
+    "audit/components/PDCA-14-BLACKBOX.md",
+    "audit/components/PDCA-14-CONFORMANCE-FORMAL-INTEGRATION.md",
+    "audit/components/PDCA-15-BLACKBOX.json",
+    "audit/components/PDCA-15-BLACKBOX.md",
+    "audit/components/PDCA-15-SCHEMA-OWNERSHIP-LOCALIZATION.md",
+    "audit/components/PDCA-16-BLACKBOX.json",
+    "audit/components/PDCA-16-BLACKBOX.md",
+    "audit/components/PDCA-16-SELF-CONTAINED-ASSURANCE.md",
+    "audit/components/PDCA-17-ADVERSARIAL-CLOSURE.md",
+    "audit/components/PDCA-18-RELEASE-IDENTITY-AND-LANGUAGE-CLOSURE.md",
+    "audit/components/PDCA_HISTORY.md",
+    "audit/components/REFACTORING_LOG.md"
+  ],
+  "classification_rules": [
+    "Only active_controlling_records may support claims about the current implementation-neutral candidate.",
+    "Historical records are preserved byte-for-byte as development and pre-freeze evidence but do not control current repository or runtime claims.",
+    "Generated dist reports control a particular candidate only when they were produced from that exact snapshot and all mandatory gates passed.",
+    "No implementation-specific historical audit grants semantic precedence to an implementation profile."
+  ],
+  "document_type": "aset-active-audit-index",
+  "generated_controlling_evidence": [
+    "dist/repository-release-gate.json",
+    "dist/blackbox-documentation-audit.json",
+    "dist/blackbox-component-audit.json",
+    "dist/component-blackbox-adversarial.json",
+    "dist/rc12-model-check.json"
+  ],
+  "historical_noncontrolling_records": [
+    "audit/FINDING_CLOSURE_MATRIX.json",
+    "audit/FINDING_CLOSURE_MATRIX.md",
+    "audit/PDCA_HISTORY.md",
+    "audit/RC12_FINAL_BLACKBOX_AUDIT.json",
+    "audit/RC12_FINAL_BLACKBOX_AUDIT.md",
+    "audit/pdca/PDCA-05-RC12-CANON.md",
+    "audit/pdca/PDCA-06-BOUNDED-RUNTIME.md",
+    "audit/pdca/PDCA-07-REGRESSION-REFACTOR.md",
+    "audit/pdca/PDCA-08-RELEASE-CANDIDATE.md",
+    "audit/pdca/PDCA-09-LINT-GATE-CORRECTION.md",
+    "audit/pdca/PDCA-10-ENVELOPE-REBUILD-ORDERING.md",
+    "audit/pdca/PDCA-11-PREFREEZE-BLOCKER-CLOSURE.md",
+    "audit/pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md",
+    "audit/pdca/PDCA-13-PROJECT-METADATA-AND-DOCUMENTATION-GENERATION.md",
+    "audit/pdca/PDCA-14-SEED-SEMANTIC-NUCLEUS.md"
+  ],
+  "index_exclusions": [
+    "audit/README.md",
+    "audit/ACTIVE_AUDIT_INDEX.json",
+    "audit/ACTIVE_AUDIT_INDEX.md"
+  ],
+  "schema_version": 1
+}

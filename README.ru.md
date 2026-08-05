@@ -24,6 +24,11 @@ python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapte
 
 Хранилище, долговечность, конкурентность, recovery, consensus, сеть и custody ключей относятся к implementation profiles и не определяют Seed.
 
+## Сквозной пример
+
+Ненормативный сквозной пример контролируемого patch репозитория от AI-агента доступен в [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md). Авторитетными остаются машинный канон и conformance corpus.
+
+
 ## Реализации
 
 Реализации поддерживаются отдельно от спецификации. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) — ненормативная референсная реализация и учебный профиль на Python + SQLite. Она не имеет семантического приоритета; Python и SQLite не становятся частью определения ASET.

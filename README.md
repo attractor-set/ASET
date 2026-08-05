@@ -24,6 +24,11 @@ python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapte
 
 Storage, durability, concurrency, recovery, consensus, networking and key custody belong to implementation profiles. Profiles may strengthen operational guarantees but may not weaken Seed semantics.
 
+## Walkthrough
+
+A non-normative end-to-end example of a controlled AI-agent repository patch is available in [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md). The machine canon and conformance corpus remain authoritative.
+
+
 ## Implementations
 
 Implementations are maintained independently from this specification. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) is the non-normative Python + SQLite reference implementation and educational profile. It has no semantic precedence, and its use does not make Python or SQLite part of ASET.
