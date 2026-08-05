@@ -4,6 +4,12 @@ ASET é uma especificação aberta e uma implementação de referência para Aut
 
 A especificação define uma semântica comum de responsabilização para transformações governadas de contexto e execução verificável, e tem autoridade sobre as implementações.
 
+## ASET Seed como núcleo semântico
+
+O ASET Seed é o núcleo semântico mínimo e neutro em relação à implementação do ASET. Ele define os conceitos vinculados à autoridade, as condições de validade, os invariantes e a semântica de transições a partir dos quais sistemas ASET completos e perfis de implementação compatíveis podem crescer.
+
+Os componentes podem fornecer planejamento, memória, orquestração, execução de efeitos externos, aquisição de evidências e análise de processos. O Seed determina quando esse trabalho adquire significado autoritativo no ASET. Consulte [`docs/architecture/SEED_ROLE.md`](docs/architecture/SEED_ROLE.md).
+
 ## Linhas de release
 
 **ASET Seed 0.1-rc11** continua sendo o release estável, imutável e auditado. **ASET Seed 0.1-rc12** é o candidato completo do cânone legível por máquina e inclui um runtime instalável para um perfil operacional limitado.

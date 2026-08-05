@@ -12,6 +12,75 @@ LANGUAGE_DIR = {"ru": "ru", "en": "en", "pt-BR": "pt-BR"}
 SYSTEM_PATH = ASET_ROOT / "system/canonical/source/system-composition-model.json"
 FOREIGN_TERMS_PATH = ROOT / "seed/canonical/terminology/foreign-terms.json"
 
+SEED_ROLE_TRANSLATIONS = {
+    "ru": {
+        "normative_function": (
+            "Определяет связанные с полномочиями понятия, условия действительности, "
+            "инварианты и семантику переходов, необходимые для совместимых с ASET систем."
+        ),
+        "composition_rule": (
+            "Полные системы ASET и совместимые профили реализации могут использовать "
+            "независимые внутренние или внешние компоненты. Любой переход, претендующий "
+            "на авторитетное значение в ASET, включая авторизацию значимого изменения "
+            "состояния, авторитетную фиксацию его исполнения, его верификацию или "
+            "признание как Outcome, должен соответствовать семантике Seed."
+        ),
+        "extension_rule": (
+            "Компонентные каноны и профили реализации могут уточнять понятия Seed и "
+            "вводить дополнительные меры контроля, но не должны ослаблять, объединять "
+            "или обходить различия и инварианты Seed."
+        ),
+        "claim_boundary": (
+            "Seed устанавливает нормативную действительность и прослеживаемость "
+            "авторитетных переходов. Сам по себе он не устанавливает фактическую "
+            "истинность, полноту или внешнюю корректность наблюдений, evidence или "
+            "исходных данных."
+        ),
+        "capabilities": [
+            "планирование",
+            "долговременная память",
+            "оркестрация агентов и рабочих процессов",
+            "инфраструктура выполнения внешних эффектов",
+            "инфраструктура получения evidence",
+            "аналитика процессов",
+        ],
+    },
+    "pt-BR": {
+        "normative_function": (
+            "Define os conceitos vinculados à autoridade, as condições de validade, "
+            "os invariantes e a semântica de transições necessários para sistemas "
+            "compatíveis com o ASET."
+        ),
+        "composition_rule": (
+            "Sistemas ASET completos e perfis de implementação compatíveis podem usar "
+            "componentes internos ou externos independentes. Toda transição que reivindique "
+            "significado autoritativo no ASET, incluindo a autorização de uma mudança "
+            "significativa de estado, o registro autoritativo de sua execução, sua "
+            "verificação ou seu reconhecimento como Outcome, deve estar em conformidade "
+            "com a semântica do Seed."
+        ),
+        "extension_rule": (
+            "Cânones de componentes e perfis de implementação podem refinar conceitos do "
+            "Seed e introduzir controles adicionais, mas não devem enfraquecer, fundir ou "
+            "contornar as distinções e os invariantes do Seed."
+        ),
+        "claim_boundary": (
+            "O Seed estabelece a validade normativa e a rastreabilidade de transições "
+            "autoritativas. Por si só, ele não estabelece a verdade factual, a completude "
+            "ou a correção externa de observações, evidências ou dados de origem."
+        ),
+        "capabilities": [
+            "planejamento",
+            "memória de longo prazo",
+            "orquestração de agentes e fluxos de trabalho",
+            "infraestrutura de execução de efeitos externos",
+            "infraestrutura de aquisição de evidências",
+            "análise de processos",
+        ],
+    },
+}
+
+
 HEADINGS = {
     "ru": {
         "source": "Исходная граница",
@@ -162,6 +231,32 @@ def render_system_markdown(system: dict[str, object], language: str) -> str:
         "en": "ASET System Composition",
         "pt-BR": "ASET System Composition",
     }[language]
+    headings = {
+        "ru": {
+            "seed_role": "Роль ASET Seed",
+            "capabilities": "Возможности, не предоставляемые Seed",
+            "components": "Компоненты",
+            "gates": "Gates",
+            "workflow": "Рабочий процесс",
+        },
+        "en": {
+            "seed_role": "ASET Seed role",
+            "capabilities": "Capabilities not provided by Seed",
+            "components": "Components",
+            "gates": "Gates",
+            "workflow": "Workflow",
+        },
+        "pt-BR": {
+            "seed_role": "Papel do ASET Seed",
+            "capabilities": "Capacidades não fornecidas pelo Seed",
+            "components": "Componentes",
+            "gates": "Gates",
+            "workflow": "Fluxo de trabalho",
+        },
+    }[language]
+    seed_role = system["seed_role"]
+    assert isinstance(seed_role, dict)
+    translated_role = SEED_ROLE_TRANSLATIONS.get(language, seed_role)
     lines = [
         f"# {title} {system['version']}",
         "",
@@ -169,21 +264,36 @@ def render_system_markdown(system: dict[str, object], language: str) -> str:
         f"- `canonical_digest`: `{system['canonical_digest']}`",
         f"- `seed_version`: `{system['seed_compatibility']['version']}`",
         "",
-        "## Components",
+        f"## {headings['seed_role']}",
+        "",
+        f"- `classification`: `{seed_role['classification']}`",
+        f"- `implementation_neutral`: `{seed_role['implementation_neutral']}`",
+        f"- `normative_function`: `{translated_role['normative_function']}`",
+        f"- `composition_rule`: `{translated_role['composition_rule']}`",
+        f"- `extension_rule`: `{translated_role['extension_rule']}`",
+        f"- `claim_boundary`: `{translated_role['claim_boundary']}`",
+        "",
+        f"### {headings['capabilities']}",
         "",
     ]
+    capabilities = translated_role.get(
+        "capabilities",
+        seed_role["capabilities_not_provided_by_seed"],
+    )
+    lines.extend(f"- `{item}`" for item in capabilities)
+    lines.extend(["", f"## {headings['components']}", ""])
     for component in system["components"]:
         lines.append(
             f"- `{component['component_id']}` `{component['version']}` — "
             f"`{component['canonical_digest']}`"
         )
-    lines.extend(["", "## Gates", ""])
+    lines.extend(["", f"## {headings['gates']}", ""])
     for gate in system["gates"]:
         lines.append(
             f"- `{gate['id']}` — producer `{gate['producer_component']}`, "
             f"authority `{gate['authority_component']}`, schema `{gate['schema_component']}`"
         )
-    lines.extend(["", "## Workflow", ""])
+    lines.extend(["", f"## {headings['workflow']}", ""])
     lines.extend(f"1. {step}" for step in system["workflow"])
     rendered = "\n".join(lines).rstrip() + "\n"
     return apply_language_policy(rendered, language)

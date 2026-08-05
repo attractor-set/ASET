@@ -1,5 +1,5 @@
 {
-  "canonical_digest": "sha256:df6f2fc9468791786e1240e4b4ba3b07532f9686527850832a745bb33efcd69e",
+  "canonical_digest": "sha256:0455e63c955de7f5fd76bfa8efc9e4a5f4824e66762f2a45001a19ad3022ae0a",
   "component_id": "aset.memory",
   "component_version": "0.1-rc1",
   "document_type": "aset-component-protocol-profile",
@@ -40,7 +40,7 @@
   ],
   "schema_version": 1,
   "seed_bridge": {
-    "canonical_digest": "sha256:b54f3cf3e7cbef323618bf0fc7e6e7c30516850df5c4264431662e77cdd32c1d",
+    "canonical_digest": "sha256:8171aa8bc7e5e2323bf06d7bf27a41b8a2d625714f5618b0afaa85a63a1ad466",
     "profile": "aset/shared/seed-bridge/seed-compatibility-profile.json",
     "version": "0.1-rc12"
   }
