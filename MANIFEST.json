@@ -28,18 +28,18 @@
     },
     {
       "path": ".github/workflows/production-assurance.yml",
-      "sha256": "sha256:69812c5c0ef330dc5c2df2cca2d95b3417b8f2d644dc7941a4a07946fe6d2cb8",
-      "size_bytes": 1408
+      "sha256": "sha256:520acd66bbde958f078e36886cfd40295964e1b50baf46b844f508f7c3319be3",
+      "size_bytes": 1746
     },
     {
       "path": ".github/workflows/release-candidate.yml",
-      "sha256": "sha256:1bb84b752b051b85aec062d3f9d0bf135bafa5431ed2e6df49441fc442725375",
-      "size_bytes": 1350
+      "sha256": "sha256:9aee000cb648556aaa6eacae6f2b38d751e2758f7673bcf165209a861868750c",
+      "size_bytes": 1688
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:8cbd3fd931a709a8e2d8fcacc91094473f308b5a98a4cc3834b70cbd4e49266e",
-      "size_bytes": 3399
+      "sha256": "sha256:f88a54532cc134eea1069ccb0b6c595c6bbcf62deb830ebaa292bbcdec38c16a",
+      "size_bytes": 4335
     },
     {
       "path": ".gitignore",
@@ -88,8 +88,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:5499ce7c1df6d1cc2c710ff1c5907a8cf51cf48ce39ce17e493df9a39fbbab46",
-      "size_bytes": 3238
+      "sha256": "sha256:46304f8a2d98dc627393e2d98197f9252c32e5725f81e75d3d8e1064644d6df5",
+      "size_bytes": 4164
     },
     {
       "path": "README.pt-BR.md",
@@ -98,8 +98,8 @@
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:76dd714bf073de4000d9a3c3138b9f1acf713b40b51570addcdd9a1947aaf75c",
-      "size_bytes": 4413
+      "sha256": "sha256:f9f6d3b4cf9c7254f8748f7f9c0d9e0ac817b7e7b91641cd8ba8687edc9b51b7",
+      "size_bytes": 5965
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -1468,13 +1468,13 @@
     },
     {
       "path": "audit/reference/PDCA.md",
-      "sha256": "sha256:b6fba727791026f766bd92688198b73840374f098cf32f803812d45ac3543938",
-      "size_bytes": 2523
+      "sha256": "sha256:1f69012895bb5186ea1b5da9b952bb0ceea8189f343858e75bbbdfd62bf69974",
+      "size_bytes": 3930
     },
     {
       "path": "audit/reference/traceability.json",
-      "sha256": "sha256:8d566861baae81f73c16df28eb4d0f0d81c4f43c37906f75c72cd5ade1cd8ab5",
-      "size_bytes": 1084
+      "sha256": "sha256:f1cf94ae5ab5f829458cfa1e1ab4b89a1060940c1019643f5e33d7b72076bedd",
+      "size_bytes": 1832
     },
     {
       "path": "docs/generated/README.md",
@@ -1630,6 +1630,11 @@
       "path": "docs/generated/ru/ASET_System_0.1-rc1.md",
       "sha256": "sha256:436ddac2b580cfad02ce63734999a7face5ce144e7e9b3fe40ffa3958e93aaa2",
       "size_bytes": 2272
+    },
+    {
+      "path": "docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md",
+      "sha256": "sha256:fc749c3010ec3fbe6360dae7ce178370468d79ca2c21d289ff78e1569d29a0c8",
+      "size_bytes": 2604
     },
     {
       "path": "docs/reference-python.md",
@@ -2973,23 +2978,23 @@
     },
     {
       "path": "src/aset_reference/__init__.py",
-      "sha256": "sha256:b402d6587b47cd93df7a2d6744dec73083049a7246d3056faae288420255cd30",
-      "size_bytes": 393
+      "sha256": "sha256:c7e0f76df8911dc155fa7244c94e116cbab7f95d6260e9bac81907c2e9965b5d",
+      "size_bytes": 764
     },
     {
       "path": "src/aset_reference/canonical.py",
-      "sha256": "sha256:07b1667d91247bceb49dd0baa7bc1a6c9ba640973c4adb4998f0f130838f278c",
-      "size_bytes": 2008
+      "sha256": "sha256:a537b0b7b4eb2a3f8412857a4370d2f402899a54381fe8df54bc9500949067e0",
+      "size_bytes": 2295
     },
     {
-      "path": "src/aset_reference/kernel.py",
-      "sha256": "sha256:44ae0fcb00d658382c7e8c49bca4112116717176fcef1cf88149e412d81e8993",
-      "size_bytes": 4183
+      "path": "src/aset_reference/engine.py",
+      "sha256": "sha256:102bcc07b834198751d159d6c49bd2c71a78b1422093e31db0b23252bc4f7251",
+      "size_bytes": 23454
     },
     {
       "path": "src/aset_reference/model.py",
-      "sha256": "sha256:de498716d0384247d265188f5b4dbd8d8a1d0805aaa30e07afd775034726704b",
-      "size_bytes": 2522
+      "sha256": "sha256:9efef2dc4322034fe527e247dbaa0cdcb445f0809a868a11d971f790bdd699a3",
+      "size_bytes": 9884
     },
     {
       "path": "src/aset_seed/__init__.py",
@@ -3227,24 +3232,19 @@
       "size_bytes": 6083
     },
     {
-      "path": "test-vectors/reference/accepted-basic.json",
-      "sha256": "sha256:bea84c7e5f58ad00b55523294a22eae8ecad5db06d0f16d479de3049aa6fc08a",
-      "size_bytes": 712
+      "path": "test-vectors/reference/full-critical-path-success.json",
+      "sha256": "sha256:f0a98c6ec33fbf597c45a364a302eedeae8b0c391de056a2f714f10c7ebb6a9b",
+      "size_bytes": 70594
     },
     {
-      "path": "test-vectors/reference/rejected-cases.json",
-      "sha256": "sha256:35b264e5483bb5d7151e59553bc6f31440436353600118145772404be1f9de5b",
-      "size_bytes": 583
-    },
-    {
-      "path": "tests/reference/test_kernel.py",
-      "sha256": "sha256:7f1e95200d903cdcfce6994a0cbfa8bd14a32c32be3bfc1ad8daecb38f690515",
-      "size_bytes": 4159
+      "path": "tests/reference/test_critical_path.py",
+      "sha256": "sha256:34ffbad4a11d5b87a83d66f12710eaa62454cad2880655854778c0d062a59d8e",
+      "size_bytes": 8478
     },
     {
       "path": "tests/reference/test_vectors.py",
-      "sha256": "sha256:8eee07e4536dcd8f7b303bf9034f0ad03b9fc7a06cdd26ab2618d76c1da9a4e4",
-      "size_bytes": 2675
+      "sha256": "sha256:40a9570ed3d51045894020764614969c8a36baf2164fbace57392cc2c0a0d7d8",
+      "size_bytes": 854
     },
     {
       "path": "tests/test_canonical_model.py",
@@ -3298,8 +3298,8 @@
     },
     {
       "path": "tools/blackbox_reference_audit.py",
-      "sha256": "sha256:277a4f1413b6dae500704e86af6bbd26dd5e91b28970a9c7f227670b587fe1dc",
-      "size_bytes": 1740
+      "sha256": "sha256:8a5eba8bd675ee8c173571b0e005bad0263e4f402632d85f047a50d434f6263b",
+      "size_bytes": 7253
     },
     {
       "path": "tools/blackbox_runtime_audit.py",
@@ -3313,8 +3313,8 @@
     },
     {
       "path": "tools/build_release.py",
-      "sha256": "sha256:683780d7ce3de1eea9604831e63638005ddc5930b8843a2fe12cfc893e20826d",
-      "size_bytes": 2022
+      "sha256": "sha256:7af6bb778305ca467fe54ea2ae51c9be2bc6fd6b1779288261a6b1d7e349a432",
+      "size_bytes": 2164
     },
     {
       "path": "tools/check_language.py",
@@ -3357,14 +3357,24 @@
       "size_bytes": 5440
     },
     {
+      "path": "tools/model_check_reference.py",
+      "sha256": "sha256:82e5cdbf708fe7165c659a8d4ed9e1616af2687b982a26025b0f5a2796f44244",
+      "size_bytes": 1817
+    },
+    {
       "path": "tools/production_gate.py",
-      "sha256": "sha256:ddbdbab3d4c63dae36afe08e6690f1727e49ce5a7817c1c2529df31bae8660a7",
-      "size_bytes": 4635
+      "sha256": "sha256:c7bd0c0adee2debc9c415ad4089a80a20a5453f63c388e90ab567a05f95f3bd0",
+      "size_bytes": 5354
     },
     {
       "path": "tools/rebuild_manifest.py",
       "sha256": "sha256:56aff2c71b4f943b3352a3bc3faf692270687cfdae0381cc1909467556fa5c11",
       "size_bytes": 2651
+    },
+    {
+      "path": "tools/reference_adversarial_probe.py",
+      "sha256": "sha256:aacc4f2f2958cf2c8da01b6d7a9b22dfd1f84e54dd1ab9a2f8b947891f6eb118",
+      "size_bytes": 2379
     },
     {
       "path": "tools/run_blackbox_adversarial.py",
@@ -3395,6 +3405,16 @@
       "path": "tools/run_rc12_coverage.py",
       "sha256": "sha256:57d6cede7ced1f70d9d47fa1c53b1b603cfa16be540fecae68c0dc4fa98f0524",
       "size_bytes": 2591
+    },
+    {
+      "path": "tools/run_reference_blackbox_adversarial.py",
+      "sha256": "sha256:e800b448d6e8e476b2529c55f49cec69b20b6afd106a5d873f32dac0639f06a7",
+      "size_bytes": 1883
+    },
+    {
+      "path": "tools/run_reference_conformance.py",
+      "sha256": "sha256:4fe34b514b937c7a55b6acb5d75e8cc59a55945208dfdb770f016b2c6f47ed56",
+      "size_bytes": 5679
     },
     {
       "path": "tools/run_runtime_adversarial.py",
@@ -3428,11 +3448,11 @@
     },
     {
       "path": "tools/verify_wheel.py",
-      "sha256": "sha256:1a39322022ded9a470eda412491bf98fb1e1a9dadef85313a5f0bc577c3dfe9e",
-      "size_bytes": 3078
+      "sha256": "sha256:38300ab4bdf2391c24bf4bfea5a91611d33fef1bf60c60d446305416516e4dd7",
+      "size_bytes": 3447
     }
   ],
-  "files_count": 686,
+  "files_count": 690,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Production-Candidate",
   "repository_root": "ASET"

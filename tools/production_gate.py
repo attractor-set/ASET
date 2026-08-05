@@ -31,7 +31,18 @@ COMMANDS = [
     [sys.executable, "tools/validate_repository.py"],
     [sys.executable, "tools/run_component_conformance.py", "--check"],
     [sys.executable, "tools/model_check_components.py", "--check"],
-    [sys.executable, "tools/blackbox_reference_audit.py"],
+    [
+        sys.executable,
+        "tools/run_reference_conformance.py",
+        "--output",
+        "dist/reference-conformance-results.json",
+    ],
+    [
+        sys.executable,
+        "tools/model_check_reference.py",
+        "--output",
+        "dist/reference-model-check.json",
+    ],
     [sys.executable, "-m", "pytest", "-q"],
     [
         sys.executable,
@@ -56,6 +67,22 @@ COMMANDS = [
     ],
     [sys.executable, "tools/verify_wheel.py"],
     [sys.executable, "tools/build_release.py"],
+    [
+        sys.executable,
+        "tools/blackbox_reference_audit.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output-json",
+        "dist/blackbox-reference-audit.json",
+        "--output-md",
+        "dist/blackbox-reference-audit.md",
+    ],
+    [
+        sys.executable,
+        "tools/run_reference_blackbox_adversarial.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output",
+        "dist/reference-blackbox-adversarial-results.json",
+    ],
     [
         sys.executable,
         "tools/blackbox_component_audit.py",

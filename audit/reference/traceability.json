@@ -1,28 +1,57 @@
 {
-  "reference_id": "ASET-PYTHON-REFERENCE-CRITICAL-PATH-V1",
+  "document_type": "aset-python-reference-traceability",
+  "reference_id": "ASET-PYTHON-FULL-SEMANTIC-CRITICAL-PATH",
+  "reference_version": "0.2.0",
   "normative_status": "NON_NORMATIVE_EXECUTABLE_INTERPRETATION",
-  "implemented_requirements": {
-    "ASET-SEED-REQ-001": ["aset_reference.kernel.apply_transition", "aset_reference.canonical.freeze_json"],
-    "ASET-SEED-REQ-003": ["aset_reference.kernel.apply_transition"],
-    "ASET-SEED-REQ-005": ["aset_reference.kernel.apply_transition"],
-    "ASET-SEED-REQ-008": ["aset_reference.kernel.apply_transition"],
-    "ASET-SEED-REQ-011": ["aset_reference.kernel.apply_transition"],
-    "SEED-INV-011": ["aset_reference.kernel.apply_transition"],
-    "SEED-INV-014": ["aset_reference.kernel.apply_transition"]
-  },
+  "seed_binding": "0.1-rc12",
+  "component_binding": "0.1-rc1",
+  "implemented_gates": [
+    "GATE-CONTEXT-PROJECT",
+    "GATE-EXPECT-ADMIT",
+    "GATE-EXEC-BIND",
+    "GATE-DISPATCH",
+    "GATE-OBSERVE",
+    "GATE-EVIDENCE",
+    "GATE-ACCEPT",
+    "GATE-TASK-CLOSE"
+  ],
+  "implemented_separations": [
+    "PlanProposal != CoreResolution",
+    "CoreResolution != Permit",
+    "Permit != PermitUseReceipt",
+    "ExpectedChangePermit != ExecutionPermit",
+    "ExecutionIntent != EffectRecord",
+    "EffectRecord != Observation",
+    "Observation != EvidenceBundle",
+    "EvidenceBundle != Verification",
+    "Verification != AcceptanceDecision",
+    "AcceptanceDecision != Outcome"
+  ],
+  "implemented_controls": [
+    "Seed-compatible NFC integer-only canonicalization",
+    "domain-separated length-framed digests",
+    "exact patch/gate/context Permit binding",
+    "one-shot Permit consumption",
+    "component namespace write-sets",
+    "immediate predecessor receipt binding",
+    "Outcome only from PASS Verification",
+    "causal snapshot restoration validation",
+    "idempotent deterministic effect boundary"
+  ],
   "verified_by": [
-    "tests/reference/test_kernel.py",
-    "test-vectors/reference/accepted-basic.json",
-    "test-vectors/reference/rejected-cases.json",
-    "tools/blackbox_reference_audit.py"
+    "tests/reference/test_critical_path.py",
+    "tests/reference/test_vectors.py",
+    "tools/run_reference_conformance.py",
+    "tools/model_check_reference.py",
+    "tools/blackbox_reference_audit.py",
+    "tools/run_reference_blackbox_adversarial.py"
   ],
   "excluded": [
-    "persistence",
-    "database transactions",
-    "networking",
-    "external effects",
-    "clock and randomness",
-    "identity and key management",
-    "distributed coordination"
+    "production PKI/HSM",
+    "persistent or distributed storage",
+    "real external connectors",
+    "network and clock semantics",
+    "production readiness",
+    "external certification"
   ]
 }

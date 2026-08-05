@@ -27,6 +27,9 @@ jobs:
       - name: Install validation dependencies
         run: python -m pip install -r requirements-ci.txt
 
+      - name: Install project
+        run: python -m pip install --no-deps --editable .
+
       - name: Check generated semantic views and language editions
         run: |
           python tools/generate_semantic_views.py --check
@@ -50,8 +53,12 @@ jobs:
       - name: Run bounded formal model check
         run: python tools/model_check_rc12.py --output dist/rc12-model-check.json
 
-      - name: Run storage-free reference audit
-        run: python tools/blackbox_reference_audit.py
+      - name: Run Python reference conformance and model checks
+        run: |
+          python tools/run_reference_conformance.py \
+            --output dist/reference-conformance-results.json
+          python tools/model_check_reference.py \
+            --output dist/reference-model-check.json
 
       - name: Run regression tests
         run: python -m pytest -q
@@ -67,6 +74,13 @@ jobs:
 
       - name: Run independent black-box audits
         run: |
+          python tools/blackbox_reference_audit.py \
+            dist/ASET-Repository-Snapshot.zip \
+            --output-json dist/blackbox-reference-audit.json \
+            --output-md dist/blackbox-reference-audit.md
+          python tools/run_reference_blackbox_adversarial.py \
+            dist/ASET-Repository-Snapshot.zip \
+            --output dist/reference-blackbox-adversarial-results.json
           python tools/blackbox_documentation_audit.py \
             dist/ASET-Repository-Snapshot.zip \
             --output-json dist/blackbox-documentation-audit.json \
@@ -94,6 +108,11 @@ jobs:
             dist/rc12-conformance-results.json
             dist/rc12-coverage.json
             dist/rc12-model-check.json
+            dist/reference-conformance-results.json
+            dist/reference-model-check.json
+            dist/blackbox-reference-audit.json
+            dist/blackbox-reference-audit.md
+            dist/reference-blackbox-adversarial-results.json
             dist/blackbox-documentation-audit.json
             dist/blackbox-documentation-audit.md
             dist/blackbox-runtime-audit.json

@@ -36,3 +36,21 @@ python tools/production_gate.py
 - Мост совместимости с Seed: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
 
 Декомпозиция точно сохраняет инвентарь rc11: 177 требований, 57 инвариантов, 52 артефакта, 11 gates и 57 схем. Добавлены 26 компонентных conformance-сценариев и восемь ограниченных формальных проекций. Это утверждения о кандидатах спецификаций; соответствие независимых реализаций и production-развёртываний не заявлено.
+
+## Python-реализация семантического критического пути
+
+Ненормативная и не использующая хранилище Python-реализация исполняет полный
+детерминированный семантический путь от проекции Context через управляемый dispatch,
+Observation, Evidence и Verification до условного признания Outcome. Граница и команды
+проверки описаны в
+[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
+Это артефакт совместимости и assurance, а не заявление о production-развёртывании.
+
+## Python-реализация семантического критического пути
+
+Ненормативная и не использующая хранилище Python-реализация исполняет полный
+детерминированный семантический путь от проекции Context через управляемый dispatch,
+Observation, Evidence и Verification до условного признания Outcome. Граница и команды
+проверки описаны в
+[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
+Это артефакт совместимости и assurance, а не заявление о production-развёртывании.

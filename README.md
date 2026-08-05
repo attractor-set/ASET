@@ -46,3 +46,19 @@ The full ASET 1.5-rc11 machine specification is preserved as exact source eviden
 - Seed compatibility bridge: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
 
 The decomposition preserves the rc11 inventory exactly: 177 requirements, 57 invariants, 52 artifacts, 11 gates and 57 schemas. It has 26 component conformance cases and eight bounded formal projections. These are specification-candidate claims only; independent implementation and production conformance are not claimed.
+
+## Python semantic critical-path reference
+
+A non-normative, storage-free Python reference now executes the complete deterministic
+semantic path from Context projection through governed dispatch, Observation, Evidence,
+Verification and conditional Outcome recognition. See
+[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
+It is an interoperability and assurance artifact, not a production deployment claim.
+
+## Python semantic critical-path reference
+
+A non-normative, storage-free Python reference now executes the complete deterministic
+semantic path from Context projection through governed dispatch, Observation, Evidence,
+Verification and conditional Outcome recognition. See
+[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
+It is an interoperability and assurance artifact, not a production deployment claim.
