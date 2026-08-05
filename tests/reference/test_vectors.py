@@ -37,7 +37,10 @@ def test_language_neutral_rejection_vectors():
     _, base_context, base_proposal, base_permit, base_evidence = load_base()
     cases = json.loads((ROOT / "test-vectors/reference/rejected-cases.json").read_text())["cases"]
     for case in cases:
-        context, proposal, permit, evidence = base_context, base_proposal, base_permit, base_evidence
+        context = base_context
+        proposal = base_proposal
+        permit = base_permit
+        evidence = base_evidence
         if case["mutation"] == "proposal_version":
             proposal = replace(proposal, expected_context_version=case["value"])
         elif case["mutation"] == "permit_gate":
@@ -48,5 +51,10 @@ def test_language_neutral_rejection_vectors():
             context = replace(context, consumed_permit_ids=frozenset({permit.permit_id}))
         elif case["mutation"] == "suspend_context":
             context = replace(context, suspended=True)
-        result = apply_transition(context=context, proposal=proposal, permit=permit, evidence=evidence)
+        result = apply_transition(
+            context=context,
+            proposal=proposal,
+            permit=permit,
+            evidence=evidence,
+        )
         assert result.reason_code == case["reason_code"], case["case_id"]

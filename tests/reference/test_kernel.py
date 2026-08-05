@@ -30,7 +30,12 @@ def fixture():
 
 def test_accepts_bound_transition_and_returns_commit_material():
     context, proposal, permit, evidence = fixture()
-    result = apply_transition(context=context, proposal=proposal, permit=permit, evidence=(evidence,))
+    result = apply_transition(
+        context=context,
+        proposal=proposal,
+        permit=permit,
+        evidence=(evidence,),
+    )
     assert isinstance(result, TransitionAccepted)
     assert result.next_context.version == 4
     assert result.next_context.state == {"status": "approved"}
@@ -42,9 +47,19 @@ def test_accepts_bound_transition_and_returns_commit_material():
 def test_rejects_each_binding_failure_without_consuming_permit():
     context, proposal, permit, evidence = fixture()
     cases = [
-        (replace(proposal, context_id="ctx:other"), permit, (evidence,), "PROPOSAL_CONTEXT_MISMATCH"),
+        (
+            replace(proposal, context_id="ctx:other"),
+            permit,
+            (evidence,),
+            "PROPOSAL_CONTEXT_MISMATCH",
+        ),
         (replace(proposal, expected_context_version=2), permit, (evidence,), "STALE_CONTEXT"),
-        (proposal, replace(permit, proposal_digest="sha256:" + "0" * 64), (evidence,), "PERMIT_PROPOSAL_MISMATCH"),
+        (
+            proposal,
+            replace(permit, proposal_digest="sha256:" + "0" * 64),
+            (evidence,),
+            "PERMIT_PROPOSAL_MISMATCH",
+        ),
         (proposal, replace(permit, gate_id="gate:other"), (evidence,), "PERMIT_GATE_MISMATCH"),
         (proposal, permit, (), "INCOMPLETE_EVIDENCE"),
     ]
@@ -63,15 +78,37 @@ def test_rejects_each_binding_failure_without_consuming_permit():
 def test_rejects_replay_and_suspended_context():
     context, proposal, permit, evidence = fixture()
     replay_context = replace(context, consumed_permit_ids=frozenset({permit.permit_id}))
-    assert apply_transition(context=replay_context, proposal=proposal, permit=permit, evidence=(evidence,)).reason_code == "PERMIT_ALREADY_CONSUMED"
+    replay_result = apply_transition(
+        context=replay_context,
+        proposal=proposal,
+        permit=permit,
+        evidence=(evidence,),
+    )
+    assert replay_result.reason_code == "PERMIT_ALREADY_CONSUMED"
     suspended = replace(context, suspended=True)
-    assert apply_transition(context=suspended, proposal=proposal, permit=permit, evidence=(evidence,)).reason_code == "CONTEXT_SUSPENDED"
+    suspended_result = apply_transition(
+        context=suspended,
+        proposal=proposal,
+        permit=permit,
+        evidence=(evidence,),
+    )
+    assert suspended_result.reason_code == "CONTEXT_SUSPENDED"
 
 
 def test_is_deterministic():
     args = fixture()
-    first = apply_transition(context=args[0], proposal=args[1], permit=args[2], evidence=(args[3],))
-    second = apply_transition(context=args[0], proposal=args[1], permit=args[2], evidence=(args[3],))
+    first = apply_transition(
+        context=args[0],
+        proposal=args[1],
+        permit=args[2],
+        evidence=(args[3],),
+    )
+    second = apply_transition(
+        context=args[0],
+        proposal=args[1],
+        permit=args[2],
+        evidence=(args[3],),
+    )
     assert first == second
 
 

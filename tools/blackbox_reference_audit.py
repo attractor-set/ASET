@@ -10,7 +10,17 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "src" / "aset_reference"
-FORBIDDEN = {"sqlite3", "sqlalchemy", "psycopg", "asyncpg", "redis", "socket", "subprocess", "requests", "httpx"}
+FORBIDDEN = {
+    "asyncpg",
+    "httpx",
+    "psycopg",
+    "redis",
+    "requests",
+    "socket",
+    "sqlalchemy",
+    "sqlite3",
+    "subprocess",
+}
 
 
 def main() -> int:

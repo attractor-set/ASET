@@ -38,8 +38,8 @@
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:16efae9b224e05967e86706cbe36486b7d382919478399165b9ebb31a7eb6ad3",
-      "size_bytes": 3278
+      "sha256": "sha256:8cbd3fd931a709a8e2d8fcacc91094473f308b5a98a4cc3834b70cbd4e49266e",
+      "size_bytes": 3399
     },
     {
       "path": ".gitignore",
@@ -2988,8 +2988,8 @@
     },
     {
       "path": "src/aset_reference/model.py",
-      "sha256": "sha256:c390c76adf1c46e09168082eb919c57fb7b96e5ed641198961b564804ce7368f",
-      "size_bytes": 2495
+      "sha256": "sha256:de498716d0384247d265188f5b4dbd8d8a1d0805aaa30e07afd775034726704b",
+      "size_bytes": 2522
     },
     {
       "path": "src/aset_seed/__init__.py",
@@ -3238,13 +3238,13 @@
     },
     {
       "path": "tests/reference/test_kernel.py",
-      "sha256": "sha256:a974b2c469a0d079ebe93c1f4ec1ac34e47f5233b8ccee9b714b43d87d138ee5",
-      "size_bytes": 3772
+      "sha256": "sha256:7f1e95200d903cdcfce6994a0cbfa8bd14a32c32be3bfc1ad8daecb38f690515",
+      "size_bytes": 4159
     },
     {
       "path": "tests/reference/test_vectors.py",
-      "sha256": "sha256:bec69b98f699aab884c8e0d2fb23f781e24842b1e4e691a5ba4eb007be43e27f",
-      "size_bytes": 2592
+      "sha256": "sha256:8eee07e4536dcd8f7b303bf9034f0ad03b9fc7a06cdd26ab2618d76c1da9a4e4",
+      "size_bytes": 2675
     },
     {
       "path": "tests/test_canonical_model.py",
@@ -3298,8 +3298,8 @@
     },
     {
       "path": "tools/blackbox_reference_audit.py",
-      "sha256": "sha256:b1734b2df9547cba6179cc2cb3fa5c6b5b894ad324e890016d64606793f34ca5",
-      "size_bytes": 1701
+      "sha256": "sha256:277a4f1413b6dae500704e86af6bbd26dd5e91b28970a9c7f227670b587fe1dc",
+      "size_bytes": 1740
     },
     {
       "path": "tools/blackbox_runtime_audit.py",
@@ -3358,8 +3358,8 @@
     },
     {
       "path": "tools/production_gate.py",
-      "sha256": "sha256:8c782a8d590e6bc24559fd567ed60f816943fdbb796c348bcfdb4eceb04e03b4",
-      "size_bytes": 4483
+      "sha256": "sha256:ddbdbab3d4c63dae36afe08e6690f1727e49ce5a7817c1c2529df31bae8660a7",
+      "size_bytes": 4635
     },
     {
       "path": "tools/rebuild_manifest.py",
