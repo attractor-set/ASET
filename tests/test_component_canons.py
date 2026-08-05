@@ -58,14 +58,17 @@ def test_seed_bridge_requires_full_external_effect_chain() -> None:
     ]
 
 
-def test_seed_rc12_bytes_are_unchanged() -> None:
+def test_historical_seed_rc12_baseline_is_preserved_as_evidence() -> None:
     baseline = load("aset/source/seed-rc12/SEED_RC12_BASELINE.json")
-    assert baseline["files_count"] == 303
-    for entry in baseline["files"]:
-        path = ROOT / entry["path"]
-        data = path.read_bytes()
-        assert len(data) == entry["size_bytes"]
-        assert "sha256:" + hashlib.sha256(data).hexdigest() == entry["sha256"]
+    assert baseline["document_type"] == "aset-seed-rc12-byte-baseline"
+    assert baseline["files_count"] == len(baseline["files"]) == 303
+    assert baseline["source_archive_sha256"].startswith("sha256:")
+
+
+def test_active_seed_uses_canon_package_identity() -> None:
+    package = load("seed/canonical/CANON_PACKAGE.json")
+    assert package["implementation_precedence"] == "NONE"
+    assert package["conformance_protocol"] == "ASET-IMPLEMENTATION-CONFORMANCE-V1"
 
 
 def test_component_validator_and_generated_views() -> None:
@@ -138,7 +141,7 @@ def test_component_assurance_packages_are_self_contained() -> None:
 
 
 def test_component_blackbox_is_required_by_production_gate() -> None:
-    gate = (ROOT / "tools/production_gate.py").read_text(encoding="utf-8")
+    gate = (ROOT / "tools/repository_release_gate.py").read_text(encoding="utf-8")
     assert "tools/blackbox_component_audit.py" in gate
     assert "tools/run_component_blackbox_adversarial.py" in gate
 

@@ -1,0 +1,14 @@
+{
+  "document_type": "aset-model-based-conformance",
+  "model": {
+    "command_set": "canonical Transition documents admitted by the protocol profile",
+    "formal_projection": "seed/canonical/formal/SeedRC12.tla",
+    "state_set": "canonical TrustSpace states valid under Seed requirements and invariants",
+    "transition_relation": "delta(state, command) -> accepted result with next state and artifacts, or rejected result with unchanged state"
+  },
+  "normative": true,
+  "profile_boundary": "Durability, concurrency, storage, networking and recovery guarantees are tested by the implementation profile and are not Seed semantic conformance.",
+  "refinement_obligation": "For every conformance trace, the canonical observation of an implementation result MUST equal the canonical observation required by the model.",
+  "rejection_obligation": "A rejected command MUST preserve the canonical state and state root.",
+  "schema_version": 1
+}

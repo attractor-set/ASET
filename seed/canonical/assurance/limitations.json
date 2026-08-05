@@ -2,55 +2,55 @@
   "document_type": "aset-seed-assurance-limitations",
   "limitations": [
     {
-      "closure_criteria": "A separately versioned public-key proof profile, key lifecycle, revocation model, and interoperable vectors are frozen and externally audited.",
-      "description": "The bundled production proof profile is HMAC_SHA256_V1 and binds the exact canonical transition content; federation-wide public-key identity and key lifecycle remain deployment-specific.",
+      "closure_criteria": "A separately versioned cryptographic profile, key lifecycle, revocation model and interoperable vectors are frozen and externally audited.",
+      "description": "Cryptographic proof mechanisms and federation-wide key lifecycle are implementation-profile concerns; the Seed canon defines their semantic binding points without selecting a provider.",
       "id": "LIMIT-001",
-      "scope": "proof-verification",
-      "status": "PARTIALLY_CLOSED_BOUNDED_PROFILE"
+      "scope": "cryptographic-profiles",
+      "status": "PROFILE_DEFINED_EXTERNALLY"
     },
     {
-      "closure_criteria": "Closed for ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1; other stores require independent conformance.",
-      "description": "The SQLite profile implements serialized writers, WAL, synchronous FULL, atomic state-and-audit commits, integrity checking, reopen regression, and consistent backup.",
+      "closure_criteria": "Each implementation profile publishes independent persistence, atomicity, recovery and fault-injection evidence.",
+      "description": "The specification does not select or certify a storage backend. Persistence guarantees belong to separately identified implementations.",
       "id": "LIMIT-002",
-      "scope": "single-node-runtime",
-      "status": "CLOSED_FOR_PROFILE"
+      "scope": "implementation-persistence",
+      "status": "OUT_OF_SPECIFICATION_SCOPE"
     },
     {
-      "closure_criteria": "Specify, implement, and audit a separate coordination profile when consensus is required.",
-      "description": "Distributed consensus is not part of the minimal Seed or the bounded runtime profile.",
+      "closure_criteria": "Specify, implement and audit a separate coordination profile when consensus is required.",
+      "description": "Distributed consensus is not part of the minimal Seed semantics.",
       "id": "LIMIT-003",
       "scope": "distributed-coordination",
       "status": "OUT_OF_SCOPE_ACCEPTED"
     },
     {
       "closure_criteria": "Complete unbounded formal refinement and breach-propagation proofs for a separately scoped assurance level.",
-      "description": "Critical lifecycle properties are bounded-model checked, but universal breach propagation and unbounded refinement proofs are not claimed.",
+      "description": "Critical lifecycle properties are bounded-model checked, but universal breach propagation and unbounded implementation refinement proofs are not claimed.",
       "id": "LIMIT-004",
       "scope": "formal-assurance",
       "status": "OPEN_ACCEPTED"
     },
     {
-      "closure_criteria": "Publish an external audit report bound to the exact release archive, source commit, and test-suite digest.",
-      "description": "Independent external third-party audit of exact rc12 release bytes has not been completed.",
+      "closure_criteria": "Publish an external audit report bound to exact release bytes, source commit and canonical-package digest.",
+      "description": "Independent external third-party audit of exact rc12 specification release bytes has not been completed.",
       "id": "LIMIT-005",
       "scope": "external-assurance",
       "status": "PENDING"
     },
     {
-      "closure_criteria": "Closed by 83/83 migration coverage, 55/55 semantic regression, generated-view parity, hostile-boundary regression, and independent snapshot black-box audits.",
-      "description": "All 26 rc11 requirements, 18 transition kinds, and 39 schemas are represented in the rc12 machine canon with no deferred or unclassified entry.",
+      "closure_criteria": "Maintain complete migration coverage, canonical-package parity, generated-view parity, formal checks and black-box component audits.",
+      "description": "The rc12 candidate retains rc11 compatibility evidence while moving implementation-specific guarantees outside the Seed canon.",
       "id": "LIMIT-006",
       "scope": "rc12-canon",
-      "status": "CLOSED_FOR_TECHNICAL_FREEZE_ENTRY"
+      "status": "CLOSED_FOR_RELEASE_CANDIDATE"
     },
     {
-      "closure_criteria": "Each deployment must complete and retain the operational acceptance checklist in docs/runtime/DEPLOYMENT_CHECKLIST.md.",
-      "description": "Host hardening, secret provisioning, backup retention, access control, monitoring integration, and incident response depend on the deployment environment.",
+      "closure_criteria": "Each implementation and deployment publishes and retains its own operational acceptance evidence.",
+      "description": "Host hardening, secret provisioning, backup retention, access control, monitoring and incident response depend on the implementation and deployment environment.",
       "id": "LIMIT-007",
       "scope": "deployment",
-      "status": "DEPLOYMENT_RESPONSIBILITY"
+      "status": "IMPLEMENTATION_RESPONSIBILITY"
     }
   ],
-  "schema_version": 2,
-  "version": "0.1-rc12-prefreeze"
+  "schema_version": 3,
+  "version": "0.1-rc12-implementation-neutral"
 }

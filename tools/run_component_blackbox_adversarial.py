@@ -76,7 +76,7 @@ def rebuild_manifest(files: dict[str, bytes]) -> None:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Seed-0.1-rc12-Production-Candidate",
+        "package": "ASET-Seed-0.1-rc12-Specification-Candidate",
         "repository_root": "ASET",
     }
     store_json(files, "MANIFEST.json", manifest)

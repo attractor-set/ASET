@@ -1,5 +1,5 @@
 {
-  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
   "repository": "attractor-set/ASET",
   "topics": [
     "accountability",
@@ -13,13 +13,13 @@
     "human-ai-collaboration",
     "json-schema",
     "open-standard",
-    "python",
-    "reference-implementation",
     "sociotechnical-systems",
     "specification-first",
     "state-transitions",
     "tla-plus",
     "trust-infrastructure",
-    "trustworthy-ai"
+    "trustworthy-ai",
+    "implementation-neutral",
+    "model-based-testing"
   ]
 }

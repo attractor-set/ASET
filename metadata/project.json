@@ -1,7 +1,6 @@
 {
-  "abstract": "ASET defines an open, implementation-neutral accountability semantics that binds authority, context, proposals, permits, gates, transitions and evidence into verifiable trails for heterogeneous systems composed of people, AI agents, organizations and software services.",
   "about": {
-    "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+    "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
     "topics": [
       "accountability",
       "ai-governance",
@@ -14,23 +13,24 @@
       "human-ai-collaboration",
       "json-schema",
       "open-standard",
-      "python",
-      "reference-implementation",
       "sociotechnical-systems",
       "specification-first",
       "state-transitions",
       "tla-plus",
       "trust-infrastructure",
-      "trustworthy-ai"
+      "trustworthy-ai",
+      "implementation-neutral",
+      "model-based-testing"
     ]
   },
-  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "abstract": "ASET defines an open, implementation-neutral trust and accountability semantics that binds authority, context, decisions, permits, gates, transitions, evidence, verification and outcomes. Its machine canon, formal models and language-neutral conformance protocol allow independent implementations to be tested without giving any technology semantic precedence.",
   "creator": {
-    "type": "Person",
-    "name": "Dzmitry Prychyna",
     "alternate_name": "Attractor Set",
+    "name": "Dzmitry Prychyna",
+    "type": "Person",
     "url": "https://github.com/attractor-set"
   },
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
   "document_type": "aset-project-metadata",
   "expanded_name": "Authority-Signed Evidence Trail",
   "languages": [
@@ -41,13 +41,13 @@
   "license": "Apache-2.0",
   "name": "ASET",
   "programming_languages": [
-    "Python",
+    "JSON",
     "TLA+"
   ],
   "publisher": {
-    "type": "Person",
-    "name": "Dzmitry Prychyna",
     "alternate_name": "Attractor Set",
+    "name": "Dzmitry Prychyna",
+    "type": "Person",
     "url": "https://github.com/attractor-set"
   },
   "release": {
@@ -61,6 +61,6 @@
     "slug": "attractor-set/ASET",
     "url": "https://github.com/attractor-set/ASET"
   },
-  "runtime_platform": "Python 3.12",
+  "runtime_platform": "Implementation-neutral; no runtime required",
   "schema_version": 1
 }

@@ -2,7 +2,7 @@
   "@context": "https://w3id.org/codemeta/3.1",
   "@id": "https://github.com/attractor-set/ASET",
   "@type": "SoftwareSourceCode",
-  "abstract": "ASET defines an open, implementation-neutral accountability semantics that binds authority, context, proposals, permits, gates, transitions and evidence into verifiable trails for heterogeneous systems composed of people, AI agents, organizations and software services.",
+  "abstract": "ASET defines an open, implementation-neutral trust and accountability semantics that binds authority, context, decisions, permits, gates, transitions, evidence, verification and outcomes. Its machine canon, formal models and language-neutral conformance protocol allow independent implementations to be tested without giving any technology semantic precedence.",
   "alternateName": "Authority-Signed Evidence Trail",
   "author": {
     "@type": "Person",
@@ -18,7 +18,7 @@
     "url": "https://github.com/attractor-set"
   },
   "datePublished": "2026-08-04",
-  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
   "developmentStatus": "active",
   "identifier": "ASET",
   "inLanguage": [
@@ -40,14 +40,14 @@
     "human-ai-collaboration",
     "json-schema",
     "open-standard",
-    "python",
-    "reference-implementation",
     "sociotechnical-systems",
     "specification-first",
     "state-transitions",
     "tla-plus",
     "trust-infrastructure",
-    "trustworthy-ai"
+    "trustworthy-ai",
+    "implementation-neutral",
+    "model-based-testing"
   ],
   "license": "https://spdx.org/licenses/Apache-2.0.html",
   "maintainer": {
@@ -58,7 +58,7 @@
   },
   "name": "ASET",
   "programmingLanguage": [
-    "Python",
+    "JSON",
     "TLA+"
   ],
   "publisher": {
@@ -67,7 +67,7 @@
     "name": "Dzmitry Prychyna",
     "url": "https://github.com/attractor-set"
   },
-  "runtimePlatform": "Python 3.12",
+  "runtimePlatform": "Implementation-neutral; no runtime required",
   "url": "https://github.com/attractor-set/ASET",
   "version": "0.1-rc12"
 }

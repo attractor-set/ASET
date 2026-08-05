@@ -167,7 +167,7 @@
       "status": "PASS"
     },
     {
-      "details": "Seed byte baseline drift:seed/canonical/README.md",
+      "details": "Canon package digest differs",
       "expected": "REJECT",
       "id": "NEG-COMP-012",
       "observed": "REJECT",

@@ -1,7 +1,5 @@
-coverage==7.15.2
 jsonschema==4.26.0
 pyshacl==0.40.0
 rdflib==7.6.0
 pytest==9.1.1
 ruff==0.15.22
-setuptools==83.0.0

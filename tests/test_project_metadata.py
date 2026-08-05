@@ -9,9 +9,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOPIC_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 EXPECTED_DESCRIPTION = (
-    "ASET is an open specification and reference implementation for "
-    "Authority-Signed Evidence Trails, enabling verifiable accountability "
-    "within heterogeneous sociotechnical systems."
+    "ASET is an open, implementation-neutral specification for Authority-Signed "
+    "Evidence Trails, enabling model-based conformance and verifiable accountability "
+    "across heterogeneous sociotechnical systems."
 )
 
 

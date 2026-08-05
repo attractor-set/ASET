@@ -1,53 +1,25 @@
-
 # Roadmap
 
-## Completed repository-readiness baseline
+## Specification and conformance
 
-- immutable rc11 archive verification;
-- byte-exact expanded rc11 tree;
-- deterministic multilingual publication scaffold;
-- protected branch and tags;
-- deterministic snapshot and manifest;
-- independent black-box documentation audit;
-- fail-closed production repository gate;
-- PDCA history and finding closure records;
-- CI dependency monitoring.
+- keep the machine canon implementation-neutral;
+- maintain exact traceability between requirements, invariants, formal actions and conformance cases;
+- publish immutable canon packages with digests;
+- distinguish candidate self-consistency from compatibility with the approved canon;
+- support independent black-box implementation adapters;
+- preserve frozen historical releases and evidence.
 
-## IP provenance and commercialization foundation
+## Independent implementation profiles
 
-Completed baseline:
-
-- public trilingual [`BACKGROUND_IP_SCHEDULE`](BACKGROUND_IP_SCHEDULE.md);
-- exact pre-Schedule Git and manifest identity;
-- machine-readable asset inventory and strict schema;
-- explicit creator, pseudonym and current-rights-holder separation;
-- Brazilian independent-creation and APPD&I boundary;
-- confidential-annex and future-assignment rules.
-
-## rc12 semantic migration
-
-- complete requirement-by-requirement rc11 disposition;
-- full transition catalogue and rejection-code registry;
-- complete canonical schemas and constraints;
-- executable positive, negative and adversarial conformance corpus;
-- complete formal transition model and model-checking evidence;
-- independent clean-room audit;
-- owner-approved immutable release.
-
-## Runtime readiness
-
-Runtime durability, concurrency, cryptographic verification, consensus, deployment operations and external certification remain separate future work.
+- publish the minimal educational `aset-python-sqlite` profile in a separate repository;
+- add independent implementations in other languages and storage technologies;
+- establish cross-implementation differential conformance;
+- keep durability, consensus, confidential computation and deployment guarantees profile-specific.
 
 ## Full ASET component specification line
 
-Completed candidate baseline:
+See [`aset/README.md`](aset/README.md). Future work includes independent implementations, external audit, component-specific runtime evidence and separately governed version evolution.
 
-- exact-byte ASET 1.5-rc11 source preservation;
-- independently versioned `0.1-rc1` canons for System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol;
-- explicit compatibility bridge to ASET Seed `0.1-rc12`;
-- exact 177/57/52/11/57 registry partition;
-- self-contained component assurance packages;
-- 26-case component conformance and eight bounded formal projections;
-- independent and adversarial component black-box audit.
+## Authorship and Background IP
 
-See [`aset/README.md`](aset/README.md). Future work is limited to independent implementations, external audit, component-specific runtime evidence and separately governed version evolution.
+The public pre-existing-IP boundary remains recorded in [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md). Repository separation does not assign or extinguish those rights.

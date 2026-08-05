@@ -2,21 +2,23 @@
   "assurance": {
     "adversarial_blackbox": "REQUIRED",
     "bounded_model_check": "REQUIRED",
+    "canon_package_integrity": "REQUIRED",
     "documentation_blackbox": "REQUIRED",
+    "external_implementation_audit": "PROFILE_RESPONSIBILITY",
     "external_third_party_audit": "PENDING",
-    "production_claim_scope": "single-node SQLite bounded profile only",
+    "implementation_conformance": "BLACK_BOX_REQUIRED_FOR_EACH_CLAIMED_PROFILE",
+    "implementation_neutrality": "REQUIRED",
     "rc11_regression": "55_OF_55_REQUIRED",
-    "runtime_blackbox": "REQUIRED",
     "semantic_migration": "COMPLETE_83_OF_83"
   },
   "canonicality": {
     "external_third_party_audit": "PENDING",
     "frozen_rc11": "HISTORICAL_IMMUTABLE_RELEASE",
     "generated_language_editions": "DERIVED_OFFICIAL_EDITIONS",
+    "implementation_profiles": "NON_NORMATIVE_CONFORMANCE_SUBJECTS",
     "machine_readable_model": "NORMATIVE_CANON",
     "protocol_schemas": "NORMATIVE_WIRE_PROFILE",
-    "requirements_and_invariants": "NORMATIVE",
-    "runtime_profile": "PRODUCTION_READY_BOUNDED_PROFILE"
+    "requirements_and_invariants": "NORMATIVE"
   },
   "concepts": [
     {
@@ -399,6 +401,28 @@
     }
   ],
   "conformance_profile_ref": "seed/canonical/conformance/conformance-profile.json",
+  "implementation_boundary": {
+    "conformance_protocol_ref": "seed/canonical/conformance/implementation-conformance-protocol.json",
+    "implementation_precedence": "NONE",
+    "normative_status": "IMPLEMENTATION_NEUTRAL",
+    "profile_rule": "Implementation profiles MAY strengthen operational guarantees but MUST NOT weaken, merge or bypass Seed distinctions, validity conditions or invariants.",
+    "required_observables": [
+      "transition verdict",
+      "normative result code",
+      "canonical post-state or unchanged state on rejection",
+      "created artifact identifiers and causal bindings",
+      "pre-state and post-state roots"
+    ],
+    "unspecified_by_seed": [
+      "programming language",
+      "storage backend",
+      "deployment topology",
+      "consensus protocol",
+      "network transport",
+      "cryptographic provider",
+      "operational user interface"
+    ]
+  },
   "invariants": [
     {
       "id": "SEED-INV-001",
@@ -408,9 +432,9 @@
         "ru": "TrustSpaceID, Root Genesis и конституция эпохи 0 неизменяемы."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -421,9 +445,9 @@
         "ru": "Существует ровно один корневой контекст без родителя, а дерево контекстов не содержит циклов."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -434,9 +458,9 @@
         "ru": "Каждый ContextID вычисляется из идентификатора родителя и хеша Genesis контекста."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -447,9 +471,9 @@
         "ru": "Индекс действующих псевдонимов точно соответствует действующим контекстам."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -460,9 +484,9 @@
         "ru": "Все действующие контексты используют текущую эпоху конституции."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -473,9 +497,9 @@
         "ru": "Для одного ключа полномочия существует не более одного действующего носителя, а области одного вида полномочия не пересекаются."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -486,9 +510,9 @@
         "ru": "Отозванный, замещённый или прекращённый контекст не содержит действующих полномочий и разрешений."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -499,9 +523,9 @@
         "ru": "Ключ каждой карты артефактов совпадает с внутренним идентификатором артефакта и указывает на существующий контекст."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -512,9 +536,9 @@
         "ru": "Условия разрешения точно связаны с решением, готовностью и признанной политикой успеха."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -525,9 +549,9 @@
         "ru": "Политика проверки совпадает с предикатом успеха разрешения и правилом действующей конституции."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -538,9 +562,9 @@
         "ru": "Ослабление разрешения линейно и не создаёт двойного бюджета попыток."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -551,9 +575,9 @@
         "ru": "Индексы попыток непрерывны, квитанции устойчивы, а индекс submission_id точен."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -564,9 +588,9 @@
         "ru": "Каждое наблюдение связано с точными квитанцией, разрешением и контекстом."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -577,9 +601,9 @@
         "ru": "Каждая проверка связана с точными наблюдением, квитанцией, разрешением и контекстом."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -590,9 +614,9 @@
         "ru": "Итоговое признание использует полный действительный набор проверок данного разрешения."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -603,9 +627,9 @@
         "ru": "Экспорт, импорт и локальное признание сохраняют точную межконтекстную линию происхождения."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -616,9 +640,9 @@
         "ru": "Исправление относится только к проверке до финального итогового признания."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -629,9 +653,9 @@
         "ru": "Счётчики переходов, локальные порядковые номера, владельцы артефактов и вычисленные причинные родители точны."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -642,9 +666,9 @@
         "ru": "Приостановленный контекст допускает локальное продолжение только через специальный переход разделения."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -655,9 +679,9 @@
         "ru": "Согласование включает все известные локальные коммиты и сохраняет доказательства конкурирующих ветвей."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -668,9 +692,9 @@
         "ru": "Рёбра зависимостей уникальны, не ссылаются на себя и имеют существующие вершины."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -681,9 +705,9 @@
         "ru": "Обе вершины каждого нормативного ребра являются действующими контекстами."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -694,9 +718,9 @@
         "ru": "Самостоятельный выход не оставляет действующего нормативного зависимого."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -707,9 +731,9 @@
         "ru": "AffectedSiblingSet является точным транзитивным замыканием прямых соседей."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -720,9 +744,9 @@
         "ru": "Переопределение использует канонический хеш полного предложения и точный набор разрешений участников."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -733,9 +757,9 @@
         "ru": "Замена контекстов атомарна, сохраняет поля идентичности и точно переназначает зависимости."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -746,9 +770,9 @@
         "ru": "Записи управления содержат полное предложение и доказательства аутентификации."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -759,9 +783,9 @@
         "ru": "Передача полномочия имеет полную цепочку действия в том же контексте."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -772,113 +796,9 @@
         "ru": "Внутренние корни контекстов и глобальный корень состояния точно соответствуют каноническому состоянию."
       },
       "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-030",
-      "texts": {
-        "en": "Durable state and its accepted-attempt audit record commit in one transaction.",
-        "pt-BR": "O estado durável e o registro da tentativa aceita são confirmados em uma única transação.",
-        "ru": "Устойчивое состояние и запись принятой попытки фиксируются одной транзакцией."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-031",
-      "texts": {
-        "en": "A rejected attempt does not change the durable state root.",
-        "pt-BR": "Uma tentativa rejeitada não altera a raiz do estado durável.",
-        "ru": "Отклонённая попытка не изменяет корень устойчивого состояния."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-032",
-      "texts": {
-        "en": "Every audit entry contains the hash of the previous entry for the same trust space.",
-        "pt-BR": "Cada entrada de auditoria contém o hash da entrada anterior do mesmo espaço de confiança.",
-        "ru": "Каждая запись журнала содержит хеш предыдущей записи того же пространства доверия."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-033",
-      "texts": {
-        "en": "A database is bound to one runtime profile and one store-schema version.",
-        "pt-BR": "Um banco de dados está vinculado a um perfil de runtime e uma versão do esquema.",
-        "ru": "База данных связана с одним профилем исполнения и одной версией схемы хранилища."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-034",
-      "texts": {
-        "en": "Without positive proof verification, a transition does not reach the semantic core.",
-        "pt-BR": "Sem verificação positiva da prova, uma transição não alcança o núcleo semântico.",
-        "ru": "Без положительной проверки доказательства переход не достигает семантического ядра."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-035",
-      "texts": {
-        "en": "Reopening the store preserves the same state root and a valid audit chain.",
-        "pt-BR": "A reabertura do armazenamento preserva a mesma raiz de estado e uma cadeia de auditoria válida.",
-        "ru": "Повторное открытие хранилища сохраняет тот же корень состояния и действительную цепочку аудита."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-036",
-      "texts": {
-        "en": "A backup passes SQLite integrity_check and contains the same store profile.",
-        "pt-BR": "Um backup passa no SQLite integrity_check e contém o mesmo perfil de armazenamento.",
-        "ru": "Резервная копия проходит SQLite integrity_check и содержит тот же профиль хранилища."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
-      ]
-    },
-    {
-      "id": "SEED-INV-037",
-      "texts": {
-        "en": "The public runtime performs no external effects beyond result recognition.",
-        "pt-BR": "O runtime público não executa efeitos externos além do reconhecimento do resultado.",
-        "ru": "Публичная среда исполнения не выполняет внешние эффекты за границей признания результата."
-      },
-      "verification": [
-        "core.validate_state",
-        "runtime tests",
-        "black-box audit"
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     }
   ],
@@ -912,6 +832,11 @@
         "pt-BR": "Identificador",
         "ru": "Идентификатор"
       },
+      "implementation_boundary": {
+        "en": "Implementation boundary",
+        "pt-BR": "Limite de implementação",
+        "ru": "Граница реализации"
+      },
       "invariants": {
         "en": "Invariants",
         "pt-BR": "Invariantes",
@@ -936,11 +861,6 @@
         "en": "Requirements",
         "pt-BR": "Requisitos",
         "ru": "Требования"
-      },
-      "runtime": {
-        "en": "Runtime profile",
-        "pt-BR": "Perfil de runtime",
-        "ru": "Исполняемый профиль"
       },
       "status": {
         "en": "Status",
@@ -978,9 +898,9 @@
         "ru": "Публичный интерфейс ДОЛЖЕН применять строгие схемы и закрываться при любой неопределённости."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -996,9 +916,9 @@
         "ru": "TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонического материала Genesis."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1014,9 +934,9 @@
         "ru": "Каждый принятый переход ДОЛЖЕН быть атомарным и завершаться проверкой всего состояния."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1032,9 +952,9 @@
         "ru": "Действующие области полномочий для одной пары контекст/вид полномочия НЕ ДОЛЖНЫ пересекаться."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1050,9 +970,9 @@
         "ru": "Условия разрешения ДОЛЖНЫ связывать заявление о готовности и решение о выдаче разрешения."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1068,9 +988,9 @@
         "ru": "Предикат успеха разрешения ДОЛЖЕН разрешаться в действующее правило конституции."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1086,9 +1006,9 @@
         "ru": "Политика проверки ДОЛЖНА совпадать с предикатом успеха разрешения."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1104,9 +1024,9 @@
         "ru": "Итоговое признание ДОЛЖНО агрегировать полный действительный набор успешных проверок."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1122,9 +1042,9 @@
         "ru": "Исправление ДОЛЖНО относиться только к проверке, ещё не закреплённой итоговым признанием."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1140,9 +1060,9 @@
         "ru": "Причинные родители ДОЛЖНЫ вычисляться из типизированных ссылок на артефакты."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1158,9 +1078,9 @@
         "ru": "Обычные переходы НЕ ДОЛЖНЫ приниматься в приостановленном контексте."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1176,9 +1096,9 @@
         "ru": "Согласование ДОЛЖНО включать все известные локальные коммиты и сохранять доказательства развилок."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1194,9 +1114,9 @@
         "ru": "Обе вершины нормативной зависимости ДОЛЖНЫ быть действующими контекстами."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1212,9 +1132,9 @@
         "ru": "Самостоятельный выход ДОЛЖЕН быть подписан участником и НЕ ДОЛЖЕН оставлять действующего нормативного зависимого."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1230,9 +1150,9 @@
         "ru": "AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно из состояния до перехода."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1248,9 +1168,9 @@
         "ru": "Хеш предложения ДОЛЖЕН связывать полное встроенное предложение."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1266,9 +1186,9 @@
         "ru": "Каждый затронутый участник ДОЛЖЕН разрешить точное предложение."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1284,9 +1204,9 @@
         "ru": "Родитель ДОЛЖЕН обладать полномочием REDEFINE_CONTEXT."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1302,9 +1222,9 @@
         "ru": "Переопределение ДОЛЖНО завершаться атомарно либо оставлять состояние неизменным."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1320,9 +1240,9 @@
         "ru": "Преемники ДОЛЖНЫ сохранять родителя, псевдоним, участника и вид, получая новый ContextID."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1338,9 +1258,9 @@
         "ru": "Зависимости между затронутыми соседями ДОЛЖНЫ переназначаться на преемников."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1356,9 +1276,9 @@
         "ru": "Записи управления ДОЛЖНЫ сохранять полное предложение и хеши доказательств."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1374,9 +1294,9 @@
         "ru": "Передача полномочия ДОЛЖНА использовать положительную цепочку действия в том же контексте и готовность нового носителя."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1392,9 +1312,9 @@
         "ru": "Покрытие ветвей эталонного ядра ДОЛЖНО быть не ниже 90 процентов для фиксации релиза."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1410,9 +1330,9 @@
         "ru": "Доказательства покрытия и проверки публикации ДОЛЖНЫ быть связаны с точными байтами исходников и документов."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1428,225 +1348,9 @@
         "ru": "Фиксация релиза ДОЛЖНА включать чистую проверку детерминированного архива."
       },
       "verification": [
-        "rc11-conformance-55",
-        "rc12-core-regression",
-        "rc12-blackbox"
-      ]
-    },
-    {
-      "area": "Proof",
-      "id": "ASET-SEED-PRT-001",
-      "modality": "MUST",
-      "predicate": "require_explicit_proof_verifier",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime",
-      "texts": {
-        "en": "The runtime MUST require an explicitly configured proof verifier and fail closed when it is absent.",
-        "pt-BR": "O runtime DEVE exigir um verificador de provas configurado explicitamente e falhar de modo fechado quando ele estiver ausente.",
-        "ru": "Исполняемая среда ДОЛЖНА требовать явно настроенный проверяющий механизм доказательств и закрываться при его отсутствии."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Durability",
-      "id": "ASET-SEED-PRT-002",
-      "modality": "MUST",
-      "predicate": "atomically_persist_state_and_audit",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "State mutation and audit recording MUST commit in one durable-store transaction.",
-        "pt-BR": "A alteração do estado e o registro de auditoria DEVEM ser confirmados em uma única transação durável.",
-        "ru": "Изменение состояния и запись журнала ДОЛЖНЫ фиксироваться одной транзакцией устойчивого хранилища."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Concurrency",
-      "id": "ASET-SEED-PRT-003",
-      "modality": "MUST",
-      "predicate": "serialize_writers",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "Concurrent writers to one store MUST be serialized before state read and mutation.",
-        "pt-BR": "Escritores concorrentes de um mesmo armazenamento DEVEM ser serializados antes da leitura e alteração do estado.",
-        "ru": "Конкурирующие писатели одного хранилища ДОЛЖНЫ сериализоваться до чтения и изменения состояния."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Durability",
-      "id": "ASET-SEED-PRT-004",
-      "modality": "MUST",
-      "predicate": "use_full_durability_profile",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "The SQLite profile MUST use WAL, synchronous=FULL, and integrity checking.",
-        "pt-BR": "O perfil SQLite DEVE usar WAL, synchronous=FULL e verificação de integridade.",
-        "ru": "Профиль SQLite ДОЛЖЕН использовать WAL, synchronous=FULL и проверку целостности."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Input",
-      "id": "ASET-SEED-PRT-005",
-      "modality": "MUST",
-      "predicate": "reject_ambiguous_json",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime",
-      "texts": {
-        "en": "The embedded runtime MUST reject non-JSON values with a stable code before transition admission; strict JSON documents MUST reject duplicate members.",
-        "pt-BR": "O runtime incorporado DEVE rejeitar valores não JSON com um código estável antes da admissão da transição; documentos JSON estritos DEVEM rejeitar membros duplicados.",
-        "ru": "Встроенная среда исполнения ОБЯЗАНА отклонять значения вне JSON стабильным кодом до допуска перехода; строгие JSON-документы ОБЯЗАНЫ отклонять повторяющиеся поля."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Audit",
-      "id": "ASET-SEED-PRT-006",
-      "modality": "MUST",
-      "predicate": "maintain_hash_chained_audit",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "Every JSON transition document targeting an existing trust space MUST be appended to its hash-chained audit log; oversized documents MAY be represented by their exact digest and byte size.",
-        "pt-BR": "Cada documento JSON de transição destinado a um espaço de confiança existente DEVE ser adicionado ao seu log encadeado por hash; documentos excedentes PODEM ser representados pelo resumo exato e tamanho em bytes.",
-        "ru": "Каждый JSON-документ перехода, адресованный существующему пространству доверия, ОБЯЗАН добавляться в его хеш-связанный журнал; документ сверх лимита МОЖЕТ быть представлен точным хешем и размером в байтах."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Recovery",
-      "id": "ASET-SEED-PRT-007",
-      "modality": "MUST",
-      "predicate": "support_consistent_backup",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "The runtime MUST create a SQLite backup only after database, state, and audit-chain health validation passes.",
-        "pt-BR": "O runtime DEVE criar um backup SQLite somente após a aprovação das verificações de integridade do banco, estado e cadeia de auditoria.",
-        "ru": "Среда исполнения ОБЯЗАНА создавать резервную копию SQLite только после успешной проверки базы, состояния и цепочки аудита."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Profile",
-      "id": "ASET-SEED-PRT-008",
-      "modality": "MUST",
-      "predicate": "bind_database_profile",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime_store",
-      "texts": {
-        "en": "A database MUST be bound to the exact store-schema version and runtime profile.",
-        "pt-BR": "O banco de dados DEVE estar vinculado à versão exata do esquema e ao perfil de runtime.",
-        "ru": "База данных ДОЛЖНА быть связана с точной версией схемы и профилем среды исполнения."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Operations",
-      "id": "ASET-SEED-PRT-009",
-      "modality": "MUST",
-      "predicate": "expose_health_validation",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime",
-      "texts": {
-        "en": "The runtime MUST expose state validation, database integrity, and audit-chain health checks.",
-        "pt-BR": "O runtime DEVE expor validação de estado, integridade do banco e verificação da cadeia de auditoria.",
-        "ru": "Среда исполнения ДОЛЖНА предоставлять проверку состояния, целостности базы и цепочки аудита."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Security",
-      "id": "ASET-SEED-PRT-010",
-      "modality": "MUST_NOT",
-      "predicate": "perform_implicit_external_effects",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime",
-      "texts": {
-        "en": "The Seed core MUST NOT perform network, tool, or physical external effects by itself.",
-        "pt-BR": "O núcleo Seed NÃO DEVE executar por si só efeitos externos de rede, ferramentas ou efeitos físicos.",
-        "ru": "Ядро Seed НЕ ДОЛЖНО само выполнять сеть, инструменты или физические внешние эффекты."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Compatibility",
-      "id": "ASET-SEED-PRT-011",
-      "modality": "MUST",
-      "predicate": "preserve_rc11_wire_semantics",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.runtime",
-      "texts": {
-        "en": "The rc12 implementation MUST preserve the acceptance and rejection of all 55 rc11 reference vectors without changing frozen bytes.",
-        "pt-BR": "A implementação rc12 DEVE preservar a aceitação e rejeição dos 55 vetores de referência rc11 sem alterar os bytes congelados.",
-        "ru": "Реализация rc12 ДОЛЖНА сохранять принятие и отклонение всех 55 эталонных векторов rc11 без изменения замороженных байтов."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
-      ]
-    },
-    {
-      "area": "Release",
-      "id": "ASET-SEED-PRT-012",
-      "modality": "MUST",
-      "predicate": "pass_blackbox_release_audit",
-      "source": "ASET Seed rc12 production profile",
-      "subject": "seed.release",
-      "texts": {
-        "en": "An rc12 candidate MUST pass an independent black-box documentation and runtime audit from the built archive.",
-        "pt-BR": "Um candidato rc12 DEVE passar por auditoria independente de caixa-preta da documentação e do runtime a partir do arquivo construído.",
-        "ru": "Кандидат rc12 ДОЛЖЕН проходить независимую блэк-бокс проверку документации и среды исполнения из собранного архива."
-      },
-      "verification": [
-        "rc12-runtime-tests",
-        "rc12-runtime-blackbox",
-        "rc12-adversarial"
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-COMPONENT-BLACKBOX"
       ]
     },
     {
@@ -1662,8 +1366,8 @@
         "ru": "Официальные языковые редакции ДОЛЖНЫ детерминированно строиться из машиночитаемого канона."
       },
       "verification": [
-        "generated-edition-parity",
-        "semantic-id-parity"
+        "ASET-VERIFY-GENERATED-EDITION-PARITY",
+        "ASET-VERIFY-SEMANTIC-ID-PARITY"
       ]
     },
     {
@@ -1679,55 +1383,11 @@
         "ru": "Все представления ДОЛЖНЫ сохранять стабильные семантические идентификаторы требований, инвариантов и переходов."
       },
       "verification": [
-        "generated-edition-parity",
-        "semantic-id-parity"
+        "ASET-VERIFY-GENERATED-EDITION-PARITY",
+        "ASET-VERIFY-SEMANTIC-ID-PARITY"
       ]
     }
   ],
-  "runtime_profile": {
-    "deployment_scope": [
-      "single host",
-      "single SQLite database",
-      "multiple serialized writers",
-      "local CLI or embedded Python API"
-    ],
-    "entrypoints": [
-      "aset-seed CLI",
-      "aset_seed.DurableSeedRuntime"
-    ],
-    "excluded": [
-      "distributed consensus",
-      "automatic network effects",
-      "physical-world truth determination",
-      "external certification"
-    ],
-    "health_checks": [
-      "database integrity",
-      "state validation",
-      "audit-chain verification"
-    ],
-    "implementation_version": "0.1-rc12",
-    "profile_id": "ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1",
-    "proof_boundary": {
-      "default": "REJECT_ALL",
-      "key_management": "deployment responsibility",
-      "provided_profiles": [
-        "HMAC_SHA256_V1"
-      ],
-      "required": true
-    },
-    "semantic_compatibility": "aset-seed:0.1-rc11",
-    "status": "PRODUCTION_READY_BOUNDED_PROFILE",
-    "storage": {
-      "audit": "hash-chained append-only attempts",
-      "backup": "SQLite backup API",
-      "engine": "SQLite",
-      "journal_mode": "WAL",
-      "synchronous": "FULL",
-      "transaction": "BEGIN IMMEDIATE"
-    },
-    "wire_schema_version": "0.1-rc11"
-  },
   "schema_version": 2,
   "status": "RC12_RELEASE_CANDIDATE_READY",
   "transitions": [

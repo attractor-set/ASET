@@ -1,72 +1,29 @@
+[English](README.md) · [Русский](README.ru.md) · [Português do Brasil](README.pt-BR.md)
+
 # ASET
 
-ASET é uma especificação aberta e uma implementação de referência para Authority-Signed Evidence Trails, permitindo responsabilização verificável em sistemas sociotécnicos heterogêneos.
+ASET é uma especificação aberta e neutra em relação à implementação para Authority-Signed Evidence Trails, com conformidade baseada em modelo e responsabilização verificável em sistemas sociotécnicos heterogêneos.
 
-A especificação define uma semântica comum de responsabilização para transformações governadas de contexto e execução verificável, e tem autoridade sobre as implementações.
+## O que define ASET
 
-## ASET Seed como núcleo semântico
+ASET é definido pelo cânone legível por máquina, esquemas normativos, condições de validade, invariantes, semântica de transições e corpus de conformidade. Nenhuma implementação, linguagem, base de dados, verificador ou perfil de implantação possui precedência semântica.
 
-O ASET Seed é o núcleo semântico mínimo e neutro em relação à implementação do ASET. Ele define os conceitos vinculados à autoridade, as condições de validade, os invariantes e a semântica de transições a partir dos quais sistemas ASET completos e perfis de implementação compatíveis podem crescer.
+- Cânone de máquina: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
+- Identidade do pacote canônico: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
+- Projeção formal: [`seed/canonical/formal/`](seed/canonical/formal/)
+- Corpus de conformidade: [`seed/canonical/conformance/`](seed/canonical/conformance/)
+- Cânones dos componentes: [`aset/README.md`](aset/README.md)
 
-Os componentes podem fornecer planejamento, memória, orquestração, execução de efeitos externos, aquisição de evidências e análise de processos. O Seed determina quando esse trabalho adquire significado autoritativo no ASET. Consulte [`docs/architecture/SEED_ROLE.md`](docs/architecture/SEED_ROLE.md).
+## Conformidade de implementações baseada em modelo
 
-## Linhas de release
+Implementações independentes são testadas como caixas-pretas por `ASET-IMPLEMENTATION-CONFORMANCE-V1`. A implementação devolve resultados observáveis; um runner externo consome um pacote canônico fixado e determina o veredito.
 
-**ASET Seed 0.1-rc11** continua sendo o release estável, imutável e auditado. **ASET Seed 0.1-rc12** é o candidato completo do cânone legível por máquina e inclui um runtime instalável para um perfil operacional limitado.
+Armazenamento, durabilidade, concorrência, recuperação, consenso, rede e custódia de chaves pertencem aos perfis de implementação e não definem o Seed.
 
-- rc11 congelado: [`seed/releases/0.1-rc11/`](seed/releases/0.1-rc11/)
-- Cânone rc12: [`seed/canonical/`](seed/canonical/)
-- Especificação rc12 gerada: [`docs/generated/pt-BR/ASET_Seed_0.1-rc12.md`](docs/generated/pt-BR/ASET_Seed_0.1-rc12.md)
-- Runtime: [`src/aset_seed/`](src/aset_seed/)
-- Perfil de produção: [`docs/runtime/PRODUCTION_PROFILE.md`](docs/runtime/PRODUCTION_PROFILE.md)
-- Lista de implantação: [`docs/runtime/DEPLOYMENT_CHECKLIST.md`](docs/runtime/DEPLOYMENT_CHECKLIST.md)
+## Implementações
 
-## Limite do candidato rc12
+As implementações são mantidas separadamente da especificação. Um perfil educacional mínimo e não normativo em Python + SQLite é destinado ao repositório separado `aset-python-sqlite`.
 
-O cânone rc12 contém 27 conceitos, 40 requisitos, 37 invariantes, 18 tipos de transição, 39 JSON Schemas estritos e 55 casos de conformidade vinculados. A superfície semântica rc11 foi migrada 83/83, sem item adiado ou não classificado. As edições em russo, inglês e português brasileiro são geradas de uma única fonte de máquina.
+## Licença e direitos
 
-O perfil executável está pronto para produção somente no limite `ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1`: um host, escritores SQLite serializados, WAL com `synchronous=FULL`, CLI local ou API incorporada, verificação explícita de provas, estado durável e auditoria append-only encadeada por hash. O verificador padrão rejeita todas as transições.
-
-A afirmação exclui consenso distribuído, operação multi-primary, efeitos automáticos de rede ou físicos, verdade do mundo físico, gestão de chaves da implantação e certificação externa. A auditoria externa de terceira parte permanece `PENDING`.
-
-Execute a verificação completa com:
-
-```text
-python tools/production_gate.py
-```
-
-## Metadados do projeto
-
-- Identidade canônica do projeto: [`metadata/project.json`](metadata/project.json)
-- Projeção CodeMeta: [`codemeta.json`](codemeta.json)
-- Projeção do GitHub About: [`.github/repository-metadata.json`](.github/repository-metadata.json)
-
-Para regenerar toda a documentação derivada e os metadados do repositório, execute:
-
-```text
-python tools/generate_repository_views.py
-```
-
-## Autoria e propriedade intelectual preexistente
-
-O ASET foi criado de forma independente por **Dzmitry Prychyna**, conhecido publicamente pelo pseudônimo **Attractor Set**. Attractor Set é a identidade pública do projeto, não uma pessoa jurídica distinta. A fronteira pública da propriedade intelectual preexistente está registrada no [Quadro de PI Preexistente do ASET](BACKGROUND_IP_SCHEDULE.pt-BR.md), na [edição em inglês](BACKGROUND_IP_SCHEDULE.md) e no [inventário legível por máquina](governance/ip/background-ip-schedule.json).
-
-O Quadro não altera a licença Apache 2.0 e não constitui cessão nem parecer jurídico. Futuros instrumentos com sociedade, universidade, agência de fomento ou investidor devem separar esta PI preexistente da propriedade intelectual resultante do projeto.
-
-## Cânones de componentes do ASET completo
-
-A especificação completa legível por máquina do ASET 1.5-rc11 é preservada como evidência-fonte exata e decomposta em cânones candidatos versionados de forma independente para System Composition, Context, Core, Monade, Memory, Master, Model Gateway e Protocol. A linha de componentes é `0.1-rc1` e está vinculada explicitamente ao ASET Seed `0.1-rc12`.
-
-- Índice dos cânones: [`aset/README.md`](aset/README.md)
-- Composição do sistema: [`aset/system/`](aset/system/)
-- Ponte de compatibilidade com Seed: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
-
-A decomposição preserva exatamente o inventário rc11: 177 requisitos, 57 invariantes, 52 artefatos, 11 gates e 57 schemas. Ela inclui 26 casos de conformidade de componentes e oito projeções formais limitadas. Essas afirmações se restringem aos candidatos de especificação; não se afirma conformidade de implementação independente nem de produção.
-
-## Referência Python do caminho crítico semântico
-
-Uma implementação Python não normativa e sem armazenamento executa o caminho semântico
-determinístico completo, desde a projeção de Context, passando por dispatch governado,
-Observation, Evidence e Verification, até o reconhecimento condicional de Outcome. Consulte
-[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
-Ela é um artefato de interoperabilidade e assurance, não uma afirmação de implantação em produção.
+ASET foi criado de forma independente por **Dzmitry Prychyna**, publicamente conhecido como **Attractor Set**. O projeto é licenciado sob Apache License 2.0. A licença não transfere autoria nem titularidade. Consulte [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) e [`BACKGROUND_IP_SCHEDULE.pt-BR.md`](BACKGROUND_IP_SCHEDULE.pt-BR.md).

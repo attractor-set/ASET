@@ -348,20 +348,30 @@ def audit_snapshot(snapshot_path: str) -> dict[str, object]:
 
     seed_errors: list[str] = []
     try:
-        baseline = json_values["aset/source/seed-rc12/SEED_RC12_BASELINE.json"]
-        assert isinstance(baseline, dict)
-        for entry in baseline["files"]:
+        package = strict_json(get("seed/canonical/CANON_PACKAGE.json"))
+        assert isinstance(package, dict)
+        material: list[dict[str, str]] = []
+        for entry in package["files"]:
             path = str(entry["path"])
             data = get(path)
-            if len(data) != entry["size_bytes"] or sha256(data) != entry["sha256"]:
+            observed = sha256(data)
+            if observed != entry["sha256"]:
                 seed_errors.append(path)
+            material.append({"path": path, "sha256": observed})
+        package_digest = "sha256:" + hashlib.sha256(
+            json.dumps(material, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        if package.get("package_digest") != package_digest:
+            seed_errors.append("package_digest")
+        if package.get("implementation_precedence") != "NONE":
+            seed_errors.append("implementation_precedence")
     except Exception as error:
         seed_errors.append(str(error))
     audit.record(
         "CB-007",
-        "Seed RC12 exact-byte non-regression",
+        "active Seed canon package integrity",
         not seed_errors,
-        f"baseline_files=303; drift={seed_errors[:5]}",
+        f"drift={seed_errors[:5]}",
     )
 
     bridge_errors: list[str] = []
@@ -476,12 +486,11 @@ def audit_snapshot(snapshot_path: str) -> dict[str, object]:
     )
 
     try:
-        validator_text = get("tools/validate_repository.py").decode("utf-8")
         generator_text = get("tools/generate_repository_views.py").decode("utf-8")
-        gate_text = get("tools/production_gate.py").decode("utf-8")
+        gate_text = get("tools/repository_release_gate.py").decode("utf-8")
         integration_markers = (
-            "tools/validate_component_canons.py" in validator_text,
-            "tools/generate_repository_views.py" in validator_text,
+            "tools/validate_component_canons.py" in gate_text,
+            "tools/generate_repository_views.py" in gate_text,
             "tools/generate_component_views.py" in generator_text,
             "tools/run_component_conformance.py" in gate_text,
             "tools/model_check_components.py" in gate_text,

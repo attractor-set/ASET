@@ -1,58 +1,48 @@
-
-name: ASET Seed release candidate
+name: ASET release and compatibility gate
 
 on:
-  workflow_dispatch:
+  pull_request:
   push:
-    tags:
-      - "seed-v*"
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  release-candidate:
+  release-gate:
     runs-on: ubuntu-24.04
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install validation dependencies
-        run: python -m pip install -r requirements-ci.txt
-
-      - name: Install project
-        run: python -m pip install --no-deps --editable .
-
-      - name: Run production repository gate
-        run: python tools/production_gate.py
-
-      - name: Upload release-candidate evidence
-        uses: actions/upload-artifact@v4
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Resolve approved canon reference
+        id: approved
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            git fetch origin "${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}"
+            echo "ref=origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=HEAD^" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run approved-to-candidate compatibility and release gate
+        env:
+          ASET_APPROVED_REF: ${{ steps.approved.outputs.ref }}
+        run: python tools/repository_release_gate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: aset-seed-release-candidate
-          if-no-files-found: error
+          name: aset-release-compatibility-evidence
+          if-no-files-found: warn
           path: |
-            dist/ASET-Repository-Snapshot.zip
-            dist/ASET-Repository-Snapshot.zip.sha256
-            dist/reference-conformance-results.json
-            dist/reference-model-check.json
-            dist/blackbox-reference-audit.json
-            dist/blackbox-reference-audit.md
-            dist/reference-blackbox-adversarial-results.json
+            dist/canon-compatibility.json
+            dist/rc12-model-check.json
+            dist/assurance-traceability.json
             dist/blackbox-documentation-audit.json
-            dist/blackbox-documentation-audit.md
-            dist/blackbox-runtime-audit.json
-            dist/blackbox-runtime-audit.md
-            dist/runtime-adversarial-results.json
-            dist/blackbox-adversarial-results.json
-            dist/production-gate.json
-
-# A signed GitHub Release is intentionally not created automatically.
-# Owner approval and independent release audit remain separate gates.
+            dist/repository-release-gate.json

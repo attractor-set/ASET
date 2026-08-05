@@ -1,6 +1,9 @@
 {
   "claim_boundary": {
     "excluded": [
+      "implementation production readiness",
+      "programming-language preference",
+      "storage-backend preference",
       "distributed consensus",
       "automatic external effects",
       "physical-world truth",
@@ -9,45 +12,47 @@
     ],
     "included": [
       "machine-readable rc12 canon",
+      "implementation-neutral canon package",
       "deterministic official editions",
       "rc11 wire-semantic compatibility",
-      "release integrity",
-      "black-box documentation and runtime assurance",
-      "single-node SQLite durable runtime with semantic health and audited hostile boundaries"
+      "formal and bounded model checks",
+      "portable conformance cases",
+      "component-canon conformance",
+      "release and manifest integrity"
     ]
   },
   "document_type": "aset-repository-release-gates",
   "fail_closed": true,
   "gates": [
     {
-      "evidence": "python tools/validate_repository.py",
+      "evidence": "python tools/generate_repository_views.py --check",
       "id": "ASET-GATE-001",
       "mandatory": true,
-      "name": "strict_machine_data"
-    },
-    {
-      "evidence": "python tools/validate_rc12_canon.py",
-      "id": "ASET-GATE-002",
-      "mandatory": true,
-      "name": "rc12_canon_completeness"
-    },
-    {
-      "evidence": "python tools/generate_editions.py --check",
-      "id": "ASET-GATE-003",
-      "mandatory": true,
-      "name": "generated_edition_parity"
-    },
-    {
-      "evidence": "python tools/generate_semantic_views.py --check",
-      "id": "ASET-GATE-004",
-      "mandatory": true,
-      "name": "semantic_view_parity"
+      "name": "generated_repository_view_parity"
     },
     {
       "evidence": "python tools/check_language.py",
-      "id": "ASET-GATE-005",
+      "id": "ASET-GATE-002",
       "mandatory": true,
       "name": "terminology_policy"
+    },
+    {
+      "evidence": "python tools/validate_rc12_canon.py",
+      "id": "ASET-GATE-003",
+      "mandatory": true,
+      "name": "rc12_canon_validation"
+    },
+    {
+      "evidence": "python tools/build_canon_package.py --check",
+      "id": "ASET-GATE-004",
+      "mandatory": true,
+      "name": "canon_package_parity"
+    },
+    {
+      "evidence": "python tools/validate_canon_package.py",
+      "id": "ASET-GATE-005",
+      "mandatory": true,
+      "name": "canon_package_validation"
     },
     {
       "evidence": "python tools/verify_frozen_release.py",
@@ -62,102 +67,96 @@
       "name": "expanded_rc11_byte_identity"
     },
     {
-      "evidence": "python tools/materialize_rc11.py --check-git",
+      "evidence": "python tools/validate_component_canons.py",
       "id": "ASET-GATE-008",
       "mandatory": true,
-      "name": "git_stored_rc11_byte_identity"
+      "name": "component_canon_validation"
     },
     {
-      "evidence": "python tools/run_rc12_conformance.py",
+      "evidence": "python tools/run_component_conformance.py --check",
       "id": "ASET-GATE-009",
       "mandatory": true,
-      "name": "rc11_semantic_regression"
+      "name": "component_conformance"
     },
     {
-      "evidence": "python tools/run_rc12_branch_suite.py",
+      "evidence": "python tools/model_check_rc12.py --output dist/rc12-model-check.json",
       "id": "ASET-GATE-010",
       "mandatory": true,
-      "name": "rc12_branch_guard_regression"
+      "name": "bounded_seed_model_check"
     },
     {
-      "evidence": "python tools/model_check_rc12.py --depth 7",
+      "evidence": "python tools/model_check_components.py --check",
       "id": "ASET-GATE-011",
       "mandatory": true,
-      "name": "bounded_formal_model_check"
+      "name": "component_model_checks"
     },
     {
       "evidence": "python -m pytest -q",
       "id": "ASET-GATE-012",
       "mandatory": true,
-      "name": "unit_and_integration_tests"
+      "name": "specification_tests"
     },
     {
-      "evidence": "python -m ruff check tools tests src/aset_seed",
+      "evidence": "python tools/static_python_sanity.py",
       "id": "ASET-GATE-013",
       "mandatory": true,
-      "name": "static_python_checks"
+      "name": "static_tooling_sanity"
     },
     {
-      "evidence": "python -m pip wheel --no-build-isolation --no-deps .",
+      "evidence": "python tools/rebuild_manifest.py --check",
       "id": "ASET-GATE-014",
       "mandatory": true,
-      "name": "installable_wheel"
+      "name": "manifest_parity"
     },
     {
       "evidence": "python tools/build_release.py",
       "id": "ASET-GATE-015",
       "mandatory": true,
-      "name": "deterministic_snapshot"
+      "name": "deterministic_repository_snapshot"
     },
     {
-      "evidence": "python tools/blackbox_documentation_audit.py dist/ASET-Repository-Snapshot.zip",
+      "evidence": "python tools/blackbox_component_audit.py dist/ASET-Repository-Snapshot.zip",
       "id": "ASET-GATE-016",
       "mandatory": true,
-      "name": "blackbox_documentation_audit"
+      "name": "component_blackbox_audit"
     },
     {
-      "evidence": "python tools/blackbox_runtime_audit.py dist/ASET-Repository-Snapshot.zip",
+      "evidence": "python tools/run_component_blackbox_adversarial.py",
       "id": "ASET-GATE-017",
       "mandatory": true,
-      "name": "blackbox_runtime_audit"
+      "name": "component_adversarial_audit"
     },
     {
-      "evidence": "python tools/run_blackbox_adversarial.py dist/ASET-Repository-Snapshot.zip",
+      "evidence": "python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json",
       "id": "ASET-GATE-018",
       "mandatory": true,
-      "name": "blackbox_adversarial_rejection"
+      "name": "assurance_traceability"
     },
     {
-      "evidence": "audit/FINDING_CLOSURE_MATRIX.json",
+      "evidence": "python tools/run_tlc.py --jar $TLA2TOOLS_JAR --output dist/tlc-model-check.json",
       "id": "ASET-GATE-019",
       "mandatory": true,
-      "name": "zero_open_blocking_findings"
+      "name": "tlc_formal_model_check"
     },
     {
-      "evidence": "python -m pytest -q tests/test_prefreeze_hardening.py",
+      "evidence": "python tools/blackbox_documentation_audit.py",
       "id": "ASET-GATE-020",
       "mandatory": true,
-      "name": "prefreeze_hostile_runtime_regression"
+      "name": "documentation_blackbox_audit"
     },
     {
-      "evidence": "python tools/run_runtime_adversarial.py dist/ASET-Repository-Snapshot.zip",
+      "evidence": "python tools/check_canon_compatibility.py --approved-ref <approved-ref>",
       "id": "ASET-GATE-021",
       "mandatory": true,
-      "name": "runtime_adversarial_rejection"
+      "name": "approved_candidate_canon_compatibility"
     },
     {
-      "evidence": "pyproject.toml + requirements-ci.txt + BB-030",
+      "evidence": "python -m ruff check tools tests",
       "id": "ASET-GATE-022",
       "mandatory": true,
-      "name": "exact_runtime_dependency_binding"
-    },
-    {
-      "evidence": "seed/canonical/release/RC12_FREEZE_ENTRY.json + BB-032",
-      "id": "ASET-GATE-023",
-      "mandatory": true,
-      "name": "rc12_technical_freeze_entry"
+      "name": "ruff_static_analysis"
     }
   ],
-  "profile": "ASET_SEED_RC12_BOUNDED_PRODUCTION_CANDIDATE",
-  "schema_version": 2
+  "profile": "ASET_SPECIFICATION_RC12_RELEASE_CANDIDATE",
+  "schema_version": 4
 }

@@ -1,0 +1,40 @@
+{
+  "document_type": "aset-implementation-conformance-protocol",
+  "implementation_precedence": "NONE",
+  "normative": true,
+  "observable_equivalence": [
+    "accepted",
+    "code",
+    "state_changed",
+    "postconditions",
+    "final_state_root where specified"
+  ],
+  "operations": {
+    "describe": {
+      "request_required": ["protocol", "operation"],
+      "response_required": ["protocol", "implementation", "supported_operations"]
+    },
+    "execute_case": {
+      "actual_required": ["accepted", "code", "state_changed"],
+      "request_required": ["protocol", "operation", "case"],
+      "response_required": ["protocol", "case_id", "actual", "final_state"]
+    },
+    "execute_cases": {
+      "request_required": ["protocol", "operation", "cases"],
+      "response_required": ["protocol", "results"],
+      "result_required": ["protocol", "case_id", "actual", "final_state"]
+    }
+  },
+  "protocol_id": "ASET-IMPLEMENTATION-CONFORMANCE-V1",
+  "response_schema_ref": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
+  "schema_version": 1,
+  "transport": {
+    "determinism": "Exact replay of one request against the same declared initial conditions MUST produce an identical canonical response.",
+    "framing": "one UTF-8 JSON object on stdin; one UTF-8 JSON object on stdout",
+    "network_required": false,
+    "process_exit": "zero for a well-formed response; non-zero for transport or adapter failure",
+    "session": "Adapters MUST support describe, execute_case and execute_cases. Batched execution reduces process-startup coupling but does not replace single-case execution.",
+    "timeout_policy": "The external runner MUST impose a finite timeout and classify timeout as adapter failure."
+  },
+  "verdict_authority": "The external conformance runner, not the implementation adapter, determines PASS or FAIL."
+}

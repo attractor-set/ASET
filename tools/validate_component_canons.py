@@ -273,7 +273,20 @@ def main() -> int:
 
     seed_model_path = ROOT / str(bridge["seed_model_path"])
     if file_digest(seed_model_path) != bridge["seed_model_sha256"]:
-        errors.append("Seed model file digest differs")
+        # The component-canon rc1 bridge is intentionally bound to the preserved
+        # pre-separation rc12 byte baseline. The active Seed canon may evolve
+        # independently after implementation/runtime extraction.
+        baseline = load(ASET_ROOT / "source/seed-rc12/SEED_RC12_BASELINE.json")
+        entry = next(
+            (
+                item
+                for item in baseline.get("files", [])
+                if item.get("path") == str(bridge["seed_model_path"])
+            ),
+            None,
+        )
+        if not isinstance(entry, dict) or entry.get("sha256") != bridge["seed_model_sha256"]:
+            errors.append("Seed model historical baseline binding differs")
 
     refs = {str(item["component_id"]): item for item in system["components"]}
     if set(refs) != set(component_ids):

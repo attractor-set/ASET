@@ -264,6 +264,35 @@ def validate_seed_baseline(value: dict[str, object]) -> list[str]:
     return errors
 
 
+
+def validate_canon_package(value: dict[str, object]) -> list[str]:
+    errors: list[str] = []
+    files = value.get("files", [])
+    if not isinstance(files, list) or not files:
+        return ["Canon package file inventory missing"]
+    material: list[dict[str, str]] = []
+    for item in files:
+        if not isinstance(item, dict):
+            errors.append("Canon package entry invalid")
+            continue
+        relative = str(item.get("path", ""))
+        path = ROOT / relative
+        if not path.is_file():
+            errors.append(f"Canon package missing:{relative}")
+            continue
+        observed = file_digest(path)
+        if observed != item.get("sha256"):
+            errors.append(f"Canon package digest differs:{relative}")
+        material.append({"path": relative, "sha256": observed})
+    expected = "sha256:" + __import__("hashlib").sha256(
+        json.dumps(material, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if value.get("package_digest") != expected:
+        errors.append("Canon package digest differs")
+    if value.get("implementation_precedence") != "NONE":
+        errors.append("Canon package implementation precedence differs")
+    return errors
+
 def validate_protocol_registry(value: dict[str, object]) -> list[str]:
     errors = validate_migration(value)
     assignments = value.get("assignments", {}).get("schemas", [])
@@ -286,6 +315,8 @@ def validate_subject(subject: str, value: dict[str, object]) -> list[str]:
         return validate_migration(value)
     if subject == "SEED_BASELINE":
         return validate_seed_baseline(value)
+    if subject == "CANON_PACKAGE":
+        return validate_canon_package(value)
     if subject == "PROTOCOL_REGISTRY":
         return validate_protocol_registry(value)
     return [f"unknown subject:{subject}"]

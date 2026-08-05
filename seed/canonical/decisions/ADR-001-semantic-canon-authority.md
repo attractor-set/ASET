@@ -1,6 +1,6 @@
 # ADR-001 — Semantic canon authority and language editions
 
-Status: accepted for ASET Seed 0.1-rc12 release candidate.
+Status: accepted for ASET Seed 0.1-rc12 release candidate; runtime-related wording superseded by ADR-002.
 
 ## Decision
 
@@ -8,11 +8,11 @@ Status: accepted for ASET Seed 0.1-rc12 release candidate.
 
 ## rc11 compatibility boundary
 
-ASET Seed 0.1-rc11 remains governed by its immutable release package. Rc12 preserves the rc11 wire version, semantic identity domains, exact 39 protocol schemas, 18 transition kinds, and 55-case behavior. The rc12 normative change is the complete canonical authority, explicit migration binding, multilingual generation, installable packaging, and bounded durable runtime profile.
+ASET Seed 0.1-rc11 remains governed by its immutable release package. Rc12 preserves the rc11 wire version, semantic identity domains, exact 39 protocol schemas, 18 transition kinds, and 55-case behavior. The active rc12 normative change is the complete canonical authority, explicit migration binding, multilingual generation, formal projections and implementation-neutral conformance package. The earlier embedded-runtime outcome was superseded before freeze by ADR-002.
 
 ## Conflict handling
 
-A mismatch among the canonical source, generated view, protocol profile, runtime schema copy, conformance binding, or formal projection invalidates the candidate. The fail-closed production gate must reject promotion.
+A mismatch among the canonical source, generated view, protocol profile, conformance binding, canonical package or formal projection invalidates the candidate. The fail-closed repository release gate must reject promotion.
 
 ## Hashing
 
