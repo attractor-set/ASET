@@ -32,6 +32,11 @@
       "size_bytes": 748
     },
     {
+      "path": ".github/workflows/notify-implementation-profiles.yml",
+      "sha256": "sha256:5cf68df78db1f7fa2af77d09b4154b17cbacfdc6f5a8c71862e74009ca97deab",
+      "size_bytes": 2074
+    },
+    {
       "path": ".github/workflows/production-assurance.yml",
       "sha256": "sha256:fc33bca0ab57e158f4568c1e3b508db3c7252e2d1cea6f91ab32cc474ed49da2",
       "size_bytes": 2191
@@ -108,18 +113,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:b763b56476d4292c9f59b9e1e479038d4369510a321074d453365fe25ec852cf",
-      "size_bytes": 2688
+      "sha256": "sha256:15ff7a2ac8135688fdbbd8bb94bf85556329eb401f3bc834b3b6df2b62de6d5b",
+      "size_bytes": 2764
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:a47631d3d4f8cba37915235874b510bfc7c66414992b87911d6ed8731b2f7857",
-      "size_bytes": 2102
+      "sha256": "sha256:9110e62b474ed5abffc9c73413fe4a2ae0d31616bb352aab5b05512c0d08088b",
+      "size_bytes": 2255
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:e469e886856092578252398acb5e6739cb5701959e5dcb2e37b189a936572e76",
-      "size_bytes": 3018
+      "sha256": "sha256:fa3eacb60ba296d5a739fb509a6e81cbf5adaa5f444b1ff6b21f664319b2b9ca",
+      "size_bytes": 3117
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -128,8 +133,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "sha256": "sha256:4f245c6c09bd095861b62fc7e3680d8f05cc25bada7fe7151c462ba6e4a1bfb7",
-      "size_bytes": 1249
+      "sha256": "sha256:bf073c84a53684391605322023f61c700459ec7d066b67ddc1e2cb372b520f74",
+      "size_bytes": 1342
     },
     {
       "path": "SECURITY.md",
@@ -168,8 +173,8 @@
     },
     {
       "path": "aset/components/context/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:b4515bb093db1deeeb2b8431ebf83767d517001416fd8e4c88bf820d4b0c98ec",
-      "size_bytes": 23997
+      "sha256": "sha256:3b48f34646e1cd59516c550d6e25dfc79a934474c0ec364d5d54f5af5043e3b3",
+      "size_bytes": 25047
     },
     {
       "path": "aset/components/context/canonical/conformance/binding.json",
@@ -243,8 +248,8 @@
     },
     {
       "path": "aset/components/core/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:e582e59718cc50a96b21a01a0de10ada5e12da0f97e1881189ce0ab8b9ac15bb",
-      "size_bytes": 42701
+      "sha256": "sha256:502bca50d9f67fb7756f5d788eef0d9f9808d17cd4de18ed0e42c2283d32e5a8",
+      "size_bytes": 44521
     },
     {
       "path": "aset/components/core/canonical/conformance/binding.json",
@@ -318,8 +323,8 @@
     },
     {
       "path": "aset/components/gateway/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:1552eae711bcd5aadc7a9db42219e5eb8a95ddc4f7f324d8eb3b62838096fa04",
-      "size_bytes": 15153
+      "sha256": "sha256:d7efeeab29ac9192b5b19fac61624c3ccb26d279436e8bf9a7e705daf75b3c56",
+      "size_bytes": 15783
     },
     {
       "path": "aset/components/gateway/canonical/conformance/binding.json",
@@ -393,8 +398,8 @@
     },
     {
       "path": "aset/components/master/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:4743121a5869697246dd4b2c5312a817385b7365a7766f8fc40e8e099f330de3",
-      "size_bytes": 19574
+      "sha256": "sha256:95764daf05ba36197ae6e0d2a67d39c83c6ff131e2925b788bfe83b6aa37b68f",
+      "size_bytes": 20414
     },
     {
       "path": "aset/components/master/canonical/conformance/binding.json",
@@ -468,8 +473,8 @@
     },
     {
       "path": "aset/components/memory/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:17ee3cd592dfa7f158703e44c5b8755ada97addfec92dc46afa44756f40e1636",
-      "size_bytes": 30601
+      "sha256": "sha256:8afc1b8774d5518c684a7869e3df133a56c25a9fcea90c8138e0d62120e8b682",
+      "size_bytes": 31791
     },
     {
       "path": "aset/components/memory/canonical/conformance/binding.json",
@@ -543,8 +548,8 @@
     },
     {
       "path": "aset/components/monade/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:6cdd58710983011dd1082e5ccb3a4c1ca6c2ec2e38006355f8315bf24abcda85",
-      "size_bytes": 66621
+      "sha256": "sha256:ec7c5b5d70067399f4566fcee0c527cc090a39db239049d39606d56451f50ed2",
+      "size_bytes": 69351
     },
     {
       "path": "aset/components/monade/canonical/conformance/binding.json",
@@ -618,8 +623,8 @@
     },
     {
       "path": "aset/components/protocol/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:5ec6e7776ab88e7a7e0d765645590fec09051e2428bc0e73018b334cbe942ff9",
-      "size_bytes": 34164
+      "sha256": "sha256:02f27dac74fec843de00c1039872ce922cf88bf9b8b07a82cb6fc9ddbb510993",
+      "size_bytes": 35704
     },
     {
       "path": "aset/components/protocol/canonical/conformance/binding.json",
@@ -1278,8 +1283,8 @@
     },
     {
       "path": "aset/system/canonical/assurance/invariants.json",
-      "sha256": "sha256:8710f4f3c821b9c97dc89e8e94460a88ada5866e240a71f69c047d577d5b66da",
-      "size_bytes": 5856
+      "sha256": "sha256:69855ad2db67d164704c2144de97ca546d9522ef336d7f1cc3239a32751e5aa6",
+      "size_bytes": 5955
     },
     {
       "path": "aset/system/canonical/assurance/limitations.json",
@@ -1303,8 +1308,8 @@
     },
     {
       "path": "aset/system/canonical/assurance/verification-cases.json",
-      "sha256": "sha256:c33b047ced3af18429259559faa955bedfcbbf01bbbee731180e031cc96a68fd",
-      "size_bytes": 49987
+      "sha256": "sha256:f1b9065f800e54cd6e70a94da22332354c22420dd1a1527ddf4fd8b14aba31a1",
+      "size_bytes": 51947
     },
     {
       "path": "aset/system/canonical/conformance/binding.json",
@@ -1328,8 +1333,8 @@
     },
     {
       "path": "aset/system/canonical/source/system-composition-model.json",
-      "sha256": "sha256:15d98b448eb00d5cfe9bcee40bf9e57760884db8140506311c0fa1d9e8026c18",
-      "size_bytes": 34367
+      "sha256": "sha256:a29c1fbfb9f2795b4a10b0a07386a29c988267d277bf8286c342eaa1023114d0",
+      "size_bytes": 34408
     },
     {
       "path": "audit/FINDING_CLOSURE_MATRIX.json",
@@ -1363,8 +1368,8 @@
     },
     {
       "path": "audit/REFACTORING_LOG.md",
-      "sha256": "sha256:f7030139444443b865af2b406c2737b8c114b9d86173f1b694d1baa63bac95d8",
-      "size_bytes": 1647
+      "sha256": "sha256:1957c107f0fc9c71de5bdbd37b96c071742c854e52529ee1bce91b39a920f778",
+      "size_bytes": 2371
     },
     {
       "path": "audit/components/PDCA-13-BLACKBOX.json",
@@ -1563,7 +1568,7 @@
     },
     {
       "path": "docs/generated/en/ASET_System_0.1-rc1.md",
-      "sha256": "sha256:e7add82ff3ffe21206f34538ca9c6e0a74f4761a29a282233af9a8103ff4c95e",
+      "sha256": "sha256:420b7e0b3bed9afc4f43e8fbdca8f0514190925ecc5dbcc275be6a0deda30522",
       "size_bytes": 3573
     },
     {
@@ -1613,7 +1618,7 @@
     },
     {
       "path": "docs/generated/pt-BR/ASET_System_0.1-rc1.md",
-      "sha256": "sha256:7a987efa15ab795b403795ad80989dc810358deddab62350b6cffc515bcb31cf",
+      "sha256": "sha256:f0829c3d8b568ec1ce94d23d1a48a7209343ee49e8645e45a058eaaeb5dd501c",
       "size_bytes": 3767
     },
     {
@@ -1663,7 +1668,7 @@
     },
     {
       "path": "docs/generated/ru/ASET_System_0.1-rc1.md",
-      "sha256": "sha256:46e4d14c444a02f842dc72a35db1f7eb11c4ce3ae62751ea674511707fc3d92b",
+      "sha256": "sha256:59e44b1cec9afd1836ddd18154dafff045181061a381d2c1c319ea0b4678ddc5",
       "size_bytes": 4560
     },
     {
@@ -3088,8 +3093,8 @@
     },
     {
       "path": "tests/test_component_canons.py",
-      "sha256": "sha256:982a857662e1d967a143dd773d7dd62e74bd9d614c9aef8b146ae692f51d12c3",
-      "size_bytes": 5334
+      "sha256": "sha256:9be85aaafa7f65b69342e69a8104fb0fc85bda35cbe9e0a8d596baadc7c4dc10",
+      "size_bytes": 7106
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
@@ -3267,7 +3272,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 653,
+  "files_count": 654,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Specification-Candidate",
   "repository_root": "ASET"

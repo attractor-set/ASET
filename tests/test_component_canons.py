@@ -150,3 +150,49 @@ def test_component_canons_are_discoverable_from_root_docs() -> None:
     for relative in ("README.md", "README.ru.md", "README.pt-BR.md", "ROADMAP.md"):
         text = (ROOT / relative).read_text(encoding="utf-8")
         assert "(aset/README.md)" in text
+
+
+def test_reference_implementation_is_linked_without_precedence() -> None:
+    url = "https://github.com/attractor-set/aset-python-sqlite"
+    for relative in ("README.md", "README.ru.md", "README.pt-BR.md", "ROADMAP.md"):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        assert url in text
+    assert "no semantic precedence" in (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "не имеет семантического приоритета" in (
+        ROOT / "README.ru.md"
+    ).read_text(encoding="utf-8")
+    assert "não possui precedência semântica" in (
+        ROOT / "README.pt-BR.md"
+    ).read_text(encoding="utf-8")
+
+
+def test_active_component_assurance_environment_is_implementation_neutral() -> None:
+    system = load("aset/system/canonical/source/system-composition-model.json")
+    environment_invariant = next(
+        item for item in system["invariant_assignments"] if item["id"] == "INV-ENV-001"
+    )
+    assert "Python" not in environment_invariant["statement"]
+    assert "assurance-toolchain" in environment_invariant["statement"]
+
+    for key in (
+        "context",
+        "core",
+        "gateway",
+        "master",
+        "memory",
+        "monade",
+        "protocol",
+        "system",
+    ):
+        base = (
+            "aset/system/canonical"
+            if key == "system"
+            else f"aset/components/{key}/canonical"
+        )
+        verification = load(f"{base}/assurance/verification-cases.json")
+        for case in verification["cases"]:
+            environment = case["Environment"]
+            assert "Python 3.11+" not in environment
+            assert "SQLite" not in environment
+            assert "PostgreSQL" not in environment
+            assert "Rust" not in environment

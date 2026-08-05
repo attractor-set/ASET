@@ -11,7 +11,7 @@
 
 ## Independent implementation profiles
 
-- publish the minimal educational `aset-python-sqlite` profile in a separate repository;
+- maintain the non-normative [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) reference implementation and educational profile in its separate repository;
 - add independent implementations in other languages and storage technologies;
 - establish cross-implementation differential conformance;
 - keep durability, consensus, confidential computation and deployment guarantees profile-specific.

@@ -26,7 +26,7 @@ Storage, durability, concurrency, recovery, consensus, networking and key custod
 
 ## Implementations
 
-Implementations are maintained independently from this specification. A minimal non-normative Python + SQLite educational profile is intended for the separate `aset-python-sqlite` repository. Its use does not make Python or SQLite part of ASET.
+Implementations are maintained independently from this specification. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) is the non-normative Python + SQLite reference implementation and educational profile. It has no semantic precedence, and its use does not make Python or SQLite part of ASET.
 
 ## Release lines
 

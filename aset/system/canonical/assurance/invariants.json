@@ -1,5 +1,5 @@
 {
-  "canonical_digest": "sha256:eaa98b64fd5fad9ff3547a6c856d1412561c516930307119e230e3fb1682ab11",
+  "canonical_digest": "sha256:492f34588b664b22c2f2b78fd5368860a90f0a30864351ac5ed10d637a4464f7",
   "component_id": "aset.system",
   "component_version": "0.1-rc1",
   "document_type": "aset-component-invariants",
@@ -59,9 +59,10 @@
       "target": "system"
     },
     {
+      "derived_from": "INV-ENV-001@ASET-1.5-rc11",
       "id": "INV-ENV-001",
-      "origin": "RC11_SOURCE",
-      "statement": "Conformance and generation execute only under the exact externally committed Python dependency closure and native renderer/toolchain fingerprint; environment drift fails before generation or assurance execution.",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Conformance and generation execute only under an exact externally committed assurance-toolchain and dependency closure, including native renderer/toolchain fingerprints where applicable; environment drift fails before generation or assurance execution.",
       "target": "system"
     },
     {

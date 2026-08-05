@@ -1,7 +1,7 @@
 # ASET System Composition 0.1-rc1
 
 - `status`: `COMPONENT_COMPOSITION_CANDIDATE`
-- `canonical_digest`: `sha256:6dedadead02549026132d9f622d3f13c72f7d3292b7bee316ef2fd15f7dc1a97`
+- `canonical_digest`: `sha256:d7a0120c924adef6b6839339ed85db82e153b8fd3e132425f3d236023b8a0dc4`
 - `seed_version`: `0.1-rc12`
 
 ## ASET Seed role

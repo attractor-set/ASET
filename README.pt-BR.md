@@ -22,7 +22,7 @@ Armazenamento, durabilidade, concorrência, recuperação, consenso, rede e cust
 
 ## Implementações
 
-As implementações são mantidas separadamente da especificação. Um perfil educacional mínimo e não normativo em Python + SQLite é destinado ao repositório separado `aset-python-sqlite`.
+As implementações são mantidas separadamente da especificação. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) é a implementação de referência não normativa e o perfil educacional em Python + SQLite. Ela não possui precedência semântica, e Python e SQLite não passam a fazer parte da definição do ASET.
 
 ## Licença e direitos
 
