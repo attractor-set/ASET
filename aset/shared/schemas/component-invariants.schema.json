@@ -1,0 +1,80 @@
+{
+  "$id": "urn:aset:schema:aset-component-invariants:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "component_id": {
+      "pattern": "^(aset\\.[a-z][a-z0-9.-]+|aset.system)$",
+      "type": "string"
+    },
+    "component_version": {
+      "const": "0.1-rc1"
+    },
+    "document_type": {
+      "const": "aset-component-invariants"
+    },
+    "invariants": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "derived_from": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "origin": {
+            "enum": [
+              "RC11_SOURCE",
+              "COMPONENT_BOUNDARY"
+            ]
+          },
+          "statement": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target": {
+            "enum": [
+              "context",
+              "core",
+              "gateway",
+              "master",
+              "memory",
+              "monade",
+              "protocol",
+              "system"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "statement",
+          "origin"
+        ],
+        "type": "object"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_version": {
+      "const": "1.5-rc11"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "component_id",
+    "component_version",
+    "source_version",
+    "invariants",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

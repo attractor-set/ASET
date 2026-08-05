@@ -1,0 +1,73 @@
+{
+  "$id": "urn:aset:schema:aset-component-threat-model:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "component_id": {
+      "pattern": "^(aset\\.[a-z][a-z0-9.-]+|aset.system)$",
+      "type": "string"
+    },
+    "component_version": {
+      "const": "0.1-rc1"
+    },
+    "document_type": {
+      "const": "aset-component-threat-model"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_version": {
+      "const": "1.5-rc11"
+    },
+    "threats": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "attack": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          },
+          "mitigation": {
+            "type": "string"
+          },
+          "status": {
+            "const": "MITIGATED_BY_SPECIFICATION"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "attack",
+          "impact",
+          "mitigation",
+          "status"
+        ],
+        "type": "object"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "component_id",
+    "component_version",
+    "source_version",
+    "threats",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

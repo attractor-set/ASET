@@ -1,0 +1,186 @@
+{
+  "checks": [
+    {
+      "details": "ok",
+      "id": "CB-001",
+      "name": "safe deterministic snapshot",
+      "status": "PASS"
+    },
+    {
+      "details": "entries=593; mismatches=[]",
+      "id": "CB-002",
+      "name": "exact repository manifest",
+      "status": "PASS"
+    },
+    {
+      "details": "documents=118; errors=[]",
+      "id": "CB-003",
+      "name": "strict component JSON corpus",
+      "status": "PASS"
+    },
+    {
+      "details": "model=sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94; spec=sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6",
+      "id": "CB-004",
+      "name": "exact rc11 source provenance",
+      "status": "PASS"
+    },
+    {
+      "details": "components=7; errors=[]",
+      "id": "CB-005",
+      "name": "component schemas and canonical digests",
+      "status": "PASS"
+    },
+    {
+      "details": "requirements=177/177; invariants=57/57; artifacts=52/52; gates=11/11; schemas=57/57; targets={'context': 24, 'core': 50, 'gateway': 11, 'master': 16, 'memory': 24, 'monade': 79, 'protocol': 102, 'system': 48}",
+      "id": "CB-006",
+      "name": "lossless rc11 partition",
+      "status": "PASS"
+    },
+    {
+      "details": "baseline_files=303; drift=[]",
+      "id": "CB-007",
+      "name": "Seed RC12 exact-byte non-regression",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-008",
+      "name": "Seed RC12 semantic bridge",
+      "status": "PASS"
+    },
+    {
+      "details": "docs=24/24; semantic_errors=[]",
+      "id": "CB-009",
+      "name": "generated multilingual and semantic views",
+      "status": "PASS"
+    },
+    {
+      "details": "complete",
+      "id": "CB-010",
+      "name": "component conformance suite",
+      "status": "PASS"
+    },
+    {
+      "details": "complete",
+      "id": "CB-011",
+      "name": "bounded component formal models",
+      "status": "PASS"
+    },
+    {
+      "details": "markers=(True, True, True, True, True)",
+      "id": "CB-012",
+      "name": "repository gate integration",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-013",
+      "name": "module ownership and negative boundaries",
+      "status": "PASS"
+    },
+    {
+      "details": "components={'aset.context': '0.1-rc1', 'aset.core': '0.1-rc1', 'aset.model-gateway': '0.1-rc1', 'aset.master': '0.1-rc1', 'aset.memory': '0.1-rc1', 'aset.monade': '0.1-rc1', 'aset.protocol': '0.1-rc1'}; seed=0.1-rc12",
+      "id": "CB-014",
+      "name": "independent version compatibility",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-015",
+      "name": "assurance claims remain bounded",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-016",
+      "name": "closed component meta-schemas",
+      "status": "PASS"
+    },
+    {
+      "details": "verdict=PASS; cases=26/26",
+      "id": "CB-017",
+      "name": "component conformance results",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-018",
+      "name": "independent bounded formal evidence",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-019",
+      "name": "expectation and execution separation",
+      "status": "PASS"
+    },
+    {
+      "details": "errors=[]",
+      "id": "CB-020",
+      "name": "exact source registry and schema evidence",
+      "status": "PASS"
+    },
+    {
+      "details": "duplicates={}",
+      "id": "CB-021",
+      "name": "exclusive primitive ownership",
+      "status": "PASS"
+    },
+    {
+      "details": "non-distinct=[]",
+      "id": "CB-022",
+      "name": "distinct multilingual operation semantics",
+      "status": "PASS"
+    },
+    {
+      "details": "missing=['aset/components/context/canonical/assurance/requirements.json', 'aset/components/context/canonical/assurance/verification-cases.json', 'aset/components/context/canonical/assurance/traceability.json', 'aset/components/context/canonical/assurance/invariants.json', 'aset/components/context/canonical/assurance/limitations.json', 'aset/components/context/canonical/assurance/threat-model.json', 'aset/components/context/canonical/protocol/profile.json', 'aset/components/context/canonical/conformance/binding.json', 'aset/components/core/canonical/assurance/requirements.json', 'aset/components/core/canonical/assurance/verification-cases.json', 'aset/components/core/canonical/assurance/traceability.json', 'aset/components/core/canonical/assurance/invariants.json', 'aset/components/core/canonical/assurance/limitations.json', 'aset/components/core/canonical/assurance/threat-model.json', 'aset/components/core/canonical/protocol/profile.json', 'aset/components/core/canonical/conformance/binding.json', 'aset/components/gateway/canonical/assurance/requirements.json', 'aset/components/gateway/canonical/assurance/verification-cases.json', 'aset/components/gateway/canonical/assurance/traceability.json', 'aset/components/gateway/canonical/assurance/invariants.json', 'aset/components/gateway/canonical/assurance/limitations.json', 'aset/components/gateway/canonical/assurance/threat-model.json', 'aset/components/gateway/canonical/protocol/profile.json', 'aset/components/gateway/canonical/conformance/binding.json', 'aset/components/master/canonical/assurance/requirements.json', 'aset/components/master/canonical/assurance/verification-cases.json', 'aset/components/master/canonical/assurance/traceability.json', 'aset/components/master/canonical/assurance/invariants.json', 'aset/components/master/canonical/assurance/limitations.json', 'aset/components/master/canonical/assurance/threat-model.json', 'aset/components/master/canonical/protocol/profile.json', 'aset/components/master/canonical/conformance/binding.json', 'aset/components/memory/canonical/assurance/requirements.json', 'aset/components/memory/canonical/assurance/verification-cases.json', 'aset/components/memory/canonical/assurance/traceability.json', 'aset/components/memory/canonical/assurance/invariants.json', 'aset/components/memory/canonical/assurance/limitations.json', 'aset/components/memory/canonical/assurance/threat-model.json', 'aset/components/memory/canonical/protocol/profile.json', 'aset/components/memory/canonical/conformance/binding.json', 'aset/components/monade/canonical/assurance/requirements.json', 'aset/components/monade/canonical/assurance/verification-cases.json', 'aset/components/monade/canonical/assurance/traceability.json', 'aset/components/monade/canonical/assurance/invariants.json', 'aset/components/monade/canonical/assurance/limitations.json', 'aset/components/monade/canonical/assurance/threat-model.json', 'aset/components/monade/canonical/protocol/profile.json', 'aset/components/monade/canonical/conformance/binding.json', 'aset/components/protocol/canonical/assurance/requirements.json', 'aset/components/protocol/canonical/assurance/verification-cases.json', 'aset/components/protocol/canonical/assurance/traceability.json', 'aset/components/protocol/canonical/assurance/invariants.json', 'aset/components/protocol/canonical/assurance/limitations.json', 'aset/components/protocol/canonical/assurance/threat-model.json', 'aset/components/protocol/canonical/protocol/profile.json', 'aset/components/protocol/canonical/conformance/binding.json', 'aset/system/canonical/assurance/requirements.json', 'aset/system/canonical/assurance/verification-cases.json', 'aset/system/canonical/assurance/traceability.json', 'aset/system/canonical/assurance/invariants.json', 'aset/system/canonical/assurance/limitations.json', 'aset/system/canonical/assurance/threat-model.json', 'aset/system/canonical/protocol/profile.json', 'aset/system/canonical/conformance/binding.json']",
+      "id": "CB-023",
+      "name": "self-contained component assurance packages",
+      "status": "FAIL"
+    },
+    {
+      "details": "totals=0/0/0; errors=[\"'aset/components/context/canonical/assurance/requirements.json'\", 'totals=0/0/0']",
+      "id": "CB-024",
+      "name": "local requirement-verification-traceability identity",
+      "status": "FAIL"
+    },
+    {
+      "details": "errors=['context:canon_assets absent', 'core:canon_assets absent', 'gateway:canon_assets absent', 'master:canon_assets absent', 'memory:canon_assets absent', 'monade:canon_assets absent', 'protocol:canon_assets absent', 'system:canon_assets absent']",
+      "id": "CB-025",
+      "name": "canonical asset closure",
+      "status": "FAIL"
+    }
+  ],
+  "checks_failed": 3,
+  "checks_passed": 22,
+  "checks_total": 25,
+  "document_type": "aset-component-canons-blackbox-audit",
+  "findings": [
+    {
+      "id": "FINDING-CB-023",
+      "severity": "MEDIUM",
+      "source_check": "CB-023",
+      "statement": "missing=['aset/components/context/canonical/assurance/requirements.json', 'aset/components/context/canonical/assurance/verification-cases.json', 'aset/components/context/canonical/assurance/traceability.json', 'aset/components/context/canonical/assurance/invariants.json', 'aset/components/context/canonical/assurance/limitations.json', 'aset/components/context/canonical/assurance/threat-model.json', 'aset/components/context/canonical/protocol/profile.json', 'aset/components/context/canonical/conformance/binding.json', 'aset/components/core/canonical/assurance/requirements.json', 'aset/components/core/canonical/assurance/verification-cases.json', 'aset/components/core/canonical/assurance/traceability.json', 'aset/components/core/canonical/assurance/invariants.json', 'aset/components/core/canonical/assurance/limitations.json', 'aset/components/core/canonical/assurance/threat-model.json', 'aset/components/core/canonical/protocol/profile.json', 'aset/components/core/canonical/conformance/binding.json', 'aset/components/gateway/canonical/assurance/requirements.json', 'aset/components/gateway/canonical/assurance/verification-cases.json', 'aset/components/gateway/canonical/assurance/traceability.json', 'aset/components/gateway/canonical/assurance/invariants.json', 'aset/components/gateway/canonical/assurance/limitations.json', 'aset/components/gateway/canonical/assurance/threat-model.json', 'aset/components/gateway/canonical/protocol/profile.json', 'aset/components/gateway/canonical/conformance/binding.json', 'aset/components/master/canonical/assurance/requirements.json', 'aset/components/master/canonical/assurance/verification-cases.json', 'aset/components/master/canonical/assurance/traceability.json', 'aset/components/master/canonical/assurance/invariants.json', 'aset/components/master/canonical/assurance/limitations.json', 'aset/components/master/canonical/assurance/threat-model.json', 'aset/components/master/canonical/protocol/profile.json', 'aset/components/master/canonical/conformance/binding.json', 'aset/components/memory/canonical/assurance/requirements.json', 'aset/components/memory/canonical/assurance/verification-cases.json', 'aset/components/memory/canonical/assurance/traceability.json', 'aset/components/memory/canonical/assurance/invariants.json', 'aset/components/memory/canonical/assurance/limitations.json', 'aset/components/memory/canonical/assurance/threat-model.json', 'aset/components/memory/canonical/protocol/profile.json', 'aset/components/memory/canonical/conformance/binding.json', 'aset/components/monade/canonical/assurance/requirements.json', 'aset/components/monade/canonical/assurance/verification-cases.json', 'aset/components/monade/canonical/assurance/traceability.json', 'aset/components/monade/canonical/assurance/invariants.json', 'aset/components/monade/canonical/assurance/limitations.json', 'aset/components/monade/canonical/assurance/threat-model.json', 'aset/components/monade/canonical/protocol/profile.json', 'aset/components/monade/canonical/conformance/binding.json', 'aset/components/protocol/canonical/assurance/requirements.json', 'aset/components/protocol/canonical/assurance/verification-cases.json', 'aset/components/protocol/canonical/assurance/traceability.json', 'aset/components/protocol/canonical/assurance/invariants.json', 'aset/components/protocol/canonical/assurance/limitations.json', 'aset/components/protocol/canonical/assurance/threat-model.json', 'aset/components/protocol/canonical/protocol/profile.json', 'aset/components/protocol/canonical/conformance/binding.json', 'aset/system/canonical/assurance/requirements.json', 'aset/system/canonical/assurance/verification-cases.json', 'aset/system/canonical/assurance/traceability.json', 'aset/system/canonical/assurance/invariants.json', 'aset/system/canonical/assurance/limitations.json', 'aset/system/canonical/assurance/threat-model.json', 'aset/system/canonical/protocol/profile.json', 'aset/system/canonical/conformance/binding.json']",
+      "status": "OPEN"
+    },
+    {
+      "id": "FINDING-CB-024",
+      "severity": "MEDIUM",
+      "source_check": "CB-024",
+      "statement": "totals=0/0/0; errors=[\"'aset/components/context/canonical/assurance/requirements.json'\", 'totals=0/0/0']",
+      "status": "OPEN"
+    },
+    {
+      "id": "FINDING-CB-025",
+      "severity": "MEDIUM",
+      "source_check": "CB-025",
+      "statement": "errors=['context:canon_assets absent', 'core:canon_assets absent', 'gateway:canon_assets absent', 'master:canon_assets absent', 'memory:canon_assets absent', 'monade:canon_assets absent', 'protocol:canon_assets absent', 'system:canon_assets absent']",
+      "status": "OPEN"
+    }
+  ],
+  "method": "standalone ZIP/JSON/Schema/RDF/TBX inspection; no imports from repository tools",
+  "schema_version": 1,
+  "snapshot": "dist/ASET-Repository-Snapshot.zip",
+  "snapshot_sha256": "sha256:de55bca3305d0ff46ec28391763e87055917f22a4ea968b6f9a6bf9944caddec",
+  "verdict": "FAIL"
+}

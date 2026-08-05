@@ -1,0 +1,22 @@
+{
+  "canonical_digest": "sha256:3cd166370d07ec361cc1e02240e8d8fb0d13dd4fb6570372a5f012b6a9c2bf2a",
+  "component_id": "aset.model-gateway",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-limitations",
+  "limitations": [
+    {
+      "id": "GATEWAY-LIM-001",
+      "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+      "severity": "HIGH",
+      "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+    },
+    {
+      "id": "GATEWAY-LIM-002",
+      "required_evidence": "External exact-byte audit of the component release.",
+      "severity": "MEDIUM",
+      "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

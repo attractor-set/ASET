@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:master-context-content:1.5-rc8",
+  "title": "master context content",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "goal_ref",
+    "plan_revision_ref",
+    "expected_change_refs"
+  ],
+  "properties": {
+    "goal_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "plan_revision_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "expected_change_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    },
+    "alternative_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    }
+  }
+}

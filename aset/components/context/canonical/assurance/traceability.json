@@ -1,0 +1,175 @@
+{
+  "canonical_digest": "sha256:af52210d57b8d5d662267701ad93aa98a39909801631ea46489545faad3234d6",
+  "component_id": "aset.context",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-traceability",
+  "links": [
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-001",
+      "EvidenceLocator": "evidence/CTX-001/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-001"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-002",
+      "EvidenceLocator": "evidence/CTX-002/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-002"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-003",
+      "EvidenceLocator": "evidence/CTX-003/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-003"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-004",
+      "EvidenceLocator": "evidence/CTX-004/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-004"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-005",
+      "EvidenceLocator": "evidence/CTX-005/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-020",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-008",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-005"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-006",
+      "EvidenceLocator": "evidence/CTX-006/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-020",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-008",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-006"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-007",
+      "EvidenceLocator": "evidence/CTX-007/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-019",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-006",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-007"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-008",
+      "EvidenceLocator": "evidence/CTX-008/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-008"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-009",
+      "EvidenceLocator": "evidence/CTX-009/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-009"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-010",
+      "EvidenceLocator": "evidence/CTX-010/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-020",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-008",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-010"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-011",
+      "EvidenceLocator": "evidence/CTX-011/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-004",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-011"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-012",
+      "EvidenceLocator": "evidence/CTX-012/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-013",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-014",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-012"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-013",
+      "EvidenceLocator": "evidence/CTX-013/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-014",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-017",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-013"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-014",
+      "EvidenceLocator": "evidence/CTX-014/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-019",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-019",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-014"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-034;ADR-039;ADR-040",
+      "DerivedRequirementID": "CTX-015",
+      "EvidenceLocator": "evidence/CTX-015/",
+      "ModelElementRefs": "ART-CTX-COMP;ART-CTX-MANIFEST;INV-CTX-001;INV-CTX-003",
+      "NeedID": "NEED-021",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-CTX-015"
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

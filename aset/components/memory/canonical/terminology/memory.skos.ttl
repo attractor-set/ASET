@@ -1,0 +1,61 @@
+@prefix aset: <https://w3id.org/aset/component/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+aset:aset_memoryScheme a skos:ConceptScheme ;
+    skos:prefLabel "aset.memory terminology"@en .
+
+aset:ContextProjection a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "ContextProjection" ;
+    skos:prefLabel "ContextProjection"@ru ;
+    skos:prefLabel "ContextProjection"@en ;
+    skos:prefLabel "ContextProjection"@pt-BR ;
+    skos:definition "Normative concept owned by aset.memory."@en .
+
+aset:MemoryCandidate a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "MemoryCandidate" ;
+    skos:prefLabel "MemoryCandidate"@ru ;
+    skos:prefLabel "MemoryCandidate"@en ;
+    skos:prefLabel "MemoryCandidate"@pt-BR ;
+    skos:definition "Normative concept owned by aset.memory."@en .
+
+aset:MemoryItem a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "MemoryItem" ;
+    skos:prefLabel "MemoryItem"@ru ;
+    skos:prefLabel "MemoryItem"@en ;
+    skos:prefLabel "MemoryItem"@pt-BR ;
+    skos:definition "Normative concept owned by aset.memory."@en .
+
+aset:MemoryReceipt a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "MemoryReceipt" ;
+    skos:prefLabel "MemoryReceipt"@ru ;
+    skos:prefLabel "MemoryReceipt"@en ;
+    skos:prefLabel "MemoryReceipt"@pt-BR ;
+    skos:definition "Normative concept owned by aset.memory."@en .
+
+aset:RawEvent a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "RawEvent" ;
+    skos:prefLabel "RawEvent"@ru ;
+    skos:prefLabel "RawEvent"@en ;
+    skos:prefLabel "RawEvent"@pt-BR ;
+    skos:definition "Normative concept owned by aset.memory."@en .
+
+aset:MEM_PROJECT a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "MEM-PROJECT" ;
+    skos:prefLabel "ProjectMemory"@ru ;
+    skos:prefLabel "ProjectMemory"@en ;
+    skos:prefLabel "ProjectMemory"@pt-BR ;
+    skos:definition "Produce a scoped provenance-preserving memory projection without promoting epistemic status."@en .
+
+aset:MEM_MUTATE a skos:Concept ;
+    skos:inScheme aset:aset_memoryScheme ;
+    skos:notation "MEM-MUTATE" ;
+    skos:prefLabel "MutateMemory"@ru ;
+    skos:prefLabel "MutateMemory"@en ;
+    skos:prefLabel "MutateMemory"@pt-BR ;
+    skos:definition "Apply an authorized memory lifecycle mutation and emit a receipt."@en .

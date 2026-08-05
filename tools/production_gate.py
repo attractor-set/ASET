@@ -29,6 +29,8 @@ COMMANDS = [
     [sys.executable, "tools/run_rc12_coverage.py"],
     [sys.executable, "tools/rebuild_manifest.py", "--check"],
     [sys.executable, "tools/validate_repository.py"],
+    [sys.executable, "tools/run_component_conformance.py", "--check"],
+    [sys.executable, "tools/model_check_components.py", "--check"],
     [sys.executable, "-m", "pytest", "-q"],
     [sys.executable, "-m", "ruff", "check", "tools", "tests", "src/aset_seed"],
     [
@@ -44,6 +46,22 @@ COMMANDS = [
     ],
     [sys.executable, "tools/verify_wheel.py"],
     [sys.executable, "tools/build_release.py"],
+    [
+        sys.executable,
+        "tools/blackbox_component_audit.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output-json",
+        "dist/blackbox-component-audit.json",
+        "--output-md",
+        "dist/blackbox-component-audit.md",
+    ],
+    [
+        sys.executable,
+        "tools/run_component_blackbox_adversarial.py",
+        "dist/ASET-Repository-Snapshot.zip",
+        "--output",
+        "dist/component-blackbox-adversarial-results.json",
+    ],
     [
         sys.executable,
         "tools/blackbox_documentation_audit.py",

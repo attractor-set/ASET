@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:authority-context-content:1.5-rc8",
+  "title": "authority context content",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "authority_epoch",
+    "policy_set_digest",
+    "resolution_refs",
+    "permit_refs",
+    "crossing_receipt_refs"
+  ],
+  "properties": {
+    "authority_epoch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "policy_set_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "resolution_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    },
+    "permit_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    },
+    "crossing_receipt_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    }
+  }
+}

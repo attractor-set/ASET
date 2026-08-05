@@ -1,0 +1,96 @@
+{
+  "$id": "urn:aset:schema:component-formal-results:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "aset-component-bounded-model-check-results"
+    },
+    "method": {
+      "const": "BOUNDED_EXHAUSTIVE_PYTHON_PROJECTION"
+    },
+    "models": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "failures": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "string"
+          },
+          "invariants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "states": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "transitions": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "verdict": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "states",
+          "transitions",
+          "invariants",
+          "failures",
+          "verdict"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "models_failed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "models_passed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "models_total": {
+      "const": 8
+    },
+    "profile": {
+      "const": "0.1-rc1"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "profile",
+    "method",
+    "models_total",
+    "models_passed",
+    "models_failed",
+    "verdict",
+    "models"
+  ],
+  "type": "object"
+}

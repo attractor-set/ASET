@@ -1,0 +1,69 @@
+{
+  "$id": "urn:aset:schema:aset-component-limitations:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "component_id": {
+      "pattern": "^(aset\\.[a-z][a-z0-9.-]+|aset.system)$",
+      "type": "string"
+    },
+    "component_version": {
+      "const": "0.1-rc1"
+    },
+    "document_type": {
+      "const": "aset-component-limitations"
+    },
+    "limitations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "required_evidence": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "statement": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "severity",
+          "statement",
+          "required_evidence"
+        ],
+        "type": "object"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_version": {
+      "const": "1.5-rc11"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "component_id",
+    "component_version",
+    "source_version",
+    "limitations",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

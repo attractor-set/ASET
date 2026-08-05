@@ -1,0 +1,50 @@
+{
+  "$id": "urn:aset:schema:component-conformance-binding:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "applicable_case_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "component_id": {
+      "pattern": "^(aset\\.[a-z][a-z0-9.-]+|aset.system)$",
+      "type": "string"
+    },
+    "component_version": {
+      "const": "0.1-rc1"
+    },
+    "document_type": {
+      "const": "aset-component-conformance-binding"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "shared_profile": {
+      "const": "aset/shared/conformance/component-conformance-profile.json"
+    },
+    "shared_profile_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "component_id",
+    "component_version",
+    "shared_profile",
+    "shared_profile_digest",
+    "applicable_case_ids",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

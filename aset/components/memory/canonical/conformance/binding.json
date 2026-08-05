@@ -1,0 +1,22 @@
+{
+  "applicable_case_ids": [
+    "NEG-COMP-004",
+    "NEG-COMP-006",
+    "NEG-COMP-007",
+    "NEG-COMP-008",
+    "NEG-COMP-009",
+    "NEG-COMP-012",
+    "POS-COMP-005",
+    "POS-COMP-009",
+    "POS-COMP-010",
+    "POS-COMP-011",
+    "POS-COMP-012"
+  ],
+  "canonical_digest": "sha256:227fc72d6c969025a4d06fd152ec084602eaaa146179c016f3215abb5d78a206",
+  "component_id": "aset.memory",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-conformance-binding",
+  "schema_version": 1,
+  "shared_profile": "aset/shared/conformance/component-conformance-profile.json",
+  "shared_profile_digest": "sha256:ae07dd1687c361f59505b126b87d07dac81eaeb8ae7b1f2b7db676bff75ce979"
+}

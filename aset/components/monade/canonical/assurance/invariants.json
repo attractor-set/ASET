@@ -1,0 +1,67 @@
+{
+  "canonical_digest": "sha256:af80c3b96c453174f1ed96066b33dc959d839d189df5e5eca7caa633e9066c96",
+  "component_id": "aset.monade",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-ACC-001",
+      "origin": "RC11_SOURCE",
+      "statement": "ACCEPTED requires VERIFIED_SUCCESS, COMPLIANT, evidence and no unresolved claims."
+    },
+    {
+      "id": "INV-ACC-002",
+      "origin": "RC11_SOURCE",
+      "statement": "EFFECT_UNKNOWN can only produce EVIDENCE_INSUFFICIENT or MANUAL_REVIEW_REQUIRED with UNDETERMINED normative status."
+    },
+    {
+      "id": "INV-EFFECT-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Gate crossing не доказывает dispatch, external effect, verification или acceptance."
+    },
+    {
+      "id": "INV-EFFECT-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Retry разрешён только при NO_EFFECT или доказанной идемпотентности."
+    },
+    {
+      "id": "INV-MONADE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Execution не создаёт AcceptanceDecision; Acceptance не выполняет primary effect."
+    },
+    {
+      "id": "INV-MONADE-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Retry, verification probe и compensation имеют отдельные documents, gates и Permits."
+    },
+    {
+      "id": "INV-PROMPT-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Prompt Compiler детерминирован и не повышает epistemic status."
+    },
+    {
+      "id": "INV-PROMPT-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Provider prompt/cache не является источником истины."
+    },
+    {
+      "id": "INV-PROMPT-003",
+      "origin": "RC11_SOURCE",
+      "statement": "PromptManifest binds the exact compiler-input projection and canonical messages; Model Gateway separately binds exact provider request bytes."
+    },
+    {
+      "derived_from": "INV-MONADE-001",
+      "id": "MON-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Execution and Acceptance remain separate responsibilities."
+    },
+    {
+      "derived_from": "INV-EFFECT-001",
+      "id": "MON-BND-002",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "An execution attempt is not a recognized Outcome."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

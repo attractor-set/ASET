@@ -1,0 +1,16 @@
+@prefix aset: <https://w3id.org/aset/component/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+aset:Component a rdfs:Class .
+aset:Operation a rdfs:Class .
+aset:owns a rdf:Property .
+aset:mapsToSeed a rdf:Property .
+
+aset:aset_model_gateway a aset:Component ;
+    rdfs:label "aset.model-gateway" ;
+    aset:owns aset:ModelProfile, aset:ProviderAdapter, aset:RenderedModelRequest, aset:UsageReceipt .
+
+aset:GW_RENDER a aset:Operation ;
+    rdfs:label "RenderProviderRequest" ;
+    aset:mapsToSeed "none" .

@@ -36,3 +36,13 @@ python tools/production_gate.py
 - [Русский](README.ru.md)
 - English
 - [Português do Brasil](README.pt-BR.md)
+
+## Full ASET component canons
+
+The full ASET 1.5-rc11 machine specification is preserved as exact source evidence and decomposed into independently versioned candidate canons for System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol. The component line is `0.1-rc1` and is explicitly bound to ASET Seed `0.1-rc12`.
+
+- Component canon index: [`aset/README.md`](aset/README.md)
+- System composition: [`aset/system/`](aset/system/)
+- Seed compatibility bridge: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
+
+The decomposition preserves the rc11 inventory exactly: 177 requirements, 57 invariants, 52 artifacts, 11 gates and 57 schemas. It has 26 component conformance cases and eight bounded formal projections. These are specification-candidate claims only; independent implementation and production conformance are not claimed.

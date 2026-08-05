@@ -1,0 +1,64 @@
+{
+  "canonical_digest": "sha256:461e0f3594d043ea5748f1bbb2ab14148103f4699854d07f3bc231aaae4159be",
+  "cases": [
+    {
+      "id": "NEG-COMP-001",
+      "path": "aset/shared/conformance/negative/NEG-COMP-001.json"
+    },
+    {
+      "id": "NEG-COMP-002",
+      "path": "aset/shared/conformance/negative/NEG-COMP-002.json"
+    },
+    {
+      "id": "NEG-COMP-003",
+      "path": "aset/shared/conformance/negative/NEG-COMP-003.json"
+    },
+    {
+      "id": "NEG-COMP-004",
+      "path": "aset/shared/conformance/negative/NEG-COMP-004.json"
+    },
+    {
+      "id": "NEG-COMP-005",
+      "path": "aset/shared/conformance/negative/NEG-COMP-005.json"
+    },
+    {
+      "id": "NEG-COMP-006",
+      "path": "aset/shared/conformance/negative/NEG-COMP-006.json"
+    },
+    {
+      "id": "NEG-COMP-007",
+      "path": "aset/shared/conformance/negative/NEG-COMP-007.json"
+    },
+    {
+      "id": "NEG-COMP-008",
+      "path": "aset/shared/conformance/negative/NEG-COMP-008.json"
+    },
+    {
+      "id": "NEG-COMP-009",
+      "path": "aset/shared/conformance/negative/NEG-COMP-009.json"
+    },
+    {
+      "id": "NEG-COMP-010",
+      "path": "aset/shared/conformance/negative/NEG-COMP-010.json"
+    },
+    {
+      "id": "NEG-COMP-011",
+      "path": "aset/shared/conformance/negative/NEG-COMP-011.json"
+    },
+    {
+      "id": "NEG-COMP-012",
+      "path": "aset/shared/conformance/negative/NEG-COMP-012.json"
+    },
+    {
+      "id": "NEG-COMP-013",
+      "path": "aset/shared/conformance/negative/NEG-COMP-013.json"
+    },
+    {
+      "id": "NEG-COMP-014",
+      "path": "aset/shared/conformance/negative/NEG-COMP-014.json"
+    }
+  ],
+  "document_type": "aset-component-conformance-index",
+  "kind": "NEGATIVE",
+  "schema_version": 1
+}

@@ -1,0 +1,42 @@
+{
+  "$id": "urn:aset:schema:rc11-component-migration:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assignments": {
+      "type": "object"
+    },
+    "canonical_digest": {
+      "type": "string"
+    },
+    "document_type": {
+      "const": "aset-rc11-to-component-canons-migration"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_counts": {
+      "type": "object"
+    },
+    "source_version": {
+      "const": "1.5-rc11"
+    },
+    "summary": {
+      "type": "object"
+    },
+    "target_version": {
+      "const": "0.1-rc1"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "source_version",
+    "target_version",
+    "source_counts",
+    "assignments",
+    "summary",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

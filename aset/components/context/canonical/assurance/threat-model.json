@@ -1,0 +1,34 @@
+{
+  "canonical_digest": "sha256:ee47cdaeb5c46948dbbfed15798f1bd58c22ef55a3e56704457c98b9c01ff78d",
+  "component_id": "aset.context",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-threat-model",
+  "schema_version": 1,
+  "source_version": "1.5-rc11",
+  "threats": [
+    {
+      "attack": "An actor or implementation attempts to issue Permit.",
+      "id": "THREAT-CONTEXT-001",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 1"
+    },
+    {
+      "attack": "An actor or implementation attempts to mutate an existing context in place.",
+      "id": "THREAT-CONTEXT-002",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 2"
+    },
+    {
+      "attack": "An actor or implementation attempts to promote epistemic status.",
+      "id": "THREAT-CONTEXT-003",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 3"
+    }
+  ]
+}

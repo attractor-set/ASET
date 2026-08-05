@@ -238,6 +238,8 @@ def main() -> int:
         [sys.executable, "tools/verify_frozen_release.py"],
         [sys.executable, "tools/materialize_rc11.py", "--check"],
         [sys.executable, "tools/materialize_rc11.py", "--check-git"],
+        [sys.executable, "tools/validate_component_canons.py"],
+        [sys.executable, "tools/generate_component_views.py", "--check"],
         [sys.executable, "tools/rebuild_manifest.py", "--check"],
     ):
         run_check(command, errors)

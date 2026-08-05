@@ -1,0 +1,70 @@
+{
+  "$id": "urn:aset:schema:seed-compatibility-profile:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "type": "string"
+    },
+    "classification_rules": {
+      "minItems": 8,
+      "type": "array"
+    },
+    "document_type": {
+      "const": "aset-seed-compatibility-profile"
+    },
+    "guarantees": {
+      "minItems": 1,
+      "type": "array"
+    },
+    "limitations": {
+      "minItems": 1,
+      "type": "array"
+    },
+    "primitive_mappings": {
+      "minItems": 7,
+      "type": "array"
+    },
+    "profile_id": {
+      "const": "aset.seed-bridge.rc12"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "seed_model_canonical_digest": {
+      "type": "string"
+    },
+    "seed_model_path": {
+      "const": "seed/canonical/source/seed-model.json"
+    },
+    "seed_model_sha256": {
+      "type": "string"
+    },
+    "seed_version": {
+      "const": "0.1-rc12"
+    },
+    "status": {
+      "const": "COMPATIBILITY_CANDIDATE"
+    },
+    "version": {
+      "const": "0.1-rc1"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "profile_id",
+    "version",
+    "status",
+    "seed_version",
+    "seed_model_path",
+    "seed_model_sha256",
+    "seed_model_canonical_digest",
+    "primitive_mappings",
+    "classification_rules",
+    "guarantees",
+    "limitations",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

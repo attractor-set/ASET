@@ -1,0 +1,71 @@
+{
+  "canonical_digest": "sha256:fa253e775dd08184cd320d75deab27291a441277180b1d8e225e057755b04710",
+  "component_id": "aset.protocol",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-CORPUS-001",
+      "origin": "RC11_SOURCE",
+      "statement": "The positive conformance corpus forms an end-to-end digest-linked signed artifact graph; unresolved or substituted internal references are prohibited."
+    },
+    {
+      "id": "INV-CORPUS-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Each one-shot Permit in the positive corpus resolves to one exact signed CoreResolution that binds the exact Submission and Permit digest."
+    },
+    {
+      "id": "INV-CRYPTO-001",
+      "origin": "RC11_SOURCE",
+      "statement": "ASET-JCS-1 canonical bytes, SHA-256 digests and Ed25519 signatures are verified against reproducible positive and negative vectors."
+    },
+    {
+      "id": "INV-CRYPTO-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Signed normative JSON values prohibit non-integer numbers unless a future version defines and tests a complete cross-language numeric canonicalization profile."
+    },
+    {
+      "id": "INV-CRYPTO-003",
+      "origin": "RC11_SOURCE",
+      "statement": "ASET-JCS-1 permits only I-JSON safe integers and sorts NFC-normalized object keys by unsigned UTF-8 bytes using published cross-language edge vectors."
+    },
+    {
+      "id": "INV-ID-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Every stable ID in the normative machine model is globally unique; conflicting duplicate identities are prohibited."
+    },
+    {
+      "id": "INV-ID-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Every primary identity in requirements, ADR, verification, model, diagram, conformance, oracle, document and key registries is unique in its declared registry."
+    },
+    {
+      "id": "INV-JSON-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Every normative JSON input rejects duplicate raw member names before semantic parsing, schema validation, digesting or signature verification."
+    },
+    {
+      "id": "INV-SCHEMA-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Every normative JSON artifact is validated by a closed-world schema with unknown properties rejected."
+    },
+    {
+      "id": "INV-SCHEMA-002",
+      "origin": "RC11_SOURCE",
+      "statement": "All 11 gates have distinct submission, Permit and patch schemas; a document valid for one role is invalid for every incompatible role."
+    },
+    {
+      "id": "INV-SCHEMA-003",
+      "origin": "RC11_SOURCE",
+      "statement": "The externally signed freeze profile binds the path, schema $id, byte SHA-256 and canonical digest of every mandatory normative JSON Schema before any schema is used."
+    },
+    {
+      "derived_from": "MOD-PROTO.must_not",
+      "id": "PROTO-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Protocol validation and canonicalization contain no module business logic and issue no Permit."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

@@ -1,0 +1,407 @@
+{
+  "artifacts": [
+    {
+      "alias_of": "ART-CONTEXT-COMPONENT",
+      "id": "ART-CTX-COMP",
+      "name": "SignedContextComponent",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-CONTEXT-MANIFEST",
+      "id": "ART-CTX-MANIFEST",
+      "name": "CompositeContextManifest",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-EXPECT-ADMIT-PATCH",
+      "id": "ART-EXPECTED",
+      "name": "ExpectedChangePatch",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-EXEC-BIND-PATCH",
+      "id": "ART-OPBIND",
+      "name": "OperationalBindingPatch",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-EXPECT-ADMIT-SUB",
+      "id": "ART-SUBMISSION",
+      "name": "GateSubmissionFamily",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-CORE-RESOLUTION",
+      "id": "ART-RESOLUTION",
+      "name": "CoreResolution",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-EXPECT-ADMIT-PERMIT",
+      "id": "ART-PERMIT",
+      "name": "OneShotPermitClosedUnion",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-CROSSING-RECEIPT",
+      "id": "ART-CROSSING",
+      "name": "GateCrossingReceipt",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-PROMPT-MANIFEST",
+      "id": "ART-PROMPT",
+      "name": "PromptManifest",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-OBSERVE-PATCH",
+      "id": "ART-OBS",
+      "name": "ObservationPatch",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-EVIDENCE-PATCH",
+      "id": "ART-EVIDENCE",
+      "name": "EvidencePatch",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    },
+    {
+      "alias_of": "ART-ACCEPT-PATCH",
+      "id": "ART-ACCEPT",
+      "name": "AcceptanceResultPatch",
+      "owner": "normative-registry",
+      "role": "stable-compatibility-alias",
+      "schema": "see alias target"
+    }
+  ],
+  "assurance": {
+    "implementation_conformance": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+    "limitations": [
+      {
+        "id": "PROTOCOL-LIM-001",
+        "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+        "severity": "HIGH",
+        "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+      },
+      {
+        "id": "PROTOCOL-LIM-002",
+        "required_evidence": "External exact-byte audit of the component release.",
+        "severity": "MEDIUM",
+        "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+      }
+    ],
+    "production_conformance": "HOLD"
+  },
+  "boundary_invariants": [
+    {
+      "derived_from": "MOD-PROTO.must_not",
+      "id": "PROTO-BND-001",
+      "statement": "Protocol validation and canonicalization contain no module business logic and issue no Permit."
+    }
+  ],
+  "canon_assets": {
+    "conformance_binding": "aset/components/protocol/canonical/conformance/binding.json",
+    "formal_profile": "aset/components/protocol/canonical/formal/protocol.tla",
+    "invariants": "aset/components/protocol/canonical/assurance/invariants.json",
+    "limitations": "aset/components/protocol/canonical/assurance/limitations.json",
+    "protocol_profile": "aset/components/protocol/canonical/protocol/profile.json",
+    "requirements": "aset/components/protocol/canonical/assurance/requirements.json",
+    "threat_model": "aset/components/protocol/canonical/assurance/threat-model.json",
+    "traceability": "aset/components/protocol/canonical/assurance/traceability.json",
+    "verification_cases": "aset/components/protocol/canonical/assurance/verification-cases.json"
+  },
+  "canonical_digest": "sha256:ec4ec84b6aa045946f9383b0601ad919718d2253454f36b3e0a8f59afa192662",
+  "component_id": "aset.protocol",
+  "context_components": [],
+  "document_type": "aset-component-canon",
+  "gate_roles": [
+    {
+      "document": "ContextProjectionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-CONTEXT-PROJECT",
+      "patch": "ContextProjectionPatch",
+      "permit": "ContextProjectionPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-MEMO",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "ExpectationAdmissionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXPECT-ADMIT",
+      "patch": "ExpectedChangePatch",
+      "permit": "ExpectationPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-MAST",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "ExecutionBindingSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXEC-BIND",
+      "patch": "OperationalBindingPatch",
+      "permit": "ExecutionBindingPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-EXEC"
+      ]
+    },
+    {
+      "document": "ExecutionDispatchSubmission",
+      "external_effect": true,
+      "gate_id": "GATE-DISPATCH",
+      "patch": "ExecutionIntentPatch",
+      "permit": "ExecutionPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "ObservationSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-OBSERVE",
+      "patch": "ObservationPatch",
+      "permit": "ObservationAdmissionPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-EXEC"
+      ]
+    },
+    {
+      "document": "EvidenceSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EVIDENCE",
+      "patch": "EvidencePatch",
+      "permit": "EvidenceAdmissionPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-ACCE"
+      ]
+    },
+    {
+      "document": "AcceptanceSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-ACCEPT",
+      "patch": "AcceptanceResultPatch",
+      "permit": "AcceptancePermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-ACCE",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "RetrySubmission",
+      "external_effect": true,
+      "gate_id": "GATE-RETRY",
+      "patch": "RetryIntentPatch",
+      "permit": "RetryPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "CompensationSubmission",
+      "external_effect": true,
+      "gate_id": "GATE-COMPENSATE",
+      "patch": "CompensationIntentPatch",
+      "permit": "CompensationPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "TaskCompletionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-TASK-CLOSE",
+      "patch": "TaskCompletionPatch",
+      "permit": "TaskCompletionPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-TASK",
+        "CTX-ACCE"
+      ]
+    },
+    {
+      "document": "MemoryMutationSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-MEM-MUTATE",
+      "patch": "MemoryLifecyclePatch",
+      "permit": "MemoryMutationPermit",
+      "role": "SCHEMA_AUTHORITY",
+      "writes": [
+        "CTX-MEMO"
+      ]
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INV-CORPUS-001",
+      "statement": "The positive conformance corpus forms an end-to-end digest-linked signed artifact graph; unresolved or substituted internal references are prohibited."
+    },
+    {
+      "id": "INV-CORPUS-002",
+      "statement": "Each one-shot Permit in the positive corpus resolves to one exact signed CoreResolution that binds the exact Submission and Permit digest."
+    },
+    {
+      "id": "INV-CRYPTO-001",
+      "statement": "ASET-JCS-1 canonical bytes, SHA-256 digests and Ed25519 signatures are verified against reproducible positive and negative vectors."
+    },
+    {
+      "id": "INV-CRYPTO-002",
+      "statement": "Signed normative JSON values prohibit non-integer numbers unless a future version defines and tests a complete cross-language numeric canonicalization profile."
+    },
+    {
+      "id": "INV-CRYPTO-003",
+      "statement": "ASET-JCS-1 permits only I-JSON safe integers and sorts NFC-normalized object keys by unsigned UTF-8 bytes using published cross-language edge vectors."
+    },
+    {
+      "id": "INV-ID-001",
+      "statement": "Every stable ID in the normative machine model is globally unique; conflicting duplicate identities are prohibited."
+    },
+    {
+      "id": "INV-ID-002",
+      "statement": "Every primary identity in requirements, ADR, verification, model, diagram, conformance, oracle, document and key registries is unique in its declared registry."
+    },
+    {
+      "id": "INV-JSON-001",
+      "statement": "Every normative JSON input rejects duplicate raw member names before semantic parsing, schema validation, digesting or signature verification."
+    },
+    {
+      "id": "INV-SCHEMA-001",
+      "statement": "Every normative JSON artifact is validated by a closed-world schema with unknown properties rejected."
+    },
+    {
+      "id": "INV-SCHEMA-002",
+      "statement": "All 11 gates have distinct submission, Permit and patch schemas; a document valid for one role is invalid for every incompatible role."
+    },
+    {
+      "id": "INV-SCHEMA-003",
+      "statement": "The externally signed freeze profile binds the path, schema $id, byte SHA-256 and canonical digest of every mandatory normative JSON Schema before any schema is used."
+    }
+  ],
+  "module_refs": [
+    "MOD-PROTO"
+  ],
+  "must_not": [
+    "accept work",
+    "contain module business logic",
+    "issue Permit"
+  ],
+  "operations": [
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Validate a normative artifact with its exact closed-world schema.",
+        "pt-BR": "Valida o documento normativo por um schema fechado antes de sua admissão.",
+        "ru": "Проверяет нормативный документ по закрытой схеме до его допуска."
+      },
+      "id": "PROTO-VALIDATE",
+      "input_artifacts": [],
+      "name": "ValidateArtifact",
+      "output_artifacts": [],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    },
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Produce ASET-JCS-1 canonical bytes and digest without business decisions.",
+        "pt-BR": "Produz bytes canônicos e digest sem executar lógica de negócio.",
+        "ru": "Создаёт канонические байты и digest без выполнения бизнес-логики."
+      },
+      "id": "PROTO-CANON",
+      "input_artifacts": [],
+      "name": "CanonicalizeArtifact",
+      "output_artifacts": [],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    }
+  ],
+  "owns": [
+    "CanonicalEnvelope",
+    "ErrorEnvelope",
+    "SchemaRegistry",
+    "SignatureProfile"
+  ],
+  "purpose": {
+    "en": "Defines closed schemas, canonicalization, signatures, and portable wire contracts.",
+    "pt-BR": "Define schemas fechados, canonicalização, assinaturas e contratos wire portáveis.",
+    "ru": "Определяет закрытые схемы, канонизацию, подписи и переносимые wire-контракты."
+  },
+  "requirement_ids": [
+    "MRS-001",
+    "MRS-002",
+    "MRS-003",
+    "MRS-004",
+    "MRS-005",
+    "MRS-006",
+    "MRS-007",
+    "MRS-008",
+    "MRS-009",
+    "MRS-010",
+    "PRO-001",
+    "PRO-002",
+    "PRO-003",
+    "PRO-004",
+    "PRO-005",
+    "PRO-006",
+    "PRO-007",
+    "PRO-008",
+    "PRO-009",
+    "PRO-010",
+    "PRO-011",
+    "PRO-012"
+  ],
+  "schema_version": 1,
+  "source_baseline": {
+    "archive_sha256": "sha256:4fd358e3c395547bdfb8f5a3e7d71ad377d25428923eba4c4889d5e686fece22",
+    "model_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94",
+    "specification_digest": "sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6",
+    "version": "1.5-rc11"
+  },
+  "state_machine_refs": [],
+  "status": "COMPONENT_CANON_CANDIDATE",
+  "version": "0.1-rc1"
+}

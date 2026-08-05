@@ -1,0 +1,19 @@
+{
+  "document_type": "aset-component-conformance-case",
+  "expected": "REJECT",
+  "expected_error": "duplicate assignment",
+  "fixture": "aset/shared/migration/RC11_TO_COMPONENT_CANONS.json",
+  "id": "NEG-COMP-008",
+  "kind": "NEGATIVE",
+  "mutation": {
+    "operation": "APPEND",
+    "path": "/assignments/requirements",
+    "refresh_canonical_digest": true,
+    "value": {
+      "id": "COR-001",
+      "target": "core"
+    }
+  },
+  "schema_version": 1,
+  "subject": "MIGRATION"
+}

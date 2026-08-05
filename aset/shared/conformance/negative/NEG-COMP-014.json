@@ -1,0 +1,15 @@
+{
+  "document_type": "aset-component-conformance-case",
+  "expected": "REJECT",
+  "expected_error": "seed mapping",
+  "fixture": "aset/components/monade/canonical/source/monade-model.json",
+  "id": "NEG-COMP-014",
+  "kind": "NEGATIVE",
+  "mutation": {
+    "operation": "REMOVE",
+    "path": "/operations/5/seed_mapping/sequence/4",
+    "refresh_canonical_digest": true
+  },
+  "schema_version": 1,
+  "subject": "COMPONENT"
+}

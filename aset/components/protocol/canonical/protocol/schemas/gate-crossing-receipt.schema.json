@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:aset.gate-crossing-receipt:1.5-rc8",
+  "title": "Gate Crossing Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "schema_version",
+    "document_id",
+    "tenant_id",
+    "issued_at",
+    "issuer",
+    "integrity",
+    "gate",
+    "permit_ref",
+    "permit_digest",
+    "source_context_root",
+    "target_context_root",
+    "patch_set_digest",
+    "linearized_at",
+    "result",
+    "external_effect_status"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "aset.gate-crossing-receipt"
+    },
+    "schema_version": {
+      "const": "1.5-rc8"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "issuer": {
+      "const": "aset-gate-kernel"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalization",
+        "digest_algorithm",
+        "document_digest",
+        "signature_profile",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "canonicalization": {
+          "const": "ASET-JCS-1"
+        },
+        "digest_algorithm": {
+          "const": "SHA-256"
+        },
+        "document_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature_profile": {
+          "const": "Ed25519-SHA256-v1"
+        },
+        "key_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^ed25519:[A-Za-z0-9_-]{86}$"
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gate_type",
+        "gate_instance_id",
+        "crossing_id"
+      ],
+      "properties": {
+        "gate_type": {
+          "enum": [
+            "GATE-CONTEXT-PROJECT",
+            "GATE-EXPECT-ADMIT",
+            "GATE-EXEC-BIND",
+            "GATE-DISPATCH",
+            "GATE-OBSERVE",
+            "GATE-EVIDENCE",
+            "GATE-ACCEPT",
+            "GATE-RETRY",
+            "GATE-COMPENSATE",
+            "GATE-TASK-CLOSE",
+            "GATE-MEM-MUTATE"
+          ]
+        },
+        "gate_instance_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "crossing_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        }
+      }
+    },
+    "permit_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "permit_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "source_context_root": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "target_context_root": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "patch_set_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "linearized_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "result": {
+      "const": "APPLIED"
+    },
+    "external_effect_status": {
+      "const": "NOT_ASSERTED_BY_GATE"
+    }
+  }
+}

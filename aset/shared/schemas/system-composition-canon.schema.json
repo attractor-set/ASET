@@ -1,0 +1,593 @@
+{
+  "$defs": {
+    "canonAssets": {
+      "additionalProperties": false,
+      "properties": {
+        "conformance_binding": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "formal_profile": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "invariants": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "limitations": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_profile": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "requirements": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "threat_model": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "traceability": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "verification_cases": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirements",
+        "verification_cases",
+        "traceability",
+        "invariants",
+        "limitations",
+        "threat_model",
+        "protocol_profile",
+        "conformance_binding",
+        "formal_profile"
+      ],
+      "type": "object"
+    },
+    "componentRef": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "component_id": {
+          "pattern": "^aset\\.[a-z][a-z0-9.-]+$",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "component_id",
+        "version",
+        "path",
+        "canonical_digest"
+      ],
+      "type": "object"
+    },
+    "composition": {
+      "additionalProperties": false,
+      "properties": {
+        "leaf_domain_separator": {
+          "const": "00"
+        },
+        "leaf_encoding": {
+          "type": "string"
+        },
+        "leaf_fields": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "node_domain_separator": {
+          "const": "01"
+        },
+        "owner_mapping": {
+          "additionalProperties": false,
+          "properties": {
+            "acceptance": {
+              "type": "string"
+            },
+            "authority": {
+              "type": "string"
+            },
+            "execution": {
+              "type": "string"
+            },
+            "master": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            },
+            "task": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "memory",
+            "master",
+            "task",
+            "execution",
+            "acceptance",
+            "authority"
+          ],
+          "type": "object"
+        },
+        "profile": {
+          "const": "ASET-MERKLE-1"
+        },
+        "sort_order": {
+          "type": "string"
+        },
+        "tree": {
+          "type": "string"
+        },
+        "uniqueness": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "type": "array"
+        }
+      },
+      "required": [
+        "profile",
+        "leaf_fields",
+        "sort_order",
+        "tree",
+        "uniqueness",
+        "owner_mapping",
+        "leaf_encoding",
+        "leaf_domain_separator",
+        "node_domain_separator"
+      ],
+      "type": "object"
+    },
+    "contextComponent": {
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^CTX-[A-Z]+$",
+          "type": "string"
+        },
+        "owner": {
+          "pattern": "^(MOD|SUB)-[A-Z-]+$",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "memory",
+            "master",
+            "task",
+            "execution",
+            "acceptance",
+            "authority"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "owner",
+        "content"
+      ],
+      "type": "object"
+    },
+    "contextNamespace": {
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "items": {
+            "$ref": "#/$defs/contextComponent"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "composition": {
+          "$ref": "#/$defs/composition"
+        },
+        "rule": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule",
+        "components",
+        "composition"
+      ],
+      "type": "object"
+    },
+    "gate": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_component": {
+          "const": "aset.core"
+        },
+        "document": {
+          "type": "string"
+        },
+        "document_schema": {
+          "pattern": "^[a-z0-9-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "external_effect": {
+          "type": "boolean"
+        },
+        "failure_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "pattern": "^GATE-[A-Z-]+$",
+          "type": "string"
+        },
+        "patch": {
+          "type": "string"
+        },
+        "patch_schema": {
+          "pattern": "^[a-z0-9-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "permit": {
+          "type": "string"
+        },
+        "permit_schema": {
+          "pattern": "^[a-z0-9-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "producer_component": {
+          "type": "string"
+        },
+        "reducer_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_component": {
+          "const": "aset.protocol"
+        },
+        "writes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "producer",
+        "producer_component",
+        "authority_component",
+        "schema_component",
+        "document",
+        "document_schema",
+        "permit",
+        "permit_schema",
+        "patch",
+        "patch_schema",
+        "external_effect",
+        "writes",
+        "failure_codes",
+        "reducer_id"
+      ],
+      "type": "object"
+    },
+    "invariantAssignment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "target": {
+          "enum": [
+            "context",
+            "core",
+            "gateway",
+            "master",
+            "memory",
+            "monade",
+            "protocol",
+            "system"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "target"
+      ],
+      "type": "object"
+    },
+    "seedCompatibility": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "profile_path": {
+          "const": "aset/shared/seed-bridge/seed-compatibility-profile.json"
+        },
+        "version": {
+          "const": "0.1-rc12"
+        }
+      },
+      "required": [
+        "version",
+        "profile_path",
+        "canonical_digest"
+      ],
+      "type": "object"
+    },
+    "sourceBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "archive_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "model_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "specification_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "version": {
+          "const": "1.5-rc11"
+        }
+      },
+      "required": [
+        "version",
+        "archive_sha256",
+        "model_digest",
+        "specification_digest"
+      ],
+      "type": "object"
+    },
+    "stateMachine": {
+      "additionalProperties": false,
+      "properties": {
+        "initial": {
+          "type": "string"
+        },
+        "states": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "terminal": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "transitions": {
+          "items": {
+            "$ref": "#/$defs/transition"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "initial",
+        "states",
+        "terminal",
+        "transitions"
+      ],
+      "type": "object"
+    },
+    "transition": {
+      "additionalProperties": false,
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "guard": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "event",
+        "from",
+        "to"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:aset:schema:system-composition:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canon_assets": {
+      "$ref": "#/$defs/canonAssets"
+    },
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "compatibility_matrix": {
+      "additionalProperties": false,
+      "properties": {
+        "aset.context": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.core": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.master": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.memory": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.model-gateway": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.monade": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        },
+        "aset.protocol": {
+          "pattern": "^0\\.1-rc[1-9][0-9]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "aset.context",
+        "aset.core",
+        "aset.model-gateway",
+        "aset.master",
+        "aset.memory",
+        "aset.monade",
+        "aset.protocol"
+      ],
+      "type": "object"
+    },
+    "components": {
+      "items": {
+        "$ref": "#/$defs/componentRef"
+      },
+      "minItems": 7,
+      "type": "array"
+    },
+    "context_namespace": {
+      "$ref": "#/$defs/contextNamespace"
+    },
+    "document_type": {
+      "const": "aset-system-composition-canon"
+    },
+    "gates": {
+      "items": {
+        "$ref": "#/$defs/gate"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array"
+    },
+    "invariant_assignments": {
+      "items": {
+        "$ref": "#/$defs/invariantAssignment"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "seed_compatibility": {
+      "$ref": "#/$defs/seedCompatibility"
+    },
+    "source_baseline": {
+      "$ref": "#/$defs/sourceBaseline"
+    },
+    "state_machines": {
+      "additionalProperties": false,
+      "properties": {
+        "crossing": {
+          "$ref": "#/$defs/stateMachine"
+        },
+        "expected_change": {
+          "$ref": "#/$defs/stateMachine"
+        },
+        "permit": {
+          "$ref": "#/$defs/stateMachine"
+        }
+      },
+      "required": [
+        "permit",
+        "expected_change",
+        "crossing"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "const": "COMPONENT_COMPOSITION_CANDIDATE"
+    },
+    "system_id": {
+      "const": "aset.system"
+    },
+    "version": {
+      "type": "string"
+    },
+    "workflow": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "system_id",
+    "version",
+    "status",
+    "source_baseline",
+    "seed_compatibility",
+    "components",
+    "compatibility_matrix",
+    "context_namespace",
+    "gates",
+    "invariant_assignments",
+    "state_machines",
+    "workflow",
+    "canon_assets",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

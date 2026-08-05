@@ -1,0 +1,118 @@
+{
+  "artifacts": [
+    {
+      "id": "ART-PROVIDER-REQUEST",
+      "name": "ProviderRequestManifest",
+      "owner": "MOD-GW",
+      "role": "provider-request",
+      "schema": "provider-request-manifest.schema.json"
+    }
+  ],
+  "assurance": {
+    "implementation_conformance": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+    "limitations": [
+      {
+        "id": "GATEWAY-LIM-001",
+        "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+        "severity": "HIGH",
+        "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+      },
+      {
+        "id": "GATEWAY-LIM-002",
+        "required_evidence": "External exact-byte audit of the component release.",
+        "severity": "MEDIUM",
+        "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+      }
+    ],
+    "production_conformance": "HOLD"
+  },
+  "boundary_invariants": [
+    {
+      "derived_from": "MOD-GW.must_not",
+      "id": "GW-BND-001",
+      "statement": "Provider rendering cannot mutate canonical context or execute tool calls."
+    }
+  ],
+  "canon_assets": {
+    "conformance_binding": "aset/components/gateway/canonical/conformance/binding.json",
+    "formal_profile": "aset/components/gateway/canonical/formal/gateway.tla",
+    "invariants": "aset/components/gateway/canonical/assurance/invariants.json",
+    "limitations": "aset/components/gateway/canonical/assurance/limitations.json",
+    "protocol_profile": "aset/components/gateway/canonical/protocol/profile.json",
+    "requirements": "aset/components/gateway/canonical/assurance/requirements.json",
+    "threat_model": "aset/components/gateway/canonical/assurance/threat-model.json",
+    "traceability": "aset/components/gateway/canonical/assurance/traceability.json",
+    "verification_cases": "aset/components/gateway/canonical/assurance/verification-cases.json"
+  },
+  "canonical_digest": "sha256:f527277f95a3be9197eb92c9d441bf412ee6bd7caf16cfdd7880ccc7602f5e05",
+  "component_id": "aset.model-gateway",
+  "context_components": [],
+  "document_type": "aset-component-canon",
+  "gate_roles": [],
+  "invariants": [],
+  "module_refs": [
+    "MOD-GW"
+  ],
+  "must_not": [
+    "change PromptManifest",
+    "execute tool call",
+    "own canonical context"
+  ],
+  "operations": [
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Render exact provider request bytes from a PromptManifest without changing canonical context.",
+        "pt-BR": "Transforma deterministicamente PromptManifest em uma solicitação ao provedor sem alterar o contexto canônico.",
+        "ru": "Детерминированно преобразует PromptManifest в запрос провайдеру, не изменяя канонический контекст."
+      },
+      "id": "GW-RENDER",
+      "input_artifacts": [
+        "PromptManifest"
+      ],
+      "name": "RenderProviderRequest",
+      "output_artifacts": [
+        "ProviderRequestManifest"
+      ],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    }
+  ],
+  "owns": [
+    "ModelProfile",
+    "ProviderAdapter",
+    "RenderedModelRequest",
+    "UsageReceipt"
+  ],
+  "purpose": {
+    "en": "Deterministically renders PromptManifest into a provider request without changing canonical context.",
+    "pt-BR": "Renderiza deterministicamente PromptManifest em uma solicitação ao provedor sem alterar o contexto canônico.",
+    "ru": "Детерминированно отображает PromptManifest в provider request, не изменяя канонический контекст."
+  },
+  "requirement_ids": [
+    "GW-001",
+    "GW-002",
+    "GW-003",
+    "GW-004",
+    "GW-005",
+    "GW-006",
+    "GW-007",
+    "GW-008",
+    "PMC-006",
+    "PMC-007"
+  ],
+  "schema_version": 1,
+  "source_baseline": {
+    "archive_sha256": "sha256:4fd358e3c395547bdfb8f5a3e7d71ad377d25428923eba4c4889d5e686fece22",
+    "model_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94",
+    "specification_digest": "sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6",
+    "version": "1.5-rc11"
+  },
+  "state_machine_refs": [],
+  "status": "COMPONENT_CANON_CANDIDATE",
+  "version": "0.1-rc1"
+}

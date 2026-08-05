@@ -1,0 +1,1376 @@
+{
+  "model_id": "aset.system-model",
+  "version": "1.5-rc11",
+  "status": "NORMATIVE_CONCEPTUAL_FREEZE_CANDIDATE",
+  "date": "2026-08-03",
+  "modules": [
+    {
+      "id": "MOD-MEM",
+      "name": "ASET Memory",
+      "purpose": "Долговременная память, provenance, связи, эпистемические статусы и контекстные проекции.",
+      "owns": [
+        "RawEvent",
+        "MemoryCandidate",
+        "MemoryItem",
+        "ContextProjection",
+        "MemoryReceipt"
+      ],
+      "must_not": [
+        "issue Permit",
+        "own Task",
+        "self-verify claims"
+      ]
+    },
+    {
+      "id": "MOD-CORE",
+      "name": "ASET Core",
+      "purpose": "Единственный эмитент Permit и доверенное ядро атомарного пересечения нормативных гейтов.",
+      "owns": [
+        "AuthorityGraph",
+        "PolicySet",
+        "CoreResolution",
+        "OneShotPermit",
+        "GateKernel",
+        "GateCrossingReceipt",
+        "NormativeLedger"
+      ],
+      "must_not": [
+        "plan",
+        "execute external effect",
+        "accept result",
+        "rewrite submission"
+      ]
+    },
+    {
+      "id": "MOD-MASTER",
+      "name": "ASET Master",
+      "purpose": "Планирование, критика траекторий и формирование подписанного ExpectedChangePatch.",
+      "owns": [
+        "PlanProposal",
+        "PlanAssessment",
+        "ExpectedChangePatch",
+        "TrajectoryAssessment",
+        "LearningObservation"
+      ],
+      "must_not": [
+        "issue Permit",
+        "dispatch effect",
+        "accept own work"
+      ]
+    },
+    {
+      "id": "MOD-MONADE",
+      "name": "ASET Monade",
+      "purpose": "Управление Task через независимые компоненты Execution и Acceptance.",
+      "owns": [
+        "Task",
+        "PlanRevision",
+        "TransitionGraph",
+        "Outcome"
+      ],
+      "must_not": [
+        "issue Permit",
+        "replace Core",
+        "self-accept execution"
+      ]
+    },
+    {
+      "id": "MOD-GW",
+      "name": "ASET Model Gateway",
+      "purpose": "Provider-neutral model access и provider-specific rendering.",
+      "owns": [
+        "ModelProfile",
+        "ProviderAdapter",
+        "RenderedModelRequest",
+        "UsageReceipt"
+      ],
+      "must_not": [
+        "own canonical context",
+        "execute tool call",
+        "change PromptManifest"
+      ]
+    },
+    {
+      "id": "MOD-PROTO",
+      "name": "ASET Protocol",
+      "purpose": "Schemas, canonicalization, signatures, IDs, compatibility и conformance profiles.",
+      "owns": [
+        "SchemaRegistry",
+        "CanonicalEnvelope",
+        "SignatureProfile",
+        "ErrorEnvelope"
+      ],
+      "must_not": [
+        "contain module business logic",
+        "issue Permit",
+        "accept work"
+      ]
+    }
+  ],
+  "subsystems": [
+    {
+      "id": "SUB-MON-EXEC",
+      "parent": "MOD-MONADE",
+      "name": "Monade Execution",
+      "purpose": "Plan admission, OperationalBinding, prompt compilation, dispatch, observation, recovery.",
+      "owns": [
+        "OperationalBinding",
+        "ExecutionIntent",
+        "OutboxCommand",
+        "WorkerEnvelope",
+        "ExecutionObservation"
+      ],
+      "must_not": [
+        "create AcceptanceDecision",
+        "issue Permit",
+        "weaken ExpectedChangePatch"
+      ]
+    },
+    {
+      "id": "SUB-MON-ACC",
+      "parent": "MOD-MONADE",
+      "name": "Monade Acceptance",
+      "purpose": "Independent evidence acquisition, verification, acceptance and Task completion.",
+      "owns": [
+        "AcceptanceContract",
+        "EvidenceBundle",
+        "VerificationVerdict",
+        "AcceptanceDecision",
+        "TaskAcceptance"
+      ],
+      "must_not": [
+        "execute primary effect",
+        "issue Permit",
+        "accept self-report by default"
+      ]
+    },
+    {
+      "id": "SUB-PROMPT",
+      "parent": "SUB-MON-EXEC",
+      "name": "Prompt Compiler",
+      "purpose": "Deterministic CompositeContext to PromptManifest compilation.",
+      "owns": [
+        "ProjectionProfile",
+        "PromptManifest",
+        "TokenBudgetPlan"
+      ],
+      "must_not": [
+        "call LLM",
+        "promote epistemic status",
+        "invent facts"
+      ]
+    },
+    {
+      "id": "SUB-WORKER",
+      "parent": "SUB-MON-EXEC",
+      "name": "Worker Runtime",
+      "purpose": "Execute one bounded WorkerEnvelope.",
+      "owns": [
+        "EphemeralExecutionState",
+        "ToolInvocation",
+        "WorkerObservation"
+      ],
+      "must_not": [
+        "change plan, expectation or Permit",
+        "accept own work"
+      ]
+    },
+    {
+      "id": "SUB-VERIFIER",
+      "parent": "SUB-MON-ACC",
+      "name": "Verifier Registry",
+      "purpose": "Versioned deterministic, external, human and model-assisted verifier profiles.",
+      "owns": [
+        "VerifierAdapter",
+        "VerificationReceipt"
+      ],
+      "must_not": [
+        "issue Permit",
+        "execute primary effect"
+      ]
+    }
+  ],
+  "context_components": [
+    {
+      "id": "CTX-MEM",
+      "owner": "MOD-MEM",
+      "type": "memory",
+      "content": "facts, provenance, epistemic status, scoped memory projection"
+    },
+    {
+      "id": "CTX-MASTER",
+      "owner": "MOD-MASTER",
+      "type": "master",
+      "content": "goal, plans, assessments, ExpectedChangePatch"
+    },
+    {
+      "id": "CTX-TASK",
+      "owner": "MOD-MONADE",
+      "type": "task",
+      "content": "Task, PlanRevision, TransitionGraph"
+    },
+    {
+      "id": "CTX-EXEC",
+      "owner": "SUB-MON-EXEC",
+      "type": "execution",
+      "content": "OperationalBinding, intent, outbox, observations"
+    },
+    {
+      "id": "CTX-ACC",
+      "owner": "SUB-MON-ACC",
+      "type": "acceptance",
+      "content": "contract, evidence, verdict, outcome"
+    },
+    {
+      "id": "CTX-AUTH",
+      "owner": "MOD-CORE",
+      "type": "authority",
+      "content": "authority epoch, resolution, Permit, crossing receipt"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "ART-CONTEXT-PROJECT-SUB",
+      "name": "ContextProjectionSubmission",
+      "role": "submission",
+      "owner": "aset-monade",
+      "schema": "context-projection-submission.schema.json"
+    },
+    {
+      "id": "ART-CONTEXT-PROJECT-PERMIT",
+      "name": "ContextProjectionPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "context-projection-permit.schema.json"
+    },
+    {
+      "id": "ART-CONTEXT-PROJECT-PATCH",
+      "name": "ContextProjectionPatch",
+      "role": "patch",
+      "owner": "aset-monade",
+      "schema": "context-projection-patch.schema.json"
+    },
+    {
+      "id": "ART-EXPECT-ADMIT-SUB",
+      "name": "ExpectationAdmissionSubmission",
+      "role": "submission",
+      "owner": "aset-master",
+      "schema": "expectation-admission-submission.schema.json"
+    },
+    {
+      "id": "ART-EXPECT-ADMIT-PERMIT",
+      "name": "ExpectationPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "expectation-permit.schema.json"
+    },
+    {
+      "id": "ART-EXPECT-ADMIT-PATCH",
+      "name": "ExpectedChangePatch",
+      "role": "patch",
+      "owner": "aset-master",
+      "schema": "expected-change-patch.schema.json"
+    },
+    {
+      "id": "ART-EXEC-BIND-SUB",
+      "name": "ExecutionBindingSubmission",
+      "role": "submission",
+      "owner": "aset-monade-execution",
+      "schema": "execution-binding-submission.schema.json"
+    },
+    {
+      "id": "ART-EXEC-BIND-PERMIT",
+      "name": "ExecutionBindingPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "execution-binding-permit.schema.json"
+    },
+    {
+      "id": "ART-EXEC-BIND-PATCH",
+      "name": "OperationalBindingPatch",
+      "role": "patch",
+      "owner": "aset-monade-execution",
+      "schema": "operational-binding-patch.schema.json"
+    },
+    {
+      "id": "ART-DISPATCH-SUB",
+      "name": "ExecutionDispatchSubmission",
+      "role": "submission",
+      "owner": "aset-monade-execution",
+      "schema": "execution-dispatch-submission.schema.json"
+    },
+    {
+      "id": "ART-DISPATCH-PERMIT",
+      "name": "ExecutionPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "execution-permit.schema.json"
+    },
+    {
+      "id": "ART-DISPATCH-PATCH",
+      "name": "ExecutionIntentPatch",
+      "role": "patch",
+      "owner": "aset-monade-execution",
+      "schema": "execution-intent-patch.schema.json"
+    },
+    {
+      "id": "ART-OBSERVE-SUB",
+      "name": "ObservationSubmission",
+      "role": "submission",
+      "owner": "aset-monade-execution",
+      "schema": "observation-submission.schema.json"
+    },
+    {
+      "id": "ART-OBSERVE-PERMIT",
+      "name": "ObservationAdmissionPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "observation-admission-permit.schema.json"
+    },
+    {
+      "id": "ART-OBSERVE-PATCH",
+      "name": "ObservationPatch",
+      "role": "patch",
+      "owner": "aset-monade-execution",
+      "schema": "observation-patch.schema.json"
+    },
+    {
+      "id": "ART-EVIDENCE-SUB",
+      "name": "EvidenceSubmission",
+      "role": "submission",
+      "owner": "aset-monade-acceptance",
+      "schema": "evidence-submission.schema.json"
+    },
+    {
+      "id": "ART-EVIDENCE-PERMIT",
+      "name": "EvidenceAdmissionPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "evidence-admission-permit.schema.json"
+    },
+    {
+      "id": "ART-EVIDENCE-PATCH",
+      "name": "EvidencePatch",
+      "role": "patch",
+      "owner": "aset-monade-acceptance",
+      "schema": "evidence-patch.schema.json"
+    },
+    {
+      "id": "ART-ACCEPT-SUB",
+      "name": "AcceptanceSubmission",
+      "role": "submission",
+      "owner": "aset-monade-acceptance",
+      "schema": "acceptance-submission.schema.json"
+    },
+    {
+      "id": "ART-ACCEPT-PERMIT",
+      "name": "AcceptancePermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "acceptance-permit.schema.json"
+    },
+    {
+      "id": "ART-ACCEPT-PATCH",
+      "name": "AcceptanceResultPatch",
+      "role": "patch",
+      "owner": "aset-monade-acceptance",
+      "schema": "acceptance-result-patch.schema.json"
+    },
+    {
+      "id": "ART-RETRY-SUB",
+      "name": "RetrySubmission",
+      "role": "submission",
+      "owner": "aset-monade-execution",
+      "schema": "retry-submission.schema.json"
+    },
+    {
+      "id": "ART-RETRY-PERMIT",
+      "name": "RetryPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "retry-permit.schema.json"
+    },
+    {
+      "id": "ART-RETRY-PATCH",
+      "name": "RetryIntentPatch",
+      "role": "patch",
+      "owner": "aset-monade-execution",
+      "schema": "retry-intent-patch.schema.json"
+    },
+    {
+      "id": "ART-COMPENSATE-SUB",
+      "name": "CompensationSubmission",
+      "role": "submission",
+      "owner": "aset-monade-execution",
+      "schema": "compensation-submission.schema.json"
+    },
+    {
+      "id": "ART-COMPENSATE-PERMIT",
+      "name": "CompensationPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "compensation-permit.schema.json"
+    },
+    {
+      "id": "ART-COMPENSATE-PATCH",
+      "name": "CompensationIntentPatch",
+      "role": "patch",
+      "owner": "aset-monade-execution",
+      "schema": "compensation-intent-patch.schema.json"
+    },
+    {
+      "id": "ART-TASK-CLOSE-SUB",
+      "name": "TaskCompletionSubmission",
+      "role": "submission",
+      "owner": "aset-monade-acceptance",
+      "schema": "task-completion-submission.schema.json"
+    },
+    {
+      "id": "ART-TASK-CLOSE-PERMIT",
+      "name": "TaskCompletionPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "task-completion-permit.schema.json"
+    },
+    {
+      "id": "ART-TASK-CLOSE-PATCH",
+      "name": "TaskCompletionPatch",
+      "role": "patch",
+      "owner": "aset-monade-acceptance",
+      "schema": "task-completion-patch.schema.json"
+    },
+    {
+      "id": "ART-MEM-MUTATE-SUB",
+      "name": "MemoryMutationSubmission",
+      "role": "submission",
+      "owner": "aset-memory",
+      "schema": "memory-mutation-submission.schema.json"
+    },
+    {
+      "id": "ART-MEM-MUTATE-PERMIT",
+      "name": "MemoryMutationPermit",
+      "role": "permit",
+      "owner": "MOD-CORE",
+      "schema": "memory-mutation-permit.schema.json"
+    },
+    {
+      "id": "ART-MEM-MUTATE-PATCH",
+      "name": "MemoryLifecyclePatch",
+      "role": "patch",
+      "owner": "aset-memory",
+      "schema": "memory-lifecycle-patch.schema.json"
+    },
+    {
+      "id": "ART-CORE-RESOLUTION",
+      "name": "CoreResolution",
+      "role": "resolution",
+      "owner": "MOD-CORE",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "ART-CONTEXT-MANIFEST",
+      "name": "CompositeContextManifest",
+      "role": "context",
+      "owner": "MOD-CORE",
+      "schema": "composite-context-manifest.schema.json"
+    },
+    {
+      "id": "ART-CONTEXT-COMPONENT",
+      "name": "SignedContextComponent",
+      "role": "context",
+      "owner": "component-owner",
+      "schema": "signed-context-component.schema.json"
+    },
+    {
+      "id": "ART-PATCH-SET",
+      "name": "ContextPatchSet",
+      "role": "patch-set",
+      "owner": "MOD-CORE",
+      "schema": "context-patch-set.schema.json"
+    },
+    {
+      "id": "ART-CROSSING-RECEIPT",
+      "name": "GateCrossingReceipt",
+      "role": "receipt",
+      "owner": "MOD-CORE",
+      "schema": "gate-crossing-receipt.schema.json"
+    },
+    {
+      "id": "ART-PROMPT-MANIFEST",
+      "name": "PromptManifest",
+      "role": "prompt",
+      "owner": "SUB-PROMPT",
+      "schema": "prompt-manifest.schema.json"
+    },
+    {
+      "id": "ART-CTX-COMP",
+      "name": "SignedContextComponent",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-CONTEXT-COMPONENT",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-CTX-MANIFEST",
+      "name": "CompositeContextManifest",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-CONTEXT-MANIFEST",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-EXPECTED",
+      "name": "ExpectedChangePatch",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-EXPECT-ADMIT-PATCH",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-OPBIND",
+      "name": "OperationalBindingPatch",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-EXEC-BIND-PATCH",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-SUBMISSION",
+      "name": "GateSubmissionFamily",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-EXPECT-ADMIT-SUB",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-RESOLUTION",
+      "name": "CoreResolution",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-CORE-RESOLUTION",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-PERMIT",
+      "name": "OneShotPermitClosedUnion",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-EXPECT-ADMIT-PERMIT",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-CROSSING",
+      "name": "GateCrossingReceipt",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-CROSSING-RECEIPT",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-PROMPT",
+      "name": "PromptManifest",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-PROMPT-MANIFEST",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-OBS",
+      "name": "ObservationPatch",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-OBSERVE-PATCH",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-EVIDENCE",
+      "name": "EvidencePatch",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-EVIDENCE-PATCH",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-ACCEPT",
+      "name": "AcceptanceResultPatch",
+      "role": "stable-compatibility-alias",
+      "owner": "normative-registry",
+      "alias_of": "ART-ACCEPT-PATCH",
+      "schema": "see alias target"
+    },
+    {
+      "id": "ART-PROVIDER-REQUEST",
+      "name": "ProviderRequestManifest",
+      "role": "provider-request",
+      "owner": "MOD-GW",
+      "schema": "provider-request-manifest.schema.json"
+    }
+  ],
+  "gate_types": [
+    {
+      "id": "GATE-CONTEXT-PROJECT",
+      "document": "ContextProjectionSubmission",
+      "document_schema": "context-projection-submission.schema.json",
+      "permit": "ContextProjectionPermit",
+      "permit_schema": "context-projection-permit.schema.json",
+      "patch": "ContextProjectionPatch",
+      "patch_schema": "context-projection-patch.schema.json",
+      "producer": "aset-monade",
+      "external_effect": false,
+      "writes": [
+        "CTX-MEMO",
+        "CTX-TASK"
+      ],
+      "reducer_id": "reducer:gate-context-project:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-EXPECT-ADMIT",
+      "document": "ExpectationAdmissionSubmission",
+      "document_schema": "expectation-admission-submission.schema.json",
+      "permit": "ExpectationPermit",
+      "permit_schema": "expectation-permit.schema.json",
+      "patch": "ExpectedChangePatch",
+      "patch_schema": "expected-change-patch.schema.json",
+      "producer": "aset-master",
+      "external_effect": false,
+      "writes": [
+        "CTX-MAST",
+        "CTX-TASK"
+      ],
+      "reducer_id": "reducer:gate-expect-admit:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-EXEC-BIND",
+      "document": "ExecutionBindingSubmission",
+      "document_schema": "execution-binding-submission.schema.json",
+      "permit": "ExecutionBindingPermit",
+      "permit_schema": "execution-binding-permit.schema.json",
+      "patch": "OperationalBindingPatch",
+      "patch_schema": "operational-binding-patch.schema.json",
+      "producer": "aset-monade-execution",
+      "external_effect": false,
+      "writes": [
+        "CTX-EXEC"
+      ],
+      "reducer_id": "reducer:gate-exec-bind:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-DISPATCH",
+      "document": "ExecutionDispatchSubmission",
+      "document_schema": "execution-dispatch-submission.schema.json",
+      "permit": "ExecutionPermit",
+      "permit_schema": "execution-permit.schema.json",
+      "patch": "ExecutionIntentPatch",
+      "patch_schema": "execution-intent-patch.schema.json",
+      "producer": "aset-monade-execution",
+      "external_effect": true,
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ],
+      "reducer_id": "reducer:gate-dispatch:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-OBSERVE",
+      "document": "ObservationSubmission",
+      "document_schema": "observation-submission.schema.json",
+      "permit": "ObservationAdmissionPermit",
+      "permit_schema": "observation-admission-permit.schema.json",
+      "patch": "ObservationPatch",
+      "patch_schema": "observation-patch.schema.json",
+      "producer": "aset-monade-execution",
+      "external_effect": false,
+      "writes": [
+        "CTX-EXEC"
+      ],
+      "reducer_id": "reducer:gate-observe:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-EVIDENCE",
+      "document": "EvidenceSubmission",
+      "document_schema": "evidence-submission.schema.json",
+      "permit": "EvidenceAdmissionPermit",
+      "permit_schema": "evidence-admission-permit.schema.json",
+      "patch": "EvidencePatch",
+      "patch_schema": "evidence-patch.schema.json",
+      "producer": "aset-monade-acceptance",
+      "external_effect": false,
+      "writes": [
+        "CTX-ACCE"
+      ],
+      "reducer_id": "reducer:gate-evidence:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-ACCEPT",
+      "document": "AcceptanceSubmission",
+      "document_schema": "acceptance-submission.schema.json",
+      "permit": "AcceptancePermit",
+      "permit_schema": "acceptance-permit.schema.json",
+      "patch": "AcceptanceResultPatch",
+      "patch_schema": "acceptance-result-patch.schema.json",
+      "producer": "aset-monade-acceptance",
+      "external_effect": false,
+      "writes": [
+        "CTX-ACCE",
+        "CTX-TASK"
+      ],
+      "reducer_id": "reducer:gate-accept:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-RETRY",
+      "document": "RetrySubmission",
+      "document_schema": "retry-submission.schema.json",
+      "permit": "RetryPermit",
+      "permit_schema": "retry-permit.schema.json",
+      "patch": "RetryIntentPatch",
+      "patch_schema": "retry-intent-patch.schema.json",
+      "producer": "aset-monade-execution",
+      "external_effect": true,
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ],
+      "reducer_id": "reducer:gate-retry:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-COMPENSATE",
+      "document": "CompensationSubmission",
+      "document_schema": "compensation-submission.schema.json",
+      "permit": "CompensationPermit",
+      "permit_schema": "compensation-permit.schema.json",
+      "patch": "CompensationIntentPatch",
+      "patch_schema": "compensation-intent-patch.schema.json",
+      "producer": "aset-monade-execution",
+      "external_effect": true,
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ],
+      "reducer_id": "reducer:gate-compensate:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-TASK-CLOSE",
+      "document": "TaskCompletionSubmission",
+      "document_schema": "task-completion-submission.schema.json",
+      "permit": "TaskCompletionPermit",
+      "permit_schema": "task-completion-permit.schema.json",
+      "patch": "TaskCompletionPatch",
+      "patch_schema": "task-completion-patch.schema.json",
+      "producer": "aset-monade-acceptance",
+      "external_effect": false,
+      "writes": [
+        "CTX-TASK",
+        "CTX-ACCE"
+      ],
+      "reducer_id": "reducer:gate-task-close:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    },
+    {
+      "id": "GATE-MEM-MUTATE",
+      "document": "MemoryMutationSubmission",
+      "document_schema": "memory-mutation-submission.schema.json",
+      "permit": "MemoryMutationPermit",
+      "permit_schema": "memory-mutation-permit.schema.json",
+      "patch": "MemoryLifecyclePatch",
+      "patch_schema": "memory-lifecycle-patch.schema.json",
+      "producer": "aset-memory",
+      "external_effect": false,
+      "writes": [
+        "CTX-MEMO"
+      ],
+      "reducer_id": "reducer:gate-mem-mutate:v1",
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ]
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INV-ACC-001",
+      "statement": "ACCEPTED requires VERIFIED_SUCCESS, COMPLIANT, evidence and no unresolved claims."
+    },
+    {
+      "id": "INV-ACC-002",
+      "statement": "EFFECT_UNKNOWN can only produce EVIDENCE_INSUFFICIENT or MANUAL_REVIEW_REQUIRED with UNDETERMINED normative status."
+    },
+    {
+      "id": "INV-ANCHOR-SCHEMA-001",
+      "statement": "The external trust anchor is validated against a closed schema, including version, trust domain and purpose, before its public key is used."
+    },
+    {
+      "id": "INV-ARCHIVE-SCOPE-001",
+      "statement": "Every distributed release archive is covered by an out-of-band signed release envelope that binds the exact ZIP byte digest, every entry path, size and digest, and the freeze-profile digest; archive entries outside the signed enumeration are forbidden."
+    },
+    {
+      "id": "INV-AUTH-001",
+      "statement": "Только ASET Core создаёт authority-bearing Permit."
+    },
+    {
+      "id": "INV-AUTH-002",
+      "statement": "Всё, что не имеет действующего Permit для точного гейта, запрещено."
+    },
+    {
+      "id": "INV-AUTH-003",
+      "statement": "CoreResolution имеет только PERMITTED или PROHIBITED; техническая ошибка не является разрешением."
+    },
+    {
+      "id": "INV-BUILD-001",
+      "statement": "Release finalization regenerates all generated artifacts before MANIFEST and SHA256SUMS; machine artifacts reproduce byte-for-byte and documents reproduce semantically."
+    },
+    {
+      "id": "INV-BUILD-002",
+      "statement": "The externally signed ordered generation source manifest covers every actual generator input and generator or validation executable; an unlisted or changed input invalidates the freeze."
+    },
+    {
+      "id": "INV-CONF-001",
+      "statement": "A stored conformance report is never trusted as authority; final validation reruns conformance and verifies its complete unique result-ID set and input digest."
+    },
+    {
+      "id": "INV-CONF-002",
+      "statement": "The externally signed assurance contract binds positive and negative indexes, every vector, requirement-oracle mappings, runner and validator bytes, exact counts and the complete expected result-ID set."
+    },
+    {
+      "id": "INV-CONTAINER-001",
+      "statement": "Final DOCX packages contain only the signed OPC part and relationship allowlists, and final PDFs contain no embedded files, JavaScript, launch actions, annotations, form actions, incremental trailing revisions or unreferenced payloads."
+    },
+    {
+      "id": "INV-CORE-RES-001",
+      "statement": "PERMITTED requires exactly one permit reference and digest; PROHIBITED forbids both and requires reason codes."
+    },
+    {
+      "id": "INV-CORPUS-001",
+      "statement": "The positive conformance corpus forms an end-to-end digest-linked signed artifact graph; unresolved or substituted internal references are prohibited."
+    },
+    {
+      "id": "INV-CORPUS-002",
+      "statement": "Each one-shot Permit in the positive corpus resolves to one exact signed CoreResolution that binds the exact Submission and Permit digest."
+    },
+    {
+      "id": "INV-CRYPTO-001",
+      "statement": "ASET-JCS-1 canonical bytes, SHA-256 digests and Ed25519 signatures are verified against reproducible positive and negative vectors."
+    },
+    {
+      "id": "INV-CRYPTO-002",
+      "statement": "Signed normative JSON values prohibit non-integer numbers unless a future version defines and tests a complete cross-language numeric canonicalization profile."
+    },
+    {
+      "id": "INV-CRYPTO-003",
+      "statement": "ASET-JCS-1 permits only I-JSON safe integers and sorts NFC-normalized object keys by unsigned UTF-8 bytes using published cross-language edge vectors."
+    },
+    {
+      "id": "INV-CTX-001",
+      "statement": "Существующие Context и SignedContextComponent неизменяемы."
+    },
+    {
+      "id": "INV-CTX-002",
+      "statement": "Любое каноническое изменение создаёт новый Context через atomic gate patch set."
+    },
+    {
+      "id": "INV-CTX-003",
+      "statement": "Gate является linearization point: patch set, new components/root, scoped HEAD updates, Permit consumption и receipt фиксируются атомарно."
+    },
+    {
+      "id": "INV-CTX-004",
+      "statement": "Composite root однозначно зависит от канонически упорядоченных подписанных компонентов."
+    },
+    {
+      "id": "INV-CTX-005",
+      "statement": "Изменение dependency component инвалидирует Permit; изменение независимого компонента не обязано его инвалидировать."
+    },
+    {
+      "id": "INV-CTX-006",
+      "statement": "Один crossing_id создаёт не более одного target context и receipt; повтор возвращает тот же результат."
+    },
+    {
+      "id": "INV-CUSTOMXML-ALLOWLIST-001",
+      "statement": "DOCX custom XML is permitted only through an explicit closed bibliography-part allowlist and exact part hashes; the policy never claims that custom XML is absent when allowlisted parts exist."
+    },
+    {
+      "id": "INV-DOC-001",
+      "statement": "Presentation evidence binds exact final DOCX and PDF bytes, renderer versions, per-page rendered equality and accessibility results; final validation reruns the presentation gate."
+    },
+    {
+      "id": "INV-EFFECT-001",
+      "statement": "Gate crossing не доказывает dispatch, external effect, verification или acceptance."
+    },
+    {
+      "id": "INV-EFFECT-002",
+      "statement": "Retry разрешён только при NO_EFFECT или доказанной идемпотентности."
+    },
+    {
+      "id": "INV-ENV-001",
+      "statement": "Conformance and generation execute only under the exact externally committed Python dependency closure and native renderer/toolchain fingerprint; environment drift fails before generation or assurance execution."
+    },
+    {
+      "id": "INV-EPI-001",
+      "statement": "EXPECTED не является OBSERVED; OBSERVED не является VERIFIED; verified transition не равен Task goal completion."
+    },
+    {
+      "id": "INV-EPI-002",
+      "statement": "Worker self-report не является достаточным evidence по умолчанию."
+    },
+    {
+      "id": "INV-EXTRACTED-SCOPE-001",
+      "statement": "After extraction, the actual stable regular-file set must equal the MANIFEST set plus only the explicitly enumerated self-referential admission files; unmanifested stable files fail before any final PASS."
+    },
+    {
+      "id": "INV-ID-001",
+      "statement": "Every stable ID in the normative machine model is globally unique; conflicting duplicate identities are prohibited."
+    },
+    {
+      "id": "INV-ID-002",
+      "statement": "Every primary identity in requirements, ADR, verification, model, diagram, conformance, oracle, document and key registries is unique in its declared registry."
+    },
+    {
+      "id": "INV-JSON-001",
+      "statement": "Every normative JSON input rejects duplicate raw member names before semantic parsing, schema validation, digesting or signature verification."
+    },
+    {
+      "id": "INV-MASTER-001",
+      "statement": "Master формирует ExpectedChangePatch, но не Permit и не внешний эффект."
+    },
+    {
+      "id": "INV-MEM-001",
+      "statement": "Memory и operational Context различны."
+    },
+    {
+      "id": "INV-MONADE-001",
+      "statement": "Execution не создаёт AcceptanceDecision; Acceptance не выполняет primary effect."
+    },
+    {
+      "id": "INV-MONADE-002",
+      "statement": "Retry, verification probe и compensation имеют отдельные documents, gates и Permits."
+    },
+    {
+      "id": "INV-NARRATIVE-001",
+      "statement": "Every shipped Markdown and QA narrative is deterministically generated from the same current inventory and is covered by signed exact-output commitments; stale counts or statuses fail admission."
+    },
+    {
+      "id": "INV-ORACLE-001",
+      "statement": "Structural traceability oracles prove registry completeness only and are never reported as implementation or semantic FitCriterion conformance."
+    },
+    {
+      "id": "INV-OUTPUT-001",
+      "statement": "The externally signed freeze profile binds exact byte SHA-256 values and closed container policies for every final DOCX and PDF output; any byte or container-part drift requires a new freeze signature."
+    },
+    {
+      "id": "INV-PERMIT-001",
+      "statement": "Permit относится ровно к одному document digest, dependency context set, gate instance, crossing ID и actor/execution ID."
+    },
+    {
+      "id": "INV-PERMIT-002",
+      "statement": "Permit допускает ровно одно немедленное пересечение и после него безвозвратно CONSUMED."
+    },
+    {
+      "id": "INV-PERMIT-003",
+      "statement": "Permit одного гейта неприменим к другому гейту."
+    },
+    {
+      "id": "INV-PERMIT-004",
+      "statement": "ExpectationPermit не разрешает внешний эффект; ExecutionPermit является отдельным артефактом."
+    },
+    {
+      "id": "INV-PERMIT-005",
+      "statement": "Every Permit has consume_before strictly later than issued_at and within the policy maximum lifetime of 60 seconds."
+    },
+    {
+      "id": "INV-PROMPT-001",
+      "statement": "Prompt Compiler детерминирован и не повышает epistemic status."
+    },
+    {
+      "id": "INV-PROMPT-002",
+      "statement": "Provider prompt/cache не является источником истины."
+    },
+    {
+      "id": "INV-PROMPT-003",
+      "statement": "PromptManifest binds the exact compiler-input projection and canonical messages; Model Gateway separately binds exact provider request bytes."
+    },
+    {
+      "id": "INV-RECURSIVE-CONTAINER-001",
+      "statement": "DOCX and PDF container policy is applied recursively to every matching file in the distributed release, regardless of directory, and is not limited to the primary document set."
+    },
+    {
+      "id": "INV-REG-001",
+      "statement": "CSV/JSON dual representations are generated from one normative source and must have exact semantic parity."
+    },
+    {
+      "id": "INV-RUNTIME-CLOSURE-001",
+      "statement": "The generation and assurance environment is committed as an exact runtime closure of executable payloads, dynamically linked libraries, font files, font configuration, locale, timezone and relevant environment variables."
+    },
+    {
+      "id": "INV-SCHEMA-001",
+      "statement": "Every normative JSON artifact is validated by a closed-world schema with unknown properties rejected."
+    },
+    {
+      "id": "INV-SCHEMA-002",
+      "statement": "All 11 gates have distinct submission, Permit and patch schemas; a document valid for one role is invalid for every incompatible role."
+    },
+    {
+      "id": "INV-SCHEMA-003",
+      "statement": "The externally signed freeze profile binds the path, schema $id, byte SHA-256 and canonical digest of every mandatory normative JSON Schema before any schema is used."
+    },
+    {
+      "id": "INV-VERSION-001",
+      "statement": "Package, protocol, schema-profile, documentation-profile and key-epoch versions are separate explicit domains governed by a closed compatibility profile."
+    }
+  ],
+  "state_machines": {
+    "permit": {
+      "states": [
+        "NONEXISTENT",
+        "ISSUED",
+        "CONSUMED",
+        "EXPIRED",
+        "REVOKED"
+      ],
+      "initial": "NONEXISTENT",
+      "terminal": [
+        "CONSUMED",
+        "EXPIRED",
+        "REVOKED"
+      ],
+      "transitions": [
+        {
+          "from": "NONEXISTENT",
+          "event": "ISSUE_AFTER_PERMITTED",
+          "to": "ISSUED",
+          "guard": "resolution=PERMITTED"
+        },
+        {
+          "from": "ISSUED",
+          "event": "CROSS",
+          "to": "CONSUMED",
+          "guard": "exact_context_and_gate_and_before_deadline"
+        },
+        {
+          "from": "ISSUED",
+          "event": "DEADLINE",
+          "to": "EXPIRED",
+          "guard": "now>=consume_before"
+        },
+        {
+          "from": "ISSUED",
+          "event": "REVOKE",
+          "to": "REVOKED",
+          "guard": "before_linearization"
+        }
+      ]
+    },
+    "expected_change": {
+      "states": [
+        "PROPOSED",
+        "AUTHORIZED_EXPECTED",
+        "EXECUTION_BOUND",
+        "EXECUTION_ATTEMPTED",
+        "OBSERVED",
+        "VERIFIED",
+        "REJECTED",
+        "PARTIAL",
+        "UNKNOWN",
+        "TASK_ACCEPTED",
+        "TASK_REJECTED"
+      ],
+      "initial": "PROPOSED",
+      "terminal": [
+        "TASK_ACCEPTED",
+        "TASK_REJECTED"
+      ],
+      "transitions": [
+        {
+          "from": "PROPOSED",
+          "event": "EXPECTATION_GATE",
+          "to": "AUTHORIZED_EXPECTED"
+        },
+        {
+          "from": "AUTHORIZED_EXPECTED",
+          "event": "BINDING_GATE",
+          "to": "EXECUTION_BOUND"
+        },
+        {
+          "from": "EXECUTION_BOUND",
+          "event": "DISPATCH_GATE",
+          "to": "EXECUTION_ATTEMPTED"
+        },
+        {
+          "from": "EXECUTION_ATTEMPTED",
+          "event": "OBSERVATION_GATE",
+          "to": "OBSERVED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_VERIFIED",
+          "to": "VERIFIED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_REJECTED",
+          "to": "REJECTED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_PARTIAL",
+          "to": "PARTIAL"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_UNKNOWN",
+          "to": "UNKNOWN"
+        },
+        {
+          "from": "VERIFIED",
+          "event": "TASK_CLOSE_SUCCESS",
+          "to": "TASK_ACCEPTED"
+        },
+        {
+          "from": "REJECTED",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        },
+        {
+          "from": "PARTIAL",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        },
+        {
+          "from": "UNKNOWN",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        }
+      ]
+    },
+    "crossing": {
+      "states": [
+        "ABSENT",
+        "LINEARIZED"
+      ],
+      "initial": "ABSENT",
+      "terminal": [
+        "LINEARIZED"
+      ],
+      "transitions": [
+        {
+          "from": "ABSENT",
+          "event": "ATOMIC_APPLY",
+          "to": "LINEARIZED",
+          "guard": "CAS_heads_and_valid_permit"
+        },
+        {
+          "from": "LINEARIZED",
+          "event": "REPLAY_SAME_CROSSING_ID",
+          "to": "LINEARIZED",
+          "guard": "return_identical_receipt"
+        }
+      ]
+    }
+  },
+  "prompt_compilation": {
+    "owner": "SUB-PROMPT",
+    "deterministic_inputs": [
+      "source_context",
+      "purpose",
+      "projection_profile",
+      "compiler",
+      "model_profile",
+      "token_budget_plan",
+      "selection_policy",
+      "section_claim_refs_and_content_digests"
+    ],
+    "sections": [
+      "SYSTEM_CONSTRAINTS",
+      "VERIFIED_FACTS",
+      "ASSUMPTIONS",
+      "AUTHORIZED_EXPECTED_CHANGE",
+      "OPERATIONAL_BINDING",
+      "FORBIDDEN_ACTIONS",
+      "ACCEPTANCE_CRITERIA",
+      "UNRESOLVED_INFORMATION",
+      "TOOLS"
+    ],
+    "outputs": [
+      "PromptManifest",
+      "canonical_messages",
+      "canonical_messages_digest",
+      "ProviderRequestManifest",
+      "rendered_request_digest"
+    ],
+    "forbidden": [
+      "network reads during compile",
+      "clock dependence not materialized as input",
+      "randomness",
+      "LLM calls",
+      "untyped inline instructions"
+    ],
+    "gateway_boundary": "Prompt Compiler signs canonical messages; Model Gateway separately signs exact canonical provider request bytes."
+  },
+  "workflow": [
+    "Memory projection",
+    "Master PlanProposal + ExpectedChangePatch",
+    "Expectation resolution/permit/gate",
+    "Execution OperationalBinding",
+    "Execution resolution/permit/dispatch gate",
+    "Worker observation",
+    "Acceptance evidence/verdict/gate",
+    "Memory/Master feedback"
+  ],
+  "deprecated_terms": [
+    {
+      "term": "ASET Mastermind",
+      "replacement": "ASET Master",
+      "status": "DEPRECATED",
+      "scope": "historical only"
+    }
+  ],
+  "context_composition": {
+    "profile": "ASET-MERKLE-1",
+    "leaf_fields": [
+      "component_type",
+      "component_id",
+      "version",
+      "digest",
+      "owner_id",
+      "owner_key_id"
+    ],
+    "sort_order": "component_type,component_id,version,digest,owner_id,owner_key_id",
+    "tree": "leaf=SHA-256(0x00 || canonical_leaf_bytes); node=SHA-256(0x01 || left32 || right32); duplicate-last at odd level",
+    "uniqueness": [
+      "component_id unique within manifest",
+      "component tuple unique"
+    ],
+    "owner_mapping": {
+      "memory": "aset-memory",
+      "master": "aset-master",
+      "task": "aset-monade",
+      "execution": "aset-monade-execution",
+      "acceptance": "aset-monade-acceptance",
+      "authority": "aset-core"
+    },
+    "leaf_encoding": "ASET-JCS-1 canonical JSON object over exactly leaf_fields",
+    "leaf_domain_separator": "00",
+    "node_domain_separator": "01"
+  },
+  "crypto_profile": {
+    "canonicalization": "ASET-JCS-1",
+    "normalization": "UTF-8 JSON; raw duplicate member names rejected; all strings and object keys NFC-normalized; NFC key collisions rejected; keys sorted by unsigned UTF-8 byte sequence; no insignificant whitespace; integers restricted to [-9007199254740991,9007199254740991]; non-integer numbers forbidden.",
+    "digest": "SHA-256",
+    "signature": "Ed25519 over signature_input",
+    "test_vectors": "conformance/crypto/crypto-vectors.json",
+    "digest_projection": "entire artifact excluding integrity.document_digest and integrity.signature; all other fields retained",
+    "signature_input": "UTF-8 document_type + LF + schema_version + LF + issuer + LF + tenant_id + LF + document_digest",
+    "artifact_key_registry": "conformance/crypto/artifact-key-registry.json",
+    "positive_artifacts": "Every positive artifact example has a valid document digest and Ed25519 signature.",
+    "unicode_key_collision_rule": "Reject any object containing distinct keys that become equal after NFC normalization.",
+    "canonicalization_numeric_domain": "null, boolean, string, safe integer [-9007199254740991,9007199254740991], array, object.",
+    "raw_json_member_rule": "Reject duplicate raw member names before semantic parsing or canonicalization.",
+    "object_key_order": "Ascending unsigned UTF-8 byte sequence of NFC-normalized keys.",
+    "key_registry": "conformance/crypto/artifact-key-registry.json",
+    "key_trust_profile": "issuer + artifact type + ACTIVE lifecycle + trust/revocation epoch enforced before signature verification",
+    "normative_serialization": "JSON is the sole normative serialization; YAML files are non-normative derived views and must reject duplicate keys and aliases."
+  },
+  "canonical_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94"
+}

@@ -1,0 +1,1015 @@
+{
+  "specification_id": "aset.system-specification",
+  "version": "1.5-rc11",
+  "status": "NORMATIVE_CONCEPTUAL_FREEZE_CANDIDATE",
+  "model_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94",
+  "protocol": {
+    "default_deny": true,
+    "format_validation": true,
+    "unknown_properties": "REJECT",
+    "authority_issuer": "ASET Core",
+    "linearization": "atomic patch set + new root + HEAD CAS + Permit consumption + receipt",
+    "external_effect_boundary": "outbox after gate; effect not asserted by GateCrossingReceipt",
+    "artifact_digest_projection": "Entire artifact excluding integrity.document_digest and integrity.signature; all other fields retained.",
+    "signature_input": "UTF-8 document_type + LF + schema_version + LF + issuer + LF + tenant_id + LF + document_digest.",
+    "numeric_domain": "Signed normative JSON allows only integers in [-9007199254740991,9007199254740991]; larger integers use decimal strings under a dedicated schema.",
+    "canonicalization_key_collision": "REJECT_NFC_EQUIVALENT_OBJECT_KEYS_BEFORE_HASHING",
+    "permit_time_rule": "consume_before must be strictly later than issued_at and no more than 60 seconds later.",
+    "permit_max_lifetime_seconds": 60,
+    "positive_fixture_graph": "Eleven complete digest-linked signed authority chains (Submission→Resolution→Permit→Patch), plus the representative PatchSet→Receipt→Context and Prompt→Provider continuations.",
+    "raw_json_member_rule": "REJECT_DUPLICATE_MEMBER_NAMES_BEFORE_PARSE",
+    "object_key_order": "NFC-normalize, reject collisions, then sort by ascending unsigned UTF-8 bytes.",
+    "requirements_source_of_truth": "requirements/requirements_register.csv; JSON is generated and exact-parity checked.",
+    "conformance_report_trust": "UNTRUSTED_CACHED_OUTPUT; validate_package must rerun the suite and verify the exact result-ID set and input digest."
+  },
+  "gate_transition_specs": [
+    {
+      "gate_id": "GATE-CONTEXT-PROJECT",
+      "submission_schema": "context-projection-submission.schema.json",
+      "permit_schema": "context-projection-permit.schema.json",
+      "patch_schema": "context-projection-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-context-project:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-EXPECT-ADMIT",
+      "submission_schema": "expectation-admission-submission.schema.json",
+      "permit_schema": "expectation-permit.schema.json",
+      "patch_schema": "expected-change-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-expect-admit:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-EXEC-BIND",
+      "submission_schema": "execution-binding-submission.schema.json",
+      "permit_schema": "execution-binding-permit.schema.json",
+      "patch_schema": "operational-binding-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-exec-bind:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-DISPATCH",
+      "submission_schema": "execution-dispatch-submission.schema.json",
+      "permit_schema": "execution-permit.schema.json",
+      "patch_schema": "execution-intent-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-dispatch:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": true
+    },
+    {
+      "gate_id": "GATE-OBSERVE",
+      "submission_schema": "observation-submission.schema.json",
+      "permit_schema": "observation-admission-permit.schema.json",
+      "patch_schema": "observation-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-observe:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-EVIDENCE",
+      "submission_schema": "evidence-submission.schema.json",
+      "permit_schema": "evidence-admission-permit.schema.json",
+      "patch_schema": "evidence-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-evidence:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-ACCEPT",
+      "submission_schema": "acceptance-submission.schema.json",
+      "permit_schema": "acceptance-permit.schema.json",
+      "patch_schema": "acceptance-result-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-accept:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-RETRY",
+      "submission_schema": "retry-submission.schema.json",
+      "permit_schema": "retry-permit.schema.json",
+      "patch_schema": "retry-intent-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-retry:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": true
+    },
+    {
+      "gate_id": "GATE-COMPENSATE",
+      "submission_schema": "compensation-submission.schema.json",
+      "permit_schema": "compensation-permit.schema.json",
+      "patch_schema": "compensation-intent-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-compensate:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": true
+    },
+    {
+      "gate_id": "GATE-TASK-CLOSE",
+      "submission_schema": "task-completion-submission.schema.json",
+      "permit_schema": "task-completion-permit.schema.json",
+      "patch_schema": "task-completion-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-task-close:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    },
+    {
+      "gate_id": "GATE-MEM-MUTATE",
+      "submission_schema": "memory-mutation-submission.schema.json",
+      "permit_schema": "memory-mutation-permit.schema.json",
+      "patch_schema": "memory-lifecycle-patch.schema.json",
+      "reads": [
+        "source_context.read_set",
+        "authority_epoch",
+        "required receipts"
+      ],
+      "preconditions": [
+        "schema valid",
+        "signature valid",
+        "issuer authorized",
+        "source dependencies current",
+        "no prior result for different crossing payload"
+      ],
+      "reducer": {
+        "id": "reducer:gate-mem-mutate:v1",
+        "version": "ver:1",
+        "determinism": "pure function of canonical submission, source context refs, Permit and materialized receipts",
+        "forbidden_inputs": [
+          "wall clock except signed issued_at/linearized_at",
+          "network",
+          "randomness",
+          "LLM"
+        ]
+      },
+      "postconditions": [
+        "append-only ContextPatchSet",
+        "new signed components",
+        "new composite root",
+        "scoped HEAD CAS",
+        "Permit logical state CONSUMED",
+        "one GateCrossingReceipt"
+      ],
+      "failure_codes": [
+        "SOURCE_CONTEXT_STALE",
+        "PERMIT_MISSING",
+        "PERMIT_EXPIRED",
+        "PERMIT_SCOPE_MISMATCH",
+        "SCHEMA_INVALID",
+        "PRECONDITION_FAILED",
+        "CONCURRENT_CROSSING",
+        "REDUCER_FAILURE"
+      ],
+      "external_effect": false
+    }
+  ],
+  "state_machines": {
+    "permit": {
+      "states": [
+        "NONEXISTENT",
+        "ISSUED",
+        "CONSUMED",
+        "EXPIRED",
+        "REVOKED"
+      ],
+      "initial": "NONEXISTENT",
+      "terminal": [
+        "CONSUMED",
+        "EXPIRED",
+        "REVOKED"
+      ],
+      "transitions": [
+        {
+          "from": "NONEXISTENT",
+          "event": "ISSUE_AFTER_PERMITTED",
+          "to": "ISSUED",
+          "guard": "resolution=PERMITTED"
+        },
+        {
+          "from": "ISSUED",
+          "event": "CROSS",
+          "to": "CONSUMED",
+          "guard": "exact_context_and_gate_and_before_deadline"
+        },
+        {
+          "from": "ISSUED",
+          "event": "DEADLINE",
+          "to": "EXPIRED",
+          "guard": "now>=consume_before"
+        },
+        {
+          "from": "ISSUED",
+          "event": "REVOKE",
+          "to": "REVOKED",
+          "guard": "before_linearization"
+        }
+      ]
+    },
+    "expected_change": {
+      "states": [
+        "PROPOSED",
+        "AUTHORIZED_EXPECTED",
+        "EXECUTION_BOUND",
+        "EXECUTION_ATTEMPTED",
+        "OBSERVED",
+        "VERIFIED",
+        "REJECTED",
+        "PARTIAL",
+        "UNKNOWN",
+        "TASK_ACCEPTED",
+        "TASK_REJECTED"
+      ],
+      "initial": "PROPOSED",
+      "terminal": [
+        "TASK_ACCEPTED",
+        "TASK_REJECTED"
+      ],
+      "transitions": [
+        {
+          "from": "PROPOSED",
+          "event": "EXPECTATION_GATE",
+          "to": "AUTHORIZED_EXPECTED"
+        },
+        {
+          "from": "AUTHORIZED_EXPECTED",
+          "event": "BINDING_GATE",
+          "to": "EXECUTION_BOUND"
+        },
+        {
+          "from": "EXECUTION_BOUND",
+          "event": "DISPATCH_GATE",
+          "to": "EXECUTION_ATTEMPTED"
+        },
+        {
+          "from": "EXECUTION_ATTEMPTED",
+          "event": "OBSERVATION_GATE",
+          "to": "OBSERVED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_VERIFIED",
+          "to": "VERIFIED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_REJECTED",
+          "to": "REJECTED"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_PARTIAL",
+          "to": "PARTIAL"
+        },
+        {
+          "from": "OBSERVED",
+          "event": "ACCEPT_UNKNOWN",
+          "to": "UNKNOWN"
+        },
+        {
+          "from": "VERIFIED",
+          "event": "TASK_CLOSE_SUCCESS",
+          "to": "TASK_ACCEPTED"
+        },
+        {
+          "from": "REJECTED",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        },
+        {
+          "from": "PARTIAL",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        },
+        {
+          "from": "UNKNOWN",
+          "event": "TASK_CLOSE_FAILURE",
+          "to": "TASK_REJECTED"
+        }
+      ]
+    },
+    "crossing": {
+      "states": [
+        "ABSENT",
+        "LINEARIZED"
+      ],
+      "initial": "ABSENT",
+      "terminal": [
+        "LINEARIZED"
+      ],
+      "transitions": [
+        {
+          "from": "ABSENT",
+          "event": "ATOMIC_APPLY",
+          "to": "LINEARIZED",
+          "guard": "CAS_heads_and_valid_permit"
+        },
+        {
+          "from": "LINEARIZED",
+          "event": "REPLAY_SAME_CROSSING_ID",
+          "to": "LINEARIZED",
+          "guard": "return_identical_receipt"
+        }
+      ]
+    }
+  },
+  "prompt_contract": {
+    "owner": "SUB-PROMPT",
+    "deterministic_inputs": [
+      "source_context",
+      "purpose",
+      "projection_profile",
+      "compiler",
+      "model_profile",
+      "token_budget_plan",
+      "selection_policy",
+      "section_claim_refs_and_content_digests"
+    ],
+    "sections": [
+      "SYSTEM_CONSTRAINTS",
+      "VERIFIED_FACTS",
+      "ASSUMPTIONS",
+      "AUTHORIZED_EXPECTED_CHANGE",
+      "OPERATIONAL_BINDING",
+      "FORBIDDEN_ACTIONS",
+      "ACCEPTANCE_CRITERIA",
+      "UNRESOLVED_INFORMATION",
+      "TOOLS"
+    ],
+    "outputs": [
+      "PromptManifest",
+      "canonical_messages",
+      "canonical_messages_digest",
+      "ProviderRequestManifest",
+      "rendered_request_digest"
+    ],
+    "forbidden": [
+      "network reads during compile",
+      "clock dependence not materialized as input",
+      "randomness",
+      "LLM calls",
+      "untyped inline instructions"
+    ],
+    "compiler_input_projection": {
+      "fields": [
+        "source_context",
+        "purpose",
+        "projection_profile",
+        "compiler",
+        "model_profile",
+        "token_budget.max_input_tokens",
+        "token_budget.reserved_output_tokens",
+        "selection_policy",
+        "sections"
+      ],
+      "encoding": "ASET-JCS-1 over an object retaining exactly the listed fields and the complete section objects in ordinal order",
+      "digest": "SHA-256"
+    },
+    "budget_invariants": [
+      "actual_input_tokens equals sum(sections.token_count)",
+      "actual_input_tokens <= max_input_tokens",
+      "max_input_tokens + reserved_output_tokens <= model_profile.context_window"
+    ],
+    "gateway_output": "ProviderRequestManifest binds source PromptManifest digest, adapter artifact, provider/model, exact canonical JSON request and rendered_request_digest."
+  },
+  "context_contract": {
+    "profile": "ASET-MERKLE-1",
+    "leaf_fields": [
+      "component_type",
+      "component_id",
+      "version",
+      "digest",
+      "owner_id",
+      "owner_key_id"
+    ],
+    "sort_order": "component_type,component_id,version,digest,owner_id,owner_key_id",
+    "tree": "leaf=SHA-256(0x00 || canonical_leaf_bytes); node=SHA-256(0x01 || left32 || right32); duplicate-last at odd level",
+    "uniqueness": [
+      "component_id unique within manifest",
+      "component tuple unique"
+    ],
+    "owner_mapping": {
+      "memory": "aset-memory",
+      "master": "aset-master",
+      "task": "aset-monade",
+      "execution": "aset-monade-execution",
+      "acceptance": "aset-monade-acceptance",
+      "authority": "aset-core"
+    },
+    "leaf_encoding": "ASET-JCS-1 canonical JSON object over exactly leaf_fields",
+    "leaf_domain_separator": "00",
+    "node_domain_separator": "01"
+  },
+  "acceptance_matrix": [
+    {
+      "decision": "ACCEPTED",
+      "operational_status": "VERIFIED_SUCCESS",
+      "normative_status": "COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "forbidden"
+    },
+    {
+      "decision": "PARTIALLY_ACCEPTED",
+      "operational_status": "PARTIAL_EFFECT",
+      "normative_status": "COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "required"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "VERIFIED_FAILURE",
+      "normative_status": "COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "optional"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "VERIFIED_FAILURE",
+      "normative_status": "NON_COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "optional"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "NO_EFFECT",
+      "normative_status": "COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "optional"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "NO_EFFECT",
+      "normative_status": "NON_COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "optional"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "VERIFIED_SUCCESS",
+      "normative_status": "NON_COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "optional"
+    },
+    {
+      "decision": "REJECTED",
+      "operational_status": "PARTIAL_EFFECT",
+      "normative_status": "NON_COMPLIANT",
+      "evidence": "required",
+      "unresolved_claims": "required"
+    },
+    {
+      "decision": "EVIDENCE_INSUFFICIENT",
+      "operational_status": "EFFECT_UNKNOWN",
+      "normative_status": "UNDETERMINED",
+      "evidence": "optional",
+      "unresolved_claims": "required"
+    },
+    {
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "operational_status": "EFFECT_UNKNOWN",
+      "normative_status": "UNDETERMINED",
+      "evidence": "optional",
+      "unresolved_claims": "required"
+    },
+    {
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "operational_status": "PARTIAL_EFFECT",
+      "normative_status": "UNDETERMINED",
+      "evidence": "optional",
+      "unresolved_claims": "required"
+    }
+  ],
+  "conformance": {
+    "mandatory_gate_ids": [
+      "GATE-ACCEPT",
+      "GATE-COMPENSATE",
+      "GATE-CONTEXT-PROJECT",
+      "GATE-DISPATCH",
+      "GATE-EVIDENCE",
+      "GATE-EXEC-BIND",
+      "GATE-EXPECT-ADMIT",
+      "GATE-MEM-MUTATE",
+      "GATE-OBSERVE",
+      "GATE-RETRY",
+      "GATE-TASK-CLOSE"
+    ],
+    "mandatory_invariants": [
+      "INV-ACC-001",
+      "INV-ACC-002",
+      "INV-ANCHOR-SCHEMA-001",
+      "INV-ARCHIVE-SCOPE-001",
+      "INV-AUTH-001",
+      "INV-AUTH-002",
+      "INV-AUTH-003",
+      "INV-BUILD-001",
+      "INV-BUILD-002",
+      "INV-CONF-001",
+      "INV-CONF-002",
+      "INV-CONTAINER-001",
+      "INV-CORE-RES-001",
+      "INV-CORPUS-001",
+      "INV-CORPUS-002",
+      "INV-CRYPTO-001",
+      "INV-CRYPTO-002",
+      "INV-CRYPTO-003",
+      "INV-CTX-001",
+      "INV-CTX-002",
+      "INV-CTX-003",
+      "INV-CTX-004",
+      "INV-CTX-005",
+      "INV-CTX-006",
+      "INV-CUSTOMXML-ALLOWLIST-001",
+      "INV-DOC-001",
+      "INV-EFFECT-001",
+      "INV-EFFECT-002",
+      "INV-ENV-001",
+      "INV-EPI-001",
+      "INV-EPI-002",
+      "INV-EXTRACTED-SCOPE-001",
+      "INV-ID-001",
+      "INV-ID-002",
+      "INV-JSON-001",
+      "INV-MASTER-001",
+      "INV-MEM-001",
+      "INV-MONADE-001",
+      "INV-MONADE-002",
+      "INV-NARRATIVE-001",
+      "INV-ORACLE-001",
+      "INV-OUTPUT-001",
+      "INV-PERMIT-001",
+      "INV-PERMIT-002",
+      "INV-PERMIT-003",
+      "INV-PERMIT-004",
+      "INV-PERMIT-005",
+      "INV-PROMPT-001",
+      "INV-PROMPT-002",
+      "INV-PROMPT-003",
+      "INV-RECURSIVE-CONTAINER-001",
+      "INV-REG-001",
+      "INV-RUNTIME-CLOSURE-001",
+      "INV-SCHEMA-001",
+      "INV-SCHEMA-002",
+      "INV-SCHEMA-003",
+      "INV-VERSION-001"
+    ],
+    "mandatory_schemas": [
+      "acceptance-context-content.schema.json",
+      "acceptance-permit.schema.json",
+      "acceptance-result-patch.schema.json",
+      "acceptance-submission.schema.json",
+      "artifact-key-registry.schema.json",
+      "authority-context-content.schema.json",
+      "compensation-intent-patch.schema.json",
+      "compensation-permit.schema.json",
+      "compensation-submission.schema.json",
+      "composite-context-manifest.schema.json",
+      "context-patch-set.schema.json",
+      "context-projection-patch.schema.json",
+      "context-projection-permit.schema.json",
+      "context-projection-submission.schema.json",
+      "core-resolution.schema.json",
+      "document-evidence.schema.json",
+      "evidence-admission-permit.schema.json",
+      "evidence-patch.schema.json",
+      "evidence-submission.schema.json",
+      "execution-binding-permit.schema.json",
+      "execution-binding-submission.schema.json",
+      "execution-context-content.schema.json",
+      "execution-dispatch-submission.schema.json",
+      "execution-intent-patch.schema.json",
+      "execution-permit.schema.json",
+      "expectation-admission-submission.schema.json",
+      "expectation-permit.schema.json",
+      "expected-change-patch.schema.json",
+      "external-trust-anchor.schema.json",
+      "final-output-manifest.schema.json",
+      "freeze-profile.schema.json",
+      "gate-crossing-receipt.schema.json",
+      "master-context-content.schema.json",
+      "memory-context-content.schema.json",
+      "memory-lifecycle-patch.schema.json",
+      "memory-mutation-permit.schema.json",
+      "memory-mutation-submission.schema.json",
+      "observation-admission-permit.schema.json",
+      "observation-patch.schema.json",
+      "observation-submission.schema.json",
+      "one-shot-permit.schema.json",
+      "operational-binding-patch.schema.json",
+      "prompt-manifest.schema.json",
+      "provider-request-manifest.schema.json",
+      "release-envelope.schema.json",
+      "retry-intent-patch.schema.json",
+      "retry-permit.schema.json",
+      "retry-submission.schema.json",
+      "signed-context-component.schema.json",
+      "system-model.schema.json",
+      "system-specification.schema.json",
+      "task-completion-patch.schema.json",
+      "task-completion-permit.schema.json",
+      "task-completion-submission.schema.json",
+      "task-context-content.schema.json",
+      "toolchain-lock.schema.json",
+      "version-compatibility-profile.schema.json"
+    ],
+    "positive_vector_index": "conformance/positive/index.json",
+    "negative_vector_index": "conformance/negative/index.json",
+    "crypto_vectors": "conformance/crypto/crypto-vectors.json",
+    "mutation_suite": "conformance/run_conformance.py",
+    "verification_claims": {
+      "registered_requirements": 177,
+      "implementation_cases": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "oracle_index": "conformance/requirement_oracles.json",
+      "structural_traceability_oracles": 177,
+      "semantic_fitcriterion_conformance": "NOT_CLAIMED_BY_STRUCTURAL_ORACLES"
+    }
+  },
+  "canonical_digest": "sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6"
+}

@@ -1,0 +1,195 @@
+{
+  "artifacts": [
+    {
+      "id": "ART-EXPECT-ADMIT-SUB",
+      "name": "ExpectationAdmissionSubmission",
+      "owner": "aset-master",
+      "role": "submission",
+      "schema": "expectation-admission-submission.schema.json"
+    },
+    {
+      "id": "ART-EXPECT-ADMIT-PATCH",
+      "name": "ExpectedChangePatch",
+      "owner": "aset-master",
+      "role": "patch",
+      "schema": "expected-change-patch.schema.json"
+    }
+  ],
+  "assurance": {
+    "implementation_conformance": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+    "limitations": [
+      {
+        "id": "MASTER-LIM-001",
+        "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+        "severity": "HIGH",
+        "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+      },
+      {
+        "id": "MASTER-LIM-002",
+        "required_evidence": "External exact-byte audit of the component release.",
+        "severity": "MEDIUM",
+        "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+      }
+    ],
+    "production_conformance": "HOLD"
+  },
+  "boundary_invariants": [
+    {
+      "derived_from": "INV-MASTER-001",
+      "id": "MASTER-BND-001",
+      "statement": "ExpectedChangePatch and AttractorDescriptor are advisory and cannot authorize a gate crossing."
+    }
+  ],
+  "canon_assets": {
+    "conformance_binding": "aset/components/master/canonical/conformance/binding.json",
+    "formal_profile": "aset/components/master/canonical/formal/master.tla",
+    "invariants": "aset/components/master/canonical/assurance/invariants.json",
+    "limitations": "aset/components/master/canonical/assurance/limitations.json",
+    "protocol_profile": "aset/components/master/canonical/protocol/profile.json",
+    "requirements": "aset/components/master/canonical/assurance/requirements.json",
+    "threat_model": "aset/components/master/canonical/assurance/threat-model.json",
+    "traceability": "aset/components/master/canonical/assurance/traceability.json",
+    "verification_cases": "aset/components/master/canonical/assurance/verification-cases.json"
+  },
+  "canonical_digest": "sha256:c36f06a1a60fbb4f85244674a875e599a222302de449c77198bb71454d2ed4db",
+  "component_id": "aset.master",
+  "context_components": [
+    {
+      "content": "goal, plans, assessments, ExpectedChangePatch",
+      "id": "CTX-MASTER",
+      "owner": "MOD-MASTER",
+      "type": "master"
+    }
+  ],
+  "document_type": "aset-component-canon",
+  "gate_roles": [
+    {
+      "document": "ExpectationAdmissionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXPECT-ADMIT",
+      "patch": "ExpectedChangePatch",
+      "permit": "ExpectationPermit",
+      "role": "PRODUCER",
+      "writes": [
+        "CTX-MAST",
+        "CTX-TASK"
+      ]
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INV-MASTER-001",
+      "statement": "Master формирует ExpectedChangePatch, но не Permit и не внешний эффект."
+    }
+  ],
+  "module_refs": [
+    "MOD-MASTER"
+  ],
+  "must_not": [
+    "accept own work",
+    "dispatch effect",
+    "issue Permit",
+    "treat AttractorDescriptor as authority"
+  ],
+  "operations": [
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Produce a PlanProposal and assessment without authority.",
+        "pt-BR": "Produz uma proposta consultiva de plano a partir da projeção atual do contexto.",
+        "ru": "Формирует консультативное предложение плана из текущей проекции контекста."
+      },
+      "id": "MASTER-PLAN",
+      "input_artifacts": [],
+      "name": "ProposePlan",
+      "output_artifacts": [
+        "PlanProposal",
+        "PlanAssessment"
+      ],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    },
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Produce an ExpectedChangePatch that requires a separate expectation Permit before context admission.",
+        "pt-BR": "Produz ExpectedChangePatch que, por si só, não concede autoridade.",
+        "ru": "Формирует ExpectedChangePatch, который сам по себе не предоставляет полномочий."
+      },
+      "id": "MASTER-EXPECT",
+      "input_artifacts": [],
+      "name": "ProposeExpectedChange",
+      "output_artifacts": [
+        "ExpectedChangePatch"
+      ],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    },
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "description": {
+        "en": "Describe a candidate stable state or trajectory without authorizing it.",
+        "pt-BR": "Avalia estados desejáveis estáveis e trajetórias sem autorizar ações.",
+        "ru": "Оценивает устойчивые желательные состояния и траектории без авторизации действий."
+      },
+      "id": "MASTER-ATTRACTOR",
+      "input_artifacts": [],
+      "name": "AssessAttractor",
+      "output_artifacts": [
+        "AttractorDescriptor",
+        "TrajectoryAssessment"
+      ],
+      "seed_mapping": {
+        "justification": "Mapped by operation class to ASET Seed 0.1-rc12; local computations create no authority or recognized Outcome.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": false,
+        "sequence": []
+      }
+    }
+  ],
+  "owns": [
+    "AttractorDescriptor",
+    "ExpectedChangePatch",
+    "LearningObservation",
+    "PlanAssessment",
+    "PlanProposal",
+    "TrajectoryAssessment"
+  ],
+  "purpose": {
+    "en": "Produces plans, ExpectedChangePatch, and trajectory assessments without creating authority.",
+    "pt-BR": "Produz planos, ExpectedChangePatch e avaliações de trajetória sem criar autoridade.",
+    "ru": "Формирует планы, ExpectedChangePatch и оценки траекторий, не создавая полномочий."
+  },
+  "requirement_ids": [
+    "MAS-001",
+    "MAS-002",
+    "MAS-003",
+    "MAS-004",
+    "MAS-005",
+    "MAS-006",
+    "MAS-007",
+    "MAS-008",
+    "MAS-009",
+    "MAS-010",
+    "MAS-011",
+    "MAS-012"
+  ],
+  "schema_version": 1,
+  "source_baseline": {
+    "archive_sha256": "sha256:4fd358e3c395547bdfb8f5a3e7d71ad377d25428923eba4c4889d5e686fece22",
+    "model_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94",
+    "specification_digest": "sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6",
+    "version": "1.5-rc11"
+  },
+  "state_machine_refs": [],
+  "status": "COMPONENT_CANON_CANDIDATE",
+  "version": "0.1-rc1"
+}
