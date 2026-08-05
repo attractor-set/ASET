@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {"case_id": "REF-REJECT-STALE", "mutation": "proposal_version", "value": 2, "reason_code": "STALE_CONTEXT"},
+    {"case_id": "REF-REJECT-GATE", "mutation": "permit_gate", "value": "gate:other", "reason_code": "PERMIT_GATE_MISMATCH"},
+    {"case_id": "REF-REJECT-EVIDENCE", "mutation": "drop_evidence", "reason_code": "INCOMPLETE_EVIDENCE"},
+    {"case_id": "REF-REJECT-REPLAY", "mutation": "consume_permit", "reason_code": "PERMIT_ALREADY_CONSUMED"},
+    {"case_id": "REF-REJECT-SUSPENDED", "mutation": "suspend_context", "reason_code": "CONTEXT_SUSPENDED"}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "REF-ACCEPT-001",
+  "context": {"context_id": "ctx:1", "version": 3, "state": {"status": "draft"}, "consumed_permit_ids": [], "suspended": false},
+  "proposal": {"proposal_id": "proposal:1", "context_id": "ctx:1", "expected_context_version": 3, "gate_id": "gate:approve", "patch": {"status": "approved"}},
+  "permit": {"permit_id": "permit:1", "context_id": "ctx:1", "expected_context_version": 3, "gate_id": "gate:approve", "required_evidence_types": ["review"]},
+  "evidence": [{"evidence_id": "evidence:1", "evidence_type": "review", "payload": {"verdict": "PASS"}}],
+  "expected": {"accepted": true, "next_version": 4, "next_state": {"status": "approved"}, "consumed_permit_id": "permit:1"}
+}
