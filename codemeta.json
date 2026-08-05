@@ -1,0 +1,64 @@
+{
+  "@context": "https://w3id.org/codemeta/3.1",
+  "@id": "https://github.com/attractor-set/ASET",
+  "@type": "SoftwareSourceCode",
+  "abstract": "ASET defines an open, implementation-neutral accountability semantics that binds authority, context, proposals, permits, gates, transitions and evidence into verifiable trails for heterogeneous systems composed of people, AI agents, organizations and software services.",
+  "alternateName": "Authority-Signed Evidence Trail",
+  "author": {
+    "@type": "Organization",
+    "name": "Attractor Set",
+    "url": "https://github.com/attractor-set"
+  },
+  "codeRepository": "https://github.com/attractor-set/ASET",
+  "copyrightHolder": {
+    "@type": "Organization",
+    "name": "Attractor Set",
+    "url": "https://github.com/attractor-set"
+  },
+  "datePublished": "2026-08-04",
+  "description": "ASET is an open specification and reference implementation for Authority-Signed Evidence Trails, enabling verifiable accountability within heterogeneous sociotechnical systems.",
+  "developmentStatus": "active",
+  "identifier": "ASET",
+  "inLanguage": [
+    "en",
+    "ru",
+    "pt-BR"
+  ],
+  "isAccessibleForFree": true,
+  "issueTracker": "https://github.com/attractor-set/ASET/issues",
+  "keywords": [
+    "accountability",
+    "ai-governance",
+    "audit-trail",
+    "authority-signed-evidence-trail",
+    "authorization",
+    "conformance-testing",
+    "data-provenance",
+    "formal-methods",
+    "human-ai-collaboration",
+    "json-schema",
+    "open-standard",
+    "python",
+    "reference-implementation",
+    "sociotechnical-systems",
+    "specification-first",
+    "state-transitions",
+    "tla-plus",
+    "trust-infrastructure",
+    "trustworthy-ai"
+  ],
+  "license": "https://spdx.org/licenses/Apache-2.0.html",
+  "maintainer": {
+    "@type": "Organization",
+    "name": "Attractor Set",
+    "url": "https://github.com/attractor-set"
+  },
+  "name": "ASET",
+  "programmingLanguage": [
+    "Python",
+    "TLA+"
+  ],
+  "runtimePlatform": "Python 3.12",
+  "url": "https://github.com/attractor-set/ASET",
+  "version": "0.1-rc12"
+}

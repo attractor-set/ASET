@@ -1,6 +1,8 @@
 # ASET
 
-ASET é um projeto orientado pela especificação: a especificação antecede e governa a semântica permitida das implementações.
+ASET é uma especificação aberta e uma implementação de referência para Authority-Signed Evidence Trails, permitindo responsabilização verificável em sistemas sociotécnicos heterogêneos.
+
+A especificação define uma semântica comum de responsabilização para transformações governadas de contexto e execução verificável, e tem autoridade sobre as implementações.
 
 ## Linhas de release
 
@@ -27,6 +29,18 @@ Execute a verificação completa com:
 python tools/production_gate.py
 ```
 
+## Metadados do projeto
+
+- Identidade canônica do projeto: [`metadata/project.json`](metadata/project.json)
+- Projeção CodeMeta: [`codemeta.json`](codemeta.json)
+- Projeção do GitHub About: [`.github/repository-metadata.json`](.github/repository-metadata.json)
+
+Para regenerar toda a documentação derivada e os metadados do repositório, execute:
+
+```text
+python tools/generate_repository_views.py
+```
+
 ## Cânones de componentes do ASET completo
 
 A especificação completa legível por máquina do ASET 1.5-rc11 é preservada como evidência-fonte exata e decomposta em cânones candidatos versionados de forma independente para System Composition, Context, Core, Monade, Memory, Master, Model Gateway e Protocol. A linha de componentes é `0.1-rc1` e está vinculada explicitamente ao ASET Seed `0.1-rc12`.
@@ -36,3 +50,11 @@ A especificação completa legível por máquina do ASET 1.5-rc11 é preservada 
 - Ponte de compatibilidade com Seed: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
 
 A decomposição preserva exatamente o inventário rc11: 177 requisitos, 57 invariantes, 52 artefatos, 11 gates e 57 schemas. Ela inclui 26 casos de conformidade de componentes e oito projeções formais limitadas. Essas afirmações se restringem aos candidatos de especificação; não se afirma conformidade de implementação independente nem de produção.
+
+## Referência Python do caminho crítico semântico
+
+Uma implementação Python não normativa e sem armazenamento executa o caminho semântico
+determinístico completo, desde a projeção de Context, passando por dispatch governado,
+Observation, Evidence e Verification, até o reconhecimento condicional de Outcome. Consulte
+[`docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md`](docs/reference/PYTHON_CRITICAL_PATH_REFERENCE.md).
+Ela é um artefato de interoperabilidade e assurance, não uma afirmação de implantação em produção.

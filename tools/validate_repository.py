@@ -16,6 +16,10 @@ MODEL = ROOT / "seed/canonical/source/seed-model.json"
 MODEL_SCHEMA = ROOT / "seed/canonical/schemas/seed-model.schema.json"
 STATUS = ROOT / "REPOSITORY_STATUS.json"
 STATUS_SCHEMA = ROOT / "seed/canonical/schemas/repository-status.schema.json"
+PROJECT_METADATA = ROOT / "metadata/project.json"
+PROJECT_METADATA_SCHEMA = ROOT / "metadata/project.schema.json"
+CODEMETA = ROOT / "codemeta.json"
+REPOSITORY_METADATA = ROOT / ".github/repository-metadata.json"
 GATES = ROOT / "seed/canonical/assurance/repository-release-gates.json"
 GATES_SCHEMA = ROOT / "seed/canonical/schemas/repository-release-gates.schema.json"
 LIMITATIONS = ROOT / "seed/canonical/assurance/limitations.json"
@@ -34,6 +38,10 @@ REQUIRED_DOCS = [
     ROOT / "README.md",
     ROOT / "README.ru.md",
     ROOT / "README.pt-BR.md",
+    ROOT / "metadata/project.json",
+    ROOT / "metadata/project.schema.json",
+    ROOT / "codemeta.json",
+    ROOT / ".github/repository-metadata.json",
     ROOT / "docs/repository/PRODUCTION_READINESS.md",
     ROOT / "docs/repository/RELEASE_PROCESS.md",
     ROOT / "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
@@ -104,6 +112,13 @@ def main() -> int:
 
     model = validate_instance(MODEL, MODEL_SCHEMA, errors)
     status = validate_instance(STATUS, STATUS_SCHEMA, errors)
+    project_metadata = validate_instance(
+        PROJECT_METADATA,
+        PROJECT_METADATA_SCHEMA,
+        errors,
+    )
+    codemeta = strict_load(CODEMETA)
+    repository_metadata = strict_load(REPOSITORY_METADATA)
     gates = validate_instance(GATES, GATES_SCHEMA, errors)
     limitations = validate_instance(LIMITATIONS, LIMITATIONS_SCHEMA, errors)
     freeze_entry = validate_instance(FREEZE_ENTRY, FREEZE_ENTRY_SCHEMA, errors)
@@ -189,6 +204,37 @@ def main() -> int:
         if status.get(key) != expected:
             errors.append(f"repository status {key} must equal {expected}")
 
+    project_about = project_metadata.get("about", {})
+    project_release = project_metadata.get("release", {})
+    project_repository = project_metadata.get("repository", {})
+    expected_description = project_metadata.get("description")
+    expected_topics = project_about.get("topics") if isinstance(project_about, dict) else None
+    if (
+        not isinstance(project_about, dict)
+        or project_about.get("description") != expected_description
+    ):
+        errors.append("project description and GitHub About description must be identical")
+    if not isinstance(project_release, dict) or project_release.get("version") != status.get(
+        "next_seed_version"
+    ):
+        errors.append("project metadata version must match repository next_seed_version")
+    if not isinstance(project_repository, dict) or project_repository.get("url") != status.get(
+        "repository_url"
+    ):
+        errors.append("project metadata repository URL must match repository status")
+    if codemeta.get("description") != expected_description:
+        errors.append("CodeMeta description differs from canonical project metadata")
+    if codemeta.get("alternateName") != project_metadata.get("expanded_name"):
+        errors.append("CodeMeta alternateName differs from canonical project metadata")
+    if codemeta.get("keywords") != expected_topics:
+        errors.append("CodeMeta keywords differ from canonical GitHub topics")
+    if repository_metadata.get("description") != expected_description:
+        errors.append("repository About projection differs from canonical description")
+    if repository_metadata.get("topics") != expected_topics:
+        errors.append("repository About topics differ from canonical project metadata")
+    if expected_description not in (ROOT / "README.md").read_text(encoding="utf-8"):
+        errors.append("English README does not contain the canonical project description")
+
     for path in REQUIRED_DOCS:
         if not path.is_file():
             errors.append(f"missing required document:{path.relative_to(ROOT)}")
@@ -230,8 +276,7 @@ def main() -> int:
         errors.append(f"shacl-execution:{error}")
 
     for command in (
-        [sys.executable, "tools/generate_editions.py", "--check"],
-        [sys.executable, "tools/generate_semantic_views.py", "--check"],
+        [sys.executable, "tools/generate_repository_views.py", "--check"],
         [sys.executable, "tools/check_language.py"],
         [sys.executable, "tools/validate_rc12_canon.py"],
         [sys.executable, "tools/build_rc12_envelope.py", "--check"],
@@ -239,7 +284,6 @@ def main() -> int:
         [sys.executable, "tools/materialize_rc11.py", "--check"],
         [sys.executable, "tools/materialize_rc11.py", "--check-git"],
         [sys.executable, "tools/validate_component_canons.py"],
-        [sys.executable, "tools/generate_component_views.py", "--check"],
         [sys.executable, "tools/rebuild_manifest.py", "--check"],
     ):
         run_check(command, errors)

@@ -30,10 +30,9 @@ jobs:
       - name: Install project
         run: python -m pip install --no-deps --editable .
 
-      - name: Check generated semantic views and language editions
+      - name: Check generated documentation and project metadata
         run: |
-          python tools/generate_semantic_views.py --check
-          python tools/generate_editions.py --check
+          python tools/generate_repository_views.py --check
           python tools/check_language.py
 
       - name: Validate rc12 machine canon and repository
