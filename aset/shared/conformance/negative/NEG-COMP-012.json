@@ -1,0 +1,16 @@
+{
+  "document_type": "aset-component-conformance-case",
+  "expected": "REJECT",
+  "expected_error": "Seed byte baseline",
+  "fixture": "aset/source/seed-rc12/SEED_RC12_BASELINE.json",
+  "id": "NEG-COMP-012",
+  "kind": "NEGATIVE",
+  "mutation": {
+    "operation": "SET",
+    "path": "/files/0/sha256",
+    "refresh_canonical_digest": false,
+    "value": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "schema_version": 1,
+  "subject": "SEED_BASELINE"
+}

@@ -1,0 +1,256 @@
+{
+  "version": "1.5-rc8",
+  "classification": "eleven-complete-signed-authority-chains-plus-representative-context-and-provider-continuations",
+  "cases": [
+    {
+      "id": "POS-ACCEPTANCE_PERMIT",
+      "file": "conformance/positive/acceptance-permit.example.json",
+      "schema": "acceptance-permit.schema.json"
+    },
+    {
+      "id": "POS-ACCEPTANCE_RESULT_PATCH",
+      "file": "conformance/positive/acceptance-result-patch.example.json",
+      "schema": "acceptance-result-patch.schema.json"
+    },
+    {
+      "id": "POS-ACCEPTANCE_SUBMISSION",
+      "file": "conformance/positive/acceptance-submission.example.json",
+      "schema": "acceptance-submission.schema.json"
+    },
+    {
+      "id": "POS-COMPENSATION_INTENT_PATCH",
+      "file": "conformance/positive/compensation-intent-patch.example.json",
+      "schema": "compensation-intent-patch.schema.json"
+    },
+    {
+      "id": "POS-COMPENSATION_PERMIT",
+      "file": "conformance/positive/compensation-permit.example.json",
+      "schema": "compensation-permit.schema.json"
+    },
+    {
+      "id": "POS-COMPENSATION_SUBMISSION",
+      "file": "conformance/positive/compensation-submission.example.json",
+      "schema": "compensation-submission.schema.json"
+    },
+    {
+      "id": "POS-COMPOSITE_CONTEXT_MANIFEST",
+      "file": "conformance/positive/composite-context-manifest.example.json",
+      "schema": "composite-context-manifest.schema.json"
+    },
+    {
+      "id": "POS-CONTEXT_PATCH_SET",
+      "file": "conformance/positive/context-patch-set.example.json",
+      "schema": "context-patch-set.schema.json"
+    },
+    {
+      "id": "POS-CONTEXT_PROJECTION_PATCH",
+      "file": "conformance/positive/context-projection-patch.example.json",
+      "schema": "context-projection-patch.schema.json"
+    },
+    {
+      "id": "POS-CONTEXT_PROJECTION_PERMIT",
+      "file": "conformance/positive/context-projection-permit.example.json",
+      "schema": "context-projection-permit.schema.json"
+    },
+    {
+      "id": "POS-CONTEXT_PROJECTION_SUBMISSION",
+      "file": "conformance/positive/context-projection-submission.example.json",
+      "schema": "context-projection-submission.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION",
+      "file": "conformance/positive/core-resolution.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_1",
+      "file": "conformance/positive/core-resolution-1.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_10",
+      "file": "conformance/positive/core-resolution-10.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_11",
+      "file": "conformance/positive/core-resolution-11.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_3",
+      "file": "conformance/positive/core-resolution-3.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_4",
+      "file": "conformance/positive/core-resolution-4.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_5",
+      "file": "conformance/positive/core-resolution-5.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_6",
+      "file": "conformance/positive/core-resolution-6.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_7",
+      "file": "conformance/positive/core-resolution-7.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_8",
+      "file": "conformance/positive/core-resolution-8.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-CORE_RESOLUTION_9",
+      "file": "conformance/positive/core-resolution-9.example.json",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "POS-EVIDENCE_ADMISSION_PERMIT",
+      "file": "conformance/positive/evidence-admission-permit.example.json",
+      "schema": "evidence-admission-permit.schema.json"
+    },
+    {
+      "id": "POS-EVIDENCE_PATCH",
+      "file": "conformance/positive/evidence-patch.example.json",
+      "schema": "evidence-patch.schema.json"
+    },
+    {
+      "id": "POS-EVIDENCE_SUBMISSION",
+      "file": "conformance/positive/evidence-submission.example.json",
+      "schema": "evidence-submission.schema.json"
+    },
+    {
+      "id": "POS-EXECUTION_BINDING_PERMIT",
+      "file": "conformance/positive/execution-binding-permit.example.json",
+      "schema": "execution-binding-permit.schema.json"
+    },
+    {
+      "id": "POS-EXECUTION_BINDING_SUBMISSION",
+      "file": "conformance/positive/execution-binding-submission.example.json",
+      "schema": "execution-binding-submission.schema.json"
+    },
+    {
+      "id": "POS-EXECUTION_DISPATCH_SUBMISSION",
+      "file": "conformance/positive/execution-dispatch-submission.example.json",
+      "schema": "execution-dispatch-submission.schema.json"
+    },
+    {
+      "id": "POS-EXECUTION_INTENT_PATCH",
+      "file": "conformance/positive/execution-intent-patch.example.json",
+      "schema": "execution-intent-patch.schema.json"
+    },
+    {
+      "id": "POS-EXECUTION_PERMIT",
+      "file": "conformance/positive/execution-permit.example.json",
+      "schema": "execution-permit.schema.json"
+    },
+    {
+      "id": "POS-EXPECTATION_ADMISSION_SUBMISSION",
+      "file": "conformance/positive/expectation-admission-submission.example.json",
+      "schema": "expectation-admission-submission.schema.json"
+    },
+    {
+      "id": "POS-EXPECTATION_PERMIT",
+      "file": "conformance/positive/expectation-permit.example.json",
+      "schema": "expectation-permit.schema.json"
+    },
+    {
+      "id": "POS-EXPECTED_CHANGE_PATCH",
+      "file": "conformance/positive/expected-change-patch.example.json",
+      "schema": "expected-change-patch.schema.json"
+    },
+    {
+      "id": "POS-GATE_CROSSING_RECEIPT",
+      "file": "conformance/positive/gate-crossing-receipt.example.json",
+      "schema": "gate-crossing-receipt.schema.json"
+    },
+    {
+      "id": "POS-MEMORY_LIFECYCLE_PATCH",
+      "file": "conformance/positive/memory-lifecycle-patch.example.json",
+      "schema": "memory-lifecycle-patch.schema.json"
+    },
+    {
+      "id": "POS-MEMORY_MUTATION_PERMIT",
+      "file": "conformance/positive/memory-mutation-permit.example.json",
+      "schema": "memory-mutation-permit.schema.json"
+    },
+    {
+      "id": "POS-MEMORY_MUTATION_SUBMISSION",
+      "file": "conformance/positive/memory-mutation-submission.example.json",
+      "schema": "memory-mutation-submission.schema.json"
+    },
+    {
+      "id": "POS-OBSERVATION_ADMISSION_PERMIT",
+      "file": "conformance/positive/observation-admission-permit.example.json",
+      "schema": "observation-admission-permit.schema.json"
+    },
+    {
+      "id": "POS-OBSERVATION_PATCH",
+      "file": "conformance/positive/observation-patch.example.json",
+      "schema": "observation-patch.schema.json"
+    },
+    {
+      "id": "POS-OBSERVATION_SUBMISSION",
+      "file": "conformance/positive/observation-submission.example.json",
+      "schema": "observation-submission.schema.json"
+    },
+    {
+      "id": "POS-OPERATIONAL_BINDING_PATCH",
+      "file": "conformance/positive/operational-binding-patch.example.json",
+      "schema": "operational-binding-patch.schema.json"
+    },
+    {
+      "id": "POS-PROMPT_MANIFEST",
+      "file": "conformance/positive/prompt-manifest.example.json",
+      "schema": "prompt-manifest.schema.json"
+    },
+    {
+      "id": "POS-PROVIDER_REQUEST_MANIFEST",
+      "file": "conformance/positive/provider-request-manifest.example.json",
+      "schema": "provider-request-manifest.schema.json"
+    },
+    {
+      "id": "POS-RETRY_INTENT_PATCH",
+      "file": "conformance/positive/retry-intent-patch.example.json",
+      "schema": "retry-intent-patch.schema.json"
+    },
+    {
+      "id": "POS-RETRY_PERMIT",
+      "file": "conformance/positive/retry-permit.example.json",
+      "schema": "retry-permit.schema.json"
+    },
+    {
+      "id": "POS-RETRY_SUBMISSION",
+      "file": "conformance/positive/retry-submission.example.json",
+      "schema": "retry-submission.schema.json"
+    },
+    {
+      "id": "POS-SIGNED_CONTEXT_COMPONENT",
+      "file": "conformance/positive/signed-context-component.example.json",
+      "schema": "signed-context-component.schema.json"
+    },
+    {
+      "id": "POS-TASK_COMPLETION_PATCH",
+      "file": "conformance/positive/task-completion-patch.example.json",
+      "schema": "task-completion-patch.schema.json"
+    },
+    {
+      "id": "POS-TASK_COMPLETION_PERMIT",
+      "file": "conformance/positive/task-completion-permit.example.json",
+      "schema": "task-completion-permit.schema.json"
+    },
+    {
+      "id": "POS-TASK_COMPLETION_SUBMISSION",
+      "file": "conformance/positive/task-completion-submission.example.json",
+      "schema": "task-completion-submission.schema.json"
+    }
+  ]
+}

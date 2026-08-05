@@ -1,0 +1,85 @@
+{
+  "$id": "urn:aset:schema:component-conformance-results:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cases_failed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "cases_passed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "cases_total": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "document_type": {
+      "const": "aset-component-conformance-results"
+    },
+    "profile": {
+      "const": "0.1-rc1"
+    },
+    "results": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "details": {
+            "type": "string"
+          },
+          "expected": {
+            "enum": [
+              "ACCEPT",
+              "REJECT"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "observed": {
+            "enum": [
+              "ACCEPT",
+              "REJECT"
+            ]
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "expected",
+          "observed",
+          "status",
+          "details"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "profile",
+    "cases_total",
+    "cases_passed",
+    "cases_failed",
+    "verdict",
+    "results"
+  ],
+  "type": "object"
+}

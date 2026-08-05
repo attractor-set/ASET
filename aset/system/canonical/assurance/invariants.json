@@ -1,0 +1,118 @@
+{
+  "canonical_digest": "sha256:eaa98b64fd5fad9ff3547a6c856d1412561c516930307119e230e3fb1682ab11",
+  "component_id": "aset.system",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-ANCHOR-SCHEMA-001",
+      "origin": "RC11_SOURCE",
+      "statement": "The external trust anchor is validated against a closed schema, including version, trust domain and purpose, before its public key is used.",
+      "target": "system"
+    },
+    {
+      "id": "INV-ARCHIVE-SCOPE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Every distributed release archive is covered by an out-of-band signed release envelope that binds the exact ZIP byte digest, every entry path, size and digest, and the freeze-profile digest; archive entries outside the signed enumeration are forbidden.",
+      "target": "system"
+    },
+    {
+      "id": "INV-BUILD-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Release finalization regenerates all generated artifacts before MANIFEST and SHA256SUMS; machine artifacts reproduce byte-for-byte and documents reproduce semantically.",
+      "target": "system"
+    },
+    {
+      "id": "INV-BUILD-002",
+      "origin": "RC11_SOURCE",
+      "statement": "The externally signed ordered generation source manifest covers every actual generator input and generator or validation executable; an unlisted or changed input invalidates the freeze.",
+      "target": "system"
+    },
+    {
+      "id": "INV-CONF-001",
+      "origin": "RC11_SOURCE",
+      "statement": "A stored conformance report is never trusted as authority; final validation reruns conformance and verifies its complete unique result-ID set and input digest.",
+      "target": "system"
+    },
+    {
+      "id": "INV-CONF-002",
+      "origin": "RC11_SOURCE",
+      "statement": "The externally signed assurance contract binds positive and negative indexes, every vector, requirement-oracle mappings, runner and validator bytes, exact counts and the complete expected result-ID set.",
+      "target": "system"
+    },
+    {
+      "id": "INV-CONTAINER-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Final DOCX packages contain only the signed OPC part and relationship allowlists, and final PDFs contain no embedded files, JavaScript, launch actions, annotations, form actions, incremental trailing revisions or unreferenced payloads.",
+      "target": "system"
+    },
+    {
+      "id": "INV-CUSTOMXML-ALLOWLIST-001",
+      "origin": "RC11_SOURCE",
+      "statement": "DOCX custom XML is permitted only through an explicit closed bibliography-part allowlist and exact part hashes; the policy never claims that custom XML is absent when allowlisted parts exist.",
+      "target": "system"
+    },
+    {
+      "id": "INV-DOC-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Presentation evidence binds exact final DOCX and PDF bytes, renderer versions, per-page rendered equality and accessibility results; final validation reruns the presentation gate.",
+      "target": "system"
+    },
+    {
+      "id": "INV-ENV-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Conformance and generation execute only under the exact externally committed Python dependency closure and native renderer/toolchain fingerprint; environment drift fails before generation or assurance execution.",
+      "target": "system"
+    },
+    {
+      "id": "INV-EXTRACTED-SCOPE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "After extraction, the actual stable regular-file set must equal the MANIFEST set plus only the explicitly enumerated self-referential admission files; unmanifested stable files fail before any final PASS.",
+      "target": "system"
+    },
+    {
+      "id": "INV-NARRATIVE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Every shipped Markdown and QA narrative is deterministically generated from the same current inventory and is covered by signed exact-output commitments; stale counts or statuses fail admission.",
+      "target": "system"
+    },
+    {
+      "id": "INV-ORACLE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Structural traceability oracles prove registry completeness only and are never reported as implementation or semantic FitCriterion conformance.",
+      "target": "system"
+    },
+    {
+      "id": "INV-OUTPUT-001",
+      "origin": "RC11_SOURCE",
+      "statement": "The externally signed freeze profile binds exact byte SHA-256 values and closed container policies for every final DOCX and PDF output; any byte or container-part drift requires a new freeze signature.",
+      "target": "system"
+    },
+    {
+      "id": "INV-RECURSIVE-CONTAINER-001",
+      "origin": "RC11_SOURCE",
+      "statement": "DOCX and PDF container policy is applied recursively to every matching file in the distributed release, regardless of directory, and is not limited to the primary document set.",
+      "target": "system"
+    },
+    {
+      "id": "INV-REG-001",
+      "origin": "RC11_SOURCE",
+      "statement": "CSV/JSON dual representations are generated from one normative source and must have exact semantic parity.",
+      "target": "system"
+    },
+    {
+      "id": "INV-RUNTIME-CLOSURE-001",
+      "origin": "RC11_SOURCE",
+      "statement": "The generation and assurance environment is committed as an exact runtime closure of executable payloads, dynamically linked libraries, font files, font configuration, locale, timezone and relevant environment variables.",
+      "target": "system"
+    },
+    {
+      "id": "INV-VERSION-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Package, protocol, schema-profile, documentation-profile and key-epoch versions are separate explicit domains governed by a closed compatibility profile.",
+      "target": "system"
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

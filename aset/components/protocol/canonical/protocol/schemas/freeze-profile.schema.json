@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aset.local/schemas/1.5-rc11/freeze-profile.schema.json",
+  "title": "ASET Signed Complete Freeze Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_id",
+    "document_type",
+    "version",
+    "status",
+    "trust_anchor_id",
+    "model_digest",
+    "specification_digest",
+    "key_registry_digest",
+    "requirements_digest",
+    "semantic_scope",
+    "required_invariants",
+    "required_gate_contracts",
+    "state_machine_roots",
+    "schema_contract",
+    "generation_contract",
+    "assurance_contract",
+    "presentation_contract",
+    "toolchain_contract",
+    "version_contract",
+    "output_contract",
+    "canonical_digest",
+    "integrity"
+  ],
+  "properties": {
+    "profile_id": {
+      "const": "aset.freeze-profile"
+    },
+    "document_type": {
+      "const": "aset.freeze-profile"
+    },
+    "version": {
+      "const": "1.5-rc11"
+    },
+    "status": {
+      "const": "FORMAL_CONCEPTUAL_FREEZE_CANDIDATE"
+    },
+    "trust_anchor_id": {
+      "const": "aset.external-freeze-trust-anchor.rc11"
+    },
+    "model_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "specification_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "key_registry_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "requirements_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "canonical_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "semantic_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invariants",
+        "gate_contracts",
+        "state_machines"
+      ],
+      "properties": {
+        "invariants": {
+          "$ref": "#/$defs/scopedRoot"
+        },
+        "gate_contracts": {
+          "$ref": "#/$defs/scopedRoot"
+        },
+        "state_machines": {
+          "$ref": "#/$defs/scopedRoot"
+        }
+      }
+    },
+    "required_invariants": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "required_gate_contracts": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "state_machine_roots": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      }
+    },
+    "schema_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "schemas",
+        "digest"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "schemas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "schema_id",
+              "byte_sha256",
+              "canonical_digest"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^machine/schemas/.+\\.json$"
+              },
+              "schema_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "byte_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "canonical_digest": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              }
+            }
+          }
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "generation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generator_version",
+        "source_count",
+        "source_manifest",
+        "source_set_digest",
+        "required_output_groups"
+      ],
+      "properties": {
+        "generator_version": {
+          "const": "1.5-rc11"
+        },
+        "source_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_manifest": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "role",
+              "byte_sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1
+              },
+              "byte_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              }
+            }
+          }
+        },
+        "source_set_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "required_output_groups": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "assurance_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file_count",
+        "file_manifest",
+        "manifest_digest",
+        "expected_counts",
+        "expected_result_ids",
+        "expected_result_ids_digest"
+      ],
+      "properties": {
+        "file_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "file_manifest": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "role",
+              "byte_sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1
+              },
+              "byte_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              }
+            }
+          }
+        },
+        "manifest_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "expected_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "positive_cases",
+            "negative_cases",
+            "mutation_cases",
+            "structural_traceability_oracles",
+            "result_ids"
+          ],
+          "properties": {
+            "positive_cases": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "negative_cases": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mutation_cases": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "structural_traceability_oracles": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "result_ids": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "expected_result_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected_result_ids_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "presentation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_path",
+        "evidence_schema",
+        "audit_tool_path",
+        "required_document_pairs",
+        "rerun_required"
+      ],
+      "properties": {
+        "evidence_path": {
+          "const": "validation/document_evidence.json"
+        },
+        "evidence_schema": {
+          "const": "document-evidence.schema.json"
+        },
+        "audit_tool_path": {
+          "const": "tools/document_evidence.py"
+        },
+        "required_document_pairs": {
+          "const": 5
+        },
+        "rerun_required": {
+          "const": true
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "key_id",
+        "signed_profile_digest",
+        "signature"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "Ed25519"
+        },
+        "key_id": {
+          "const": "key:aset:freeze-authority:rc11"
+        },
+        "signed_profile_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^ed25519:[A-Za-z0-9_-]{86}$"
+        }
+      }
+    },
+    "toolchain_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lock_path",
+        "lock_byte_sha256",
+        "environment_digest"
+      ],
+      "properties": {
+        "lock_path": {
+          "const": "toolchain/toolchain-lock.json"
+        },
+        "lock_byte_sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "environment_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "version_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_path",
+        "profile_byte_sha256"
+      ],
+      "properties": {
+        "profile_path": {
+          "const": "machine/version-profile-1.5-rc11.json"
+        },
+        "profile_byte_sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "output_contract": {
+      "$ref": "final-output-manifest.schema.json"
+    }
+  },
+  "$defs": {
+    "scopedRoot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "ids",
+        "digest"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

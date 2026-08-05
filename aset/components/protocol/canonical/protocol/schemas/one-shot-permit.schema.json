@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:one-shot-permit:1.5-rc8",
+  "title": "Closed union of ASET one-shot permits",
+  "oneOf": [
+    {
+      "$ref": "urn:aset:schema:aset.acceptance-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.compensation-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.context-projection-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.evidence-admission-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.execution-binding-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.execution-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.expectation-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.memory-mutation-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.observation-admission-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.retry-permit:1.5-rc8"
+    },
+    {
+      "$ref": "urn:aset:schema:aset.task-completion-permit:1.5-rc8"
+    }
+  ]
+}

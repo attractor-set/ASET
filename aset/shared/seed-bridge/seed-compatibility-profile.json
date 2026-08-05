@@ -1,0 +1,150 @@
+{
+  "canonical_digest": "sha256:b54f3cf3e7cbef323618bf0fc7e6e7c30516850df5c4264431662e77cdd32c1d",
+  "classification_rules": [
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "outcome_recognition_required": false,
+      "seed_transition_required": false,
+      "sequence": []
+    },
+    {
+      "classification": "NORMATIVE_DECISION",
+      "outcome_recognition_required": false,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision"
+      ]
+    },
+    {
+      "classification": "AUTHORIZATION_ISSUANCE",
+      "outcome_recognition_required": false,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit"
+      ]
+    },
+    {
+      "classification": "GOVERNED_CONTEXT_MUTATION",
+      "outcome_recognition_required": false,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit",
+        "PermitUseReceipt"
+      ]
+    },
+    {
+      "classification": "EXTERNAL_EFFECT",
+      "outcome_recognition_required": true,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit",
+        "PermitUseReceipt",
+        "ExecutionIntent",
+        "Observation",
+        "Verification",
+        "Outcome"
+      ]
+    },
+    {
+      "classification": "OBSERVATION_ADMISSION",
+      "outcome_recognition_required": false,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit",
+        "PermitUseReceipt",
+        "Observation"
+      ]
+    },
+    {
+      "classification": "VERIFICATION_PROCESSING",
+      "outcome_recognition_required": false,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit",
+        "PermitUseReceipt",
+        "Observation",
+        "Verification"
+      ]
+    },
+    {
+      "classification": "OUTCOME_RECOGNITION",
+      "outcome_recognition_required": true,
+      "seed_transition_required": true,
+      "sequence": [
+        "Decision",
+        "Permit",
+        "PermitUseReceipt",
+        "Observation",
+        "Verification",
+        "Outcome"
+      ]
+    }
+  ],
+  "document_type": "aset-seed-compatibility-profile",
+  "guarantees": [
+    "Component primitives create no authority, execution validity, or recognized Outcome except through their declared Seed mapping.",
+    "Expectation admission and external-effect dispatch use different documents, gates, and Permits.",
+    "Memory retrieval, Master planning, and AttractorDescriptor remain advisory."
+  ],
+  "limitations": [
+    "Compatibility is specified against Seed 0.1-rc12 candidate semantics; owner approval and exact-byte Seed rc12 freeze remain separate.",
+    "This profile does not claim distributed consensus, physical-world truth, production key custody, or connector idempotency."
+  ],
+  "primitive_mappings": [
+    {
+      "aset_artifact": "CoreResolution",
+      "relation": "SEMANTIC_PROJECTION",
+      "rule": "Resolution remains distinct from Permit.",
+      "seed_primitive": "Decision"
+    },
+    {
+      "aset_artifact": "OneShotPermitClosedUnion",
+      "relation": "SPECIALIZATION",
+      "rule": "Permit is bound to one exact document, gate, context and immediate crossing.",
+      "seed_primitive": "Permit"
+    },
+    {
+      "aset_artifact": "GateCrossingReceipt",
+      "relation": "SPECIALIZATION",
+      "rule": "Receipt is mandatory and does not prove external effect.",
+      "seed_primitive": "PermitUseReceipt"
+    },
+    {
+      "aset_artifact": "ExecutionIntentPatch",
+      "relation": "SEMANTIC_PROJECTION",
+      "rule": "Intent remains distinct from effect and observation.",
+      "seed_primitive": "ExecutionIntent"
+    },
+    {
+      "aset_artifact": "ObservationPatch",
+      "relation": "SEMANTIC_PROJECTION",
+      "rule": "Observation binds the exact receipt, Permit and context.",
+      "seed_primitive": "Observation"
+    },
+    {
+      "aset_artifact": "EvidenceBundle+VerificationVerdict+AcceptanceDecision",
+      "relation": "COMPOSITE_SEMANTIC_PROJECTION",
+      "rule": "Verification is not a one-object mapping and must be PASS for an explicit result class.",
+      "seed_primitive": "Verification"
+    },
+    {
+      "aset_artifact": "TaskAcceptance+Outcome",
+      "relation": "SEMANTIC_PROJECTION",
+      "rule": "FAIL or UNKNOWN verification cannot ground Outcome; verified FAILURE may ground a failure-class Outcome.",
+      "seed_primitive": "Outcome"
+    }
+  ],
+  "profile_id": "aset.seed-bridge.rc12",
+  "schema_version": 1,
+  "seed_model_canonical_digest": "sha256:5ef8e5a27a42586467c73dbef71ee075a2138d3361d11fd1603254e5bf68b014",
+  "seed_model_path": "seed/canonical/source/seed-model.json",
+  "seed_model_sha256": "sha256:12915777077f15d658e7f9d712fe8f54c86381067212f057cbfc9fd4f820a211",
+  "seed_version": "0.1-rc12",
+  "status": "COMPATIBILITY_CANDIDATE",
+  "version": "0.1-rc1"
+}

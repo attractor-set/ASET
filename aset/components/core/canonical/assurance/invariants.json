@@ -1,0 +1,61 @@
+{
+  "canonical_digest": "sha256:30a87a380e55296b529fe4a88beeccfec017e2c01c0f8c5053043d4f36be9cd8",
+  "component_id": "aset.core",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-AUTH-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Только ASET Core создаёт authority-bearing Permit."
+    },
+    {
+      "id": "INV-AUTH-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Всё, что не имеет действующего Permit для точного гейта, запрещено."
+    },
+    {
+      "id": "INV-AUTH-003",
+      "origin": "RC11_SOURCE",
+      "statement": "CoreResolution имеет только PERMITTED или PROHIBITED; техническая ошибка не является разрешением."
+    },
+    {
+      "id": "INV-CORE-RES-001",
+      "origin": "RC11_SOURCE",
+      "statement": "PERMITTED requires exactly one permit reference and digest; PROHIBITED forbids both and requires reason codes."
+    },
+    {
+      "id": "INV-PERMIT-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Permit относится ровно к одному document digest, dependency context set, gate instance, crossing ID и actor/execution ID."
+    },
+    {
+      "id": "INV-PERMIT-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Permit допускает ровно одно немедленное пересечение и после него безвозвратно CONSUMED."
+    },
+    {
+      "id": "INV-PERMIT-003",
+      "origin": "RC11_SOURCE",
+      "statement": "Permit одного гейта неприменим к другому гейту."
+    },
+    {
+      "id": "INV-PERMIT-004",
+      "origin": "RC11_SOURCE",
+      "statement": "ExpectationPermit не разрешает внешний эффект; ExecutionPermit является отдельным артефактом."
+    },
+    {
+      "id": "INV-PERMIT-005",
+      "origin": "RC11_SOURCE",
+      "statement": "Every Permit has consume_before strictly later than issued_at and within the policy maximum lifetime of 60 seconds."
+    },
+    {
+      "derived_from": "MOD-CORE.must_not",
+      "id": "CORE-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Core may resolve and issue Permit but may not plan, execute an external effect, or accept a result."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

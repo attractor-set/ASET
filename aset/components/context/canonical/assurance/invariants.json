@@ -1,0 +1,62 @@
+{
+  "canonical_digest": "sha256:6afb6c437f75bce9fb76ac5638d9aa88627ce831c7ef03bd077a5f5f299fb58c",
+  "component_id": "aset.context",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-CTX-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Существующие Context и SignedContextComponent неизменяемы."
+    },
+    {
+      "id": "INV-CTX-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Любое каноническое изменение создаёт новый Context через atomic gate patch set."
+    },
+    {
+      "id": "INV-CTX-003",
+      "origin": "RC11_SOURCE",
+      "statement": "Gate является linearization point: patch set, new components/root, scoped HEAD updates, Permit consumption и receipt фиксируются атомарно."
+    },
+    {
+      "id": "INV-CTX-004",
+      "origin": "RC11_SOURCE",
+      "statement": "Composite root однозначно зависит от канонически упорядоченных подписанных компонентов."
+    },
+    {
+      "id": "INV-CTX-005",
+      "origin": "RC11_SOURCE",
+      "statement": "Изменение dependency component инвалидирует Permit; изменение независимого компонента не обязано его инвалидировать."
+    },
+    {
+      "id": "INV-CTX-006",
+      "origin": "RC11_SOURCE",
+      "statement": "Один crossing_id создаёт не более одного target context и receipt; повтор возвращает тот же результат."
+    },
+    {
+      "id": "INV-EPI-001",
+      "origin": "RC11_SOURCE",
+      "statement": "EXPECTED не является OBSERVED; OBSERVED не является VERIFIED; verified transition не равен Task goal completion."
+    },
+    {
+      "id": "INV-EPI-002",
+      "origin": "RC11_SOURCE",
+      "statement": "Worker self-report не является достаточным evidence по умолчанию."
+    },
+    {
+      "derived_from": "module boundary",
+      "id": "CTX-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Context composition and patch application never issue authority."
+    },
+    {
+      "derived_from": "INV-EPI-001",
+      "id": "CTX-BND-002",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Retrieved or expected content does not become VERIFIED by context inclusion."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

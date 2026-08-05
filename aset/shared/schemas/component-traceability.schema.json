@@ -1,0 +1,86 @@
+{
+  "$id": "urn:aset:schema:aset-component-traceability:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "component_id": {
+      "pattern": "^(aset\\.[a-z][a-z0-9.-]+|aset.system)$",
+      "type": "string"
+    },
+    "component_version": {
+      "const": "0.1-rc1"
+    },
+    "document_type": {
+      "const": "aset-component-traceability"
+    },
+    "links": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "ADRRefs": {
+            "type": "string"
+          },
+          "DerivedRequirementID": {
+            "type": "string"
+          },
+          "EvidenceLocator": {
+            "type": "string"
+          },
+          "ModelElementRefs": {
+            "type": "string"
+          },
+          "NeedID": {
+            "type": "string"
+          },
+          "Result": {
+            "type": "string"
+          },
+          "SystemRequirementID": {
+            "type": "string"
+          },
+          "TraceStatus": {
+            "type": "string"
+          },
+          "VerificationCaseID": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "NeedID",
+          "SystemRequirementID",
+          "DerivedRequirementID",
+          "ADRRefs",
+          "ModelElementRefs",
+          "VerificationCaseID",
+          "EvidenceLocator",
+          "Result",
+          "TraceStatus"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_version": {
+      "const": "1.5-rc11"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "component_id",
+    "component_version",
+    "source_version",
+    "links",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

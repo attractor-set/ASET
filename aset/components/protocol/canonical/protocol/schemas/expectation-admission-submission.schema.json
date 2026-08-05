@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:aset.expectation-admission-submission:1.5-rc8",
+  "title": "ExpectationAdmissionSubmission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "schema_version",
+    "document_id",
+    "tenant_id",
+    "issued_at",
+    "issuer",
+    "integrity",
+    "source_context",
+    "gate",
+    "subject",
+    "payload"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "aset.expectation-admission-submission"
+    },
+    "schema_version": {
+      "const": "1.5-rc8"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "issuer": {
+      "const": "aset-master"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalization",
+        "digest_algorithm",
+        "document_digest",
+        "signature_profile",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "canonicalization": {
+          "const": "ASET-JCS-1"
+        },
+        "digest_algorithm": {
+          "const": "SHA-256"
+        },
+        "document_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature_profile": {
+          "const": "Ed25519-SHA256-v1"
+        },
+        "key_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^ed25519:[A-Za-z0-9_-]{86}$"
+        }
+      }
+    },
+    "source_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "composite_root",
+        "read_set",
+        "write_set",
+        "authority_epoch"
+      ],
+      "properties": {
+        "composite_root": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "read_set": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "component_type",
+              "component_id",
+              "version",
+              "digest",
+              "owner_id",
+              "owner_key_id"
+            ],
+            "properties": {
+              "component_type": {
+                "enum": [
+                  "memory",
+                  "master",
+                  "task",
+                  "execution",
+                  "acceptance",
+                  "authority"
+                ]
+              },
+              "component_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "owner_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              },
+              "owner_key_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              }
+            }
+          }
+        },
+        "write_set": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "component_type",
+              "component_id",
+              "version",
+              "digest",
+              "owner_id",
+              "owner_key_id"
+            ],
+            "properties": {
+              "component_type": {
+                "enum": [
+                  "memory",
+                  "master",
+                  "task",
+                  "execution",
+                  "acceptance",
+                  "authority"
+                ]
+              },
+              "component_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "owner_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              },
+              "owner_key_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+              }
+            }
+          }
+        },
+        "authority_epoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gate_type",
+        "gate_instance_id",
+        "crossing_id"
+      ],
+      "properties": {
+        "gate_type": {
+          "const": "GATE-EXPECT-ADMIT"
+        },
+        "gate_instance_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "crossing_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "actor_id"
+      ],
+      "properties": {
+        "principal_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patch_document_ref",
+        "patch_document_digest",
+        "external_effect_requested",
+        "required_receipt_digests"
+      ],
+      "properties": {
+        "patch_document_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "patch_document_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "external_effect_requested": {
+          "const": false
+        },
+        "required_receipt_digests": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

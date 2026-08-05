@@ -1,0 +1,467 @@
+{
+  "artifacts": [
+    {
+      "id": "ART-CONTEXT-PROJECT-PERMIT",
+      "name": "ContextProjectionPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "context-projection-permit.schema.json"
+    },
+    {
+      "id": "ART-EXPECT-ADMIT-PERMIT",
+      "name": "ExpectationPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "expectation-permit.schema.json"
+    },
+    {
+      "id": "ART-EXEC-BIND-PERMIT",
+      "name": "ExecutionBindingPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "execution-binding-permit.schema.json"
+    },
+    {
+      "id": "ART-DISPATCH-PERMIT",
+      "name": "ExecutionPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "execution-permit.schema.json"
+    },
+    {
+      "id": "ART-OBSERVE-PERMIT",
+      "name": "ObservationAdmissionPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "observation-admission-permit.schema.json"
+    },
+    {
+      "id": "ART-EVIDENCE-PERMIT",
+      "name": "EvidenceAdmissionPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "evidence-admission-permit.schema.json"
+    },
+    {
+      "id": "ART-ACCEPT-PERMIT",
+      "name": "AcceptancePermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "acceptance-permit.schema.json"
+    },
+    {
+      "id": "ART-RETRY-PERMIT",
+      "name": "RetryPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "retry-permit.schema.json"
+    },
+    {
+      "id": "ART-COMPENSATE-PERMIT",
+      "name": "CompensationPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "compensation-permit.schema.json"
+    },
+    {
+      "id": "ART-TASK-CLOSE-PERMIT",
+      "name": "TaskCompletionPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "task-completion-permit.schema.json"
+    },
+    {
+      "id": "ART-MEM-MUTATE-PERMIT",
+      "name": "MemoryMutationPermit",
+      "owner": "MOD-CORE",
+      "role": "permit",
+      "schema": "memory-mutation-permit.schema.json"
+    },
+    {
+      "id": "ART-CORE-RESOLUTION",
+      "name": "CoreResolution",
+      "owner": "MOD-CORE",
+      "role": "resolution",
+      "schema": "core-resolution.schema.json"
+    },
+    {
+      "id": "ART-CONTEXT-MANIFEST",
+      "name": "CompositeContextManifest",
+      "owner": "MOD-CORE",
+      "role": "context",
+      "schema": "composite-context-manifest.schema.json"
+    },
+    {
+      "id": "ART-PATCH-SET",
+      "name": "ContextPatchSet",
+      "owner": "MOD-CORE",
+      "role": "patch-set",
+      "schema": "context-patch-set.schema.json"
+    },
+    {
+      "id": "ART-CROSSING-RECEIPT",
+      "name": "GateCrossingReceipt",
+      "owner": "MOD-CORE",
+      "role": "receipt",
+      "schema": "gate-crossing-receipt.schema.json"
+    }
+  ],
+  "assurance": {
+    "implementation_conformance": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+    "limitations": [
+      {
+        "id": "CORE-LIM-001",
+        "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+        "severity": "HIGH",
+        "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+      },
+      {
+        "id": "CORE-LIM-002",
+        "required_evidence": "External exact-byte audit of the component release.",
+        "severity": "MEDIUM",
+        "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+      }
+    ],
+    "production_conformance": "HOLD"
+  },
+  "boundary_invariants": [
+    {
+      "derived_from": "MOD-CORE.must_not",
+      "id": "CORE-BND-001",
+      "statement": "Core may resolve and issue Permit but may not plan, execute an external effect, or accept a result."
+    }
+  ],
+  "canon_assets": {
+    "conformance_binding": "aset/components/core/canonical/conformance/binding.json",
+    "formal_profile": "aset/components/core/canonical/formal/core.tla",
+    "invariants": "aset/components/core/canonical/assurance/invariants.json",
+    "limitations": "aset/components/core/canonical/assurance/limitations.json",
+    "protocol_profile": "aset/components/core/canonical/protocol/profile.json",
+    "requirements": "aset/components/core/canonical/assurance/requirements.json",
+    "threat_model": "aset/components/core/canonical/assurance/threat-model.json",
+    "traceability": "aset/components/core/canonical/assurance/traceability.json",
+    "verification_cases": "aset/components/core/canonical/assurance/verification-cases.json"
+  },
+  "canonical_digest": "sha256:10a14bd8f18a51c48b56d0b8cbfc90fa862239eae5d47dbc68b8b39e890c289b",
+  "component_id": "aset.core",
+  "context_components": [
+    {
+      "content": "authority epoch, resolution, Permit, crossing receipt",
+      "id": "CTX-AUTH",
+      "owner": "MOD-CORE",
+      "type": "authority"
+    }
+  ],
+  "document_type": "aset-component-canon",
+  "gate_roles": [
+    {
+      "document": "ContextProjectionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-CONTEXT-PROJECT",
+      "patch": "ContextProjectionPatch",
+      "permit": "ContextProjectionPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-MEMO",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "ExpectationAdmissionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXPECT-ADMIT",
+      "patch": "ExpectedChangePatch",
+      "permit": "ExpectationPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-MAST",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "ExecutionBindingSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXEC-BIND",
+      "patch": "OperationalBindingPatch",
+      "permit": "ExecutionBindingPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-EXEC"
+      ]
+    },
+    {
+      "document": "ExecutionDispatchSubmission",
+      "external_effect": true,
+      "gate_id": "GATE-DISPATCH",
+      "patch": "ExecutionIntentPatch",
+      "permit": "ExecutionPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "ObservationSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-OBSERVE",
+      "patch": "ObservationPatch",
+      "permit": "ObservationAdmissionPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-EXEC"
+      ]
+    },
+    {
+      "document": "EvidenceSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EVIDENCE",
+      "patch": "EvidencePatch",
+      "permit": "EvidenceAdmissionPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-ACCE"
+      ]
+    },
+    {
+      "document": "AcceptanceSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-ACCEPT",
+      "patch": "AcceptanceResultPatch",
+      "permit": "AcceptancePermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-ACCE",
+        "CTX-TASK"
+      ]
+    },
+    {
+      "document": "RetrySubmission",
+      "external_effect": true,
+      "gate_id": "GATE-RETRY",
+      "patch": "RetryIntentPatch",
+      "permit": "RetryPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "CompensationSubmission",
+      "external_effect": true,
+      "gate_id": "GATE-COMPENSATE",
+      "patch": "CompensationIntentPatch",
+      "permit": "CompensationPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-EXEC",
+        "CTX-AUTH"
+      ]
+    },
+    {
+      "document": "TaskCompletionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-TASK-CLOSE",
+      "patch": "TaskCompletionPatch",
+      "permit": "TaskCompletionPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-TASK",
+        "CTX-ACCE"
+      ]
+    },
+    {
+      "document": "MemoryMutationSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-MEM-MUTATE",
+      "patch": "MemoryLifecyclePatch",
+      "permit": "MemoryMutationPermit",
+      "role": "AUTHORITY_ISSUER",
+      "writes": [
+        "CTX-MEMO"
+      ]
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INV-AUTH-001",
+      "statement": "Только ASET Core создаёт authority-bearing Permit."
+    },
+    {
+      "id": "INV-AUTH-002",
+      "statement": "Всё, что не имеет действующего Permit для точного гейта, запрещено."
+    },
+    {
+      "id": "INV-AUTH-003",
+      "statement": "CoreResolution имеет только PERMITTED или PROHIBITED; техническая ошибка не является разрешением."
+    },
+    {
+      "id": "INV-CORE-RES-001",
+      "statement": "PERMITTED requires exactly one permit reference and digest; PROHIBITED forbids both and requires reason codes."
+    },
+    {
+      "id": "INV-PERMIT-001",
+      "statement": "Permit относится ровно к одному document digest, dependency context set, gate instance, crossing ID и actor/execution ID."
+    },
+    {
+      "id": "INV-PERMIT-002",
+      "statement": "Permit допускает ровно одно немедленное пересечение и после него безвозвратно CONSUMED."
+    },
+    {
+      "id": "INV-PERMIT-003",
+      "statement": "Permit одного гейта неприменим к другому гейту."
+    },
+    {
+      "id": "INV-PERMIT-004",
+      "statement": "ExpectationPermit не разрешает внешний эффект; ExecutionPermit является отдельным артефактом."
+    },
+    {
+      "id": "INV-PERMIT-005",
+      "statement": "Every Permit has consume_before strictly later than issued_at and within the policy maximum lifetime of 60 seconds."
+    }
+  ],
+  "module_refs": [
+    "MOD-CORE"
+  ],
+  "must_not": [
+    "accept result",
+    "execute external effect",
+    "plan",
+    "rewrite submission"
+  ],
+  "operations": [
+    {
+      "classification": "NORMATIVE_DECISION",
+      "description": {
+        "en": "Create a CoreResolution without rewriting the submitted document.",
+        "pt-BR": "Produz uma resolução normativa para o documento exato e o gate especificado.",
+        "ru": "Формирует нормативное решение для точного документа и заданного gate."
+      },
+      "id": "CORE-RESOLVE",
+      "input_artifacts": [
+        "GateSubmissionFamily"
+      ],
+      "name": "ResolveSubmission",
+      "output_artifacts": [
+        "CoreResolution"
+      ],
+      "seed_mapping": {
+        "justification": "The operation changes governed state, authority, evidence, or external-effect status and therefore uses the declared Seed sequence.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": true,
+        "sequence": [
+          "Decision"
+        ]
+      }
+    },
+    {
+      "classification": "AUTHORIZATION_ISSUANCE",
+      "description": {
+        "en": "Issue one exact one-shot Permit only after a PERMITTED resolution.",
+        "pt-BR": "Emite um Permit de uso único somente após uma resolução normativa permissiva.",
+        "ru": "Выдаёт одноразовый Permit только после разрешающего нормативного решения."
+      },
+      "id": "CORE-ISSUE-PERMIT",
+      "input_artifacts": [
+        "CoreResolution"
+      ],
+      "name": "IssuePermit",
+      "output_artifacts": [
+        "OneShotPermitClosedUnion"
+      ],
+      "seed_mapping": {
+        "justification": "The operation changes governed state, authority, evidence, or external-effect status and therefore uses the declared Seed sequence.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": true,
+        "sequence": [
+          "Decision",
+          "Permit"
+        ]
+      }
+    },
+    {
+      "classification": "GOVERNED_CONTEXT_MUTATION",
+      "description": {
+        "en": "Atomically apply the patch, compare-and-swap scoped heads, consume the Permit, and emit a receipt.",
+        "pt-BR": "Consome o Permit atomicamente, aplica o patch e cria o recibo do cruzamento.",
+        "ru": "Атомарно потребляет Permit, применяет patch и создаёт receipt пересечения."
+      },
+      "id": "CORE-CROSS",
+      "input_artifacts": [
+        "CoreResolution",
+        "OneShotPermitClosedUnion",
+        "ContextPatchSet"
+      ],
+      "name": "LinearizeCrossing",
+      "output_artifacts": [
+        "GateCrossingReceipt"
+      ],
+      "seed_mapping": {
+        "justification": "The operation changes governed state, authority, evidence, or external-effect status and therefore uses the declared Seed sequence.",
+        "outcome_recognition_required": false,
+        "seed_transition_required": true,
+        "sequence": [
+          "Decision",
+          "Permit",
+          "PermitUseReceipt"
+        ]
+      }
+    }
+  ],
+  "owns": [
+    "AuthorityGraph",
+    "CoreResolution",
+    "GateCrossingReceipt",
+    "GateKernel",
+    "NormativeLedger",
+    "OneShotPermit",
+    "PolicySet"
+  ],
+  "purpose": {
+    "en": "Defines normative resolution, one-shot Permit, and atomic gate crossing.",
+    "pt-BR": "Define resolução normativa, Permit de uso único e cruzamento atômico de gate.",
+    "ru": "Определяет нормативное разрешение, одноразовый Permit и атомарное пересечение gate."
+  },
+  "requirement_ids": [
+    "COR-001",
+    "COR-002",
+    "COR-003",
+    "COR-004",
+    "COR-005",
+    "COR-006",
+    "COR-007",
+    "COR-008",
+    "COR-009",
+    "COR-010",
+    "COR-011",
+    "COR-012",
+    "COR-013",
+    "COR-014",
+    "GAT-001",
+    "GAT-002",
+    "GAT-003",
+    "GAT-004",
+    "GAT-005",
+    "GAT-006",
+    "GAT-007",
+    "GAT-008",
+    "GAT-009",
+    "GAT-010",
+    "GAT-011",
+    "GAT-012"
+  ],
+  "schema_version": 1,
+  "source_baseline": {
+    "archive_sha256": "sha256:4fd358e3c395547bdfb8f5a3e7d71ad377d25428923eba4c4889d5e686fece22",
+    "model_digest": "sha256:cd569fafe4e241cda24527384776dc0637379529a36ffe2870cb318f3c830b94",
+    "specification_digest": "sha256:b843060044f7dc887c001a1130a8a38bec49745fbdfa9a5e66934eecdfd7eeb6",
+    "version": "1.5-rc11"
+  },
+  "state_machine_refs": [
+    "permit",
+    "crossing"
+  ],
+  "status": "COMPONENT_CANON_CANDIDATE",
+  "version": "0.1-rc1"
+}

@@ -1,0 +1,77 @@
+@prefix aset: <https://w3id.org/aset/component/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+aset:aset_masterScheme a skos:ConceptScheme ;
+    skos:prefLabel "aset.master terminology"@en .
+
+aset:AttractorDescriptor a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "AttractorDescriptor" ;
+    skos:prefLabel "AttractorDescriptor"@ru ;
+    skos:prefLabel "AttractorDescriptor"@en ;
+    skos:prefLabel "AttractorDescriptor"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:ExpectedChangePatch a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "ExpectedChangePatch" ;
+    skos:prefLabel "ExpectedChangePatch"@ru ;
+    skos:prefLabel "ExpectedChangePatch"@en ;
+    skos:prefLabel "ExpectedChangePatch"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:LearningObservation a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "LearningObservation" ;
+    skos:prefLabel "LearningObservation"@ru ;
+    skos:prefLabel "LearningObservation"@en ;
+    skos:prefLabel "LearningObservation"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:PlanAssessment a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "PlanAssessment" ;
+    skos:prefLabel "PlanAssessment"@ru ;
+    skos:prefLabel "PlanAssessment"@en ;
+    skos:prefLabel "PlanAssessment"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:PlanProposal a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "PlanProposal" ;
+    skos:prefLabel "PlanProposal"@ru ;
+    skos:prefLabel "PlanProposal"@en ;
+    skos:prefLabel "PlanProposal"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:TrajectoryAssessment a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "TrajectoryAssessment" ;
+    skos:prefLabel "TrajectoryAssessment"@ru ;
+    skos:prefLabel "TrajectoryAssessment"@en ;
+    skos:prefLabel "TrajectoryAssessment"@pt-BR ;
+    skos:definition "Normative concept owned by aset.master."@en .
+
+aset:MASTER_PLAN a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "MASTER-PLAN" ;
+    skos:prefLabel "ProposePlan"@ru ;
+    skos:prefLabel "ProposePlan"@en ;
+    skos:prefLabel "ProposePlan"@pt-BR ;
+    skos:definition "Produce a PlanProposal and assessment without authority."@en .
+
+aset:MASTER_EXPECT a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "MASTER-EXPECT" ;
+    skos:prefLabel "ProposeExpectedChange"@ru ;
+    skos:prefLabel "ProposeExpectedChange"@en ;
+    skos:prefLabel "ProposeExpectedChange"@pt-BR ;
+    skos:definition "Produce an ExpectedChangePatch that requires a separate expectation Permit before context admission."@en .
+
+aset:MASTER_ATTRACTOR a skos:Concept ;
+    skos:inScheme aset:aset_masterScheme ;
+    skos:notation "MASTER-ATTRACTOR" ;
+    skos:prefLabel "AssessAttractor"@ru ;
+    skos:prefLabel "AssessAttractor"@en ;
+    skos:prefLabel "AssessAttractor"@pt-BR ;
+    skos:definition "Describe a candidate stable state or trajectory without authorizing it."@en .

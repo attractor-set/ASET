@@ -1,0 +1,74 @@
+{
+  "$id": "urn:aset:schema:component-formal-profile:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "document_type": {
+      "const": "aset-component-formal-profile"
+    },
+    "method": {
+      "type": "string"
+    },
+    "models": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "cfg_path": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "invariants": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "tla_path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tla_path",
+          "cfg_path",
+          "invariants"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "profile_id": {
+      "const": "aset.component-formal"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "BOUNDED_FORMAL_CANDIDATE"
+    },
+    "version": {
+      "const": "0.1-rc1"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "profile_id",
+    "version",
+    "status",
+    "method",
+    "models",
+    "canonical_digest"
+  ],
+  "type": "object"
+}

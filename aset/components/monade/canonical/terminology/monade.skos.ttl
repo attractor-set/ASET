@@ -1,0 +1,245 @@
+@prefix aset: <https://w3id.org/aset/component/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+aset:aset_monadeScheme a skos:ConceptScheme ;
+    skos:prefLabel "aset.monade terminology"@en .
+
+aset:AcceptanceContract a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "AcceptanceContract" ;
+    skos:prefLabel "AcceptanceContract"@ru ;
+    skos:prefLabel "AcceptanceContract"@en ;
+    skos:prefLabel "AcceptanceContract"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:AcceptanceDecision a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "AcceptanceDecision" ;
+    skos:prefLabel "AcceptanceDecision"@ru ;
+    skos:prefLabel "AcceptanceDecision"@en ;
+    skos:prefLabel "AcceptanceDecision"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:EphemeralExecutionState a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "EphemeralExecutionState" ;
+    skos:prefLabel "EphemeralExecutionState"@ru ;
+    skos:prefLabel "EphemeralExecutionState"@en ;
+    skos:prefLabel "EphemeralExecutionState"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:EvidenceBundle a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "EvidenceBundle" ;
+    skos:prefLabel "EvidenceBundle"@ru ;
+    skos:prefLabel "EvidenceBundle"@en ;
+    skos:prefLabel "EvidenceBundle"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:ExecutionIntent a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "ExecutionIntent" ;
+    skos:prefLabel "ExecutionIntent"@ru ;
+    skos:prefLabel "ExecutionIntent"@en ;
+    skos:prefLabel "ExecutionIntent"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:ExecutionObservation a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "ExecutionObservation" ;
+    skos:prefLabel "ExecutionObservation"@ru ;
+    skos:prefLabel "ExecutionObservation"@en ;
+    skos:prefLabel "ExecutionObservation"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:OperationalBinding a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "OperationalBinding" ;
+    skos:prefLabel "OperationalBinding"@ru ;
+    skos:prefLabel "OperationalBinding"@en ;
+    skos:prefLabel "OperationalBinding"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:OutboxCommand a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "OutboxCommand" ;
+    skos:prefLabel "OutboxCommand"@ru ;
+    skos:prefLabel "OutboxCommand"@en ;
+    skos:prefLabel "OutboxCommand"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:Outcome a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "Outcome" ;
+    skos:prefLabel "Outcome"@ru ;
+    skos:prefLabel "Outcome"@en ;
+    skos:prefLabel "Outcome"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:PlanRevision a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "PlanRevision" ;
+    skos:prefLabel "PlanRevision"@ru ;
+    skos:prefLabel "PlanRevision"@en ;
+    skos:prefLabel "PlanRevision"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:ProjectionProfile a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "ProjectionProfile" ;
+    skos:prefLabel "ProjectionProfile"@ru ;
+    skos:prefLabel "ProjectionProfile"@en ;
+    skos:prefLabel "ProjectionProfile"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:PromptManifest a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "PromptManifest" ;
+    skos:prefLabel "PromptManifest"@ru ;
+    skos:prefLabel "PromptManifest"@en ;
+    skos:prefLabel "PromptManifest"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:Task a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "Task" ;
+    skos:prefLabel "Task"@ru ;
+    skos:prefLabel "Task"@en ;
+    skos:prefLabel "Task"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:TaskAcceptance a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "TaskAcceptance" ;
+    skos:prefLabel "TaskAcceptance"@ru ;
+    skos:prefLabel "TaskAcceptance"@en ;
+    skos:prefLabel "TaskAcceptance"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:TokenBudgetPlan a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "TokenBudgetPlan" ;
+    skos:prefLabel "TokenBudgetPlan"@ru ;
+    skos:prefLabel "TokenBudgetPlan"@en ;
+    skos:prefLabel "TokenBudgetPlan"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:ToolInvocation a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "ToolInvocation" ;
+    skos:prefLabel "ToolInvocation"@ru ;
+    skos:prefLabel "ToolInvocation"@en ;
+    skos:prefLabel "ToolInvocation"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:TransitionGraph a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "TransitionGraph" ;
+    skos:prefLabel "TransitionGraph"@ru ;
+    skos:prefLabel "TransitionGraph"@en ;
+    skos:prefLabel "TransitionGraph"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:VerificationReceipt a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "VerificationReceipt" ;
+    skos:prefLabel "VerificationReceipt"@ru ;
+    skos:prefLabel "VerificationReceipt"@en ;
+    skos:prefLabel "VerificationReceipt"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:VerificationVerdict a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "VerificationVerdict" ;
+    skos:prefLabel "VerificationVerdict"@ru ;
+    skos:prefLabel "VerificationVerdict"@en ;
+    skos:prefLabel "VerificationVerdict"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:VerifierAdapter a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "VerifierAdapter" ;
+    skos:prefLabel "VerifierAdapter"@ru ;
+    skos:prefLabel "VerifierAdapter"@en ;
+    skos:prefLabel "VerifierAdapter"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:WorkerEnvelope a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "WorkerEnvelope" ;
+    skos:prefLabel "WorkerEnvelope"@ru ;
+    skos:prefLabel "WorkerEnvelope"@en ;
+    skos:prefLabel "WorkerEnvelope"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:WorkerObservation a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "WorkerObservation" ;
+    skos:prefLabel "WorkerObservation"@ru ;
+    skos:prefLabel "WorkerObservation"@en ;
+    skos:prefLabel "WorkerObservation"@pt-BR ;
+    skos:definition "Normative concept owned by aset.monade."@en .
+
+aset:MON_PROJECT a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-PROJECT" ;
+    skos:prefLabel "AdmitContextProjection"@ru ;
+    skos:prefLabel "AdmitContextProjection"@en ;
+    skos:prefLabel "AdmitContextProjection"@pt-BR ;
+    skos:definition "Admit a scoped Memory projection into Task context."@en .
+
+aset:MON_BIND a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-BIND" ;
+    skos:prefLabel "BindExecution"@ru ;
+    skos:prefLabel "BindExecution"@en ;
+    skos:prefLabel "BindExecution"@pt-BR ;
+    skos:definition "Bind authorized expected change to one operational execution."@en .
+
+aset:MON_DISPATCH a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-DISPATCH" ;
+    skos:prefLabel "DispatchExecution"@ru ;
+    skos:prefLabel "DispatchExecution"@en ;
+    skos:prefLabel "DispatchExecution"@pt-BR ;
+    skos:definition "Dispatch one externally effective execution through an outbox boundary."@en .
+
+aset:MON_OBSERVE a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-OBSERVE" ;
+    skos:prefLabel "AdmitObservation"@ru ;
+    skos:prefLabel "AdmitObservation"@en ;
+    skos:prefLabel "AdmitObservation"@pt-BR ;
+    skos:definition "Admit an observation bound to the exact execution attempt."@en .
+
+aset:MON_VERIFY a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-VERIFY" ;
+    skos:prefLabel "VerifyEvidence"@ru ;
+    skos:prefLabel "VerifyEvidence"@en ;
+    skos:prefLabel "VerifyEvidence"@pt-BR ;
+    skos:definition "Evaluate evidence independently from the primary executor."@en .
+
+aset:MON_CLOSE a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-CLOSE" ;
+    skos:prefLabel "CloseTask"@ru ;
+    skos:prefLabel "CloseTask"@en ;
+    skos:prefLabel "CloseTask"@pt-BR ;
+    skos:definition "Recognize the terminal task Outcome only from complete PASS verification semantics."@en .
+
+aset:MON_RETRY a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-RETRY" ;
+    skos:prefLabel "RetryExecution"@ru ;
+    skos:prefLabel "RetryExecution"@en ;
+    skos:prefLabel "RetryExecution"@pt-BR ;
+    skos:definition "Retry only under NO_EFFECT or proved idempotency."@en .
+
+aset:MON_COMPENSATE a skos:Concept ;
+    skos:inScheme aset:aset_monadeScheme ;
+    skos:notation "MON-COMPENSATE" ;
+    skos:prefLabel "CompensateExecution"@ru ;
+    skos:prefLabel "CompensateExecution"@en ;
+    skos:prefLabel "CompensateExecution"@pt-BR ;
+    skos:definition "Perform a separately authorized compensation effect."@en .

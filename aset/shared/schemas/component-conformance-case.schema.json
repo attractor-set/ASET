@@ -1,0 +1,90 @@
+{
+  "$id": "urn:aset:schema:component-conformance-case:0.1-rc1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "aset-component-conformance-case"
+    },
+    "expected": {
+      "enum": [
+        "ACCEPT",
+        "REJECT"
+      ]
+    },
+    "expected_error": {
+      "type": "string"
+    },
+    "fixture": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^(POS|NEG)-COMP-[0-9]{3}$",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "POSITIVE",
+        "NEGATIVE"
+      ]
+    },
+    "mutation": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "enum": [
+                "SET",
+                "REMOVE",
+                "APPEND"
+              ]
+            },
+            "path": {
+              "pattern": "^/",
+              "type": "string"
+            },
+            "refresh_canonical_digest": {
+              "type": "boolean"
+            },
+            "value": {}
+          },
+          "required": [
+            "operation",
+            "path",
+            "refresh_canonical_digest"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "subject": {
+      "enum": [
+        "COMPONENT",
+        "SYSTEM",
+        "BRIDGE",
+        "MIGRATION",
+        "SEED_BASELINE",
+        "PROTOCOL_REGISTRY"
+      ]
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "id",
+    "kind",
+    "subject",
+    "fixture",
+    "expected",
+    "mutation"
+  ],
+  "type": "object"
+}

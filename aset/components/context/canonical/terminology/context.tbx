@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tbx xmlns="urn:iso:std:iso:30042:ed-2" type="TBX-Basic">
+  <tbxHeader><fileDesc><titleStmt><title>aset.context</title></titleStmt></fileDesc></tbxHeader>
+  <text><body style="dca">
+    <conceptEntry id="CompositeContextManifest">
+      <langSec xml:lang="ru"><termSec><term>CompositeContextManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>CompositeContextManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>CompositeContextManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ContextNamespace">
+      <langSec xml:lang="ru"><termSec><term>ContextNamespace</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ContextNamespace</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ContextNamespace</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ContextPatchSet">
+      <langSec xml:lang="ru"><termSec><term>ContextPatchSet</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ContextPatchSet</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ContextPatchSet</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="SignedContextComponent">
+      <langSec xml:lang="ru"><termSec><term>SignedContextComponent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>SignedContextComponent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>SignedContextComponent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="CTX-COMPOSE">
+      <langSec xml:lang="ru"><termSec><term>ComposeContext</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ComposeContext</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ComposeContext</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="CTX-APPLY-PATCH">
+      <langSec xml:lang="ru"><termSec><term>ApplyAuthorizedPatch</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ApplyAuthorizedPatch</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ApplyAuthorizedPatch</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+  </body></text>
+</tbx>

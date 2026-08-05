@@ -1,0 +1,22 @@
+{
+  "canonical_digest": "sha256:a811ed183d3990063321edc579c2dd0b05c7e699398ed8df4785973e1cf48b7c",
+  "component_id": "aset.protocol",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-limitations",
+  "limitations": [
+    {
+      "id": "PROTOCOL-LIM-001",
+      "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+      "severity": "HIGH",
+      "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+    },
+    {
+      "id": "PROTOCOL-LIM-002",
+      "required_evidence": "External exact-byte audit of the component release.",
+      "severity": "MEDIUM",
+      "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

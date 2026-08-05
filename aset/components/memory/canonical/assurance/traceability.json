@@ -1,0 +1,230 @@
+{
+  "canonical_digest": "sha256:afd3452ea28dcb9b2d0c524743b1d8b981200872e3814bc7cf84c2e79c1aaabf",
+  "component_id": "aset.memory",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-traceability",
+  "links": [
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-001",
+      "EvidenceLocator": "evidence/MEM-001/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-001"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-002",
+      "EvidenceLocator": "evidence/MEM-002/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-002"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-003",
+      "EvidenceLocator": "evidence/MEM-003/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-003"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-004",
+      "EvidenceLocator": "evidence/MEM-004/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-004"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-005",
+      "EvidenceLocator": "evidence/MEM-005/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-005"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-006",
+      "EvidenceLocator": "evidence/MEM-006/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-005",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-006"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-007",
+      "EvidenceLocator": "evidence/MEM-007/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-005",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-007"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-008",
+      "EvidenceLocator": "evidence/MEM-008/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-008"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-009",
+      "EvidenceLocator": "evidence/MEM-009/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-009"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-010",
+      "EvidenceLocator": "evidence/MEM-010/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-010"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-011",
+      "EvidenceLocator": "evidence/MEM-011/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-011"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-012",
+      "EvidenceLocator": "evidence/MEM-012/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-014",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-014",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-012"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-013",
+      "EvidenceLocator": "evidence/MEM-013/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-013"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-014",
+      "EvidenceLocator": "evidence/MEM-014/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-014"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-015",
+      "EvidenceLocator": "evidence/MEM-015/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-015"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-016",
+      "EvidenceLocator": "evidence/MEM-016/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-017",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-016"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-017",
+      "EvidenceLocator": "evidence/MEM-017/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-017"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-018",
+      "EvidenceLocator": "evidence/MEM-018/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-002",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-002",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-018"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-019",
+      "EvidenceLocator": "evidence/MEM-019/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-010",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-009",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-019"
+    },
+    {
+      "ADRRefs": "ADR-033;ADR-039;ADR-040",
+      "DerivedRequirementID": "MEM-020",
+      "EvidenceLocator": "evidence/MEM-020/",
+      "ModelElementRefs": "MOD-MEM;CTX-MEM",
+      "NeedID": "NEED-008",
+      "Result": "NOT_EXECUTED_PRE_IMPLEMENTATION",
+      "SystemRequirementID": "SYS-011",
+      "TraceStatus": "COMPLETE_FOR_DOCUMENTATION",
+      "VerificationCaseID": "VC-MEM-020"
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

@@ -1,0 +1,22 @@
+{
+  "canonical_digest": "sha256:a8f586fcdb7315a9b86e1bd1e308341500b96518206c1fce3baba77d95c82a22",
+  "component_id": "aset.master",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-limitations",
+  "limitations": [
+    {
+      "id": "MASTER-LIM-001",
+      "required_evidence": "Independent implementation, component conformance execution, and fault-injection evidence.",
+      "severity": "HIGH",
+      "statement": "This component canon is a normative decomposition; no independent component implementation has yet demonstrated semantic conformance."
+    },
+    {
+      "id": "MASTER-LIM-002",
+      "required_evidence": "External exact-byte audit of the component release.",
+      "severity": "MEDIUM",
+      "statement": "The extraction preserves rc11 semantics but the new component release bytes have not received an external third-party audit."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

@@ -1,0 +1,21 @@
+{
+  "canonical_digest": "sha256:c7512d4189495a8968ed78f22c6eec079c64700b67a8081abd58aaf9e0e43e92",
+  "component_id": "aset.master",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-MASTER-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Master формирует ExpectedChangePatch, но не Permit и не внешний эффект."
+    },
+    {
+      "derived_from": "INV-MASTER-001",
+      "id": "MASTER-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "ExpectedChangePatch and AttractorDescriptor are advisory and cannot authorize a gate crossing."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

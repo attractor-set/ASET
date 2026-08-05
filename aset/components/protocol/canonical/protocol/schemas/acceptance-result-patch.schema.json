@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aset:schema:aset.acceptance-result-patch:1.5-rc8",
+  "title": "AcceptanceResultPatch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "schema_version",
+    "document_id",
+    "tenant_id",
+    "issued_at",
+    "issuer",
+    "integrity",
+    "patch_type",
+    "source_context_root",
+    "target_component_type",
+    "expected_change_ref",
+    "operational_status",
+    "normative_status",
+    "decision",
+    "claim_results",
+    "evidence_refs",
+    "unresolved_claims",
+    "external_effect_asserted"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "aset.acceptance-result-patch"
+    },
+    "schema_version": {
+      "const": "1.5-rc8"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "issuer": {
+      "const": "aset-monade-acceptance"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalization",
+        "digest_algorithm",
+        "document_digest",
+        "signature_profile",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "canonicalization": {
+          "const": "ASET-JCS-1"
+        },
+        "digest_algorithm": {
+          "const": "SHA-256"
+        },
+        "document_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature_profile": {
+          "const": "Ed25519-SHA256-v1"
+        },
+        "key_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^ed25519:[A-Za-z0-9_-]{86}$"
+        }
+      }
+    },
+    "patch_type": {
+      "const": "AcceptanceResultPatch"
+    },
+    "source_context_root": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "target_component_type": {
+      "const": "acceptance"
+    },
+    "expected_change_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+    },
+    "operational_status": {
+      "enum": [
+        "VERIFIED_SUCCESS",
+        "VERIFIED_FAILURE",
+        "PARTIAL_EFFECT",
+        "NO_EFFECT",
+        "EFFECT_UNKNOWN"
+      ]
+    },
+    "normative_status": {
+      "enum": [
+        "COMPLIANT",
+        "NON_COMPLIANT",
+        "UNDETERMINED"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "ACCEPTED",
+        "REJECTED",
+        "PARTIALLY_ACCEPTED",
+        "EVIDENCE_INSUFFICIENT",
+        "MANUAL_REVIEW_REQUIRED"
+      ]
+    },
+    "claim_results": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim_ref",
+          "verdict"
+        ],
+        "properties": {
+          "claim_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+          },
+          "verdict": {
+            "enum": [
+              "VERIFIED",
+              "REJECTED",
+              "PARTIAL",
+              "UNKNOWN"
+            ]
+          }
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    },
+    "unresolved_claims": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{2,127}$"
+      }
+    },
+    "external_effect_asserted": {
+      "const": false
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "decision": {
+          "const": "ACCEPTED"
+        },
+        "operational_status": {
+          "const": "VERIFIED_SUCCESS"
+        },
+        "normative_status": {
+          "const": "COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "PARTIALLY_ACCEPTED"
+        },
+        "operational_status": {
+          "const": "PARTIAL_EFFECT"
+        },
+        "normative_status": {
+          "const": "COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "VERIFIED_FAILURE"
+        },
+        "normative_status": {
+          "const": "COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {}
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "VERIFIED_FAILURE"
+        },
+        "normative_status": {
+          "const": "NON_COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {}
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "NO_EFFECT"
+        },
+        "normative_status": {
+          "const": "COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {}
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "NO_EFFECT"
+        },
+        "normative_status": {
+          "const": "NON_COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {}
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "VERIFIED_SUCCESS"
+        },
+        "normative_status": {
+          "const": "NON_COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {}
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "REJECTED"
+        },
+        "operational_status": {
+          "const": "PARTIAL_EFFECT"
+        },
+        "normative_status": {
+          "const": "NON_COMPLIANT"
+        },
+        "evidence_refs": {
+          "minItems": 1
+        },
+        "unresolved_claims": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "EVIDENCE_INSUFFICIENT"
+        },
+        "operational_status": {
+          "const": "EFFECT_UNKNOWN"
+        },
+        "normative_status": {
+          "const": "UNDETERMINED"
+        },
+        "evidence_refs": {},
+        "unresolved_claims": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "MANUAL_REVIEW_REQUIRED"
+        },
+        "operational_status": {
+          "const": "EFFECT_UNKNOWN"
+        },
+        "normative_status": {
+          "const": "UNDETERMINED"
+        },
+        "evidence_refs": {},
+        "unresolved_claims": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    },
+    {
+      "properties": {
+        "decision": {
+          "const": "MANUAL_REVIEW_REQUIRED"
+        },
+        "operational_status": {
+          "const": "PARTIAL_EFFECT"
+        },
+        "normative_status": {
+          "const": "UNDETERMINED"
+        },
+        "evidence_refs": {},
+        "unresolved_claims": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "decision",
+        "operational_status",
+        "normative_status",
+        "evidence_refs",
+        "unresolved_claims"
+      ]
+    }
+  ]
+}

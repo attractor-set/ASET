@@ -1,0 +1,16 @@
+{
+  "canonical_digest": "sha256:108c024b29197cc570cbea0d12f47dd8e7a00626f10e7f217c7731d9ec73f235",
+  "component_id": "aset.model-gateway",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "derived_from": "MOD-GW.must_not",
+      "id": "GW-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Provider rendering cannot mutate canonical context or execute tool calls."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

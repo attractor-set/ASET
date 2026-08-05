@@ -1,0 +1,42 @@
+{
+  "canonical_digest": "sha256:0021a88230caa00700eb0d8b90f1a9c94bbc8fe9671049e40f4050e029a147c6",
+  "component_id": "aset.master",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-threat-model",
+  "schema_version": 1,
+  "source_version": "1.5-rc11",
+  "threats": [
+    {
+      "attack": "An actor or implementation attempts to accept own work.",
+      "id": "THREAT-MASTER-001",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 1"
+    },
+    {
+      "attack": "An actor or implementation attempts to dispatch effect.",
+      "id": "THREAT-MASTER-002",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 2"
+    },
+    {
+      "attack": "An actor or implementation attempts to issue Permit.",
+      "id": "THREAT-MASTER-003",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 3"
+    },
+    {
+      "attack": "An actor or implementation attempts to treat AttractorDescriptor as authority.",
+      "id": "THREAT-MASTER-004",
+      "impact": "Authority, epistemic status, execution validity or outcome recognition could be confused across component boundaries.",
+      "mitigation": "Closed schemas, explicit ownership, Seed mapping, negative conformance and independent gate checks reject the violation.",
+      "status": "MITIGATED_BY_SPECIFICATION",
+      "title": "Boundary violation 4"
+    }
+  ]
+}

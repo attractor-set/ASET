@@ -1,0 +1,257 @@
+{
+  "version": "1.5-rc8",
+  "cases": [
+    {
+      "id": "NEG-PERMIT-DOC-TYPE",
+      "schema": "expectation-permit.schema.json",
+      "file": "conformance/negative/neg-permit-doc-type.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PERMIT-EXTRA-AUTH",
+      "schema": "expectation-permit.schema.json",
+      "file": "conformance/negative/neg-permit-extra-auth.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PERMIT-CONSUMED",
+      "schema": "execution-permit.schema.json",
+      "file": "conformance/negative/neg-permit-consumed.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PERMIT-EMPTY-SETS",
+      "schema": "execution-permit.schema.json",
+      "file": "conformance/negative/neg-permit-empty-sets.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-RESOLUTION-NO-PERMIT",
+      "schema": "core-resolution.schema.json",
+      "file": "conformance/negative/neg-resolution-no-permit.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-RESOLUTION-PROHIBITED-WITH-PERMIT",
+      "schema": "core-resolution.schema.json",
+      "file": "conformance/negative/neg-resolution-prohibited-with-permit.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-CONTEXT-DUPLICATE-ID",
+      "schema": "composite-context-manifest.schema.json",
+      "file": "conformance/negative/neg-context-duplicate-id.json",
+      "expected_error_code": "DUPLICATE_COMPONENT_ID"
+    },
+    {
+      "id": "NEG-CONTEXT-BAD-ROOT",
+      "schema": "composite-context-manifest.schema.json",
+      "file": "conformance/negative/neg-context-bad-root.json",
+      "expected_error_code": "CONTEXT_ROOT_MISMATCH"
+    },
+    {
+      "id": "NEG-COMPONENT-WRONG-OWNER",
+      "schema": "signed-context-component.schema.json",
+      "file": "conformance/negative/neg-component-wrong-owner.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PROMPT-INLINE-OVERRIDE",
+      "schema": "prompt-manifest.schema.json",
+      "file": "conformance/negative/neg-prompt-inline-override.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PROMPT-BAD-DIGEST",
+      "schema": "prompt-manifest.schema.json",
+      "file": "conformance/negative/neg-prompt-bad-digest.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-ACCEPT-UNKNOWN-ACCEPTED",
+      "schema": "acceptance-result-patch.schema.json",
+      "file": "conformance/negative/neg-accept-unknown-accepted.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-ACCEPT-NONCOMPLIANT-ACCEPTED",
+      "schema": "acceptance-result-patch.schema.json",
+      "file": "conformance/negative/neg-accept-noncompliant-accepted.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-ACCEPT-NO-EVIDENCE",
+      "schema": "acceptance-result-patch.schema.json",
+      "file": "conformance/negative/neg-accept-no-evidence.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-RECEIPT-SAME-ROOT",
+      "schema": "gate-crossing-receipt.schema.json",
+      "file": "conformance/negative/neg-receipt-same-root.json",
+      "expected_error_code": "SOURCE_EQUALS_TARGET"
+    },
+    {
+      "id": "NEG-RECEIPT-EXTERNAL-CONFIRM",
+      "schema": "gate-crossing-receipt.schema.json",
+      "file": "conformance/negative/neg-receipt-external-confirm.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PATCHSET-DUPLICATE-COMPONENT",
+      "schema": "context-patch-set.schema.json",
+      "file": "conformance/negative/neg-patchset-duplicate-component.json",
+      "expected_error_code": "DUPLICATE_COMPONENT_PATCH"
+    },
+    {
+      "id": "NEG-PATCHSET-GATE-PERMIT-MISMATCH",
+      "schema": "context-patch-set.schema.json",
+      "file": "conformance/negative/neg-patchset-gate-permit-mismatch.json",
+      "expected_error_code": "GATE_PERMIT_MISMATCH"
+    },
+    {
+      "id": "NEG-MODEL-STATE-HIDDEN",
+      "file": "conformance/negative/neg-model-state-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-MODEL-OWNER-HIDDEN",
+      "file": "conformance/negative/neg-model-owner-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-SPEC-PROMPT-HIDDEN",
+      "file": "conformance/negative/neg-spec-prompt-hidden.json",
+      "schema": "system-specification.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-SPEC-ACCEPTANCE-HIDDEN",
+      "file": "conformance/negative/neg-spec-acceptance-hidden.json",
+      "schema": "system-specification.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-SPEC-CLAIMS-HIDDEN",
+      "file": "conformance/negative/neg-spec-claims-hidden.json",
+      "schema": "system-specification.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-COMPONENT-CONTENT-HIDDEN",
+      "file": "conformance/negative/neg-component-content-hidden.json",
+      "schema": "signed-context-component.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PATCHSET-BAD-ROOT",
+      "file": "conformance/negative/neg-patchset-bad-root.json",
+      "schema": "context-patch-set.schema.json",
+      "expected_error_code": "CONTEXT_ROOT_MISMATCH"
+    },
+    {
+      "id": "NEG-MODEL-MODULES-HIDDEN",
+      "file": "conformance/negative/neg-model-modules-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-MODEL-SUBSYSTEMS-HIDDEN",
+      "file": "conformance/negative/neg-model-subsystems-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-MODEL-CONTEXT_COMPONENTS-HIDDEN",
+      "file": "conformance/negative/neg-model-context_components-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-MODEL-ARTIFACTS-HIDDEN",
+      "file": "conformance/negative/neg-model-artifacts-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-EXPECTED-FLOAT",
+      "file": "conformance/negative/neg-expected-float.json",
+      "schema": "expected-change-patch.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PROMPT-COMPILER-INPUT-DIGEST",
+      "file": "conformance/negative/neg-prompt-compiler-input-digest.json",
+      "schema": "prompt-manifest.schema.json",
+      "expected_error_code": "COMPILER_INPUT_DIGEST_MISMATCH"
+    },
+    {
+      "id": "NEG-PROMPT-SECTION-TOTAL",
+      "file": "conformance/negative/neg-prompt-section-total.json",
+      "schema": "prompt-manifest.schema.json",
+      "expected_error_code": "SECTION_TOKEN_TOTAL_MISMATCH"
+    },
+    {
+      "id": "NEG-PROMPT-MAX-WINDOW",
+      "file": "conformance/negative/neg-prompt-max-window.json",
+      "schema": "prompt-manifest.schema.json",
+      "expected_error_code": "MODEL_CONTEXT_BUDGET_EXCEEDED"
+    },
+    {
+      "id": "NEG-PROMPT-DEPENDENCY-DRIFT",
+      "file": "conformance/negative/neg-prompt-dependency-drift.json",
+      "schema": "prompt-manifest.schema.json",
+      "expected_error_code": "COMPILER_INPUT_DIGEST_MISMATCH"
+    },
+    {
+      "id": "NEG-PROVIDER-REQUEST-DIGEST",
+      "file": "conformance/negative/neg-provider-request-digest.json",
+      "schema": "provider-request-manifest.schema.json",
+      "expected_error_code": "PROVIDER_REQUEST_DIGEST_MISMATCH"
+    },
+    {
+      "id": "NEG-ACCEPT-RELATION-EXACT",
+      "file": "conformance/negative/neg-accept-relation-exact.json",
+      "schema": "acceptance-result-patch.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-PERMIT-EXPIRED-AT-ISSUANCE",
+      "file": "conformance/negative/neg-permit-expired-at-issuance.json",
+      "schema": "expectation-permit.schema.json",
+      "expected_error_code": "PERMIT_EXPIRED_AT_ISSUANCE"
+    },
+    {
+      "id": "NEG-PERMIT-LIFETIME-EXCEEDED",
+      "file": "conformance/negative/neg-permit-lifetime-exceeded.json",
+      "schema": "expectation-permit.schema.json",
+      "expected_error_code": "PERMIT_LIFETIME_EXCEEDED"
+    },
+    {
+      "id": "NEG-MERKLE-ORDER-PROFILE",
+      "file": "conformance/negative/neg-merkle-order-profile.json",
+      "schema": "composite-context-manifest.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-DEPRECATED-TERM-HIDDEN",
+      "file": "conformance/negative/neg-deprecated-term-hidden.json",
+      "schema": "system-model.schema.json",
+      "expected_error_code": "SCHEMA_INVALID"
+    },
+    {
+      "id": "NEG-RAW-DUPLICATE-MEMBER",
+      "schema": "expected-change-patch.schema.json",
+      "file": "conformance/negative/neg-raw-duplicate-member.json",
+      "expected_error_code": "DUPLICATE_JSON_MEMBER"
+    },
+    {
+      "id": "NEG-UNSAFE-INTEGER",
+      "schema": "expected-change-patch.schema.json",
+      "file": "conformance/negative/neg-unsafe-integer.json",
+      "expected_error_code": "UNSAFE_JSON_INTEGER"
+    }
+  ]
+}

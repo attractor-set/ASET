@@ -1,0 +1,55 @@
+{
+  "canonical_digest": "sha256:119fa3d9c05150f0b65cbc52f0dcf62ae398679648b132f0a0f99626818d00c3",
+  "component_id": "aset.master",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-protocol-profile",
+  "gate_roles": [
+    {
+      "document": "ExpectationAdmissionSubmission",
+      "external_effect": false,
+      "gate_id": "GATE-EXPECT-ADMIT",
+      "patch": "ExpectedChangePatch",
+      "permit": "ExpectationPermit",
+      "role": "PRODUCER",
+      "writes": [
+        "CTX-MAST",
+        "CTX-TASK"
+      ]
+    }
+  ],
+  "imports": [],
+  "interfaces": [
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "inputs": [],
+      "operation_id": "MASTER-PLAN",
+      "outputs": [
+        "PlanProposal",
+        "PlanAssessment"
+      ]
+    },
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "inputs": [],
+      "operation_id": "MASTER-EXPECT",
+      "outputs": [
+        "ExpectedChangePatch"
+      ]
+    },
+    {
+      "classification": "LOCAL_NON_GOVERNED_COMPUTATION",
+      "inputs": [],
+      "operation_id": "MASTER-ATTRACTOR",
+      "outputs": [
+        "AttractorDescriptor",
+        "TrajectoryAssessment"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "seed_bridge": {
+    "canonical_digest": "sha256:b54f3cf3e7cbef323618bf0fc7e6e7c30516850df5c4264431662e77cdd32c1d",
+    "profile": "aset/shared/seed-bridge/seed-compatibility-profile.json",
+    "version": "0.1-rc12"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "document_type": "aset-component-conformance-case",
+  "expected": "ACCEPT",
+  "expected_error": "",
+  "fixture": "aset/components/gateway/canonical/source/gateway-model.json",
+  "id": "POS-COMP-003",
+  "kind": "POSITIVE",
+  "mutation": null,
+  "schema_version": 1,
+  "subject": "COMPONENT"
+}

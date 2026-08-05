@@ -26,3 +26,13 @@ Execute a verificação completa com:
 ```text
 python tools/production_gate.py
 ```
+
+## Cânones de componentes do ASET completo
+
+A especificação completa legível por máquina do ASET 1.5-rc11 é preservada como evidência-fonte exata e decomposta em cânones candidatos versionados de forma independente para System Composition, Context, Core, Monade, Memory, Master, Model Gateway e Protocol. A linha de componentes é `0.1-rc1` e está vinculada explicitamente ao ASET Seed `0.1-rc12`.
+
+- Índice dos cânones: [`aset/README.md`](aset/README.md)
+- Composição do sistema: [`aset/system/`](aset/system/)
+- Ponte de compatibilidade com Seed: [`aset/shared/seed-bridge/`](aset/shared/seed-bridge/)
+
+A decomposição preserva exatamente o inventário rc11: 177 requisitos, 57 invariantes, 52 artefatos, 11 gates e 57 schemas. Ela inclui 26 casos de conformidade de componentes e oito projeções formais limitadas. Essas afirmações se restringem aos candidatos de especificação; não se afirma conformidade de implementação independente nem de produção.

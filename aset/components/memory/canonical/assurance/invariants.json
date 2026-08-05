@@ -1,0 +1,21 @@
+{
+  "canonical_digest": "sha256:b91acdd324cecaefc0a4c380141c0ac9e357b9d18cae76bb0727009e7e15df3b",
+  "component_id": "aset.memory",
+  "component_version": "0.1-rc1",
+  "document_type": "aset-component-invariants",
+  "invariants": [
+    {
+      "id": "INV-MEM-001",
+      "origin": "RC11_SOURCE",
+      "statement": "Memory и operational Context различны."
+    },
+    {
+      "derived_from": "INV-MEM-001",
+      "id": "MEM-BND-001",
+      "origin": "COMPONENT_BOUNDARY",
+      "statement": "Memory retrieval is advisory and does not establish authority or verification."
+    }
+  ],
+  "schema_version": 1,
+  "source_version": "1.5-rc11"
+}

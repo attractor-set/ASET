@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tbx xmlns="urn:iso:std:iso:30042:ed-2" type="TBX-Basic">
+  <tbxHeader><fileDesc><titleStmt><title>aset.monade</title></titleStmt></fileDesc></tbxHeader>
+  <text><body style="dca">
+    <conceptEntry id="AcceptanceContract">
+      <langSec xml:lang="ru"><termSec><term>AcceptanceContract</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>AcceptanceContract</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>AcceptanceContract</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="AcceptanceDecision">
+      <langSec xml:lang="ru"><termSec><term>AcceptanceDecision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>AcceptanceDecision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>AcceptanceDecision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="EphemeralExecutionState">
+      <langSec xml:lang="ru"><termSec><term>EphemeralExecutionState</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>EphemeralExecutionState</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>EphemeralExecutionState</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="EvidenceBundle">
+      <langSec xml:lang="ru"><termSec><term>EvidenceBundle</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>EvidenceBundle</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>EvidenceBundle</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ExecutionIntent">
+      <langSec xml:lang="ru"><termSec><term>ExecutionIntent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ExecutionIntent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ExecutionIntent</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ExecutionObservation">
+      <langSec xml:lang="ru"><termSec><term>ExecutionObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ExecutionObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ExecutionObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="OperationalBinding">
+      <langSec xml:lang="ru"><termSec><term>OperationalBinding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>OperationalBinding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>OperationalBinding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="OutboxCommand">
+      <langSec xml:lang="ru"><termSec><term>OutboxCommand</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>OutboxCommand</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>OutboxCommand</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="Outcome">
+      <langSec xml:lang="ru"><termSec><term>Outcome</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>Outcome</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>Outcome</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="PlanRevision">
+      <langSec xml:lang="ru"><termSec><term>PlanRevision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>PlanRevision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>PlanRevision</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ProjectionProfile">
+      <langSec xml:lang="ru"><termSec><term>ProjectionProfile</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ProjectionProfile</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ProjectionProfile</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="PromptManifest">
+      <langSec xml:lang="ru"><termSec><term>PromptManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>PromptManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>PromptManifest</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="Task">
+      <langSec xml:lang="ru"><termSec><term>Task</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>Task</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>Task</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="TaskAcceptance">
+      <langSec xml:lang="ru"><termSec><term>TaskAcceptance</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>TaskAcceptance</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>TaskAcceptance</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="TokenBudgetPlan">
+      <langSec xml:lang="ru"><termSec><term>TokenBudgetPlan</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>TokenBudgetPlan</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>TokenBudgetPlan</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="ToolInvocation">
+      <langSec xml:lang="ru"><termSec><term>ToolInvocation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>ToolInvocation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>ToolInvocation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="TransitionGraph">
+      <langSec xml:lang="ru"><termSec><term>TransitionGraph</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>TransitionGraph</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>TransitionGraph</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="VerificationReceipt">
+      <langSec xml:lang="ru"><termSec><term>VerificationReceipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>VerificationReceipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>VerificationReceipt</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="VerificationVerdict">
+      <langSec xml:lang="ru"><termSec><term>VerificationVerdict</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>VerificationVerdict</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>VerificationVerdict</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="VerifierAdapter">
+      <langSec xml:lang="ru"><termSec><term>VerifierAdapter</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>VerifierAdapter</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>VerifierAdapter</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="WorkerEnvelope">
+      <langSec xml:lang="ru"><termSec><term>WorkerEnvelope</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>WorkerEnvelope</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>WorkerEnvelope</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="WorkerObservation">
+      <langSec xml:lang="ru"><termSec><term>WorkerObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>WorkerObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>WorkerObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-PROJECT">
+      <langSec xml:lang="ru"><termSec><term>AdmitContextProjection</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>AdmitContextProjection</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>AdmitContextProjection</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-BIND">
+      <langSec xml:lang="ru"><termSec><term>BindExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>BindExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>BindExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-DISPATCH">
+      <langSec xml:lang="ru"><termSec><term>DispatchExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>DispatchExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>DispatchExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-OBSERVE">
+      <langSec xml:lang="ru"><termSec><term>AdmitObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>AdmitObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>AdmitObservation</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-VERIFY">
+      <langSec xml:lang="ru"><termSec><term>VerifyEvidence</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>VerifyEvidence</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>VerifyEvidence</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-CLOSE">
+      <langSec xml:lang="ru"><termSec><term>CloseTask</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>CloseTask</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>CloseTask</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-RETRY">
+      <langSec xml:lang="ru"><termSec><term>RetryExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>RetryExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>RetryExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+    <conceptEntry id="MON-COMPENSATE">
+      <langSec xml:lang="ru"><termSec><term>CompensateExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>CompensateExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>CompensateExecution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    </conceptEntry>
+  </body></text>
+</tbx>

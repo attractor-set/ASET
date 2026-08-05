@@ -1,0 +1,53 @@
+@prefix aset: <https://w3id.org/aset/component/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+aset:aset_contextScheme a skos:ConceptScheme ;
+    skos:prefLabel "aset.context terminology"@en .
+
+aset:CompositeContextManifest a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "CompositeContextManifest" ;
+    skos:prefLabel "CompositeContextManifest"@ru ;
+    skos:prefLabel "CompositeContextManifest"@en ;
+    skos:prefLabel "CompositeContextManifest"@pt-BR ;
+    skos:definition "Normative concept owned by aset.context."@en .
+
+aset:ContextNamespace a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "ContextNamespace" ;
+    skos:prefLabel "ContextNamespace"@ru ;
+    skos:prefLabel "ContextNamespace"@en ;
+    skos:prefLabel "ContextNamespace"@pt-BR ;
+    skos:definition "Normative concept owned by aset.context."@en .
+
+aset:ContextPatchSet a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "ContextPatchSet" ;
+    skos:prefLabel "ContextPatchSet"@ru ;
+    skos:prefLabel "ContextPatchSet"@en ;
+    skos:prefLabel "ContextPatchSet"@pt-BR ;
+    skos:definition "Normative concept owned by aset.context."@en .
+
+aset:SignedContextComponent a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "SignedContextComponent" ;
+    skos:prefLabel "SignedContextComponent"@ru ;
+    skos:prefLabel "SignedContextComponent"@en ;
+    skos:prefLabel "SignedContextComponent"@pt-BR ;
+    skos:definition "Normative concept owned by aset.context."@en .
+
+aset:CTX_COMPOSE a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "CTX-COMPOSE" ;
+    skos:prefLabel "ComposeContext"@ru ;
+    skos:prefLabel "ComposeContext"@en ;
+    skos:prefLabel "ComposeContext"@pt-BR ;
+    skos:definition "Compute a deterministic composite root from immutable signed components."@en .
+
+aset:CTX_APPLY_PATCH a skos:Concept ;
+    skos:inScheme aset:aset_contextScheme ;
+    skos:notation "CTX-APPLY-PATCH" ;
+    skos:prefLabel "ApplyAuthorizedPatch"@ru ;
+    skos:prefLabel "ApplyAuthorizedPatch"@en ;
+    skos:prefLabel "ApplyAuthorizedPatch"@pt-BR ;
+    skos:definition "Create a new context version from an authorized atomic patch set."@en .
