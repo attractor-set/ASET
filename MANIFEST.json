@@ -32,6 +32,11 @@
       "size_bytes": 748
     },
     {
+      "path": ".github/workflows/notify-implementation-profiles.yml",
+      "sha256": "sha256:5cf68df78db1f7fa2af77d09b4154b17cbacfdc6f5a8c71862e74009ca97deab",
+      "size_bytes": 2074
+    },
+    {
       "path": ".github/workflows/production-assurance.yml",
       "sha256": "sha256:fc33bca0ab57e158f4568c1e3b508db3c7252e2d1cea6f91ab32cc474ed49da2",
       "size_bytes": 2191
@@ -3267,7 +3272,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 653,
+  "files_count": 654,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Specification-Candidate",
   "repository_root": "ASET"
