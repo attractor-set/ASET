@@ -33,8 +33,8 @@
     },
     {
       "path": ".github/workflows/production-assurance.yml",
-      "sha256": "sha256:6534270964f16abc924085a771757600021f3988a19076612733aa56e4149a41",
-      "size_bytes": 2102
+      "sha256": "sha256:fc33bca0ab57e158f4568c1e3b508db3c7252e2d1cea6f91ab32cc474ed49da2",
+      "size_bytes": 2191
     },
     {
       "path": ".github/workflows/release-candidate.yml",
@@ -1743,7 +1743,7 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:65f1bbd9b6e7805a2a4b3d16593a2fca0dabc6c2eb1a14866a12355809fb181f",
+      "sha256": "sha256:f2217d384098d9a880ae897c4b3a9f5fb68325f74cfc8dffad6d88abcaf18d1d",
       "size_bytes": 2304
     },
     {
@@ -1808,13 +1808,13 @@
     },
     {
       "path": "seed/canonical/formal/SeedRC12.cfg",
-      "sha256": "sha256:ebcebe2be9e9eb2fae8b1cd02ec622eb7c6a0a7c946c10c6b7d86a9b23abf3ed",
-      "size_bytes": 154
+      "sha256": "sha256:4f8c0f53530247ed4306f9ca00376d3d4bb9962ee870c0a477aff198fb9f278a",
+      "size_bytes": 175
     },
     {
       "path": "seed/canonical/formal/SeedRC12.tla",
-      "sha256": "sha256:d3d215f5fc6388d97daba4842eadd8710c0f69c7dc56fad7e6fa46d5c82f9796",
-      "size_bytes": 2763
+      "sha256": "sha256:a94408e12ed4ca06fc5e0ee816dff4eba8acac22c6370f7027fe76c628db6573",
+      "size_bytes": 2957
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
@@ -3228,8 +3228,8 @@
     },
     {
       "path": "tools/run_tlc.py",
-      "sha256": "sha256:2461819397358a5a6fc0798aa09c9428ca43b90881b651ef172fd713df0201b5",
-      "size_bytes": 1671
+      "sha256": "sha256:ebbd1cf0f5bebaa476975c6b46cf389bb1aa1801b163d0e1079ce577ef7e982e",
+      "size_bytes": 2789
     },
     {
       "path": "tools/semantic_diff.py",

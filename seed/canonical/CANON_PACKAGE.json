@@ -42,15 +42,15 @@
     },
     {
       "path": "seed/canonical/formal/SeedRC12.tla",
-      "sha256": "sha256:d3d215f5fc6388d97daba4842eadd8710c0f69c7dc56fad7e6fa46d5c82f9796"
+      "sha256": "sha256:a94408e12ed4ca06fc5e0ee816dff4eba8acac22c6370f7027fe76c628db6573"
     },
     {
       "path": "seed/canonical/formal/SeedRC12.cfg",
-      "sha256": "sha256:ebcebe2be9e9eb2fae8b1cd02ec622eb7c6a0a7c946c10c6b7d86a9b23abf3ed"
+      "sha256": "sha256:4f8c0f53530247ed4306f9ca00376d3d4bb9962ee870c0a477aff198fb9f278a"
     }
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:678016f633b056ee4c540a93358bcb6c755cc01e17e0e19a09b9932eab3b9815",
+  "package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
   "schema_version": 1
 }

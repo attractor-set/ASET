@@ -32,12 +32,15 @@ jobs:
             https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
           echo "bee4a54f3ee3d4afc347c3240ec2d9e93b075104  $RUNNER_TEMP/tla2tools.jar" | sha1sum --check
       - name: Run independent formal models
+        timeout-minutes: 5
         run: |
           python tools/model_check_rc12.py --output dist/rc12-model-check.json
           python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json
           python tools/model_check_components.py --check
           python tools/run_tlc.py \
             --jar "$RUNNER_TEMP/tla2tools.jar" \
+            --workers 2 \
+            --timeout-seconds 180 \
             --output dist/tlc-model-check.json
       - name: Run component black-box assurance
         run: |
