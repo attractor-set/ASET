@@ -4,16 +4,16 @@
   "additionalProperties": false,
   "properties": {
     "active_conformance_protocol": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
     },
     "active_seed_model": {
       "const": "seed/canonical/source/seed-model.json"
     },
     "active_seed_status": {
-      "const": "RESOLUTION_CORE_ALPHA"
+      "const": "MINIMAL_STRONG_CORE_ALPHA"
     },
     "active_seed_version": {
-      "const": "0.2.0-alpha.2"
+      "const": "0.3.0-alpha.1"
     },
     "document_type": {
       "const": "aset-repository-status"

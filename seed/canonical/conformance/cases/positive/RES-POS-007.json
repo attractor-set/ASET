@@ -1,104 +1,90 @@
 {
   "candidate": {
-    "kind": "ESCALATE_UNKNOWN",
+    "kind": "SUBMIT_RESOLUTION",
     "payload": {
-      "context_id": "context:local",
-      "from_authority_id": "authority:regional",
-      "grant_id": "grant:regional-federal",
-      "policy_epoch": 1,
-      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "resolution_id": "resolution:001",
-      "scope": [
-        "repo:patch"
-      ],
-      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-      "to_authority": {
-        "authority_id": "authority:federal",
-        "context_id": "context:federation",
-        "policy_epoch": 1,
-        "scope": [
-          "repo:patch"
-        ]
+      "record": {
+        "authority_id": "authority.root",
+        "authority_proof_digests": [],
+        "basis_digests": [
+          "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        ],
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "record_digest": "sha256:8d661d7fb6d5a3dc37ba474e18015cab8e9aa75aaa525006451c0605252f097f",
+        "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+        "resolution": "ALLOW",
+        "resolution_id": "res.1"
       }
     }
   },
   "case_id": "RES-POS-007",
-  "description": "UNKNOWN can follow an explicitly authorized multi-level resolution chain.",
+  "description": "Accept exact replay of the same terminal record idempotently.",
   "expected": {
     "accepted": true,
-    "code": "ESCALATED_UNKNOWN",
-    "enforcement": "BLOCKED",
-    "semantic_status": "UNKNOWN",
-    "state_changed": true
+    "code": "IDEMPOTENT_REPLAY",
+    "effect_permitted": true,
+    "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+    "resolution": "ALLOW",
+    "state_changed": false
   },
-  "initial_state": {
-    "authority_chain": [
-      "authority:local"
-    ],
-    "context_id": "context:local",
-    "current_authority_id": "authority:local",
-    "enforcement": "BLOCKED",
-    "escalation_grants": [
+  "initial_store": {
+    "authority_bindings": [
       {
-        "context_id": "context:local",
-        "from_authority_id": "authority:local",
-        "grant_id": "grant:local-regional",
-        "policy_epoch": 1,
-        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-        "scope": [
-          "repo:patch"
-        ],
-        "to_authority_id": "authority:regional"
-      },
-      {
-        "context_id": "context:local",
-        "from_authority_id": "authority:regional",
-        "grant_id": "grant:regional-federal",
-        "policy_epoch": 1,
-        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-        "scope": [
-          "repo:patch"
-        ],
-        "to_authority_id": "authority:federal"
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
       }
     ],
-    "policy_epoch": 1,
-    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "authority_grants": [],
     "records": [],
-    "resolution_id": "resolution:001",
-    "scope": [
-      "repo:patch"
-    ],
-    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-    "status": "UNKNOWN"
+    "requests": []
   },
   "postconditions": [
     {
-      "equals": "authority:federal",
-      "path": "/current_authority_id"
+      "equals": "sha256:8d661d7fb6d5a3dc37ba474e18015cab8e9aa75aaa525006451c0605252f097f",
+      "path": "/records/0/record_digest"
     }
   ],
   "setup": [
     {
-      "kind": "ESCALATE_UNKNOWN",
+      "kind": "REGISTER_REQUEST",
       "payload": {
-        "context_id": "context:local",
-        "from_authority_id": "authority:local",
-        "grant_id": "grant:local-regional",
-        "policy_epoch": 1,
-        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-        "resolution_id": "resolution:001",
-        "scope": [
-          "repo:patch"
-        ],
-        "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-        "to_authority": {
-          "authority_id": "authority:regional",
-          "context_id": "context:federation",
-          "policy_epoch": 1,
-          "scope": [
-            "repo:patch"
-          ]
+        "request": {
+          "binding": {
+            "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+            "context_id": "ctx.local",
+            "policy_epoch": 1,
+            "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "scope": [
+              "effect:publish"
+            ],
+            "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "previous_resolution_id": null,
+          "previous_terminal_record_digest": null,
+          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+          "resolution_id": "res.1"
+        }
+      }
+    },
+    {
+      "kind": "SUBMIT_RESOLUTION",
+      "payload": {
+        "record": {
+          "authority_id": "authority.root",
+          "authority_proof_digests": [],
+          "basis_digests": [
+            "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          ],
+          "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+          "record_digest": "sha256:8d661d7fb6d5a3dc37ba474e18015cab8e9aa75aaa525006451c0605252f097f",
+          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+          "resolution": "ALLOW",
+          "resolution_id": "res.1"
         }
       }
     }

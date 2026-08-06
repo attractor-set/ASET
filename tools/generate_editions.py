@@ -8,9 +8,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "seed/canonical/source/seed-model.json"
 OUTPUTS = {
-    "ru": ROOT / "docs/generated/ru/ASET_Seed_Resolution_0.2-alpha.2.md",
-    "en": ROOT / "docs/generated/en/ASET_Seed_Resolution_0.2-alpha.2.md",
-    "pt-BR": ROOT / "docs/generated/pt-BR/ASET_Seed_Resolution_0.2-alpha.2.md",
+    "ru": ROOT / "docs/generated/ru/ASET_Seed_Resolution_0.3-alpha.1.md",
+    "en": ROOT / "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
+    "pt-BR": ROOT / "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
 }
 LEGACY_OUTPUTS = {
     "ru": ROOT / "docs/generated/ru/ASET_Seed_Next.md",
@@ -98,7 +98,7 @@ def render(model: dict, language: str) -> str:
                 "",
                 f'- `payload_schema`: `{transition["payload_schema"]}`',
                 f'- `authority_rule`: {transition["authority_rule"]}',
-                f'- `scope_rule`: {transition["scope_rule"]}',
+                f'- `binding_rule`: {transition["binding_rule"]}',
                 "- `created_artifacts`: "
                 + ", ".join(
                     f"`{item}`" for item in transition["created_artifacts"]

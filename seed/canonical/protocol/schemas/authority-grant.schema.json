@@ -1,0 +1,41 @@
+{
+  "$id": "https://spec.aset.example/seed/0.3/schemas/authority-grant.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "binding_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "delegation_allowed": {
+      "type": "boolean"
+    },
+    "grant_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "issuer_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "previous_grant_digest": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "subject_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    }
+  },
+  "required": [
+    "grant_digest",
+    "issuer_authority_id",
+    "subject_authority_id",
+    "binding_digest",
+    "previous_grant_digest",
+    "delegation_allowed"
+  ],
+  "type": "object"
+}

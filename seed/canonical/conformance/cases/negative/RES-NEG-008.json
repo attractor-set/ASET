@@ -1,59 +1,81 @@
 {
   "candidate": {
-    "kind": "ESCALATE_UNKNOWN",
+    "kind": "SUBMIT_RESOLUTION",
     "payload": {
-      "context_id": "context:local",
-      "from_authority_id": "authority:local",
-      "grant_id": "grant:local-federal",
-      "policy_epoch": 1,
-      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "resolution_id": "resolution:001",
-      "scope": [
-        "repo:patch"
-      ],
-      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-      "to_authority": {
-        "authority_id": "authority:federal",
-        "context_id": "context:federation",
-        "policy_epoch": 1,
-        "scope": [
-          "repo:patch"
-        ]
+      "record": {
+        "authority_id": "authority.delegate",
+        "authority_proof_digests": [
+          "sha256:e3346d498d01abf928a71d70d0b157ca4727afb2efd8189694a3ec42a7002988"
+        ],
+        "basis_digests": [
+          "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        ],
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "record_digest": "sha256:7fbb24c7887f496f75f171ad04f9158e939ba2e250fdc48be6a3910a419570ea",
+        "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+        "resolution": "ALLOW",
+        "resolution_id": "res.1"
       }
     }
   },
   "case_id": "RES-NEG-008",
-  "description": "Federation ancestry without an explicit grant creates no escalation authority.",
+  "description": "Reject an Authority grant bound to a different resolution binding.",
   "expected": {
     "accepted": false,
-    "code": "ESCALATION_GRANT_MISSING",
-    "enforcement": "BLOCKED",
-    "semantic_status": "UNKNOWN",
+    "code": "AUTHORITY_GRANT_BINDING_MISMATCH",
+    "effect_permitted": false,
+    "reason": "TERMINAL_RECORD_ABSENT",
+    "resolution": "UNKNOWN",
     "state_changed": false
   },
-  "initial_state": {
-    "authority_chain": [
-      "authority:local"
+  "initial_store": {
+    "authority_bindings": [
+      {
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      }
     ],
-    "context_id": "context:local",
-    "current_authority_id": "authority:local",
-    "enforcement": "BLOCKED",
-    "escalation_grants": [],
-    "policy_epoch": 1,
-    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "authority_grants": [
+      {
+        "binding_digest": "sha256:bed87a20469ae35fc516742005f4851f7be80855a08a9d6d265d82907f5d7fb1",
+        "delegation_allowed": false,
+        "grant_digest": "sha256:e3346d498d01abf928a71d70d0b157ca4727afb2efd8189694a3ec42a7002988",
+        "issuer_authority_id": "authority.root",
+        "previous_grant_digest": null,
+        "subject_authority_id": "authority.delegate"
+      }
+    ],
     "records": [],
-    "resolution_id": "resolution:001",
-    "scope": [
-      "repo:patch"
-    ],
-    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-    "status": "UNKNOWN"
+    "requests": []
   },
-  "postconditions": [
+  "postconditions": [],
+  "setup": [
     {
-      "equals": "authority:local",
-      "path": "/current_authority_id"
+      "kind": "REGISTER_REQUEST",
+      "payload": {
+        "request": {
+          "binding": {
+            "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+            "context_id": "ctx.local",
+            "policy_epoch": 1,
+            "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "scope": [
+              "effect:publish"
+            ],
+            "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "previous_resolution_id": null,
+          "previous_terminal_record_digest": null,
+          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+          "resolution_id": "res.1"
+        }
+      }
     }
-  ],
-  "setup": []
+  ]
 }

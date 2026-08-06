@@ -2,71 +2,55 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 aset:SeedConceptScheme a skos:ConceptScheme ;
-    skos:prefLabel "ASET Seed 0.2 alpha resolution concept scheme"@en .
+    skos:prefLabel "ASET Seed 0.3 alpha 1 resolution concept scheme"@en .
 
-aset:resolution_cycle a skos:Concept ;
+aset:resolution_binding a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.resolution_cycle" ;
-    skos:prefLabel "цикл разрешения"@ru ;
-    skos:prefLabel "resolution cycle"@en ;
-    skos:prefLabel "ciclo de resolução"@pt-BR ;
-    skos:definition "One immutably bound cycle for resolving an exact normative question."@en .
+    skos:notation "seed.resolution_binding" ;
+    skos:prefLabel "связка разрешения"@ru ;
+    skos:prefLabel "resolution binding"@en ;
+    skos:prefLabel "vinculação de resolução"@pt-BR ;
+    skos:definition "The exact context, state root, question, policy epoch and scope to which one resolution applies."@en .
 
-aset:context_binding a skos:Concept ;
+aset:resolution_request a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.context_binding" ;
-    skos:prefLabel "связка контекста"@ru ;
-    skos:prefLabel "context binding"@en ;
-    skos:prefLabel "vinculação de contexto"@pt-BR ;
-    skos:definition "The exact context, state-root and policy-epoch binding within which a question is resolved."@en .
+    skos:notation "seed.resolution_request" ;
+    skos:prefLabel "запрос разрешения"@ru ;
+    skos:prefLabel "resolution request"@en ;
+    skos:prefLabel "solicitação de resolução"@pt-BR ;
+    skos:definition "A fresh identifier bound to one exact resolution binding and an initial locally recognized Authority."@en .
 
-aset:resolution_question a skos:Concept ;
+aset:resolution_value a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.resolution_question" ;
-    skos:prefLabel "вопрос разрешения"@ru ;
-    skos:prefLabel "resolution question"@en ;
-    skos:prefLabel "questão de resolução"@pt-BR ;
-    skos:definition "A canonically digested question and its bounded resolution scope."@en .
+    skos:notation "seed.resolution_value" ;
+    skos:prefLabel "разрешение"@ru ;
+    skos:prefLabel "resolution"@en ;
+    skos:prefLabel "resolução"@pt-BR ;
+    skos:definition "The derived value UNKNOWN, or the terminal value ALLOW or BLOCK."@en .
 
-aset:resolution_status a skos:Concept ;
+aset:local_authority a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.resolution_status" ;
-    skos:prefLabel "статус разрешения"@ru ;
-    skos:prefLabel "resolution status"@en ;
-    skos:prefLabel "estado de resolução"@pt-BR ;
-    skos:definition "The normative status UNKNOWN, ACCEPT or DENY within one cycle."@en .
+    skos:notation "seed.local_authority" ;
+    skos:prefLabel "локальная Authority"@ru ;
+    skos:prefLabel "local Authority"@en ;
+    skos:prefLabel "Authority local"@pt-BR ;
+    skos:definition "An Authority explicitly recognized by one Context for one exact binding and policy epoch."@en .
 
-aset:enforcement_disposition a skos:Concept ;
+aset:authority_proof a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.enforcement_disposition" ;
-    skos:prefLabel "режим исполнения"@ru ;
-    skos:prefLabel "enforcement disposition"@en ;
-    skos:prefLabel "disposição de execução"@pt-BR ;
-    skos:definition "The operational consequence of a decision: BLOCKED for UNKNOWN and DENY, ALLOW only for ACCEPT."@en .
-
-aset:resolution_authority a skos:Concept ;
-    skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.resolution_authority" ;
-    skos:prefLabel "власть разрешения"@ru ;
-    skos:prefLabel "resolution authority"@en ;
-    skos:prefLabel "autoridade de resolução"@pt-BR ;
-    skos:definition "An explicitly empowered subject able to narrow UNKNOWN in an exact scope and epoch."@en .
-
-aset:escalation_grant a skos:Concept ;
-    skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.escalation_grant" ;
-    skos:prefLabel "разрешение эскалации"@ru ;
-    skos:prefLabel "escalation grant"@en ;
-    skos:prefLabel "autorização de escalonamento"@pt-BR ;
-    skos:definition "An explicit authorization to pass an unresolved question to the next Resolution Authority without automatic authority inheritance."@en .
+    skos:notation "seed.authority_proof" ;
+    skos:prefLabel "доказательство Authority"@ru ;
+    skos:prefLabel "Authority proof"@en ;
+    skos:prefLabel "prova de Authority"@pt-BR ;
+    skos:definition "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants."@en .
 
 aset:evidence_reference a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
     skos:notation "seed.evidence_reference" ;
-    skos:prefLabel "ссылка на доказательство"@ru ;
+    skos:prefLabel "ссылка на основание"@ru ;
     skos:prefLabel "evidence reference"@en ;
     skos:prefLabel "referência de evidência"@pt-BR ;
-    skos:definition "A content-addressed reference to material used when narrowing UNKNOWN."@en .
+    skos:definition "A content-addressed non-authoritative input cited as the basis of a terminal record."@en .
 
 aset:resolution_record a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
@@ -74,12 +58,12 @@ aset:resolution_record a skos:Concept ;
     skos:prefLabel "запись разрешения"@ru ;
     skos:prefLabel "resolution record"@en ;
     skos:prefLabel "registro de resolução"@pt-BR ;
-    skos:definition "An immutable record of opening, escalation or terminal resolution and its provenance."@en .
+    skos:definition "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
 
-aset:resolution_chain a skos:Concept ;
+aset:reconsideration_link a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.resolution_chain" ;
-    skos:prefLabel "цепочка разрешения"@ru ;
-    skos:prefLabel "resolution chain"@en ;
-    skos:prefLabel "cadeia de resolução"@pt-BR ;
-    skos:definition "An acyclic sequence of explicitly authorized Resolution Authorities for one question."@en .
+    skos:notation "seed.reconsideration_link" ;
+    skos:prefLabel "связь пересмотра"@ru ;
+    skos:prefLabel "reconsideration link"@en ;
+    skos:prefLabel "vínculo de reconsideração"@pt-BR ;
+    skos:definition "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record."@en .

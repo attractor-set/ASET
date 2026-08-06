@@ -12,6 +12,7 @@ BASE = [
     "seed/canonical/source/seed-model.json",
     "seed/canonical/schemas/seed-model.schema.json",
     "seed/canonical/protocol/protocol-profile.json",
+    "seed/canonical/protocol/digest-profile.json",
     "seed/canonical/schemas/protocol-profile.schema.json",
     "seed/canonical/conformance/conformance-profile.json",
     "seed/canonical/schemas/conformance-profile.schema.json",
@@ -27,7 +28,8 @@ BASE = [
     "seed/canonical/shapes/seed.shacl.ttl",
     "seed/canonical/formal/SeedResolution.tla",
     "seed/canonical/formal/SeedResolution.cfg",
-    "seed/canonical/migration/RC12_TO_RESOLUTION_CORE.json",
+    "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
+    "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
 ]
 
 
@@ -56,11 +58,11 @@ def expected() -> dict[str, Any]:
     return {
         "document_type": "aset-canon-package",
         "schema_version": 2,
-        "canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
-        "canon_version": "0.2.0-alpha.2",
+        "canon_id": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
+        "canon_version": "0.3.0-alpha.1",
         "normative_source": "seed/canonical/source/seed-model.json",
         "implementation_precedence": "NONE",
-        "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
+        "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
         "files": rows,
         "package_digest": package_digest,
     }

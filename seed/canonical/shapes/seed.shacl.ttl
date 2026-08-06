@@ -1,10 +1,10 @@
 @prefix aset: <https://aset.example/seed#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-aset:ResolutionCycleShape a sh:NodeShape ;
-    sh:targetClass aset:resolution_cycle ;
-    sh:property [ sh:path aset:status ; sh:in ( "UNKNOWN" "ACCEPT" "DENY" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path aset:enforcement ; sh:in ( "BLOCKED" "ALLOW" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path aset:contextBinding ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path aset:currentAuthority ; sh:minCount 1 ; sh:maxCount 1 ] .
+aset:ResolutionRecordShape a sh:NodeShape ;
+    sh:targetClass aset:resolution_record ;
+    sh:property [ sh:path aset:resolution ; sh:in ( "ALLOW" "BLOCK" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:resolutionId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:bindingDigest ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:authorityId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:recordDigest ; sh:minCount 1 ; sh:maxCount 1 ] .

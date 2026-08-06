@@ -1,9 +1,9 @@
 {
-  "active_seed_canon": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+  "active_seed_canon": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
   "document_type": "aset-extension-registry",
   "extensions": [
     {
-      "active_seed_compatibility": "SEMANTICALLY_COMPATIBLE_NO_RESOLUTION_DELTA",
+      "active_seed_compatibility": "NOT_YET_CLAIMED_FOR_0.3",
       "canon_id": "ASET-NETWORK-EXTENSION-CANON-0.1-ALPHA1",
       "canon_package_digest": "sha256:661b47d488c03d19ef76e4cc7510231a6d0bced4e66949b81ceeefd50f2a90a1",
       "extension_id": "ASET-NETWORK-EXTENSION",
@@ -16,7 +16,7 @@
       "version": "0.1.0-alpha.1"
     },
     {
-      "active_seed_compatibility": "SEMANTICALLY_COMPATIBLE_NO_RESOLUTION_DELTA",
+      "active_seed_compatibility": "NOT_YET_CLAIMED_FOR_0.3",
       "canon_id": "ASET-AI-EXTENSION-TEMPLATE-CANON-0.1-ALPHA1",
       "canon_package_digest": "sha256:ad35d26a42de6cdabba1a958f78733da881db0385c5458762d225eab239fe9ab",
       "extension_id": "ASET-AI-EXTENSION-TEMPLATE",

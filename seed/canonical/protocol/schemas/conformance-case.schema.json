@@ -1,10 +1,10 @@
 {
-  "$id": "https://spec.aset.example/seed/0.2/schemas/conformance-case.schema.json",
+  "$id": "https://spec.aset.example/seed/0.3/schemas/conformance-case.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
     "candidate": {
-      "$ref": "transition.schema.json"
+      "$ref": "operation.schema.json"
     },
     "case_id": {
       "$ref": "common.schema.json#/$defs/identifier"
@@ -23,11 +23,14 @@
           "minLength": 1,
           "type": "string"
         },
-        "enforcement": {
-          "$ref": "common.schema.json#/$defs/enforcement"
+        "effect_permitted": {
+          "type": "boolean"
         },
-        "semantic_status": {
-          "$ref": "common.schema.json#/$defs/status"
+        "reason": {
+          "$ref": "common.schema.json#/$defs/reason"
+        },
+        "resolution": {
+          "$ref": "common.schema.json#/$defs/resolution"
         },
         "state_changed": {
           "type": "boolean"
@@ -37,20 +40,14 @@
         "accepted",
         "code",
         "state_changed",
-        "semantic_status",
-        "enforcement"
+        "resolution",
+        "effect_permitted",
+        "reason"
       ],
       "type": "object"
     },
-    "initial_state": {
-      "anyOf": [
-        {
-          "$ref": "resolution-state.schema.json"
-        },
-        {
-          "type": "null"
-        }
-      ]
+    "initial_store": {
+      "$ref": "resolution-store.schema.json"
     },
     "postconditions": {
       "items": {
@@ -72,7 +69,7 @@
     },
     "setup": {
       "items": {
-        "$ref": "transition.schema.json"
+        "$ref": "operation.schema.json"
       },
       "type": "array"
     }
@@ -80,7 +77,7 @@
   "required": [
     "case_id",
     "description",
-    "initial_state",
+    "initial_store",
     "setup",
     "candidate",
     "expected",

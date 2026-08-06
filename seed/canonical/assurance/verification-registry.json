@@ -1,51 +1,50 @@
 {
-  "claim_boundary": "Registry membership proves traceability of declared obligations; it does not claim unbounded proof or external certification.",
+  "claim_boundary": "Registry membership proves traceability for the bounded minimal resolution-recognition kernel; it does not claim unbounded proof, policy correctness, enforcement correctness or external certification.",
   "document_type": "aset-seed-verification-registry",
   "formal_properties": [
     {
-      "name": "StatusDomain",
+      "name": "TypeOK",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-001",
+        "SEED-INV-004"
+      ]
+    },
+    {
+      "name": "ResolutionDomain",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
         "SEED-INV-001"
       ]
     },
     {
-      "name": "UnknownBlocked",
-      "projection_status": "BOUNDED_ABSTRACTION",
-      "seed_invariants": [
-        "SEED-INV-002"
-      ]
-    },
-    {
-      "name": "AllowOnlyAccept",
+      "name": "FailClosed",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
         "SEED-INV-003",
-        "SEED-INV-004"
-      ]
-    },
-    {
-      "name": "TerminalImmutable",
-      "projection_status": "BOUNDED_ABSTRACTION",
-      "seed_invariants": [
-        "SEED-INV-005",
-        "SEED-INV-012"
-      ]
-    },
-    {
-      "name": "EscalationAuthorized",
-      "projection_status": "BOUNDED_ABSTRACTION",
-      "seed_invariants": [
-        "SEED-INV-006",
-        "SEED-INV-007",
-        "SEED-INV-008",
         "SEED-INV-009"
       ]
     },
     {
-      "name": "AuditMonotone",
+      "name": "AllowIffPermitted",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
+        "SEED-INV-002",
+        "SEED-INV-003"
+      ]
+    },
+    {
+      "name": "FreshReconsideration",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-012"
+      ]
+    },
+    {
+      "name": "TerminalUnique",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-008",
         "SEED-INV-010",
         "SEED-INV-011"
       ]
@@ -54,7 +53,13 @@
   "normative": true,
   "schema_version": 2,
   "transition_case_policy": {
-    "declared_exceptions": [],
+    "declared_exceptions": [
+      {
+        "missing_polarity": "negative",
+        "rationale": "Evaluation is total and fail-closed; malformed transport is outside semantic operation conformance.",
+        "transition_kind": "EVALUATE_RESOLUTION"
+      }
+    ],
     "require_negative_case": true,
     "require_positive_case": true
   },

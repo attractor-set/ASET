@@ -1,0 +1,17 @@
+{
+  "canonicalization": "RFC8785_JSON_CANONICALIZATION_SCHEME",
+  "document_type": "aset-seed-digest-profile",
+  "hash": "SHA-256",
+  "numeric_boundary": "Normative Seed objects use integers only; floating-point values are forbidden by the schemas.",
+  "prefix": "sha256:",
+  "profile_id": "ASET-SEED-CANONICAL-DIGEST-V1",
+  "rules": {
+    "authority_binding_digest": "SHA-256 of the ResolutionAuthorityBinding object with authority_binding_digest omitted.",
+    "binding_digest": "SHA-256 of the ResolutionBinding object with binding_digest omitted.",
+    "grant_digest": "SHA-256 of the AuthorityGrant object with grant_digest omitted.",
+    "record_digest": "SHA-256 of the ResolutionRecord object with record_digest omitted.",
+    "request_digest": "SHA-256 of the ResolutionRequest object with request_digest omitted."
+  },
+  "schema_version": 1,
+  "unicode_boundary": "Strings are canonicalized and hashed as RFC 8785 UTF-8 output."
+}

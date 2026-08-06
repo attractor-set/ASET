@@ -25,7 +25,7 @@ def test_current_change_declaration_is_bound_to_candidate_model():
     declaration = load("seed/canonical/migration/CANON_CHANGE_DECLARATION.json")
     model = ROOT / "seed/canonical/source/seed-model.json"
     digest = "sha256:" + hashlib.sha256(model.read_bytes()).hexdigest()
-    assert declaration["change_class"] == "NONE"
+    assert declaration["change_class"] == "BREAKING_SEMANTIC_SIMPLIFICATION"
     assert declaration["candidate_model_sha256"] == digest
     assert (ROOT / declaration["decision_ref"]).is_file()
     assert (ROOT / declaration["supersession_ref"]).is_file()
@@ -73,7 +73,7 @@ def test_seed_resolution_tla_uses_valid_operator_tokens():
     ).read_text(encoding="utf-8")
     assert "/\\\\" not in specification
     assert "Range(" not in specification
-    assert 'Init ==\n  /\\ status = "UNKNOWN"' in specification
+    assert 'Init ==\n  /\\ requests = {}' in specification
     assert "Spec == Init /\\ [][Next]_vars" in specification
 
 
@@ -85,8 +85,7 @@ def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
         ROOT / "seed/canonical/formal/SeedResolution.cfg"
     ).read_text(encoding="utf-8")
     assert (
-        r'TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next'
-        in specification
+        'TerminalUnique ==' in specification
     )
     assert "CHECK_DEADLOCK FALSE" in configuration
 

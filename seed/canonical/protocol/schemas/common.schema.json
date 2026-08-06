@@ -4,17 +4,23 @@
       "pattern": "^sha256:[0-9a-f]{64}$",
       "type": "string"
     },
-    "enforcement": {
-      "enum": [
-        "BLOCKED",
-        "ALLOW"
-      ]
-    },
     "identifier": {
       "maxLength": 300,
       "minLength": 3,
       "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
       "type": "string"
+    },
+    "reason": {
+      "maxLength": 100,
+      "minLength": 1,
+      "type": "string"
+    },
+    "resolution": {
+      "enum": [
+        "UNKNOWN",
+        "ALLOW",
+        "BLOCK"
+      ]
     },
     "scope": {
       "items": {
@@ -26,14 +32,13 @@
       "type": "array",
       "uniqueItems": true
     },
-    "status": {
+    "terminal_resolution": {
       "enum": [
-        "UNKNOWN",
-        "ACCEPT",
-        "DENY"
+        "ALLOW",
+        "BLOCK"
       ]
     }
   },
-  "$id": "https://spec.aset.example/seed/0.2/schemas/common.schema.json",
+  "$id": "https://spec.aset.example/seed/0.3/schemas/common.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

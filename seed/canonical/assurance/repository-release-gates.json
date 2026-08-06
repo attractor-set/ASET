@@ -11,11 +11,11 @@
       "external certification"
     ],
     "included": [
-      "machine-readable resolution core",
+      "machine-readable minimal resolution-recognition kernel",
       "implementation-neutral canon package",
       "deterministic official editions",
-      "breaking migration declaration",
-      "bounded and TLC decision-lattice checks",
+      "breaking semantic simplification declaration",
+      "bounded and TLC request-and-record checks",
       "portable resolution conformance cases",
       "historical Seed release integrity",
       "external ecosystem registry integrity",
@@ -146,6 +146,6 @@
       "name": "external_ecosystem_registry_validation"
     }
   ],
-  "profile": "ASET_SEED_RESOLUTION_CORE_ALPHA2",
+  "profile": "ASET_SEED_MINIMAL_STRONG_CORE_ALPHA1",
   "schema_version": 6
 }

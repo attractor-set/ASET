@@ -16,20 +16,20 @@
       "items": {
         "type": "string"
       },
-      "minItems": 7,
+      "minItems": 8,
       "type": "array"
     },
     "operations": {
       "type": "object"
     },
     "protocol_id": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
     },
     "response_schema_ref": {
       "const": "seed/canonical/schemas/implementation-conformance-envelope.schema.json"
     },
     "schema_version": {
-      "const": 2
+      "const": 3
     },
     "transport": {
       "type": "object"

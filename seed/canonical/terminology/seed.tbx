@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tbx xmlns="urn:iso:std:iso:30042:ed-2" type="TBX-Basic">
-  <tbxHeader><fileDesc><titleStmt><title>ASET Seed 0.2 alpha resolution terminology</title></titleStmt></fileDesc></tbxHeader>
+  <tbxHeader><fileDesc><titleStmt><title>ASET Seed 0.3 alpha 1 resolution terminology</title></titleStmt></fileDesc></tbxHeader>
   <text><body style="dca">
-    <conceptEntry id="seed.resolution_cycle">
-      <langSec xml:lang="ru"><termSec><term>цикл разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>resolution cycle</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>ciclo de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.resolution_binding">
+      <langSec xml:lang="ru"><termSec><term>связка разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>resolution binding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>vinculação de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.context_binding">
-      <langSec xml:lang="ru"><termSec><term>связка контекста</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>context binding</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>vinculação de contexto</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.resolution_request">
+      <langSec xml:lang="ru"><termSec><term>запрос разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>resolution request</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>solicitação de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.resolution_question">
-      <langSec xml:lang="ru"><termSec><term>вопрос разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>resolution question</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>questão de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.resolution_value">
+      <langSec xml:lang="ru"><termSec><term>разрешение</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>resolution</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.resolution_status">
-      <langSec xml:lang="ru"><termSec><term>статус разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>resolution status</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>estado de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.local_authority">
+      <langSec xml:lang="ru"><termSec><term>локальная Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>local Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>Authority local</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.enforcement_disposition">
-      <langSec xml:lang="ru"><termSec><term>режим исполнения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>enforcement disposition</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>disposição de execução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-    </conceptEntry>
-    <conceptEntry id="seed.resolution_authority">
-      <langSec xml:lang="ru"><termSec><term>власть разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>resolution authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>autoridade de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-    </conceptEntry>
-    <conceptEntry id="seed.escalation_grant">
-      <langSec xml:lang="ru"><termSec><term>разрешение эскалации</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>escalation grant</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>autorização de escalonamento</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.authority_proof">
+      <langSec xml:lang="ru"><termSec><term>доказательство Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>Authority proof</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>prova de Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.evidence_reference">
-      <langSec xml:lang="ru"><termSec><term>ссылка на доказательство</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="ru"><termSec><term>ссылка на основание</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
       <langSec xml:lang="en"><termSec><term>evidence reference</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
       <langSec xml:lang="pt-BR"><termSec><term>referência de evidência</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
@@ -47,10 +37,10 @@
       <langSec xml:lang="en"><termSec><term>resolution record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
       <langSec xml:lang="pt-BR"><termSec><term>registro de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.resolution_chain">
-      <langSec xml:lang="ru"><termSec><term>цепочка разрешения</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>resolution chain</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>cadeia de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.reconsideration_link">
+      <langSec xml:lang="ru"><termSec><term>связь пересмотра</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>reconsideration link</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>vínculo de reconsideração</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
   </body></text>
 </tbx>

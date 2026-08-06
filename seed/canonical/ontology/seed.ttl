@@ -3,64 +3,52 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 aset:SeedOntology a owl:Ontology ;
-    rdfs:label "ASET Seed 0.2 alpha resolution ontology"@en .
+    rdfs:label "ASET Seed 0.3 alpha 1 resolution ontology"@en .
 
-aset:resolution_cycle a owl:Class ;
-    rdfs:label "цикл разрешения"@ru ;
-    rdfs:label "resolution cycle"@en ;
-    rdfs:label "ciclo de resolução"@pt-BR ;
-    rdfs:comment "One immutably bound cycle for resolving an exact normative question."@en .
+aset:resolution_binding a owl:Class ;
+    rdfs:label "связка разрешения"@ru ;
+    rdfs:label "resolution binding"@en ;
+    rdfs:label "vinculação de resolução"@pt-BR ;
+    rdfs:comment "The exact context, state root, question, policy epoch and scope to which one resolution applies."@en .
 
-aset:context_binding a owl:Class ;
-    rdfs:label "связка контекста"@ru ;
-    rdfs:label "context binding"@en ;
-    rdfs:label "vinculação de contexto"@pt-BR ;
-    rdfs:comment "The exact context, state-root and policy-epoch binding within which a question is resolved."@en .
+aset:resolution_request a owl:Class ;
+    rdfs:label "запрос разрешения"@ru ;
+    rdfs:label "resolution request"@en ;
+    rdfs:label "solicitação de resolução"@pt-BR ;
+    rdfs:comment "A fresh identifier bound to one exact resolution binding and an initial locally recognized Authority."@en .
 
-aset:resolution_question a owl:Class ;
-    rdfs:label "вопрос разрешения"@ru ;
-    rdfs:label "resolution question"@en ;
-    rdfs:label "questão de resolução"@pt-BR ;
-    rdfs:comment "A canonically digested question and its bounded resolution scope."@en .
+aset:resolution_value a owl:Class ;
+    rdfs:label "разрешение"@ru ;
+    rdfs:label "resolution"@en ;
+    rdfs:label "resolução"@pt-BR ;
+    rdfs:comment "The derived value UNKNOWN, or the terminal value ALLOW or BLOCK."@en .
 
-aset:resolution_status a owl:Class ;
-    rdfs:label "статус разрешения"@ru ;
-    rdfs:label "resolution status"@en ;
-    rdfs:label "estado de resolução"@pt-BR ;
-    rdfs:comment "The normative status UNKNOWN, ACCEPT or DENY within one cycle."@en .
+aset:local_authority a owl:Class ;
+    rdfs:label "локальная Authority"@ru ;
+    rdfs:label "local Authority"@en ;
+    rdfs:label "Authority local"@pt-BR ;
+    rdfs:comment "An Authority explicitly recognized by one Context for one exact binding and policy epoch."@en .
 
-aset:enforcement_disposition a owl:Class ;
-    rdfs:label "режим исполнения"@ru ;
-    rdfs:label "enforcement disposition"@en ;
-    rdfs:label "disposição de execução"@pt-BR ;
-    rdfs:comment "The operational consequence of a decision: BLOCKED for UNKNOWN and DENY, ALLOW only for ACCEPT."@en .
-
-aset:resolution_authority a owl:Class ;
-    rdfs:label "власть разрешения"@ru ;
-    rdfs:label "resolution authority"@en ;
-    rdfs:label "autoridade de resolução"@pt-BR ;
-    rdfs:comment "An explicitly empowered subject able to narrow UNKNOWN in an exact scope and epoch."@en .
-
-aset:escalation_grant a owl:Class ;
-    rdfs:label "разрешение эскалации"@ru ;
-    rdfs:label "escalation grant"@en ;
-    rdfs:label "autorização de escalonamento"@pt-BR ;
-    rdfs:comment "An explicit authorization to pass an unresolved question to the next Resolution Authority without automatic authority inheritance."@en .
+aset:authority_proof a owl:Class ;
+    rdfs:label "доказательство Authority"@ru ;
+    rdfs:label "Authority proof"@en ;
+    rdfs:label "prova de Authority"@pt-BR ;
+    rdfs:comment "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants."@en .
 
 aset:evidence_reference a owl:Class ;
-    rdfs:label "ссылка на доказательство"@ru ;
+    rdfs:label "ссылка на основание"@ru ;
     rdfs:label "evidence reference"@en ;
     rdfs:label "referência de evidência"@pt-BR ;
-    rdfs:comment "A content-addressed reference to material used when narrowing UNKNOWN."@en .
+    rdfs:comment "A content-addressed non-authoritative input cited as the basis of a terminal record."@en .
 
 aset:resolution_record a owl:Class ;
     rdfs:label "запись разрешения"@ru ;
     rdfs:label "resolution record"@en ;
     rdfs:label "registro de resolução"@pt-BR ;
-    rdfs:comment "An immutable record of opening, escalation or terminal resolution and its provenance."@en .
+    rdfs:comment "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
 
-aset:resolution_chain a owl:Class ;
-    rdfs:label "цепочка разрешения"@ru ;
-    rdfs:label "resolution chain"@en ;
-    rdfs:label "cadeia de resolução"@pt-BR ;
-    rdfs:comment "An acyclic sequence of explicitly authorized Resolution Authorities for one question."@en .
+aset:reconsideration_link a owl:Class ;
+    rdfs:label "связь пересмотра"@ru ;
+    rdfs:label "reconsideration link"@en ;
+    rdfs:label "vínculo de reconsideração"@pt-BR ;
+    rdfs:comment "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record."@en .

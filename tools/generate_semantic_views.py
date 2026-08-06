@@ -23,7 +23,7 @@ def render_ontology(model: dict) -> str:
         "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .",
         "",
         "aset:SeedOntology a owl:Ontology ;",
-        '    rdfs:label "ASET Seed 0.2 alpha resolution ontology"@en .',
+        '    rdfs:label "ASET Seed 0.3 alpha 1 resolution ontology"@en .',
         "",
     ]
     for concept in model["concepts"]:
@@ -50,7 +50,7 @@ def render_skos(model: dict) -> str:
         "@prefix skos: <http://www.w3.org/2004/02/skos/core#> .",
         "",
         "aset:SeedConceptScheme a skos:ConceptScheme ;",
-        '    skos:prefLabel "ASET Seed 0.2 alpha resolution concept scheme"@en .',
+        '    skos:prefLabel "ASET Seed 0.3 alpha 1 resolution concept scheme"@en .',
         "",
     ]
     for concept in model["concepts"]:
@@ -78,7 +78,7 @@ def render_tbx(model: dict) -> str:
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<tbx xmlns="urn:iso:std:iso:30042:ed-2" type="TBX-Basic">',
         '  <tbxHeader><fileDesc><titleStmt><title>'
-        'ASET Seed 0.2 alpha resolution terminology'
+        'ASET Seed 0.3 alpha 1 resolution terminology'
         '</title></titleStmt></fileDesc></tbxHeader>',
         '  <text><body style="dca">',
     ]

@@ -1,26 +1,12 @@
-# ASET Seed 0.2 alpha resolution core
+# ASET Seed 0.3 minimal strong core
 
-Status: `RESOLUTION_CORE_ALPHA`
-
-The active Seed is the implementation-neutral normative core for narrowing an exact unresolved question:
+ASET Seed is a local resolution-recognition kernel.
 
 ```text
-UNKNOWN -> ACCEPT | DENY
+Resolution = UNKNOWN | ALLOW | BLOCK
+EffectPermitted(binding) iff one unique valid exact-binding terminal record is ALLOW
 ```
 
-`UNKNOWN` and `DENY` are operationally `BLOCKED`. Only `ACCEPT` may produce `ALLOW`. An unresolved question may remain `UNKNOWN` while it moves to a next explicitly authorized Resolution Authority. Context ancestry or federation membership alone creates no authority.
+`UNKNOWN` is derived when no unique valid terminal record exists. `BLOCK` is an explicit terminal prohibition. Both are fail-closed.
 
-## Active canon
-
-1. `source/seed-model.json` — normative machine model;
-2. `protocol/` — minimal resolution wire schemas;
-3. `conformance/` — portable black-box cases;
-4. `CANON_PACKAGE.json` — exact package identity;
-5. `formal/SeedResolution.tla` — bounded assurance projection;
-6. generated multilingual editions — derived views.
-
-## Scope boundary
-
-Seed does not define execution, Permit consumption, attempt journals, planning, memory, federation topology, consensus, storage, cryptographic providers or artifact retention. Those belong to extensions and implementations.
-
-The migration from the predecessor lifecycle canon is intentionally breaking and is documented in `migration/RC12_TO_RESOLUTION_CORE.md`.
+Seed normatively defines exact binding, local Authority roots, attenuating Authority proof, terminal uniqueness, immutable content-addressed records and fresh reconsideration identifiers. Policy evaluation, evidence acquisition, workflow, federation, persistence and enforcement are extensions or implementation concerns.

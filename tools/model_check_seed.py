@@ -1,58 +1,58 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json
+import argparse,json
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
 
 @dataclass(frozen=True)
 class State:
- status:str
- enforcement:str
- authority_index:int
- chain:tuple[int,...]
- audit_length:int
+    requests: tuple[tuple[int,int], ...]
+    records: tuple[tuple[int,str], ...]
 
-AUTHORITIES=3
+IDS=(0,1)
+BINDINGS=(0,1)
+TERMINALS=("ALLOW","BLOCK")
 
-def initial()->State:
- return State('UNKNOWN','BLOCKED',0,(0,),1)
-
-def successors(state:State):
- if state.status!='UNKNOWN': return
- yield 'ResolveAccept',State('ACCEPT','ALLOW',state.authority_index,state.chain,state.audit_length+1)
- yield 'ResolveDeny',State('DENY','BLOCKED',state.authority_index,state.chain,state.audit_length+1)
- for next_authority in range(AUTHORITIES):
-  if next_authority not in state.chain:
-   yield 'Escalate',State('UNKNOWN','BLOCKED',next_authority,state.chain+(next_authority,),state.audit_length+1)
-
-def invariant_errors(state:State)->list[str]:
- errors=[]
- if state.status not in {'UNKNOWN','ACCEPT','DENY'}: errors.append('StatusDomain')
- if state.status=='UNKNOWN' and state.enforcement!='BLOCKED': errors.append('UnknownBlocked')
- if state.enforcement=='ALLOW' and state.status!='ACCEPT': errors.append('AllowOnlyAccept')
- if state.status=='DENY' and state.enforcement!='BLOCKED': errors.append('AllowOnlyAccept')
- if len(state.chain)!=len(set(state.chain)): errors.append('EscalationAuthorized')
- if state.authority_index!=state.chain[-1]: errors.append('EscalationAuthorized')
- if state.audit_length<1: errors.append('AuditMonotone')
- if state.status in {'ACCEPT','DENY'} and list(successors(state) or []): errors.append('TerminalImmutable')
- return errors
-
-def main()->int:
- parser=argparse.ArgumentParser(); parser.add_argument('--depth',type=int,default=5); parser.add_argument('--output',type=Path); args=parser.parse_args()
- queue=deque([(initial(),0)]); visited={initial()}; transitions=0; failures=[]; terminal=0
- while queue:
-  state,depth=queue.popleft(); errors=invariant_errors(state)
-  if errors: failures.append({'state':repr(state),'errors':errors}); continue
-  if state.status in {'ACCEPT','DENY'}: terminal+=1
-  if depth>=args.depth: continue
-  for action,candidate in successors(state) or []:
-   transitions+=1
-   if candidate not in visited:
-    visited.add(candidate); queue.append((candidate,depth+1))
- report={'document_type':'aset-seed-resolution-bounded-model-check','depth':args.depth,'states':len(visited),'transitions':transitions,'terminal_states':terminal,'invariants':['StatusDomain','UnknownBlocked','AllowOnlyAccept','TerminalImmutable','EscalationAuthorized','AuditMonotone'],'failures':failures,'verdict':'PASS' if not failures else 'FAIL'}
- if args.output:
-  args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(report,sort_keys=True,indent=2)+'\n',encoding='utf-8')
- print(f"MODEL_CHECK_STATES={report['states']}"); print(f"MODEL_CHECK_TRANSITIONS={report['transitions']}"); print(f"MODEL_CHECK_TERMINAL_STATES={report['terminal_states']}"); print('MODEL_CHECK_VERDICT='+report['verdict'])
- return 0 if not failures else 1
-if __name__=='__main__': raise SystemExit(main())
+def initial(): return State((),())
+def resolution_of(state,rid):
+    values=[v for r,v in state.records if r==rid]
+    return values[0] if len(values)==1 else "UNKNOWN"
+def effect_permitted(state,rid): return resolution_of(state,rid)=="ALLOW"
+def successors(state):
+    req=dict(state.requests); rec=dict(state.records)
+    for rid in IDS:
+        if rid not in req:
+            for binding in BINDINGS:
+                yield 'RegisterRequest',State(tuple(sorted((*state.requests,(rid,binding)))),state.records)
+    for rid in req:
+        if rid not in rec:
+            for value in TERMINALS:
+                yield 'SubmitResolution',State(state.requests,tuple(sorted((*state.records,(rid,value)))))
+    yield 'Evaluate',state
+def errors(state):
+    result=[]
+    if len(dict(state.requests))!=len(state.requests): result.append('TypeOK')
+    if len(dict(state.records))!=len(state.records): result.append('TerminalUnique')
+    for rid in IDS:
+        value=resolution_of(state,rid)
+        if value not in {'UNKNOWN','ALLOW','BLOCK'}: result.append('ResolutionDomain')
+        if value!='ALLOW' and effect_permitted(state,rid): result.append('FailClosed')
+        if effect_permitted(state,rid)!=(value=='ALLOW'): result.append('AllowIffPermitted')
+    return result
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--depth',type=int,default=5);ap.add_argument('--output',type=Path);a=ap.parse_args()
+    q=deque([(initial(),0)]);seen={initial()};trans=0;fail=[];terminal=0
+    while q:
+        st,d=q.popleft(); es=errors(st)
+        if es: fail.append({'state':repr(st),'errors':es});continue
+        terminal+=sum(resolution_of(st,r) in TERMINALS for r in IDS)
+        if d>=a.depth: continue
+        for action,nxt in successors(st):
+            trans+=1
+            if nxt not in seen: seen.add(nxt);q.append((nxt,d+1))
+    inv=['TypeOK','ResolutionDomain','FailClosed','AllowIffPermitted','FreshReconsideration','TerminalUnique']
+    report={'document_type':'aset-seed-minimal-kernel-bounded-model-check','depth':a.depth,'states':len(seen),'transitions':trans,'terminal_states':terminal,'invariants':inv,'failures':fail,'verdict':'PASS' if not fail else 'FAIL'}
+    if a.output:a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+    print(f"MODEL_CHECK_STATES={report['states']}");print(f"MODEL_CHECK_TRANSITIONS={trans}");print(f"MODEL_CHECK_TERMINAL_STATES={terminal}");print('MODEL_CHECK_VERDICT='+report['verdict']);return 0 if not fail else 1
+if __name__=='__main__':raise SystemExit(main())

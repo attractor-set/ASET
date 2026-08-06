@@ -1,5 +1,5 @@
 {
-  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN, ALLOW or BLOCK resolution recognition.",
   "repository": "attractor-set/ASET",
   "topics": [
     "accountability",

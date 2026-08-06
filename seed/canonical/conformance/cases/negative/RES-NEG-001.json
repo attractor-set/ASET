@@ -1,53 +1,52 @@
 {
   "candidate": {
-    "kind": "RESOLVE_ACCEPT",
+    "kind": "REGISTER_REQUEST",
     "payload": {
-      "authority_id": "authority:other",
-      "context_id": "context:local",
-      "evidence_digests": [
-        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
-      ],
-      "policy_epoch": 1,
-      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "resolution_id": "resolution:001",
-      "scope": [
-        "repo:patch"
-      ],
-      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      "request": {
+        "binding": {
+          "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+          "context_id": "ctx.local",
+          "policy_epoch": 1,
+          "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope": [
+            "effect:publish"
+          ],
+          "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "previous_resolution_id": null,
+        "previous_terminal_record_digest": null,
+        "request_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+        "resolution_id": "res.1"
+      }
     }
   },
   "case_id": "RES-NEG-001",
-  "description": "Resolution by a different authority is rejected.",
+  "description": "Reject a request whose canonical digest is invalid.",
   "expected": {
     "accepted": false,
-    "code": "AUTHORITY_MISMATCH",
-    "enforcement": "BLOCKED",
-    "semantic_status": "UNKNOWN",
+    "code": "REQUEST_INVALID",
+    "effect_permitted": false,
+    "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+    "resolution": "UNKNOWN",
     "state_changed": false
   },
-  "initial_state": {
-    "authority_chain": [
-      "authority:local"
+  "initial_store": {
+    "authority_bindings": [
+      {
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      }
     ],
-    "context_id": "context:local",
-    "current_authority_id": "authority:local",
-    "enforcement": "BLOCKED",
-    "escalation_grants": [],
-    "policy_epoch": 1,
-    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "authority_grants": [],
     "records": [],
-    "resolution_id": "resolution:001",
-    "scope": [
-      "repo:patch"
-    ],
-    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-    "status": "UNKNOWN"
+    "requests": []
   },
-  "postconditions": [
-    {
-      "equals": "UNKNOWN",
-      "path": "/status"
-    }
-  ],
+  "postconditions": [],
   "setup": []
 }

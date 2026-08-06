@@ -1,56 +1,56 @@
 {
   "candidate": {
-    "kind": "OPEN_RESOLUTION",
+    "kind": "REGISTER_REQUEST",
     "payload": {
-      "authority": {
-        "authority_id": "authority:local",
-        "context_id": "context:local",
-        "policy_epoch": 1,
-        "scope": [
-          "repo:patch"
-        ]
-      },
-      "context_id": "context:local",
-      "escalation_grants": [
-        {
-          "context_id": "context:local",
-          "from_authority_id": "authority:local",
-          "grant_id": "grant:local-federal",
+      "request": {
+        "binding": {
+          "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+          "context_id": "ctx.local",
           "policy_epoch": 1,
-          "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
           "scope": [
-            "repo:patch"
+            "effect:publish"
           ],
-          "to_authority_id": "authority:federal"
-        }
-      ],
-      "policy_epoch": 1,
-      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "resolution_id": "resolution:001",
-      "scope": [
-        "repo:patch"
-      ],
-      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+          "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "previous_resolution_id": null,
+        "previous_terminal_record_digest": null,
+        "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+        "resolution_id": "res.1"
+      }
     }
   },
   "case_id": "RES-POS-001",
-  "description": "Open an exact resolution cycle as UNKNOWN and BLOCKED.",
+  "description": "Register a fresh exact-bound request; resolution remains derived UNKNOWN.",
   "expected": {
     "accepted": true,
-    "code": "RESOLUTION_OPENED",
-    "enforcement": "BLOCKED",
-    "semantic_status": "UNKNOWN",
+    "code": "REQUEST_REGISTERED",
+    "effect_permitted": false,
+    "reason": "TERMINAL_RECORD_ABSENT",
+    "resolution": "UNKNOWN",
     "state_changed": true
   },
-  "initial_state": null,
+  "initial_store": {
+    "authority_bindings": [
+      {
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      }
+    ],
+    "authority_grants": [],
+    "records": [],
+    "requests": []
+  },
   "postconditions": [
     {
-      "equals": "UNKNOWN",
-      "path": "/status"
-    },
-    {
-      "equals": "BLOCKED",
-      "path": "/enforcement"
+      "equals": "res.1",
+      "path": "/requests/0/resolution_id"
     }
   ],
   "setup": []

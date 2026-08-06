@@ -1,9 +1,9 @@
 {
-  "candidate_model_sha256": "sha256:ef562851fc63869d83ed76b84a0c39085d9b933223e5ae46628255a24dcf204e",
-  "change_class": "NONE",
-  "decision_ref": "seed/canonical/decisions/ADR-004-externalize-legacy-components.md",
+  "candidate_model_sha256": "sha256:d34e4672babbe02a5131297d0afbd991a5e6bc6ac0849f690aa136f3b3aa3866",
+  "change_class": "BREAKING_SEMANTIC_SIMPLIFICATION",
+  "decision_ref": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
   "document_type": "aset-canon-change-declaration",
-  "rationale": "Alpha 2 changes release identity, repository boundaries and assurance gates while preserving the alpha 1 resolution semantics.",
+  "rationale": "Seed 0.3 removes coupled status/enforcement and mutable escalation state in favor of one fail-closed record-recognition kernel.",
   "schema_version": 1,
-  "supersession_ref": "seed/canonical/release/SEED_0.2_ALPHA2_EXTRACTION.json"
+  "supersession_ref": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json"
 }

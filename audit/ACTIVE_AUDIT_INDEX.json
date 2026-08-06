@@ -1,11 +1,11 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+    "canon_package_digest": "sha256:761515210d02cac6c032d95d32ac9a541d0a0cacb7c0de2c1da522de69411e12",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
-    "seed_version": "0.2.0-alpha.2",
-    "status": "RESOLUTION_CORE_ALPHA"
+    "seed_version": "0.3.0-alpha.1",
+    "status": "MINIMAL_STRONG_CORE_ALPHA"
   },
   "active_controlling_records": [
     "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",

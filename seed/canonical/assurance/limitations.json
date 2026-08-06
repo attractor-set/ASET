@@ -3,14 +3,14 @@
   "limitations": [
     {
       "closure_criteria": "A separately versioned federation extension defines topology, delegation and coordination without weakening Seed invariants.",
-      "description": "Seed permits an explicit next Resolution Authority but does not define local, federal or metafederal topology, discovery or consensus.",
+      "description": "Seed validates local Authority material but does not define federation topology, discovery, routing or consensus.",
       "id": "LIMIT-001",
       "scope": "federation-topology",
       "status": "EXTENSION_RESPONSIBILITY"
     },
     {
       "closure_criteria": "Monade and evidence extensions define those behaviours and conform to the active Seed package.",
-      "description": "Seed resolves normative questions; it does not execute work, acquire evidence or retain negative attempts.",
+      "description": "Seed recognizes terminal resolution records; it does not evaluate policy, execute work, acquire evidence or enforce effects.",
       "id": "LIMIT-002",
       "scope": "execution-and-evidence",
       "status": "EXTENSION_RESPONSIBILITY"
@@ -24,26 +24,26 @@
     },
     {
       "closure_criteria": "Complete an independently reviewed unbounded refinement or state the accepted assurance level for 1.0.",
-      "description": "The decision lattice and escalation chain are bounded-model checked, but unbounded refinement is not claimed.",
+      "description": "The minimal request-and-record kernel is bounded-model checked, but unbounded deductive proof is not yet claimed.",
       "id": "LIMIT-004",
       "scope": "formal-assurance",
       "status": "OPEN_ACCEPTED"
     },
     {
       "closure_criteria": "Publish an external audit tied to commit and package digest.",
-      "description": "No independent third-party audit is bound to the exact 0.2 alpha package.",
+      "description": "No independent third-party audit is bound to the exact 0.3 alpha package.",
       "id": "LIMIT-005",
       "scope": "external-assurance",
       "status": "PENDING"
     },
     {
       "closure_criteria": "Migration profiles explicitly map predecessor concepts into extensions and implementations update conformance claims.",
-      "description": "Seed 0.2 deliberately narrows the active canon and is not wire- or semantic-compatible with the rc11/rc12 lifecycle model.",
+      "description": "Seed 0.3 is intentionally not wire- or semantic-compatible with the 0.2 status/enforcement workflow model.",
       "id": "LIMIT-006",
       "scope": "predecessor-compatibility",
       "status": "BREAKING_CHANGE_DECLARED"
     }
   ],
   "schema_version": 4,
-  "version": "0.2.0-alpha.2-resolution-core"
+  "version": "0.3.0-alpha.1-minimal-strong-core"
 }

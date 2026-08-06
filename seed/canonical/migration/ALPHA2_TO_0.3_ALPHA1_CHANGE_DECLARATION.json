@@ -1,0 +1,10 @@
+{
+  "candidate": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
+  "change_class": "BREAKING_SEMANTIC_SIMPLIFICATION",
+  "decision_ref": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
+  "document_type": "aset-canon-change-declaration",
+  "migration_ref": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
+  "predecessor": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+  "schema_version": 2,
+  "summary": "Replace status plus enforcement and mutable escalation workflow with a minimal record-recognition kernel using UNKNOWN, ALLOW and BLOCK."
+}

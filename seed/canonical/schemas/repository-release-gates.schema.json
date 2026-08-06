@@ -42,7 +42,7 @@
       "type": "array"
     },
     "profile": {
-      "const": "ASET_SEED_RESOLUTION_CORE_ALPHA2"
+      "const": "ASET_SEED_MINIMAL_STRONG_CORE_ALPHA1"
     },
     "schema_version": {
       "const": 6

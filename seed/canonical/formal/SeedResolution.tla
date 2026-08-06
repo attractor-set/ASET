@@ -1,56 +1,75 @@
 ------------------------------ MODULE SeedResolution ------------------------------
-EXTENDS Naturals, Sequences, FiniteSets
+EXTENDS FiniteSets
 
-CONSTANT Authorities
+CONSTANTS ResolutionIds, Bindings, Authorities, NoResolution, NoRecord
 
-Statuses == {"UNKNOWN", "ACCEPT", "DENY"}
-Enforcements == {"BLOCKED", "ALLOW"}
+Resolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
+TerminalResolutions == {"ALLOW", "BLOCK"}
 
-ChainAuthorities(chain) == {chain[i] : i \in 1..Len(chain)}
+(* AuthorityBindings is an exact-binding local recognition relation. *)
+CONSTANT AuthorityBindings
 
-VARIABLES status, enforcement, currentAuthority, authorityChain, auditLength
-vars == <<status, enforcement, currentAuthority, authorityChain, auditLength>>
+VARIABLES requests, requestBinding, previousResolution, terminalRecord
+vars == <<requests, requestBinding, previousResolution, terminalRecord>>
 
 Init ==
-  /\ status = "UNKNOWN"
-  /\ enforcement = "BLOCKED"
-  /\ currentAuthority \in Authorities
-  /\ authorityChain = <<currentAuthority>>
-  /\ auditLength = 1
+  /\ requests = {}
+  /\ requestBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
+  /\ previousResolution = [r \in ResolutionIds |-> NoResolution]
+  /\ terminalRecord = [r \in ResolutionIds |-> NoRecord]
 
-ResolveAccept ==
-  /\ status = "UNKNOWN"
-  /\ status' = "ACCEPT"
-  /\ enforcement' = "ALLOW"
-  /\ UNCHANGED <<currentAuthority, authorityChain>>
-  /\ auditLength' = auditLength + 1
+RegisterRequest(r, b, a, previous) ==
+  /\ r \in ResolutionIds \ requests
+  /\ b \in Bindings
+  /\ a \in Authorities
+  /\ <<a, b>> \in AuthorityBindings
+  /\ previous = NoResolution \/
+       /\ previous \in requests
+       /\ terminalRecord[previous] \in TerminalResolutions
+  /\ requests' = requests \cup {r}
+  /\ requestBinding' = [requestBinding EXCEPT ![r] = b]
+  /\ previousResolution' = [previousResolution EXCEPT ![r] = previous]
+  /\ UNCHANGED terminalRecord
 
-ResolveDeny ==
-  /\ status = "UNKNOWN"
-  /\ status' = "DENY"
-  /\ enforcement' = "BLOCKED"
-  /\ UNCHANGED <<currentAuthority, authorityChain>>
-  /\ auditLength' = auditLength + 1
+SubmitResolution(r, b, a, value) ==
+  /\ r \in requests
+  /\ b = requestBinding[r]
+  /\ a \in Authorities
+  /\ <<a, b>> \in AuthorityBindings
+  /\ value \in TerminalResolutions
+  /\ terminalRecord[r] = NoRecord
+  /\ terminalRecord' = [terminalRecord EXCEPT ![r] = value]
+  /\ UNCHANGED <<requests, requestBinding, previousResolution>>
 
-Escalate(next) ==
-  /\ status = "UNKNOWN"
-  /\ next \in Authorities
-  /\ next \notin ChainAuthorities(authorityChain)
-  /\ status' = "UNKNOWN"
-  /\ enforcement' = "BLOCKED"
-  /\ currentAuthority' = next
-  /\ authorityChain' = Append(authorityChain, next)
-  /\ auditLength' = auditLength + 1
+Evaluate == UNCHANGED vars
 
-Next == ResolveAccept \/ ResolveDeny \/ \E next \in Authorities : Escalate(next)
+Next ==
+  \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
+        previous \in ResolutionIds \cup {NoResolution} :
+        RegisterRequest(r, b, a, previous)
+  \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
+        value \in TerminalResolutions :
+        SubmitResolution(r, b, a, value)
+  \/ Evaluate
 
-StatusDomain == status \in Statuses
-UnknownBlocked == status = "UNKNOWN" => enforcement = "BLOCKED"
-AllowOnlyAccept == enforcement = "ALLOW" => status = "ACCEPT"
-TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next
-EscalationAuthorized ==
-  Len(authorityChain) = Cardinality(ChainAuthorities(authorityChain))
-AuditMonotone == auditLength >= 1
+ResolutionOf(r) ==
+  IF r \notin requests \/ terminalRecord[r] = NoRecord
+  THEN "UNKNOWN"
+  ELSE terminalRecord[r]
+
+EffectPermitted(r) == ResolutionOf(r) = "ALLOW"
+
+TypeOK ==
+  /\ requests \subseteq ResolutionIds
+  /\ requestBinding \in [ResolutionIds -> Bindings]
+  /\ previousResolution \in [ResolutionIds -> ResolutionIds \cup {NoResolution}]
+  /\ terminalRecord \in [ResolutionIds -> TerminalResolutions \cup {NoRecord}]
+
+ResolutionDomain == \A r \in ResolutionIds : ResolutionOf(r) \in Resolutions
+FailClosed == \A r \in ResolutionIds : ResolutionOf(r) # "ALLOW" => ~EffectPermitted(r)
+AllowIffPermitted == \A r \in ResolutionIds : EffectPermitted(r) <=> ResolutionOf(r) = "ALLOW"
+FreshReconsideration == \A r \in requests : previousResolution[r] = NoResolution \/ previousResolution[r] # r
+TerminalUnique == \A r \in requests : terminalRecord[r] \in TerminalResolutions \cup {NoRecord}
 
 Spec == Init /\ [][Next]_vars
-=============================================================================
+=================================================================================

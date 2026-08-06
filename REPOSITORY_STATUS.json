@@ -1,8 +1,8 @@
 {
-  "active_conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
+  "active_conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
   "active_seed_model": "seed/canonical/source/seed-model.json",
-  "active_seed_status": "RESOLUTION_CORE_ALPHA",
-  "active_seed_version": "0.2.0-alpha.2",
+  "active_seed_status": "MINIMAL_STRONG_CORE_ALPHA",
+  "active_seed_version": "0.3.0-alpha.1",
   "document_type": "aset-repository-status",
   "extension_separation": "COMPLETE",
   "external_third_party_audit": "PENDING",

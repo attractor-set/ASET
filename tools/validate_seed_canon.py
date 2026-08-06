@@ -10,6 +10,11 @@ from jsonschema import Draft202012Validator
 from rdflib import Graph
 from referencing import Registry, Resource
 
+try:
+    from tools.seed_resolution_oracle import execute_case
+except ModuleNotFoundError:
+    from seed_resolution_oracle import execute_case
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -76,19 +81,22 @@ def main() -> int:
             errors.append("duplicate:" + group)
     kinds = [item["kind"] for item in model["transitions"]]
     expected_kinds = [
-        "OPEN_RESOLUTION",
-        "RESOLVE_ACCEPT",
-        "RESOLVE_DENY",
-        "ESCALATE_UNKNOWN",
+        "REGISTER_REQUEST",
+        "SUBMIT_RESOLUTION",
+        "EVALUATE_RESOLUTION",
     ]
     if kinds != expected_kinds:
         errors.append("transition_catalogue")
-    lattice = model["decision_lattice"]
-    if lattice["initial"] != "UNKNOWN" or lattice["terminal"] != [
-        "ACCEPT",
-        "DENY",
-    ]:
-        errors.append("decision_lattice")
+    if model["resolution_algebra"] != {
+        "values": ["UNKNOWN", "ALLOW", "BLOCK"],
+        "derived": "UNKNOWN",
+        "stored_terminal": ["ALLOW", "BLOCK"],
+        "effect_permitted_if": "ALLOW",
+        "fail_closed_values": ["UNKNOWN", "BLOCK"],
+        "conflict_result": "UNKNOWN",
+        "unknown_semantics": model["resolution_algebra"]["unknown_semantics"],
+    }:
+        errors.append("resolution_algebra")
     if model["implementation_boundary"]["implementation_precedence"] != "NONE":
         errors.append("implementation_precedence")
 
@@ -140,6 +148,13 @@ def main() -> int:
             )
         if case["expected"] != item["expected"]:
             errors.append("case_expected:" + item["case_id"])
+        try:
+            actual, _ = execute_case(case)
+        except Exception as exc:
+            errors.append("case_execution:" + item["case_id"] + ":" + str(exc))
+        else:
+            if actual != case["expected"]:
+                errors.append("case_oracle:" + item["case_id"])
 
     validate_document(
         errors,

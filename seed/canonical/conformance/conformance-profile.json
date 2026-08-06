@@ -5,281 +5,302 @@
       "case_id": "RES-POS-001",
       "expected": {
         "accepted": true,
-        "code": "RESOLUTION_OPENED",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "REQUEST_REGISTERED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
       "polarity": "positive",
-      "sha256": "sha256:9a674dbdfd7cb0fab6a03aeea0bd37ce6ab048655db76812dd075a52c00cd534"
+      "sha256": "sha256:629c8ec5d5c8754accc3bfb8371be70517cd22eff6df77b05f80b924d504db0c"
     },
     {
       "case_id": "RES-POS-002",
       "expected": {
         "accepted": true,
-        "code": "RESOLVED_ACCEPT",
-        "enforcement": "ALLOW",
-        "semantic_status": "ACCEPT",
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
         "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
       "polarity": "positive",
-      "sha256": "sha256:0e91c0377d5768456e3bc921457340d8aa8920f3b239c341e36835ca59fe1de2"
+      "sha256": "sha256:d9e91bbbc7f4107a876f748951ba8bf6d54bdec7fc07d3c337865acc581748f8"
     },
     {
       "case_id": "RES-POS-003",
       "expected": {
         "accepted": true,
-        "code": "RESOLVED_DENY",
-        "enforcement": "BLOCKED",
-        "semantic_status": "DENY",
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": false,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "BLOCK",
         "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
       "polarity": "positive",
-      "sha256": "sha256:24522cc2ba2bd2a9e3de6f2466b3d2b4ade89f1ef315d2b45f6c25a4f8677b16"
+      "sha256": "sha256:2beb58bb1a248feae6ae4e58c3e79090d9968619eee02bfcc9d964e62daee472"
     },
     {
       "case_id": "RES-POS-004",
       "expected": {
         "accepted": true,
-        "code": "ESCALATED_UNKNOWN",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
         "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
       "polarity": "positive",
-      "sha256": "sha256:bc363c4ad701d1768d82d3cd13a43b930c4d34cc149d7128c904ada4d45ac6e9"
+      "sha256": "sha256:382fd819df34e3a07813d2bfb242699a0ac8ba3ca4237574640940c58aacba70"
     },
     {
       "case_id": "RES-POS-005",
       "expected": {
         "accepted": true,
-        "code": "RESOLVED_ACCEPT",
-        "enforcement": "ALLOW",
-        "semantic_status": "ACCEPT",
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
         "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
       "polarity": "positive",
-      "sha256": "sha256:ff07d4334232123a8f25ee972c6def725151af6c24efbff88bedbce4b7967c77"
+      "sha256": "sha256:0a7bd554fc68db99cba30dfe8dd8573f176b573a4c30c5bc79820255c1f64171"
     },
     {
       "case_id": "RES-POS-006",
       "expected": {
         "accepted": true,
-        "code": "RESOLVED_DENY",
-        "enforcement": "BLOCKED",
-        "semantic_status": "DENY",
-        "state_changed": true
+        "code": "EVALUATED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
       "polarity": "positive",
-      "sha256": "sha256:84da70bb844179626d51aa2770230a203262de7eab28e0b7f2f38f08c4f9b4e6"
+      "sha256": "sha256:1a77e9fb1ded33823854070104eb93e4cfdf57137bf544ece8dc9854b5c18429"
     },
     {
       "case_id": "RES-POS-007",
       "expected": {
         "accepted": true,
-        "code": "ESCALATED_UNKNOWN",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
-        "state_changed": true
+        "code": "IDEMPOTENT_REPLAY",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
+        "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
       "polarity": "positive",
-      "sha256": "sha256:577bfe6419f3c0477a3571e27a874972598d7cb8a909845059e91e5444ad8951"
+      "sha256": "sha256:a5aa8a79fef5a07ccf35b1d296e421f801de66d4d74b57b82f96702ccc5208dd"
     },
     {
       "case_id": "RES-POS-008",
       "expected": {
         "accepted": true,
-        "code": "IDEMPOTENT_REPLAY",
-        "enforcement": "ALLOW",
-        "semantic_status": "ACCEPT",
-        "state_changed": false
+        "code": "REQUEST_REGISTERED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": true
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
       "polarity": "positive",
-      "sha256": "sha256:c56ffebef861f5e80b26dff8b6b2baf03eb8142d6f31fe039a080744fb9ba216"
+      "sha256": "sha256:866012e9620f528a28e41ab9372c63c2c27eba30a1badacf3eccbaaae271a334"
     },
     {
       "case_id": "RES-NEG-001",
       "expected": {
         "accepted": false,
-        "code": "AUTHORITY_MISMATCH",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "REQUEST_INVALID",
+        "effect_permitted": false,
+        "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
       "polarity": "negative",
-      "sha256": "sha256:68799d04edcb53ca640e82e57401e0cb920f96b40c3b65030cd79e05185d6dfb"
+      "sha256": "sha256:69b42c72acce747e3094c6ff9eca2d13e8e2d0fda1b63c9587dd9ce7d16d7fc4"
     },
     {
       "case_id": "RES-NEG-002",
       "expected": {
         "accepted": false,
-        "code": "SCOPE_EXPANSION",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "RESOLUTION_ID_NOT_FRESH",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-002.json",
       "polarity": "negative",
-      "sha256": "sha256:1c1c57b8d360c430799746441c5cd9f2c507463ccde31537361761e44c0fddb2"
+      "sha256": "sha256:8b1c7052db75a56c7abcf21a2822ca245878896f6f3f912920b41ff0959a9e1b"
     },
     {
       "case_id": "RES-NEG-003",
       "expected": {
         "accepted": false,
-        "code": "STATE_ROOT_MISMATCH",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "LOCAL_AUTHORITY_BINDING_INVALID",
+        "effect_permitted": false,
+        "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-003.json",
       "polarity": "negative",
-      "sha256": "sha256:dd7991bb8a5065124142b03724e2dd4fb984ff642a9fc49775d92e29cc0c0898"
+      "sha256": "sha256:2da32fb30992c6132ae1546b9ed0837ac76c70672ad89c929d4f24d229e51b77"
     },
     {
       "case_id": "RES-NEG-004",
       "expected": {
         "accepted": false,
-        "code": "QUESTION_DIGEST_MISMATCH",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "LOCAL_AUTHORITY_BINDING_MISMATCH",
+        "effect_permitted": false,
+        "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-004.json",
       "polarity": "negative",
-      "sha256": "sha256:73b85af643d4ab069ccb2ac420e52e6347b20324e157fc70c28aa0eefbe68a1b"
+      "sha256": "sha256:a4faf9c34999fefb8093421027214501581b79b2ae6ffc343139035c35ee287d"
     },
     {
       "case_id": "RES-NEG-005",
       "expected": {
         "accepted": false,
-        "code": "POLICY_EPOCH_MISMATCH",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "RECORD_DIGEST_INVALID",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-005.json",
       "polarity": "negative",
-      "sha256": "sha256:7d53bfbbe8f6532957a66ee01d1e0f4a829a64ca0050c04b42cfecb3b9376b86"
+      "sha256": "sha256:be334721fa8539ff0c49c91aef264a9572ce0f9d69cdf53e7520c1e960972f46"
     },
     {
       "case_id": "RES-NEG-006",
       "expected": {
         "accepted": false,
-        "code": "TERMINAL_IMMUTABLE",
-        "enforcement": "ALLOW",
-        "semantic_status": "ACCEPT",
+        "code": "BINDING_MISMATCH",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-006.json",
       "polarity": "negative",
-      "sha256": "sha256:172239a7b62869842e17b090b70cfc94be2ff4f14b61d11553d7f0f03b87e010"
+      "sha256": "sha256:c7aab9eecb2c6be1458c6fb992661b4ba78983cb7ba4e89f5d1159bda15ee04b"
     },
     {
       "case_id": "RES-NEG-007",
       "expected": {
         "accepted": false,
-        "code": "TERMINAL_IMMUTABLE",
-        "enforcement": "BLOCKED",
-        "semantic_status": "DENY",
+        "code": "AUTHORITY_GRANT_INVALID",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-007.json",
       "polarity": "negative",
-      "sha256": "sha256:dafa59a95da81ada553c0d2cd7403d8707c861a9940d972837e8cf75a1891c31"
+      "sha256": "sha256:27c1299c07a798b79d0de15036018f32996702fba156e0a73dad11606e31297e"
     },
     {
       "case_id": "RES-NEG-008",
       "expected": {
         "accepted": false,
-        "code": "ESCALATION_GRANT_MISSING",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "AUTHORITY_GRANT_BINDING_MISMATCH",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-008.json",
       "polarity": "negative",
-      "sha256": "sha256:d2e3e2bdd649f40af480ca15a0ef30ce1dd85e7a834704b5d6cd9ab76531b78d"
+      "sha256": "sha256:87351ee1cc22f2231bc9d9c1628bf5f54af34285f7fb6f67b4bced3e8bfd6e26"
     },
     {
       "case_id": "RES-NEG-009",
       "expected": {
         "accepted": false,
-        "code": "ESCALATION_SCOPE_EXPANSION",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "UNEXPECTED_AUTHORITY_PROOF",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-009.json",
       "polarity": "negative",
-      "sha256": "sha256:e6888dd11fc2090c1575a7d79afb127b1d90faf6a301e242ea817962f6014f8a"
+      "sha256": "sha256:61c50a87bd3e402de908d3231c469969a82412e1723e1f9eeeb58465d545feeb"
     },
     {
       "case_id": "RES-NEG-010",
       "expected": {
         "accepted": false,
-        "code": "ESCALATION_CYCLE",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "TERMINAL_IMMUTABLE",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-010.json",
       "polarity": "negative",
-      "sha256": "sha256:6bfc9b9941b3d4211312d45f15692271579fe5a291f9d73e0736d99c121b9796"
+      "sha256": "sha256:538ad9f9aae5ab6f1e0b0d0635bb56e8db929bbad2fbb39642658257be56657f"
     },
     {
       "case_id": "RES-NEG-011",
       "expected": {
         "accepted": false,
-        "code": "TERMINAL_ESCALATION_FORBIDDEN",
-        "enforcement": "BLOCKED",
-        "semantic_status": "DENY",
+        "code": "RESOLUTION_ID_NOT_FRESH",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-011.json",
       "polarity": "negative",
-      "sha256": "sha256:4c556a82a6c2083b94199f9bf60ea4926a7f84df78153b38eb4658d59654c412"
+      "sha256": "sha256:76eacf88aa6bd4b7430d16a0b6abd83306f0cafe1bdb1878ac2d604dcaa5e993"
     },
     {
       "case_id": "RES-NEG-012",
       "expected": {
         "accepted": false,
-        "code": "RESOLUTION_ID_MISMATCH",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "PREVIOUS_RESOLUTION_NOT_TERMINAL",
+        "effect_permitted": false,
+        "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-012.json",
       "polarity": "negative",
-      "sha256": "sha256:c1b3c02ee65d21ccb4e351c32447be51621474b99a7f7f880dd0ebb853480237"
+      "sha256": "sha256:783c7f76d2eb4cb02af1f077fa77ae22108cda0e92220fd40745cd18931510b2"
     },
     {
       "case_id": "RES-NEG-013",
       "expected": {
         "accepted": false,
-        "code": "RESOLUTION_ALREADY_OPEN",
-        "enforcement": "BLOCKED",
-        "semantic_status": "UNKNOWN",
+        "code": "PREVIOUS_TERMINAL_RECORD_MISMATCH",
+        "effect_permitted": false,
+        "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+        "resolution": "UNKNOWN",
         "state_changed": false
       },
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
       "polarity": "negative",
-      "sha256": "sha256:b321dce7848643c3723307d31768914e1df67333eb47ccacd2bfe48bacbc1c54"
+      "sha256": "sha256:e6dc8c007e837a9ac2c0af50c87f8b5e2ae59a53afb7e99bbf570172b9b73d2e"
     }
   ],
   "document_type": "aset-seed-resolution-conformance-profile",
   "negative_count": 13,
   "positive_count": 8,
-  "profile_id": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V1",
-  "protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
-  "schema_version": 1,
-  "seed_version": "0.2.0-alpha.2"
+  "profile_id": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V2",
+  "protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
+  "schema_version": 2,
+  "seed_version": "0.3.0-alpha.1"
 }
