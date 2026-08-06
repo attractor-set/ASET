@@ -1,0 +1,485 @@
+{
+  "$defs": {
+    "asetCutoff": {
+      "additionalProperties": false,
+      "properties": {
+        "archive_name": {
+          "const": "ASET-a122e2f-source.zip"
+        },
+        "archive_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_package_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_package_file_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_package_path": {
+          "const": "seed/canonical/CANON_PACKAGE.json"
+        },
+        "commit_sha": {
+          "const": "a122e2f828256501abb645b89046cc866f4466ed"
+        },
+        "manifest_files_count": {
+          "const": 654
+        },
+        "manifest_path": {
+          "const": "MANIFEST.json"
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "name": {
+          "const": "ASET"
+        },
+        "repository_id": {
+          "const": "ASET_SPECIFICATION"
+        },
+        "source": {
+          "const": "GITHUB_BRANCH_ARCHIVE_COMMIT_COMMENT_AND_LOCAL_POST_MERGE_VERIFICATION"
+        },
+        "tree_sha": {
+          "const": "265640e8e842f6a1f384713cfab5c2acacf040b6"
+        },
+        "url": {
+          "const": "https://github.com/attractor-set/ASET"
+        }
+      },
+      "required": [
+        "archive_name",
+        "archive_sha256",
+        "canon_package_digest",
+        "canon_package_file_sha256",
+        "canon_package_path",
+        "commit_sha",
+        "manifest_files_count",
+        "manifest_path",
+        "manifest_sha256",
+        "name",
+        "repository_id",
+        "source",
+        "tree_sha",
+        "url"
+      ],
+      "type": "object"
+    },
+    "asset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_classes": {
+          "items": {
+            "pattern": "^[A-Z0-9_]+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "asset_id": {
+          "pattern": "^BI-S1-[0-9]{3}$",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "paths": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "qualification": {
+          "minLength": 20,
+          "type": "string"
+        },
+        "repository_id": {
+          "enum": [
+            "ASET_SPECIFICATION",
+            "ASET_PYTHON_SQLITE_REFERENCE",
+            "MULTI_REPOSITORY"
+          ]
+        }
+      },
+      "required": [
+        "asset_classes",
+        "asset_id",
+        "name",
+        "repository_id",
+        "paths",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "creator": {
+      "additionalProperties": false,
+      "properties": {
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "pseudonym_is_separate_legal_entity": {
+          "const": false
+        },
+        "public_profile_url": {
+          "format": "uri",
+          "type": "string"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        }
+      },
+      "required": [
+        "legal_name",
+        "public_profile_url",
+        "public_pseudonym",
+        "pseudonym_is_separate_legal_entity"
+      ],
+      "type": "object"
+    },
+    "holder": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_to_legal_entity": {
+          "const": false
+        },
+        "basis": {
+          "const": "INDEPENDENT_CREATION_AND_CONTINUITY_FROM_PARENT_SCHEDULE"
+        },
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        },
+        "type": {
+          "const": "NATURAL_PERSON"
+        }
+      },
+      "required": [
+        "assignment_to_legal_entity",
+        "basis",
+        "legal_name",
+        "public_pseudonym",
+        "type"
+      ],
+      "type": "object"
+    },
+    "path": {
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+      "type": "string"
+    },
+    "referenceCutoff": {
+      "additionalProperties": false,
+      "properties": {
+        "archive_name": {
+          "const": "aset-python-sqlite-2038f84-source.zip"
+        },
+        "archive_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_lock_path": {
+          "const": "canon.lock.json"
+        },
+        "canon_lock_required_package_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_lock_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canon_lock_source_ref": {
+          "const": "a122e2f828256501abb645b89046cc866f4466ed"
+        },
+        "commit_sha": {
+          "const": "2038f84b6b5f6a0aed3636c1685d2c1fb79a1ed1"
+        },
+        "manifest_evidentiary_role": {
+          "const": "NOT_CONTROLLING_FOR_THIS_SUPPLEMENT"
+        },
+        "name": {
+          "const": "aset-python-sqlite"
+        },
+        "profile_id": {
+          "const": "ASET-PYTHON-SQLITE-LEARNING-V1"
+        },
+        "profile_path": {
+          "const": "profile/PROFILE.json"
+        },
+        "profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "repository_id": {
+          "const": "ASET_PYTHON_SQLITE_REFERENCE"
+        },
+        "source": {
+          "const": "GITHUB_BRANCH_ARCHIVE_COMMIT_COMMENT"
+        },
+        "url": {
+          "const": "https://github.com/attractor-set/aset-python-sqlite"
+        }
+      },
+      "required": [
+        "archive_name",
+        "archive_sha256",
+        "canon_lock_path",
+        "canon_lock_required_package_digest",
+        "canon_lock_sha256",
+        "canon_lock_source_ref",
+        "commit_sha",
+        "manifest_evidentiary_role",
+        "name",
+        "profile_id",
+        "profile_path",
+        "profile_sha256",
+        "repository_id",
+        "source",
+        "url"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/governance/ip/background-ip-supplement.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "added_assets": {
+      "items": {
+        "$ref": "#/$defs/asset"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "amendment_rule": {
+      "const": "NEW_SUPPLEMENT_OR_VERSION_NEW_CUTOFF_PRESERVE_PARENT_AND_PRIOR_SUPPLEMENTS"
+    },
+    "brazil_profile": {
+      "additionalProperties": false,
+      "properties": {
+        "applicable_frameworks": {
+          "const": [
+            "LEI_9609_1998",
+            "LEI_9610_1998",
+            "LEI_10973_2004",
+            "DECRETO_9283_2018"
+          ]
+        },
+        "future_company_assignment_required": {
+          "const": true
+        },
+        "inpi_registration_required_for_protection": {
+          "const": false
+        },
+        "inpi_registration_status": {
+          "enum": [
+            "NOT_FILED",
+            "FILED",
+            "REGISTERED"
+          ]
+        },
+        "recommended_contract_annex": {
+          "const": "PROPRIEDADE_INTELECTUAL_PREEXISTENTE"
+        },
+        "university_partnership_rule": {
+          "minLength": 40,
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicable_frameworks",
+        "future_company_assignment_required",
+        "inpi_registration_required_for_protection",
+        "inpi_registration_status",
+        "recommended_contract_annex",
+        "university_partnership_rule"
+      ],
+      "type": "object"
+    },
+    "confidential_evidence_rule": {
+      "minLength": 40,
+      "type": "string"
+    },
+    "continuity_declaration": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_to_company_laboratory_university_or_investor": {
+          "const": false
+        },
+        "client_deliverable": {
+          "const": false
+        },
+        "commissioned_by_current_employer": {
+          "const": false
+        },
+        "current_employer_confidential_information_used": {
+          "const": false
+        },
+        "current_employer_directed_or_supervised": {
+          "const": false
+        },
+        "current_employer_funding_used": {
+          "const": false
+        },
+        "current_employer_resources_used": {
+          "const": false
+        },
+        "developed_outside_employment_scope": {
+          "const": true
+        },
+        "own_equipment_accounts_storage_tools_and_time_used": {
+          "const": true
+        },
+        "statement_basis": {
+          "const": "DECLARATION_BY_CREATOR"
+        }
+      },
+      "required": [
+        "assignment_to_company_laboratory_university_or_investor",
+        "client_deliverable",
+        "commissioned_by_current_employer",
+        "current_employer_confidential_information_used",
+        "current_employer_directed_or_supervised",
+        "current_employer_funding_used",
+        "current_employer_resources_used",
+        "developed_outside_employment_scope",
+        "own_equipment_accounts_storage_tools_and_time_used",
+        "statement_basis"
+      ],
+      "type": "object"
+    },
+    "creator": {
+      "$ref": "#/$defs/creator"
+    },
+    "current_rights_holder": {
+      "$ref": "#/$defs/holder"
+    },
+    "cutoffs": {
+      "items": false,
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/asetCutoff"
+        },
+        {
+          "$ref": "#/$defs/referenceCutoff"
+        }
+      ],
+      "type": "array"
+    },
+    "document_type": {
+      "const": "aset-background-ip-supplement"
+    },
+    "effective_date": {
+      "const": "2026-08-05"
+    },
+    "exclusions": {
+      "items": {
+        "minLength": 3,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "future_ip_rule": {
+      "const": "WORK_CREATED_AFTER_EACH_REPOSITORY_CUTOFF_IS_NOT_AUTOMATICALLY_CLASSIFIED_BY_THIS_SUPPLEMENT"
+    },
+    "jurisdiction_profile": {
+      "const": "BR"
+    },
+    "legal_effect": {
+      "const": "EVIDENTIARY_SUPPLEMENT_NOT_ASSIGNMENT_REGISTRATION_TRADEMARK_REGISTRATION_OR_LEGAL_OPINION"
+    },
+    "license_boundary": {
+      "const": "APACHE_2_0_PERMISSIONS_REMAIN_UNCHANGED_AND_DO_NOT_BY_THEMSELVES_TRANSFER_AUTHORSHIP_OR_OWNERSHIP"
+    },
+    "parent_schedule": {
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "aset-background-ip-schedule"
+        },
+        "evidence_package_name": {
+          "const": "aset-background-ip-schedule-v1-evidence-r3-2026-08-05.tar.gz"
+        },
+        "evidence_package_sha256": {
+          "const": "sha256:3153921cf9546c83113497289b49e4e03e2a5745f073e6dd4bdac1ad1bc81f84"
+        },
+        "release_immutable": {
+          "const": true
+        },
+        "release_published_at": {
+          "const": "2026-08-05T19:18:55Z"
+        },
+        "release_tag": {
+          "const": "aset-background-ip-schedule-v1-2026-08-05"
+        },
+        "release_url": {
+          "const": "https://github.com/attractor-set/ASET/releases/tag/aset-background-ip-schedule-v1-2026-08-05"
+        },
+        "schedule_version": {
+          "const": "1.0"
+        }
+      },
+      "required": [
+        "document_type",
+        "evidence_package_name",
+        "evidence_package_sha256",
+        "release_immutable",
+        "release_published_at",
+        "release_tag",
+        "release_url",
+        "schedule_version"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "PUBLIC_EVIDENTIARY_SUPPLEMENT"
+    },
+    "supplement_id": {
+      "const": "ASET-BACKGROUND-IP-SUPPLEMENT-1"
+    },
+    "supplement_version": {
+      "const": "1.0"
+    }
+  },
+  "required": [
+    "amendment_rule",
+    "added_assets",
+    "brazil_profile",
+    "confidential_evidence_rule",
+    "continuity_declaration",
+    "creator",
+    "current_rights_holder",
+    "cutoffs",
+    "document_type",
+    "effective_date",
+    "exclusions",
+    "future_ip_rule",
+    "jurisdiction_profile",
+    "legal_effect",
+    "license_boundary",
+    "parent_schedule",
+    "schema_version",
+    "status",
+    "supplement_id",
+    "supplement_version"
+  ],
+  "title": "ASET Background IP Supplement",
+  "type": "object"
+}

@@ -7,6 +7,9 @@ Background IP Schedule.
 
 - `background-ip-schedule.json` — canonical machine-readable inventory for Schedule 1.0.
 - `background-ip-schedule.schema.json` — strict JSON Schema.
+- [`../../BACKGROUND_IP_SUPPLEMENT_1.md`](../../BACKGROUND_IP_SUPPLEMENT_1.md), [`../../BACKGROUND_IP_SUPPLEMENT_1.ru.md`](../../BACKGROUND_IP_SUPPLEMENT_1.ru.md) and [`../../BACKGROUND_IP_SUPPLEMENT_1.pt-BR.md`](../../BACKGROUND_IP_SUPPLEMENT_1.pt-BR.md) — public human-readable Supplement 1 editions.
+- `background-ip-supplement-1.json` — canonical machine-readable projection of Supplement 1.
+- `background-ip-supplement.schema.json` — strict Supplement JSON Schema.
 
 The English, Russian and Brazilian Portuguese Schedule editions are maintained as static
 human-readable governance documents. The JSON inventory is the canonical technical projection
@@ -24,12 +27,14 @@ Run repository validation:
 
 ```text
 python tools/validate_background_ip.py
+python tools/validate_background_ip_supplement.py
 ```
 
 In a Git checkout that contains the baseline commit, also run:
 
 ```text
 python tools/validate_background_ip.py --check-git
+python tools/validate_background_ip_supplement.py --check-git --reference-repo /path/to/aset-python-sqlite
 ```
 
 The Git check verifies baseline-commit reachability, the historical `MANIFEST.json` digest and
