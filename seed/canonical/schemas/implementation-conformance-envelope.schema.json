@@ -10,11 +10,20 @@
           "minLength": 1,
           "type": "string"
         },
-        "enforcement": {
-          "$ref": "common.schema.json#/$defs/enforcement"
+        "effect_permitted": {
+          "type": "boolean"
         },
-        "semantic_status": {
-          "$ref": "common.schema.json#/$defs/status"
+        "reason": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "resolution": {
+          "enum": [
+            "UNKNOWN",
+            "ALLOW",
+            "BLOCK"
+          ]
         },
         "state_changed": {
           "type": "boolean"
@@ -24,8 +33,9 @@
         "accepted",
         "code",
         "state_changed",
-        "semantic_status",
-        "enforcement"
+        "resolution",
+        "effect_permitted",
+        "reason"
       ],
       "type": "object"
     },
@@ -33,7 +43,7 @@
       "additionalProperties": false,
       "properties": {
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
         },
         "results": {
           "items": {
@@ -58,21 +68,18 @@
           "minLength": 1,
           "type": "string"
         },
-        "final_state": {
-          "type": [
-            "object",
-            "null"
-          ]
+        "final_store": {
+          "type": "object"
         },
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
         }
       },
       "required": [
         "protocol",
         "case_id",
         "actual",
-        "final_state"
+        "final_store"
       ],
       "type": "object"
     },
@@ -96,7 +103,7 @@
           "type": "object"
         },
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
         },
         "supported_operations": {
           "allOf": [
@@ -137,5 +144,5 @@
   },
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/implementation-conformance-envelope.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ASET Seed resolution conformance response envelopes"
+  "title": "ASET Seed minimal resolution conformance response envelopes"
 }

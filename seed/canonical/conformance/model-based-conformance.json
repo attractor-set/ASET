@@ -1,14 +1,14 @@
 {
   "document_type": "aset-model-based-conformance",
   "model": {
-    "command_set": "OPEN_RESOLUTION, RESOLVE_ACCEPT, RESOLVE_DENY and ESCALATE_UNKNOWN",
+    "command_set": "REGISTER_REQUEST, SUBMIT_RESOLUTION and EVALUATE_RESOLUTION",
     "formal_projection": "seed/canonical/formal/SeedResolution.tla",
-    "state_set": "ResolutionCycle states satisfying the Seed resolution invariants",
-    "transition_relation": "delta(state, command) produces a canonical result or rejects with unchanged state"
+    "state_set": "Append-only request and terminal-record stores satisfying the minimal Seed invariants",
+    "transition_relation": "delta(store, operation) appends a valid request or record or evaluates without mutation; invalid and unrecognized candidates are outside the Seed transition relation"
   },
   "normative": true,
-  "profile_boundary": "Federation topology, execution, evidence acquisition, memory, planning, storage, durability and cryptographic providers are extension or implementation responsibilities.",
-  "rejection_obligation": "A rejected command MUST preserve canonical state and state root.",
-  "resolution_obligation": "UNKNOWN may narrow only to ACCEPT or DENY, or remain UNKNOWN while moving through an explicitly authorized acyclic Resolution Authority chain.",
-  "schema_version": 2
+  "profile_boundary": "Policy evaluation, evidence acquisition, workflow, enforcement, federation, storage and cryptographic mechanisms are extension or implementation responsibilities.",
+  "resolution_obligation": "UNKNOWN is derived when no unique valid terminal record exists; only one valid locally authorized exact-binding ALLOW record permits the effect.",
+  "schema_version": 3,
+  "transition_boundary_obligation": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate MUST NOT become a Seed transition."
 }

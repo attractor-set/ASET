@@ -1,19 +1,13 @@
 {
-  "$id": "https://spec.aset.example/seed/0.2/schemas/payload-open-resolution.schema.json",
+  "$id": "https://spec.aset.example/seed/0.3/schemas/resolution-binding.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "authority": {
-      "$ref": "resolution-authority.schema.json"
+    "binding_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
     },
     "context_id": {
       "$ref": "common.schema.json#/$defs/identifier"
-    },
-    "escalation_grants": {
-      "items": {
-        "$ref": "escalation-grant.schema.json"
-      },
-      "type": "array"
     },
     "policy_epoch": {
       "minimum": 0,
@@ -21,9 +15,6 @@
     },
     "question_digest": {
       "$ref": "common.schema.json#/$defs/digest"
-    },
-    "resolution_id": {
-      "$ref": "common.schema.json#/$defs/identifier"
     },
     "scope": {
       "$ref": "common.schema.json#/$defs/scope"
@@ -33,13 +24,12 @@
     }
   },
   "required": [
-    "resolution_id",
     "context_id",
     "state_root",
     "question_digest",
     "policy_epoch",
     "scope",
-    "authority"
+    "binding_digest"
   ],
   "type": "object"
 }

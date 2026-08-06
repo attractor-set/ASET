@@ -43,7 +43,7 @@
       "const": 4
     },
     "version": {
-      "const": "0.2.0-alpha.2-resolution-core"
+      "const": "0.3.0-alpha.1-minimal-strong-core"
     }
   },
   "required": [

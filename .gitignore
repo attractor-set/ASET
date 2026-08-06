@@ -9,3 +9,6 @@ build/
 dist/
 .idea/
 .vscode/
+.tooling/
+states/
+.tlacache/

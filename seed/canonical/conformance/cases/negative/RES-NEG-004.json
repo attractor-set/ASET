@@ -1,53 +1,61 @@
 {
   "candidate": {
-    "kind": "RESOLVE_DENY",
+    "kind": "REGISTER_REQUEST",
     "payload": {
-      "authority_id": "authority:local",
-      "context_id": "context:local",
-      "evidence_digests": [
-        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
-      ],
-      "policy_epoch": 1,
-      "question_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
-      "resolution_id": "resolution:001",
-      "scope": [
-        "repo:patch"
-      ],
-      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      "request": {
+        "binding": {
+          "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+          "context_id": "ctx.local",
+          "policy_epoch": 1,
+          "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope": [
+            "effect:publish"
+          ],
+          "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "initial_authority_binding_digest": "sha256:a59dcf9a37fe20a954493350b44a6f983ace899be77c5a4fc49476f4c95da254",
+        "previous_resolution_id": null,
+        "previous_terminal_record_digest": null,
+        "request_digest": "sha256:a9a9bda6e83487d4db055b44963edc581c8a65cc27c7bb3c568fcfa13f5605b7",
+        "resolution_id": "res.mismatch"
+      }
     }
   },
   "case_id": "RES-NEG-004",
-  "description": "A different question digest is rejected.",
+  "description": "Reject an initial Authority binding from a different exact binding.",
   "expected": {
     "accepted": false,
-    "code": "QUESTION_DIGEST_MISMATCH",
-    "enforcement": "BLOCKED",
-    "semantic_status": "UNKNOWN",
+    "code": "LOCAL_AUTHORITY_BINDING_MISMATCH",
+    "effect_permitted": false,
+    "reason": "REQUEST_NOT_FOUND_OR_INVALID",
+    "resolution": "UNKNOWN",
     "state_changed": false
   },
-  "initial_state": {
-    "authority_chain": [
-      "authority:local"
+  "initial_store": {
+    "authority_bindings": [
+      {
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      },
+      {
+        "authority_binding_digest": "sha256:a59dcf9a37fe20a954493350b44a6f983ace899be77c5a4fc49476f4c95da254",
+        "authority_id": "authority.other-root",
+        "binding_digest": "sha256:bed87a20469ae35fc516742005f4851f7be80855a08a9d6d265d82907f5d7fb1",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      }
     ],
-    "context_id": "context:local",
-    "current_authority_id": "authority:local",
-    "enforcement": "BLOCKED",
-    "escalation_grants": [],
-    "policy_epoch": 1,
-    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "authority_grants": [],
     "records": [],
-    "resolution_id": "resolution:001",
-    "scope": [
-      "repo:patch"
-    ],
-    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-    "status": "UNKNOWN"
+    "requests": []
   },
-  "postconditions": [
-    {
-      "equals": "UNKNOWN",
-      "path": "/status"
-    }
-  ],
+  "postconditions": [],
   "setup": []
 }

@@ -8,18 +8,26 @@
       "automatic external effects",
       "physical-world truth",
       "deployment-specific key management",
-      "external certification"
+      "external certification",
+      "machine-canon-to-TLA refinement proof",
+      "implementation refinement proof",
+      "liveness proof",
+      "cryptographic correctness proof"
     ],
     "included": [
-      "machine-readable resolution core",
+      "machine-readable minimal resolution-recognition kernel",
       "implementation-neutral canon package",
       "deterministic official editions",
-      "breaking migration declaration",
-      "bounded and TLC decision-lattice checks",
+      "breaking semantic simplification declaration",
+      "bounded and TLC request-and-record checks",
       "portable resolution conformance cases",
       "historical Seed release integrity",
       "external ecosystem registry integrity",
-      "release and manifest integrity"
+      "release and manifest integrity",
+      "complete normative requirement and invariant coverage",
+      "semantic mutation closure with zero surviving canonical mutants",
+      "unbounded deductive safety closure of the abstract TLA+ Seed projection",
+      "stable machine-checkable traceability from canonical Seed invariants to abstract TLA+ operators and TLAPS theorems"
     ]
   },
   "document_type": "aset-repository-release-gates",
@@ -144,8 +152,32 @@
       "id": "ASET-GATE-025",
       "mandatory": true,
       "name": "external_ecosystem_registry_validation"
+    },
+    {
+      "evidence": "python tools/check_invariant_coverage.py --mutation-report dist/invariant-mutations.json",
+      "id": "ASET-GATE-026",
+      "mandatory": true,
+      "name": "complete_invariant_coverage"
+    },
+    {
+      "evidence": "python tools/run_invariant_mutations.py --output dist/invariant-mutations.json",
+      "id": "ASET-GATE-027",
+      "mandatory": true,
+      "name": "semantic_mutation_closure"
+    },
+    {
+      "evidence": "python tools/run_tlaps.py --tlapm $TLAPM_BIN --output dist/tlaps-proof.json",
+      "id": "ASET-GATE-028",
+      "mandatory": true,
+      "name": "unbounded_tlaps_safety_proof"
+    },
+    {
+      "evidence": "python tools/check_proof_traceability.py --output dist/proof-traceability-check.json",
+      "id": "ASET-GATE-029",
+      "mandatory": true,
+      "name": "proof_traceability_integrity"
     }
   ],
-  "profile": "ASET_SEED_RESOLUTION_CORE_ALPHA2",
-  "schema_version": 6
+  "profile": "ASET_SEED_MINIMAL_STRONG_CORE_ALPHA1",
+  "schema_version": 7
 }

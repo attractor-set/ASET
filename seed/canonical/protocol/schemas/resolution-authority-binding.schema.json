@@ -1,0 +1,39 @@
+{
+  "$id": "https://spec.aset.example/seed/0.3/schemas/resolution-authority-binding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_binding_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "binding_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "constitution_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "context_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "delegation_allowed": {
+      "type": "boolean"
+    },
+    "policy_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "authority_binding_digest",
+    "authority_id",
+    "context_id",
+    "policy_epoch",
+    "binding_digest",
+    "constitution_digest",
+    "delegation_allowed"
+  ],
+  "type": "object"
+}

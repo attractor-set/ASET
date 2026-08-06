@@ -3,14 +3,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "digest_profile_ref": {
+      "const": "seed/canonical/protocol/digest-profile.json"
+    },
     "document_type": {
       "const": "aset-seed-resolution-protocol-profile"
-    },
-    "enforcement_values": {
-      "const": [
-        "BLOCKED",
-        "ALLOW"
-      ]
     },
     "implementation_precedence": {
       "const": "NONE"
@@ -18,14 +15,28 @@
     "normative": {
       "const": true
     },
+    "operation_kinds": {
+      "const": [
+        "REGISTER_REQUEST",
+        "SUBMIT_RESOLUTION",
+        "EVALUATE_RESOLUTION"
+      ]
+    },
     "profile_id": {
-      "const": "ASET-SEED-RESOLUTION-WIRE-V1"
+      "const": "ASET-SEED-RESOLUTION-WIRE-V2"
+    },
+    "resolution_values": {
+      "const": [
+        "UNKNOWN",
+        "ALLOW",
+        "BLOCK"
+      ]
     },
     "schema_count": {
-      "const": 10
+      "const": 12
     },
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "schemas": {
       "items": {
@@ -53,26 +64,17 @@
         ],
         "type": "object"
       },
-      "maxItems": 10,
-      "minItems": 10,
+      "maxItems": 12,
+      "minItems": 12,
       "type": "array"
     },
     "seed_version": {
-      "const": "0.2.0-alpha.2"
+      "const": "0.3.0-alpha.1"
     },
-    "status_values": {
+    "stored_terminal_values": {
       "const": [
-        "UNKNOWN",
-        "ACCEPT",
-        "DENY"
-      ]
-    },
-    "transition_kinds": {
-      "const": [
-        "OPEN_RESOLUTION",
-        "RESOLVE_ACCEPT",
-        "RESOLVE_DENY",
-        "ESCALATE_UNKNOWN"
+        "ALLOW",
+        "BLOCK"
       ]
     }
   },
@@ -83,11 +85,12 @@
     "seed_version",
     "normative",
     "implementation_precedence",
-    "status_values",
-    "enforcement_values",
-    "transition_kinds",
+    "resolution_values",
+    "stored_terminal_values",
+    "operation_kinds",
     "schemas",
-    "schema_count"
+    "schema_count",
+    "digest_profile_ref"
   ],
   "type": "object"
 }

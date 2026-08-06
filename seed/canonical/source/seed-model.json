@@ -6,7 +6,7 @@
     "external_third_party_audit": "PENDING",
     "implementation_conformance": "BLACK_BOX_REQUIRED_FOR_EACH_CLAIMED_PROFILE",
     "implementation_neutrality": "REQUIRED",
-    "predecessor_compatibility": "BREAKING_SEMANTIC_NARROWING",
+    "predecessor_compatibility": "BREAKING_SEMANTIC_SIMPLIFICATION",
     "tlc_model_check": "REQUIRED_FOR_RELEASE"
   },
   "canonicality": {
@@ -22,121 +22,93 @@
   "concepts": [
     {
       "definitions": {
-        "en": "One immutably bound cycle for resolving an exact normative question.",
-        "pt-BR": "Um ciclo imutavelmente vinculado para resolver uma questão normativa exata.",
-        "ru": "Один неизменяемо связанный цикл разрешения точного нормативного вопроса."
+        "en": "The exact context, state root, question, policy epoch and scope to which one resolution applies.",
+        "pt-BR": "A vinculação exata de contexto, raiz de estado, questão, época de política e escopo à qual uma resolução se aplica.",
+        "ru": "Точная связка контекста, корня состояния, вопроса, эпохи политики и области, к которой относится одно разрешение."
       },
-      "id": "seed.resolution_cycle",
+      "id": "seed.resolution_binding",
       "labels": {
-        "en": "resolution cycle",
-        "pt-BR": "ciclo de resolução",
-        "ru": "цикл разрешения"
+        "en": "resolution binding",
+        "pt-BR": "vinculação de resolução",
+        "ru": "связка разрешения"
       },
-      "symbol": "ResolutionCycle"
+      "symbol": "ResolutionBinding"
     },
     {
       "definitions": {
-        "en": "The exact context, state-root and policy-epoch binding within which a question is resolved.",
-        "pt-BR": "A vinculação exata de contexto, raiz de estado e época de política dentro da qual uma questão é resolvida.",
-        "ru": "Точная связка контекста, корня состояния и эпохи политики, внутри которой разрешается вопрос."
+        "en": "A fresh identifier bound to one exact resolution binding and an initial locally recognized Authority.",
+        "pt-BR": "Um identificador novo vinculado a uma vinculação exata de resolução e a uma Authority inicial reconhecida localmente.",
+        "ru": "Свежий идентификатор, связанный с одной точной связкой разрешения и начальной локально признанной Authority."
       },
-      "id": "seed.context_binding",
+      "id": "seed.resolution_request",
       "labels": {
-        "en": "context binding",
-        "pt-BR": "vinculação de contexto",
-        "ru": "связка контекста"
+        "en": "resolution request",
+        "pt-BR": "solicitação de resolução",
+        "ru": "запрос разрешения"
       },
-      "symbol": "ContextBinding"
+      "symbol": "ResolutionRequest"
     },
     {
       "definitions": {
-        "en": "A canonically digested question and its bounded resolution scope.",
-        "pt-BR": "Uma questão resumida canonicamente e seu escopo limitado de resolução.",
-        "ru": "Канонически хешированный вопрос и его ограниченная область решения."
+        "en": "The derived value UNKNOWN, or the terminal value ALLOW or BLOCK.",
+        "pt-BR": "O valor derivado UNKNOWN ou o valor terminal ALLOW ou BLOCK.",
+        "ru": "Производное значение UNKNOWN либо терминальное значение ALLOW или BLOCK."
       },
-      "id": "seed.resolution_question",
+      "id": "seed.resolution_value",
       "labels": {
-        "en": "resolution question",
-        "pt-BR": "questão de resolução",
-        "ru": "вопрос разрешения"
+        "en": "resolution",
+        "pt-BR": "resolução",
+        "ru": "разрешение"
       },
-      "symbol": "ResolutionQuestion"
+      "symbol": "Resolution"
     },
     {
       "definitions": {
-        "en": "The normative status UNKNOWN, ACCEPT or DENY within one cycle.",
-        "pt-BR": "O estado normativo UNKNOWN, ACCEPT ou DENY dentro de um ciclo.",
-        "ru": "Нормативный статус UNKNOWN, ACCEPT или DENY внутри одного цикла."
+        "en": "An Authority explicitly recognized by one Context for one exact binding and policy epoch.",
+        "pt-BR": "Uma Authority explicitamente reconhecida por um Context para uma vinculação exata e uma época de política.",
+        "ru": "Authority, явно признанная одним Context для одной точной связки и эпохи политики."
       },
-      "id": "seed.resolution_status",
+      "id": "seed.local_authority",
       "labels": {
-        "en": "resolution status",
-        "pt-BR": "estado de resolução",
-        "ru": "статус разрешения"
+        "en": "local Authority",
+        "pt-BR": "Authority local",
+        "ru": "локальная Authority"
       },
-      "symbol": "ResolutionStatus"
+      "symbol": "LocalAuthority"
     },
     {
       "definitions": {
-        "en": "The operational consequence of a decision: BLOCKED for UNKNOWN and DENY, ALLOW only for ACCEPT.",
-        "pt-BR": "A consequência operacional de uma decisão: BLOCKED para UNKNOWN e DENY, ALLOW somente para ACCEPT.",
-        "ru": "Операционное следствие решения: BLOCKED для UNKNOWN и DENY, ALLOW только для ACCEPT."
+        "en": "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants.",
+        "pt-BR": "Uma cadeia localmente enraizada, exatamente vinculada, acíclica e não expansiva de concessões explícitas de Authority.",
+        "ru": "Локально укоренённая, точно связанная, ациклическая и нерасширяющая цепочка явных разрешений Authority."
       },
-      "id": "seed.enforcement_disposition",
+      "id": "seed.authority_proof",
       "labels": {
-        "en": "enforcement disposition",
-        "pt-BR": "disposição de execução",
-        "ru": "режим исполнения"
+        "en": "Authority proof",
+        "pt-BR": "prova de Authority",
+        "ru": "доказательство Authority"
       },
-      "symbol": "EnforcementDisposition"
+      "symbol": "AuthorityProof"
     },
     {
       "definitions": {
-        "en": "An explicitly empowered subject able to narrow UNKNOWN in an exact scope and epoch.",
-        "pt-BR": "Um sujeito explicitamente autorizado capaz de restringir UNKNOWN em um escopo e época exatos.",
-        "ru": "Явно уполномоченный субъект, способный сузить UNKNOWN в точной области и эпохе."
-      },
-      "id": "seed.resolution_authority",
-      "labels": {
-        "en": "resolution authority",
-        "pt-BR": "autoridade de resolução",
-        "ru": "власть разрешения"
-      },
-      "symbol": "ResolutionAuthority"
-    },
-    {
-      "definitions": {
-        "en": "An explicit authorization to pass an unresolved question to the next Resolution Authority without automatic authority inheritance.",
-        "pt-BR": "Uma autorização explícita para encaminhar uma questão não resolvida à próxima Resolution Authority sem herança automática de autoridade.",
-        "ru": "Явное разрешение передать неразрешённый вопрос следующей Resolution Authority без автоматического наследования власти."
-      },
-      "id": "seed.escalation_grant",
-      "labels": {
-        "en": "escalation grant",
-        "pt-BR": "autorização de escalonamento",
-        "ru": "разрешение эскалации"
-      },
-      "symbol": "EscalationGrant"
-    },
-    {
-      "definitions": {
-        "en": "A content-addressed reference to material used when narrowing UNKNOWN.",
-        "pt-BR": "Uma referência endereçada por conteúdo ao material usado ao restringir UNKNOWN.",
-        "ru": "Контентно-адресуемая ссылка на материал, использованный при сужении UNKNOWN."
+        "en": "A content-addressed non-authoritative input cited as the basis of a terminal record.",
+        "pt-BR": "Uma entrada não autoritativa endereçada por conteúdo, citada como base de um registro terminal.",
+        "ru": "Контентно-адресуемый неавторитетный вход, указанный как основание терминальной записи."
       },
       "id": "seed.evidence_reference",
       "labels": {
         "en": "evidence reference",
         "pt-BR": "referência de evidência",
-        "ru": "ссылка на доказательство"
+        "ru": "ссылка на основание"
       },
       "symbol": "EvidenceReference"
     },
     {
       "definitions": {
-        "en": "An immutable record of opening, escalation or terminal resolution and its provenance.",
-        "pt-BR": "Um registro imutável de abertura, escalonamento ou resolução terminal e sua proveniência.",
-        "ru": "Неизменяемая запись открытия, эскалации или терминального решения и его provenance."
+        "en": "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof.",
+        "pt-BR": "Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata e prova de Authority.",
+        "ru": "Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой и доказательством Authority."
       },
       "id": "seed.resolution_record",
       "labels": {
@@ -148,62 +120,39 @@
     },
     {
       "definitions": {
-        "en": "An acyclic sequence of explicitly authorized Resolution Authorities for one question.",
-        "pt-BR": "Uma sequência acíclica de Resolution Authorities explicitamente autorizadas para uma questão.",
-        "ru": "Ациклическая последовательность явно уполномоченных Resolution Authorities для одного вопроса."
+        "en": "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record.",
+        "pt-BR": "Um vínculo de uma nova solicitação ao registro terminal único de uma resolução anterior sem alterar esse registro.",
+        "ru": "Связь нового запроса с уникальной терминальной записью предыдущего разрешения без изменения этой записи."
       },
-      "id": "seed.resolution_chain",
+      "id": "seed.reconsideration_link",
       "labels": {
-        "en": "resolution chain",
-        "pt-BR": "cadeia de resolução",
-        "ru": "цепочка разрешения"
+        "en": "reconsideration link",
+        "pt-BR": "vínculo de reconsideração",
+        "ru": "связь пересмотра"
       },
-      "symbol": "ResolutionChain"
+      "symbol": "ReconsiderationLink"
     }
   ],
   "conformance_profile_ref": "seed/canonical/conformance/conformance-profile.json",
-  "decision_lattice": {
-    "accept_enforcement": "ALLOW",
-    "deny_enforcement": "BLOCKED",
-    "incomparable": [
-      "ACCEPT",
-      "DENY"
-    ],
-    "information_order": [
-      {
-        "less_or_equal": [
-          "UNKNOWN",
-          "ACCEPT"
-        ]
-      },
-      {
-        "less_or_equal": [
-          "UNKNOWN",
-          "DENY"
-        ]
-      }
-    ],
-    "initial": "UNKNOWN",
-    "terminal": [
-      "ACCEPT",
-      "DENY"
-    ],
-    "unknown_enforcement": "BLOCKED"
-  },
   "implementation_boundary": {
     "conformance_protocol_ref": "seed/canonical/conformance/implementation-conformance-protocol.json",
     "implementation_precedence": "NONE",
     "normative_status": "IMPLEMENTATION_NEUTRAL",
-    "profile_rule": "Profiles and extensions may add authorities, evidence procedures, federation topology and operational guarantees, but they may not authorize an effect from UNKNOWN, weaken exact binding, expand scope during escalation, mutate a terminal decision within one cycle, or claim semantic precedence.",
+    "profile_rule": "Profiles and extensions may produce evidence, assessments, policies, authority proof material and transport, but they may not create ALLOW without one valid locally rooted exact-binding terminal ResolutionRecord, weaken fail-closed evaluation, mutate a terminal record, reuse a resolution_id for reconsideration, or claim semantic precedence.",
     "required_observables": [
       "accepted",
       "code",
       "state_changed",
-      "semantic_status",
-      "enforcement",
-      "final_state_root where specified"
+      "resolution",
+      "effect_permitted",
+      "reason",
+      "final_store where specified"
     ],
     "unspecified_by_seed": [
+      "policy evaluation language",
+      "evidence acquisition",
+      "orchestration semantics",
+      "enforcement mechanism",
       "storage engine",
       "durability level",
       "concurrency control",
@@ -211,168 +160,226 @@
       "consensus protocol",
       "cryptographic provider",
       "key custody",
-      "execution engine",
-      "planning",
-      "memory",
       "federation topology",
+      "AI model",
       "artifact retention"
     ]
   },
   "invariants": [
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-001"
+      ],
       "id": "SEED-INV-001",
       "texts": {
-        "en": "Every valid status is UNKNOWN, ACCEPT or DENY.",
-        "pt-BR": "Todo estado válido é UNKNOWN, ACCEPT ou DENY.",
-        "ru": "Каждый допустимый статус принадлежит UNKNOWN, ACCEPT или DENY."
+        "en": "Every valid derived resolution is UNKNOWN, ALLOW or BLOCK.",
+        "pt-BR": "Toda resolução derivada válida é UNKNOWN, ALLOW ou BLOCK.",
+        "ru": "Каждое допустимое производное разрешение принадлежит UNKNOWN, ALLOW или BLOCK."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-002"
+      ],
       "id": "SEED-INV-002",
       "texts": {
-        "en": "UNKNOWN is always paired with BLOCKED.",
-        "pt-BR": "UNKNOWN está sempre associado a BLOCKED.",
-        "ru": "UNKNOWN всегда связан с BLOCKED."
+        "en": "Effect permission is true if and only if the unique valid terminal record is ALLOW.",
+        "pt-BR": "A permissão do efeito é verdadeira se, e somente se, o único registro terminal válido for ALLOW.",
+        "ru": "Разрешение эффекта истинно тогда и только тогда, когда единственная действительная терминальная запись равна ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-003"
+      ],
       "id": "SEED-INV-003",
       "texts": {
-        "en": "DENY is always paired with BLOCKED.",
-        "pt-BR": "DENY está sempre associado a BLOCKED.",
-        "ru": "DENY всегда связан с BLOCKED."
+        "en": "UNKNOWN and BLOCK never permit an effect.",
+        "pt-BR": "UNKNOWN e BLOCK nunca permitem um efeito.",
+        "ru": "UNKNOWN и BLOCK никогда не разрешают эффект."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-004"
+      ],
       "id": "SEED-INV-004",
       "texts": {
-        "en": "ALLOW is possible only with ACCEPT.",
-        "pt-BR": "ALLOW é possível somente com ACCEPT.",
-        "ru": "ALLOW возможен только при ACCEPT."
+        "en": "Every request and terminal record preserves one exact binding digest.",
+        "pt-BR": "Toda solicitação e registro terminal preservam um único digest exato de vinculação.",
+        "ru": "Каждый запрос и терминальная запись сохраняют один точный digest связки."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-005"
+      ],
       "id": "SEED-INV-005",
       "texts": {
-        "en": "A terminal decision is immutable within one resolution_id.",
-        "pt-BR": "Uma decisão terminal é imutável dentro de um resolution_id.",
-        "ru": "Терминальное решение неизменяемо внутри одного resolution_id."
+        "en": "Every valid terminal record is rooted in a local Authority binding.",
+        "pt-BR": "Todo registro terminal válido está enraizado em uma vinculação de Authority local.",
+        "ru": "Каждая действительная терминальная запись укоренена в локальной связке Authority."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-006"
+      ],
       "id": "SEED-INV-006",
       "texts": {
-        "en": "Resolution Authority must match the context, scope and policy epoch.",
-        "pt-BR": "A Resolution Authority deve corresponder ao contexto, escopo e época de política.",
-        "ru": "Resolution Authority должна совпадать по context, scope и policy epoch."
+        "en": "Every delegated Authority proof is exact-binding, acyclic and non-expanding.",
+        "pt-BR": "Toda prova de Authority delegada é exatamente vinculada, acíclica e não expansiva.",
+        "ru": "Каждое делегированное доказательство Authority точно связано, ациклично и не расширяет полномочие."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-007"
+      ],
       "id": "SEED-INV-007",
       "texts": {
-        "en": "Escalation is possible only from UNKNOWN through an explicit EscalationGrant.",
-        "pt-BR": "O escalonamento é possível somente a partir de UNKNOWN por meio de um EscalationGrant explícito.",
-        "ru": "Эскалация возможна только из UNKNOWN по явному EscalationGrant."
+        "en": "Evidence and external statements are non-authoritative inputs.",
+        "pt-BR": "Evidence e declarações externas são entradas não autoritativas.",
+        "ru": "Evidence и внешние утверждения являются неавторитетными входами."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-008"
+      ],
       "id": "SEED-INV-008",
       "texts": {
-        "en": "Escalation preserves question identity and does not expand scope.",
-        "pt-BR": "O escalonamento preserva a identidade da questão e não amplia o escopo.",
-        "ru": "Эскалация сохраняет идентичность вопроса и не расширяет scope."
+        "en": "At most one valid terminal record exists for one resolution_id.",
+        "pt-BR": "Existe no máximo um registro terminal válido para um resolution_id.",
+        "ru": "Для одного resolution_id существует не более одной действительной терминальной записи."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-009"
+      ],
       "id": "SEED-INV-009",
       "texts": {
-        "en": "The Resolution Authority chain contains no repeated authority.",
-        "pt-BR": "A cadeia de Resolution Authority não contém autoridade repetida.",
-        "ru": "Цепочка Resolution Authority не содержит повторов."
+        "en": "Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.",
+        "pt-BR": "Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.",
+        "ru": "Конфликтующий или недействительный терминальный материал даёт UNKNOWN и никогда не ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-010"
+      ],
       "id": "SEED-INV-010",
       "texts": {
-        "en": "ResolutionRecord entries are appended monotonically and are never rewritten.",
-        "pt-BR": "Os registros ResolutionRecord são acrescentados monotonicamente e nunca reescritos.",
-        "ru": "ResolutionRecord добавляется монотонно и не переписывается."
+        "en": "Resolution records are append-only, immutable and content-addressed.",
+        "pt-BR": "Registros de resolução são append-only, imutáveis e endereçados por conteúdo.",
+        "ru": "Записи разрешения являются append-only, неизменяемыми и контентно-адресуемыми."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-011"
+      ],
       "id": "SEED-INV-011",
       "texts": {
-        "en": "A rejected command preserves state and state root.",
-        "pt-BR": "Um comando rejeitado preserva o estado e a raiz de estado.",
-        "ru": "Отклонённая команда сохраняет состояние и state root."
+        "en": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.",
+        "pt-BR": "Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.",
+        "ru": "Только признанные переходы Seed могут изменять каноническое хранилище; недействительный или непризнанный кандидат не является переходом Seed."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-012"
+      ],
       "id": "SEED-INV-012",
       "texts": {
-        "en": "A new reconsideration of a terminal decision uses a new resolution_id.",
-        "pt-BR": "Uma nova reconsideração de uma decisão terminal usa um novo resolution_id.",
-        "ru": "Новый пересмотр терминального решения использует новый resolution_id."
+        "en": "Reconsideration uses a fresh resolution_id linked to a prior unique terminal record.",
+        "pt-BR": "A reconsideração usa um resolution_id novo vinculado a um registro terminal único anterior.",
+        "ru": "Пересмотр использует свежий resolution_id, связанный с предыдущей уникальной терминальной записью."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     }
   ],
@@ -381,8 +388,8 @@
     "en",
     "pt-BR"
   ],
-  "model_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
-  "predecessor": "ASET Seed 0.1-rc12 implementation-neutral candidate",
+  "model_id": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
+  "predecessor": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
   "protocol_profile_ref": "seed/canonical/protocol/protocol-profile.json",
   "publication": {
     "headings": {
@@ -453,321 +460,314 @@
       }
     },
     "titles": {
-      "en": "ASET Seed 0.2 alpha — Resolution Core",
-      "pt-BR": "ASET Seed 0.2 alpha — Núcleo de Resolução",
-      "ru": "ASET Seed 0.2 alpha — ядро разрешения"
+      "en": "ASET Seed Minimal Resolution Kernel 0.3 alpha 1",
+      "pt-BR": "Núcleo Mínimo de Resolução ASET Seed 0.3 alpha 1",
+      "ru": "Минимальное ядро разрешения ASET Seed 0.3 alpha 1"
     }
   },
   "requirements": [
     {
-      "area": "Resolution",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-001",
       "modality": "MUST",
-      "predicate": "open_as_unknown_blocked",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_cycle",
+      "predicate": "binding_exact",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "A new resolution cycle MUST open as UNKNOWN with BLOCKED enforcement.",
-        "pt-BR": "Um novo ciclo de resolução DEVE ser aberto como UNKNOWN com execução BLOCKED.",
-        "ru": "Новый цикл разрешения ДОЛЖЕН открываться как UNKNOWN с режимом BLOCKED."
+        "en": "ResolutionBinding MUST contain exact context_id, state_root, question_digest, policy_epoch and scope values and a canonical binding digest.",
+        "pt-BR": "ResolutionBinding DEVE conter valores exatos de context_id, state_root, question_digest, policy_epoch e scope, além de um digest canônico da vinculação.",
+        "ru": "ResolutionBinding ДОЛЖЕН содержать точные context_id, state_root, question_digest, policy_epoch и scope, а также канонический digest связки."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Decision lattice",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-002",
       "modality": "MUST",
-      "predicate": "use_three_status_lattice",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_status",
+      "predicate": "request_fresh",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "A cycle status MUST be one of UNKNOWN, ACCEPT, DENY; only ACCEPT and DENY are terminal.",
-        "pt-BR": "O estado de um ciclo DEVE ser UNKNOWN, ACCEPT ou DENY; somente ACCEPT e DENY são terminais.",
-        "ru": "Статус цикла ДОЛЖЕН принадлежать множеству UNKNOWN, ACCEPT, DENY; терминальными являются только ACCEPT и DENY."
+        "en": "Every ResolutionRequest MUST use a fresh resolution_id and bind one exact ResolutionBinding.",
+        "pt-BR": "Toda ResolutionRequest DEVE usar um resolution_id novo e vincular uma ResolutionBinding exata.",
+        "ru": "Каждый ResolutionRequest ДОЛЖЕН использовать свежий resolution_id и связывать одну точную ResolutionBinding."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Fail closed",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-003",
-      "modality": "MUST_NOT",
-      "predicate": "authorize_from_unknown",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.enforcement_disposition",
+      "modality": "MUST",
+      "predicate": "resolution_domain",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "UNKNOWN MUST NOT authorize an external effect and MUST NOT be silently coerced to DENY.",
-        "pt-BR": "UNKNOWN NÃO DEVE autorizar um efeito externo nem ser convertido silenciosamente em DENY.",
-        "ru": "UNKNOWN НЕ ДОЛЖЕН разрешать внешний эффект и НЕ ДОЛЖЕН неявно подменяться DENY."
+        "en": "The derived Resolution MUST be UNKNOWN, ALLOW or BLOCK; only ALLOW and BLOCK are stored terminal values.",
+        "pt-BR": "A Resolution derivada DEVE ser UNKNOWN, ALLOW ou BLOCK; somente ALLOW e BLOCK são valores terminais armazenados.",
+        "ru": "Производное Resolution ДОЛЖНО быть UNKNOWN, ALLOW или BLOCK; хранимыми терминальными значениями являются только ALLOW и BLOCK."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Enforcement",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-004",
       "modality": "MUST",
-      "predicate": "bind_enforcement_to_status",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.enforcement_disposition",
+      "predicate": "allow_only",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "BLOCKED MUST correspond to UNKNOWN and DENY; ALLOW MAY correspond only to ACCEPT.",
-        "pt-BR": "BLOCKED DEVE corresponder a UNKNOWN e DENY; ALLOW PODE corresponder somente a ACCEPT.",
-        "ru": "BLOCKED ДОЛЖЕН соответствовать UNKNOWN и DENY; ALLOW МОЖЕТ соответствовать только ACCEPT."
+        "en": "An exact bound effect MUST be permitted if and only if the unique valid terminal ResolutionRecord is ALLOW.",
+        "pt-BR": "Um efeito exatamente vinculado DEVE ser permitido se, e somente se, o único ResolutionRecord terminal válido for ALLOW.",
+        "ru": "Точно связанный эффект ДОЛЖЕН быть разрешён тогда и только тогда, когда единственная действительная терминальная ResolutionRecord имеет значение ALLOW."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Exact binding",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-005",
       "modality": "MUST",
-      "predicate": "bind_exact_question_state_policy",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.context_binding",
+      "predicate": "fail_closed",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Every cycle MUST bind exact context_id, state_root, question_digest, policy_epoch and scope values.",
-        "pt-BR": "Cada ciclo DEVE vincular valores exatos de context_id, state_root, question_digest, policy_epoch e scope.",
-        "ru": "Каждый цикл ДОЛЖЕН быть связан с точными context_id, state_root, question_digest, policy_epoch и scope."
+        "en": "UNKNOWN and BLOCK MUST prohibit the effect; absence, invalidity, ambiguity or verification error MUST resolve to UNKNOWN rather than ALLOW.",
+        "pt-BR": "UNKNOWN e BLOCK DEVEM proibir o efeito; ausência, invalidade, ambiguidade ou erro de verificação DEVEM resultar em UNKNOWN, nunca ALLOW.",
+        "ru": "UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутствие, недействительность, неоднозначность или ошибка проверки ДОЛЖНЫ давать UNKNOWN, а не ALLOW."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Authority",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-006",
       "modality": "MUST",
-      "predicate": "require_exact_resolution_authority",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_authority",
+      "predicate": "local_authority",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Narrowing UNKNOWN MUST be performed by an active Resolution Authority in the exact scope and epoch.",
-        "pt-BR": "A restrição de UNKNOWN DEVE ser realizada por uma Resolution Authority ativa no escopo e época exatos.",
-        "ru": "Сужение UNKNOWN ДОЛЖНО выполняться действующей Resolution Authority в точной области и эпохе."
+        "en": "A terminal record MUST be rooted in an Authority explicitly recognized by the local Context for the exact binding and policy epoch.",
+        "pt-BR": "Um registro terminal DEVE estar enraizado em uma Authority explicitamente reconhecida pelo Context local para a vinculação exata e a época de política.",
+        "ru": "Терминальная запись ДОЛЖНА быть укоренена в Authority, явно признанной локальным Context для точной связки и эпохи политики."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Scope",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-007",
-      "modality": "MUST_NOT",
-      "predicate": "expand_resolution_scope",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_authority",
+      "modality": "MUST",
+      "predicate": "proof_attenuating",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "A resolution or escalation MUST NOT expand the original question scope.",
-        "pt-BR": "Uma resolução ou escalonamento NÃO DEVE ampliar o escopo original da questão.",
-        "ru": "Решение или эскалация НЕ ДОЛЖНЫ расширять исходную область вопроса."
+        "en": "Every delegated Authority proof MUST be explicit, acyclic, exact-binding and non-expanding.",
+        "pt-BR": "Toda prova de Authority delegada DEVE ser explícita, acíclica, exatamente vinculada e não expansiva.",
+        "ru": "Каждое делегированное доказательство Authority ДОЛЖНО быть явным, ациклическим, точно связанным и нерасширяющим."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Escalation",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-008",
       "modality": "MUST",
-      "predicate": "require_explicit_escalation_grant",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.escalation_grant",
+      "predicate": "inputs_non_authoritative",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Passing UNKNOWN to the next authority MUST have an explicit EscalationGrant; context ancestry or federation membership alone creates no authority.",
-        "pt-BR": "O encaminhamento de UNKNOWN à próxima autoridade DEVE ter um EscalationGrant explícito; ancestralidade de contexto ou participação federativa, por si só, não cria autoridade.",
-        "ru": "Передача UNKNOWN следующей власти ДОЛЖНА иметь явный EscalationGrant; вложенность контекстов или членство в федерации сами по себе власть не создают."
+        "en": "Evidence, verification results, AI outputs, consensus results and remote outcomes MUST NOT by themselves create ALLOW or local Authority.",
+        "pt-BR": "Evidence, resultados de verificação, saídas de AI, resultados de consenso e outcomes remotos NÃO DEVEM, por si só, criar ALLOW ou Authority local.",
+        "ru": "Evidence, результаты проверки, выходы AI, результаты консенсуса и удалённые outcomes НЕ ДОЛЖНЫ сами по себе создавать ALLOW или локальную Authority."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Escalation",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-009",
-      "modality": "MUST",
-      "predicate": "preserve_question_during_escalation",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_chain",
+      "modality": "MAY",
+      "predicate": "terminal_unique",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Escalation MUST preserve resolution_id, context_id, state_root, question_digest and policy_epoch.",
-        "pt-BR": "O escalonamento DEVE preservar resolution_id, context_id, state_root, question_digest e policy_epoch.",
-        "ru": "Эскалация ДОЛЖНА сохранять resolution_id, context_id, state_root, question_digest и policy_epoch."
+        "en": "At most one valid terminal record MAY exist for one resolution_id; conflicting terminal records MUST fail closed as UNKNOWN.",
+        "pt-BR": "No máximo um registro terminal válido PODE existir para um resolution_id; registros terminais conflitantes DEVEM falhar de modo fechado como UNKNOWN.",
+        "ru": "Для одного resolution_id МОЖЕТ существовать не более одной действительной терминальной записи; конфликтующие терминальные записи ДОЛЖНЫ давать fail-closed UNKNOWN."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Escalation",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-010",
-      "modality": "MUST",
-      "predicate": "keep_resolution_chain_acyclic",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_chain",
+      "modality": "MAY",
+      "predicate": "record_immutable",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "The Resolution Authority chain MUST remain acyclic.",
-        "pt-BR": "A cadeia de Resolution Authority DEVE permanecer acíclica.",
-        "ru": "Цепочка Resolution Authority ДОЛЖНА оставаться ациклической."
+        "en": "A terminal ResolutionRecord MUST be immutable and content-addressed; exact replay MAY be idempotent but replacement is forbidden.",
+        "pt-BR": "Um ResolutionRecord terminal DEVE ser imutável e endereçado por conteúdo; uma repetição exata PODE ser idempotente, mas a substituição é proibida.",
+        "ru": "Терминальная ResolutionRecord ДОЛЖНА быть неизменяемой и контентно-адресуемой; точный повтор МОЖЕТ быть идемпотентным, но замена запрещена."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "Terminality",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-011",
-      "modality": "MUST_NOT",
-      "predicate": "mutate_terminal_status",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_status",
+      "modality": "MUST",
+      "predicate": "reconsider_fresh",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Within one cycle, ACCEPT or DENY MUST NOT change to another status; an exact replay MAY be idempotent.",
-        "pt-BR": "Dentro de um ciclo, ACCEPT ou DENY NÃO DEVEM mudar para outro estado; uma repetição exata PODE ser idempotente.",
-        "ru": "Внутри одного цикла ACCEPT или DENY НЕ ДОЛЖНЫ изменяться на другой статус; точный повтор МОЖЕТ быть идемпотентным."
+        "en": "Reconsideration MUST create a fresh resolution_id linked to the unique terminal record of the previous resolution.",
+        "pt-BR": "A reconsideração DEVE criar um resolution_id novo vinculado ao registro terminal único da resolução anterior.",
+        "ru": "Пересмотр ДОЛЖЕН создавать свежий resolution_id, связанный с уникальной терминальной записью предыдущего разрешения."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     },
     {
-      "area": "New cycle",
+      "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-012",
       "modality": "MUST",
-      "predicate": "use_new_cycle_for_reconsideration",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_cycle",
+      "predicate": "implementation_neutral",
+      "source": "ASET Seed 0.3 minimal strong core",
+      "subject": "ASET Seed",
       "texts": {
-        "en": "Reconsidering a terminal decision MUST create a new resolution_id and cycle linked to the prior record.",
-        "pt-BR": "A reconsideração de uma decisão terminal DEVE criar um novo resolution_id e ciclo vinculado ao registro anterior.",
-        "ru": "Пересмотр терминального решения ДОЛЖЕН создавать новый resolution_id и новый цикл, связанный с исходной записью."
+        "en": "Implementations and extensions MUST be checked by observable semantics and MUST have no normative precedence.",
+        "pt-BR": "Implementações e extensões DEVEM ser verificadas por semântica observável e NÃO DEVEM ter precedência normativa.",
+        "ru": "Реализации и расширения ДОЛЖНЫ проверяться по наблюдаемой семантике и НЕ ДОЛЖНЫ иметь нормативного приоритета."
       },
       "verification": [
+        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
-      ]
-    },
-    {
-      "area": "Evidence",
-      "id": "ASET-SEED-REQ-013",
-      "modality": "MUST",
-      "predicate": "append_resolution_records",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_record",
-      "texts": {
-        "en": "Opening, escalation and terminal resolution MUST append an immutable ResolutionRecord with Authority and provenance.",
-        "pt-BR": "A abertura, o escalonamento e a resolução terminal DEVEM adicionar um ResolutionRecord imutável com Authority e proveniência.",
-        "ru": "Открытие, эскалация и терминальное решение ДОЛЖНЫ добавлять неизменяемый ResolutionRecord с Authority и provenance."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-BOUNDED-MODEL"
-      ]
-    },
-    {
-      "area": "Implementation neutrality",
-      "id": "ASET-SEED-REQ-014",
-      "modality": "MUST",
-      "predicate": "preserve_implementation_neutrality",
-      "source": "ASET Seed resolution-core narrowing decision",
-      "subject": "seed.resolution_record",
-      "texts": {
-        "en": "Implementations MUST be checked by observable semantics and have no normative precedence over one another.",
-        "pt-BR": "As implementações DEVEM ser verificadas pela semântica observável e não têm precedência normativa entre si.",
-        "ru": "Реализации ДОЛЖНЫ проверяться по наблюдаемой семантике и НЕ ИМЕЮТ нормативного приоритета друг над другом."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-EXTERNAL-CONFORMANCE"
+        "ASET-VERIFY-BOUNDED-MODEL",
+        "ASET-VERIFY-INVARIANT-COVERAGE",
+        "ASET-VERIFY-SEMANTIC-MUTATIONS"
       ]
     }
   ],
-  "schema_version": 3,
-  "status": "RESOLUTION_CORE_ALPHA",
+  "resolution_algebra": {
+    "conflict_result": "UNKNOWN",
+    "derived": "UNKNOWN",
+    "effect_permitted_if": "ALLOW",
+    "fail_closed_values": [
+      "UNKNOWN",
+      "BLOCK"
+    ],
+    "stored_terminal": [
+      "ALLOW",
+      "BLOCK"
+    ],
+    "unknown_semantics": "No unique valid terminal ResolutionRecord exists for the exact request binding.",
+    "values": [
+      "UNKNOWN",
+      "ALLOW",
+      "BLOCK"
+    ]
+  },
+  "schema_version": 4,
+  "status": "MINIMAL_STRONG_CORE_ALPHA",
   "transitions": [
     {
-      "authority_rule": "The opening authority must be explicit and exactly bound to context, scope and policy epoch.",
+      "authority_rule": "The initial Authority binding must be locally rooted and exactly match the request binding.",
+      "binding_rule": "The request contains one canonical exact binding and a fresh resolution_id.",
       "created_artifacts": [
-        "ResolutionCycle",
-        "ResolutionRecord"
+        "ResolutionRequest"
       ],
-      "from_status": null,
+      "from_resolution": null,
       "id": "SEED-TX-001",
-      "kind": "OPEN_RESOLUTION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-open-resolution.schema.json",
-      "scope_rule": "The opened scope becomes the maximum scope of this cycle.",
+      "kind": "REGISTER_REQUEST",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-register-request.schema.json",
       "terminal": false,
-      "to_status": "UNKNOWN"
+      "to_resolution": "UNKNOWN"
     },
     {
-      "authority_rule": "The current Resolution Authority must match exact binding and scope.",
+      "authority_rule": "The record Authority must be the local root Authority or be justified by a valid exact-binding Authority proof.",
+      "binding_rule": "The record request_digest and binding_digest must exactly match the registered request.",
       "created_artifacts": [
         "ResolutionRecord"
       ],
-      "from_status": "UNKNOWN",
+      "from_resolution": "UNKNOWN",
       "id": "SEED-TX-002",
-      "kind": "RESOLVE_ACCEPT",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
-      "scope_rule": "Decision scope must be equal to or narrower than the opened scope.",
+      "kind": "SUBMIT_RESOLUTION",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-submit-resolution.schema.json",
       "terminal": true,
-      "to_status": "ACCEPT"
+      "to_resolution": "ALLOW_OR_BLOCK"
     },
     {
-      "authority_rule": "The current Resolution Authority must match exact binding and scope.",
+      "authority_rule": "Evaluation creates no Authority and accepts no external statement as a resolution.",
+      "binding_rule": "Evaluation is performed for one registered resolution_id and fails closed on missing, invalid or conflicting terminal material.",
       "created_artifacts": [
-        "ResolutionRecord"
+        "ResolutionEvaluation"
       ],
-      "from_status": "UNKNOWN",
+      "from_resolution": null,
       "id": "SEED-TX-003",
-      "kind": "RESOLVE_DENY",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
-      "scope_rule": "Decision scope must be equal to or narrower than the opened scope.",
-      "terminal": true,
-      "to_status": "DENY"
-    },
-    {
-      "authority_rule": "An exact EscalationGrant must authorize the current and next Resolution Authorities.",
-      "created_artifacts": [
-        "ResolutionRecord"
-      ],
-      "from_status": "UNKNOWN",
-      "id": "SEED-TX-004",
-      "kind": "ESCALATE_UNKNOWN",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-escalate-unknown.schema.json",
-      "scope_rule": "Escalated scope must not expand and exact question binding must remain unchanged.",
+      "kind": "EVALUATE_RESOLUTION",
+      "payload_schema": "seed/canonical/protocol/schemas/operation.schema.json",
       "terminal": false,
-      "to_status": "UNKNOWN"
+      "to_resolution": "DERIVED"
     }
   ],
-  "version": "0.2.0-alpha.2"
+  "version": "0.3.0-alpha.1"
 }

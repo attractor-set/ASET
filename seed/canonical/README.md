@@ -1,26 +1,49 @@
-# ASET Seed 0.2 alpha resolution core
+# ASET Seed 0.3 minimal strong core
 
-Status: `RESOLUTION_CORE_ALPHA`
+ASET Seed is a local resolution-recognition kernel.
 
-The active Seed is the implementation-neutral normative core for narrowing an exact unresolved question:
+    Resolution = UNKNOWN | ALLOW | BLOCK
+    EffectPermitted(binding) iff one unique valid exact-binding
+    terminal record is ALLOW
 
-```text
-UNKNOWN -> ACCEPT | DENY
-```
+`UNKNOWN` is derived when no unique valid terminal record exists. `BLOCK` is
+an explicit terminal prohibition. Both are fail-closed.
 
-`UNKNOWN` and `DENY` are operationally `BLOCKED`. Only `ACCEPT` may produce `ALLOW`. An unresolved question may remain `UNKNOWN` while it moves to a next explicitly authorized Resolution Authority. Context ancestry or federation membership alone creates no authority.
+Seed normatively defines exact binding, local Authority roots, attenuating
+Authority proof, terminal uniqueness, immutable content-addressed records and
+fresh reconsideration identifiers.
 
-## Active canon
+Policy evaluation, evidence acquisition, workflow, federation, persistence
+and enforcement are extension or implementation concerns.
 
-1. `source/seed-model.json` — normative machine model;
-2. `protocol/` — minimal resolution wire schemas;
-3. `conformance/` — portable black-box cases;
-4. `CANON_PACKAGE.json` — exact package identity;
-5. `formal/SeedResolution.tla` — bounded assurance projection;
-6. generated multilingual editions — derived views.
+## Assurance closure
 
-## Scope boundary
+The published safety contract has complete machine traceability:
 
-Seed does not define execution, Permit consumption, attempt journals, planning, memory, federation topology, consensus, storage, cryptographic providers or artifact retention. Those belong to extensions and implementations.
+- 12/12 canonical requirements covered;
+- 12/12 canonical invariants covered;
+- 3/3 transitions covered positively and negatively;
+- 15 bounded TLA+/TLC properties;
+- 15/15 registered TLA+/TLC safety properties covered by unbounded TLAPS proof;
+- 4 exact executable-or-static properties;
+- 24 portable conformance cases;
+- 13 semantic mutations, all required to be killed.
 
-The migration from the predecessor lifecycle canon is intentionally breaking and is documented in `migration/RC12_TO_RESOLUTION_CORE.md`.
+The unbounded proof applies to the committed abstract TLA+ safety projection.
+It establishes all eleven registered state invariants and all four registered
+temporal safety properties for every behaviour of `Spec`.
+
+It does not establish:
+
+- refinement from the normative machine-readable canon;
+- correctness or refinement of implementations;
+- concrete grant-chain construction;
+- liveness;
+- cryptographic primitive security;
+- external certification.
+
+The normative source remains
+`seed/canonical/source/seed-model.json`.
+
+Neither the TLA+ model, the proof module nor TLAPM receives normative,
+semantic or implementation precedence.

@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
+    "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN, ALLOW or BLOCK resolution recognition.",
     "topics": [
       "accountability",
       "ai-governance",
@@ -24,14 +24,14 @@
       "resolution-protocol"
     ]
   },
-  "abstract": "ASET defines a minimal, implementation-neutral resolution core for exact authority-scoped questions. The machine canon, formal model and language-neutral conformance protocol allow independent extensions and implementations to be tested without giving any technology semantic precedence.",
+  "abstract": "ASET defines a minimal, implementation-neutral kernel that recognizes one locally authorized exact-binding terminal resolution record. Only ALLOW permits the bound effect; missing, invalid or conflicting material remains fail-closed.",
   "creator": {
     "alternate_name": "Attractor Set",
     "name": "Dzmitry Prychyna",
     "type": "Person",
     "url": "https://github.com/attractor-set"
   },
-  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN, ALLOW or BLOCK resolution recognition.",
   "document_type": "aset-project-metadata",
   "expanded_name": "Authority-Signed Evidence Trail",
   "languages": [
@@ -54,7 +54,7 @@
   "release": {
     "date_released": "2026-08-06",
     "development_status": "active",
-    "version": "0.2.0-alpha.2"
+    "version": "0.3.0-alpha.1"
   },
   "repository": {
     "actions": "https://github.com/attractor-set/ASET/actions",

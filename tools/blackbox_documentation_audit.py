@@ -23,7 +23,7 @@ ACTIVE_FILES = [
     ROOT / "EXTRACTION.md",
 ]
 ACTIVE_GLOBS = [
-    "docs/generated/*/ASET_Seed_Resolution_0.2-alpha.2.md",
+    "docs/generated/*/ASET_Seed_Resolution_0.3-alpha.1.md",
     "docs/generated/*/ASET_Seed_Next.md",
 ]
 FORBIDDEN_ACTIVE_CLAIMS = {

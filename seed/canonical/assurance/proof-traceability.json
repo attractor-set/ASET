@@ -1,0 +1,242 @@
+{
+  "claim_boundary": "This document declares machine-checkable traceability from canonical Seed invariants to operators in the abstract TLA+ projection and to TLAPS theorems proving those projected safety properties. It does not constitute a refinement proof from the machine-readable canon to TLA+.",
+  "claims": [
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "TypeOK",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "ResolutionDomain",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-001",
+      "seed_invariants": [
+        "SEED-INV-001"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-001",
+        "ASET-SEED-REQ-003"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "AllowSoundness",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-002",
+      "seed_invariants": [
+        "SEED-INV-002"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-004"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "FailClosed",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-003",
+      "seed_invariants": [
+        "SEED-INV-003"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-005"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "TypeOK",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "ExactBinding",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-004",
+      "seed_invariants": [
+        "SEED-INV-004"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-001",
+        "ASET-SEED-REQ-003"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "LocalAuthorityRoot",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-005",
+      "seed_invariants": [
+        "SEED-INV-005"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-006"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "DelegatedAuthoritySound",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-006",
+      "seed_invariants": [
+        "SEED-INV-006"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-007"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "InputsNonAuthoritative",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "ObservedInputsAppendOnly",
+          "proof_theorem": "SpecImpliesObservedInputsAppendOnly"
+        }
+      ],
+      "id": "ASET-PROOF-INV-007",
+      "seed_invariants": [
+        "SEED-INV-007"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-008"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "TerminalUnique",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-008",
+      "seed_invariants": [
+        "SEED-INV-008"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-009"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "FailClosed",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "InvalidOrConflictUnknown",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        }
+      ],
+      "id": "ASET-PROOF-INV-009",
+      "seed_invariants": [
+        "SEED-INV-009"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-005",
+        "ASET-SEED-REQ-009"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "TerminalRecordsImmutable",
+          "proof_theorem": "SpecImpliesTerminalRecordsImmutable"
+        }
+      ],
+      "id": "ASET-PROOF-INV-010",
+      "seed_invariants": [
+        "SEED-INV-010"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-010"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "CanonicalStateChangesOnlyByRecognizedTransition",
+          "proof_theorem": "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition"
+        }
+      ],
+      "id": "ASET-PROOF-INV-011",
+      "seed_invariants": [
+        "SEED-INV-011"
+      ],
+      "seed_requirements": [],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    },
+    {
+      "formal_projection": [
+        {
+          "kind": "STATE_INVARIANT",
+          "operator": "FreshReconsideration",
+          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "RequestsAppendOnly",
+          "proof_theorem": "SpecImpliesRequestsAppendOnly"
+        }
+      ],
+      "id": "ASET-PROOF-INV-012",
+      "seed_invariants": [
+        "SEED-INV-012"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-002",
+        "ASET-SEED-REQ-011"
+      ],
+      "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
+    }
+  ],
+  "document_type": "aset-seed-proof-traceability",
+  "formal_model": "seed/canonical/formal/SeedResolution.tla",
+  "proof_module": "seed/canonical/formal/SeedResolutionProofs.tla",
+  "refinement_status": "DECLARED_PROJECTION_NOT_REFINEMENT_PROOF",
+  "schema_version": 1,
+  "scope": "ABSTRACT_TLA_SAFETY_PROJECTION"
+}

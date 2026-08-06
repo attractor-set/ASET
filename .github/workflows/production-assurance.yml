@@ -12,35 +12,71 @@ permissions:
 jobs:
   formal-assurance:
     runs-on: ubuntu-24.04
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "21"
+
       - run: python -m pip install -r requirements-ci.txt
+
       - name: Download pinned TLA+ tools
+        shell: bash
         run: |
-          curl --fail --location --retry 3 \
-            --output "$RUNNER_TEMP/tla2tools.jar" \
-            https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
-          echo "bee4a54f3ee3d4afc347c3240ec2d9e93b075104  $RUNNER_TEMP/tla2tools.jar" | sha1sum --check
-      - name: Run independent formal models
-        timeout-minutes: 5
+          set -euo pipefail
+
+          curl --fail --location --retry 3             --output "$RUNNER_TEMP/tla2tools.jar"             https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar
+
+          echo             "bee4a54f3ee3d4afc347c3240ec2d9e93b075104  $RUNNER_TEMP/tla2tools.jar"             | sha1sum --check
+
+      - name: Download pinned TLAPM
+        shell: bash
         run: |
-          python tools/model_check_seed.py --output dist/seed-model-check.json
-          python tools/check_assurance_traceability.py --model-report dist/seed-model-check.json
-          python tools/run_tlc.py \
-            --jar "$RUNNER_TEMP/tla2tools.jar" \
-            --workers 2 \
-            --timeout-seconds 180 \
-            --output dist/tlc-model-check.json
+          set -euo pipefail
+
+          archive="$RUNNER_TEMP/tlapm-1.6.0-pre-x86_64-linux-gnu.tar.gz"
+          unpack="$RUNNER_TEMP/tlapm-unpacked"
+
+          curl --fail --location --retry 3             --output "$archive"             https://github.com/tlaplus/tlapm/releases/download/1.6.0-pre/tlapm-1.6.0-pre-x86_64-linux-gnu.tar.gz
+
+          echo             "bfa5e5350ac1ec7202feecad0a4a71a5bb58c16a49660448b35b6f371ba9e2f5  $archive"             | sha256sum --check
+
+          mkdir -p "$unpack"
+          tar -xzf "$archive" -C "$unpack"
+
+          tlapm_bin="$(
+            find "$unpack"               -type f               -path '*/bin/tlapm'               -print               -quit
+          )"
+
+          test -n "$tlapm_bin"
+          test -x "$tlapm_bin"
+          test "$("$tlapm_bin" --version)" = "4600b24"
+
+          echo "TLAPM_BIN=$tlapm_bin" >> "$GITHUB_ENV"
+
+      - name: Run bounded model, TLC and TLAPS
+        timeout-minutes: 25
+        run: |
+          python tools/model_check_seed.py             --output dist/seed-model-check.json
+
+          python tools/check_assurance_traceability.py             --model-report dist/seed-model-check.json             --output dist/assurance-traceability.json
+
+          python tools/check_proof_traceability.py             --output dist/proof-traceability-check.json
+
+          python tools/run_tlc.py             --jar "$RUNNER_TEMP/tla2tools.jar"             --workers 2             --timeout-seconds 180             --output dist/tlc-model-check.json
+
+          python tools/run_tlaps.py             --tlapm "$TLAPM_BIN"             --timeout-seconds 900             --output dist/tlaps-proof.json
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -49,4 +85,6 @@ jobs:
           path: |
             dist/seed-model-check.json
             dist/assurance-traceability.json
+            dist/proof-traceability-check.json
             dist/tlc-model-check.json
+            dist/tlaps-proof.json

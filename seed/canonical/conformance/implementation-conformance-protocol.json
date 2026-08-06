@@ -6,10 +6,11 @@
     "accepted",
     "code",
     "state_changed",
-    "semantic_status",
-    "enforcement",
+    "resolution",
+    "effect_permitted",
+    "reason",
     "postconditions",
-    "final_state_root where specified"
+    "final_store where specified"
   ],
   "operations": {
     "describe": {
@@ -28,8 +29,9 @@
         "accepted",
         "code",
         "state_changed",
-        "semantic_status",
-        "enforcement"
+        "resolution",
+        "effect_permitted",
+        "reason"
       ],
       "request_required": [
         "protocol",
@@ -40,7 +42,7 @@
         "protocol",
         "case_id",
         "actual",
-        "final_state"
+        "final_store"
       ]
     },
     "execute_cases": {
@@ -57,13 +59,13 @@
         "protocol",
         "case_id",
         "actual",
-        "final_state"
+        "final_store"
       ]
     }
   },
-  "protocol_id": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
+  "protocol_id": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
   "response_schema_ref": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
-  "schema_version": 2,
+  "schema_version": 3,
   "transport": {
     "determinism": "Exact replay against the same declared initial conditions MUST produce an identical canonical response.",
     "framing": "one UTF-8 JSON object on stdin; one UTF-8 JSON object on stdout",

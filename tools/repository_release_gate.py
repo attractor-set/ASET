@@ -9,6 +9,11 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+REQUIRED_FORMAL_ENV = (
+    "TLA2TOOLS_JAR",
+    "TLAPM_BIN",
+)
 BASE_COMMANDS = [
     ["tools/generate_repository_views.py", "--check"],
     ["tools/check_language.py"],
@@ -18,7 +23,22 @@ BASE_COMMANDS = [
     ["tools/verify_frozen_release.py"],
     ["tools/materialize_rc11.py", "--check"],
     ["tools/model_check_seed.py", "--output", "dist/seed-model-check.json"],
-    ["tools/check_assurance_traceability.py", "--model-report", "dist/seed-model-check.json"],
+    ["tools/run_invariant_mutations.py", "--output", "dist/invariant-mutations.json"],
+    [
+        "tools/check_assurance_traceability.py",
+        "--model-report",
+        "dist/seed-model-check.json",
+    ],
+    [
+        "tools/check_proof_traceability.py",
+        "--output",
+        "dist/proof-traceability-check.json",
+    ],
+    [
+        "tools/check_invariant_coverage.py",
+        "--mutation-report",
+        "dist/invariant-mutations.json",
+    ],
     ["tools/validate_background_ip.py"],
     ["tools/validate_background_ip_supplement.py"],
     ["tools/validate_ecosystem_registry.py"],
@@ -56,6 +76,19 @@ def commands() -> list[list[str]]:
                 "dist/tlc-model-check.json",
             ]
         )
+
+    tlapm_bin = os.environ.get("TLAPM_BIN")
+    if tlapm_bin:
+        result.append(
+            [
+                "tools/run_tlaps.py",
+                "--tlapm",
+                tlapm_bin,
+                "--output",
+                "dist/tlaps-proof.json",
+            ]
+        )
+
     return result
 
 
@@ -69,6 +102,7 @@ def write_report(rows: list[dict[str, object]], verdict: str) -> None:
                 "commands": rows,
                 "approved_ref_checked": os.environ.get("ASET_APPROVED_REF"),
                 "tlc_executed": bool(os.environ.get("TLA2TOOLS_JAR")),
+                "tlaps_executed": bool(os.environ.get("TLAPM_BIN")),
                 "verdict": verdict,
             },
             sort_keys=True,
@@ -81,9 +115,37 @@ def write_report(rows: list[dict[str, object]], verdict: str) -> None:
 
 def main() -> int:
     rows: list[dict[str, object]] = []
+
+    missing_formal_env = [
+        name for name in REQUIRED_FORMAL_ENV if not os.environ.get(name)
+    ]
+
+    if missing_formal_env:
+        for name in missing_formal_env:
+            rows.append(
+                {
+                    "command": [
+                        "required-environment",
+                        name,
+                    ],
+                    "returncode": 1,
+                    "seconds": 0.0,
+                }
+            )
+
+        write_report(rows, "FAIL")
+
+        print(
+            "REPOSITORY_RELEASE_GATE_ERROR="
+            "missing required formal tool environment: " + ",".join(missing_formal_env)
+        )
+        print("REPOSITORY_RELEASE_GATE=FAIL")
+        return 1
     for args in commands():
         started = time.time()
-        result = subprocess.run([sys.executable, *args], cwd=ROOT, text=True, check=False)
+        result = subprocess.run(
+            [sys.executable, *args], cwd=ROOT, text=True, check=False
+        )
         rows.append(
             {
                 "command": [sys.executable, *args],

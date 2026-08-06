@@ -25,19 +25,64 @@ def test_current_change_declaration_is_bound_to_candidate_model():
     declaration = load("seed/canonical/migration/CANON_CHANGE_DECLARATION.json")
     model = ROOT / "seed/canonical/source/seed-model.json"
     digest = "sha256:" + hashlib.sha256(model.read_bytes()).hexdigest()
-    assert declaration["change_class"] == "NONE"
+    assert declaration["change_class"] == "BREAKING"
+    assert declaration["change_kind"] == "SEMANTIC_SIMPLIFICATION"
     assert declaration["candidate_model_sha256"] == digest
     assert (ROOT / declaration["decision_ref"]).is_file()
     assert (ROOT / declaration["supersession_ref"]).is_file()
 
+
 def test_ci_workflows_have_distinct_assurance_roles():
     candidate = (ROOT / ".github/workflows/seed-ci.yml").read_text(encoding="utf-8")
-    formal = (ROOT / ".github/workflows/production-assurance.yml").read_text(encoding="utf-8")
-    release = (ROOT / ".github/workflows/release-candidate.yml").read_text(encoding="utf-8")
+    formal = (ROOT / ".github/workflows/production-assurance.yml").read_text(
+        encoding="utf-8"
+    )
+    release = (ROOT / ".github/workflows/release-candidate.yml").read_text(
+        encoding="utf-8"
+    )
     assert "candidate-consistency" in candidate
+    assert "tools/check_proof_traceability.py" in candidate
     assert "tools/run_tlc.py" in formal
+    assert "tools/run_tlaps.py" in formal
+    assert "tools/check_proof_traceability.py" in formal
+    assert "4600b24" in formal
+    assert "tlaps-proof.json" in formal
     assert "tools/check_canon_compatibility.py" not in candidate
     assert "ASET_APPROVED_REF" in release
+    assert "TLA2TOOLS_JAR" in release
+    assert "TLAPM_BIN" in release
+    assert "proof-traceability-check.json" in release
+    assert "tools/repository_release_gate.py" in release
+    assert "tlc-model-check.json" in release
+    assert "tlaps-proof.json" in release
+
+
+def test_tlaps_gate_and_final_theorems_are_declared():
+    registry = load("seed/canonical/assurance/verification-registry.json")
+    gates = load("seed/canonical/assurance/repository-release-gates.json")
+    proof = (ROOT / "seed/canonical/formal/SeedResolutionProofs.tla").read_text(
+        encoding="utf-8"
+    )
+
+    method = next(
+        item
+        for item in registry["verification_methods"]
+        if item["id"] == "ASET-VERIFY-TLAPS-UNBOUNDED"
+    )
+    gate = next(item for item in gates["gates"] if item["id"] == "ASET-GATE-028")
+
+    assert method["gate_ids"] == ["ASET-GATE-028"]
+    assert gate["mandatory"] is True
+    assert "tools/run_tlaps.py" in gate["evidence"]
+
+    for theorem in (
+        "SpecImpliesAlwaysSeedStateSafety",
+        "SpecImpliesRequestsAppendOnly",
+        "SpecImpliesTerminalRecordsImmutable",
+        "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
+        "SpecImpliesObservedInputsAppendOnly",
+    ):
+        assert f"THEOREM {theorem} ==" in proof
 
 
 def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
@@ -68,27 +113,32 @@ def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
 
 
 def test_seed_resolution_tla_uses_valid_operator_tokens():
-    specification = (
-        ROOT / "seed/canonical/formal/SeedResolution.tla"
-    ).read_text(encoding="utf-8")
+    specification = (ROOT / "seed/canonical/formal/SeedResolution.tla").read_text(
+        encoding="utf-8"
+    )
     assert "/\\\\" not in specification
     assert "Range(" not in specification
-    assert 'Init ==\n  /\\ status = "UNKNOWN"' in specification
+    assert (
+        "Init ==\n  /\\ localAuthorityBindings \\in SUBSET (Authorities \\X Bindings)"
+        in specification
+    )
+    assert "  /\\ requests = {}" in specification
     assert "Spec == Init /\\ [][Next]_vars" in specification
 
 
 def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
-    specification = (
-        ROOT / "seed/canonical/formal/SeedResolution.tla"
-    ).read_text(encoding="utf-8")
-    configuration = (
-        ROOT / "seed/canonical/formal/SeedResolution.cfg"
-    ).read_text(encoding="utf-8")
-    assert (
-        r'TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next'
-        in specification
+    specification = (ROOT / "seed/canonical/formal/SeedResolution.tla").read_text(
+        encoding="utf-8"
     )
+    configuration = (ROOT / "seed/canonical/formal/SeedResolution.cfg").read_text(
+        encoding="utf-8"
+    )
+    assert "TerminalUnique ==" in specification
     assert "CHECK_DEADLOCK FALSE" in configuration
+    assert "LocalAuthorityBindings =" not in configuration
+    assert (
+        r"localAuthorityBindings \in SUBSET (Authorities \X Bindings)" in specification
+    )
 
 
 def test_active_audit_index_tracks_active_canon_package():
@@ -98,3 +148,15 @@ def test_active_audit_index_tracks_active_canon_package():
         audit_index["active_candidate"]["canon_package_digest"]
         == package["package_digest"]
     )
+
+
+def test_mandatory_proof_traceability_gate_is_in_aggregate_runner():
+    gates = load("seed/canonical/assurance/repository-release-gates.json")
+    runner = (ROOT / "tools/repository_release_gate.py").read_text(encoding="utf-8")
+
+    gate = next(item for item in gates["gates"] if item["id"] == "ASET-GATE-029")
+
+    assert gate["mandatory"] is True
+    assert "tools/check_proof_traceability.py" in gate["evidence"]
+    assert "tools/check_proof_traceability.py" in runner
+    assert "dist/proof-traceability-check.json" in runner

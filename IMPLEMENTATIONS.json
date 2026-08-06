@@ -1,9 +1,9 @@
 {
-  "active_seed_canon": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+  "active_seed_canon": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
   "document_type": "aset-implementation-registry",
   "implementations": [
     {
-      "active_seed_compatibility": "SEMANTICALLY_COMPATIBLE_NO_RESOLUTION_DELTA",
+      "active_seed_compatibility": "NOT_YET_CLAIMED_FOR_0.3",
       "implementation_id": "ASET-AI-LOCAL-STACK",
       "implementation_precedence": "NONE",
       "profile": "AI_EXTENSION_PROFILE.json",
@@ -19,7 +19,7 @@
       "version": "0.1.0-alpha.1"
     },
     {
-      "active_seed_compatibility": "NOT_YET_CLAIMED",
+      "active_seed_compatibility": "NOT_YET_CLAIMED_FOR_0.3",
       "implementation_id": "ASET-PYTHON-SQLITE-LEARNING-V1",
       "implementation_precedence": "NONE",
       "profile": "profile/PROFILE.json",

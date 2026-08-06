@@ -1,86 +1,98 @@
 {
+  "digest_profile_ref": "seed/canonical/protocol/digest-profile.json",
   "document_type": "aset-seed-resolution-protocol-profile",
-  "enforcement_values": [
-    "BLOCKED",
-    "ALLOW"
-  ],
   "implementation_precedence": "NONE",
   "normative": true,
-  "profile_id": "ASET-SEED-RESOLUTION-WIRE-V1",
-  "schema_count": 10,
-  "schema_version": 1,
+  "operation_kinds": [
+    "REGISTER_REQUEST",
+    "SUBMIT_RESOLUTION",
+    "EVALUATE_RESOLUTION"
+  ],
+  "profile_id": "ASET-SEED-RESOLUTION-WIRE-V2",
+  "resolution_values": [
+    "UNKNOWN",
+    "ALLOW",
+    "BLOCK"
+  ],
+  "schema_count": 12,
+  "schema_version": 2,
   "schemas": [
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/common.schema.json",
+      "id": "https://spec.aset.example/seed/0.3/schemas/common.schema.json",
       "name": "common.schema.json",
       "path": "seed/canonical/protocol/schemas/common.schema.json",
-      "sha256": "sha256:6f46104b4d0958c90fa9a81b456fe2c628efd4dc11292bf04ac3c01b6c749409"
+      "sha256": "sha256:abe887fb3d039c3bddcbd8f9227d23b2a3593cde09158ee16bb4a170cc1d5351"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-authority.schema.json",
-      "name": "resolution-authority.schema.json",
-      "path": "seed/canonical/protocol/schemas/resolution-authority.schema.json",
-      "sha256": "sha256:2187015b87225931f69504fb806ba45207636081d48539dc613df4e4d0da24ce"
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-binding.schema.json",
+      "name": "resolution-binding.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-binding.schema.json",
+      "sha256": "sha256:08c16ae56379f55276369ba52524b7ef053d40899f9b05fa0675f368a4bd3b5b"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/escalation-grant.schema.json",
-      "name": "escalation-grant.schema.json",
-      "path": "seed/canonical/protocol/schemas/escalation-grant.schema.json",
-      "sha256": "sha256:dcc5880785aa3aa4bfb29e6b9241f64e46fb574d2db0f81af66e0d9cc67dce69"
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-authority-binding.schema.json",
+      "name": "resolution-authority-binding.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-authority-binding.schema.json",
+      "sha256": "sha256:803f1747968009dd4f4a6d35406439ec52036686bb0eecd57be56a606dc9e022"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-record.schema.json",
+      "id": "https://spec.aset.example/seed/0.3/schemas/authority-grant.schema.json",
+      "name": "authority-grant.schema.json",
+      "path": "seed/canonical/protocol/schemas/authority-grant.schema.json",
+      "sha256": "sha256:1acedba9b138bbf18969bccdc77cdc891e768338f90a6a527adf75fa49f7204f"
+    },
+    {
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-request.schema.json",
+      "name": "resolution-request.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-request.schema.json",
+      "sha256": "sha256:b2f50024b439cacb5cea8f3f38f8f150dd797a1511b961c7e9a23bd666d10662"
+    },
+    {
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-record.schema.json",
       "name": "resolution-record.schema.json",
       "path": "seed/canonical/protocol/schemas/resolution-record.schema.json",
-      "sha256": "sha256:a63b22ddc0a819dff77f30da2e7da4d851d01a96df67c798e962d4491c1c9bfe"
+      "sha256": "sha256:0f37ae49b8365f89efdd96ba3bcc8adb827ecaf973b8ddbaf40169fb7ee6f6ca"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-state.schema.json",
-      "name": "resolution-state.schema.json",
-      "path": "seed/canonical/protocol/schemas/resolution-state.schema.json",
-      "sha256": "sha256:ea7a13e18f04a8b5126fbf91cc2b338d3463d9a1c527b95a89fcc3df2a824e64"
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-store.schema.json",
+      "name": "resolution-store.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-store.schema.json",
+      "sha256": "sha256:bebd92802b3e6bb6264c08599bdff34bcc40e26e76d0163470953ea0e1d1e5da"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/payload-open-resolution.schema.json",
-      "name": "payload-open-resolution.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-open-resolution.schema.json",
-      "sha256": "sha256:a34f7125d4158c1ca57faf421e1f0a66fb5fc9b8f4f1b1a762f875d22eb5edfe"
+      "id": "https://spec.aset.example/seed/0.3/schemas/resolution-evaluation.schema.json",
+      "name": "resolution-evaluation.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-evaluation.schema.json",
+      "sha256": "sha256:3039df20c75cb5bb2edd923adf33a85459909db777941165c2a88c12925d26bd"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/payload-resolve.schema.json",
-      "name": "payload-resolve.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
-      "sha256": "sha256:fc9faad2f67d922b0c1d27b7f6ddb5b58f3c2c254105ef490f1bdfb4a77eb667"
+      "id": "https://spec.aset.example/seed/0.3/schemas/payload-register-request.schema.json",
+      "name": "payload-register-request.schema.json",
+      "path": "seed/canonical/protocol/schemas/payload-register-request.schema.json",
+      "sha256": "sha256:7cdaf0b2aca9f3baca646861dfd21a545cb4f487e8bb227b6ba79e38aff1e84c"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/payload-escalate-unknown.schema.json",
-      "name": "payload-escalate-unknown.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-escalate-unknown.schema.json",
-      "sha256": "sha256:a2b7e22c86ec92c4ccae2720e5ff266d559c6145f06e9f46644818ebe324c6c3"
+      "id": "https://spec.aset.example/seed/0.3/schemas/payload-submit-resolution.schema.json",
+      "name": "payload-submit-resolution.schema.json",
+      "path": "seed/canonical/protocol/schemas/payload-submit-resolution.schema.json",
+      "sha256": "sha256:6fd8a00e4f8f9f4f525b2505692a9e8b24e1bf74b1493d6944ccd9cf99875b89"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/transition.schema.json",
-      "name": "transition.schema.json",
-      "path": "seed/canonical/protocol/schemas/transition.schema.json",
-      "sha256": "sha256:15532c4d703030263c636bedfd130c33efd0af5b0185cd1c149cda46d6393ac3"
+      "id": "https://spec.aset.example/seed/0.3/schemas/operation.schema.json",
+      "name": "operation.schema.json",
+      "path": "seed/canonical/protocol/schemas/operation.schema.json",
+      "sha256": "sha256:be3c89c9c2068c1707070f0ab94226b0bd1052b8ae6dfd3851a691ba83c91742"
     },
     {
-      "id": "https://spec.aset.example/seed/0.2/schemas/conformance-case.schema.json",
+      "id": "https://spec.aset.example/seed/0.3/schemas/conformance-case.schema.json",
       "name": "conformance-case.schema.json",
       "path": "seed/canonical/protocol/schemas/conformance-case.schema.json",
-      "sha256": "sha256:ef7214342f5fe36faadea2230412dafd5e4ae7f9239579121fd7d7cd818ad3c5"
+      "sha256": "sha256:3992493600276b2f8117b3f8541c26555cf422f117e1e90f7ceb1977e1294983"
     }
   ],
-  "seed_version": "0.2.0-alpha.2",
-  "status_values": [
-    "UNKNOWN",
-    "ACCEPT",
-    "DENY"
-  ],
-  "transition_kinds": [
-    "OPEN_RESOLUTION",
-    "RESOLVE_ACCEPT",
-    "RESOLVE_DENY",
-    "ESCALATE_UNKNOWN"
+  "seed_version": "0.3.0-alpha.1",
+  "stored_terminal_values": [
+    "ALLOW",
+    "BLOCK"
   ]
 }

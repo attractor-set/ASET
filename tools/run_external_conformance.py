@@ -69,7 +69,7 @@ def check_case(case: dict[str, Any], response: dict[str, Any]) -> dict[str, Any]
     actual = response["actual"]
     expected = case["expected"]
     passed = actual == expected
-    state = response["final_state"]
+    state = response["final_store"]
     assertion_errors: list[str] = []
     for assertion in case.get("postconditions", []):
         cursor: Any = state

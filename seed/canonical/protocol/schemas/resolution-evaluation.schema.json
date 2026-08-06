@@ -1,0 +1,37 @@
+{
+  "$id": "https://spec.aset.example/seed/0.3/schemas/resolution-evaluation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "effect_permitted": {
+      "type": "boolean"
+    },
+    "reason": {
+      "$ref": "common.schema.json#/$defs/reason"
+    },
+    "resolution": {
+      "$ref": "common.schema.json#/$defs/resolution"
+    },
+    "resolution_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "terminal_record_digest": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "resolution_id",
+    "resolution",
+    "effect_permitted",
+    "reason",
+    "terminal_record_digest"
+  ],
+  "type": "object"
+}

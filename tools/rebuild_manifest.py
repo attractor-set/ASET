@@ -14,6 +14,9 @@ EXCLUDED_PARTS = {
     "__pycache__",
     ".pytest_cache",
     ".ruff_cache",
+    ".tlacache",
+    ".tooling",
+    "states",
     "dist",
     "build",
 }
@@ -58,18 +61,21 @@ def build_manifest() -> dict[str, object]:
             "all repository regular files except MANIFEST.json, "
             "Git metadata, virtual environments, caches and dist"
         ),
-        "package": "ASET-Seed-0.2.0-alpha.2-Resolution-Core",
+        "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
         "repository_root": "ASET",
     }
 
 
 def canonical_text(value: object) -> str:
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        indent=2,
-    ) + "\n"
+    return (
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            sort_keys=True,
+            indent=2,
+        )
+        + "\n"
+    )
 
 
 def main() -> int:

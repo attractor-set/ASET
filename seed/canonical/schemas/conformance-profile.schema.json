@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "case_count": {
-      "const": 21
+      "const": 24
     },
     "cases": {
       "items": {
@@ -39,30 +39,30 @@
         ],
         "type": "object"
       },
-      "maxItems": 21,
-      "minItems": 21,
+      "maxItems": 24,
+      "minItems": 24,
       "type": "array"
     },
     "document_type": {
       "const": "aset-seed-resolution-conformance-profile"
     },
     "negative_count": {
-      "const": 13
+      "const": 16
     },
     "positive_count": {
       "const": 8
     },
     "profile_id": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V1"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V2"
     },
     "protocol": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
     },
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "seed_version": {
-      "const": "0.2.0-alpha.2"
+      "const": "0.3.0-alpha.1"
     }
   },
   "required": [

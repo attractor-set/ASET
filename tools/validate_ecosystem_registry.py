@@ -7,7 +7,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-ACTIVE = "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2"
+ACTIVE = "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1"
 
 
 def load(relative: str) -> dict[str, Any]:

@@ -1,0 +1,48 @@
+{
+  "$id": "https://spec.aset.example/seed/0.3/schemas/resolution-request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "binding": {
+      "$ref": "resolution-binding.schema.json"
+    },
+    "initial_authority_binding_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "previous_resolution_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "previous_terminal_record_digest": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "request_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "resolution_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    }
+  },
+  "required": [
+    "resolution_id",
+    "binding",
+    "initial_authority_binding_digest",
+    "previous_resolution_id",
+    "previous_terminal_record_digest",
+    "request_digest"
+  ],
+  "type": "object"
+}

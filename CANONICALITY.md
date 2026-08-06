@@ -1,16 +1,7 @@
 # Canonicality
 
-`seed/canonical/` is the active normative ASET Seed resolution core. Its machine-readable model,
-referenced schemas, requirements, invariants, conformance corpus and package identity define the
-active canon.
+The normative source is `seed/canonical/source/seed-model.json` together with the exact files listed in `seed/canonical/CANON_PACKAGE.json`.
 
-The decision lattice is `UNKNOWN -> ACCEPT | DENY`. `UNKNOWN` is distinct from `DENY`, remains
-operationally blocked and may move to another Resolution Authority only through an explicit
-escalation grant.
+The Seed resolution algebra is `UNKNOWN | ALLOW | BLOCK`. `UNKNOWN` is derived when no unique valid terminal record exists. Only a valid exact-binding locally authorized `ALLOW` record permits the bound effect. `BLOCK`, absence, invalidity and conflict are fail-closed.
 
-No extension, implementation, programming language, storage engine, AI model or checker has
-semantic precedence. `EXTENSIONS.json` and `IMPLEMENTATIONS.json` are discovery registries only.
-
-Legacy system and component material is not part of the active tree or Seed conformance. Its
-provenance and immutable extraction identity are recorded in [`EXTRACTION.json`](EXTRACTION.json)
-and preserved in Git history and the legacy release asset.
+Generated language editions, formal projections and executable oracles are controlled representations of the machine canon. No implementation, extension, storage engine, policy language or cryptographic provider has semantic precedence.

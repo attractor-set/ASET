@@ -56,6 +56,7 @@ def by_id(items: list[dict[str, Any]], key: str) -> dict[str, dict[str, Any]]:
 def semantic_item(item: dict[str, Any]) -> dict[str, Any]:
     result = dict(item)
     result.pop("verification", None)
+    result.pop("assurance_refs", None)
     return result
 
 
@@ -77,7 +78,12 @@ def compare_group(
 
 def classify(report: dict[str, Any]) -> str:
     groups = report["groups"]
-    if any(value for group in groups.values() for key, value in group.items() if key in {"removed", "changed"}):
+    if any(
+        value
+        for group in groups.values()
+        for key, value in group.items()
+        if key in {"removed", "changed"}
+    ):
         return "BREAKING"
     if any(group["added"] for group in groups.values()):
         return "MONOTONIC_EXTENSION"
@@ -89,7 +95,9 @@ def classify(report: dict[str, Any]) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--approved-ref", required=True)
-    parser.add_argument("--output", type=Path, default=Path("dist/canon-compatibility.json"))
+    parser.add_argument(
+        "--output", type=Path, default=Path("dist/canon-compatibility.json")
+    )
     args = parser.parse_args()
 
     approved = load_bytes(git_show(args.approved_ref, MODEL_PATH))
@@ -135,7 +143,10 @@ def main() -> int:
             declaration = load(DECLARATION_PATH)
             if declaration.get("change_class") != change_class:
                 errors.append("declared change class does not match detected class")
-            if declaration.get("candidate_model_sha256") != report["candidate_model_sha256"]:
+            if (
+                declaration.get("candidate_model_sha256")
+                != report["candidate_model_sha256"]
+            ):
                 errors.append("change declaration candidate digest is stale")
             for field in ("decision_ref", "rationale"):
                 if not declaration.get(field):
@@ -148,7 +159,9 @@ def main() -> int:
     report["verdict"] = "PASS" if not errors else "FAIL"
     output = ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
 
     print(f"CANON_CHANGE_CLASS={change_class}")
     print("CANON_COMPATIBILITY=" + report["verdict"])
