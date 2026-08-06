@@ -6,13 +6,14 @@ CONSTANTS ResolutionIds, Bindings, Authorities, NoResolution, NoRecord
 Resolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
 TerminalResolutions == {"ALLOW", "BLOCK"}
 
-(* AuthorityBindings is an exact-binding local recognition relation. *)
-CONSTANT AuthorityBindings
-
-VARIABLES requests, requestBinding, previousResolution, terminalRecord
-vars == <<requests, requestBinding, previousResolution, terminalRecord>>
+(* authorityBindings is a static exact-binding local recognition relation.
+   TLC explores every subset of Authorities \X Bindings and preserves the
+   selected relation for the entire behavior. *)
+VARIABLES authorityBindings, requests, requestBinding, previousResolution, terminalRecord
+vars == <<authorityBindings, requests, requestBinding, previousResolution, terminalRecord>>
 
 Init ==
+  /\ authorityBindings \in SUBSET (Authorities \X Bindings)
   /\ requests = {}
   /\ requestBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
   /\ previousResolution = [r \in ResolutionIds |-> NoResolution]
@@ -22,24 +23,24 @@ RegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ requests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in AuthorityBindings
-  /\ previous = NoResolution \/
-       /\ previous \in requests
-       /\ terminalRecord[previous] \in TerminalResolutions
+  /\ <<a, b>> \in authorityBindings
+  /\ \/ previous = NoResolution
+     \/ /\ previous \in requests
+        /\ terminalRecord[previous] \in TerminalResolutions
   /\ requests' = requests \cup {r}
   /\ requestBinding' = [requestBinding EXCEPT ![r] = b]
   /\ previousResolution' = [previousResolution EXCEPT ![r] = previous]
-  /\ UNCHANGED terminalRecord
+  /\ UNCHANGED <<authorityBindings, terminalRecord>>
 
 SubmitResolution(r, b, a, value) ==
   /\ r \in requests
   /\ b = requestBinding[r]
   /\ a \in Authorities
-  /\ <<a, b>> \in AuthorityBindings
+  /\ <<a, b>> \in authorityBindings
   /\ value \in TerminalResolutions
   /\ terminalRecord[r] = NoRecord
   /\ terminalRecord' = [terminalRecord EXCEPT ![r] = value]
-  /\ UNCHANGED <<requests, requestBinding, previousResolution>>
+  /\ UNCHANGED <<authorityBindings, requests, requestBinding, previousResolution>>
 
 Evaluate == UNCHANGED vars
 
@@ -60,6 +61,7 @@ ResolutionOf(r) ==
 EffectPermitted(r) == ResolutionOf(r) = "ALLOW"
 
 TypeOK ==
+  /\ authorityBindings \subseteq Authorities \X Bindings
   /\ requests \subseteq ResolutionIds
   /\ requestBinding \in [ResolutionIds -> Bindings]
   /\ previousResolution \in [ResolutionIds -> ResolutionIds \cup {NoResolution}]

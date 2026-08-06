@@ -1,6 +1,7 @@
 {
   "candidate_model_sha256": "sha256:d34e4672babbe02a5131297d0afbd991a5e6bc6ac0849f690aa136f3b3aa3866",
-  "change_class": "BREAKING_SEMANTIC_SIMPLIFICATION",
+  "change_class": "BREAKING",
+  "change_kind": "SEMANTIC_SIMPLIFICATION",
   "decision_ref": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
   "document_type": "aset-canon-change-declaration",
   "rationale": "Seed 0.3 removes coupled status/enforcement and mutable escalation state in favor of one fail-closed record-recognition kernel.",

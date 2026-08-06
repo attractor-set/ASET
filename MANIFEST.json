@@ -188,7 +188,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:62047fb5cef7718d62f5dfd88e46e5408bdc7b0802450ffc3308e1caa3bc26b4",
+      "sha256": "sha256:bf0e82ddd2f0ccd73e83d1932d66c84ab143cbeb4ec1075fdc0c064c5565a45d",
       "size_bytes": 2463
     },
     {
@@ -448,7 +448,7 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:0124dd31800f2d33009171babc7c39e2b5d36424954a9b2455eeb2eb810c16bc",
+      "sha256": "sha256:1d6115c897f6edeef620dfa3b8a17654e317f52ea376225d00102f771a653d95",
       "size_bytes": 10037
     },
     {
@@ -643,13 +643,13 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:675a62e36129a608e70fab4dca9d524ba77b47304a0e9f58c8ec348207d088ec",
-      "size_bytes": 336
+      "sha256": "sha256:507f7c87b88d9420c116f8a8aad74152113e02940a2df7c70cae64c1437409b7",
+      "size_bytes": 289
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:22259f376c6e72c2550f5a28b3bc5722a22cb4e7eaf0910e6113e5c661f956a9",
-      "size_bytes": 2907
+      "sha256": "sha256:d180166c100073ff415d0b56749cae38a0e863ef423d09a7155a118bfbc9bedd",
+      "size_bytes": 3204
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
@@ -658,13 +658,13 @@
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
-      "sha256": "sha256:8fa4e390ca69472099d7cfb99b4dcc3207b4ee5170eebcb441ef690d23a6de5e",
-      "size_bytes": 565
+      "sha256": "sha256:a20a2b37ff02e5ad3a83708722556ce0045764bd0d3a4ea1488af76a24de2c10",
+      "size_bytes": 585
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
-      "sha256": "sha256:ed42de92e113dc6162208540f328f8b1da0d98a3e356af32c4d476e3a83e6b2b",
-      "size_bytes": 571
+      "sha256": "sha256:a79e238f6b6f62e6418803c29a6cab27a07705117277d42d8e08d25e51f57743",
+      "size_bytes": 591
     },
     {
       "path": "seed/canonical/migration/RC11_TO_RC12_SEMANTIC_COVERAGE.json",
@@ -2008,8 +2008,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:e6c9b4e69ee5615cb864310e3b8b82724b2872178377be9edfd1878f5a5eaa21",
-      "size_bytes": 3681
+      "sha256": "sha256:4cf35e59117c2ae2bb104371f4b9dbcbc9445e7cad7c74ab7ac8b17159aed468",
+      "size_bytes": 3957
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",

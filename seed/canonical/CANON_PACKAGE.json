@@ -74,15 +74,15 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:22259f376c6e72c2550f5a28b3bc5722a22cb4e7eaf0910e6113e5c661f956a9"
+      "sha256": "sha256:d180166c100073ff415d0b56749cae38a0e863ef423d09a7155a118bfbc9bedd"
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:675a62e36129a608e70fab4dca9d524ba77b47304a0e9f58c8ec348207d088ec"
+      "sha256": "sha256:507f7c87b88d9420c116f8a8aad74152113e02940a2df7c70cae64c1437409b7"
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
-      "sha256": "sha256:8fa4e390ca69472099d7cfb99b4dcc3207b4ee5170eebcb441ef690d23a6de5e"
+      "sha256": "sha256:a20a2b37ff02e5ad3a83708722556ce0045764bd0d3a4ea1488af76a24de2c10"
     },
     {
       "path": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
@@ -223,6 +223,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:761515210d02cac6c032d95d32ac9a541d0a0cacb7c0de2c1da522de69411e12",
+  "package_digest": "sha256:a6eb6d7bb436f8a8275c8830f36324b219b7909e8023e1b420fa81c1733b96c2",
   "schema_version": 2
 }
