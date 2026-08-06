@@ -1,5 +1,5 @@
 {
-  "candidate_model_sha256": "sha256:d34e4672babbe02a5131297d0afbd991a5e6bc6ac0849f690aa136f3b3aa3866",
+  "candidate_model_sha256": "sha256:747f2a2684d97dc9af81e77e81c924e098e1803c8be07b3be85e2b919babd1af",
   "change_class": "BREAKING",
   "change_kind": "SEMANTIC_SIMPLIFICATION",
   "decision_ref": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",

@@ -158,6 +158,12 @@ def main() -> int:
 
     validate_document(
         errors,
+        "seed/canonical/assurance/invariant-coverage.json",
+        "seed/canonical/schemas/invariant-coverage.schema.json",
+        "invariant_coverage",
+    )
+    validate_document(
+        errors,
         "seed/canonical/assurance/limitations.json",
         "seed/canonical/schemas/assurance-limitations.schema.json",
         "assurance_limitations",

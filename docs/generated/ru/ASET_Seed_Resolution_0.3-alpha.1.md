@@ -4,7 +4,7 @@
 
 **Статус:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 канонической модели:** `sha256:2b3b0a281669f46d0be2af25d76d3b9b3aa984bed5f062bc3738cf8266b36bbf`
+**SHA-256 канонической модели:** `sha256:fe748a9c4328ab118ad9f40e2f9805e577015ef38b56e517fe2f5e572f3647b6`
 
 > Эта редакция выводится из машинного канона.
 
@@ -74,7 +74,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 Предикат: `binding_exact`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-002`
 
@@ -84,7 +84,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 Предикат: `request_fresh`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-003`
 
@@ -94,7 +94,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 Предикат: `resolution_domain`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-004`
 
@@ -104,7 +104,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 Предикат: `allow_only`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-005`
 
@@ -114,7 +114,7 @@ UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутств�
 
 Предикат: `fail_closed`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-006`
 
@@ -124,7 +124,7 @@ UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутств�
 
 Предикат: `local_authority`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-007`
 
@@ -134,7 +134,7 @@ UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутств�
 
 Предикат: `proof_attenuating`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-008`
 
@@ -144,7 +144,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 Предикат: `inputs_non_authoritative`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-009`
 
@@ -154,7 +154,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 Предикат: `terminal_unique`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-010`
 
@@ -164,7 +164,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 Предикат: `record_immutable`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-011`
 
@@ -174,7 +174,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 Предикат: `reconsider_fresh`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-012`
 
@@ -184,7 +184,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 Предикат: `implementation_neutral`
 
-`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`
+`verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ## Инварианты
 
@@ -229,4 +229,4 @@ Evidence, результаты проверки, выходы AI, результ
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `workflow orchestration`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`

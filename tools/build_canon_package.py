@@ -21,6 +21,8 @@ BASE = [
     "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
     "seed/canonical/conformance/model-based-conformance.json",
     "seed/canonical/assurance/verification-registry.json",
+    "seed/canonical/assurance/invariant-coverage.json",
+    "seed/canonical/schemas/invariant-coverage.schema.json",
     "seed/canonical/assurance/limitations.json",
     "seed/canonical/schemas/assurance-limitations.schema.json",
     "seed/canonical/assurance/repository-release-gates.json",
@@ -30,6 +32,7 @@ BASE = [
     "seed/canonical/formal/SeedResolution.cfg",
     "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
     "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
+    "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
 ]
 
 

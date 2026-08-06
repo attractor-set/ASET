@@ -1,0 +1,654 @@
+{
+  "claim_boundary": {
+    "covered": [
+      "all twelve canonical requirements have machine-traceable assurance evidence",
+      "all twelve canonical safety invariants have formal properties, conformance cases and semantic mutations",
+      "all three canonical transitions have positive and negative conformance coverage",
+      "bounded state and transition preservation for the published finite model"
+    ],
+    "not_claimed": [
+      "unbounded TLAPS proof",
+      "cryptographic primitive security",
+      "correctness of every implementation",
+      "liveness or workflow completion",
+      "external certification"
+    ]
+  },
+  "coverage_policy": {
+    "conformance_case_required": true,
+    "formal_property_required": true,
+    "invariants_complete": true,
+    "orphan_evidence_forbidden": true,
+    "requirements_complete": true,
+    "semantic_mutation_required": true,
+    "transitions_complete": true
+  },
+  "document_type": "aset-seed-invariant-coverage",
+  "invariants": [
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-POS-003",
+        "RES-POS-006"
+      ],
+      "formal_properties": [
+        "TypeOK",
+        "ResolutionDomain",
+        "EvaluatorTotalityDeterminism"
+      ],
+      "id": "SEED-INV-001",
+      "semantic_mutations": [
+        "SEED-MUT-001"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-POS-003"
+      ],
+      "formal_properties": [
+        "AllowSoundness",
+        "EvaluatorTotalityDeterminism"
+      ],
+      "id": "SEED-INV-002",
+      "semantic_mutations": [
+        "SEED-MUT-002"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-003",
+        "RES-POS-006"
+      ],
+      "formal_properties": [
+        "FailClosed"
+      ],
+      "id": "SEED-INV-003",
+      "semantic_mutations": [
+        "SEED-MUT-003"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-NEG-006"
+      ],
+      "formal_properties": [
+        "ExactBinding",
+        "CanonicalDigestIdentity"
+      ],
+      "id": "SEED-INV-004",
+      "semantic_mutations": [
+        "SEED-MUT-004"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-NEG-003",
+        "RES-NEG-004",
+        "RES-NEG-014"
+      ],
+      "formal_properties": [
+        "LocalAuthorityRoot",
+        "GrantChainValidation"
+      ],
+      "id": "SEED-INV-005",
+      "semantic_mutations": [
+        "SEED-MUT-005"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-004",
+        "RES-POS-005",
+        "RES-NEG-007",
+        "RES-NEG-008",
+        "RES-NEG-009",
+        "RES-NEG-016"
+      ],
+      "formal_properties": [
+        "DelegatedAuthoritySound",
+        "GrantChainValidation"
+      ],
+      "id": "SEED-INV-006",
+      "semantic_mutations": [
+        "SEED-MUT-006"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-006",
+        "RES-NEG-014"
+      ],
+      "formal_properties": [
+        "InputsNonAuthoritative",
+        "ObservedInputsAppendOnly"
+      ],
+      "id": "SEED-INV-007",
+      "semantic_mutations": [
+        "SEED-MUT-007"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-NEG-015"
+      ],
+      "formal_properties": [
+        "TerminalUnique"
+      ],
+      "id": "SEED-INV-008",
+      "semantic_mutations": [
+        "SEED-MUT-008"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-NEG-005",
+        "RES-NEG-014",
+        "RES-NEG-015"
+      ],
+      "formal_properties": [
+        "FailClosed",
+        "InvalidOrConflictUnknown"
+      ],
+      "id": "SEED-INV-009",
+      "semantic_mutations": [
+        "SEED-MUT-009"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-007",
+        "RES-NEG-010"
+      ],
+      "formal_properties": [
+        "TerminalRecordsImmutable",
+        "CanonicalDigestIdentity"
+      ],
+      "id": "SEED-INV-010",
+      "semantic_mutations": [
+        "SEED-MUT-010"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-NEG-001",
+        "RES-NEG-005",
+        "RES-NEG-006",
+        "RES-NEG-010"
+      ],
+      "formal_properties": [
+        "RejectedOperationPreservesStore"
+      ],
+      "id": "SEED-INV-011",
+      "semantic_mutations": [
+        "SEED-MUT-011"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-008",
+        "RES-NEG-011",
+        "RES-NEG-012",
+        "RES-NEG-013"
+      ],
+      "formal_properties": [
+        "FreshReconsideration",
+        "RequestsAppendOnly"
+      ],
+      "id": "SEED-INV-012",
+      "semantic_mutations": [
+        "SEED-MUT-012"
+      ]
+    }
+  ],
+  "mutation_catalog": [
+    {
+      "case_ids": [
+        "RES-POS-006"
+      ],
+      "description": "Return a fourth resolution value.",
+      "id": "SEED-MUT-001",
+      "operator": "out_of_domain_resolution",
+      "seed_invariants": [
+        "SEED-INV-001"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-003"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-POS-003"
+      ],
+      "description": "Permit an effect for BLOCK.",
+      "id": "SEED-MUT-002",
+      "operator": "permit_block",
+      "seed_invariants": [
+        "SEED-INV-002"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-004"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-POS-006"
+      ],
+      "description": "Permit an effect for UNKNOWN.",
+      "id": "SEED-MUT-003",
+      "operator": "permit_unknown",
+      "seed_invariants": [
+        "SEED-INV-003"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-005"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-006"
+      ],
+      "description": "Accept a mismatched binding as ALLOW.",
+      "id": "SEED-MUT-004",
+      "operator": "ignore_binding_mismatch",
+      "seed_invariants": [
+        "SEED-INV-004"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-001"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-014"
+      ],
+      "description": "Treat remote Authority as local Authority.",
+      "id": "SEED-MUT-005",
+      "operator": "trust_remote_authority",
+      "seed_invariants": [
+        "SEED-INV-005"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-006"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-016"
+      ],
+      "description": "Accept a cyclic Authority proof.",
+      "id": "SEED-MUT-006",
+      "operator": "accept_cyclic_grant",
+      "seed_invariants": [
+        "SEED-INV-006"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-007"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-014"
+      ],
+      "description": "Convert a non-authoritative external input into ALLOW.",
+      "id": "SEED-MUT-007",
+      "operator": "external_input_authorizes",
+      "seed_invariants": [
+        "SEED-INV-007"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-008"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-015"
+      ],
+      "description": "Resolve conflicting terminal records by first-wins.",
+      "id": "SEED-MUT-008",
+      "operator": "first_terminal_wins",
+      "seed_invariants": [
+        "SEED-INV-008"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-009"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-005"
+      ],
+      "description": "Allow invalid terminal material.",
+      "id": "SEED-MUT-009",
+      "operator": "invalid_material_allows",
+      "seed_invariants": [
+        "SEED-INV-009"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-005",
+        "ASET-SEED-REQ-009"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-010"
+      ],
+      "description": "Replace an immutable terminal record.",
+      "id": "SEED-MUT-010",
+      "operator": "replace_terminal_record",
+      "seed_invariants": [
+        "SEED-INV-010"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-010"
+      ]
+    },
+    {
+      "case_ids": [
+        "RES-NEG-001"
+      ],
+      "description": "Mutate canonical state on rejection.",
+      "id": "SEED-MUT-011",
+      "operator": "rejection_mutates_store",
+      "seed_invariants": [
+        "SEED-INV-011"
+      ],
+      "seed_requirements": []
+    },
+    {
+      "case_ids": [
+        "RES-NEG-011"
+      ],
+      "description": "Permit reconsideration to reuse a resolution_id.",
+      "id": "SEED-MUT-012",
+      "operator": "reuse_resolution_id",
+      "seed_invariants": [
+        "SEED-INV-012"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-002",
+        "ASET-SEED-REQ-011"
+      ]
+    },
+    {
+      "case_ids": [],
+      "description": "Give one implementation normative precedence.",
+      "id": "SEED-MUT-013",
+      "operator": "grant_implementation_precedence",
+      "seed_invariants": [],
+      "seed_requirements": [
+        "ASET-SEED-REQ-012"
+      ]
+    }
+  ],
+  "normative": true,
+  "requirements": [
+    {
+      "conformance_cases": [
+        "RES-POS-001",
+        "RES-NEG-006"
+      ],
+      "formal_properties": [
+        "TypeOK",
+        "ExactBinding",
+        "CanonicalDigestIdentity"
+      ],
+      "id": "ASET-SEED-REQ-001",
+      "invariants": [
+        "SEED-INV-004"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-004"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-001",
+        "RES-NEG-002",
+        "RES-NEG-011"
+      ],
+      "formal_properties": [
+        "FreshReconsideration",
+        "RequestsAppendOnly"
+      ],
+      "id": "ASET-SEED-REQ-002",
+      "invariants": [
+        "SEED-INV-012"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-012"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-POS-003",
+        "RES-POS-006"
+      ],
+      "formal_properties": [
+        "ResolutionDomain",
+        "EvaluatorTotalityDeterminism"
+      ],
+      "id": "ASET-SEED-REQ-003",
+      "invariants": [
+        "SEED-INV-001"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-001"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-POS-003"
+      ],
+      "formal_properties": [
+        "AllowSoundness",
+        "EvaluatorTotalityDeterminism"
+      ],
+      "id": "ASET-SEED-REQ-004",
+      "invariants": [
+        "SEED-INV-002"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-002"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-003",
+        "RES-POS-006",
+        "RES-NEG-005",
+        "RES-NEG-015"
+      ],
+      "formal_properties": [
+        "FailClosed",
+        "InvalidOrConflictUnknown"
+      ],
+      "id": "ASET-SEED-REQ-005",
+      "invariants": [
+        "SEED-INV-003",
+        "SEED-INV-009"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-003",
+        "SEED-MUT-009"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-NEG-003",
+        "RES-NEG-004",
+        "RES-NEG-014"
+      ],
+      "formal_properties": [
+        "LocalAuthorityRoot",
+        "GrantChainValidation"
+      ],
+      "id": "ASET-SEED-REQ-006",
+      "invariants": [
+        "SEED-INV-005"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-005"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-004",
+        "RES-POS-005",
+        "RES-NEG-007",
+        "RES-NEG-008",
+        "RES-NEG-016"
+      ],
+      "formal_properties": [
+        "DelegatedAuthoritySound",
+        "GrantChainValidation"
+      ],
+      "id": "ASET-SEED-REQ-007",
+      "invariants": [
+        "SEED-INV-006"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-006"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-006",
+        "RES-NEG-014"
+      ],
+      "formal_properties": [
+        "InputsNonAuthoritative",
+        "ObservedInputsAppendOnly"
+      ],
+      "id": "ASET-SEED-REQ-008",
+      "invariants": [
+        "SEED-INV-007"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-007"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-NEG-015"
+      ],
+      "formal_properties": [
+        "TerminalUnique",
+        "InvalidOrConflictUnknown"
+      ],
+      "id": "ASET-SEED-REQ-009",
+      "invariants": [
+        "SEED-INV-008",
+        "SEED-INV-009"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-008"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-007",
+        "RES-NEG-010"
+      ],
+      "formal_properties": [
+        "TerminalRecordsImmutable",
+        "CanonicalDigestIdentity"
+      ],
+      "id": "ASET-SEED-REQ-010",
+      "invariants": [
+        "SEED-INV-010"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-010"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-008",
+        "RES-NEG-011",
+        "RES-NEG-012",
+        "RES-NEG-013"
+      ],
+      "formal_properties": [
+        "FreshReconsideration",
+        "RequestsAppendOnly"
+      ],
+      "id": "ASET-SEED-REQ-011",
+      "invariants": [
+        "SEED-INV-012"
+      ],
+      "semantic_mutations": [
+        "SEED-MUT-012"
+      ]
+    },
+    {
+      "conformance_cases": [
+        "RES-POS-002",
+        "RES-POS-006"
+      ],
+      "formal_properties": [
+        "ImplementationNeutralityBoundary"
+      ],
+      "id": "ASET-SEED-REQ-012",
+      "invariants": [],
+      "semantic_mutations": [
+        "SEED-MUT-013"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "transitions": [
+    {
+      "id": "SEED-TX-001",
+      "negative_cases": [
+        "RES-NEG-001",
+        "RES-NEG-002",
+        "RES-NEG-003",
+        "RES-NEG-004",
+        "RES-NEG-011",
+        "RES-NEG-012",
+        "RES-NEG-013"
+      ],
+      "positive_cases": [
+        "RES-POS-001",
+        "RES-POS-008"
+      ]
+    },
+    {
+      "id": "SEED-TX-002",
+      "negative_cases": [
+        "RES-NEG-005",
+        "RES-NEG-006",
+        "RES-NEG-007",
+        "RES-NEG-008",
+        "RES-NEG-009",
+        "RES-NEG-010",
+        "RES-NEG-016"
+      ],
+      "positive_cases": [
+        "RES-POS-002",
+        "RES-POS-003",
+        "RES-POS-004",
+        "RES-POS-005",
+        "RES-POS-007"
+      ]
+    },
+    {
+      "id": "SEED-TX-003",
+      "negative_cases": [
+        "RES-NEG-014",
+        "RES-NEG-015"
+      ],
+      "positive_cases": [
+        "RES-POS-006"
+      ]
+    }
+  ]
+}

@@ -23,8 +23,8 @@
       "status": "IMPLEMENTATION_RESPONSIBILITY"
     },
     {
-      "closure_criteria": "Complete an independently reviewed unbounded refinement or state the accepted assurance level for 1.0.",
-      "description": "The minimal request-and-record kernel is bounded-model checked, but unbounded deductive proof is not yet claimed.",
+      "closure_criteria": "Complete an independently reviewed unbounded TLAPS safety/refinement proof or explicitly accept bounded assurance for the foundational release.",
+      "description": "The published normative safety contract has complete bounded machine traceability and semantic-mutation closure, but unbounded deductive proof is not yet claimed.",
       "id": "LIMIT-004",
       "scope": "formal-assurance",
       "status": "OPEN_ACCEPTED"

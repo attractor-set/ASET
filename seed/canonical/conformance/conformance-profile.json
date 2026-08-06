@@ -1,118 +1,6 @@
 {
-  "case_count": 21,
+  "case_count": 24,
   "cases": [
-    {
-      "case_id": "RES-POS-001",
-      "expected": {
-        "accepted": true,
-        "code": "REQUEST_REGISTERED",
-        "effect_permitted": false,
-        "reason": "TERMINAL_RECORD_ABSENT",
-        "resolution": "UNKNOWN",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
-      "polarity": "positive",
-      "sha256": "sha256:629c8ec5d5c8754accc3bfb8371be70517cd22eff6df77b05f80b924d504db0c"
-    },
-    {
-      "case_id": "RES-POS-002",
-      "expected": {
-        "accepted": true,
-        "code": "RESOLUTION_RECORDED",
-        "effect_permitted": true,
-        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
-        "resolution": "ALLOW",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
-      "polarity": "positive",
-      "sha256": "sha256:d9e91bbbc7f4107a876f748951ba8bf6d54bdec7fc07d3c337865acc581748f8"
-    },
-    {
-      "case_id": "RES-POS-003",
-      "expected": {
-        "accepted": true,
-        "code": "RESOLUTION_RECORDED",
-        "effect_permitted": false,
-        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
-        "resolution": "BLOCK",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
-      "polarity": "positive",
-      "sha256": "sha256:2beb58bb1a248feae6ae4e58c3e79090d9968619eee02bfcc9d964e62daee472"
-    },
-    {
-      "case_id": "RES-POS-004",
-      "expected": {
-        "accepted": true,
-        "code": "RESOLUTION_RECORDED",
-        "effect_permitted": true,
-        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
-        "resolution": "ALLOW",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
-      "polarity": "positive",
-      "sha256": "sha256:382fd819df34e3a07813d2bfb242699a0ac8ba3ca4237574640940c58aacba70"
-    },
-    {
-      "case_id": "RES-POS-005",
-      "expected": {
-        "accepted": true,
-        "code": "RESOLUTION_RECORDED",
-        "effect_permitted": true,
-        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
-        "resolution": "ALLOW",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
-      "polarity": "positive",
-      "sha256": "sha256:0a7bd554fc68db99cba30dfe8dd8573f176b573a4c30c5bc79820255c1f64171"
-    },
-    {
-      "case_id": "RES-POS-006",
-      "expected": {
-        "accepted": true,
-        "code": "EVALUATED",
-        "effect_permitted": false,
-        "reason": "TERMINAL_RECORD_ABSENT",
-        "resolution": "UNKNOWN",
-        "state_changed": false
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
-      "polarity": "positive",
-      "sha256": "sha256:1a77e9fb1ded33823854070104eb93e4cfdf57137bf544ece8dc9854b5c18429"
-    },
-    {
-      "case_id": "RES-POS-007",
-      "expected": {
-        "accepted": true,
-        "code": "IDEMPOTENT_REPLAY",
-        "effect_permitted": true,
-        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
-        "resolution": "ALLOW",
-        "state_changed": false
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "polarity": "positive",
-      "sha256": "sha256:a5aa8a79fef5a07ccf35b1d296e421f801de66d4d74b57b82f96702ccc5208dd"
-    },
-    {
-      "case_id": "RES-POS-008",
-      "expected": {
-        "accepted": true,
-        "code": "REQUEST_REGISTERED",
-        "effect_permitted": false,
-        "reason": "TERMINAL_RECORD_ABSENT",
-        "resolution": "UNKNOWN",
-        "state_changed": true
-      },
-      "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
-      "polarity": "positive",
-      "sha256": "sha256:866012e9620f528a28e41ab9372c63c2c27eba30a1badacf3eccbaaae271a334"
-    },
     {
       "case_id": "RES-NEG-001",
       "expected": {
@@ -294,10 +182,164 @@
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
       "polarity": "negative",
       "sha256": "sha256:e6dc8c007e837a9ac2c0af50c87f8b5e2ae59a53afb7e99bbf570172b9b73d2e"
+    },
+    {
+      "case_id": "RES-NEG-014",
+      "expected": {
+        "accepted": true,
+        "code": "EVALUATED",
+        "effect_permitted": false,
+        "reason": "NO_VALID_TERMINAL_RECORD",
+        "resolution": "UNKNOWN",
+        "state_changed": false
+      },
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-014.json",
+      "polarity": "negative",
+      "sha256": "sha256:64355c1f3addd2dcbca60cdd4d7e1a3e7eb2d5e3eded9ca8ab7a75cdcdf7e068"
+    },
+    {
+      "case_id": "RES-NEG-015",
+      "expected": {
+        "accepted": true,
+        "code": "EVALUATED",
+        "effect_permitted": false,
+        "reason": "CONFLICTING_TERMINAL_RECORDS",
+        "resolution": "UNKNOWN",
+        "state_changed": false
+      },
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-015.json",
+      "polarity": "negative",
+      "sha256": "sha256:8b73adb652f0962663ea7a7a86467037919fad636ab138c33886bfb3bce03a06"
+    },
+    {
+      "case_id": "RES-NEG-016",
+      "expected": {
+        "accepted": false,
+        "code": "AUTHORITY_GRANT_CYCLE",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": false
+      },
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-016.json",
+      "polarity": "negative",
+      "sha256": "sha256:3db680a11ad82baa915ee0673dab19f1314b6c841a4cf72b5ea6997872168598"
+    },
+    {
+      "case_id": "RES-POS-001",
+      "expected": {
+        "accepted": true,
+        "code": "REQUEST_REGISTERED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
+      "polarity": "positive",
+      "sha256": "sha256:629c8ec5d5c8754accc3bfb8371be70517cd22eff6df77b05f80b924d504db0c"
+    },
+    {
+      "case_id": "RES-POS-002",
+      "expected": {
+        "accepted": true,
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
+      "polarity": "positive",
+      "sha256": "sha256:d9e91bbbc7f4107a876f748951ba8bf6d54bdec7fc07d3c337865acc581748f8"
+    },
+    {
+      "case_id": "RES-POS-003",
+      "expected": {
+        "accepted": true,
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": false,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "BLOCK",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
+      "polarity": "positive",
+      "sha256": "sha256:2beb58bb1a248feae6ae4e58c3e79090d9968619eee02bfcc9d964e62daee472"
+    },
+    {
+      "case_id": "RES-POS-004",
+      "expected": {
+        "accepted": true,
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
+      "polarity": "positive",
+      "sha256": "sha256:382fd819df34e3a07813d2bfb242699a0ac8ba3ca4237574640940c58aacba70"
+    },
+    {
+      "case_id": "RES-POS-005",
+      "expected": {
+        "accepted": true,
+        "code": "RESOLUTION_RECORDED",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
+      "polarity": "positive",
+      "sha256": "sha256:0a7bd554fc68db99cba30dfe8dd8573f176b573a4c30c5bc79820255c1f64171"
+    },
+    {
+      "case_id": "RES-POS-006",
+      "expected": {
+        "accepted": true,
+        "code": "EVALUATED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": false
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
+      "polarity": "positive",
+      "sha256": "sha256:1a77e9fb1ded33823854070104eb93e4cfdf57137bf544ece8dc9854b5c18429"
+    },
+    {
+      "case_id": "RES-POS-007",
+      "expected": {
+        "accepted": true,
+        "code": "IDEMPOTENT_REPLAY",
+        "effect_permitted": true,
+        "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+        "resolution": "ALLOW",
+        "state_changed": false
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
+      "polarity": "positive",
+      "sha256": "sha256:a5aa8a79fef5a07ccf35b1d296e421f801de66d4d74b57b82f96702ccc5208dd"
+    },
+    {
+      "case_id": "RES-POS-008",
+      "expected": {
+        "accepted": true,
+        "code": "REQUEST_REGISTERED",
+        "effect_permitted": false,
+        "reason": "TERMINAL_RECORD_ABSENT",
+        "resolution": "UNKNOWN",
+        "state_changed": true
+      },
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
+      "polarity": "positive",
+      "sha256": "sha256:866012e9620f528a28e41ab9372c63c2c27eba30a1badacf3eccbaaae271a334"
     }
   ],
   "document_type": "aset-seed-resolution-conformance-profile",
-  "negative_count": 13,
+  "negative_count": 16,
   "positive_count": 8,
   "profile_id": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V2",
   "protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",

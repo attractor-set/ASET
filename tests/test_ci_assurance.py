@@ -74,7 +74,7 @@ def test_seed_resolution_tla_uses_valid_operator_tokens():
     ).read_text(encoding="utf-8")
     assert "/\\\\" not in specification
     assert "Range(" not in specification
-    assert 'Init ==\n  /\\ authorityBindings \\in SUBSET (Authorities \\X Bindings)' in specification
+    assert 'Init ==\n  /\\ localAuthorityBindings \\in SUBSET (Authorities \\X Bindings)' in specification
     assert '  /\\ requests = {}' in specification
     assert "Spec == Init /\\ [][Next]_vars" in specification
 
@@ -90,8 +90,8 @@ def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
         'TerminalUnique ==' in specification
     )
     assert "CHECK_DEADLOCK FALSE" in configuration
-    assert "AuthorityBindings =" not in configuration
-    assert r"authorityBindings \in SUBSET (Authorities \X Bindings)" in specification
+    assert "LocalAuthorityBindings =" not in configuration
+    assert r"localAuthorityBindings \in SUBSET (Authorities \X Bindings)" in specification
 
 
 def test_active_audit_index_tracks_active_canon_package():

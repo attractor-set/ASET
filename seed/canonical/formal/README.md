@@ -1,5 +1,31 @@
-# ASET Seed minimal formal projection
+# ASET Seed complete bounded safety projection
 
-`SeedResolution.tla` models the record-recognition kernel of Seed 0.3. Requests are append-only, terminal records are unique, `UNKNOWN` is derived from the absence of a terminal record, and only `ALLOW` permits the exact bound effect.
+`SeedResolution.tla` is the bounded formal projection of the Seed 0.3 minimal
+resolution-recognition kernel.
 
-Authority proof construction, evidence acquisition, policy evaluation, storage, transport and enforcement are intentionally outside this bounded assurance projection. `AuthorityBindings` represents authority material that has already passed the normative exact-binding and local-root checks defined by the wire schemas and conformance corpus.
+The model covers:
+
+- the closed resolution domain `UNKNOWN | ALLOW | BLOCK`;
+- sound and fail-closed effect permission;
+- exact request/record binding;
+- local Authority roots;
+- an abstract validated delegated-Authority predicate;
+- non-authoritative external inputs;
+- conflict and invalid-material handling;
+- fresh reconsideration lineage;
+- append-only requests and inputs;
+- immutable terminal records;
+- preservation of canonical state by rejected operations.
+
+The TLC configuration checks eleven state invariants and four temporal
+properties. The Python bounded explorer checks the identical property names and
+also validates transition preservation.
+
+Detailed grant-chain construction, canonical digest computation and static
+implementation neutrality are checked by the executable oracle and canon
+validators. Their exact mapping is normative in
+`seed/canonical/assurance/invariant-coverage.json`.
+
+The formal projection does not claim liveness or unbounded deductive proof.
+`UNKNOWN` may remain unresolved indefinitely; this is intentional fail-closed
+behaviour for a recognition kernel rather than a workflow engine.

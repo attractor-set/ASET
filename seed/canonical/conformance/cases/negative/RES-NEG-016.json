@@ -1,0 +1,90 @@
+{
+  "candidate": {
+    "kind": "SUBMIT_RESOLUTION",
+    "payload": {
+      "record": {
+        "authority_id": "authority.unreachable",
+        "authority_proof_digests": [
+          "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
+          "sha256:c90de3c15e44bd9afbe9c4cecee097a8dc4fb3fae41c65cd73374e43ac57d371"
+        ],
+        "basis_digests": [
+          "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        ],
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "record_digest": "sha256:f13129aebdc8aad38ae4cd4e416b760e1e5c8f7eac0822776461a87dfdb54a70",
+        "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+        "resolution": "ALLOW",
+        "resolution_id": "res.1"
+      }
+    }
+  },
+  "case_id": "RES-NEG-016",
+  "description": "Reject a delegated Authority proof containing a cycle back to the local root.",
+  "expected": {
+    "accepted": false,
+    "code": "AUTHORITY_GRANT_CYCLE",
+    "effect_permitted": false,
+    "reason": "TERMINAL_RECORD_ABSENT",
+    "resolution": "UNKNOWN",
+    "state_changed": false
+  },
+  "initial_store": {
+    "authority_bindings": [
+      {
+        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_id": "authority.root",
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+        "context_id": "ctx.local",
+        "delegation_allowed": true,
+        "policy_epoch": 1
+      }
+    ],
+    "authority_grants": [
+      {
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "delegation_allowed": true,
+        "grant_digest": "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
+        "issuer_authority_id": "authority.root",
+        "previous_grant_digest": null,
+        "subject_authority_id": "authority.delegate"
+      },
+      {
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "delegation_allowed": false,
+        "grant_digest": "sha256:c90de3c15e44bd9afbe9c4cecee097a8dc4fb3fae41c65cd73374e43ac57d371",
+        "issuer_authority_id": "authority.delegate",
+        "previous_grant_digest": "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
+        "subject_authority_id": "authority.root"
+      }
+    ],
+    "records": [],
+    "requests": []
+  },
+  "postconditions": [],
+  "setup": [
+    {
+      "kind": "REGISTER_REQUEST",
+      "payload": {
+        "request": {
+          "binding": {
+            "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+            "context_id": "ctx.local",
+            "policy_epoch": 1,
+            "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "scope": [
+              "effect:publish"
+            ],
+            "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "previous_resolution_id": null,
+          "previous_terminal_record_digest": null,
+          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+          "resolution_id": "res.1"
+        }
+      }
+    }
+  ]
+}

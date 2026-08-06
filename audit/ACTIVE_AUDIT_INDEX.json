@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:a6eb6d7bb436f8a8275c8830f36324b219b7909e8023e1b420fa81c1733b96c2",
+    "canon_package_digest": "sha256:6a89bd50c90fee8d9edff2e3caba5fc70c3024762f6400ee937e50d4d415e15c",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
@@ -10,7 +10,9 @@
   "active_controlling_records": [
     "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",
     "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.md",
-    "audit/REFACTORING_LOG.md"
+    "audit/REFACTORING_LOG.md",
+    "audit/PDCA-17-INVARIANT-CLOSURE.json",
+    "audit/PDCA-17-INVARIANT-CLOSURE.md"
   ],
   "classification_rules": [
     "Only active_controlling_records may support static claims about the current implementation-neutral candidate.",
@@ -30,7 +32,9 @@
     "dist/seed-model-check.json",
     "dist/assurance-traceability.json",
     "dist/canon-compatibility.json",
-    "dist/tlc-model-check.json"
+    "dist/tlc-model-check.json",
+    "dist/invariant-mutations.json",
+    "dist/invariant-coverage.json"
   ],
   "historical_noncontrolling_records": [
     "audit/FINDING_CLOSURE_MATRIX.json",
