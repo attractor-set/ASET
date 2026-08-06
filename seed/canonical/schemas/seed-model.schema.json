@@ -29,11 +29,11 @@
   "additionalProperties": false,
   "properties": {
     "assurance": {
-      "minProperties": 7,
+      "minProperties": 8,
       "type": "object"
     },
     "canonicality": {
-      "minProperties": 7,
+      "minProperties": 8,
       "type": "object"
     },
     "concepts": {
@@ -63,11 +63,55 @@
         ],
         "type": "object"
       },
-      "minItems": 20,
+      "maxItems": 10,
+      "minItems": 10,
       "type": "array"
     },
     "conformance_profile_ref": {
       "const": "seed/canonical/conformance/conformance-profile.json"
+    },
+    "decision_lattice": {
+      "additionalProperties": false,
+      "properties": {
+        "accept_enforcement": {
+          "const": "ALLOW"
+        },
+        "deny_enforcement": {
+          "const": "BLOCKED"
+        },
+        "incomparable": {
+          "const": [
+            "ACCEPT",
+            "DENY"
+          ]
+        },
+        "information_order": {
+          "minItems": 2,
+          "type": "array"
+        },
+        "initial": {
+          "const": "UNKNOWN"
+        },
+        "terminal": {
+          "const": [
+            "ACCEPT",
+            "DENY"
+          ]
+        },
+        "unknown_enforcement": {
+          "const": "BLOCKED"
+        }
+      },
+      "required": [
+        "initial",
+        "terminal",
+        "information_order",
+        "incomparable",
+        "unknown_enforcement",
+        "deny_enforcement",
+        "accept_enforcement"
+      ],
+      "type": "object"
     },
     "implementation_boundary": {
       "additionalProperties": false,
@@ -82,23 +126,21 @@
           "const": "IMPLEMENTATION_NEUTRAL"
         },
         "profile_rule": {
-          "minLength": 80,
+          "minLength": 120,
           "type": "string"
         },
         "required_observables": {
           "items": {
-            "minLength": 1,
             "type": "string"
           },
-          "minItems": 5,
+          "minItems": 6,
           "type": "array"
         },
         "unspecified_by_seed": {
           "items": {
-            "minLength": 1,
             "type": "string"
           },
-          "minItems": 7,
+          "minItems": 10,
           "type": "array"
         }
       },
@@ -138,7 +180,8 @@
         ],
         "type": "object"
       },
-      "minItems": 29,
+      "maxItems": 12,
+      "minItems": 12,
       "type": "array"
     },
     "languages": {
@@ -149,10 +192,11 @@
       ]
     },
     "model_id": {
-      "const": "ASET-SEED-CANON-RC12"
+      "const": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1"
     },
     "predecessor": {
-      "const": "ASET Seed 0.1-rc11"
+      "minLength": 1,
+      "type": "string"
     },
     "protocol_profile_ref": {
       "const": "seed/canonical/protocol/protocol-profile.json"
@@ -173,7 +217,7 @@
             "type": "string"
           },
           "id": {
-            "pattern": "^ASET-SEED-[A-Z-]+[0-9]{3}$",
+            "pattern": "^ASET-SEED-REQ-[0-9]{3}$",
             "type": "string"
           },
           "modality": {
@@ -219,67 +263,90 @@
         ],
         "type": "object"
       },
-      "minItems": 28,
+      "maxItems": 14,
+      "minItems": 14,
       "type": "array"
     },
     "schema_version": {
-      "const": 2
+      "const": 3
     },
     "status": {
-      "const": "RC12_RELEASE_CANDIDATE_READY"
+      "const": "RESOLUTION_CORE_ALPHA"
     },
     "transitions": {
       "items": {
         "additionalProperties": false,
         "properties": {
-          "authorization_rule": {
+          "authority_rule": {
+            "minLength": 1,
             "type": "string"
           },
           "created_artifacts": {
             "items": {
               "type": "string"
             },
+            "minItems": 1,
             "type": "array"
           },
-          "handler": {
-            "type": "string"
+          "from_status": {
+            "enum": [
+              null,
+              "UNKNOWN"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "id": {
             "pattern": "^SEED-TX-[0-9]{3}$",
             "type": "string"
           },
           "kind": {
-            "pattern": "^[A-Z_]+$",
-            "type": "string"
+            "enum": [
+              "OPEN_RESOLUTION",
+              "RESOLVE_ACCEPT",
+              "RESOLVE_DENY",
+              "ESCALATE_UNKNOWN"
+            ]
           },
           "payload_schema": {
             "type": "string"
           },
-          "semantic_disposition": {
-            "const": "PRESERVED_EXACTLY_FROM_RC11"
+          "scope_rule": {
+            "minLength": 1,
+            "type": "string"
           },
-          "wire_schema_version": {
-            "const": "0.1-rc11"
+          "terminal": {
+            "type": "boolean"
+          },
+          "to_status": {
+            "enum": [
+              "UNKNOWN",
+              "ACCEPT",
+              "DENY"
+            ]
           }
         },
         "required": [
           "id",
           "kind",
           "payload_schema",
-          "handler",
-          "authorization_rule",
+          "from_status",
+          "to_status",
+          "authority_rule",
+          "scope_rule",
           "created_artifacts",
-          "wire_schema_version",
-          "semantic_disposition"
+          "terminal"
         ],
         "type": "object"
       },
-      "maxItems": 18,
-      "minItems": 18,
+      "maxItems": 4,
+      "minItems": 4,
       "type": "array"
     },
     "version": {
-      "const": "0.1-rc12"
+      "const": "0.2.0-alpha.1"
     }
   },
   "required": [
@@ -291,6 +358,7 @@
     "canonicality",
     "languages",
     "publication",
+    "decision_lattice",
     "concepts",
     "requirements",
     "invariants",
@@ -300,6 +368,6 @@
     "assurance",
     "implementation_boundary"
   ],
-  "title": "ASET Seed rc12 canonical model",
+  "title": "ASET Seed resolution-core canonical model",
   "type": "object"
 }

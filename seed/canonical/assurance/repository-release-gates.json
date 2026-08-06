@@ -11,13 +11,13 @@
       "external certification"
     ],
     "included": [
-      "machine-readable rc12 canon",
+      "machine-readable resolution core",
       "implementation-neutral canon package",
       "deterministic official editions",
-      "rc11 wire-semantic compatibility",
-      "formal and bounded model checks",
-      "portable conformance cases",
-      "component-canon conformance",
+      "breaking migration declaration",
+      "bounded and TLC decision-lattice checks",
+      "portable resolution conformance cases",
+      "historical component-canon non-regression",
       "release and manifest integrity"
     ]
   },
@@ -37,10 +37,10 @@
       "name": "terminology_policy"
     },
     {
-      "evidence": "python tools/validate_rc12_canon.py",
+      "evidence": "python tools/validate_seed_canon.py",
       "id": "ASET-GATE-003",
       "mandatory": true,
-      "name": "rc12_canon_validation"
+      "name": "active_seed_resolution_canon_validation"
     },
     {
       "evidence": "python tools/build_canon_package.py --check",
@@ -79,10 +79,10 @@
       "name": "component_conformance"
     },
     {
-      "evidence": "python tools/model_check_rc12.py --output dist/rc12-model-check.json",
+      "evidence": "python tools/model_check_seed.py --output dist/seed-model-check.json",
       "id": "ASET-GATE-010",
       "mandatory": true,
-      "name": "bounded_seed_model_check"
+      "name": "bounded_seed_resolution_model_check"
     },
     {
       "evidence": "python tools/model_check_components.py --check",
@@ -127,7 +127,7 @@
       "name": "component_adversarial_audit"
     },
     {
-      "evidence": "python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json",
+      "evidence": "python tools/check_assurance_traceability.py --model-report dist/seed-model-check.json",
       "id": "ASET-GATE-018",
       "mandatory": true,
       "name": "assurance_traceability"
@@ -157,6 +157,6 @@
       "name": "ruff_static_analysis"
     }
   ],
-  "profile": "ASET_SPECIFICATION_RC12_RELEASE_CANDIDATE",
-  "schema_version": 4
+  "profile": "ASET_SEED_RESOLUTION_CORE_ALPHA",
+  "schema_version": 5
 }

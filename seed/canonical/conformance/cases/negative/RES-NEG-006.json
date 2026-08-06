@@ -1,0 +1,53 @@
+{
+  "candidate": {
+    "kind": "RESOLVE_DENY",
+    "payload": {
+      "authority_id": "authority:local",
+      "context_id": "context:local",
+      "evidence_digests": [
+        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "case_id": "RES-NEG-006",
+  "description": "ACCEPT cannot be changed to DENY in the same cycle.",
+  "expected": {
+    "accepted": false,
+    "code": "TERMINAL_IMMUTABLE",
+    "enforcement": "ALLOW",
+    "semantic_status": "ACCEPT",
+    "state_changed": false
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "ALLOW",
+    "escalation_grants": [],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "ACCEPT"
+  },
+  "postconditions": [
+    {
+      "equals": "ACCEPT",
+      "path": "/status"
+    }
+  ],
+  "setup": []
+}

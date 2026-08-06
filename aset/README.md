@@ -1,21 +1,33 @@
-# ASET component canons
+# Historical ASET extension migration archive
 
-ASET Seed is the minimal, implementation-neutral semantic nucleus of ASET. This directory defines independently versioned component canons that may grow around that nucleus while remaining explicitly bound to Seed transition semantics.
+The active normative ASET Seed exists only under [`seed/canonical/`](../seed/canonical/).
+This `aset/` tree is a **noncontrolling migration archive** retained temporarily so the
+pre-split rc11/rc12 decomposition can be extracted into separately versioned extension-template
+repositories without losing byte identity, traceability, or authorship evidence.
 
-The component canons decompose the exact ASET 1.5-rc11 monolithic machine specification into System Composition, Context, Core, Monade, Memory, Master, Model Gateway and Protocol profiles above ASET Seed 0.1-rc12.
+Nothing under this directory:
 
-Component line: `0.1-rc1`.
+- expands the active Seed;
+- is part of active Seed conformance;
+- is executed by the active Seed release gate;
+- has semantic precedence over `seed/canonical/`;
+- makes Monade, Master, Core, Memory, Context, Protocol, Gateway, or System Composition part of Seed.
 
-- `system/`: composition and compatibility matrix;
-- `components/context/`: namespace, immutable components and atomic patch semantics;
-- `components/core/`: resolution, Permit and gate crossing;
-- `components/monade/`: Task, execution and independent acceptance;
-- `components/memory/`: provenance-preserving memory and mutation;
-- `components/master/`: planning, ExpectedChangePatch and advisory attractor analysis;
-- `components/gateway/`: provider request rendering;
-- `components/protocol/`: closed schemas, canonicalization and signatures;
-- `shared/seed-bridge/`: explicit mapping to Seed 0.1-rc12;
-- `shared/migration/`: exact partition coverage of the rc11 monolith;
-- `profiles/monade-attempt-evidence/`: optional normative Monade profile for append-only positive and negative attempt evidence, with read-only projection to Master.
+The archived component line contains historical decomposition material for:
 
-The component canons and optional profiles do not modify or supersede Seed. The Monade Attempt Evidence Profile is not required for Seed conformance, and no implementation or production conformance is claimed.
+- `system/`;
+- `components/context/`;
+- `components/core/`;
+- `components/monade/`;
+- `components/memory/`;
+- `components/master/`;
+- `components/gateway/`;
+- `components/protocol/`;
+- `shared/seed-bridge/`;
+- `shared/migration/`.
+
+The previously added in-repository Monade Attempt Evidence Profile has been removed. Any future
+Monade specification, including attempt and negative-result evidence, belongs in an external
+extension-template repository pinned to an exact Seed package digest.
+
+Historical archive checks may be run manually and must not be interpreted as Seed release gates.

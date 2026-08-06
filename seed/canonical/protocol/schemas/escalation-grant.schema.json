@@ -1,0 +1,39 @@
+{
+  "$id": "https://spec.aset.example/seed/0.2/schemas/escalation-grant.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "context_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "from_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "grant_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "policy_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "question_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "to_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    }
+  },
+  "required": [
+    "grant_id",
+    "from_authority_id",
+    "to_authority_id",
+    "context_id",
+    "policy_epoch",
+    "scope",
+    "question_digest"
+  ],
+  "type": "object"
+}

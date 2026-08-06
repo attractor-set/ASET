@@ -1,38 +1,14 @@
 {
-  "assurance_boundary": {
-    "deployment_key_management": "DEPLOYMENT_RESPONSIBILITY",
-    "distributed_consensus": "OUT_OF_SCOPE",
-    "external_certification": "PENDING",
-    "implementation_profiles": "SEPARATE_NON_NORMATIVE_REPOSITORIES",
-    "physical_world_truth": "OUT_OF_SCOPE",
-    "rc12_machine_canon": "COMPLETE_RELEASE_CANDIDATE",
-    "rc12_semantic_migration": "83_OF_83_MIGRATED",
-    "repository_publication_and_documentation_operations": "PRODUCTION_READY",
-    "seed_semantics_rc11": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS"
-  },
-  "current_stable_seed_release": "0.1-rc11",
-  "current_stable_seed_status": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS",
+  "active_conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
+  "active_seed_model": "seed/canonical/source/seed-model.json",
+  "active_seed_status": "RESOLUTION_CORE_ALPHA",
+  "active_seed_version": "0.2.0-alpha.1",
   "document_type": "aset-repository-status",
-  "embedded_runtime": "NOT_PROVIDED",
-  "expanded_rc11": "BYTE_EXACT_MATERIALIZATION",
+  "extension_separation": "IN_PROGRESS",
   "external_third_party_audit": "PENDING",
-  "frozen_seed_bundle_sha256": "sha256:a0a534125e27f491747dc46f080f418226798dadadee31d5d55b495e6e18ab43",
-  "frozen_seed_documentation_sha256": "sha256:3a2f06183790dd6ec06b1d2ad47653aa368ee9e62a1ec71f76c60cab508b5600",
-  "generated_languages": [
-    "ru",
-    "en",
-    "pt-BR"
-  ],
   "implementation_precedence": "NONE",
-  "machine_readable_canon": "NORMATIVE_CANON_COMPLETE",
-  "next_seed_status": "RC12_RELEASE_CANDIDATE_READY",
-  "next_seed_version": "0.1-rc12",
-  "reference_implementation": "NOT_INCLUDED_IN_SPECIFICATION_REPOSITORY",
-  "repository": "ASET",
-  "repository_release_gate": "REPOSITORY_RELEASE_GATE_REQUIRED_ON_EVERY_MAIN_CHANGE",
-  "repository_release_readiness": "SPECIFICATION_AND_CONFORMANCE_PACKAGE_READY",
-  "repository_role": "NORMATIVE_SPECIFICATION_CONFORMANCE_AND_FORMAL_MODELS",
-  "repository_url": "https://github.com/attractor-set/ASET",
-  "schema_version": 3,
-  "wire_compatibility_profile": "ASET-SEED-WIRE-0.1-RC11-COMPAT"
+  "predecessor_status": "HISTORICAL_MIGRATION_SOURCE",
+  "predecessor_version": "0.1-rc12",
+  "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
+  "schema_version": 2
 }

@@ -2,34 +2,16 @@
 
 # ASET
 
-ASET é uma especificação aberta e neutra em relação à implementação para Authority-Signed Evidence Trails, com conformidade baseada em modelo e responsabilização verificável em sistemas sociotécnicos heterogêneos.
+ASET é uma especificação aberta e neutra quanto à implementação. Seu Seed define a resolução verificável e limitada por autoridade de uma questão normativa exata de `UNKNOWN` para `ACCEPT` ou `DENY`.
 
-## O que define ASET
+`UNKNOWN` não autoriza efeito e não é convertido em `DENY`. Uma questão não resolvida pode permanecer `UNKNOWN` e seguir para a próxima Resolution Authority explicitamente autorizada. A ancestralidade de contexto ou a participação federativa, por si só, não cria autoridade.
 
-ASET é definido pelo cânone legível por máquina, esquemas normativos, condições de validade, invariantes, semântica de transições e corpus de conformidade. Nenhuma implementação, linguagem, base de dados, verificador ou perfil de implantação possui precedência semântica.
+O cânone ativo legível por máquina está em [`seed/canonical/`](seed/canonical/). Execução, registros de tentativas, Monade, Master, memória, topologia federativa, consenso e persistência pertencem a extensões e implementações independentes.
 
-- Cânone de máquina: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
-- Identidade do pacote canônico: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
-- Projeção formal: [`seed/canonical/formal/`](seed/canonical/formal/)
-- Corpus de conformidade: [`seed/canonical/conformance/`](seed/canonical/conformance/)
-- Cânones dos componentes: [`aset/README.md`](aset/README.md)
-- Perfil opcional Monade para evidências de tentativas: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
+A migração a partir de rc12 é intencionalmente incompatível: [`seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md`](seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md).
 
-## Conformidade de implementações baseada em modelo
+## Extensões históricas e exemplo
 
-Implementações independentes são testadas como caixas-pretas por `ASET-IMPLEMENTATION-CONFORMANCE-V1`. A implementação devolve resultados observáveis; um runner externo consome um pacote canônico fixado e determina o veredito.
+Os component canons atuais são fontes históricas de migração até sua extração: [`aset/README.md`](aset/README.md). O exemplo não normativo de patch controlado está em [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md).
 
-Armazenamento, durabilidade, concorrência, recuperação, consenso, rede e custódia de chaves pertencem aos perfis de implementação e não definem o Seed.
-
-## Exemplo completo
-
-Um exemplo completo e não normativo de patch de repositório controlado por um agente de IA está disponível em [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md). O cânone legível por máquina e o corpus de conformance permanecem autoritativos.
-
-
-## Implementações
-
-As implementações são mantidas separadamente da especificação. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) é a implementação de referência não normativa e o perfil educacional em Python + SQLite. Ela não possui precedência semântica, e Python e SQLite não passam a fazer parte da definição do ASET.
-
-## Licença e direitos
-
-ASET foi criado de forma independente por **Dzmitry Prychyna**, publicamente conhecido como **Attractor Set**. O projeto é licenciado sob Apache License 2.0. A licença não transfere autoria nem titularidade. Consulte [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) e [`BACKGROUND_IP_SCHEDULE.pt-BR.md`](BACKGROUND_IP_SCHEDULE.pt-BR.md).
+A implementação de referência não normativa não possui precedência semântica e é [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite). A proveniência de background IP está em [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).

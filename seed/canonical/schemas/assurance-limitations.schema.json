@@ -11,15 +11,14 @@
         "additionalProperties": false,
         "properties": {
           "closure_criteria": {
-            "minLength": 1,
             "type": "string"
           },
           "description": {
-            "minLength": 1,
             "type": "string"
           },
           "id": {
-            "pattern": "^LIMIT-[0-9]{3}$"
+            "pattern": "^LIMIT-[0-9]{3}$",
+            "type": "string"
           },
           "scope": {
             "type": "string"
@@ -37,14 +36,14 @@
         ],
         "type": "object"
       },
-      "minItems": 1,
+      "minItems": 6,
       "type": "array"
     },
     "schema_version": {
-      "const": 2
+      "const": 4
     },
     "version": {
-      "type": "string"
+      "const": "0.2.0-alpha.1-resolution-core"
     }
   },
   "required": [

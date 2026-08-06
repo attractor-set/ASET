@@ -1,0 +1,72 @@
+{
+  "candidate": {
+    "kind": "ESCALATE_UNKNOWN",
+    "payload": {
+      "context_id": "context:local",
+      "from_authority_id": "authority:federal",
+      "grant_id": "grant:federal-local",
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "to_authority": {
+        "authority_id": "authority:local",
+        "context_id": "context:local",
+        "policy_epoch": 1,
+        "scope": [
+          "repo:patch"
+        ]
+      }
+    }
+  },
+  "case_id": "RES-NEG-010",
+  "description": "An authority already present in the chain cannot be re-entered.",
+  "expected": {
+    "accepted": false,
+    "code": "ESCALATION_CYCLE",
+    "enforcement": "BLOCKED",
+    "semantic_status": "UNKNOWN",
+    "state_changed": false
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local",
+      "authority:federal"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:federal",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [
+      {
+        "context_id": "context:local",
+        "from_authority_id": "authority:federal",
+        "grant_id": "grant:federal-local",
+        "policy_epoch": 1,
+        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "scope": [
+          "repo:patch"
+        ],
+        "to_authority_id": "authority:local"
+      }
+    ],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "UNKNOWN"
+  },
+  "postconditions": [
+    {
+      "equals": "authority:federal",
+      "path": "/current_authority_id"
+    }
+  ],
+  "setup": []
+}

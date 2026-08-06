@@ -43,7 +43,7 @@ def test_ci_workflows_have_distinct_assurance_roles():
 def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
     model_report = tmp_path / "model.json"
     first = subprocess.run(
-        [sys.executable, "tools/model_check_rc12.py", "--output", str(model_report)],
+        [sys.executable, "tools/model_check_seed.py", "--output", str(model_report)],
         cwd=ROOT,
         text=True,
         capture_output=True,
@@ -65,3 +65,36 @@ def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
         check=False,
     )
     assert second.returncode == 0, second.stdout + second.stderr
+
+
+def test_seed_resolution_tla_uses_valid_operator_tokens():
+    specification = (
+        ROOT / "seed/canonical/formal/SeedResolution.tla"
+    ).read_text(encoding="utf-8")
+    assert "/\\\\" not in specification
+    assert "Range(" not in specification
+    assert 'Init ==\n  /\\ status = "UNKNOWN"' in specification
+    assert "Spec == Init /\\ [][Next]_vars" in specification
+
+
+def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
+    specification = (
+        ROOT / "seed/canonical/formal/SeedResolution.tla"
+    ).read_text(encoding="utf-8")
+    configuration = (
+        ROOT / "seed/canonical/formal/SeedResolution.cfg"
+    ).read_text(encoding="utf-8")
+    assert (
+        r'TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next'
+        in specification
+    )
+    assert "CHECK_DEADLOCK FALSE" in configuration
+
+
+def test_active_audit_index_tracks_active_canon_package():
+    package = load("seed/canonical/CANON_PACKAGE.json")
+    audit_index = load("audit/ACTIVE_AUDIT_INDEX.json")
+    assert (
+        audit_index["active_candidate"]["canon_package_digest"]
+        == package["package_digest"]
+    )

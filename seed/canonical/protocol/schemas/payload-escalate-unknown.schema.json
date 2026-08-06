@@ -1,0 +1,47 @@
+{
+  "$id": "https://spec.aset.example/seed/0.2/schemas/payload-escalate-unknown.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "context_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "from_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "grant_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "policy_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "question_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "resolution_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "state_root": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "to_authority": {
+      "$ref": "resolution-authority.schema.json"
+    }
+  },
+  "required": [
+    "resolution_id",
+    "context_id",
+    "state_root",
+    "question_digest",
+    "policy_epoch",
+    "scope",
+    "from_authority_id",
+    "to_authority",
+    "grant_id"
+  ],
+  "type": "object"
+}

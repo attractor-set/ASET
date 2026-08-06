@@ -1,36 +1,93 @@
 {
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/protocol-profile.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
-    "case_count": {
-      "type": "integer"
-    },
-    "cases": {
-      "type": "array"
-    },
     "document_type": {
-      "const": "aset-seed-protocol-profile"
+      "const": "aset-seed-resolution-protocol-profile"
+    },
+    "enforcement_values": {
+      "const": [
+        "BLOCKED",
+        "ALLOW"
+      ]
+    },
+    "implementation_precedence": {
+      "const": "NONE"
+    },
+    "normative": {
+      "const": true
     },
     "profile_id": {
-      "type": "string"
+      "const": "ASET-SEED-RESOLUTION-WIRE-V1"
     },
     "schema_count": {
-      "type": "integer"
+      "const": 10
     },
     "schema_version": {
       "const": 1
     },
     "schemas": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "id",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 10,
+      "minItems": 10,
       "type": "array"
+    },
+    "seed_version": {
+      "const": "0.2.0-alpha.1"
+    },
+    "status_values": {
+      "const": [
+        "UNKNOWN",
+        "ACCEPT",
+        "DENY"
+      ]
+    },
+    "transition_kinds": {
+      "const": [
+        "OPEN_RESOLUTION",
+        "RESOLVE_ACCEPT",
+        "RESOLVE_DENY",
+        "ESCALATE_UNKNOWN"
+      ]
     }
   },
   "required": [
     "document_type",
     "schema_version",
     "profile_id",
-    "schema_count",
-    "schemas"
+    "seed_version",
+    "normative",
+    "implementation_precedence",
+    "status_values",
+    "enforcement_values",
+    "transition_kinds",
+    "schemas",
+    "schema_count"
   ],
   "type": "object"
 }

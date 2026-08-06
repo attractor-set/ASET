@@ -1,16 +1,10 @@
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix aset: <https://aset.example/seed#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-aset:SeedConceptShape a sh:NodeShape ;
-    sh:targetClass skos:Concept ;
-    sh:property [ sh:path skos:inScheme ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path skos:notation ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [
-        sh:path skos:prefLabel ;
-        sh:minCount 3 ;
-        sh:maxCount 3 ;
-        sh:uniqueLang true ;
-        sh:languageIn ( "ru" "en" "pt-BR" )
-    ] ;
-    sh:property [ sh:path skos:definition ; sh:minCount 1 ] .
+aset:ResolutionCycleShape a sh:NodeShape ;
+    sh:targetClass aset:resolution_cycle ;
+    sh:property [ sh:path aset:status ; sh:in ( "UNKNOWN" "ACCEPT" "DENY" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:enforcement ; sh:in ( "BLOCKED" "ALLOW" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:contextBinding ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path aset:currentAuthority ; sh:minCount 1 ; sh:maxCount 1 ] .

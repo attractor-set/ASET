@@ -9,7 +9,6 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATORS = (
     "tools/generate_project_metadata.py",
     "tools/generate_editions.py",
-    "tools/generate_component_views.py",
     "tools/generate_semantic_views.py",
 )
 

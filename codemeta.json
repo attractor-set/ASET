@@ -18,7 +18,7 @@
     "url": "https://github.com/attractor-set"
   },
   "datePublished": "2026-08-04",
-  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
   "developmentStatus": "active",
   "identifier": "ASET",
   "inLanguage": [
@@ -47,7 +47,8 @@
     "trust-infrastructure",
     "trustworthy-ai",
     "implementation-neutral",
-    "model-based-testing"
+    "model-based-testing",
+    "resolution-protocol"
   ],
   "license": "https://spdx.org/licenses/Apache-2.0.html",
   "maintainer": {
@@ -69,5 +70,5 @@
   },
   "runtimePlatform": "Implementation-neutral; no runtime required",
   "url": "https://github.com/attractor-set/ASET",
-  "version": "0.1-rc12"
+  "version": "0.2.0-alpha.1"
 }

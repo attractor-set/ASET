@@ -1,0 +1,57 @@
+{
+  "candidate": {
+    "kind": "OPEN_RESOLUTION",
+    "payload": {
+      "authority": {
+        "authority_id": "authority:local",
+        "context_id": "context:local",
+        "policy_epoch": 1,
+        "scope": [
+          "repo:patch"
+        ]
+      },
+      "context_id": "context:local",
+      "escalation_grants": [
+        {
+          "context_id": "context:local",
+          "from_authority_id": "authority:local",
+          "grant_id": "grant:local-federal",
+          "policy_epoch": 1,
+          "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "scope": [
+            "repo:patch"
+          ],
+          "to_authority_id": "authority:federal"
+        }
+      ],
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "case_id": "RES-POS-001",
+  "description": "Open an exact resolution cycle as UNKNOWN and BLOCKED.",
+  "expected": {
+    "accepted": true,
+    "code": "RESOLUTION_OPENED",
+    "enforcement": "BLOCKED",
+    "semantic_status": "UNKNOWN",
+    "state_changed": true
+  },
+  "initial_state": null,
+  "postconditions": [
+    {
+      "equals": "UNKNOWN",
+      "path": "/status"
+    },
+    {
+      "equals": "BLOCKED",
+      "path": "/enforcement"
+    }
+  ],
+  "setup": []
+}

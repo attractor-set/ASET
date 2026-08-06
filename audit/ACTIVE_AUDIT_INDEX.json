@@ -1,10 +1,10 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
+    "canon_package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
     "implementation_precedence": "NONE",
-    "repository_role": "NORMATIVE_SPECIFICATION_CONFORMANCE_AND_FORMAL_MODELS",
-    "seed_version": "0.1-rc12",
-    "status": "IMPLEMENTATION_NEUTRAL_RELEASE_CANDIDATE"
+    "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
+    "seed_version": "0.2.0-alpha.1",
+    "status": "RESOLUTION_CORE_ALPHA"
   },
   "active_controlling_records": [
     "audit/REFACTORING_LOG.md",
@@ -37,7 +37,7 @@
     "dist/blackbox-documentation-audit.json",
     "dist/blackbox-component-audit.json",
     "dist/component-blackbox-adversarial.json",
-    "dist/rc12-model-check.json"
+    "dist/seed-model-check.json"
   ],
   "historical_noncontrolling_records": [
     "audit/FINDING_CLOSURE_MATRIX.json",

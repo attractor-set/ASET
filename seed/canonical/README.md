@@ -1,20 +1,26 @@
-# ASET Seed 0.1-rc12 canonical area
+# ASET Seed 0.2 alpha resolution core
 
-Status: `RC12_IMPLEMENTATION_NEUTRAL_RELEASE_CANDIDATE`
+Status: `RESOLUTION_CORE_ALPHA`
 
-This directory contains the machine-readable canonical candidate for ASET Seed 0.1-rc12. It preserves the audited rc11 wire semantics and identity domains while making requirements, invariants, transition semantics, protocol schemas, conformance bindings, terminology and formal safety projections explicit and machine-checkable.
+The active Seed is the implementation-neutral normative core for narrowing an exact unresolved question:
 
-The canon is implementation-neutral. It does not prescribe a programming language, storage backend, network topology, consensus protocol, cryptographic provider or deployment model. Implementations are evaluated as black boxes through the canonical conformance protocol and have no semantic precedence over one another.
+```text
+UNKNOWN -> ACCEPT | DENY
+```
 
-## Canon hierarchy
+`UNKNOWN` and `DENY` are operationally `BLOCKED`. Only `ACCEPT` may produce `ALLOW`. An unresolved question may remain `UNKNOWN` while it moves to a next explicitly authorized Resolution Authority. Context ancestry or federation membership alone creates no authority.
 
-1. `source/seed-model.json` and its stable semantic identifiers;
-2. normative schemas, constraints, requirements, invariants and transition semantics;
-3. `CANON_PACKAGE.json`, the implementation-conformance protocol and canonical cases;
-4. formal projections and bounded model-check evidence;
-5. generated Russian, English and Brazilian Portuguese editions;
-6. explanatory diagrams and examples.
+## Active canon
 
-`release/RC12_RELEASE_CANDIDATE.json` and `release/RC12_FREEZE_ENTRY.json` describe the earlier embedded-runtime candidate. They are retained as pre-freeze historical evidence and are superseded by `release/RC12_RUNTIME_CANDIDATE_SUPERSESSION.json`; they do not define the active rc12 candidate.
+1. `source/seed-model.json` — normative machine model;
+2. `protocol/` — minimal resolution wire schemas;
+3. `conformance/` — portable black-box cases;
+4. `CANON_PACKAGE.json` — exact package identity;
+5. `formal/SeedResolution.tla` — bounded assurance projection;
+6. generated multilingual editions — derived views.
 
-Frozen rc11 bytes under `seed/releases/0.1-rc11/` remain immutable.
+## Scope boundary
+
+Seed does not define execution, Permit consumption, attempt journals, planning, memory, federation topology, consensus, storage, cryptographic providers or artifact retention. Those belong to extensions and implementations.
+
+The migration from the predecessor lifecycle canon is intentionally breaking and is documented in `migration/RC12_TO_RESOLUTION_CORE.md`.

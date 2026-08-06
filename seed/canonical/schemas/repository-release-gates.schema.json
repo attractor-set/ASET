@@ -17,46 +17,44 @@
         "additionalProperties": false,
         "properties": {
           "evidence": {
-            "minLength": 1,
             "type": "string"
           },
           "id": {
-            "pattern": "^ASET-GATE-[0-9]{3}$"
+            "pattern": "^ASET-GATE-[0-9]{3}$",
+            "type": "string"
           },
           "mandatory": {
-            "const": true
+            "type": "boolean"
           },
           "name": {
-            "minLength": 1,
             "type": "string"
           }
         },
         "required": [
+          "evidence",
           "id",
-          "name",
           "mandatory",
-          "evidence"
+          "name"
         ],
         "type": "object"
       },
-      "minItems": 23,
-      "type": "array",
-      "uniqueItems": true
+      "minItems": 22,
+      "type": "array"
     },
     "profile": {
-      "const": "ASET_SEED_RC12_BOUNDED_PRODUCTION_CANDIDATE"
+      "const": "ASET_SEED_RESOLUTION_CORE_ALPHA"
     },
     "schema_version": {
-      "const": 2
+      "const": 5
     }
   },
   "required": [
+    "claim_boundary",
     "document_type",
-    "schema_version",
-    "profile",
     "fail_closed",
     "gates",
-    "claim_boundary"
+    "profile",
+    "schema_version"
   ],
   "type": "object"
 }

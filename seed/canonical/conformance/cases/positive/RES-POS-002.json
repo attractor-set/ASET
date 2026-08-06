@@ -1,0 +1,57 @@
+{
+  "candidate": {
+    "kind": "RESOLVE_ACCEPT",
+    "payload": {
+      "authority_id": "authority:local",
+      "context_id": "context:local",
+      "evidence_digests": [
+        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "case_id": "RES-POS-002",
+  "description": "Local authority narrows UNKNOWN to ACCEPT.",
+  "expected": {
+    "accepted": true,
+    "code": "RESOLVED_ACCEPT",
+    "enforcement": "ALLOW",
+    "semantic_status": "ACCEPT",
+    "state_changed": true
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "UNKNOWN"
+  },
+  "postconditions": [
+    {
+      "equals": "ACCEPT",
+      "path": "/status"
+    },
+    {
+      "equals": "ALLOW",
+      "path": "/enforcement"
+    }
+  ],
+  "setup": []
+}

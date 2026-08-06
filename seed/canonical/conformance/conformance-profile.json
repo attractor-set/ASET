@@ -1,619 +1,285 @@
 {
-  "case_count": 55,
+  "case_count": 21,
   "cases": [
     {
-      "case_id": "POS-001",
+      "case_id": "RES-POS-001",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "RESOLUTION_OPENED",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-001.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
       "polarity": "positive",
-      "sha256": "sha256:537002d28df456b2a8c4d1c9931e8f1c88ae2df4140c39df4bd61f06a16cd268"
+      "sha256": "sha256:9a674dbdfd7cb0fab6a03aeea0bd37ce6ab048655db76812dd075a52c00cd534"
     },
     {
-      "case_id": "POS-002",
+      "case_id": "RES-POS-002",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "RESOLVED_ACCEPT",
+        "enforcement": "ALLOW",
+        "semantic_status": "ACCEPT",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-002.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
       "polarity": "positive",
-      "sha256": "sha256:26a0b84544cf6b6304898fe505fb55a77818c7237b2c8aca698cee9142962e4d"
+      "sha256": "sha256:0e91c0377d5768456e3bc921457340d8aa8920f3b239c341e36835ca59fe1de2"
     },
     {
-      "case_id": "POS-003",
+      "case_id": "RES-POS-003",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "RESOLVED_DENY",
+        "enforcement": "BLOCKED",
+        "semantic_status": "DENY",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-003.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
       "polarity": "positive",
-      "sha256": "sha256:ac6730d68a76d7b38c04611194b2794e83dafc95fadf390ddc060679964899f1"
+      "sha256": "sha256:24522cc2ba2bd2a9e3de6f2466b3d2b4ade89f1ef315d2b45f6c25a4f8677b16"
     },
     {
-      "case_id": "POS-004",
+      "case_id": "RES-POS-004",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "ESCALATED_UNKNOWN",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-004.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
       "polarity": "positive",
-      "sha256": "sha256:e46a8b5bfdfaaf35b6e8d76913637e1479090b4276a4e990c5b309beb6ca5885"
+      "sha256": "sha256:bc363c4ad701d1768d82d3cd13a43b930c4d34cc149d7128c904ada4d45ac6e9"
     },
     {
-      "case_id": "POS-005",
+      "case_id": "RES-POS-005",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "RESOLVED_ACCEPT",
+        "enforcement": "ALLOW",
+        "semantic_status": "ACCEPT",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-005.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
       "polarity": "positive",
-      "sha256": "sha256:f4d61a4328129228f8d5b0db0e2b3144ffa3c424f5d30a0484d17214ec28c3e9"
+      "sha256": "sha256:ff07d4334232123a8f25ee972c6def725151af6c24efbff88bedbce4b7967c77"
     },
     {
-      "case_id": "POS-006",
+      "case_id": "RES-POS-006",
       "expected": {
         "accepted": true,
-        "code": "IDEMPOTENT_SUBMISSION_REPLAY",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-006.json",
-      "polarity": "positive",
-      "sha256": "sha256:6c016dc8fdcb04ff4d269ebcd65a6a749e29317b246996605768ebe461c29777"
-    },
-    {
-      "case_id": "POS-007",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
+        "code": "RESOLVED_DENY",
+        "enforcement": "BLOCKED",
+        "semantic_status": "DENY",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-007.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
       "polarity": "positive",
-      "sha256": "sha256:a63d47ee14acdc147819823d0f00c30f5f5365d12ed47899eb797cfe9db6aad1"
+      "sha256": "sha256:84da70bb844179626d51aa2770230a203262de7eab28e0b7f2f38f08c4f9b4e6"
     },
     {
-      "case_id": "POS-008",
+      "case_id": "RES-POS-007",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
+        "code": "ESCALATED_UNKNOWN",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": true
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-008.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
       "polarity": "positive",
-      "sha256": "sha256:ee371c4dcf6e2906b53bf4b2f5c076b8978a7af04635dd9c9d33d33211379600"
+      "sha256": "sha256:577bfe6419f3c0477a3571e27a874972598d7cb8a909845059e91e5444ad8951"
     },
     {
-      "case_id": "POS-009",
+      "case_id": "RES-POS-008",
       "expected": {
         "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
+        "code": "IDEMPOTENT_REPLAY",
+        "enforcement": "ALLOW",
+        "semantic_status": "ACCEPT",
+        "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-009.json",
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
       "polarity": "positive",
-      "sha256": "sha256:606946280f7d3d4e35a38ee4d746615dfddeb611c9a781b4d6c486a4e18051d2"
+      "sha256": "sha256:c56ffebef861f5e80b26dff8b6b2baf03eb8142d6f31fe039a080744fb9ba216"
     },
     {
-      "case_id": "POS-010",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-010.json",
-      "polarity": "positive",
-      "sha256": "sha256:e62ec84c3465b19e6115a8f2e35489f6338bf08b51b4ca2f1d8ae227f38289c1"
-    },
-    {
-      "case_id": "POS-011",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-011.json",
-      "polarity": "positive",
-      "sha256": "sha256:a550a614d0c4a2b53c35c392e2af895a62deb70d65530407a381cd638be0372f"
-    },
-    {
-      "case_id": "POS-012",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-012.json",
-      "polarity": "positive",
-      "sha256": "sha256:bc5bbd1dbdaaa171f00a91da49a08875753c01b89f4437840b93b771161f6586"
-    },
-    {
-      "case_id": "POS-013",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-013.json",
-      "polarity": "positive",
-      "sha256": "sha256:24a5f2b9c3e8dac1f4deb50c938ecb6718ce73a29c6a6ca23a935dddb45907bc"
-    },
-    {
-      "case_id": "POS-014",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-014.json",
-      "polarity": "positive",
-      "sha256": "sha256:0f547cef553a0b3a8aedf8923f339cf490390689a42cff3fe4094702a708f174"
-    },
-    {
-      "case_id": "POS-015",
-      "expected": {
-        "accepted": true,
-        "code": "PARTIALLY_CONFIRMED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-015.json",
-      "polarity": "positive",
-      "sha256": "sha256:5990957991ee15044d1c3d453ec725fb250601f9c38e53ad3ec447e5167766e5"
-    },
-    {
-      "case_id": "POS-016",
-      "expected": {
-        "accepted": true,
-        "code": "FORK_DETECTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-016.json",
-      "polarity": "positive",
-      "sha256": "sha256:e9c226101505aad6eedf21a7883b14c309616fd32dac6eaacb97b1a638274feb"
-    },
-    {
-      "case_id": "POS-017",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-017.json",
-      "polarity": "positive",
-      "sha256": "sha256:766bb66cb54fcf39d35dd5f218dfe4fbf1bf887f84e41af97cff88ebd649aeec"
-    },
-    {
-      "case_id": "POS-018",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-018.json",
-      "polarity": "positive",
-      "sha256": "sha256:a9fc1c0225a8d8424fc8839ab392c7970694ae9c78fe25b3901d1d2270e252b2"
-    },
-    {
-      "case_id": "POS-019",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-019.json",
-      "polarity": "positive",
-      "sha256": "sha256:582cdc78a51ef340d2622f8d3015cac83d1fdaab126fbda86eef0893592a4558"
-    },
-    {
-      "case_id": "POS-020",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-020.json",
-      "polarity": "positive",
-      "sha256": "sha256:2150637b177c9252143dacc262b4ed153f36029f007233734e5dd84a4a24d466"
-    },
-    {
-      "case_id": "POS-021",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-021.json",
-      "polarity": "positive",
-      "sha256": "sha256:0b488a38c816f4e93baa3b43ffdd2f6f5a1ab0fa5e1cdd8ea57e5ebe350ace29"
-    },
-    {
-      "case_id": "POS-022",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-022.json",
-      "polarity": "positive",
-      "sha256": "sha256:88971ad1e7d0593cc563f67460322e35eb6c01941e65972f1d083e6e371dc4ed"
-    },
-    {
-      "case_id": "POS-023",
-      "expected": {
-        "accepted": true,
-        "code": "ACCEPTED",
-        "state_changed": true
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/positive/POS-023.json",
-      "polarity": "positive",
-      "sha256": "sha256:10620edc659b0c6dff683027128d1f1342782dfe354f4dfeb8d8e97bd568d233"
-    },
-    {
-      "case_id": "NEG-001",
+      "case_id": "RES-NEG-001",
       "expected": {
         "accepted": false,
-        "code": "TRUST_SPACE_ID_MISMATCH",
+        "code": "AUTHORITY_MISMATCH",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-001.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
       "polarity": "negative",
-      "sha256": "sha256:09ec628139b02be0a8cdc27b0419706b1fb558faaabe8bbdb3bd7c3c6188700f"
+      "sha256": "sha256:68799d04edcb53ca640e82e57401e0cb920f96b40c3b65030cd79e05185d6dfb"
     },
     {
-      "case_id": "NEG-002",
+      "case_id": "RES-NEG-002",
       "expected": {
         "accepted": false,
-        "code": "BOOTSTRAP_VALIDATOR_MISMATCH",
+        "code": "SCOPE_EXPANSION",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-002.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-002.json",
       "polarity": "negative",
-      "sha256": "sha256:b456ab616d20e2f54533cb28c55774debb0740a9763e68d47c75b0f635d7216d"
+      "sha256": "sha256:1c1c57b8d360c430799746441c5cd9f2c507463ccde31537361761e44c0fddb2"
     },
     {
-      "case_id": "NEG-003",
+      "case_id": "RES-NEG-003",
       "expected": {
         "accepted": false,
-        "code": "BOOTSTRAP_CLOSED",
+        "code": "STATE_ROOT_MISMATCH",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-003.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-003.json",
       "polarity": "negative",
-      "sha256": "sha256:bdcc4dd011c760c1b30819e77e0269956833262eb59ae966e7492f00a237c31b"
+      "sha256": "sha256:dd7991bb8a5065124142b03724e2dd4fb984ff642a9fc49775d92e29cc0c0898"
     },
     {
-      "case_id": "NEG-004",
+      "case_id": "RES-NEG-004",
       "expected": {
         "accepted": false,
-        "code": "AUTHORITY_MISSING",
+        "code": "QUESTION_DIGEST_MISMATCH",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-004.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-004.json",
       "polarity": "negative",
-      "sha256": "sha256:8c4cb130d9537a9c8fe5b80c01549c71572a4186477b4c828f18c66db457c800"
+      "sha256": "sha256:73b85af643d4ab069ccb2ac420e52e6347b20324e157fc70c28aa0eefbe68a1b"
     },
     {
-      "case_id": "NEG-005",
+      "case_id": "RES-NEG-005",
       "expected": {
         "accepted": false,
-        "code": "READINESS_SUBJECT_MISMATCH",
+        "code": "POLICY_EPOCH_MISMATCH",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-005.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-005.json",
       "polarity": "negative",
-      "sha256": "sha256:b167af3014c10a6fae38efd36794074890b365587a5c7d07af2b5ae7ed5e54b2"
+      "sha256": "sha256:7d53bfbbe8f6532957a66ee01d1e0f4a829a64ca0050c04b42cfecb3b9376b86"
     },
     {
-      "case_id": "NEG-006",
+      "case_id": "RES-NEG-006",
       "expected": {
         "accepted": false,
-        "code": "AUTHORITY_MISSING",
+        "code": "TERMINAL_IMMUTABLE",
+        "enforcement": "ALLOW",
+        "semantic_status": "ACCEPT",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-006.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-006.json",
       "polarity": "negative",
-      "sha256": "sha256:c6f7071f22021303bc994979db847ed1110f2208cd287eaa24a0c66d2bed1a1d"
+      "sha256": "sha256:172239a7b62869842e17b090b70cfc94be2ff4f14b61d11553d7f0f03b87e010"
     },
     {
-      "case_id": "NEG-007",
+      "case_id": "RES-NEG-007",
       "expected": {
         "accepted": false,
-        "code": "PERMIT_SUBJECT_MISMATCH",
+        "code": "TERMINAL_IMMUTABLE",
+        "enforcement": "BLOCKED",
+        "semantic_status": "DENY",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-007.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-007.json",
       "polarity": "negative",
-      "sha256": "sha256:d80af21ed2a5e485910fbaf712b981e1a260ff8346f469a7726cb8b5a094bee0"
+      "sha256": "sha256:dafa59a95da81ada553c0d2cd7403d8707c861a9940d972837e8cf75a1891c31"
     },
     {
-      "case_id": "NEG-008",
+      "case_id": "RES-NEG-008",
       "expected": {
         "accepted": false,
-        "code": "PERMIT_DELEGATE_MISMATCH",
+        "code": "ESCALATION_GRANT_MISSING",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-008.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-008.json",
       "polarity": "negative",
-      "sha256": "sha256:7af7621f08deb4cbd9e36513b726a015fde508c6631ad6a9e0e5d47a6fb30e31"
+      "sha256": "sha256:d2e3e2bdd649f40af480ca15a0ef30ce1dd85e7a834704b5d6cd9ab76531b78d"
     },
     {
-      "case_id": "NEG-009",
+      "case_id": "RES-NEG-009",
       "expected": {
         "accepted": false,
-        "code": "SUBMISSION_ID_COLLISION",
+        "code": "ESCALATION_SCOPE_EXPANSION",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-009.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-009.json",
       "polarity": "negative",
-      "sha256": "sha256:9f5890cd4876ec8b9d0925656ccc998062f6229001d7a20df62dc8eb0a36f33d"
+      "sha256": "sha256:e6888dd11fc2090c1575a7d79afb127b1d90faf6a301e242ea817962f6014f8a"
     },
     {
-      "case_id": "NEG-010",
+      "case_id": "RES-NEG-010",
       "expected": {
         "accepted": false,
-        "code": "PERMIT_NOT_ACTIVE",
+        "code": "ESCALATION_CYCLE",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-010.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-010.json",
       "polarity": "negative",
-      "sha256": "sha256:8347a711cc52442eb4b073980e2cf19c853674e4e5a423a597baa11e628fde6a"
+      "sha256": "sha256:6bfc9b9941b3d4211312d45f15692271579fe5a291f9d73e0736d99c121b9796"
     },
     {
-      "case_id": "NEG-011",
+      "case_id": "RES-NEG-011",
       "expected": {
         "accepted": false,
-        "code": "OBSERVATION_LINEAGE_MISSING",
+        "code": "TERMINAL_ESCALATION_FORBIDDEN",
+        "enforcement": "BLOCKED",
+        "semantic_status": "DENY",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-011.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-011.json",
       "polarity": "negative",
-      "sha256": "sha256:fbfdfa566df2fc6e76bea14fb1f01c3b2bbf674ab45b04138c5e6601c838dc98"
+      "sha256": "sha256:4c556a82a6c2083b94199f9bf60ea4926a7f84df78153b38eb4658d59654c412"
     },
     {
-      "case_id": "NEG-012",
+      "case_id": "RES-NEG-012",
       "expected": {
         "accepted": false,
-        "code": "AUTHORITY_MISSING",
+        "code": "RESOLUTION_ID_MISMATCH",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-012.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-012.json",
       "polarity": "negative",
-      "sha256": "sha256:9a26c971341aa3c6d97725d329a5b0109932200874c5d5f816c61c09e4741947"
+      "sha256": "sha256:c1b3c02ee65d21ccb4e351c32447be51621474b99a7f7f880dd0ebb853480237"
     },
     {
-      "case_id": "NEG-013",
+      "case_id": "RES-NEG-013",
       "expected": {
         "accepted": false,
-        "code": "OUTCOME_VERIFICATION_SET_INCOMPLETE",
+        "code": "RESOLUTION_ALREADY_OPEN",
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN",
         "state_changed": false
       },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-013.json",
+      "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
       "polarity": "negative",
-      "sha256": "sha256:2c86166d523761d809284276ec8c2c77325c3a2d1cb9a1dc9ecd05ed35abb538"
-    },
-    {
-      "case_id": "NEG-014",
-      "expected": {
-        "accepted": false,
-        "code": "OUTCOME_ALREADY_FINAL",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-014.json",
-      "polarity": "negative",
-      "sha256": "sha256:4d00ac96c3ec7ead0eb55004a8e86ca01b63bbcc776c85e495b0aab652574dfb"
-    },
-    {
-      "case_id": "NEG-015",
-      "expected": {
-        "accepted": false,
-        "code": "NEGATIVE_NOT_TERMINAL",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-015.json",
-      "polarity": "negative",
-      "sha256": "sha256:ccc5af446fa3b22737a2430c65d86a053c9a4110f19164e67fdac5592d66e78c"
-    },
-    {
-      "case_id": "NEG-016",
-      "expected": {
-        "accepted": false,
-        "code": "PERMIT_SCOPE_ESCALATION",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-016.json",
-      "polarity": "negative",
-      "sha256": "sha256:ffc28d1b2c824a6412e78b678077998ea11a7681b064d4ca60da7d2ef0e65ed8"
-    },
-    {
-      "case_id": "NEG-017",
-      "expected": {
-        "accepted": false,
-        "code": "AUTHORITY_MISSING",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-017.json",
-      "polarity": "negative",
-      "sha256": "sha256:c35a1e045816bfc2a43655c0dfadc5b667b53dbbbda7b22ef3c53f6a5ed12e4c"
-    },
-    {
-      "case_id": "NEG-018",
-      "expected": {
-        "accepted": false,
-        "code": "COORDINATION_REQUIRED",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-018.json",
-      "polarity": "negative",
-      "sha256": "sha256:0ec756ed0f0fcaa221ae2a2219fe1cd9f5d9eb7c84b96555715879c1149be1f0"
-    },
-    {
-      "case_id": "NEG-019",
-      "expected": {
-        "accepted": false,
-        "code": "RECONCILIATION_COMMON_ROOT_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-019.json",
-      "polarity": "negative",
-      "sha256": "sha256:64630dd77210ae93dcacc6bcb05b2da1c4ba8fd001c21643304268b9cf8a2598"
-    },
-    {
-      "case_id": "NEG-020",
-      "expected": {
-        "accepted": false,
-        "code": "REDEFINITION_AUTHORIZATION_SET_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-020.json",
-      "polarity": "negative",
-      "sha256": "sha256:c133c70cb956e41157df95e072d056a9fb6d972a9aca6b7ab26f4c4b61a64554"
-    },
-    {
-      "case_id": "NEG-021",
-      "expected": {
-        "accepted": false,
-        "code": "REDEFINITION_MEMBER_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-021.json",
-      "polarity": "negative",
-      "sha256": "sha256:3b85123b644840767f023bed564ac24352c2c7f887c4bdaf7a2b6160d9d5cc63"
-    },
-    {
-      "case_id": "NEG-022",
-      "expected": {
-        "accepted": false,
-        "code": "REDEFINITION_PROPOSAL_DIGEST_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-022.json",
-      "polarity": "negative",
-      "sha256": "sha256:8b536c3a472e1730f6c3a2a135656fa0b369456279aad691f6e61acca371ed11"
-    },
-    {
-      "case_id": "NEG-023",
-      "expected": {
-        "accepted": false,
-        "code": "EXPORT_ROOT_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-023.json",
-      "polarity": "negative",
-      "sha256": "sha256:8f6f04075906ee4c8866ad231eeeb40198be6b2ec4a5135964ae09b47aad51b8"
-    },
-    {
-      "case_id": "NEG-024",
-      "expected": {
-        "accepted": false,
-        "code": "AUTHORITY_MISSING",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-024.json",
-      "polarity": "negative",
-      "sha256": "sha256:8f2b1038b45cf0b2109c189567c6d1ec0add551d09cf4517fe32e28684d63b23"
-    },
-    {
-      "case_id": "NEG-025",
-      "expected": {
-        "accepted": false,
-        "code": "TRUST_LINEAGE_LOSS_NOT_VERIFIED",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-025.json",
-      "polarity": "negative",
-      "sha256": "sha256:d17c338a0ac9fb4d46ab692ef43af89098ac6f27ce084b156a52037ca040a66f"
-    },
-    {
-      "case_id": "NEG-026",
-      "expected": {
-        "accepted": false,
-        "code": "STALE_PARENT_STATE_ROOT",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-026.json",
-      "polarity": "negative",
-      "sha256": "sha256:d8ee16cfad987c3305fcf6ee5c8a50d56270f1edd8a093f516c5704170d93da8"
-    },
-    {
-      "case_id": "NEG-027",
-      "expected": {
-        "accepted": false,
-        "code": "TRANSITION_ID_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-027.json",
-      "polarity": "negative",
-      "sha256": "sha256:3b203f49252743475ba6f38ae92a18739f2641853470caa5e04f5c858b32bf27"
-    },
-    {
-      "case_id": "NEG-028",
-      "expected": {
-        "accepted": false,
-        "code": "EXPORT_UNKNOWN",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-028.json",
-      "polarity": "negative",
-      "sha256": "sha256:619b334dfe23c3065dca851d0bf36e919de0db5a6758bbbad58c6e3b04d81c65"
-    },
-    {
-      "case_id": "NEG-029",
-      "expected": {
-        "accepted": false,
-        "code": "TRANSFER_TASK_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-029.json",
-      "polarity": "negative",
-      "sha256": "sha256:332c68dc3f3773f265b703ee789008232673778c8d17dd27d3a2bb9afb385265"
-    },
-    {
-      "case_id": "NEG-031",
-      "expected": {
-        "accepted": false,
-        "code": "SUSPENDED_CONTEXT_COORDINATION_REQUIRED",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-031.json",
-      "polarity": "negative",
-      "sha256": "sha256:2944d3922a79bfe12e2ebb0c79348593bd9b0660a13e0622daa8aa5bcd88c064"
-    },
-    {
-      "case_id": "NEG-032",
-      "expected": {
-        "accepted": false,
-        "code": "CAUSAL_PARENTS_MISMATCH",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-032.json",
-      "polarity": "negative",
-      "sha256": "sha256:d817620e39c055d1e9c45aaf1be72603c8ee908f97600c122e523750ec62adf8"
-    },
-    {
-      "case_id": "NEG-033",
-      "expected": {
-        "accepted": false,
-        "code": "AUTHORITY_SCOPE_OVERLAP_ACTIVE",
-        "state_changed": false
-      },
-      "path": "seed/releases/0.1-rc11/expanded/machine/examples/negative/NEG-033.json",
-      "polarity": "negative",
-      "sha256": "sha256:1612809b6ad640a74ecdcea346b819fe1e7aff9ba4239771da933f9062125ea1"
+      "sha256": "sha256:b321dce7848643c3723307d31768914e1df67333eb47ccacd2bfe48bacbc1c54"
     }
   ],
-  "claim": "All frozen rc11 vectors are executed against the rc12 packaged semantic core.",
-  "document_type": "aset-seed-conformance-profile",
-  "negative_count": 32,
-  "positive_count": 23,
-  "profile_id": "ASET-SEED-RC12-COMPAT-CONFORMANCE",
-  "runner": "tools/run_rc12_conformance.py",
+  "document_type": "aset-seed-resolution-conformance-profile",
+  "negative_count": 13,
+  "positive_count": 8,
+  "profile_id": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V1",
+  "protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
   "schema_version": 1,
-  "source_release": "0.1-rc11",
-  "target_implementation": "0.1-rc12"
+  "seed_version": "0.2.0-alpha.1"
 }

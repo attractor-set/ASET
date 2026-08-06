@@ -1,0 +1,71 @@
+{
+  "candidate": {
+    "kind": "ESCALATE_UNKNOWN",
+    "payload": {
+      "context_id": "context:local",
+      "from_authority_id": "authority:local",
+      "grant_id": "grant:local-federal",
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "to_authority": {
+        "authority_id": "authority:federal",
+        "context_id": "context:federation",
+        "policy_epoch": 1,
+        "scope": [
+          "repo:patch"
+        ]
+      }
+    }
+  },
+  "case_id": "RES-NEG-011",
+  "description": "A terminal decision cannot be escalated.",
+  "expected": {
+    "accepted": false,
+    "code": "TERMINAL_ESCALATION_FORBIDDEN",
+    "enforcement": "BLOCKED",
+    "semantic_status": "DENY",
+    "state_changed": false
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [
+      {
+        "context_id": "context:local",
+        "from_authority_id": "authority:local",
+        "grant_id": "grant:local-federal",
+        "policy_epoch": 1,
+        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "scope": [
+          "repo:patch"
+        ],
+        "to_authority_id": "authority:federal"
+      }
+    ],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "DENY"
+  },
+  "postconditions": [
+    {
+      "equals": "DENY",
+      "path": "/status"
+    }
+  ],
+  "setup": []
+}

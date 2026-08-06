@@ -1,91 +1,114 @@
 {
+  "claim_boundary": "Registry membership proves traceability of declared obligations; it does not claim unbounded proof or external certification.",
   "document_type": "aset-seed-verification-registry",
-  "schema_version": 1,
-  "normative": true,
-  "verification_methods": [
-    {
-      "id": "ASET-VERIFY-PORTABLE-CASES",
-      "kind": "CANONICAL_CASE_SET",
-      "gate_ids": ["ASET-GATE-003", "ASET-GATE-018"],
-      "evidence": "seed/canonical/conformance/conformance-profile.json"
-    },
-    {
-      "id": "ASET-VERIFY-SPECIFICATION-TESTS",
-      "kind": "REPOSITORY_TESTS",
-      "gate_ids": ["ASET-GATE-012"],
-      "evidence": "python -m pytest -q"
-    },
-    {
-      "id": "ASET-VERIFY-COMPONENT-BLACKBOX",
-      "kind": "BLACK_BOX_ASSURANCE",
-      "gate_ids": ["ASET-GATE-016", "ASET-GATE-017"],
-      "evidence": "built-snapshot component black-box and adversarial audits"
-    },
-    {
-      "id": "ASET-VERIFY-GENERATED-EDITION-PARITY",
-      "kind": "DETERMINISTIC_PROJECTION",
-      "gate_ids": ["ASET-GATE-001"],
-      "evidence": "python tools/generate_repository_views.py --check"
-    },
-    {
-      "id": "ASET-VERIFY-SEMANTIC-ID-PARITY",
-      "kind": "SEMANTIC_IDENTITY",
-      "gate_ids": ["ASET-GATE-003", "ASET-GATE-018"],
-      "evidence": "machine-canon validation and assurance traceability"
-    },
-    {
-      "id": "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-      "kind": "DECLARATIVE_INVARIANT_VALIDATION",
-      "gate_ids": ["ASET-GATE-003", "ASET-GATE-012", "ASET-GATE-018"],
-      "evidence": "canon validator, specification tests, and traceability registry"
-    },
-    {
-      "id": "ASET-VERIFY-BOUNDED-MODEL",
-      "kind": "BOUNDED_MODEL_CHECK",
-      "gate_ids": ["ASET-GATE-010", "ASET-GATE-019"],
-      "evidence": "Python bounded model and TLC formal model"
-    },
-    {
-      "id": "ASET-VERIFY-EXTERNAL-CONFORMANCE",
-      "kind": "EXTERNAL_IMPLEMENTATION_CONFORMANCE",
-      "gate_ids": [],
-      "external_profile_gate": true,
-      "evidence": "tools/run_external_conformance.py executed by an implementation repository"
-    }
-  ],
   "formal_properties": [
     {
-      "name": "AttemptBound",
-      "seed_invariants": ["SEED-INV-011", "SEED-INV-012"],
-      "projection_status": "BOUNDED_ABSTRACTION"
+      "name": "StatusDomain",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-001"
+      ]
     },
     {
-      "name": "OutcomeVerified",
-      "seed_invariants": ["SEED-INV-015"],
-      "projection_status": "BOUNDED_ABSTRACTION"
+      "name": "UnknownBlocked",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-002"
+      ]
     },
     {
-      "name": "InactiveNoAuthority",
-      "seed_invariants": ["SEED-INV-007"],
-      "projection_status": "BOUNDED_ABSTRACTION"
+      "name": "AllowOnlyAccept",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-003",
+        "SEED-INV-004"
+      ]
+    },
+    {
+      "name": "TerminalImmutable",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-005",
+        "SEED-INV-012"
+      ]
+    },
+    {
+      "name": "EscalationAuthorized",
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-006",
+        "SEED-INV-007",
+        "SEED-INV-008",
+        "SEED-INV-009"
+      ]
     },
     {
       "name": "AuditMonotone",
-      "seed_invariants": ["SEED-INV-018"],
-      "projection_status": "BOUNDED_ABSTRACTION"
+      "projection_status": "BOUNDED_ABSTRACTION",
+      "seed_invariants": [
+        "SEED-INV-010",
+        "SEED-INV-011"
+      ]
     }
   ],
+  "normative": true,
+  "schema_version": 2,
   "transition_case_policy": {
-    "require_positive_case": true,
+    "declared_exceptions": [],
     "require_negative_case": true,
-    "declared_exceptions": [
-      {
-        "transition_kind": "MEMBERSHIP_WITHDRAW",
-        "missing_polarity": "negative",
-        "status": "OPEN_COVERAGE_GAP",
-        "rationale": "The frozen rc11 case set contains no negative membership-withdrawal vector; a future canon revision must add one without rewriting frozen rc11 bytes."
-      }
-    ]
+    "require_positive_case": true
   },
-  "claim_boundary": "Registry membership proves traceability of declared verification obligations; it does not by itself prove complete semantic coverage."
+  "verification_methods": [
+    {
+      "evidence": "seed/canonical/conformance/conformance-profile.json",
+      "gate_ids": [
+        "ASET-GATE-003",
+        "ASET-GATE-018"
+      ],
+      "id": "ASET-VERIFY-PORTABLE-CASES",
+      "kind": "CANONICAL_CASE_SET"
+    },
+    {
+      "evidence": "python -m pytest -q",
+      "gate_ids": [
+        "ASET-GATE-012"
+      ],
+      "id": "ASET-VERIFY-SPECIFICATION-TESTS",
+      "kind": "REPOSITORY_TESTS"
+    },
+    {
+      "evidence": "canon validator, schema validation and traceability registry",
+      "gate_ids": [
+        "ASET-GATE-003",
+        "ASET-GATE-012",
+        "ASET-GATE-018"
+      ],
+      "id": "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
+      "kind": "DECLARATIVE_INVARIANT_VALIDATION"
+    },
+    {
+      "evidence": "Python bounded model and TLC formal model",
+      "gate_ids": [
+        "ASET-GATE-010",
+        "ASET-GATE-019"
+      ],
+      "id": "ASET-VERIFY-BOUNDED-MODEL",
+      "kind": "BOUNDED_MODEL_CHECK"
+    },
+    {
+      "evidence": "python tools/generate_repository_views.py --check",
+      "gate_ids": [
+        "ASET-GATE-001"
+      ],
+      "id": "ASET-VERIFY-GENERATED-EDITION-PARITY",
+      "kind": "DETERMINISTIC_PROJECTION"
+    },
+    {
+      "evidence": "tools/run_external_conformance.py executed by an implementation repository",
+      "external_profile_gate": true,
+      "gate_ids": [],
+      "id": "ASET-VERIFY-EXTERNAL-CONFORMANCE",
+      "kind": "EXTERNAL_IMPLEMENTATION_CONFORMANCE"
+    }
+  ]
 }
