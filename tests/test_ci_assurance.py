@@ -21,14 +21,14 @@ def test_verification_registry_resolves_to_declared_gates():
         assert method.get("gate_ids") or method.get("external_profile_gate") is True
 
 
-def test_breaking_change_declaration_is_bound_to_candidate_model():
+def test_current_change_declaration_is_bound_to_candidate_model():
     declaration = load("seed/canonical/migration/CANON_CHANGE_DECLARATION.json")
     model = ROOT / "seed/canonical/source/seed-model.json"
     digest = "sha256:" + hashlib.sha256(model.read_bytes()).hexdigest()
-    assert declaration["change_class"] == "BREAKING"
+    assert declaration["change_class"] == "NONE"
     assert declaration["candidate_model_sha256"] == digest
     assert (ROOT / declaration["decision_ref"]).is_file()
-
+    assert (ROOT / declaration["supersession_ref"]).is_file()
 
 def test_ci_workflows_have_distinct_assurance_roles():
     candidate = (ROOT / ".github/workflows/seed-ci.yml").read_text(encoding="utf-8")

@@ -1,9 +1,9 @@
 {
-  "candidate_model_sha256": "sha256:fe0107e90bed7cde8120f9a635707d202558461406387606d94e1990c11055ed",
-  "change_class": "BREAKING",
-  "decision_ref": "seed/canonical/decisions/ADR-003-narrow-seed-to-resolution-core.md",
+  "candidate_model_sha256": "sha256:ef562851fc63869d83ed76b84a0c39085d9b933223e5ae46628255a24dcf204e",
+  "change_class": "NONE",
+  "decision_ref": "seed/canonical/decisions/ADR-004-externalize-legacy-components.md",
   "document_type": "aset-canon-change-declaration",
-  "rationale": "The active Seed is intentionally reduced to verifiable UNKNOWN-to-ACCEPT-or-DENY resolution with explicit authority escalation; predecessor lifecycle semantics move to extensions.",
+  "rationale": "Alpha 2 changes release identity, repository boundaries and assurance gates while preserving the alpha 1 resolution semantics.",
   "schema_version": 1,
-  "supersession_ref": "seed/canonical/migration/RC12_TO_RESOLUTION_CORE.json"
+  "supersession_ref": "seed/canonical/release/SEED_0.2_ALPHA2_EXTRACTION.json"
 }

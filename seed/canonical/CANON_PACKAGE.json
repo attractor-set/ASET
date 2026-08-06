@@ -1,32 +1,32 @@
 {
-  "canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1",
-  "canon_version": "0.2.0-alpha.1",
+  "canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+  "canon_version": "0.2.0-alpha.2",
   "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
   "document_type": "aset-canon-package",
   "files": [
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:fe0107e90bed7cde8120f9a635707d202558461406387606d94e1990c11055ed"
+      "sha256": "sha256:ef562851fc63869d83ed76b84a0c39085d9b933223e5ae46628255a24dcf204e"
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
-      "sha256": "sha256:5fbebf013879fa4159f913a0eb408d8eb26cbf1a679f1b02e2a9e63d40be43c0"
+      "sha256": "sha256:aedd436843a649976e097fc0f17a67f7f11e8ff854ff7d650a692d0a4c6d36ef"
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
-      "sha256": "sha256:46b6d782fa963d9dfeda23901850e3385a55148d329a42d01e528e345f871cd3"
+      "sha256": "sha256:48d3289780bd34cd69d402dc8860134276d6dcf9dbca9701749a2786f389be59"
     },
     {
       "path": "seed/canonical/schemas/protocol-profile.schema.json",
-      "sha256": "sha256:558b92465dc2deb6a28c0564784c7f007b2be6773c48f8d6eb871fcb19a89942"
+      "sha256": "sha256:ff759739369d468fddb1330d8e3c3a16233cca53c7bbe62381b35d2d2e485836"
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:9403d2426a1d0d88a2a52e10383792e8502184fb56fee23ba3f3c4f601ef5321"
+      "sha256": "sha256:ba132f0095d85d61e1f1df188bcbbb7e3e97ec249e2b1c0ed18807f1c400e3a7"
     },
     {
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
-      "sha256": "sha256:6081bee193dcad63f3a9da24d6c961decbaa6ea0088d6e4b2d72162111ce49fa"
+      "sha256": "sha256:e9fbd43a7a3b129ba29fe05bf0bb90c0e3db33b6312bf139451c812045691193"
     },
     {
       "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
@@ -50,19 +50,19 @@
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:4f5ecc8e9194243f85de1d3551887afcc1f24459d1a52fc6fc94981a724dc1c7"
+      "sha256": "sha256:b00f3762e270e1f6110f96233744d5bbb3320707e8a6c16f0e9fe8c73001fc56"
     },
     {
       "path": "seed/canonical/schemas/assurance-limitations.schema.json",
-      "sha256": "sha256:677d7bdc9238df464f1900199f8755ec28aed6fed1952843cf1bc6cd9c3d5335"
+      "sha256": "sha256:6f8d4e35f58f3dd050abfa4bebabab41e1194b8a564d46f1a4803f8fa60f14b4"
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:e72a232e5add3922580a0542b5c9f03410891d8a77e4810c395a40e702a70210"
+      "sha256": "sha256:0130aea778749a1379af0450a1fa91e02bc0b957fb15cd20bfcd0ca893b03aad"
     },
     {
       "path": "seed/canonical/schemas/repository-release-gates.schema.json",
-      "sha256": "sha256:03f234b3b2f6a91d11af01425726a00a509e7037bdac0f7d70c071170dcb8edb"
+      "sha256": "sha256:872f899353801bef18c028242e7253b8ba2e0b4ffd3ccefa62b7dbfd95558730"
     },
     {
       "path": "seed/canonical/shapes/seed.shacl.ttl",
@@ -207,6 +207,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
+  "package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
   "schema_version": 2
 }

@@ -13,13 +13,13 @@
       "const": "RESOLUTION_CORE_ALPHA"
     },
     "active_seed_version": {
-      "const": "0.2.0-alpha.1"
+      "const": "0.2.0-alpha.2"
     },
     "document_type": {
       "const": "aset-repository-status"
     },
     "extension_separation": {
-      "const": "IN_PROGRESS"
+      "const": "COMPLETE"
     },
     "external_third_party_audit": {
       "const": "PENDING"
@@ -28,7 +28,7 @@
       "const": "NONE"
     },
     "predecessor_status": {
-      "const": "HISTORICAL_MIGRATION_SOURCE"
+      "const": "HISTORICAL_EXTERNALIZED_MIGRATION_SOURCE"
     },
     "predecessor_version": {
       "const": "0.1-rc12"

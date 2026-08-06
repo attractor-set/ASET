@@ -62,7 +62,7 @@
       "const": 1
     },
     "seed_version": {
-      "const": "0.2.0-alpha.1"
+      "const": "0.2.0-alpha.2"
     }
   },
   "required": [

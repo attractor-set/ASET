@@ -1,0 +1,29 @@
+{
+  "archived_source_files": 294,
+  "candidate_canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+  "candidate_package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+  "checks": {
+    "assurance_traceability": "PASS",
+    "bounded_model_check": "PASS",
+    "canon_package_validation": "PASS",
+    "documentation_blackbox_audit": "PASS",
+    "ecosystem_registry_validation": "PASS",
+    "manifest_parity": "PASS",
+    "portable_conformance_cases": 21,
+    "repository_tests": "39/39 PASS",
+    "ruff": "CI_REQUIRED_LOCAL_BINARY_UNAVAILABLE",
+    "seed_canon_validation": "PASS"
+  },
+  "document_type": "aset-extension-extraction-closure-audit",
+  "legacy_asset": {
+    "name": "ASET-legacy-component-corpus-0.1-rc1.zip",
+    "sha256": "sha256:e2fd10bbf0d9ab871624ef7347ddc6dd8827607a1b45db238de1fa26364d4587"
+  },
+  "removed_files": 291,
+  "schema_version": 1,
+  "semantic_change_class": "NONE",
+  "source_package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
+  "source_revision": "04acffaafcf7de1f81ee83b6c92cbe644ab23cd2",
+  "superseded_in_place_files": 3,
+  "verdict": "PASS_WITH_CI_RUFF_PENDING"
+}

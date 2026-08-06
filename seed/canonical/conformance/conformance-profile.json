@@ -281,5 +281,5 @@
   "profile_id": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V1",
   "protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
   "schema_version": 1,
-  "seed_version": "0.2.0-alpha.1"
+  "seed_version": "0.2.0-alpha.2"
 }

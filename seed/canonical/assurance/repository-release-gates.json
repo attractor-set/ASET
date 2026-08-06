@@ -17,7 +17,8 @@
       "breaking migration declaration",
       "bounded and TLC decision-lattice checks",
       "portable resolution conformance cases",
-      "historical component-canon non-regression",
+      "historical Seed release integrity",
+      "external ecosystem registry integrity",
       "release and manifest integrity"
     ]
   },
@@ -67,28 +68,10 @@
       "name": "expanded_rc11_byte_identity"
     },
     {
-      "evidence": "python tools/validate_component_canons.py",
-      "id": "ASET-GATE-008",
-      "mandatory": true,
-      "name": "component_canon_validation"
-    },
-    {
-      "evidence": "python tools/run_component_conformance.py --check",
-      "id": "ASET-GATE-009",
-      "mandatory": true,
-      "name": "component_conformance"
-    },
-    {
       "evidence": "python tools/model_check_seed.py --output dist/seed-model-check.json",
       "id": "ASET-GATE-010",
       "mandatory": true,
       "name": "bounded_seed_resolution_model_check"
-    },
-    {
-      "evidence": "python tools/model_check_components.py --check",
-      "id": "ASET-GATE-011",
-      "mandatory": true,
-      "name": "component_model_checks"
     },
     {
       "evidence": "python -m pytest -q",
@@ -113,18 +96,6 @@
       "id": "ASET-GATE-015",
       "mandatory": true,
       "name": "deterministic_repository_snapshot"
-    },
-    {
-      "evidence": "python tools/blackbox_component_audit.py dist/ASET-Repository-Snapshot.zip",
-      "id": "ASET-GATE-016",
-      "mandatory": true,
-      "name": "component_blackbox_audit"
-    },
-    {
-      "evidence": "python tools/run_component_blackbox_adversarial.py",
-      "id": "ASET-GATE-017",
-      "mandatory": true,
-      "name": "component_adversarial_audit"
     },
     {
       "evidence": "python tools/check_assurance_traceability.py --model-report dist/seed-model-check.json",
@@ -155,8 +126,26 @@
       "id": "ASET-GATE-022",
       "mandatory": true,
       "name": "ruff_static_analysis"
+    },
+    {
+      "evidence": "python tools/validate_background_ip.py",
+      "id": "ASET-GATE-023",
+      "mandatory": true,
+      "name": "background_ip_schedule_validation"
+    },
+    {
+      "evidence": "python tools/validate_background_ip_supplement.py",
+      "id": "ASET-GATE-024",
+      "mandatory": true,
+      "name": "background_ip_supplement_validation"
+    },
+    {
+      "evidence": "python tools/validate_ecosystem_registry.py",
+      "id": "ASET-GATE-025",
+      "mandatory": true,
+      "name": "external_ecosystem_registry_validation"
     }
   ],
-  "profile": "ASET_SEED_RESOLUTION_CORE_ALPHA",
-  "schema_version": 5
+  "profile": "ASET_SEED_RESOLUTION_CORE_ALPHA2",
+  "schema_version": 6
 }

@@ -18,12 +18,12 @@ ACTIVE_FILES = [
     ROOT / "docs/repository/RELEASE_PROCESS.md",
     ROOT / "audit/README.md",
     ROOT / "audit/ACTIVE_AUDIT_INDEX.md",
-    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md",
-    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md",
-    ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md",
+    ROOT / "EXTENSIONS.md",
+    ROOT / "IMPLEMENTATIONS.md",
+    ROOT / "EXTRACTION.md",
 ]
 ACTIVE_GLOBS = [
-    "docs/generated/*/ASET_Seed_Resolution_0.2-alpha.1.md",
+    "docs/generated/*/ASET_Seed_Resolution_0.2-alpha.2.md",
     "docs/generated/*/ASET_Seed_Next.md",
 ]
 FORBIDDEN_ACTIVE_CLAIMS = {

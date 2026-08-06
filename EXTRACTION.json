@@ -1,0 +1,30 @@
+{
+  "active_tree_deleted_files": 291,
+  "archived_source_files": 294,
+  "document_type": "aset-legacy-component-extraction-record",
+  "implementation_precedence": "NONE",
+  "legacy_release_asset": {
+    "files_count": 294,
+    "name": "ASET-legacy-component-corpus-0.1-rc1.zip",
+    "sha256": "sha256:e2fd10bbf0d9ab871624ef7347ddc6dd8827607a1b45db238de1fa26364d4587"
+  },
+  "normative_effect": "NONE_ON_RESOLUTION_SEMANTICS",
+  "preservation": [
+    "Git history",
+    "legacy release asset",
+    "published extension and implementation repositories"
+  ],
+  "removed_from_active_tree": [
+    "aset/",
+    "audit/components/",
+    "component-generated views",
+    "component-only tools and tests",
+    "legacy controlled-patch walkthrough",
+    "legacy full-system test vector"
+  ],
+  "schema_version": 1,
+  "source_archive": "ASET-main(18).zip",
+  "source_repository": "https://github.com/attractor-set/ASET",
+  "source_revision": "04acffaafcf7de1f81ee83b6c92cbe644ab23cd2",
+  "status": "EXTRACTION_COMPLETE"
+}

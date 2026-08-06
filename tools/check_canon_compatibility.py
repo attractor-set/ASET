@@ -102,7 +102,14 @@ def main() -> int:
         "invariants": compare_group(approved, candidate, "invariants", "id"),
         "transitions": compare_group(approved, candidate, "transitions", "kind"),
     }
-    ignored = {"assurance", "publication", "status", "implementation_boundary"}
+    ignored = {
+        "assurance",
+        "publication",
+        "status",
+        "implementation_boundary",
+        "model_id",
+        "version",
+    }
     top_level_changed = sorted(
         key
         for key in set(approved) | set(candidate)

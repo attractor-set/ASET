@@ -71,7 +71,7 @@
       "sha256": "sha256:ef7214342f5fe36faadea2230412dafd5e4ae7f9239579121fd7d7cd818ad3c5"
     }
   ],
-  "seed_version": "0.2.0-alpha.1",
+  "seed_version": "0.2.0-alpha.2",
   "status_values": [
     "UNKNOWN",
     "ACCEPT",
