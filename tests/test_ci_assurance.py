@@ -75,3 +75,26 @@ def test_seed_resolution_tla_uses_valid_operator_tokens():
     assert "Range(" not in specification
     assert 'Init ==\n  /\\ status = "UNKNOWN"' in specification
     assert "Spec == Init /\\ [][Next]_vars" in specification
+
+
+def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
+    specification = (
+        ROOT / "seed/canonical/formal/SeedResolution.tla"
+    ).read_text(encoding="utf-8")
+    configuration = (
+        ROOT / "seed/canonical/formal/SeedResolution.cfg"
+    ).read_text(encoding="utf-8")
+    assert (
+        r'TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next'
+        in specification
+    )
+    assert "CHECK_DEADLOCK FALSE" in configuration
+
+
+def test_active_audit_index_tracks_active_canon_package():
+    package = load("seed/canonical/CANON_PACKAGE.json")
+    audit_index = load("audit/ACTIVE_AUDIT_INDEX.json")
+    assert (
+        audit_index["active_candidate"]["canon_package_digest"]
+        == package["package_digest"]
+    )

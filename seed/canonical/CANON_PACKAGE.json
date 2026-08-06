@@ -74,7 +74,7 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:028ede414e8bf73810e6dae447bdb3ccdc6880176ec97ccb4388dd5ca4b55ace"
+      "sha256": "sha256:782655b6d68a4cbfafd8b096b4ac9c93b0b905a8c51561b7a7f9e3a55ec2e3ef"
     },
     {
       "path": "seed/canonical/migration/RC12_TO_RESOLUTION_CORE.json",
@@ -207,6 +207,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:acc4d70b13400dc652a7dc36d3e3cd1ad2e241798c7da05eed89a4805feb6938",
+  "package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
   "schema_version": 2
 }

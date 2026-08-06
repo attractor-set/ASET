@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:c3e9f30630569c0398e6e4fc265292e87a2589ac783d796bd0a80cb80d38935b",
+    "canon_package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
     "seed_version": "0.2.0-alpha.1",

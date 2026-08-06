@@ -1353,7 +1353,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:4669fffa056d6b9ed4e9333a1124c47fa08dfb701e704859d21ae882d2b5176c",
+      "sha256": "sha256:486aa456176ed3a907fc9c74c4017c9aa6f9ef8ad45349a073c75d6f7e69f325",
       "size_bytes": 2960
     },
     {
@@ -1818,7 +1818,7 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:8ef569cffd9c6624a1b5410b4f579e96b7e21964732f210e370302df8c2d3849",
+      "sha256": "sha256:fb4638962eb3fbb19ca18f46066d28e97e037c709b1a4b99bceab68e32e523db",
       "size_bytes": 9283
     },
     {
@@ -2003,8 +2003,8 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:028ede414e8bf73810e6dae447bdb3ccdc6880176ec97ccb4388dd5ca4b55ace",
-      "size_bytes": 194
+      "sha256": "sha256:782655b6d68a4cbfafd8b096b4ac9c93b0b905a8c51561b7a7f9e3a55ec2e3ef",
+      "size_bytes": 287
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
@@ -3338,8 +3338,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:4ad937f9fa812d9e1f9f1160517a8c16f7f8c25ab5257ff05ceaa265af472768",
-      "size_bytes": 2886
+      "sha256": "sha256:8b79e86245d65bd39707054ad65e139596524deee53bff3b0ea24e1adf9b1390",
+      "size_bytes": 3661
     },
     {
       "path": "tests/test_component_canons.py",
