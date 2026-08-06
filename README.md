@@ -24,6 +24,8 @@ UNKNOWN --explicit escalation----> UNKNOWN
 
 Execution, Permit consumption, negative attempts, planning, memory, federation topology, consensus, persistence and cryptographic providers are outside Seed. They belong to separately versioned extension templates and implementation profiles. No extension or implementation has semantic precedence.
 
+[`aset-network-extension`](https://github.com/attractor-set/aset-network-extension) is the first separately versioned federation extension. Its non-normative registry entry is recorded in [`EXTENSIONS.md`](EXTENSIONS.md).
+
 [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) remains non-normative. It must implement the active resolution conformance protocol before claiming compatibility with this Seed line; otherwise it remains pinned to its historical canon.
 
 ## Validation

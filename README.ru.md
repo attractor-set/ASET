@@ -8,6 +8,8 @@ ASET — открытая технологически нейтральная с
 
 Активный машинный канон находится в [`seed/canonical/`](seed/canonical/). Исполнение, журналы попыток, Monade, Master, память, топология федерации, consensus и хранение принадлежат независимым расширениям и реализациям.
 
+Первое отдельно опубликованное расширение федерации: [`aset-network-extension`](https://github.com/attractor-set/aset-network-extension). Ненормативный реестр расширений: [`EXTENSIONS.md`](EXTENSIONS.md).
+
 Миграция с rc12 намеренно несовместима: [`seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md`](seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md).
 
 ## Исторические расширения и пример

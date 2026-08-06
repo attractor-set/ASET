@@ -15,3 +15,5 @@ A migração a partir de rc12 é intencionalmente incompatível: [`seed/canonica
 Os component canons atuais são fontes históricas de migração até sua extração: [`aset/README.md`](aset/README.md). O exemplo não normativo de patch controlado está em [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md).
 
 A implementação de referência não normativa não possui precedência semântica e é [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite). A proveniência de background IP está em [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+
+A primeira extensão federativa publicada separadamente é [`aset-network-extension`](https://github.com/attractor-set/aset-network-extension). O registro não normativo está em [`EXTENSIONS.md`](EXTENSIONS.md).

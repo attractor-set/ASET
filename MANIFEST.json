@@ -107,6 +107,16 @@
       "size_bytes": 1071
     },
     {
+      "path": "EXTENSIONS.json",
+      "sha256": "sha256:d58e43406b1e29041bbc6b90f04db62c7c16c7b14071905820f6c2dce557b358",
+      "size_bytes": 815
+    },
+    {
+      "path": "EXTENSIONS.md",
+      "sha256": "sha256:26e8497df55d4cf282f72b33d60545211f1c6876561fef1862c3c0fa263964ae",
+      "size_bytes": 584
+    },
+    {
       "path": "GOVERNANCE.md",
       "sha256": "sha256:c8df1b23be2d9149376b192f36d572f65b4e7f7a05470a988f5d70852cdeb538",
       "size_bytes": 3173
@@ -128,18 +138,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:7e3711f67f68796177ed7a51b3dd0fc1144d6826a74bb6e034cc75d3a7d48b84",
-      "size_bytes": 2603
+      "sha256": "sha256:f1ef9794868942dc8e50de7255c15eb3af6560f077b58351396d9c4b5c366290",
+      "size_bytes": 2826
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:7898623a2ee0f7e2deebbf490f67009d294f2d47beb57473ac2f0bfcddcdd24e",
-      "size_bytes": 1619
+      "sha256": "sha256:f10d3e5ba1016e55280adb185ae72d235bbefd4c1d03b6cf335c0a9b88c0c000",
+      "size_bytes": 1833
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:bd477d585883afb8b35bdcaa3d33508cbf2e1d39ded58715a009fcbfe2c13ea8",
-      "size_bytes": 2112
+      "sha256": "sha256:79a59c4152e2605649d6f6215757870b8d1a40adf1947821020209cf822916c3",
+      "size_bytes": 2394
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -148,8 +158,8 @@
     },
     {
       "path": "ROADMAP.md",
-      "sha256": "sha256:f1a4cd402358abdbccdea847dd2403cdd550be9a7c3f08c837706abc0a4dd463",
-      "size_bytes": 1047
+      "sha256": "sha256:7bf66691a9da95651bd233294cfcd14851d6a58ae555b32d55cf1d80d7c06b40",
+      "size_bytes": 1177
     },
     {
       "path": "SECURITY.md",
@@ -3542,7 +3552,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 708,
+  "files_count": 710,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.2.0-alpha.1-Resolution-Core",
   "repository_root": "ASET"

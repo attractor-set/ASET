@@ -1,0 +1,19 @@
+{
+  "document_type": "aset-extension-registry",
+  "extensions": [
+    {
+      "canon_id": "ASET-NETWORK-EXTENSION-CANON-0.1-ALPHA1",
+      "canon_package_digest": "sha256:661b47d488c03d19ef76e4cc7510231a6d0bced4e66949b81ceeefd50f2a90a1",
+      "extension_id": "ASET-NETWORK-EXTENSION",
+      "implementation_precedence": "NONE",
+      "repository": "https://github.com/attractor-set/aset-network-extension",
+      "scope": "federation topology and cross-context local recognition",
+      "status": "PUBLISHED_ALPHA",
+      "upstream_seed": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1",
+      "version": "0.1.0-alpha.1"
+    }
+  ],
+  "normative": false,
+  "registry_rule": "Registry entries locate separately versioned work; they do not expand the active Seed canon or grant semantic precedence.",
+  "schema_version": 1
+}
