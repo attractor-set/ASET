@@ -192,7 +192,7 @@
       ]
     },
     "model_id": {
-      "const": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1"
+      "const": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2"
     },
     "predecessor": {
       "minLength": 1,
@@ -346,7 +346,7 @@
       "type": "array"
     },
     "version": {
-      "const": "0.2.0-alpha.1"
+      "const": "0.2.0-alpha.2"
     }
   },
   "required": [

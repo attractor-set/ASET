@@ -2,18 +2,55 @@
 
 # ASET
 
-ASET é uma especificação aberta e neutra quanto à implementação. Seu Seed define a resolução verificável e limitada por autoridade de uma questão normativa exata de `UNKNOWN` para `ACCEPT` ou `DENY`.
+ASET é uma especificação aberta e neutra quanto à implementação. Seu Seed define a resolução
+verificável e limitada por autoridade de uma pergunta normativa exata, de `UNKNOWN` para
+`ACCEPT` ou `DENY`.
 
-`UNKNOWN` não autoriza efeito e não é convertido em `DENY`. Uma questão não resolvida pode permanecer `UNKNOWN` e seguir para a próxima Resolution Authority explicitamente autorizada. A ancestralidade de contexto ou a participação federativa, por si só, não cria autoridade.
+```text
+UNKNOWN --resolução autorizada--> ACCEPT
+UNKNOWN --resolução autorizada--> DENY
+UNKNOWN --escalonamento explícito--> UNKNOWN
+```
 
-O cânone ativo legível por máquina está em [`seed/canonical/`](seed/canonical/). Execução, registros de tentativas, Monade, Master, memória, topologia federativa, consenso e persistência pertencem a extensões e implementações independentes.
+`UNKNOWN` nunca autoriza um efeito e não é convertido silenciosamente em `DENY`. A autoridade
+não decorre automaticamente da ancestralidade de Context, da participação federativa, da escolha
+de implementação ou de uma saída de AI.
 
-A migração a partir de rc12 é intencionalmente incompatível: [`seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md`](seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md).
+## Seed ativo
 
-## Extensões históricas e exemplo
+- Cânone: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
+- Pacote: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
+- Conformidade: [`seed/canonical/conformance/`](seed/canonical/conformance/)
+- Projeção formal: [`seed/canonical/formal/`](seed/canonical/formal/)
+- Estado da versão: [`REPOSITORY_STATUS.json`](REPOSITORY_STATUS.json)
 
-Os component canons atuais são fontes históricas de migração até sua extração: [`aset/README.md`](aset/README.md). O exemplo não normativo de patch controlado está em [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md).
+O candidato ativo é `0.2.0-alpha.2`. Alpha 2 altera a fronteira do repositório e de assurance,
+mas não a álgebra de resolução introduzida em alpha 1.
 
-A implementação de referência não normativa não possui precedência semântica e é [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite). A proveniência de background IP está em [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+## Ecossistema externo
 
-A primeira extensão federativa publicada separadamente é [`aset-network-extension`](https://github.com/attractor-set/aset-network-extension). O registro não normativo está em [`EXTENSIONS.md`](EXTENSIONS.md).
+Extensões e implementações são versionadas fora deste repositório e não possuem precedência
+semântica.
+
+- Registro de extensões: [`EXTENSIONS.md`](EXTENSIONS.md)
+- Registro de implementações: [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md)
+- Registro de extração: [`EXTRACTION.md`](EXTRACTION.md)
+
+Repositórios publicados:
+
+- [`aset-network-extension`](https://github.com/attractor-set/aset-network-extension)
+- [`aset-ai-extension-template`](https://github.com/attractor-set/aset-ai-extension-template)
+- [`aset-ai-local-stack`](https://github.com/attractor-set/aset-ai-local-stack)
+- [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite)
+
+## Validação
+
+```text
+python tools/repository_release_gate.py
+```
+
+## Autoria e licença
+
+ASET foi criado de forma independente por **Dzmitry Prychyna**, conhecido publicamente como
+**Attractor Set**, e é licenciado sob Apache License 2.0. Consulte [`LICENSE`](LICENSE),
+[`NOTICE`](NOTICE) e [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).

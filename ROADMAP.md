@@ -1,16 +1,16 @@
 # Roadmap
 
-1. Freeze the minimal `UNKNOWN -> ACCEPT | DENY` resolution algebra and exact binding rules.
-2. Validate the new protocol through two independent implementations.
-3. Maintain `aset-network-extension` as the first separately versioned federation extension, then extract Context, Core, Monade, Master and AI-system semantics into their own extension-template repositories.
-4. Update `aset-python-sqlite` to the new black-box protocol without treating it as an oracle.
-5. Build an independent Rust/PostgreSQL implementation and use differential results only to expose ambiguity.
-6. Complete an external semantic and formal audit before Seed 1.0.
+1. Stabilize the minimal `UNKNOWN -> ACCEPT | DENY` resolution algebra and exact binding rules.
+2. Validate the active protocol through two independently engineered implementations.
+3. Maintain independently versioned extension canons without expanding Seed by implication.
+4. Migrate `aset-python-sqlite` from its historical rc12 lock to the active resolution protocol.
+5. Add an independent Rust/PostgreSQL implementation and publish differential conformance results.
+6. Complete external semantic and formal review before Seed 1.0.
 
-## Supporting records
+## Current ecosystem
 
-- Extension registry: [`EXTENSIONS.md`](EXTENSIONS.md)
-- Historical component canons pending extraction: [`aset/README.md`](aset/README.md)
+- Extensions: [`EXTENSIONS.md`](EXTENSIONS.md)
+- Implementations: [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md)
+- Extraction closure: [`EXTRACTION.md`](EXTRACTION.md)
 - Cross-implementation admission plan: [`docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md`](docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md)
-- Non-normative implementation: [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite)
 - Background-IP provenance: [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md)

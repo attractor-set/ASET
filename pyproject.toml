@@ -1,8 +1,5 @@
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = [
-  "legacy_extensions: checks frozen pre-split component and system migration evidence",
-]
 
 [tool.ruff]
 line-length = 100

@@ -38,20 +38,14 @@ def test_historical_runtime_audit_is_explicitly_noncontrolling() -> None:
     assert "historical non-controlling" in readme
 
 
-def test_controlled_patch_walkthrough_is_multilingual_and_non_normative() -> None:
-    documents = {
-        "README.md": "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md",
-        "README.ru.md": "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md",
-        "README.pt-BR.md": "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md",
-    }
-    for readme_name, tutorial in documents.items():
-        assert tutorial in (ROOT / readme_name).read_text(encoding="utf-8")
-        text = (ROOT / tutorial).read_text(encoding="utf-8")
-        assert "Proposal != Resolution != Permit != Receipt" in text
-        assert "Observation != Evidence != Verification != Outcome" in text
-        assert "seed/canonical/source/seed-model.json" in text
-        assert "implementation-conformance-protocol.json" in text
-
+def test_extraction_record_is_discoverable_and_non_normative() -> None:
+    for readme_name in ("README.md", "README.ru.md", "README.pt-BR.md"):
+        text = (ROOT / readme_name).read_text(encoding="utf-8")
+        assert "EXTRACTION.md" in text
+    extraction = load("EXTRACTION.json")
+    assert extraction["status"] == "EXTRACTION_COMPLETE"
+    assert extraction["normative_effect"] == "NONE_ON_RESOLUTION_SEMANTICS"
+    assert extraction["legacy_release_asset"]["files_count"] == 294
 
 def test_cross_implementation_claim_has_explicit_admission_plan() -> None:
     roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")

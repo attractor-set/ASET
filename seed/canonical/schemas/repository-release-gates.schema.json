@@ -38,14 +38,14 @@
         ],
         "type": "object"
       },
-      "minItems": 22,
+      "minItems": 20,
       "type": "array"
     },
     "profile": {
-      "const": "ASET_SEED_RESOLUTION_CORE_ALPHA"
+      "const": "ASET_SEED_RESOLUTION_CORE_ALPHA2"
     },
     "schema_version": {
-      "const": 5
+      "const": 6
     }
   },
   "required": [

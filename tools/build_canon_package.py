@@ -56,8 +56,8 @@ def expected() -> dict[str, Any]:
     return {
         "document_type": "aset-canon-package",
         "schema_version": 2,
-        "canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1",
-        "canon_version": "0.2.0-alpha.1",
+        "canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
+        "canon_version": "0.2.0-alpha.2",
         "normative_source": "seed/canonical/source/seed-model.json",
         "implementation_precedence": "NONE",
         "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",

@@ -1,10 +1,11 @@
 {
   "active_seed_status": "RESOLUTION_CORE_ALPHA",
-  "active_seed_version": "0.2.0-alpha.1",
+  "active_seed_version": "0.2.0-alpha.2",
   "disposition": "HISTORICAL_NONCONTROLLING_EVIDENCE",
   "document_type": "aset-seed-release-line-supersession",
+  "initial_resolution_core_version": "0.2.0-alpha.1",
   "migration_ref": "seed/canonical/migration/RC12_TO_RESOLUTION_CORE.json",
-  "reason": "The active Seed was intentionally narrowed to the resolution core; rc12 lifecycle candidate records remain migration evidence only.",
+  "reason": "The active Seed remains the minimal resolution core; legacy component and system-composition material was externalized from the active repository tree without changing resolution semantics.",
   "schema_version": 1,
   "superseded_active_candidates": [
     "seed/canonical/release/RC12_RELEASE_CANDIDATE.json",

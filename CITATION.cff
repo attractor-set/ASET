@@ -6,7 +6,7 @@ authors:
   - family-names: "Prychyna"
     given-names: "Dzmitry"
     alias: "Attractor Set"
-version: "0.1"
-date-released: 2026-08-04
+version: "0.2.0-alpha.2"
+date-released: 2026-08-06
 license: Apache-2.0
 repository-code: "https://github.com/attractor-set/ASET"

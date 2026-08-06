@@ -381,7 +381,7 @@
     "en",
     "pt-BR"
   ],
-  "model_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1",
+  "model_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
   "predecessor": "ASET Seed 0.1-rc12 implementation-neutral candidate",
   "protocol_profile_ref": "seed/canonical/protocol/protocol-profile.json",
   "publication": {
@@ -769,5 +769,5 @@
       "to_status": "UNKNOWN"
     }
   ],
-  "version": "0.2.0-alpha.1"
+  "version": "0.2.0-alpha.2"
 }

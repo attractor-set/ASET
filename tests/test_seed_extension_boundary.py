@@ -6,17 +6,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_active_seed_contains_no_monade_profile() -> None:
-    assert not (ROOT / "aset/profiles/monade-attempt-evidence").exists()
-    package = json.loads(
-        (ROOT / "seed/canonical/CANON_PACKAGE.json").read_text(encoding="utf-8")
-    )
+def load(relative: str) -> dict[str, object]:
+    value = json.loads((ROOT / relative).read_text(encoding="utf-8"))
+    assert isinstance(value, dict)
+    return value
+
+
+def test_active_seed_contains_no_extracted_component_tree() -> None:
+    assert not (ROOT / "aset").exists()
+    assert not (ROOT / "audit/components").exists()
+    package = load("seed/canonical/CANON_PACKAGE.json")
     paths = {item["path"] for item in package["files"]}
     assert not any(path.startswith("aset/") for path in paths)
-    assert not any("monade" in path.lower() for path in paths)
+    assert not any("component" in path.lower() for path in paths)
 
 
-def test_active_seed_ci_has_no_extension_assurance_dependency() -> None:
+def test_active_seed_ci_has_no_component_assurance_dependency() -> None:
     files = (
         ".github/workflows/seed-ci.yml",
         ".github/workflows/production-assurance.yml",
@@ -24,21 +29,20 @@ def test_active_seed_ci_has_no_extension_assurance_dependency() -> None:
         "tools/generate_repository_views.py",
     )
     forbidden = (
-        "monade_attempt",
-        "monade-attempt",
         "model_check_components.py",
         "run_component_conformance.py",
         "blackbox_component_audit.py",
         "run_component_blackbox_adversarial.py",
         "generate_component_views.py",
+        "validate_component_canons.py",
     )
     for relative in files:
         text = (ROOT / relative).read_text(encoding="utf-8")
         for token in forbidden:
-            assert token not in text, f"{relative} contains active extension dependency {token}"
+            assert token not in text, f"{relative} contains {token}"
 
 
-def test_only_seed_package_changes_notify_core_implementations() -> None:
+def test_only_seed_package_changes_notify_implementations() -> None:
     workflow = (
         ROOT / ".github/workflows/notify-implementation-profiles.yml"
     ).read_text(encoding="utf-8")
@@ -47,10 +51,18 @@ def test_only_seed_package_changes_notify_core_implementations() -> None:
     assert "aset/profiles/" not in workflow
 
 
-def test_historical_components_are_declared_noncontrolling() -> None:
-    canonicality = (ROOT / "CANONICALITY.md").read_text(encoding="utf-8")
-    archive = (ROOT / "aset/README.md").read_text(encoding="utf-8")
-    assert "do not expand the active Seed" in canonicality
-    assert "noncontrolling migration archive" in archive
-    assert "Nothing under this directory" in archive
-    assert "is part of active Seed conformance" in archive
+def test_external_registries_are_non_normative() -> None:
+    extensions = load("EXTENSIONS.json")
+    implementations = load("IMPLEMENTATIONS.json")
+    extraction = load("EXTRACTION.json")
+    assert extensions["normative"] is False
+    assert implementations["normative"] is False
+    assert extraction["normative_effect"] == "NONE_ON_RESOLUTION_SEMANTICS"
+    for registry, key in (
+        (extensions, "extensions"),
+        (implementations, "implementations"),
+    ):
+        assert all(
+            item["implementation_precedence"] == "NONE"
+            for item in registry[key]
+        )

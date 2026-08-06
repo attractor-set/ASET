@@ -1,43 +1,36 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:52862a9564a08cfb765ca1cc9d5551d439c75660f1fd11851e8d30d6ff7b1b8e",
+    "canon_package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+    "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
-    "seed_version": "0.2.0-alpha.1",
+    "seed_version": "0.2.0-alpha.2",
     "status": "RESOLUTION_CORE_ALPHA"
   },
   "active_controlling_records": [
-    "audit/REFACTORING_LOG.md",
-    "audit/components/PDCA-13-BLACKBOX.json",
-    "audit/components/PDCA-13-BLACKBOX.md",
-    "audit/components/PDCA-13-CANON-DECOMPOSITION.md",
-    "audit/components/PDCA-14-BLACKBOX.json",
-    "audit/components/PDCA-14-BLACKBOX.md",
-    "audit/components/PDCA-14-CONFORMANCE-FORMAL-INTEGRATION.md",
-    "audit/components/PDCA-15-BLACKBOX.json",
-    "audit/components/PDCA-15-BLACKBOX.md",
-    "audit/components/PDCA-15-SCHEMA-OWNERSHIP-LOCALIZATION.md",
-    "audit/components/PDCA-16-BLACKBOX.json",
-    "audit/components/PDCA-16-BLACKBOX.md",
-    "audit/components/PDCA-16-SELF-CONTAINED-ASSURANCE.md",
-    "audit/components/PDCA-17-ADVERSARIAL-CLOSURE.md",
-    "audit/components/PDCA-18-RELEASE-IDENTITY-AND-LANGUAGE-CLOSURE.md",
-    "audit/components/PDCA_HISTORY.md",
-    "audit/components/REFACTORING_LOG.md"
+    "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",
+    "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.md",
+    "audit/REFACTORING_LOG.md"
   ],
   "classification_rules": [
-    "Only active_controlling_records may support claims about the current implementation-neutral candidate.",
-    "Historical records are preserved byte-for-byte as development and pre-freeze evidence but do not control current repository or runtime claims.",
-    "Generated dist reports control a particular candidate only when they were produced from that exact snapshot and all mandatory gates passed.",
-    "No implementation-specific historical audit grants semantic precedence to an implementation profile."
+    "Only active_controlling_records may support static claims about the current implementation-neutral candidate.",
+    "Historical records are non-controlling and do not grant implementation precedence.",
+    "Externalized component evidence is interpreted only through the exact extraction record and source revision.",
+    "Generated dist reports control only the exact snapshot that produced them and only when mandatory gates pass."
   ],
   "document_type": "aset-active-audit-index",
+  "externalized_historical_evidence": {
+    "asset": "ASET-legacy-component-corpus-0.1-rc1.zip",
+    "record": "EXTRACTION.json",
+    "sha256": "sha256:e2fd10bbf0d9ab871624ef7347ddc6dd8827607a1b45db238de1fa26364d4587"
+  },
   "generated_controlling_evidence": [
     "dist/repository-release-gate.json",
     "dist/blackbox-documentation-audit.json",
-    "dist/blackbox-component-audit.json",
-    "dist/component-blackbox-adversarial.json",
-    "dist/seed-model-check.json"
+    "dist/seed-model-check.json",
+    "dist/assurance-traceability.json",
+    "dist/canon-compatibility.json",
+    "dist/tlc-model-check.json"
   ],
   "historical_noncontrolling_records": [
     "audit/FINDING_CLOSURE_MATRIX.json",
@@ -61,5 +54,5 @@
     "audit/ACTIVE_AUDIT_INDEX.json",
     "audit/ACTIVE_AUDIT_INDEX.md"
   ],
-  "schema_version": 1
+  "schema_version": 2
 }
