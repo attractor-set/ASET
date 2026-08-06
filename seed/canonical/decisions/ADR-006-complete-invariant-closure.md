@@ -49,6 +49,10 @@ The release gate now fails unless:
 - the bounded state explorer and TLC property catalogues match the registry;
 - no normative assurance evidence is orphaned.
 
-This closes the published bounded safety contract. It does not claim unbounded
-TLAPS proof, liveness, cryptographic security, correctness of every
-implementation or external certification.
+At the time of this decision, this closed the published bounded safety
+contract. Subsequent assurance work added an unbounded TLAPS deductive safety
+proof for the committed abstract TLA+ projection.
+
+That proof does not establish machine-canon-to-TLA refinement, implementation
+refinement or correctness, concrete grant-chain construction, liveness,
+cryptographic primitive security or external certification.

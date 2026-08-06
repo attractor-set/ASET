@@ -23,12 +23,15 @@ BASE = [
     "seed/canonical/assurance/verification-registry.json",
     "seed/canonical/assurance/invariant-coverage.json",
     "seed/canonical/schemas/invariant-coverage.schema.json",
+    "seed/canonical/assurance/proof-traceability.json",
+    "seed/canonical/schemas/proof-traceability.schema.json",
     "seed/canonical/assurance/limitations.json",
     "seed/canonical/schemas/assurance-limitations.schema.json",
     "seed/canonical/assurance/repository-release-gates.json",
     "seed/canonical/schemas/repository-release-gates.schema.json",
     "seed/canonical/shapes/seed.shacl.ttl",
     "seed/canonical/formal/SeedResolution.tla",
+    "seed/canonical/formal/SeedResolutionProofs.tla",
     "seed/canonical/formal/SeedResolution.cfg",
     "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
     "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
@@ -55,9 +58,12 @@ def files() -> list[str]:
 
 def expected() -> dict[str, Any]:
     rows = [{"path": path, "sha256": sha(path)} for path in files()]
-    package_digest = "sha256:" + hashlib.sha256(
-        json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
-    ).hexdigest()
+    package_digest = (
+        "sha256:"
+        + hashlib.sha256(
+            json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+    )
     return {
         "document_type": "aset-canon-package",
         "schema_version": 2,

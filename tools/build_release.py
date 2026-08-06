@@ -17,6 +17,9 @@ EXCLUDED_PARTS = {
     "__pycache__",
     ".pytest_cache",
     ".ruff_cache",
+    ".tlacache",
+    ".tooling",
+    "states",
     "dist",
     "build",
 }
@@ -49,8 +52,7 @@ def main() -> int:
     files = [
         path
         for path in ROOT.rglob("*")
-        if path.is_file()
-        and included(path.relative_to(ROOT))
+        if path.is_file() and included(path.relative_to(ROOT))
     ]
 
     with zipfile.ZipFile(
@@ -61,9 +63,7 @@ def main() -> int:
     ) as archive:
         for path in sorted(
             files,
-            key=lambda item: (
-                Path("ASET") / item.relative_to(ROOT)
-            ).as_posix(),
+            key=lambda item: (Path("ASET") / item.relative_to(ROOT)).as_posix(),
         ):
             relative = path.relative_to(ROOT)
             info = zipfile.ZipInfo(
@@ -71,16 +71,12 @@ def main() -> int:
                 FIXED,
             )
             info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = (
-                (stat.S_IFREG | 0o644) << 16
-            )
+            info.external_attr = (stat.S_IFREG | 0o644) << 16
             archive.writestr(info, path.read_bytes())
 
     digest = sha256_file(ARCHIVE)
 
-    checksum = ARCHIVE.with_suffix(
-        ARCHIVE.suffix + ".sha256"
-    )
+    checksum = ARCHIVE.with_suffix(ARCHIVE.suffix + ".sha256")
 
     checksum.write_text(
         f"{digest}  {ARCHIVE.name}\n",

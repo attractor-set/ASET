@@ -10,6 +10,14 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
+TLAPS_FINAL_THEOREMS = (
+    "SpecImpliesAlwaysSeedStateSafety",
+    "SpecImpliesRequestsAppendOnly",
+    "SpecImpliesTerminalRecordsImmutable",
+    "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
+    "SpecImpliesObservedInputsAppendOnly",
+)
+
 
 def strict(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
@@ -44,8 +52,12 @@ def cfg_sections(path: Path) -> dict[str, list[str]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-report", type=Path, default=Path("dist/seed-model-check.json"))
-    parser.add_argument("--output", type=Path, default=Path("dist/assurance-traceability.json"))
+    parser.add_argument(
+        "--model-report", type=Path, default=Path("dist/seed-model-check.json")
+    )
+    parser.add_argument(
+        "--output", type=Path, default=Path("dist/assurance-traceability.json")
+    )
     args = parser.parse_args()
 
     model = load(ROOT / "seed/canonical/source/seed-model.json")
@@ -59,21 +71,74 @@ def main() -> int:
     invariant_ids = {item["id"] for item in model["invariants"]}
     errors: list[str] = []
 
+    tlaps_method = next(
+        (
+            item
+            for item in registry["verification_methods"]
+            if item["id"] == "ASET-VERIFY-TLAPS-UNBOUNDED"
+        ),
+        None,
+    )
+
+    if tlaps_method is None:
+        errors.append("missing unbounded TLAPS verification method")
+    elif "ASET-GATE-028" not in tlaps_method.get(
+        "gate_ids",
+        [],
+    ):
+        errors.append(
+            "unbounded TLAPS verification method is not bound to ASET-GATE-028"
+        )
+
+    proof_path = ROOT / "seed/canonical/formal/SeedResolutionProofs.tla"
+
+    if not proof_path.is_file():
+        errors.append("missing SeedResolutionProofs.tla")
+    else:
+        proof_text = proof_path.read_text(encoding="utf-8")
+
+        if "EXTENDS SeedResolution, TLAPS" not in proof_text:
+            errors.append("SeedResolutionProofs.tla does not import TLAPS")
+
+        for theorem in TLAPS_FINAL_THEOREMS:
+            pattern = (
+                rf"^THEOREM "
+                rf"{re.escape(theorem)} ==\s*$"
+            )
+
+            if (
+                re.search(
+                    pattern,
+                    proof_text,
+                    flags=re.MULTILINE,
+                )
+                is None
+            ):
+                errors.append(f"missing TLAPS final theorem: {theorem}")
+
     for method in registry["verification_methods"]:
         for gate_id in method.get("gate_ids", []):
             if gate_id not in gate_ids:
-                errors.append(f"verification method {method['id']} references unknown gate {gate_id}")
+                errors.append(
+                    f"verification method {method['id']} references unknown gate {gate_id}"
+                )
         if not method.get("gate_ids") and not method.get("external_profile_gate"):
-            errors.append(f"verification method {method['id']} has no gate or external boundary")
+            errors.append(
+                f"verification method {method['id']} has no gate or external boundary"
+            )
 
     for group in ("requirements", "invariants"):
         for item in model[group]:
             unknown = sorted(set(item["verification"]) - method_ids)
             if unknown:
-                errors.append(f"{item['id']} references unknown verification methods: {unknown}")
+                errors.append(
+                    f"{item['id']} references unknown verification methods: {unknown}"
+                )
 
     formal = {item["name"]: item for item in registry["formal_properties"]}
-    tla_formal = {name: item for name, item in formal.items() if item.get("engine") == "TLA_TLC"}
+    tla_formal = {
+        name: item for name, item in formal.items() if item.get("engine") == "TLA_TLC"
+    }
     cfg = cfg_sections(ROOT / "seed/canonical/formal/SeedResolution.cfg")
     cfg_names = set(cfg["INVARIANTS"]) | set(cfg["PROPERTIES"])
     if cfg_names != set(tla_formal):
@@ -88,12 +153,20 @@ def main() -> int:
             errors.append(f"TLA property {name} is not registered as TEMPORAL_PROPERTY")
 
     for item in formal.values():
-        unknown_invariants = sorted(set(item.get("seed_invariants", [])) - invariant_ids)
-        unknown_requirements = sorted(set(item.get("seed_requirements", [])) - requirement_ids)
+        unknown_invariants = sorted(
+            set(item.get("seed_invariants", [])) - invariant_ids
+        )
+        unknown_requirements = sorted(
+            set(item.get("seed_requirements", [])) - requirement_ids
+        )
         if unknown_invariants:
-            errors.append(f"formal property {item['name']} maps unknown invariants: {unknown_invariants}")
+            errors.append(
+                f"formal property {item['name']} maps unknown invariants: {unknown_invariants}"
+            )
         if unknown_requirements:
-            errors.append(f"formal property {item['name']} maps unknown requirements: {unknown_requirements}")
+            errors.append(
+                f"formal property {item['name']} maps unknown requirements: {unknown_requirements}"
+            )
 
     model_report_path = ROOT / args.model_report
     if not model_report_path.is_file():
@@ -101,23 +174,29 @@ def main() -> int:
     else:
         model_report = load(model_report_path)
         if set(model_report.get("invariants", [])) != set(tla_formal):
-            errors.append("bounded model property set differs from TLA/TLC verification registry")
+            errors.append(
+                "bounded model property set differs from TLA/TLC verification registry"
+            )
         if model_report.get("verdict") != "PASS":
             errors.append("bounded model report is not PASS")
 
     formal_invariant_coverage = {
-        identifier for item in formal.values() for identifier in item.get("seed_invariants", [])
+        identifier
+        for item in formal.values()
+        for identifier in item.get("seed_invariants", [])
     }
     if formal_invariant_coverage != invariant_ids:
         errors.append(
-            f"formal invariant coverage incomplete: missing={sorted(invariant_ids-formal_invariant_coverage)}"
+            f"formal invariant coverage incomplete: missing={sorted(invariant_ids - formal_invariant_coverage)}"
         )
     formal_requirement_coverage = {
-        identifier for item in formal.values() for identifier in item.get("seed_requirements", [])
+        identifier
+        for item in formal.values()
+        for identifier in item.get("seed_requirements", [])
     }
     if formal_requirement_coverage != requirement_ids:
         errors.append(
-            f"formal requirement coverage incomplete: missing={sorted(requirement_ids-formal_requirement_coverage)}"
+            f"formal requirement coverage incomplete: missing={sorted(requirement_ids - formal_requirement_coverage)}"
         )
 
     transition_counts: dict[str, Counter[str]] = {}
@@ -132,7 +211,7 @@ def main() -> int:
     declared_kinds = {item["kind"] for item in model["transitions"]}
     if set(transition_counts) - declared_kinds:
         errors.append(
-            f"cases reference undeclared transition kinds: {sorted(set(transition_counts)-declared_kinds)}"
+            f"cases reference undeclared transition kinds: {sorted(set(transition_counts) - declared_kinds)}"
         )
 
     policy = registry["transition_case_policy"]
@@ -146,7 +225,11 @@ def main() -> int:
             ("positive", policy.get("require_positive_case", False)),
             ("negative", policy.get("require_negative_case", False)),
         ):
-            if required and counts[polarity] == 0 and (kind, polarity) not in exceptions:
+            if (
+                required
+                and counts[polarity] == 0
+                and (kind, polarity) not in exceptions
+            ):
                 errors.append(f"transition {kind} has no {polarity} conformance case")
 
     report = {
@@ -160,20 +243,26 @@ def main() -> int:
         "formal_seed_requirements_covered": sorted(formal_requirement_coverage),
         "formal_seed_invariants_covered": sorted(formal_invariant_coverage),
         "transition_case_counts": {
-            key: dict(sorted(value.items())) for key, value in sorted(transition_counts.items())
+            key: dict(sorted(value.items()))
+            for key, value in sorted(transition_counts.items())
         },
         "declared_transition_coverage_exceptions": list(exceptions.values()),
+        "tlaps_proof_module": ("seed/canonical/formal/SeedResolutionProofs.tla"),
+        "tlaps_final_theorems": list(TLAPS_FINAL_THEOREMS),
         "errors": errors,
         "verdict": "PASS" if not errors else "FAIL",
     }
     output = ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
 
     print(f"ASSURANCE_REQUIREMENTS={report['requirements']}")
     print(f"ASSURANCE_INVARIANTS={report['invariants']}")
     print(f"ASSURANCE_FORMAL_PROPERTIES={len(formal)}")
     print(f"ASSURANCE_TLA_PROPERTIES={len(tla_formal)}")
+    print(f"ASSURANCE_TLAPS_FINAL_THEOREMS={len(TLAPS_FINAL_THEOREMS)}")
     print("ASSURANCE_TRACEABILITY=" + report["verdict"])
     for error in errors:
         print("ASSURANCE_TRACEABILITY_ERROR=" + error)

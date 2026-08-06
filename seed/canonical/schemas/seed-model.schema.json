@@ -115,6 +115,15 @@
       "items": {
         "additionalProperties": false,
         "properties": {
+          "assurance_refs": {
+            "items": {
+              "pattern": "^ASET-PROOF-INV-[0-9]{3}$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
           "id": {
             "pattern": "^SEED-INV-[0-9]{3}$",
             "type": "string"
@@ -133,7 +142,8 @@
         "required": [
           "id",
           "texts",
-          "verification"
+          "verification",
+          "assurance_refs"
         ],
         "type": "object"
       },

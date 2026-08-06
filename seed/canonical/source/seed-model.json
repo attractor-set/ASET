@@ -23,28 +23,28 @@
     {
       "definitions": {
         "en": "The exact context, state root, question, policy epoch and scope to which one resolution applies.",
-        "pt-BR": "A vincula\u00e7\u00e3o exata de contexto, raiz de estado, quest\u00e3o, \u00e9poca de pol\u00edtica e escopo \u00e0 qual uma resolu\u00e7\u00e3o se aplica.",
-        "ru": "\u0422\u043e\u0447\u043d\u0430\u044f \u0441\u0432\u044f\u0437\u043a\u0430 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u0430, \u043a\u043e\u0440\u043d\u044f \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f, \u0432\u043e\u043f\u0440\u043e\u0441\u0430, \u044d\u043f\u043e\u0445\u0438 \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0438 \u043e\u0431\u043b\u0430\u0441\u0442\u0438, \u043a \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u043e\u0434\u043d\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435."
+        "pt-BR": "A vinculação exata de contexto, raiz de estado, questão, época de política e escopo à qual uma resolução se aplica.",
+        "ru": "Точная связка контекста, корня состояния, вопроса, эпохи политики и области, к которой относится одно разрешение."
       },
       "id": "seed.resolution_binding",
       "labels": {
         "en": "resolution binding",
-        "pt-BR": "vincula\u00e7\u00e3o de resolu\u00e7\u00e3o",
-        "ru": "\u0441\u0432\u044f\u0437\u043a\u0430 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f"
+        "pt-BR": "vinculação de resolução",
+        "ru": "связка разрешения"
       },
       "symbol": "ResolutionBinding"
     },
     {
       "definitions": {
         "en": "A fresh identifier bound to one exact resolution binding and an initial locally recognized Authority.",
-        "pt-BR": "Um identificador novo vinculado a uma vincula\u00e7\u00e3o exata de resolu\u00e7\u00e3o e a uma Authority inicial reconhecida localmente.",
-        "ru": "\u0421\u0432\u0435\u0436\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440, \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u0441 \u043e\u0434\u043d\u043e\u0439 \u0442\u043e\u0447\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u043a\u043e\u0439 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0438 \u043d\u0430\u0447\u0430\u043b\u044c\u043d\u043e\u0439 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u043d\u043e\u0439 Authority."
+        "pt-BR": "Um identificador novo vinculado a uma vinculação exata de resolução e a uma Authority inicial reconhecida localmente.",
+        "ru": "Свежий идентификатор, связанный с одной точной связкой разрешения и начальной локально признанной Authority."
       },
       "id": "seed.resolution_request",
       "labels": {
         "en": "resolution request",
-        "pt-BR": "solicita\u00e7\u00e3o de resolu\u00e7\u00e3o",
-        "ru": "\u0437\u0430\u043f\u0440\u043e\u0441 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f"
+        "pt-BR": "solicitação de resolução",
+        "ru": "запрос разрешения"
       },
       "symbol": "ResolutionRequest"
     },
@@ -52,83 +52,83 @@
       "definitions": {
         "en": "The derived value UNKNOWN, or the terminal value ALLOW or BLOCK.",
         "pt-BR": "O valor derivado UNKNOWN ou o valor terminal ALLOW ou BLOCK.",
-        "ru": "\u041f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 UNKNOWN \u043b\u0438\u0431\u043e \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 ALLOW \u0438\u043b\u0438 BLOCK."
+        "ru": "Производное значение UNKNOWN либо терминальное значение ALLOW или BLOCK."
       },
       "id": "seed.resolution_value",
       "labels": {
         "en": "resolution",
-        "pt-BR": "resolu\u00e7\u00e3o",
-        "ru": "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435"
+        "pt-BR": "resolução",
+        "ru": "разрешение"
       },
       "symbol": "Resolution"
     },
     {
       "definitions": {
         "en": "An Authority explicitly recognized by one Context for one exact binding and policy epoch.",
-        "pt-BR": "Uma Authority explicitamente reconhecida por um Context para uma vincula\u00e7\u00e3o exata e uma \u00e9poca de pol\u00edtica.",
-        "ru": "Authority, \u044f\u0432\u043d\u043e \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u043d\u0430\u044f \u043e\u0434\u043d\u0438\u043c Context \u0434\u043b\u044f \u043e\u0434\u043d\u043e\u0439 \u0442\u043e\u0447\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u043a\u0438 \u0438 \u044d\u043f\u043e\u0445\u0438 \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438."
+        "pt-BR": "Uma Authority explicitamente reconhecida por um Context para uma vinculação exata e uma época de política.",
+        "ru": "Authority, явно признанная одним Context для одной точной связки и эпохи политики."
       },
       "id": "seed.local_authority",
       "labels": {
         "en": "local Authority",
         "pt-BR": "Authority local",
-        "ru": "\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f Authority"
+        "ru": "локальная Authority"
       },
       "symbol": "LocalAuthority"
     },
     {
       "definitions": {
         "en": "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants.",
-        "pt-BR": "Uma cadeia localmente enraizada, exatamente vinculada, ac\u00edclica e n\u00e3o expansiva de concess\u00f5es expl\u00edcitas de Authority.",
-        "ru": "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u043e \u0443\u043a\u043e\u0440\u0435\u043d\u0451\u043d\u043d\u0430\u044f, \u0442\u043e\u0447\u043d\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u0430\u044f, \u0430\u0446\u0438\u043a\u043b\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0438 \u043d\u0435\u0440\u0430\u0441\u0448\u0438\u0440\u044f\u044e\u0449\u0430\u044f \u0446\u0435\u043f\u043e\u0447\u043a\u0430 \u044f\u0432\u043d\u044b\u0445 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0439 Authority."
+        "pt-BR": "Uma cadeia localmente enraizada, exatamente vinculada, acíclica e não expansiva de concessões explícitas de Authority.",
+        "ru": "Локально укоренённая, точно связанная, ациклическая и нерасширяющая цепочка явных разрешений Authority."
       },
       "id": "seed.authority_proof",
       "labels": {
         "en": "Authority proof",
         "pt-BR": "prova de Authority",
-        "ru": "\u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e Authority"
+        "ru": "доказательство Authority"
       },
       "symbol": "AuthorityProof"
     },
     {
       "definitions": {
         "en": "A content-addressed non-authoritative input cited as the basis of a terminal record.",
-        "pt-BR": "Uma entrada n\u00e3o autoritativa endere\u00e7ada por conte\u00fado, citada como base de um registro terminal.",
-        "ru": "\u041a\u043e\u043d\u0442\u0435\u043d\u0442\u043d\u043e-\u0430\u0434\u0440\u0435\u0441\u0443\u0435\u043c\u044b\u0439 \u043d\u0435\u0430\u0432\u0442\u043e\u0440\u0438\u0442\u0435\u0442\u043d\u044b\u0439 \u0432\u0445\u043e\u0434, \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u043a\u0430\u043a \u043e\u0441\u043d\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u0438."
+        "pt-BR": "Uma entrada não autoritativa endereçada por conteúdo, citada como base de um registro terminal.",
+        "ru": "Контентно-адресуемый неавторитетный вход, указанный как основание терминальной записи."
       },
       "id": "seed.evidence_reference",
       "labels": {
         "en": "evidence reference",
-        "pt-BR": "refer\u00eancia de evid\u00eancia",
-        "ru": "\u0441\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u0441\u043d\u043e\u0432\u0430\u043d\u0438\u0435"
+        "pt-BR": "referência de evidência",
+        "ru": "ссылка на основание"
       },
       "symbol": "EvidenceReference"
     },
     {
       "definitions": {
         "en": "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof.",
-        "pt-BR": "Um registro terminal imut\u00e1vel e endere\u00e7ado por conte\u00fado, ALLOW ou BLOCK, com vincula\u00e7\u00e3o exata e prova de Authority.",
-        "ru": "\u041e\u0434\u043d\u0430 \u043d\u0435\u0438\u0437\u043c\u0435\u043d\u044f\u0435\u043c\u0430\u044f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u043d\u043e-\u0430\u0434\u0440\u0435\u0441\u0443\u0435\u043c\u0430\u044f \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c ALLOW \u0438\u043b\u0438 BLOCK \u0441 \u0442\u043e\u0447\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u043a\u043e\u0439 \u0438 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e\u043c Authority."
+        "pt-BR": "Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata e prova de Authority.",
+        "ru": "Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой и доказательством Authority."
       },
       "id": "seed.resolution_record",
       "labels": {
         "en": "resolution record",
-        "pt-BR": "registro de resolu\u00e7\u00e3o",
-        "ru": "\u0437\u0430\u043f\u0438\u0441\u044c \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f"
+        "pt-BR": "registro de resolução",
+        "ru": "запись разрешения"
       },
       "symbol": "ResolutionRecord"
     },
     {
       "definitions": {
         "en": "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record.",
-        "pt-BR": "Um v\u00ednculo de uma nova solicita\u00e7\u00e3o ao registro terminal \u00fanico de uma resolu\u00e7\u00e3o anterior sem alterar esse registro.",
-        "ru": "\u0421\u0432\u044f\u0437\u044c \u043d\u043e\u0432\u043e\u0433\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u0441 \u0443\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u044c\u044e \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0431\u0435\u0437 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u044d\u0442\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u0438."
+        "pt-BR": "Um vínculo de uma nova solicitação ao registro terminal único de uma resolução anterior sem alterar esse registro.",
+        "ru": "Связь нового запроса с уникальной терминальной записью предыдущего разрешения без изменения этой записи."
       },
       "id": "seed.reconsideration_link",
       "labels": {
         "en": "reconsideration link",
-        "pt-BR": "v\u00ednculo de reconsidera\u00e7\u00e3o",
-        "ru": "\u0441\u0432\u044f\u0437\u044c \u043f\u0435\u0440\u0435\u0441\u043c\u043e\u0442\u0440\u0430"
+        "pt-BR": "vínculo de reconsideração",
+        "ru": "связь пересмотра"
       },
       "symbol": "ReconsiderationLink"
     }
@@ -167,11 +167,14 @@
   },
   "invariants": [
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-001"
+      ],
       "id": "SEED-INV-001",
       "texts": {
         "en": "Every valid derived resolution is UNKNOWN, ALLOW or BLOCK.",
-        "pt-BR": "Toda resolu\u00e7\u00e3o derivada v\u00e1lida \u00e9 UNKNOWN, ALLOW ou BLOCK.",
-        "ru": "\u041a\u0430\u0436\u0434\u043e\u0435 \u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u043e\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u043d\u043e\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442 UNKNOWN, ALLOW \u0438\u043b\u0438 BLOCK."
+        "pt-BR": "Toda resolução derivada válida é UNKNOWN, ALLOW ou BLOCK.",
+        "ru": "Каждое допустимое производное разрешение принадлежит UNKNOWN, ALLOW или BLOCK."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -182,11 +185,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-002"
+      ],
       "id": "SEED-INV-002",
       "texts": {
         "en": "Effect permission is true if and only if the unique valid terminal record is ALLOW.",
-        "pt-BR": "A permiss\u00e3o do efeito \u00e9 verdadeira se, e somente se, o \u00fanico registro terminal v\u00e1lido for ALLOW.",
-        "ru": "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u044d\u0444\u0444\u0435\u043a\u0442\u0430 \u0438\u0441\u0442\u0438\u043d\u043d\u043e \u0442\u043e\u0433\u0434\u0430 \u0438 \u0442\u043e\u043b\u044c\u043a\u043e \u0442\u043e\u0433\u0434\u0430, \u043a\u043e\u0433\u0434\u0430 \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c \u0440\u0430\u0432\u043d\u0430 ALLOW."
+        "pt-BR": "A permissão do efeito é verdadeira se, e somente se, o único registro terminal válido for ALLOW.",
+        "ru": "Разрешение эффекта истинно тогда и только тогда, когда единственная действительная терминальная запись равна ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -197,11 +203,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-003"
+      ],
       "id": "SEED-INV-003",
       "texts": {
         "en": "UNKNOWN and BLOCK never permit an effect.",
         "pt-BR": "UNKNOWN e BLOCK nunca permitem um efeito.",
-        "ru": "UNKNOWN \u0438 BLOCK \u043d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0430\u044e\u0442 \u044d\u0444\u0444\u0435\u043a\u0442."
+        "ru": "UNKNOWN и BLOCK никогда не разрешают эффект."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -212,11 +221,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-004"
+      ],
       "id": "SEED-INV-004",
       "texts": {
         "en": "Every request and terminal record preserves one exact binding digest.",
-        "pt-BR": "Toda solicita\u00e7\u00e3o e registro terminal preservam um \u00fanico digest exato de vincula\u00e7\u00e3o.",
-        "ru": "\u041a\u0430\u0436\u0434\u044b\u0439 \u0437\u0430\u043f\u0440\u043e\u0441 \u0438 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u044e\u0442 \u043e\u0434\u0438\u043d \u0442\u043e\u0447\u043d\u044b\u0439 digest \u0441\u0432\u044f\u0437\u043a\u0438."
+        "pt-BR": "Toda solicitação e registro terminal preservam um único digest exato de vinculação.",
+        "ru": "Каждый запрос и терминальная запись сохраняют один точный digest связки."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -227,11 +239,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-005"
+      ],
       "id": "SEED-INV-005",
       "texts": {
         "en": "Every valid terminal record is rooted in a local Authority binding.",
-        "pt-BR": "Todo registro terminal v\u00e1lido est\u00e1 enraizado em uma vincula\u00e7\u00e3o de Authority local.",
-        "ru": "\u041a\u0430\u0436\u0434\u0430\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c \u0443\u043a\u043e\u0440\u0435\u043d\u0435\u043d\u0430 \u0432 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u043a\u0435 Authority."
+        "pt-BR": "Todo registro terminal válido está enraizado em uma vinculação de Authority local.",
+        "ru": "Каждая действительная терминальная запись укоренена в локальной связке Authority."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -242,11 +257,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-006"
+      ],
       "id": "SEED-INV-006",
       "texts": {
         "en": "Every delegated Authority proof is exact-binding, acyclic and non-expanding.",
-        "pt-BR": "Toda prova de Authority delegada \u00e9 exatamente vinculada, ac\u00edclica e n\u00e3o expansiva.",
-        "ru": "\u041a\u0430\u0436\u0434\u043e\u0435 \u0434\u0435\u043b\u0435\u0433\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e Authority \u0442\u043e\u0447\u043d\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043e, \u0430\u0446\u0438\u043a\u043b\u0438\u0447\u043d\u043e \u0438 \u043d\u0435 \u0440\u0430\u0441\u0448\u0438\u0440\u044f\u0435\u0442 \u043f\u043e\u043b\u043d\u043e\u043c\u043e\u0447\u0438\u0435."
+        "pt-BR": "Toda prova de Authority delegada é exatamente vinculada, acíclica e não expansiva.",
+        "ru": "Каждое делегированное доказательство Authority точно связано, ациклично и не расширяет полномочие."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -257,11 +275,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-007"
+      ],
       "id": "SEED-INV-007",
       "texts": {
         "en": "Evidence and external statements are non-authoritative inputs.",
-        "pt-BR": "Evidence e declara\u00e7\u00f5es externas s\u00e3o entradas n\u00e3o autoritativas.",
-        "ru": "Evidence \u0438 \u0432\u043d\u0435\u0448\u043d\u0438\u0435 \u0443\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f \u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u043d\u0435\u0430\u0432\u0442\u043e\u0440\u0438\u0442\u0435\u0442\u043d\u044b\u043c\u0438 \u0432\u0445\u043e\u0434\u0430\u043c\u0438."
+        "pt-BR": "Evidence e declarações externas são entradas não autoritativas.",
+        "ru": "Evidence и внешние утверждения являются неавторитетными входами."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -272,11 +293,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-008"
+      ],
       "id": "SEED-INV-008",
       "texts": {
         "en": "At most one valid terminal record exists for one resolution_id.",
-        "pt-BR": "Existe no m\u00e1ximo um registro terminal v\u00e1lido para um resolution_id.",
-        "ru": "\u0414\u043b\u044f \u043e\u0434\u043d\u043e\u0433\u043e resolution_id \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442 \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 \u043e\u0434\u043d\u043e\u0439 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u0438."
+        "pt-BR": "Existe no máximo um registro terminal válido para um resolution_id.",
+        "ru": "Для одного resolution_id существует не более одной действительной терминальной записи."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -287,11 +311,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-009"
+      ],
       "id": "SEED-INV-009",
       "texts": {
         "en": "Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.",
-        "pt-BR": "Material terminal conflitante ou inv\u00e1lido resulta em UNKNOWN e nunca ALLOW.",
-        "ru": "\u041a\u043e\u043d\u0444\u043b\u0438\u043a\u0442\u0443\u044e\u0449\u0438\u0439 \u0438\u043b\u0438 \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u0434\u0430\u0451\u0442 UNKNOWN \u0438 \u043d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0435 ALLOW."
+        "pt-BR": "Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.",
+        "ru": "Конфликтующий или недействительный терминальный материал даёт UNKNOWN и никогда не ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -302,11 +329,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-010"
+      ],
       "id": "SEED-INV-010",
       "texts": {
         "en": "Resolution records are append-only, immutable and content-addressed.",
-        "pt-BR": "Registros de resolu\u00e7\u00e3o s\u00e3o append-only, imut\u00e1veis e endere\u00e7ados por conte\u00fado.",
-        "ru": "\u0417\u0430\u043f\u0438\u0441\u0438 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f append-only, \u043d\u0435\u0438\u0437\u043c\u0435\u043d\u044f\u0435\u043c\u044b\u043c\u0438 \u0438 \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u043d\u043e-\u0430\u0434\u0440\u0435\u0441\u0443\u0435\u043c\u044b\u043c\u0438."
+        "pt-BR": "Registros de resolução são append-only, imutáveis e endereçados por conteúdo.",
+        "ru": "Записи разрешения являются append-only, неизменяемыми и контентно-адресуемыми."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -317,11 +347,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-011"
+      ],
       "id": "SEED-INV-011",
       "texts": {
         "en": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.",
-        "pt-BR": "Somente transi\u00e7\u00f5es reconhecidas do Seed podem alterar o armazenamento can\u00f4nico; um candidato inv\u00e1lido ou n\u00e3o reconhecido n\u00e3o \u00e9 uma transi\u00e7\u00e3o do Seed.",
-        "ru": "\u0422\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u043d\u044b\u0435 \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u044b Seed \u043c\u043e\u0433\u0443\u0442 \u0438\u0437\u043c\u0435\u043d\u044f\u0442\u044c \u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0445\u0440\u0430\u043d\u0438\u043b\u0438\u0449\u0435; \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0438\u043b\u0438 \u043d\u0435\u043f\u0440\u0438\u0437\u043d\u0430\u043d\u043d\u044b\u0439 \u043a\u0430\u043d\u0434\u0438\u0434\u0430\u0442 \u043d\u0435 \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u043e\u043c Seed."
+        "pt-BR": "Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.",
+        "ru": "Только признанные переходы Seed могут изменять каноническое хранилище; недействительный или непризнанный кандидат не является переходом Seed."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -332,11 +365,14 @@
       ]
     },
     {
+      "assurance_refs": [
+        "ASET-PROOF-INV-012"
+      ],
       "id": "SEED-INV-012",
       "texts": {
         "en": "Reconsideration uses a fresh resolution_id linked to a prior unique terminal record.",
-        "pt-BR": "A reconsidera\u00e7\u00e3o usa um resolution_id novo vinculado a um registro terminal \u00fanico anterior.",
-        "ru": "\u041f\u0435\u0440\u0435\u0441\u043c\u043e\u0442\u0440 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u0441\u0432\u0435\u0436\u0438\u0439 resolution_id, \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u0441 \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0439 \u0443\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u044c\u044e."
+        "pt-BR": "A reconsideração usa um resolution_id novo vinculado a um registro terminal único anterior.",
+        "ru": "Пересмотр использует свежий resolution_id, связанный с предыдущей уникальной терминальной записью."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -360,73 +396,73 @@
       "assurance": {
         "en": "Assurance",
         "pt-BR": "Garantias",
-        "ru": "\u0413\u0430\u0440\u0430\u043d\u0442\u0438\u0438"
+        "ru": "Гарантии"
       },
       "canonical_model_sha256": {
         "en": "Canonical model SHA-256",
-        "pt-BR": "SHA-256 do modelo can\u00f4nico",
-        "ru": "SHA-256 \u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u0438"
+        "pt-BR": "SHA-256 do modelo canônico",
+        "ru": "SHA-256 канонической модели"
       },
       "concepts": {
         "en": "Concepts",
         "pt-BR": "Conceitos",
-        "ru": "\u041f\u043e\u043d\u044f\u0442\u0438\u044f"
+        "ru": "Понятия"
       },
       "identifier": {
         "en": "Identifier",
         "pt-BR": "Identificador",
-        "ru": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440"
+        "ru": "Идентификатор"
       },
       "implementation_boundary": {
         "en": "Implementation boundary",
-        "pt-BR": "Limite da implementa\u00e7\u00e3o",
-        "ru": "\u0413\u0440\u0430\u043d\u0438\u0446\u0430 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438"
+        "pt-BR": "Limite da implementação",
+        "ru": "Граница реализации"
       },
       "invariants": {
         "en": "Invariants",
         "pt-BR": "Invariantes",
-        "ru": "\u0418\u043d\u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b"
+        "ru": "Инварианты"
       },
       "modality": {
         "en": "Modality",
         "pt-BR": "Modalidade",
-        "ru": "\u041c\u043e\u0434\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u044c"
+        "ru": "Модальность"
       },
       "notice": {
         "en": "This edition is derived from the machine canon.",
-        "pt-BR": "Esta edi\u00e7\u00e3o \u00e9 derivada do c\u00e2none leg\u00edvel por m\u00e1quina.",
-        "ru": "\u042d\u0442\u0430 \u0440\u0435\u0434\u0430\u043a\u0446\u0438\u044f \u0432\u044b\u0432\u043e\u0434\u0438\u0442\u0441\u044f \u0438\u0437 \u043c\u0430\u0448\u0438\u043d\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u043e\u043d\u0430."
+        "pt-BR": "Esta edição é derivada do cânone legível por máquina.",
+        "ru": "Эта редакция выводится из машинного канона."
       },
       "predicate": {
         "en": "Predicate",
         "pt-BR": "Predicado",
-        "ru": "\u041f\u0440\u0435\u0434\u0438\u043a\u0430\u0442"
+        "ru": "Предикат"
       },
       "requirements": {
         "en": "Requirements",
         "pt-BR": "Requisitos",
-        "ru": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f"
+        "ru": "Требования"
       },
       "status": {
         "en": "Status",
         "pt-BR": "Status",
-        "ru": "\u0421\u0442\u0430\u0442\u0443\u0441"
+        "ru": "Статус"
       },
       "transitions": {
         "en": "Transitions",
-        "pt-BR": "Transi\u00e7\u00f5es",
-        "ru": "\u041f\u0435\u0440\u0435\u0445\u043e\u0434\u044b"
+        "pt-BR": "Transições",
+        "ru": "Переходы"
       },
       "version": {
         "en": "Version",
-        "pt-BR": "Vers\u00e3o",
-        "ru": "\u0412\u0435\u0440\u0441\u0438\u044f"
+        "pt-BR": "Versão",
+        "ru": "Версия"
       }
     },
     "titles": {
       "en": "ASET Seed Minimal Resolution Kernel 0.3 alpha 1",
-      "pt-BR": "N\u00facleo M\u00ednimo de Resolu\u00e7\u00e3o ASET Seed 0.3 alpha 1",
-      "ru": "\u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u044f\u0434\u0440\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f ASET Seed 0.3 alpha 1"
+      "pt-BR": "Núcleo Mínimo de Resolução ASET Seed 0.3 alpha 1",
+      "ru": "Минимальное ядро разрешения ASET Seed 0.3 alpha 1"
     }
   },
   "requirements": [
@@ -439,8 +475,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "ResolutionBinding MUST contain exact context_id, state_root, question_digest, policy_epoch and scope values and a canonical binding digest.",
-        "pt-BR": "ResolutionBinding DEVE conter valores exatos de context_id, state_root, question_digest, policy_epoch e scope, al\u00e9m de um digest can\u00f4nico da vincula\u00e7\u00e3o.",
-        "ru": "ResolutionBinding \u0414\u041e\u041b\u0416\u0415\u041d \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0442\u044c \u0442\u043e\u0447\u043d\u044b\u0435 context_id, state_root, question_digest, policy_epoch \u0438 scope, \u0430 \u0442\u0430\u043a\u0436\u0435 \u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 digest \u0441\u0432\u044f\u0437\u043a\u0438."
+        "pt-BR": "ResolutionBinding DEVE conter valores exatos de context_id, state_root, question_digest, policy_epoch e scope, além de um digest canônico da vinculação.",
+        "ru": "ResolutionBinding ДОЛЖЕН содержать точные context_id, state_root, question_digest, policy_epoch и scope, а также канонический digest связки."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -460,7 +496,7 @@
       "texts": {
         "en": "Every ResolutionRequest MUST use a fresh resolution_id and bind one exact ResolutionBinding.",
         "pt-BR": "Toda ResolutionRequest DEVE usar um resolution_id novo e vincular uma ResolutionBinding exata.",
-        "ru": "\u041a\u0430\u0436\u0434\u044b\u0439 ResolutionRequest \u0414\u041e\u041b\u0416\u0415\u041d \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0441\u0432\u0435\u0436\u0438\u0439 resolution_id \u0438 \u0441\u0432\u044f\u0437\u044b\u0432\u0430\u0442\u044c \u043e\u0434\u043d\u0443 \u0442\u043e\u0447\u043d\u0443\u044e ResolutionBinding."
+        "ru": "Каждый ResolutionRequest ДОЛЖЕН использовать свежий resolution_id и связывать одну точную ResolutionBinding."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -479,8 +515,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "The derived Resolution MUST be UNKNOWN, ALLOW or BLOCK; only ALLOW and BLOCK are stored terminal values.",
-        "pt-BR": "A Resolution derivada DEVE ser UNKNOWN, ALLOW ou BLOCK; somente ALLOW e BLOCK s\u00e3o valores terminais armazenados.",
-        "ru": "\u041f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u043d\u043e\u0435 Resolution \u0414\u041e\u041b\u0416\u041d\u041e \u0431\u044b\u0442\u044c UNKNOWN, ALLOW \u0438\u043b\u0438 BLOCK; \u0445\u0440\u0430\u043d\u0438\u043c\u044b\u043c\u0438 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u043c\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f\u043c\u0438 \u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e ALLOW \u0438 BLOCK."
+        "pt-BR": "A Resolution derivada DEVE ser UNKNOWN, ALLOW ou BLOCK; somente ALLOW e BLOCK são valores terminais armazenados.",
+        "ru": "Производное Resolution ДОЛЖНО быть UNKNOWN, ALLOW или BLOCK; хранимыми терминальными значениями являются только ALLOW и BLOCK."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -499,8 +535,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "An exact bound effect MUST be permitted if and only if the unique valid terminal ResolutionRecord is ALLOW.",
-        "pt-BR": "Um efeito exatamente vinculado DEVE ser permitido se, e somente se, o \u00fanico ResolutionRecord terminal v\u00e1lido for ALLOW.",
-        "ru": "\u0422\u043e\u0447\u043d\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u044d\u0444\u0444\u0435\u043a\u0442 \u0414\u041e\u041b\u0416\u0415\u041d \u0431\u044b\u0442\u044c \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d \u0442\u043e\u0433\u0434\u0430 \u0438 \u0442\u043e\u043b\u044c\u043a\u043e \u0442\u043e\u0433\u0434\u0430, \u043a\u043e\u0433\u0434\u0430 \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f ResolutionRecord \u0438\u043c\u0435\u0435\u0442 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 ALLOW."
+        "pt-BR": "Um efeito exatamente vinculado DEVE ser permitido se, e somente se, o único ResolutionRecord terminal válido for ALLOW.",
+        "ru": "Точно связанный эффект ДОЛЖЕН быть разрешён тогда и только тогда, когда единственная действительная терминальная ResolutionRecord имеет значение ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -519,8 +555,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "UNKNOWN and BLOCK MUST prohibit the effect; absence, invalidity, ambiguity or verification error MUST resolve to UNKNOWN rather than ALLOW.",
-        "pt-BR": "UNKNOWN e BLOCK DEVEM proibir o efeito; aus\u00eancia, invalidade, ambiguidade ou erro de verifica\u00e7\u00e3o DEVEM resultar em UNKNOWN, nunca ALLOW.",
-        "ru": "UNKNOWN \u0438 BLOCK \u0414\u041e\u041b\u0416\u041d\u042b \u0437\u0430\u043f\u0440\u0435\u0449\u0430\u0442\u044c \u044d\u0444\u0444\u0435\u043a\u0442; \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435, \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c, \u043d\u0435\u043e\u0434\u043d\u043e\u0437\u043d\u0430\u0447\u043d\u043e\u0441\u0442\u044c \u0438\u043b\u0438 \u043e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0414\u041e\u041b\u0416\u041d\u042b \u0434\u0430\u0432\u0430\u0442\u044c UNKNOWN, \u0430 \u043d\u0435 ALLOW."
+        "pt-BR": "UNKNOWN e BLOCK DEVEM proibir o efeito; ausência, invalidade, ambiguidade ou erro de verificação DEVEM resultar em UNKNOWN, nunca ALLOW.",
+        "ru": "UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутствие, недействительность, неоднозначность или ошибка проверки ДОЛЖНЫ давать UNKNOWN, а не ALLOW."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -539,8 +575,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "A terminal record MUST be rooted in an Authority explicitly recognized by the local Context for the exact binding and policy epoch.",
-        "pt-BR": "Um registro terminal DEVE estar enraizado em uma Authority explicitamente reconhecida pelo Context local para a vincula\u00e7\u00e3o exata e a \u00e9poca de pol\u00edtica.",
-        "ru": "\u0422\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c \u0414\u041e\u041b\u0416\u041d\u0410 \u0431\u044b\u0442\u044c \u0443\u043a\u043e\u0440\u0435\u043d\u0435\u043d\u0430 \u0432 Authority, \u044f\u0432\u043d\u043e \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u043d\u043e\u0439 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u043c Context \u0434\u043b\u044f \u0442\u043e\u0447\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u043a\u0438 \u0438 \u044d\u043f\u043e\u0445\u0438 \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438."
+        "pt-BR": "Um registro terminal DEVE estar enraizado em uma Authority explicitamente reconhecida pelo Context local para a vinculação exata e a época de política.",
+        "ru": "Терминальная запись ДОЛЖНА быть укоренена в Authority, явно признанной локальным Context для точной связки и эпохи политики."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -559,8 +595,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "Every delegated Authority proof MUST be explicit, acyclic, exact-binding and non-expanding.",
-        "pt-BR": "Toda prova de Authority delegada DEVE ser expl\u00edcita, ac\u00edclica, exatamente vinculada e n\u00e3o expansiva.",
-        "ru": "\u041a\u0430\u0436\u0434\u043e\u0435 \u0434\u0435\u043b\u0435\u0433\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e Authority \u0414\u041e\u041b\u0416\u041d\u041e \u0431\u044b\u0442\u044c \u044f\u0432\u043d\u044b\u043c, \u0430\u0446\u0438\u043a\u043b\u0438\u0447\u0435\u0441\u043a\u0438\u043c, \u0442\u043e\u0447\u043d\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u043c \u0438 \u043d\u0435\u0440\u0430\u0441\u0448\u0438\u0440\u044f\u044e\u0449\u0438\u043c."
+        "pt-BR": "Toda prova de Authority delegada DEVE ser explícita, acíclica, exatamente vinculada e não expansiva.",
+        "ru": "Каждое делегированное доказательство Authority ДОЛЖНО быть явным, ациклическим, точно связанным и нерасширяющим."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -579,8 +615,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "Evidence, verification results, AI outputs, consensus results and remote outcomes MUST NOT by themselves create ALLOW or local Authority.",
-        "pt-BR": "Evidence, resultados de verifica\u00e7\u00e3o, sa\u00eddas de AI, resultados de consenso e outcomes remotos N\u00c3O DEVEM, por si s\u00f3, criar ALLOW ou Authority local.",
-        "ru": "Evidence, \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438, \u0432\u044b\u0445\u043e\u0434\u044b AI, \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u043a\u043e\u043d\u0441\u0435\u043d\u0441\u0443\u0441\u0430 \u0438 \u0443\u0434\u0430\u043b\u0451\u043d\u043d\u044b\u0435 outcomes \u041d\u0415 \u0414\u041e\u041b\u0416\u041d\u042b \u0441\u0430\u043c\u0438 \u043f\u043e \u0441\u0435\u0431\u0435 \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c ALLOW \u0438\u043b\u0438 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u0443\u044e Authority."
+        "pt-BR": "Evidence, resultados de verificação, saídas de AI, resultados de consenso e outcomes remotos NÃO DEVEM, por si só, criar ALLOW ou Authority local.",
+        "ru": "Evidence, результаты проверки, выходы AI, результаты консенсуса и удалённые outcomes НЕ ДОЛЖНЫ сами по себе создавать ALLOW или локальную Authority."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -599,8 +635,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "At most one valid terminal record MAY exist for one resolution_id; conflicting terminal records MUST fail closed as UNKNOWN.",
-        "pt-BR": "No m\u00e1ximo um registro terminal v\u00e1lido PODE existir para um resolution_id; registros terminais conflitantes DEVEM falhar de modo fechado como UNKNOWN.",
-        "ru": "\u0414\u043b\u044f \u043e\u0434\u043d\u043e\u0433\u043e resolution_id \u041c\u041e\u0416\u0415\u0422 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 \u043e\u0434\u043d\u043e\u0439 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u0438; \u043a\u043e\u043d\u0444\u043b\u0438\u043a\u0442\u0443\u044e\u0449\u0438\u0435 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u0437\u0430\u043f\u0438\u0441\u0438 \u0414\u041e\u041b\u0416\u041d\u042b \u0434\u0430\u0432\u0430\u0442\u044c fail-closed UNKNOWN."
+        "pt-BR": "No máximo um registro terminal válido PODE existir para um resolution_id; registros terminais conflitantes DEVEM falhar de modo fechado como UNKNOWN.",
+        "ru": "Для одного resolution_id МОЖЕТ существовать не более одной действительной терминальной записи; конфликтующие терминальные записи ДОЛЖНЫ давать fail-closed UNKNOWN."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -619,8 +655,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "A terminal ResolutionRecord MUST be immutable and content-addressed; exact replay MAY be idempotent but replacement is forbidden.",
-        "pt-BR": "Um ResolutionRecord terminal DEVE ser imut\u00e1vel e endere\u00e7ado por conte\u00fado; uma repeti\u00e7\u00e3o exata PODE ser idempotente, mas a substitui\u00e7\u00e3o \u00e9 proibida.",
-        "ru": "\u0422\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f ResolutionRecord \u0414\u041e\u041b\u0416\u041d\u0410 \u0431\u044b\u0442\u044c \u043d\u0435\u0438\u0437\u043c\u0435\u043d\u044f\u0435\u043c\u043e\u0439 \u0438 \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u043d\u043e-\u0430\u0434\u0440\u0435\u0441\u0443\u0435\u043c\u043e\u0439; \u0442\u043e\u0447\u043d\u044b\u0439 \u043f\u043e\u0432\u0442\u043e\u0440 \u041c\u041e\u0416\u0415\u0422 \u0431\u044b\u0442\u044c \u0438\u0434\u0435\u043c\u043f\u043e\u0442\u0435\u043d\u0442\u043d\u044b\u043c, \u043d\u043e \u0437\u0430\u043c\u0435\u043d\u0430 \u0437\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u0430."
+        "pt-BR": "Um ResolutionRecord terminal DEVE ser imutável e endereçado por conteúdo; uma repetição exata PODE ser idempotente, mas a substituição é proibida.",
+        "ru": "Терминальная ResolutionRecord ДОЛЖНА быть неизменяемой и контентно-адресуемой; точный повтор МОЖЕТ быть идемпотентным, но замена запрещена."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -639,8 +675,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "Reconsideration MUST create a fresh resolution_id linked to the unique terminal record of the previous resolution.",
-        "pt-BR": "A reconsidera\u00e7\u00e3o DEVE criar um resolution_id novo vinculado ao registro terminal \u00fanico da resolu\u00e7\u00e3o anterior.",
-        "ru": "\u041f\u0435\u0440\u0435\u0441\u043c\u043e\u0442\u0440 \u0414\u041e\u041b\u0416\u0415\u041d \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u0441\u0432\u0435\u0436\u0438\u0439 resolution_id, \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u0441 \u0443\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u044c\u044e \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0433\u043e \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f."
+        "pt-BR": "A reconsideração DEVE criar um resolution_id novo vinculado ao registro terminal único da resolução anterior.",
+        "ru": "Пересмотр ДОЛЖЕН создавать свежий resolution_id, связанный с уникальной терминальной записью предыдущего разрешения."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -659,8 +695,8 @@
       "subject": "ASET Seed",
       "texts": {
         "en": "Implementations and extensions MUST be checked by observable semantics and MUST have no normative precedence.",
-        "pt-BR": "Implementa\u00e7\u00f5es e extens\u00f5es DEVEM ser verificadas por sem\u00e2ntica observ\u00e1vel e N\u00c3O DEVEM ter preced\u00eancia normativa.",
-        "ru": "\u0420\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0438 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u0438\u044f \u0414\u041e\u041b\u0416\u041d\u042b \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0442\u044c\u0441\u044f \u043f\u043e \u043d\u0430\u0431\u043b\u044e\u0434\u0430\u0435\u043c\u043e\u0439 \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0435 \u0438 \u041d\u0415 \u0414\u041e\u041b\u0416\u041d\u042b \u0438\u043c\u0435\u0442\u044c \u043d\u043e\u0440\u043c\u0430\u0442\u0438\u0432\u043d\u043e\u0433\u043e \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442\u0430."
+        "pt-BR": "Implementações e extensões DEVEM ser verificadas por semântica observável e NÃO DEVEM ter precedência normativa.",
+        "ru": "Реализации и расширения ДОЛЖНЫ проверяться по наблюдаемой семантике и НЕ ДОЛЖНЫ иметь нормативного приоритета."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",

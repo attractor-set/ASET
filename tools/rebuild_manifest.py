@@ -14,6 +14,9 @@ EXCLUDED_PARTS = {
     "__pycache__",
     ".pytest_cache",
     ".ruff_cache",
+    ".tlacache",
+    ".tooling",
+    "states",
     "dist",
     "build",
 }
@@ -64,12 +67,15 @@ def build_manifest() -> dict[str, object]:
 
 
 def canonical_text(value: object) -> str:
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        indent=2,
-    ) + "\n"
+    return (
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            sort_keys=True,
+            indent=2,
+        )
+        + "\n"
+    )
 
 
 def main() -> int:

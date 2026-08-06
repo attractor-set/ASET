@@ -38,28 +38,23 @@
     },
     {
       "path": ".github/workflows/production-assurance.yml",
-      "sha256": "sha256:483d977721a0d6e163aa0c0b6c0dc03f93eb22377ad30beefb7c5feda2d2ff55",
-      "size_bytes": 1657
+      "sha256": "sha256:7f4d72f8601ced197f75c8dadea35a5bde25c09d2410c35ed12952dc80d12074",
+      "size_bytes": 3102
     },
     {
       "path": ".github/workflows/release-candidate.yml",
-      "sha256": "sha256:34577bae5938cb5171dc36edea6745ef64e466cff2dcbd16f7a4aaef4aab6a3d",
-      "size_bytes": 1464
+      "sha256": "sha256:3088f4d15676371fab42554a1c44dd0282b4f4191aac1e7fdf1bef2bfabfe7af",
+      "size_bytes": 2989
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:a097c171d8ec61eb96cd4ac3e82580426de99b237f965496899abeaa7da01014",
-      "size_bytes": 1724
+      "sha256": "sha256:2381e42cb258c532af838625df92fa69988bcde5d4b693a6647f18aa81750e02",
+      "size_bytes": 1866
     },
     {
       "path": ".gitignore",
-      "sha256": "sha256:e7539b911fff4d6b06a064c8f3e7791bccfe8200cbe7cdecde9f9072f0f031ae",
-      "size_bytes": 123
-    },
-    {
-      "path": ".tooling/tla2tools.jar",
-      "sha256": "sha256:936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
-      "size_bytes": 2274532
+      "sha256": "sha256:8e670993e15493cb1f6d706b1b3b6829015397b63cd59d395432a7679a77d1b4",
+      "size_bytes": 134
     },
     {
       "path": "AGENTS.md",
@@ -193,8 +188,8 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:f12975ac58af0801094e73ffe28c47292d69013ca768e79b97528c7bbeeeca0c",
-      "size_bytes": 2622
+      "sha256": "sha256:1e443e721bdba8b8837b7e8ee6d0d5c043d174a663bf9964a71ae87d1f9a8f68",
+      "size_bytes": 2693
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.md",
@@ -333,12 +328,12 @@
     },
     {
       "path": "docs/generated/en/ASET_Seed_Next.md",
-      "sha256": "sha256:07eac0970d18131a4ac0eca77df8f101f890b28ab3cece8486c7cdf57ee96ebc",
+      "sha256": "sha256:90f3ec3017d3e7873ec80e89eea172474ed15d02691f136004975caf04b6a762",
       "size_bytes": 9353
     },
     {
       "path": "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:07eac0970d18131a4ac0eca77df8f101f890b28ab3cece8486c7cdf57ee96ebc",
+      "sha256": "sha256:90f3ec3017d3e7873ec80e89eea172474ed15d02691f136004975caf04b6a762",
       "size_bytes": 9353
     },
     {
@@ -348,12 +343,12 @@
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Next.md",
-      "sha256": "sha256:89d3ac6060e99fe51a4cbfd110f07734f9d8e5d66659c61050724af1c694b7f3",
+      "sha256": "sha256:e1e7d4da1665d500a7c93cdce878b08ff92442a670f943f435b507caa88bb2f0",
       "size_bytes": 9893
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:89d3ac6060e99fe51a4cbfd110f07734f9d8e5d66659c61050724af1c694b7f3",
+      "sha256": "sha256:e1e7d4da1665d500a7c93cdce878b08ff92442a670f943f435b507caa88bb2f0",
       "size_bytes": 9893
     },
     {
@@ -363,12 +358,12 @@
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Next.md",
-      "sha256": "sha256:757ed932464f7183e389d4bb33b221a765ba0ede3665f3d97394b7d711912043",
+      "sha256": "sha256:2f93a7abe0c8836fb56665c2489e4c0e911f40a3de1d6ead5ee43822f0a744b1",
       "size_bytes": 12835
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:757ed932464f7183e389d4bb33b221a765ba0ede3665f3d97394b7d711912043",
+      "sha256": "sha256:2f93a7abe0c8836fb56665c2489e4c0e911f40a3de1d6ead5ee43822f0a744b1",
       "size_bytes": 12835
     },
     {
@@ -388,8 +383,8 @@
     },
     {
       "path": "docs/repository/CI_ASSURANCE.md",
-      "sha256": "sha256:cdfbac42c145323cce4d58caac1125aff5e3601b297d060343e71fa22b575575",
-      "size_bytes": 2199
+      "sha256": "sha256:a887bb9e4735ee50599d57abc9de0bb1c10f14aaf15138077600762f31deb08b",
+      "size_bytes": 2718
     },
     {
       "path": "docs/repository/DEPENDENCY_POLICY.md",
@@ -463,33 +458,38 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:40ec0038bf0cea35ddd7aeebaf111b1b6ede87831e93169507a5fd5911138411",
-      "size_bytes": 11100
+      "sha256": "sha256:692f6e072995714ae7ea3530509d9c847765f52d1d65488937368202edbba7bf",
+      "size_bytes": 11610
     },
     {
       "path": "seed/canonical/README.md",
-      "sha256": "sha256:7cd730d8ca4f22c7c04d421c4d83231c3586b5de549d3928c55f35ea0ec73979",
-      "size_bytes": 1302
+      "sha256": "sha256:71ba69143af23fa70af145629b23590c69d35930b5cd8d1c3f86620a537efd4b",
+      "size_bytes": 1780
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:8a4d0e591977a0fa9a5d36de926b7928fb2468daeaadcd2c864af58e9113b043",
-      "size_bytes": 14277
+      "sha256": "sha256:a4bd10c7fe7bd68b3e4ce4aa5a79da50579c2acc13bdc10bd1ddb7da48825773",
+      "size_bytes": 14460
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:05e82cfe9a5b2cf02e0dfb60a9618c4add194373b70ce12afad888f8c2c4e0f2",
-      "size_bytes": 2469
+      "sha256": "sha256:f7aaa95ce0c877b2b0ed142b7b0047809677b01ee923f86f418c46d8692d682f",
+      "size_bytes": 3049
+    },
+    {
+      "path": "seed/canonical/assurance/proof-traceability.json",
+      "sha256": "sha256:697d40a01f30fc9a14d5f79203c00795bc2126ee0c02878e91f2429547d1791e",
+      "size_bytes": 6762
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:5eb007eda676035e739ec8ba0c440dc68905dd2882c7ebd1f99c55ec06728b5a",
-      "size_bytes": 5112
+      "sha256": "sha256:fe75e412403f4adebdc009652f68e1d843a2c1a3c0cbf95de315a9bd88b20d58",
+      "size_bytes": 5897
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:33b5cf26f51c51cf13beba24b8e2a29f9c2a6bcc1e4fed095a648def6ab08fbb",
-      "size_bytes": 8561
+      "sha256": "sha256:2c1c7591e79983e2fd607566baba81888bf1b6f507ef5d434b8c77dffdf3f603",
+      "size_bytes": 9037
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
@@ -653,13 +653,13 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
-      "sha256": "sha256:ed62dd8316f812e1a771792939196967755c77097af74cdec079f31ca6bdc869",
-      "size_bytes": 2114
+      "sha256": "sha256:3201c5d00f86f83e8ea829dae62fc2bb9a965db84da5c99a50615707b0bad9e9",
+      "size_bytes": 2335
     },
     {
       "path": "seed/canonical/formal/README.md",
-      "sha256": "sha256:2b0c0eefb325113debdba4ff4200d69f7e25bee562aa3df3f97dd3e95bcb217d",
-      "size_bytes": 1382
+      "sha256": "sha256:798d32713cf6b1064019bc2ca605d6f2f5400d5dfcae1fe80d62b185e0aa3ad9",
+      "size_bytes": 2476
     },
     {
       "path": "seed/canonical/formal/SeedBootstrap.cfg",
@@ -692,884 +692,9 @@
       "size_bytes": 9445
     },
     {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3200",
-      "sha256": "sha256:e1c37f57e7119f499a73ff441f7f73b4e9b874cc2c8888e11120d902bc423932",
-      "size_bytes": 448861
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3201",
-      "sha256": "sha256:4dc3f18fe68679c7164a421ac6fd055cd605a47c301ee55f7200596f522c5555",
-      "size_bytes": 448436
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3202",
-      "sha256": "sha256:285219f867bc674c7aa97f8662b8e50d39694b956639dd8e4ae3aeb2a89ae38a",
-      "size_bytes": 449265
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3203",
-      "sha256": "sha256:05217f3ec204f879f1dbfc6db2534b5e7a9bfacd403914b0cea4edabb87e995e",
-      "size_bytes": 447694
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3204",
-      "sha256": "sha256:4ca72550a5eb1a03cab241adb96af971ad0cbf4c49410547c998ec916dfdd145",
-      "size_bytes": 448512
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3205",
-      "sha256": "sha256:0a1005432b9e386d1b935d5db29f2827e78691b116a285e44c29b834805f2533",
-      "size_bytes": 447526
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3206",
-      "sha256": "sha256:e55803239b3e05d443916ae1e4ca19e3b0fcc30d90a762454eb7bbfcd7867db7",
-      "size_bytes": 448174
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3207",
-      "sha256": "sha256:c22e91a4765c2e9a75e3dce543dc184dfb2d08c69885e945bb60fd2a1dcf6874",
-      "size_bytes": 448823
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3208",
-      "sha256": "sha256:a5c447541d7e0822b075b843e27f597b5ca18645a01c8a3a89e8820f91a20963",
-      "size_bytes": 448335
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3209",
-      "sha256": "sha256:47d37dc9e3c06ad2dbf21cbb755e44b03e3bcd632740ba9e4ad1b990ebbb6348",
-      "size_bytes": 449300
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3210",
-      "sha256": "sha256:7b3cb109ffe867104b1f778f0466e5fea6213636ae8b8b8253da8cf3e3d68e90",
-      "size_bytes": 448016
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3211",
-      "sha256": "sha256:ea58d2e62d289d1e06a56f0158df0da700bc1b0e87ead09f836c6a000a6d9456",
-      "size_bytes": 448851
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3212",
-      "sha256": "sha256:65244c7b714f48a4abcfc938de877761be5afc4a6c305a856bc0152a8bd3c8a5",
-      "size_bytes": 448472
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3213",
-      "sha256": "sha256:3c0b4bb1cc9e1b2815937c6c25d3c3bc2bfb7a3af5c0f7569e6d0ebd9e639314",
-      "size_bytes": 449216
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3214",
-      "sha256": "sha256:6c992a93adc35a0015e6554e0a897d5954c1a1f04b984cb6b660e64f3f5cd921",
-      "size_bytes": 449878
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3215",
-      "sha256": "sha256:5ce56d89b334d231a7eca05a6e6f08b4aa3419d0527ecb0f06d441bbf729fc5b",
-      "size_bytes": 448544
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3216",
-      "sha256": "sha256:fa0712b2ada8e346a2b65070d887842e82de227cf267dbe33e1bc9a5f13a61b7",
-      "size_bytes": 449129
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3217",
-      "sha256": "sha256:e3a0e70cebd872fb56ffdb191aff1f5705ea5e584f2af030be4631e07f90d003",
-      "size_bytes": 449084
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3218",
-      "sha256": "sha256:2a795c3501e552d33df5897f55f9bcec713654397bcedafddf663878ca0b1519",
-      "size_bytes": 448848
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3219",
-      "sha256": "sha256:1db46e1ebc0383470c3cbd3d91c1d6fc4635f23828d6d5c4fda17e756a390aa3",
-      "size_bytes": 449213
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3220",
-      "sha256": "sha256:91d8da8bfe93aa9ce9de4d557e65ec17bb0ece96ec7496ddbae37ce219e5fea2",
-      "size_bytes": 447981
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3221",
-      "sha256": "sha256:052ad52dda574a74ba0179515ca48aab3bcb0b1bcc94f8ec333d498d5aff5979",
-      "size_bytes": 448688
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3222",
-      "sha256": "sha256:8ae8218dfdc2fd3138d357488f8a3fb56cc0eb53e364ece0ea29ea1a78a337f1",
-      "size_bytes": 448750
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3223",
-      "sha256": "sha256:3744829d1f3b58e48d977e80107c2890b30fbb21f69fe3dfa0f2ee6ced3f39c9",
-      "size_bytes": 448422
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3224",
-      "sha256": "sha256:2e976b1fc787d285b76dea7288ee4f2d940fbf5a225d532152a3b6219bd4d163",
-      "size_bytes": 448660
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3225",
-      "sha256": "sha256:9fd2d828e1d75521154e0c2741517004c2ea4e2bd1194cc18ecf645e85742457",
-      "size_bytes": 448594
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3226",
-      "sha256": "sha256:6b46f4fb72b2d58334ab304cd7934e10e555c243216733f77aaa3ea7ad5a9317",
-      "size_bytes": 448614
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3227",
-      "sha256": "sha256:90b546a09b16feea5d6b252f5153f28be8742d8395fb2334e60bfba2d08c452e",
-      "size_bytes": 449492
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3228",
-      "sha256": "sha256:2a60dbe7d571c41cff61911be254b208fe8f3baaad1a9c22a572e43fb6092e4c",
-      "size_bytes": 448415
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3229",
-      "sha256": "sha256:5f547ae7d363f8e73e4cde95397a0da213dd2e884f9e7b43b63213dc2dac45e1",
-      "size_bytes": 448923
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3230",
-      "sha256": "sha256:1b3b6ada8e1a36a30ef74afb05136b2edc4cb00c952e3d20ccd839c826d34b0a",
-      "size_bytes": 449443
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3231",
-      "sha256": "sha256:bb4ebfdfcfe87ae4e47f7fac1c89cf693849f980298b39643f7174eda7bb8329",
-      "size_bytes": 449136
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3232",
-      "sha256": "sha256:2dedc956e44d95af181b4a11c5b1be8daa9fb6002478161c0d64b679d0d522d4",
-      "size_bytes": 448033
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3233",
-      "sha256": "sha256:e54f6d34f27b1cd6b7cd752bc7114464d2396fc2f4a3d5428519403b29acb089",
-      "size_bytes": 448465
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3234",
-      "sha256": "sha256:d7bf2b9d4fe81b191b065ef8c29611427d1a97708beb33c3dcca27d192f3968f",
-      "size_bytes": 448271
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3235",
-      "sha256": "sha256:643c44df63a18cda3f239f36227d496e5fff8dbefc3d6ae164ac532464a6a1c9",
-      "size_bytes": 449438
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3236",
-      "sha256": "sha256:19f8a9d002ec6dae1f3d67409e760560bb2f5a38657a6ed15ecfda3ff2a6c6d9",
-      "size_bytes": 447547
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3237",
-      "sha256": "sha256:66b0cdbf1f681d783209c5b0cd2c8fcfb1ec163f8b54aacbde4f26316e938c84",
-      "size_bytes": 448500
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3238",
-      "sha256": "sha256:9b5f20901d3a173f29e9f6645674a4a1fbd0ebba50e7a231fea8458652cfb52a",
-      "size_bytes": 447639
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3239",
-      "sha256": "sha256:35cd9f8bd98210a699531d3a1d8f5a322a6466b390b9a031f76b531c8dc5e0e8",
-      "size_bytes": 448749
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3240",
-      "sha256": "sha256:8e191f4cce998fb81f02f1b34a741eeff0d0f90686abde9a8494515b9161fca3",
-      "size_bytes": 447839
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3241",
-      "sha256": "sha256:497969ce781598d08cfab31f1c0a40ce1aceee3d89b5ab58a2934f26e579e9f3",
-      "size_bytes": 449563
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3242",
-      "sha256": "sha256:83c8f6ec8a6dbe01b92d3ce60ee596f06fde56b595fa1a7c7eb097fe6ccbbf8e",
-      "size_bytes": 448009
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3243",
-      "sha256": "sha256:e7f5423ad29e5871a6acb3dea6b0c6f11125a46a157f00c829e978be6f654178",
-      "size_bytes": 448106
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3244",
-      "sha256": "sha256:9b4f272e7bf1ad969bc68725de43da187261a69f82d867f0d0f549e99e680e63",
-      "size_bytes": 449092
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3245",
-      "sha256": "sha256:61364f826ff7e77327abe0c36b98b8c78f88b5bfe4e9edfec361094c3e911fb6",
-      "size_bytes": 448486
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3246",
-      "sha256": "sha256:618db98048e6b60f8ab3503570669b30f69ad12597d2aefd2e25644fcb8c1595",
-      "size_bytes": 448657
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3247",
-      "sha256": "sha256:a7121a0144fc3a4409df75d4d2590a6c38de61d8613709bbe1617eb29911b299",
-      "size_bytes": 449215
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3248",
-      "sha256": "sha256:33c85633ceb44df30acc90759678104a71ca3034c69c2ff4e8ae2ea93c89455d",
-      "size_bytes": 448603
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3249",
-      "sha256": "sha256:b0a5c64e931939bc599a4cf5aab38cdf82316082864f4e027c36bff7001669fb",
-      "size_bytes": 449042
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3250",
-      "sha256": "sha256:11f2e83f4eab06ab2e1b6d0781a0d8a7ca4661e39820a96f54fc56e48c98ed00",
-      "size_bytes": 448584
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3251",
-      "sha256": "sha256:a8e70e12c231703c9ae8b3269f1d4af9c5413f390993784eb2a98e3f5d725ec0",
-      "size_bytes": 448676
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3252",
-      "sha256": "sha256:e434e007684efa2747e07054c66b9d7e7eeeff8858a9d2b319caf4a12894c9a9",
-      "size_bytes": 448077
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3253",
-      "sha256": "sha256:7dcf60058561817c90a33de8dd992f45e3ac551de67c961500040d502c4f6232",
-      "size_bytes": 449238
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3254",
-      "sha256": "sha256:e340e2f45600c87a183f0d88fe15f9699f6e385785c07129f315b0caf62aac6c",
-      "size_bytes": 450210
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3255",
-      "sha256": "sha256:ede295ec152fcba048f2fba01fb81690fe0f332a6752385f259cf506770b8cc1",
-      "size_bytes": 449463
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3256",
-      "sha256": "sha256:3912e642675803e5e1f706927f9fb090fbf6a60d76d0c147e36ece01b6459423",
-      "size_bytes": 449647
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3257",
-      "sha256": "sha256:22190a6a4c4000b4ab0e1e468b9b99812644d4e1fd642661f0a4c8e3cbb9cb8f",
-      "size_bytes": 449482
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3258",
-      "sha256": "sha256:c10a3fcb591d233384a71425935d75898fef44e5158a00532cb4662992d679d7",
-      "size_bytes": 449593
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3259",
-      "sha256": "sha256:b06ccab672372b382b6478aa7a8ebd4dea69abff6aa0017311937145854b80d2",
-      "size_bytes": 448992
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3260",
-      "sha256": "sha256:30765ba8a1288404f51a171398f58f2dbe0de3fdfb17d710a48aef1ff017eda8",
-      "size_bytes": 449737
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3261",
-      "sha256": "sha256:75066fac31306f29dbfcbd73edb450a5111d697b14ecb8caf827565c73157165",
-      "size_bytes": 449668
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3262",
-      "sha256": "sha256:4fb2dab5e8c297b9844d8d3adc684487243caacae3367b77d1c6fe02b285de7a",
-      "size_bytes": 449034
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3263",
-      "sha256": "sha256:b16bc8b77fffe383b2b590556332ee7b51787549601cab1fdadd48fc5d438e00",
-      "size_bytes": 448420
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3264",
-      "sha256": "sha256:445a6e0028f630fed9d69f7d8355e432ed3986d6810c5c0aa0ed48a2852e60ca",
-      "size_bytes": 448711
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3265",
-      "sha256": "sha256:66c58592430641bf38b14a3a1555de62f0fb9c8ad10c19e3278f8851a45da89d",
-      "size_bytes": 448543
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3266",
-      "sha256": "sha256:0e93c22b578db0cdea9065eb993eec0bb0889b6ed074c379825379819b2d6c81",
-      "size_bytes": 449898
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3267",
-      "sha256": "sha256:8cb8674676eff03c2330484c3cde76bd5491aaa62c3ccec99bc3a636268260ac",
-      "size_bytes": 448920
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3268",
-      "sha256": "sha256:ebeba5090de981dc372fe625e380f9f2fcaca3caf975691cc7a933fa203a7f46",
-      "size_bytes": 448467
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3269",
-      "sha256": "sha256:250e60657414f436b6de6d574341b0be9172037c35d50990ea757b3d55255295",
-      "size_bytes": 450118
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3270",
-      "sha256": "sha256:d4c5f30588bdbd3a9ca2d16c2ccd3b0e70667a060a56ea56d8d07c9935547b46",
-      "size_bytes": 449514
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3271",
-      "sha256": "sha256:f9395ed5c5998e8f5e3f0e2d3d814a25f76e634fa66f97c5ed6753ef7aa1d6c3",
-      "size_bytes": 449241
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3272",
-      "sha256": "sha256:86405d0adf8eed0552d234e3090345988d5f554f28d5da6b7bbcaeb86de1d440",
-      "size_bytes": 448490
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3273",
-      "sha256": "sha256:c1e4dc9feeaa6b1a50446c7673f750af3f517e268dcdd6cba68060ce0e66bb1e",
-      "size_bytes": 448213
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3274",
-      "sha256": "sha256:02a1a31b1a168b3bf6b3dfef316a6999f1251e84fd6648cea2bd415f76eaa20d",
-      "size_bytes": 449318
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3275",
-      "sha256": "sha256:9a836a46be521e67cd5084260d7e5b0d596ad6df5b2198dff1ff76cdf19a77b6",
-      "size_bytes": 448516
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3276",
-      "sha256": "sha256:6a2dd2065c7d1e03278f102e958e999c1ca428aad672ccd70f6bf16aa58470ff",
-      "size_bytes": 448447
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3277",
-      "sha256": "sha256:ff79038903f528641c432b0f5f86434f9d2ba8ac9b129a54e503b1b45e3adc5f",
-      "size_bytes": 448667
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3278",
-      "sha256": "sha256:51e2c7e6e0592a62d92f410fc8be75c84e367df25c4b1acf531457a85f27f8bb",
-      "size_bytes": 449065
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3279",
-      "sha256": "sha256:2f0cc2dab6dac99b09c232864c2547f6610888f74f614a22cc556526fc601eb1",
-      "size_bytes": 448983
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3280",
-      "sha256": "sha256:355e37ab7040d90726afc143a32b4d0f72edf84ef344c5ed71c9ffcd2d519fa2",
-      "size_bytes": 449108
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3281",
-      "sha256": "sha256:844727990735b2f8a36494c4f9fb0e95d7bf39715fe3043cdf0c8ce30fa2b6ce",
-      "size_bytes": 448568
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3282",
-      "sha256": "sha256:da1d832c89ff002772f0b03a19a488fa21074c806559e61d4d965bc7606a39cf",
-      "size_bytes": 448668
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3283",
-      "sha256": "sha256:30ea6014c1893d3d595364c293c830265f79935f96f5109e3c046e4ad36da3f0",
-      "size_bytes": 448624
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3284",
-      "sha256": "sha256:eb79bdc38feb91e019aba376b5f4849c5a20a700fd4d89f43de404416bb403f6",
-      "size_bytes": 448757
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3285",
-      "sha256": "sha256:faf5b5740288f92b316049dc84931b3b865a6fac460ec4dd739adcfa60e70a4e",
-      "size_bytes": 449575
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3286",
-      "sha256": "sha256:e85707f793e03d339875f2ebf61d969eb64ef35894e6532fef4a1aa512ed0d00",
-      "size_bytes": 449933
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3287",
-      "sha256": "sha256:0291318c46ecb4404592996865edc9cae3d3656df12a886cb955b6364d58d28e",
-      "size_bytes": 449798
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3288",
-      "sha256": "sha256:62ff3918db66a72cded50998786d43d5de9205552e4b415c44b2f44473b74df5",
-      "size_bytes": 449808
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3289",
-      "sha256": "sha256:b603245cfd74fb29e6f98c6868737d5c8596153096e59067d752dc7baf2ceeb5",
-      "size_bytes": 449947
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3290",
-      "sha256": "sha256:26bc37338cb494714af3bc31057416254dc9de097cd6b650e47a41bbdc5dda10",
-      "size_bytes": 448153
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3291",
-      "sha256": "sha256:31f9a22919b9cfef23735612160bb4bc0d626235459af279bf68a90c14e5a156",
-      "size_bytes": 449982
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3292",
-      "sha256": "sha256:5a2eab54205a911974eb83527cf6c8a45c9ca1ab4a502e88608184f932f2f790",
-      "size_bytes": 449289
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3293",
-      "sha256": "sha256:8169fdd9cf935e2cf63f2c06c45948366291bdb98b41eded8cf1745cafbcadb6",
-      "size_bytes": 448563
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3294",
-      "sha256": "sha256:9e41c82d30ebdfc4d91fe8c41ec4d3a275ac567f140d7943a0015cc4b691e92a",
-      "size_bytes": 448590
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3295",
-      "sha256": "sha256:bd415c9799464d6796faa9cb095d698602ce3e2dc0a058255232797baa753762",
-      "size_bytes": 448772
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3296",
-      "sha256": "sha256:17fa83f7b98191846316c7d6c3e1782f0e8dd370f51e788726820f4f43bde6d4",
-      "size_bytes": 449422
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3297",
-      "sha256": "sha256:da129d1db3f3cdcca0a48c589e925163fa12360439979805df5f143d9cdb431e",
-      "size_bytes": 448136
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3298",
-      "sha256": "sha256:bd86f8839c384cb4c3f66470d9a3b41ed0563ee34f32cd3392e6e61051f2bafd",
-      "size_bytes": 449469
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3299",
-      "sha256": "sha256:6308c4faa796d132303aeba40b57049f5f11d2e12ceb54350aa57350419e7326",
-      "size_bytes": 447877
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3300",
-      "sha256": "sha256:d0de3a12340f94d254f71a6a73539035696fd83078307fdb0e7ea0d51e2b78fd",
-      "size_bytes": 448324
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3301",
-      "sha256": "sha256:e0c9a5370ee45953e8b9b4e714bd5a218e59c2f69972721c94dbb43685e32242",
-      "size_bytes": 448099
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3302",
-      "sha256": "sha256:95167b88bb7afe31be22c283ba125b5a70b880e14aab77863b15ab7d213cf7e0",
-      "size_bytes": 448635
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3303",
-      "sha256": "sha256:0b7d2a54e27456c60171a18452eaa73ee87143d5cac5dea87606ddd7180d4c21",
-      "size_bytes": 449196
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3304",
-      "sha256": "sha256:e50a9ae0907c042d0de9cb7d12f23e61bd7e4b2a87c6cf98808af4af8c3878bc",
-      "size_bytes": 448848
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3305",
-      "sha256": "sha256:69e30c762c88152f1a744194d9539f853a69bcc0650ba91a7294f70dfd58cc7f",
-      "size_bytes": 449187
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3306",
-      "sha256": "sha256:b2c80ad30b4b6d05ad0a203372c630aa4d432c396d4913f39e6ebdc79cbe22c9",
-      "size_bytes": 448498
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3307",
-      "sha256": "sha256:7c6e15ddbc7a43a091c976c1ba2d2f14e972f799296436367d9db4f4dd8be37a",
-      "size_bytes": 449513
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3308",
-      "sha256": "sha256:d8711ad443bf1c661a5e30ab0bc1ddc10ae87e6fbfa79654c83f266152fc0288",
-      "size_bytes": 448747
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3309",
-      "sha256": "sha256:51bb924b16b0b54e8b60679ea8316ffddad18e915ce79846a8754647f80827fb",
-      "size_bytes": 450193
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3310",
-      "sha256": "sha256:10703053fdf6d3de1bf4cef186e60e0817b61984f159ff883ab81e12fabc0f5a",
-      "size_bytes": 449134
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3311",
-      "sha256": "sha256:7dc54fe7f8ff3796a0e53ac613f2611862e901eba12d44f2261715cf8f720e05",
-      "size_bytes": 449273
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3312",
-      "sha256": "sha256:75bdaf82263ba64686983b40b326256bb9481dd3c020d6c237a4b8cb6a1066ad",
-      "size_bytes": 449618
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3313",
-      "sha256": "sha256:5b39b9e0634ee2a5d3531c36709b44a618a35f5ce301af572e3033b34eb4f206",
-      "size_bytes": 448287
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3314",
-      "sha256": "sha256:dc626e22697fe212f550beb3432c7f84c10a8dd6d82edf13d5cd67ae39a2ecd0",
-      "size_bytes": 449496
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3315",
-      "sha256": "sha256:e9457cc928b80197b3ee8f088ad5df10384156d9f3e31dc7a1f81feeb0082a15",
-      "size_bytes": 449015
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3316",
-      "sha256": "sha256:3b2afd7fd18de79aadfa999f8f9bb35af7913e153a9ae55347b404b345def1b4",
-      "size_bytes": 449614
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3317",
-      "sha256": "sha256:32a6945683ef4a4ec74be0a053e73cfa89cd354c07c3fca8e499f9bce52f4239",
-      "size_bytes": 448192
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3318",
-      "sha256": "sha256:05e137d0658063068a8fd8ca841406fc06c1c9a7b3f2fcbeee5a34a027db9a24",
-      "size_bytes": 448603
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3319",
-      "sha256": "sha256:291cea150e511383f9ca98ae03094b027ba355c7b8f88566d2f26fd289943289",
-      "size_bytes": 449742
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3320",
-      "sha256": "sha256:15795d78924f987613cdca956b52dad7539255f57e6f7296d6ca85f2bb58a6be",
-      "size_bytes": 448820
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3321",
-      "sha256": "sha256:6780b1a15dc49999d70ef816479f109b03ae1ed345bf975daa3481d8c7707e3e",
-      "size_bytes": 448472
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3322",
-      "sha256": "sha256:2c528e764f00cb53a3663d7c3a1115f52d423062c1b548c9a550ce7b58bb5945",
-      "size_bytes": 449474
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3323",
-      "sha256": "sha256:4dfff0e47b64e0afece4f63094de6e7a7b11eee181b94a3786728564269303f0",
-      "size_bytes": 449157
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3324",
-      "sha256": "sha256:9a2ad7f35794e09805df4fa7b1494af155d21f54245dff53b85617c0efe1d640",
-      "size_bytes": 448824
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3325",
-      "sha256": "sha256:62019e24392c8ca11ac8227afdeb935ff4aeeb065afeb3d58233e88b8a170866",
-      "size_bytes": 449405
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3326",
-      "sha256": "sha256:ed8e5728bbc5fbc4bf527b1f7ecf3e282da79b306d3b7907babfcd933074e954",
-      "size_bytes": 449534
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3327",
-      "sha256": "sha256:2c9772140aaab20d8eb3274c57cedc86c6dae67a3cfb33fff14429768836e67c",
-      "size_bytes": 448712
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3328",
-      "sha256": "sha256:039d4850d754a6316bed8746600f6032ee1f657e0df2e03090c748319965ec7a",
-      "size_bytes": 449339
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3329",
-      "sha256": "sha256:4fdf4379f48b39c056fff0c58c6df45d52527e795ae197b3908e4568437a1191",
-      "size_bytes": 447598
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3330",
-      "sha256": "sha256:2b049af225ffd5ad5cba83c44e107ea756df2fe32eb89f3b1c5c1a6318f5e130",
-      "size_bytes": 449339
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3331",
-      "sha256": "sha256:78319f58577a62fae656ea23aad43ce127768f0eacacd439e7d632cbb188fe4c",
-      "size_bytes": 448911
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3332",
-      "sha256": "sha256:80790a0c039173d644651a4a74e55fab955ef0895f7d8d9da58fb460388a3d06",
-      "size_bytes": 448247
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3333",
-      "sha256": "sha256:6bb0f867ef10371cec84454a45cbb2ea99edfb5458e87ddbf18d0c177e156704",
-      "size_bytes": 448909
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3334",
-      "sha256": "sha256:2b02a60cb44bc8bc876c8e81001ffd085e9811f307dda6b0801a9ca88a143458",
-      "size_bytes": 448003
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3335",
-      "sha256": "sha256:3737f0c69841dae8795c21b857a27bcc907f240a8b81e34367179c6b284f646a",
-      "size_bytes": 448775
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3336",
-      "sha256": "sha256:797d56782e96de3377e5f69f67a557e94c3ebdc6bf1677b9f9f7c7b714fefe40",
-      "size_bytes": 449119
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3337",
-      "sha256": "sha256:a633e89ec54881d6a2d6bc1c5256200a7f030693eb445bb14a2f6051ce037764",
-      "size_bytes": 448752
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3338",
-      "sha256": "sha256:fb7017545027e256a3728d5f05fa5a8a66505ee80499f7309d6f8eb40fcda3ac",
-      "size_bytes": 448633
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3339",
-      "sha256": "sha256:91bc4e9d294f8eb925073b1f43caa50849065fe034252e91cba1ad862abd215c",
-      "size_bytes": 448742
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3340",
-      "sha256": "sha256:ad4e11a53118bca2418a1cd7183f488bf4baae74d7007bf2dc5ca5249d64f0ed",
-      "size_bytes": 448560
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3341",
-      "sha256": "sha256:85381f5b3afc83185b62336633e6d971a7ffdd4d8d93e359868856f2799655b7",
-      "size_bytes": 449320
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3342",
-      "sha256": "sha256:a4cc39e5ecc663334f331122bba928d95f984f4af521644aacf2d716fb9cc775",
-      "size_bytes": 448803
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3343",
-      "sha256": "sha256:1eccc704d79328989fa910074d7cc7b714e5978abbeea1586e792526c39f39a8",
-      "size_bytes": 449371
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3344",
-      "sha256": "sha256:1392b3f0c088726c28ad2fb2ea09cfceecbc211908bfbb0e4405ddebf2f7606a",
-      "size_bytes": 449114
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3345",
-      "sha256": "sha256:a8ec760e12b81997f364f035eb4d1ebb2fe133e7f5fa2ea1ba8f230eeb9efb92",
-      "size_bytes": 449095
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3346",
-      "sha256": "sha256:2e5cf0a9b6f27c9942582729e451c3ab2fb80866360245f8d4c46fabdbedda8b",
-      "size_bytes": 448927
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3347",
-      "sha256": "sha256:b5e49fa3202713c320faa787f13e66ba77c1e083fbeedbae8aa6a3f4ae267758",
-      "size_bytes": 449145
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3348",
-      "sha256": "sha256:77a6cca9738c02045cd9a924d89880a52d2331980f4565c37fa0fad15163adf2",
-      "size_bytes": 448853
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3349",
-      "sha256": "sha256:9bd67551c31a59511528d98eb117abc20f3101b03fb2130afda303286b20b5a4",
-      "size_bytes": 449638
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3350",
-      "sha256": "sha256:c702efb251792f369fc3c145e6608b3457109fe6465a40fc40a05daa5d846ecd",
-      "size_bytes": 450597
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3351",
-      "sha256": "sha256:0228cc0951493e9dd48e2da947524a6ab456966518ebece42215c0febf957812",
-      "size_bytes": 449683
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3352",
-      "sha256": "sha256:dca427bf630082965b6ecbc791faf01f8b0252574e5f4ea56d0addc89bf9c1ae",
-      "size_bytes": 449898
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3353",
-      "sha256": "sha256:a3b3962eb38982e0fc08070f92923e6a83a103a8f0f0227f8f0d4174e7314484",
-      "size_bytes": 449830
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3354",
-      "sha256": "sha256:35b8ec5236ab48e60b3bf2cb600044f56bd23fbb1234fde76497a83d9df42e1a",
-      "size_bytes": 449170
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3355",
-      "sha256": "sha256:29feedacbba384d8d937d79ad3b5685b7988333d624a0ec08cd760b76cd0fa18",
-      "size_bytes": 450027
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3356",
-      "sha256": "sha256:f6e4109b3e3dc3034d6b45f8f9de0dbb3ab107413bd814ba0ae6e3e93f01de09",
-      "size_bytes": 450021
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3357",
-      "sha256": "sha256:c30d43e630944bfeac7350f3a96d56ba2e8d8c36aa4cf6a8ebb203ddc949c699",
-      "size_bytes": 449211
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3358",
-      "sha256": "sha256:32d01e6318077b7630af59da9db50b68fc18fbbf20526677a40b81df20e264bb",
-      "size_bytes": 449290
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3359",
-      "sha256": "sha256:11fdc6cd859a2ee53ebe35a6b75eebc6edd6533632d8980fae145627c8171c1a",
-      "size_bytes": 448559
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3360",
-      "sha256": "sha256:115ea8bdc04daf2f5a597d65d6daed429e32960fcb3d634771d063c0b198d1e6",
-      "size_bytes": 449222
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3361",
-      "sha256": "sha256:b514c9b167326821c8f57d4903e323c0d240dcb2b573ddcf7b9be7d5d3fa75cb",
-      "size_bytes": 449471
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3362",
-      "sha256": "sha256:6d9bf6293d38dd562562c5f3eead5207860e94db98743a67ba8ea92b60640244",
-      "size_bytes": 449479
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3363",
-      "sha256": "sha256:1c8ee962e0dbbafa9ad2c9e89ade6d53f84b74ce1177747030c5fb152e883605",
-      "size_bytes": 449319
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3364",
-      "sha256": "sha256:64e81d4b8abd9d630671d2f32a05bacd29ae5ecbce4f9c5e84db3ebda898a273",
-      "size_bytes": 448998
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3365",
-      "sha256": "sha256:4057ba13a90aad4de6da3b5432d2cefffad43387fd1295c1ba2e8cf4be045e18",
-      "size_bytes": 450354
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3366",
-      "sha256": "sha256:484cf986ba24e53715ec47294f04e1c15fbd76b38ed3758ffa7f80c87494897f",
-      "size_bytes": 449268
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3367",
-      "sha256": "sha256:93a7463503a80120b526bb6011b925c86b78aa73719de25288b0a4ce9593871d",
-      "size_bytes": 449253
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3368",
-      "sha256": "sha256:a44b56ad2167cbcd817621807b6535ef997fb9e97d9d4e3bc0b4030e31a4ac09",
-      "size_bytes": 448855
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3369",
-      "sha256": "sha256:1d9a5a7dde2f43b4e481bd372dcf5daadb61a144effdb44dfa41e082b4c3d62a",
-      "size_bytes": 449237
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/3370",
-      "sha256": "sha256:784b1c4b8f926c06ba7c8e3b5e08e7804a49c229d7d6338519d82c3ec9fe97f3",
-      "size_bytes": 449317
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/SeedResolution-0.st",
-      "sha256": "sha256:54f1b2b5128d1a56ae7cd3b4af95f1e5ca65828181892ad1da39cb1078a84aa7",
-      "size_bytes": 179920896
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/SeedResolution-1.st",
-      "sha256": "sha256:8daf471cf792e00ac29a4962250e38a6a040bbf75a49c996cb4a297805b9f516",
-      "size_bytes": 179159040
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/SeedResolution.st",
-      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size_bytes": 0
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/SeedResolution_0.fp",
-      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size_bytes": 0
-    },
-    {
-      "path": "seed/canonical/formal/states/26-08-06-16-56-36/SeedResolution_1.fp",
-      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size_bytes": 0
+      "path": "seed/canonical/formal/SeedResolutionProofs.tla",
+      "sha256": "sha256:eba6d8668cb0195b0c3444e878c851649b8e24c2995677c37a606f6882511095",
+      "size_bytes": 43882
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
@@ -1583,7 +708,7 @@
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
-      "sha256": "sha256:04f0d6671407c0aab166bfbb2f6d05080fbe906582027e7d2055fdc8776a7a70",
+      "sha256": "sha256:a48c17122fddda221855354c3defa9f65bd1070a54ebee147d280acb44feb960",
       "size_bytes": 591
     },
     {
@@ -1917,6 +1042,11 @@
       "size_bytes": 3836
     },
     {
+      "path": "seed/canonical/schemas/proof-traceability.schema.json",
+      "sha256": "sha256:7139c370d2cf0709a8c2dfcf891ffc2aecc374d6558f6124aa4bc639795de53f",
+      "size_bytes": 2875
+    },
+    {
       "path": "seed/canonical/schemas/protocol-profile.schema.json",
       "sha256": "sha256:b8a85e60203997172f05b64ed73bcac46121fbc9aee7b2762f77a8f3f8cbf1f2",
       "size_bytes": 2025
@@ -1938,8 +1068,8 @@
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
-      "sha256": "sha256:4a074bb7f3a1014d3281227473d39fa493b9d89863e2b9bf3b76df1c3040e599",
-      "size_bytes": 8379
+      "sha256": "sha256:09e679bc379fdab2ff78c09ad6f71b3969ca654bbb53f5f1d432e10a79921fa1",
+      "size_bytes": 8661
     },
     {
       "path": "seed/canonical/shapes/seed.shacl.ttl",
@@ -1948,8 +1078,8 @@
     },
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:011365c6bc4b2fb06641514f7e02fda3c5ed8b1d2895fd86ad9d476bb48ff6a2",
-      "size_bytes": 44744
+      "sha256": "sha256:5b70adad64933b5785cbde54290c4c1db2916e8efe37b222c0928f4a1017a017",
+      "size_bytes": 33876
     },
     {
       "path": "seed/canonical/terminology/foreign-terms.json",
@@ -2933,8 +2063,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:b4e5383e5abbd3f606775ed0f40282869b4cd05f521f3815ded8e596c289af3c",
-      "size_bytes": 3972
+      "sha256": "sha256:5b958d26c82a195d8f43ff69caefae151f3b26e064c89a2300869064dfc7c8aa",
+      "size_bytes": 6073
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
@@ -2983,23 +2113,23 @@
     },
     {
       "path": "tools/build_canon_package.py",
-      "sha256": "sha256:6c53a65ceedfa85fbb992ea2c6eb3f79d4fd69058ff0c53b833a86a9f9d3fcf6",
-      "size_bytes": 3554
+      "sha256": "sha256:77dcd3c3d6e204c00391b69a9d54bdc56c06ebfbe4757460e5835a6ddad02f85",
+      "size_bytes": 3757
     },
     {
       "path": "tools/build_release.py",
-      "sha256": "sha256:7af6bb778305ca467fe54ea2ae51c9be2bc6fd6b1779288261a6b1d7e349a432",
-      "size_bytes": 2164
+      "sha256": "sha256:cffecc5aca94b8524c570be07789dfe1b29de1c048d0c41b68f8fb38bea0cb0e",
+      "size_bytes": 2127
     },
     {
       "path": "tools/check_assurance_traceability.py",
-      "sha256": "sha256:a89bcd241708d5690986f060e9c84e87fe78b7a789c3c4baa3ee056927c65e78",
-      "size_bytes": 8074
+      "sha256": "sha256:afb10fe7a8dc45d62a505a6071b9dae8a0b142d2ef3b060e970358540b285e21",
+      "size_bytes": 10270
     },
     {
       "path": "tools/check_canon_compatibility.py",
-      "sha256": "sha256:429b9669fa5c780f4f04da6133ae2e9ebe1efc4f0cd766f50244cf6c6bac8de2",
-      "size_bytes": 5549
+      "sha256": "sha256:d1130da7274498255176d3a7b637822efb9f94591912309d6146ac45b80e8ce4",
+      "size_bytes": 5702
     },
     {
       "path": "tools/check_invariant_coverage.py",
@@ -3010,6 +2140,11 @@
       "path": "tools/check_language.py",
       "sha256": "sha256:40cce28371ba10fd7fe227a31f491698e3c5dd942ca8a25f5c5134bf832aab0a",
       "size_bytes": 1436
+    },
+    {
+      "path": "tools/check_proof_traceability.py",
+      "sha256": "sha256:4a8fbf3306ef99da1f73a6c3b829e6a68c9450390726fa7f46ba04e8ed138406",
+      "size_bytes": 9292
     },
     {
       "path": "tools/generate_editions.py",
@@ -3053,13 +2188,13 @@
     },
     {
       "path": "tools/rebuild_manifest.py",
-      "sha256": "sha256:6570b9ec783a3dfba13021a75a0b47add4559b535bf74e5852eced3c8a156e11",
-      "size_bytes": 2655
+      "sha256": "sha256:897258bb639ed948fcdf5aac8d1521c0c2c5c426a7424b24d1109de6fb62f673",
+      "size_bytes": 2746
     },
     {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:d4f7285611cda103c29b12691b083bcaa394ffc8fa60f0151c5f2785927f25d1",
-      "size_bytes": 3347
+      "sha256": "sha256:599333e1d62aeae7c105eb2dc4288caa27d4b2f866ed0897958fc79fa8d49dbf",
+      "size_bytes": 4690
     },
     {
       "path": "tools/run_external_conformance.py",
@@ -3070,6 +2205,11 @@
       "path": "tools/run_invariant_mutations.py",
       "sha256": "sha256:03f277e79b597eb787e2431725151308d75193983c4af16e9340aa7c682570be",
       "size_bytes": 5649
+    },
+    {
+      "path": "tools/run_tlaps.py",
+      "sha256": "sha256:6cb99f93a34fc462f03b52c4df62d1c32a7ea032039a67aa49be34b01e0cc323",
+      "size_bytes": 6750
     },
     {
       "path": "tools/run_tlc.py",
@@ -3127,7 +2267,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 625,
+  "files_count": 453,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

@@ -1,5 +1,5 @@
 {
-  "claim_boundary": "Registry membership proves complete machine traceability for the published minimal Seed safety contract. TLA/TLC entries are bounded projections; executable-oracle and static-canon entries cover exact digest, grant-chain and implementation-neutrality semantics. Unbounded TLAPS proof, liveness, cryptographic security and implementation correctness are not claimed.",
+  "claim_boundary": "Registry membership proves complete machine traceability for the published minimal Seed safety contract. The committed abstract TLA+ projection has bounded TLC coverage and an unbounded TLAPS deductive proof of all eleven registered state invariants and four registered temporal safety properties. Exact digest and concrete grant-chain construction remain covered by executable-oracle and static-canon evidence. Machine-canon-to-TLA refinement, implementation refinement, liveness, cryptographic primitive security, implementation correctness and external certification are not claimed.",
   "document_type": "aset-seed-verification-registry",
   "formal_properties": [
     {
@@ -318,6 +318,14 @@
       ],
       "id": "ASET-VERIFY-SEMANTIC-MUTATIONS",
       "kind": "SEMANTIC_MUTATION_TEST"
+    },
+    {
+      "evidence": "python tools/run_tlaps.py --tlapm $TLAPM_BIN --output dist/tlaps-proof.json",
+      "gate_ids": [
+        "ASET-GATE-028"
+      ],
+      "id": "ASET-VERIFY-TLAPS-UNBOUNDED",
+      "kind": "UNBOUNDED_DEDUCTIVE_SAFETY_PROOF"
     }
   ]
 }

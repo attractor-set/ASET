@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**Canonical model SHA-256:** `sha256:c46d584f96acee6b182823f2483b4985600736511a847580848f46a5ba7b4a98`
+**Canonical model SHA-256:** `sha256:2db8db8c61aebc801c5fedd67250e64c09bfc29367e99b061e4a8bec74230fe0`
 
 > This edition is derived from the machine canon.
 

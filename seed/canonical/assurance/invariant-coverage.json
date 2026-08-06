@@ -4,14 +4,16 @@
       "all twelve canonical requirements have machine-traceable assurance evidence",
       "all twelve canonical safety invariants have formal properties, conformance cases and semantic mutations",
       "all three canonical transitions have positive and negative conformance coverage",
-      "bounded state and transition preservation for the published finite model"
+      "bounded state and transition preservation for the published finite model",
+      "all fifteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection"
     ],
     "not_claimed": [
-      "unbounded TLAPS proof",
       "cryptographic primitive security",
       "correctness of every implementation",
       "liveness or workflow completion",
-      "external certification"
+      "external certification",
+      "machine-canon-to-TLA refinement proof",
+      "implementation refinement proof"
     ]
   },
   "coverage_policy": {

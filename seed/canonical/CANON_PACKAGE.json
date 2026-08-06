@@ -6,11 +6,11 @@
   "files": [
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:011365c6bc4b2fb06641514f7e02fda3c5ed8b1d2895fd86ad9d476bb48ff6a2"
+      "sha256": "sha256:5b70adad64933b5785cbde54290c4c1db2916e8efe37b222c0928f4a1017a017"
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
-      "sha256": "sha256:4a074bb7f3a1014d3281227473d39fa493b9d89863e2b9bf3b76df1c3040e599"
+      "sha256": "sha256:09e679bc379fdab2ff78c09ad6f71b3969ca654bbb53f5f1d432e10a79921fa1"
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
@@ -50,19 +50,27 @@
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:33b5cf26f51c51cf13beba24b8e2a29f9c2a6bcc1e4fed095a648def6ab08fbb"
+      "sha256": "sha256:2c1c7591e79983e2fd607566baba81888bf1b6f507ef5d434b8c77dffdf3f603"
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:8a4d0e591977a0fa9a5d36de926b7928fb2468daeaadcd2c864af58e9113b043"
+      "sha256": "sha256:a4bd10c7fe7bd68b3e4ce4aa5a79da50579c2acc13bdc10bd1ddb7da48825773"
     },
     {
       "path": "seed/canonical/schemas/invariant-coverage.schema.json",
       "sha256": "sha256:e7ec1a6577df2519ca49f8c682588d68d767f9d28ab3301a6280221100ddc5b3"
     },
     {
+      "path": "seed/canonical/assurance/proof-traceability.json",
+      "sha256": "sha256:697d40a01f30fc9a14d5f79203c00795bc2126ee0c02878e91f2429547d1791e"
+    },
+    {
+      "path": "seed/canonical/schemas/proof-traceability.schema.json",
+      "sha256": "sha256:7139c370d2cf0709a8c2dfcf891ffc2aecc374d6558f6124aa4bc639795de53f"
+    },
+    {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:05e82cfe9a5b2cf02e0dfb60a9618c4add194373b70ce12afad888f8c2c4e0f2"
+      "sha256": "sha256:f7aaa95ce0c877b2b0ed142b7b0047809677b01ee923f86f418c46d8692d682f"
     },
     {
       "path": "seed/canonical/schemas/assurance-limitations.schema.json",
@@ -70,7 +78,7 @@
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:5eb007eda676035e739ec8ba0c440dc68905dd2882c7ebd1f99c55ec06728b5a"
+      "sha256": "sha256:fe75e412403f4adebdc009652f68e1d843a2c1a3c0cbf95de315a9bd88b20d58"
     },
     {
       "path": "seed/canonical/schemas/repository-release-gates.schema.json",
@@ -83,6 +91,10 @@
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
       "sha256": "sha256:29195d271e799f407f12f33be1e0fc2f17484b69d17fbd73dc6dbdd6b691ec86"
+    },
+    {
+      "path": "seed/canonical/formal/SeedResolutionProofs.tla",
+      "sha256": "sha256:eba6d8668cb0195b0c3444e878c851649b8e24c2995677c37a606f6882511095"
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
@@ -98,7 +110,7 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
-      "sha256": "sha256:ed62dd8316f812e1a771792939196967755c77097af74cdec079f31ca6bdc869"
+      "sha256": "sha256:3201c5d00f86f83e8ea829dae62fc2bb9a965db84da5c99a50615707b0bad9e9"
     },
     {
       "path": "seed/canonical/protocol/schemas/common.schema.json",
@@ -247,6 +259,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:aee2b524787b82c4c2115b8fa2b350525658727223510dd7bf53606a8056610d",
+  "package_digest": "sha256:3ac093adb4575eb7202ac25abcdb128ad90913279b7a897e48877b8548c055d8",
   "schema_version": 2
 }
