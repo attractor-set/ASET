@@ -12,35 +12,35 @@ VARIABLES status, enforcement, currentAuthority, authorityChain, auditLength
 vars == <<status, enforcement, currentAuthority, authorityChain, auditLength>>
 
 Init ==
-  /\\ status = "UNKNOWN"
-  /\\ enforcement = "BLOCKED"
-  /\\ currentAuthority \in Authorities
-  /\\ authorityChain = <<currentAuthority>>
-  /\\ auditLength = 1
+  /\ status = "UNKNOWN"
+  /\ enforcement = "BLOCKED"
+  /\ currentAuthority \in Authorities
+  /\ authorityChain = <<currentAuthority>>
+  /\ auditLength = 1
 
 ResolveAccept ==
-  /\\ status = "UNKNOWN"
-  /\\ status' = "ACCEPT"
-  /\\ enforcement' = "ALLOW"
-  /\\ UNCHANGED <<currentAuthority, authorityChain>>
-  /\\ auditLength' = auditLength + 1
+  /\ status = "UNKNOWN"
+  /\ status' = "ACCEPT"
+  /\ enforcement' = "ALLOW"
+  /\ UNCHANGED <<currentAuthority, authorityChain>>
+  /\ auditLength' = auditLength + 1
 
 ResolveDeny ==
-  /\\ status = "UNKNOWN"
-  /\\ status' = "DENY"
-  /\\ enforcement' = "BLOCKED"
-  /\\ UNCHANGED <<currentAuthority, authorityChain>>
-  /\\ auditLength' = auditLength + 1
+  /\ status = "UNKNOWN"
+  /\ status' = "DENY"
+  /\ enforcement' = "BLOCKED"
+  /\ UNCHANGED <<currentAuthority, authorityChain>>
+  /\ auditLength' = auditLength + 1
 
 Escalate(next) ==
-  /\\ status = "UNKNOWN"
-  /\\ next \in Authorities
-  /\\ next \notin ChainAuthorities(authorityChain)
-  /\\ status' = "UNKNOWN"
-  /\\ enforcement' = "BLOCKED"
-  /\\ currentAuthority' = next
-  /\\ authorityChain' = Append(authorityChain, next)
-  /\\ auditLength' = auditLength + 1
+  /\ status = "UNKNOWN"
+  /\ next \in Authorities
+  /\ next \notin ChainAuthorities(authorityChain)
+  /\ status' = "UNKNOWN"
+  /\ enforcement' = "BLOCKED"
+  /\ currentAuthority' = next
+  /\ authorityChain' = Append(authorityChain, next)
+  /\ auditLength' = auditLength + 1
 
 Next == ResolveAccept \/ ResolveDeny \/ \E next \in Authorities : Escalate(next)
 
@@ -52,5 +52,5 @@ EscalationAuthorized ==
   Len(authorityChain) = Cardinality(ChainAuthorities(authorityChain))
 AuditMonotone == auditLength >= 1
 
-Spec == Init /\\ [][Next]_vars
+Spec == Init /\ [][Next]_vars
 =============================================================================

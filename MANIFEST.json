@@ -1818,7 +1818,7 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:ea4e41966abbd93eb8e02f752c818b3d3e4c1d942e319f6c2124f311337f3f69",
+      "sha256": "sha256:8ef569cffd9c6624a1b5410b4f579e96b7e21964732f210e370302df8c2d3849",
       "size_bytes": 9283
     },
     {
@@ -2008,8 +2008,8 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:40e186ccd77a940c65b42577a80860a7230fe791c749a185ca0575a4267caf2a",
-      "size_bytes": 1836
+      "sha256": "sha256:be69a26419c3d39f748eb467c058c583c38a6bcdb481aca49578d3e2761d7082",
+      "size_bytes": 1812
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
@@ -3338,8 +3338,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:fbd00b76add4784503f282aece24aa95f7c01c23b96bddad133f8c9ff31088b1",
-      "size_bytes": 2505
+      "sha256": "sha256:4ad937f9fa812d9e1f9f1160517a8c16f7f8c25ab5257ff05ceaa265af472768",
+      "size_bytes": 2886
     },
     {
       "path": "tests/test_component_canons.py",

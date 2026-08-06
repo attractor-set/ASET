@@ -65,3 +65,13 @@ def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
         check=False,
     )
     assert second.returncode == 0, second.stdout + second.stderr
+
+
+def test_seed_resolution_tla_uses_valid_operator_tokens():
+    specification = (
+        ROOT / "seed/canonical/formal/SeedResolution.tla"
+    ).read_text(encoding="utf-8")
+    assert "/\\\\" not in specification
+    assert "Range(" not in specification
+    assert 'Init ==\n  /\\ status = "UNKNOWN"' in specification
+    assert "Spec == Init /\\ [][Next]_vars" in specification
