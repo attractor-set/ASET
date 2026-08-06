@@ -1,0 +1,10 @@
+{
+  "document_type": "aset-monade-attempt-profile-model-check",
+  "errors": [],
+  "invariants_checked": 10,
+  "negative_terminal_states": 10,
+  "profile_id": "ASET-MONADE-ATTEMPT-EVIDENCE-V1",
+  "states": 18,
+  "transitions": 18,
+  "verdict": "PASS"
+}

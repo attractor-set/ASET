@@ -33,13 +33,13 @@
     },
     {
       "path": ".github/workflows/notify-implementation-profiles.yml",
-      "sha256": "sha256:5cf68df78db1f7fa2af77d09b4154b17cbacfdc6f5a8c71862e74009ca97deab",
-      "size_bytes": 2074
+      "sha256": "sha256:28f5f16e0f4ebc5fb6cfd9b4667255d459ef28d3564ce4cdf3db3a7a7e7eb483",
+      "size_bytes": 2167
     },
     {
       "path": ".github/workflows/production-assurance.yml",
-      "sha256": "sha256:fc33bca0ab57e158f4568c1e3b508db3c7252e2d1cea6f91ab32cc474ed49da2",
-      "size_bytes": 2191
+      "sha256": "sha256:71b903849c158b68cd127ace82bdab9b2dc15dc64bf63372e69af874478bc44d",
+      "size_bytes": 2340
     },
     {
       "path": ".github/workflows/release-candidate.yml",
@@ -48,8 +48,8 @@
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:487e9a06c3e9da436bda92ff629f4783c62bda09bbeb8c8c093f913ff5027d3f",
-      "size_bytes": 1670
+      "sha256": "sha256:2d82a14922eba5a3dcc21e23a60e212d11433975684d8ea70c72eb3bddbc95aa",
+      "size_bytes": 1949
     },
     {
       "path": ".gitignore",
@@ -93,8 +93,8 @@
     },
     {
       "path": "CANONICALITY.md",
-      "sha256": "sha256:c46bfde98e2555b97fede64a3e887c4fb595865c97377006e59e1faaafa5b904",
-      "size_bytes": 4119
+      "sha256": "sha256:fd1a59107104741dd0fa62904a553e04f7e85f18a7c7381dc55b06877f02f87c",
+      "size_bytes": 5085
     },
     {
       "path": "CITATION.cff",
@@ -128,18 +128,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:d3d121eaeb022e575ce71e2570740bd1138a2e40d6b00bfb67099e67cd4f37ab",
-      "size_bytes": 3032
+      "sha256": "sha256:612ac64142deafe405681c380464e2c7e1f36502f29acb777500483268c4f890",
+      "size_bytes": 3197
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:900a20d89fca26031920a6db757b9327a4962f575927c9b79c46d0318e6885da",
-      "size_bytes": 2582
+      "sha256": "sha256:d79f423172a12476a89da990f3d3f9c138a6d6819dac1f87e877fb5e296621fc",
+      "size_bytes": 2760
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:81f18a1f33df007ed7fe724f39c81ee0a72481c73d1d3f31097f5c70b3587170",
-      "size_bytes": 3506
+      "sha256": "sha256:4c70df925eff5ef19eef78cf2d5b1a743affbccee1fa5c98952cef6481ee49c8",
+      "size_bytes": 3712
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -158,8 +158,8 @@
     },
     {
       "path": "aset/README.md",
-      "sha256": "sha256:dd7c5dcab17cadc913b936fddabbd52ec0d39bb0edf6a37d64f21c80b13f57a7",
-      "size_bytes": 1292
+      "sha256": "sha256:e2f9a06d1284d544d23d293de23492aabdddf7d9e1c3db7796d252fab267a8c5",
+      "size_bytes": 1558
     },
     {
       "path": "aset/components/context/canonical/assurance/invariants.json",
@@ -970,6 +970,56 @@
       "path": "aset/components/protocol/canonical/terminology/protocol.tbx",
       "sha256": "sha256:b837828684e59d83c838338e9d8f87aa968666f93706a4feddbb5b16f8142134",
       "size_bytes": 3247
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/PROFILE.json",
+      "sha256": "sha256:fe3617e5b9079bb70079e0df82133f1adc58dbcd41402851cce8bfe70da292f3",
+      "size_bytes": 1345
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/PROFILE_PACKAGE.json",
+      "sha256": "sha256:6cbeabedb5544fc5e2440540e4363233d193381495c1e80f355c61b367519be9",
+      "size_bytes": 1523
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/README.md",
+      "sha256": "sha256:81816796fda8992f18ae52384faec8bda9a07170a971905d936419ed25a7a332",
+      "size_bytes": 1141
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/assurance/invariants.json",
+      "sha256": "sha256:fac9ea40823fae53323a7aaa9c73ac5889eaf98c7f637275f18f8b8910cb577c",
+      "size_bytes": 2432
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/conformance/cases.json",
+      "sha256": "sha256:bbe4478d894a99fa889c9ee65930a9f97cee1098ac2d216393f4b8e54d0d1385",
+      "size_bytes": 13862
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/conformance/results.json",
+      "sha256": "sha256:f790f956d62cccf9f534ba2e10d697c9fccbacec92e204b3a892487bd47506c1",
+      "size_bytes": 2372
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/formal/results.json",
+      "sha256": "sha256:7da45d56827591324eea223279d771e0ae3491599a6e46a2337eae92dac8005c",
+      "size_bytes": 252
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/formal/state-space.json",
+      "sha256": "sha256:806a4324fa3b0865af836c6fb209f52ebb57fd9bde820509eb301be42b7a4950",
+      "size_bytes": 11704
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/schemas/attempt-record.schema.json",
+      "sha256": "sha256:11e27f2f788dc09f2483b21874dec11b07bb03c252b4a4a6b63ba724cdbf970c",
+      "size_bytes": 2815
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/schemas/learning-observation.schema.json",
+      "sha256": "sha256:8a559b486fafe213210c952aa78a5c8f651a14180c3185a9af1d90d513085f4a",
+      "size_bytes": 1481
     },
     {
       "path": "aset/shared/conformance/component-conformance-profile.json",
@@ -3167,6 +3217,11 @@
       "size_bytes": 579
     },
     {
+      "path": "tests/test_monade_attempt_profile.py",
+      "sha256": "sha256:75dfe8a7469cc79c1e227e195481e6e3408c75fccdfb527d24d72c7afb48aa67",
+      "size_bytes": 4017
+    },
+    {
       "path": "tests/test_production_repository.py",
       "sha256": "sha256:ce33e0a75867f7c72b8205474ae04f1c61006eb25d7ac3ba8af256f0efaf5f1f",
       "size_bytes": 518
@@ -3200,6 +3255,11 @@
       "path": "tools/build_canon_package.py",
       "sha256": "sha256:905cc50c2a457363dc8405f9be8a6d3f58408fcdba2043fa3f204c57e227f3bb",
       "size_bytes": 1866
+    },
+    {
+      "path": "tools/build_monade_attempt_profile_package.py",
+      "sha256": "sha256:3378be3ebab3bb22a938f4b2e9016ac5e2a9c6b4f90485155bc05317b124009e",
+      "size_bytes": 2043
     },
     {
       "path": "tools/build_release.py",
@@ -3262,9 +3322,19 @@
       "size_bytes": 12865
     },
     {
+      "path": "tools/model_check_monade_attempt_profile.py",
+      "sha256": "sha256:91a099b8be64a7db474916a9b6579e67655fe4837c9417aaa6f4731f32096b09",
+      "size_bytes": 4460
+    },
+    {
       "path": "tools/model_check_rc12.py",
       "sha256": "sha256:3536224c6df051ca2cd7e56c6a082ff6ebcb3e2bc404377722fb777e30d3ecc1",
       "size_bytes": 5440
+    },
+    {
+      "path": "tools/monade_attempt_profile_common.py",
+      "sha256": "sha256:dd939439ef6740c649307759d58bf7a8b1e310ad276f36810a69a370da7adb8f",
+      "size_bytes": 4623
     },
     {
       "path": "tools/production_gate.py",
@@ -3278,8 +3348,8 @@
     },
     {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:e5d2cb267c2cd13d0e6c6bace7ea1a2cde5f4bec2d5fc954cb9001e6461dcdc9",
-      "size_bytes": 3521
+      "sha256": "sha256:02c0bfa044664ea8eef769e3c6518146e30176221658c2f6db726d07d053d9d9",
+      "size_bytes": 3761
     },
     {
       "path": "tools/run_component_blackbox_adversarial.py",
@@ -3295,6 +3365,11 @@
       "path": "tools/run_external_conformance.py",
       "sha256": "sha256:e314dc0eea573a007e9060a3046a90b2960b9ecc9ad1e15a1da6a24eaf10f56f",
       "size_bytes": 7109
+    },
+    {
+      "path": "tools/run_monade_attempt_conformance.py",
+      "sha256": "sha256:99d4adcc79f71a8798f4e3bbdd0b1fa8eac6e4743b3dabc9e3c89e417565836e",
+      "size_bytes": 2691
     },
     {
       "path": "tools/run_tlc.py",
@@ -3332,6 +3407,11 @@
       "size_bytes": 18540
     },
     {
+      "path": "tools/validate_monade_attempt_profile.py",
+      "sha256": "sha256:6106f2d75902934adc6e0b231fd329b0e47cba38362f17eba74cfb02ddd23689",
+      "size_bytes": 4779
+    },
+    {
       "path": "tools/validate_rc12_canon.py",
       "sha256": "sha256:4e8d5b20ac857b9668148d7664b2e5a68116924e29cfde564e86f61da86b872e",
       "size_bytes": 2264
@@ -3342,7 +3422,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 668,
+  "files_count": 684,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Specification-Candidate",
   "repository_root": "ASET"

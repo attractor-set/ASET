@@ -15,6 +15,7 @@ Component line: `0.1-rc1`.
 - `components/gateway/`: provider request rendering;
 - `components/protocol/`: closed schemas, canonicalization and signatures;
 - `shared/seed-bridge/`: explicit mapping to Seed 0.1-rc12;
-- `shared/migration/`: exact partition coverage of the rc11 monolith.
+- `shared/migration/`: exact partition coverage of the rc11 monolith;
+- `profiles/monade-attempt-evidence/`: optional normative Monade profile for append-only positive and negative attempt evidence, with read-only projection to Master.
 
-The component canons do not modify or supersede Seed. No implementation or production conformance is claimed.
+The component canons and optional profiles do not modify or supersede Seed. The Monade Attempt Evidence Profile is not required for Seed conformance, and no implementation or production conformance is claimed.

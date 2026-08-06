@@ -1,0 +1,128 @@
+{
+  "$id": "https://attractor-set.github.io/ASET/schemas/monade-attempt-record-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_for_recognition": {
+      "type": "boolean"
+    },
+    "attempt_id": {
+      "pattern": "^attempt-[A-Za-z0-9._:-]+$",
+      "type": "string"
+    },
+    "candidate_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate_parent_allowed": {
+      "type": "boolean"
+    },
+    "canonical_state_changed": {
+      "type": "boolean"
+    },
+    "disposition": {
+      "enum": [
+        "CREATED",
+        "AUTHORIZED",
+        "RUNNING",
+        "PRODUCED",
+        "EVIDENCE_RECORDED",
+        "EXECUTION_FAILED",
+        "VERIFICATION_REJECTED",
+        "CANON_REJECTED",
+        "PERMIT_REJECTED",
+        "QUARANTINED",
+        "VERIFIED_POSITIVE",
+        "VERIFIED_NEGATIVE",
+        "ACCEPTED_FOR_RECOGNITION"
+      ]
+    },
+    "evidence_refs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "digest": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "location": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "media_type": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "digest",
+          "media_type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "execution_spec_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "master_projection": {
+      "const": "READ_ONLY"
+    },
+    "parent_context_root": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "permit_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reason_codes": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "recognized_outcome": {
+      "type": "boolean"
+    },
+    "record_append_only": {
+      "const": true
+    },
+    "retry_of": {
+      "pattern": "^attempt-[A-Za-z0-9._:-]+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "terminal": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "attempt_id",
+    "parent_context_root",
+    "permit_id",
+    "execution_spec_digest",
+    "disposition",
+    "reason_codes",
+    "canonical_state_changed",
+    "candidate_parent_allowed",
+    "terminal",
+    "record_append_only",
+    "recognized_outcome",
+    "accepted_for_recognition",
+    "evidence_refs",
+    "master_projection"
+  ],
+  "title": "ASET Monade Attempt Record",
+  "type": "object"
+}

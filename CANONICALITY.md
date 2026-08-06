@@ -27,6 +27,14 @@ No executable implementation, checker or storage profile is a second source of s
 
 This composition canon does not modify or supersede `seed/canonical/`. Component integration acquires authoritative ASET significance only through conformance to Seed semantics. Generated System Composition editions are deterministic projections of the composition canon.
 
+## Optional component profiles
+
+`aset/profiles/` contains separately identified normative profiles that extend component behavior without modifying ASET Seed. Each profile must declare whether it is normative for Seed and whether it is required for Seed conformance.
+
+`ASET-MONADE-ATTEMPT-EVIDENCE-V1` is normative only for implementations that claim that profile. It preserves append-only execution attempts, including negative dispositions, while rejected candidates remain outside the canonical Context graph. Master may consume only a read-only `LearningObservation` projection. The profile does not grant Master, Monade or an implementation any new authority, Permit or Outcome-recognition power.
+
+The profile has its own `PROFILE_PACKAGE.json`, model-check evidence and conformance corpus. Its files are intentionally excluded from `seed/canonical/CANON_PACKAGE.json`; therefore adding or changing the optional profile does not change Seed semantic identity.
+
 ## Conflict rule
 
 A generated edition, protocol copy, formal projection, conformance binding, checker verdict or executable behavior that conflicts with the canonical model is invalid. The repository release gate must fail closed.
