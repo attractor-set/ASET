@@ -13,6 +13,7 @@ ASET определяется машиночитаемым каноном, но�
 - Формальная проекция: [`seed/canonical/formal/`](seed/canonical/formal/)
 - Корпус соответствия: [`seed/canonical/conformance/`](seed/canonical/conformance/)
 - Каноны компонентов: [`aset/README.md`](aset/README.md)
+- Необязательный профиль Monade для evidence попыток: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
 
 ## Проверка реализаций моделью
 

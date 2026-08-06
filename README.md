@@ -13,6 +13,7 @@ ASET is defined by the machine-readable canon, normative schemas, validity condi
 - Formal projection: [`seed/canonical/formal/`](seed/canonical/formal/)
 - Conformance corpus: [`seed/canonical/conformance/`](seed/canonical/conformance/)
 - Component canons: [`aset/README.md`](aset/README.md)
+- Optional Monade attempt-evidence profile: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
 
 ## Model-based implementation conformance
 

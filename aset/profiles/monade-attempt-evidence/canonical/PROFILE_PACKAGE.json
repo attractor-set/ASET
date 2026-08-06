@@ -1,0 +1,35 @@
+{
+  "document_type": "aset-optional-profile-package",
+  "files": [
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/PROFILE.json",
+      "sha256": "sha256:fe3617e5b9079bb70079e0df82133f1adc58dbcd41402851cce8bfe70da292f3"
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/assurance/invariants.json",
+      "sha256": "sha256:fac9ea40823fae53323a7aaa9c73ac5889eaf98c7f637275f18f8b8910cb577c"
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/conformance/cases.json",
+      "sha256": "sha256:bbe4478d894a99fa889c9ee65930a9f97cee1098ac2d216393f4b8e54d0d1385"
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/formal/state-space.json",
+      "sha256": "sha256:806a4324fa3b0865af836c6fb209f52ebb57fd9bde820509eb301be42b7a4950"
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/schemas/attempt-record.schema.json",
+      "sha256": "sha256:11e27f2f788dc09f2483b21874dec11b07bb03c252b4a4a6b63ba724cdbf970c"
+    },
+    {
+      "path": "aset/profiles/monade-attempt-evidence/canonical/schemas/learning-observation.schema.json",
+      "sha256": "sha256:8a559b486fafe213210c952aa78a5c8f651a14180c3185a9af1d90d513085f4a"
+    }
+  ],
+  "implementation_precedence": "NONE",
+  "normative_for_seed": false,
+  "package_digest": "sha256:5b159a772326e69fd5daac6c1210f7b55507b8b3ed1431e4b4e98c12816f8bf3",
+  "profile_id": "ASET-MONADE-ATTEMPT-EVIDENCE-V1",
+  "required_for_seed_conformance": false,
+  "schema_version": 1
+}

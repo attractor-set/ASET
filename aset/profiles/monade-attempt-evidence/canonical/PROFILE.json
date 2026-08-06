@@ -1,0 +1,32 @@
+{
+  "assets": {
+    "attempt_record_schema": "schemas/attempt-record.schema.json",
+    "conformance_cases": "conformance/cases.json",
+    "invariants": "assurance/invariants.json",
+    "learning_observation_schema": "schemas/learning-observation.schema.json",
+    "state_space": "formal/state-space.json"
+  },
+  "canonical_digest": "sha256:e15072094a270d7eb3104686cf1538b4790dc9f7b0609d1a33c57fe80de18748",
+  "component_id": "aset.monade",
+  "document_type": "aset-optional-component-profile",
+  "implementation_precedence": "NONE",
+  "master_integration": {
+    "master_specification_change_required": false,
+    "mode": "READ_ONLY_LEARNING_OBSERVATION_PROJECTION",
+    "projection_grants_authority": false
+  },
+  "normative_for_profile": true,
+  "normative_for_seed": false,
+  "profile_id": "ASET-MONADE-ATTEMPT-EVIDENCE-V1",
+  "profile_version": "0.1-rc1",
+  "purpose": "Preserve positive and negative execution attempts as append-only evidence without admitting rejected candidates into the canonical Context graph.",
+  "required_for_seed_conformance": false,
+  "schema_version": 1,
+  "seed_boundary": {
+    "outcome_recognition_owned_by_profile": false,
+    "rejected_attempt_changes_canonical_state": false,
+    "seed_conformance_cases_unchanged": true,
+    "seed_model_unchanged": true
+  },
+  "title": "Monade Attempt Evidence Profile"
+}

@@ -13,6 +13,7 @@ ASET é definido pelo cânone legível por máquina, esquemas normativos, condi�
 - Projeção formal: [`seed/canonical/formal/`](seed/canonical/formal/)
 - Corpus de conformidade: [`seed/canonical/conformance/`](seed/canonical/conformance/)
 - Cânones dos componentes: [`aset/README.md`](aset/README.md)
+- Perfil opcional Monade para evidências de tentativas: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
 
 ## Conformidade de implementações baseada em modelo
 

@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - seed/canonical/CANON_PACKAGE.json
+      - aset/components/monade/canonical/**
+      - aset/profiles/monade-attempt-evidence/**
 
   workflow_dispatch:
 
