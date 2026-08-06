@@ -6,6 +6,8 @@ CONSTANT Authorities
 Statuses == {"UNKNOWN", "ACCEPT", "DENY"}
 Enforcements == {"BLOCKED", "ALLOW"}
 
+ChainAuthorities(chain) == {chain[i] : i \in 1..Len(chain)}
+
 VARIABLES status, enforcement, currentAuthority, authorityChain, auditLength
 vars == <<status, enforcement, currentAuthority, authorityChain, auditLength>>
 
@@ -33,7 +35,7 @@ ResolveDeny ==
 Escalate(next) ==
   /\\ status = "UNKNOWN"
   /\\ next \in Authorities
-  /\\ next \notin Range(authorityChain)
+  /\\ next \notin ChainAuthorities(authorityChain)
   /\\ status' = "UNKNOWN"
   /\\ enforcement' = "BLOCKED"
   /\\ currentAuthority' = next
@@ -46,7 +48,8 @@ StatusDomain == status \in Statuses
 UnknownBlocked == status = "UNKNOWN" => enforcement = "BLOCKED"
 AllowOnlyAccept == enforcement = "ALLOW" => status = "ACCEPT"
 TerminalImmutable == status \in {"ACCEPT", "DENY"} => ~ENABLED Next
-EscalationAuthorized == Len(authorityChain) = Cardinality(Range(authorityChain))
+EscalationAuthorized ==
+  Len(authorityChain) = Cardinality(ChainAuthorities(authorityChain))
 AuditMonotone == auditLength >= 1
 
 Spec == Init /\\ [][Next]_vars

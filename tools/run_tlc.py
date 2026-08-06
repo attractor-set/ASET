@@ -78,7 +78,12 @@ def main() -> int:
     out = ROOT / args.output
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
-    print("TLC_MODEL_CHECK=" + report["verdict"])
+    print("TLC_MODEL_CHECK=" + report["verdict"], flush=True)
+    if not passed:
+        diagnostic = output[-12000:].rstrip()
+        print("TLC_MODEL_CHECK_OUTPUT_BEGIN", flush=True)
+        print(diagnostic or "<no TLC output>", flush=True)
+        print("TLC_MODEL_CHECK_OUTPUT_END", flush=True)
     return 0 if passed else 1
 
 
