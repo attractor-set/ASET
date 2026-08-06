@@ -23,7 +23,7 @@ ACTIVE_FILES = [
     ROOT / "docs/tutorials/CONTROLLED_PATCH_WORKFLOW.pt-BR.md",
 ]
 ACTIVE_GLOBS = [
-    "docs/generated/*/ASET_Seed_0.1-rc12.md",
+    "docs/generated/*/ASET_Seed_Resolution_0.2-alpha.1.md",
     "docs/generated/*/ASET_Seed_Next.md",
 ]
 FORBIDDEN_ACTIVE_CLAIMS = {

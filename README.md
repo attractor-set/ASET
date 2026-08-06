@@ -2,41 +2,29 @@
 
 # ASET
 
-ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.
+ASET is an open, implementation-neutral specification whose Seed defines verifiable, authority-scoped resolution of an exact normative question from `UNKNOWN` to `ACCEPT` or `DENY`.
 
-## What defines ASET
-
-ASET is defined by the machine-readable canon, normative schemas, validity conditions, invariants, transition semantics and conformance corpus. No implementation, programming language, storage engine, checker or deployment profile has semantic precedence.
-
-- Machine canon: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
-- Canon package identity: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
-- Formal projection: [`seed/canonical/formal/`](seed/canonical/formal/)
-- Conformance corpus: [`seed/canonical/conformance/`](seed/canonical/conformance/)
-- Component canons: [`aset/README.md`](aset/README.md)
-- Optional Monade attempt-evidence profile: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
-
-## Model-based implementation conformance
-
-Independent implementations are tested as black boxes through `ASET-IMPLEMENTATION-CONFORMANCE-V1`. The implementation returns observable results; an external runner consumes a pinned canon package and determines the verdict. Candidate-canon consistency and compatibility with an approved canon are separate gates.
+## Active Seed
 
 ```text
-python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapter "/path/to/implementation-adapter"
+UNKNOWN --authorized resolution--> ACCEPT
+UNKNOWN --authorized resolution--> DENY
+UNKNOWN --explicit escalation----> UNKNOWN
 ```
 
-Storage, durability, concurrency, recovery, consensus, networking and key custody belong to implementation profiles. Profiles may strengthen operational guarantees but may not weaken Seed semantics.
+`UNKNOWN` never authorizes an effect and is not silently converted to `DENY`. Authority does not follow context ancestry or federation membership automatically.
 
-## Walkthrough
+- Machine canon: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
+- Canon package: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
+- Portable conformance: [`seed/canonical/conformance/`](seed/canonical/conformance/)
+- Formal projection: [`seed/canonical/formal/`](seed/canonical/formal/)
+- Breaking migration: [`seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md`](seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md)
 
-A non-normative end-to-end example of a controlled AI-agent repository patch is available in [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md). The machine canon and conformance corpus remain authoritative.
+## Extensions and implementations
 
+Execution, Permit consumption, negative attempts, planning, memory, federation topology, consensus, persistence and cryptographic providers are outside Seed. They belong to separately versioned extension templates and implementation profiles. No extension or implementation has semantic precedence.
 
-## Implementations
-
-Implementations are maintained independently from this specification. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) is the non-normative Python + SQLite reference implementation and educational profile. It has no semantic precedence, and its use does not make Python or SQLite part of ASET.
-
-## Release lines
-
-ASET Seed 0.1-rc11 remains the immutable historical stable release. The rc12 machine-canon line is being prepared as an implementation-neutral specification and conformance package. Historical runtime candidate evidence is retained but is not the current repository role.
+[`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) remains non-normative. It must implement the active resolution conformance protocol before claiming compatibility with this Seed line; otherwise it remains pinned to its historical canon.
 
 ## Validation
 
@@ -44,6 +32,12 @@ ASET Seed 0.1-rc11 remains the immutable historical stable release. The rc12 mac
 python tools/repository_release_gate.py
 ```
 
-## Authorship, licence and rights
+## Authorship and licence
 
-ASET was independently created by **Dzmitry Prychyna**, publicly known as **Attractor Set**. The project is licensed under Apache License 2.0. Licensing grants permissions under that licence; it does not transfer authorship or ownership. See [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) and [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+ASET was independently created by **Dzmitry Prychyna**, publicly known as **Attractor Set**, and is licensed under Apache License 2.0. See [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) and [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+
+## Historical extension material and walkthrough
+
+The current in-repository component canons are historical migration inputs pending extraction: [`aset/README.md`](aset/README.md). The non-normative controlled-patch walkthrough remains available at [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.md).
+
+The reference implementation is [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite); it has no semantic precedence. Background-IP provenance is recorded in [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).

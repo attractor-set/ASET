@@ -1,25 +1,15 @@
 # Roadmap
 
-## Specification and conformance
+1. Freeze the minimal `UNKNOWN -> ACCEPT | DENY` resolution algebra and exact binding rules.
+2. Validate the new protocol through two independent implementations.
+3. Move Context, Federation, Core, Monade, Master and AI-system semantics into separately versioned extension-template repositories.
+4. Update `aset-python-sqlite` to the new black-box protocol without treating it as an oracle.
+5. Build an independent Rust/PostgreSQL implementation and use differential results only to expose ambiguity.
+6. Complete an external semantic and formal audit before Seed 1.0.
 
-- keep the machine canon implementation-neutral;
-- maintain exact traceability between requirements, invariants, formal actions and conformance cases;
-- publish immutable canon packages with digests;
-- distinguish candidate self-consistency from compatibility with the approved canon;
-- support independent black-box implementation adapters;
-- preserve frozen historical releases and evidence.
+## Supporting records
 
-## Independent implementation profiles
-
-- maintain the non-normative [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) reference implementation and educational profile in its separate repository;
-- add independent implementations in other languages and storage technologies;
-- execute the acceptance plan in [`docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md`](docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md) with an independently engineered Rust/PostgreSQL profile;
-- keep durability, consensus, confidential computation and deployment guarantees profile-specific.
-
-## Full ASET component specification line
-
-See [`aset/README.md`](aset/README.md). Future work includes independent implementations, external audit, component-specific runtime evidence and separately governed version evolution.
-
-## Authorship and Background IP
-
-The public pre-existing-IP boundary remains recorded in [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md). Repository separation does not assign or extinguish those rights.
+- Historical component canons pending extraction: [`aset/README.md`](aset/README.md)
+- Cross-implementation admission plan: [`docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md`](docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md)
+- Non-normative implementation: [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite)
+- Background-IP provenance: [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md)

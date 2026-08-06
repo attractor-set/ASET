@@ -1,19 +1,18 @@
 {
   "assurance": {
-    "adversarial_blackbox": "REQUIRED",
     "bounded_model_check": "REQUIRED",
     "canon_package_integrity": "REQUIRED",
     "documentation_blackbox": "REQUIRED",
-    "external_implementation_audit": "PROFILE_RESPONSIBILITY",
     "external_third_party_audit": "PENDING",
     "implementation_conformance": "BLACK_BOX_REQUIRED_FOR_EACH_CLAIMED_PROFILE",
     "implementation_neutrality": "REQUIRED",
-    "rc11_regression": "55_OF_55_REQUIRED",
-    "semantic_migration": "COMPLETE_83_OF_83"
+    "predecessor_compatibility": "BREAKING_SEMANTIC_NARROWING",
+    "tlc_model_check": "REQUIRED_FOR_RELEASE"
   },
   "canonicality": {
+    "canon_package": "NORMATIVE_IDENTITY",
     "external_third_party_audit": "PENDING",
-    "frozen_rc11": "HISTORICAL_IMMUTABLE_RELEASE",
+    "formal_projection": "ASSURANCE_PROJECTION",
     "generated_language_editions": "DERIVED_OFFICIAL_EDITIONS",
     "implementation_profiles": "NON_NORMATIVE_CONFORMANCE_SUBJECTS",
     "machine_readable_model": "NORMATIVE_CANON",
@@ -23,782 +22,357 @@
   "concepts": [
     {
       "definitions": {
-        "en": "The state of one Genesis lineage with an isolated normative history.",
-        "pt-BR": "O estado de uma linhagem Genesis com histórico normativo isolado.",
-        "ru": "Состояние одной линии Genesis с изолированной нормативной историей."
+        "en": "One immutably bound cycle for resolving an exact normative question.",
+        "pt-BR": "Um ciclo imutavelmente vinculado para resolver uma questão normativa exata.",
+        "ru": "Один неизменяемо связанный цикл разрешения точного нормативного вопроса."
       },
-      "id": "seed.trust_space",
+      "id": "seed.resolution_cycle",
       "labels": {
-        "en": "trust space",
-        "pt-BR": "espaço de confiança",
-        "ru": "пространство доверия"
+        "en": "resolution cycle",
+        "pt-BR": "ciclo de resolução",
+        "ru": "цикл разрешения"
       },
-      "symbol": "TrustSpace"
+      "symbol": "ResolutionCycle"
     },
     {
       "definitions": {
-        "en": "Immutable initial material anchoring a trust-space identity.",
-        "pt-BR": "Material inicial imutável que ancora a identidade de um espaço de confiança.",
-        "ru": "Неизменяемый исходный материал, закрепляющий идентичность пространства доверия."
+        "en": "The exact context, state-root and policy-epoch binding within which a question is resolved.",
+        "pt-BR": "A vinculação exata de contexto, raiz de estado e época de política dentro da qual uma questão é resolvida.",
+        "ru": "Точная связка контекста, корня состояния и эпохи политики, внутри которой разрешается вопрос."
       },
-      "id": "seed.genesis",
+      "id": "seed.context_binding",
       "labels": {
-        "en": "genesis",
-        "pt-BR": "gênese",
-        "ru": "генезис"
+        "en": "context binding",
+        "pt-BR": "vinculação de contexto",
+        "ru": "связка контекста"
       },
-      "symbol": "Genesis"
+      "symbol": "ContextBinding"
     },
     {
       "definitions": {
-        "en": "The canonical policy of admissible authority, procedures, and transitions.",
-        "pt-BR": "A política canônica de autoridade, procedimentos e transições admissíveis.",
-        "ru": "Каноническая политика допустимых полномочий, процедур и переходов."
+        "en": "A canonically digested question and its bounded resolution scope.",
+        "pt-BR": "Uma questão resumida canonicamente e seu escopo limitado de resolução.",
+        "ru": "Канонически хешированный вопрос и его ограниченная область решения."
       },
-      "id": "seed.constitution",
+      "id": "seed.resolution_question",
       "labels": {
-        "en": "trust constitution",
-        "pt-BR": "constituição de confiança",
-        "ru": "конституция доверия"
+        "en": "resolution question",
+        "pt-BR": "questão de resolução",
+        "ru": "вопрос разрешения"
       },
-      "symbol": "Constitution"
+      "symbol": "ResolutionQuestion"
     },
     {
       "definitions": {
-        "en": "A normative namespace with immutable ContextID and local state.",
-        "pt-BR": "Um espaço de nomes normativo com ContextID imutável e estado local.",
-        "ru": "Нормативное пространство имён с неизменяемым ContextID и локальным состоянием."
+        "en": "The normative status UNKNOWN, ACCEPT or DENY within one cycle.",
+        "pt-BR": "O estado normativo UNKNOWN, ACCEPT ou DENY dentro de um ciclo.",
+        "ru": "Нормативный статус UNKNOWN, ACCEPT или DENY внутри одного цикла."
       },
-      "id": "seed.context",
+      "id": "seed.resolution_status",
       "labels": {
-        "en": "context",
-        "pt-BR": "contexto",
-        "ru": "контекст"
+        "en": "resolution status",
+        "pt-BR": "estado de resolução",
+        "ru": "статус разрешения"
       },
-      "symbol": "Context"
+      "symbol": "ResolutionStatus"
     },
     {
       "definitions": {
-        "en": "A protocol record of context identity, parent, address, member, and lifecycle.",
-        "pt-BR": "Um registro de protocolo da identidade, pai, endereço, membro e ciclo de vida do contexto.",
-        "ru": "Протокольная запись идентичности, родителя, адреса, участника и жизненного цикла контекста."
+        "en": "The operational consequence of a decision: BLOCKED for UNKNOWN and DENY, ALLOW only for ACCEPT.",
+        "pt-BR": "A consequência operacional de uma decisão: BLOCKED para UNKNOWN e DENY, ALLOW somente para ACCEPT.",
+        "ru": "Операционное следствие решения: BLOCKED для UNKNOWN и DENY, ALLOW только для ACCEPT."
       },
-      "id": "seed.context_descriptor",
+      "id": "seed.enforcement_disposition",
       "labels": {
-        "en": "context descriptor",
-        "pt-BR": "descritor de contexto",
-        "ru": "описатель контекста"
+        "en": "enforcement disposition",
+        "pt-BR": "disposição de execução",
+        "ru": "режим исполнения"
       },
-      "symbol": "ContextDescriptor"
+      "symbol": "EnforcementDisposition"
     },
     {
       "definitions": {
-        "en": "An active institutional power in an exact context, scope, and state.",
-        "pt-BR": "Um poder institucional vigente em contexto, escopo e estado exatos.",
-        "ru": "Действующее институциональное полномочие в точном контексте, области и состоянии."
+        "en": "An explicitly empowered subject able to narrow UNKNOWN in an exact scope and epoch.",
+        "pt-BR": "Um sujeito explicitamente autorizado capaz de restringir UNKNOWN em um escopo e época exatos.",
+        "ru": "Явно уполномоченный субъект, способный сузить UNKNOWN в точной области и эпохе."
       },
-      "id": "seed.authority",
+      "id": "seed.resolution_authority",
       "labels": {
-        "en": "institutional authority",
-        "pt-BR": "autoridade institucional",
-        "ru": "институциональное полномочие"
+        "en": "resolution authority",
+        "pt-BR": "autoridade de resolução",
+        "ru": "власть разрешения"
       },
-      "symbol": "Authority"
+      "symbol": "ResolutionAuthority"
     },
     {
       "definitions": {
-        "en": "A protocol record binding an authority holder, kind, scope, epoch, and provenance.",
-        "pt-BR": "Um registro de protocolo que vincula titular, tipo, escopo, época e proveniência da autoridade.",
-        "ru": "Протокольная запись носителя, вида, области, эпохи и происхождения полномочия."
+        "en": "An explicit authorization to pass an unresolved question to the next Resolution Authority without automatic authority inheritance.",
+        "pt-BR": "Uma autorização explícita para encaminhar uma questão não resolvida à próxima Resolution Authority sem herança automática de autoridade.",
+        "ru": "Явное разрешение передать неразрешённый вопрос следующей Resolution Authority без автоматического наследования власти."
       },
-      "id": "seed.authority_binding",
+      "id": "seed.escalation_grant",
       "labels": {
-        "en": "authority binding",
-        "pt-BR": "vínculo de autoridade",
-        "ru": "связка полномочия"
+        "en": "escalation grant",
+        "pt-BR": "autorização de escalonamento",
+        "ru": "разрешение эскалации"
       },
-      "symbol": "AuthorityBinding"
+      "symbol": "EscalationGrant"
     },
     {
       "definitions": {
-        "en": "A recorded normative choice or declaration of readiness.",
-        "pt-BR": "Uma escolha normativa registrada ou declaração de prontidão.",
-        "ru": "Зафиксированный нормативный выбор или заявление о готовности."
+        "en": "A content-addressed reference to material used when narrowing UNKNOWN.",
+        "pt-BR": "Uma referência endereçada por conteúdo ao material usado ao restringir UNKNOWN.",
+        "ru": "Контентно-адресуемая ссылка на материал, использованный при сужении UNKNOWN."
       },
-      "id": "seed.decision",
+      "id": "seed.evidence_reference",
       "labels": {
-        "en": "decision",
-        "pt-BR": "decisão",
-        "ru": "решение"
+        "en": "evidence reference",
+        "pt-BR": "referência de evidência",
+        "ru": "ссылка на доказательство"
       },
-      "symbol": "Decision"
+      "symbol": "EvidenceReference"
     },
     {
       "definitions": {
-        "en": "A bounded authorization to submit the result of a specific action.",
-        "pt-BR": "Uma autorização limitada para apresentar o resultado de uma ação específica.",
-        "ru": "Ограниченное разрешение на предъявление результата конкретного действия."
+        "en": "An immutable record of opening, escalation or terminal resolution and its provenance.",
+        "pt-BR": "Um registro imutável de abertura, escalonamento ou resolução terminal e sua proveniência.",
+        "ru": "Неизменяемая запись открытия, эскалации или терминального решения и его provenance."
       },
-      "id": "seed.permit",
+      "id": "seed.resolution_record",
       "labels": {
-        "en": "permit",
-        "pt-BR": "permissão",
-        "ru": "разрешение"
+        "en": "resolution record",
+        "pt-BR": "registro de resolução",
+        "ru": "запись разрешения"
       },
-      "symbol": "Permit"
+      "symbol": "ResolutionRecord"
     },
     {
       "definitions": {
-        "en": "A materialized use of a permit for a specific attempt.",
-        "pt-BR": "Um uso materializado de uma permissão para uma tentativa específica.",
-        "ru": "Материализованное использование разрешения для конкретной попытки."
+        "en": "An acyclic sequence of explicitly authorized Resolution Authorities for one question.",
+        "pt-BR": "Uma sequência acíclica de Resolution Authorities explicitamente autorizadas para uma questão.",
+        "ru": "Ациклическая последовательность явно уполномоченных Resolution Authorities для одного вопроса."
       },
-      "id": "seed.execution_intent",
+      "id": "seed.resolution_chain",
       "labels": {
-        "en": "execution intent",
-        "pt-BR": "intenção de execução",
-        "ru": "намерение исполнения"
+        "en": "resolution chain",
+        "pt-BR": "cadeia de resolução",
+        "ru": "цепочка разрешения"
       },
-      "symbol": "ExecutionIntent"
-    },
-    {
-      "definitions": {
-        "en": "Immutable evidence that a specific permit attempt was consumed.",
-        "pt-BR": "Evidência imutável de que uma tentativa específica da permissão foi consumida.",
-        "ru": "Неизменяемое свидетельство расходования конкретной попытки разрешения."
-      },
-      "id": "seed.permit_use_receipt",
-      "labels": {
-        "en": "permit-use receipt",
-        "pt-BR": "comprovante de uso da permissão",
-        "ru": "квитанция использования разрешения"
-      },
-      "symbol": "PermitUseReceipt"
-    },
-    {
-      "definitions": {
-        "en": "A claim about an action result or external fact bound to evidence.",
-        "pt-BR": "Uma afirmação sobre resultado de ação ou fato externo vinculada a evidências.",
-        "ru": "Утверждение о результате действия или внешнем факте, связанное с доказательствами."
-      },
-      "id": "seed.observation",
-      "labels": {
-        "en": "observation",
-        "pt-BR": "observação",
-        "ru": "наблюдение"
-      },
-      "symbol": "Observation"
-    },
-    {
-      "definitions": {
-        "en": "Recognition that a claim passed the prescribed verification procedure.",
-        "pt-BR": "Reconhecimento de que uma afirmação passou pelo procedimento de verificação previsto.",
-        "ru": "Признание прохождения утверждением предписанной процедуры проверки."
-      },
-      "id": "seed.verification",
-      "labels": {
-        "en": "verification",
-        "pt-BR": "verificação",
-        "ru": "проверка"
-      },
-      "symbol": "Verification"
-    },
-    {
-      "definitions": {
-        "en": "The final institutional recognition of an action result.",
-        "pt-BR": "O reconhecimento institucional final do resultado de uma ação.",
-        "ru": "Окончательное институциональное признание результата действия."
-      },
-      "id": "seed.outcome",
-      "labels": {
-        "en": "outcome",
-        "pt-BR": "reconhecimento final",
-        "ru": "итоговое признание"
-      },
-      "symbol": "Outcome"
-    },
-    {
-      "definitions": {
-        "en": "An atomic candidate change to the canonical state of one context.",
-        "pt-BR": "Uma alteração candidata atômica do estado canônico de um contexto.",
-        "ru": "Атомарный кандидат изменения канонического состояния одного контекста."
-      },
-      "id": "seed.transition",
-      "labels": {
-        "en": "state transition",
-        "pt-BR": "transição de estado",
-        "ru": "переход состояния"
-      },
-      "symbol": "Transition"
-    },
-    {
-      "definitions": {
-        "en": "An immutable record of an accepted transition, its causes, and created artifacts.",
-        "pt-BR": "Um registro imutável de uma transição aceita, suas causas e artefatos criados.",
-        "ru": "Неизменяемая запись принятого перехода, причин и созданных артефактов."
-      },
-      "id": "seed.transition_record",
-      "labels": {
-        "en": "transition record",
-        "pt-BR": "registro de transição",
-        "ru": "запись перехода"
-      },
-      "symbol": "TransitionRecord"
-    },
-    {
-      "definitions": {
-        "en": "A source-local commitment transferable to another context as evidence.",
-        "pt-BR": "Um compromisso local da origem transferível a outro contexto como evidência.",
-        "ru": "Локальное обязательство источника, переносимое в другой контекст как доказательство."
-      },
-      "id": "seed.export_receipt",
-      "labels": {
-        "en": "export receipt",
-        "pt-BR": "comprovante de exportação",
-        "ru": "квитанция экспорта"
-      },
-      "symbol": "ExportReceipt"
-    },
-    {
-      "definitions": {
-        "en": "A local record accepting foreign evidence without importing its outcome automatically.",
-        "pt-BR": "Um registro local que aceita evidência externa sem importar automaticamente seu reconhecimento final.",
-        "ru": "Локальная запись принятия внешнего доказательства без автоматического переноса итогового признания."
-      },
-      "id": "seed.import_record",
-      "labels": {
-        "en": "import record",
-        "pt-BR": "registro de importação",
-        "ru": "запись импорта"
-      },
-      "symbol": "ImportRecord"
-    },
-    {
-      "definitions": {
-        "en": "A pre-classified transition admissible during a network partition.",
-        "pt-BR": "Uma transição pré-classificada admissível durante uma partição de rede.",
-        "ru": "Предварительно классифицированный переход, допустимый во время разделения связи."
-      },
-      "id": "seed.local_commit",
-      "labels": {
-        "en": "local commit",
-        "pt-BR": "commit local",
-        "ru": "локальный коммит"
-      },
-      "symbol": "LocalCommit"
-    },
-    {
-      "definitions": {
-        "en": "A record of local-commit validation, confirmed prefix, and detected forks.",
-        "pt-BR": "Um registro da validação de commits locais, prefixo confirmado e bifurcações detectadas.",
-        "ru": "Запись проверки локальных коммитов, подтверждённого префикса и обнаруженных развилок."
-      },
-      "id": "seed.reconciliation_receipt",
-      "labels": {
-        "en": "reconciliation receipt",
-        "pt-BR": "comprovante de reconciliação",
-        "ru": "квитанция согласования"
-      },
-      "symbol": "ReconciliationReceipt"
-    },
-    {
-      "definitions": {
-        "en": "A typed directed relation of normative or non-normative dependency between contexts.",
-        "pt-BR": "Uma relação direcionada tipada de dependência normativa ou não normativa entre contextos.",
-        "ru": "Типизированная направленная связь нормативной или ненормативной зависимости контекстов."
-      },
-      "id": "seed.dependency_edge",
-      "labels": {
-        "en": "dependency edge",
-        "pt-BR": "aresta de dependência",
-        "ru": "ребро зависимости"
-      },
-      "symbol": "DependencyEdge"
-    },
-    {
-      "definitions": {
-        "en": "An immutable record of voluntary exit or context replacement.",
-        "pt-BR": "Um registro imutável de saída voluntária ou substituição de contexto.",
-        "ru": "Неизменяемая запись добровольного выхода или замещения контекста."
-      },
-      "id": "seed.membership_withdrawal_record",
-      "labels": {
-        "en": "membership-withdrawal record",
-        "pt-BR": "registro de retirada de membro",
-        "ru": "запись выхода участника"
-      },
-      "symbol": "MembershipWithdrawalRecord"
-    },
-    {
-      "definitions": {
-        "en": "A complete record of the atomic replacement of an exact set of interdependent contexts.",
-        "pt-BR": "Um registro completo da substituição atômica de um conjunto exato de contextos interdependentes.",
-        "ru": "Полная запись атомарной замены точного множества взаимозависимых контекстов."
-      },
-      "id": "seed.context_redefinition_record",
-      "labels": {
-        "en": "context-redefinition record",
-        "pt-BR": "registro de redefinição de contexto",
-        "ru": "запись переопределения контекста"
-      },
-      "symbol": "ContextRedefinitionRecord"
-    },
-    {
-      "definitions": {
-        "en": "An append-only record withdrawing or replacing a verification before final outcome.",
-        "pt-BR": "Um registro somente de acréscimo que revoga ou substitui uma verificação antes do resultado final.",
-        "ru": "Добавочная запись отзыва или замены проверки до финального итогового признания."
-      },
-      "id": "seed.correction_record",
-      "labels": {
-        "en": "correction record",
-        "pt-BR": "registro de correção",
-        "ru": "запись исправления"
-      },
-      "symbol": "CorrectionRecord"
-    },
-    {
-      "definitions": {
-        "en": "A domain-separated hash of the complete canonical trust-space state.",
-        "pt-BR": "Um hash com separação de domínio do estado canônico completo do espaço de confiança.",
-        "ru": "Домен-разделённый хеш канонического полного состояния пространства доверия."
-      },
-      "id": "seed.state_root",
-      "labels": {
-        "en": "state root",
-        "pt-BR": "raiz de estado",
-        "ru": "корень состояния"
-      },
-      "symbol": "StateRoot"
-    },
-    {
-      "definitions": {
-        "en": "Externally verifiable evidence bound to a principal and exact transition.",
-        "pt-BR": "Evidência verificável externamente vinculada a um principal e à transição exata.",
-        "ru": "Внешне проверяемое доказательство, привязанное к субъекту и точному переходу."
-      },
-      "id": "seed.proof",
-      "labels": {
-        "en": "authentication proof",
-        "pt-BR": "prova de autenticação",
-        "ru": "доказательство аутентификации"
-      },
-      "symbol": "Proof"
-    },
-    {
-      "definitions": {
-        "en": "A transactional store for state and the append-only transition-attempt audit log.",
-        "pt-BR": "Um armazenamento transacional para o estado e o log imutável de tentativas de transição.",
-        "ru": "Транзакционное хранилище состояния и неизменяемого журнала попыток переходов."
-      },
-      "id": "seed.runtime_store",
-      "labels": {
-        "en": "durable runtime store",
-        "pt-BR": "armazenamento durável de execução",
-        "ru": "устойчивое хранилище исполнения"
-      },
-      "symbol": "RuntimeStore"
+      "symbol": "ResolutionChain"
     }
   ],
   "conformance_profile_ref": "seed/canonical/conformance/conformance-profile.json",
+  "decision_lattice": {
+    "accept_enforcement": "ALLOW",
+    "deny_enforcement": "BLOCKED",
+    "incomparable": [
+      "ACCEPT",
+      "DENY"
+    ],
+    "information_order": [
+      {
+        "less_or_equal": [
+          "UNKNOWN",
+          "ACCEPT"
+        ]
+      },
+      {
+        "less_or_equal": [
+          "UNKNOWN",
+          "DENY"
+        ]
+      }
+    ],
+    "initial": "UNKNOWN",
+    "terminal": [
+      "ACCEPT",
+      "DENY"
+    ],
+    "unknown_enforcement": "BLOCKED"
+  },
   "implementation_boundary": {
     "conformance_protocol_ref": "seed/canonical/conformance/implementation-conformance-protocol.json",
     "implementation_precedence": "NONE",
     "normative_status": "IMPLEMENTATION_NEUTRAL",
-    "profile_rule": "Implementation profiles MAY strengthen operational guarantees but MUST NOT weaken, merge or bypass Seed distinctions, validity conditions or invariants.",
+    "profile_rule": "Profiles and extensions may add authorities, evidence procedures, federation topology and operational guarantees, but they may not authorize an effect from UNKNOWN, weaken exact binding, expand scope during escalation, mutate a terminal decision within one cycle, or claim semantic precedence.",
     "required_observables": [
-      "transition verdict",
-      "normative result code",
-      "canonical post-state or unchanged state on rejection",
-      "created artifact identifiers and causal bindings",
-      "pre-state and post-state roots"
+      "accepted",
+      "code",
+      "state_changed",
+      "semantic_status",
+      "enforcement",
+      "final_state_root where specified"
     ],
     "unspecified_by_seed": [
-      "programming language",
-      "storage backend",
-      "deployment topology",
+      "storage engine",
+      "durability level",
+      "concurrency control",
+      "network topology",
       "consensus protocol",
-      "network transport",
       "cryptographic provider",
-      "operational user interface"
+      "key custody",
+      "execution engine",
+      "planning",
+      "memory",
+      "federation topology",
+      "artifact retention"
     ]
   },
   "invariants": [
     {
       "id": "SEED-INV-001",
       "texts": {
-        "en": "TrustSpaceID, Root Genesis, and constitution epoch zero are immutable.",
-        "pt-BR": "TrustSpaceID, Root Genesis e a época zero da constituição são imutáveis.",
-        "ru": "TrustSpaceID, Root Genesis и конституция эпохи 0 неизменяемы."
+        "en": "Every valid status is UNKNOWN, ACCEPT or DENY.",
+        "pt-BR": "Todo estado válido é UNKNOWN, ACCEPT ou DENY.",
+        "ru": "Каждый допустимый статус принадлежит UNKNOWN, ACCEPT или DENY."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-002",
       "texts": {
-        "en": "Exactly one root context has no parent, and the context tree is acyclic.",
-        "pt-BR": "Existe exatamente um contexto raiz sem pai e a árvore de contextos é acíclica.",
-        "ru": "Существует ровно один корневой контекст без родителя, а дерево контекстов не содержит циклов."
+        "en": "UNKNOWN is always paired with BLOCKED.",
+        "pt-BR": "UNKNOWN está sempre associado a BLOCKED.",
+        "ru": "UNKNOWN всегда связан с BLOCKED."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-003",
       "texts": {
-        "en": "Every ContextID is derived from its parent identifier and context-Genesis digest.",
-        "pt-BR": "Cada ContextID é derivado do identificador do pai e do resumo de Genesis do contexto.",
-        "ru": "Каждый ContextID вычисляется из идентификатора родителя и хеша Genesis контекста."
+        "en": "DENY is always paired with BLOCKED.",
+        "pt-BR": "DENY está sempre associado a BLOCKED.",
+        "ru": "DENY всегда связан с BLOCKED."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-004",
       "texts": {
-        "en": "The live-alias index exactly matches active contexts.",
-        "pt-BR": "O índice de aliases vigentes corresponde exatamente aos contextos ativos.",
-        "ru": "Индекс действующих псевдонимов точно соответствует действующим контекстам."
+        "en": "ALLOW is possible only with ACCEPT.",
+        "pt-BR": "ALLOW é possível somente com ACCEPT.",
+        "ru": "ALLOW возможен только при ACCEPT."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-005",
       "texts": {
-        "en": "All active contexts use the current constitution epoch.",
-        "pt-BR": "Todos os contextos ativos usam a época atual da constituição.",
-        "ru": "Все действующие контексты используют текущую эпоху конституции."
+        "en": "A terminal decision is immutable within one resolution_id.",
+        "pt-BR": "Uma decisão terminal é imutável dentro de um resolution_id.",
+        "ru": "Терминальное решение неизменяемо внутри одного resolution_id."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-006",
       "texts": {
-        "en": "One authority key has at most one active holder, and active scopes of one capability do not overlap.",
-        "pt-BR": "Uma chave de autoridade tem no máximo um titular ativo e os escopos ativos de uma capacidade não se sobrepõem.",
-        "ru": "Для одного ключа полномочия существует не более одного действующего носителя, а области одного вида полномочия не пересекаются."
+        "en": "Resolution Authority must match the context, scope and policy epoch.",
+        "pt-BR": "A Resolution Authority deve corresponder ao contexto, escopo e época de política.",
+        "ru": "Resolution Authority должна совпадать по context, scope и policy epoch."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-007",
       "texts": {
-        "en": "A withdrawn, superseded, or terminated context has no active authority or permits.",
-        "pt-BR": "Um contexto retirado, substituído ou encerrado não possui autoridade nem permissões ativas.",
-        "ru": "Отозванный, замещённый или прекращённый контекст не содержит действующих полномочий и разрешений."
+        "en": "Escalation is possible only from UNKNOWN through an explicit EscalationGrant.",
+        "pt-BR": "O escalonamento é possível somente a partir de UNKNOWN por meio de um EscalationGrant explícito.",
+        "ru": "Эскалация возможна только из UNKNOWN по явному EscalationGrant."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-008",
       "texts": {
-        "en": "Every artifact-map key equals the internal artifact identifier and refers to an existing context.",
-        "pt-BR": "Cada chave de mapa de artefatos é igual ao identificador interno e refere-se a um contexto existente.",
-        "ru": "Ключ каждой карты артефактов совпадает с внутренним идентификатором артефакта и указывает на существующий контекст."
+        "en": "Escalation preserves question identity and does not expand scope.",
+        "pt-BR": "O escalonamento preserva a identidade da questão e não amplia o escopo.",
+        "ru": "Эскалация сохраняет идентичность вопроса и не расширяет scope."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-009",
       "texts": {
-        "en": "Permit terms are bound exactly to the issue decision, readiness, and recognized success policy.",
-        "pt-BR": "Os termos da permissão estão vinculados exatamente à decisão de emissão, prontidão e política de sucesso reconhecida.",
-        "ru": "Условия разрешения точно связаны с решением, готовностью и признанной политикой успеха."
+        "en": "The Resolution Authority chain contains no repeated authority.",
+        "pt-BR": "A cadeia de Resolution Authority não contém autoridade repetida.",
+        "ru": "Цепочка Resolution Authority не содержит повторов."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-010",
       "texts": {
-        "en": "Verification policy equals the permit success predicate and an active constitution rule.",
-        "pt-BR": "A política de verificação é igual ao predicado de sucesso da permissão e a uma regra ativa da constituição.",
-        "ru": "Политика проверки совпадает с предикатом успеха разрешения и правилом действующей конституции."
+        "en": "ResolutionRecord entries are appended monotonically and are never rewritten.",
+        "pt-BR": "Os registros ResolutionRecord são acrescentados monotonicamente e nunca reescritos.",
+        "ru": "ResolutionRecord добавляется монотонно и не переписывается."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-011",
       "texts": {
-        "en": "Permit attenuation is linear and creates no duplicated attempt budget.",
-        "pt-BR": "A atenuação da permissão é linear e não cria orçamento duplicado de tentativas.",
-        "ru": "Ослабление разрешения линейно и не создаёт двойного бюджета попыток."
+        "en": "A rejected command preserves state and state root.",
+        "pt-BR": "Um comando rejeitado preserva o estado e a raiz de estado.",
+        "ru": "Отклонённая команда сохраняет состояние и state root."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "id": "SEED-INV-012",
       "texts": {
-        "en": "Attempt indices are contiguous, receipts are durable, and the submission-id index is exact.",
-        "pt-BR": "Os índices de tentativas são contíguos, os comprovantes são duráveis e o índice de submission_id é exato.",
-        "ru": "Индексы попыток непрерывны, квитанции устойчивы, а индекс submission_id точен."
+        "en": "A new reconsideration of a terminal decision uses a new resolution_id.",
+        "pt-BR": "Uma nova reconsideração de uma decisão terminal usa um novo resolution_id.",
+        "ru": "Новый пересмотр терминального решения использует новый resolution_id."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
         "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-013",
-      "texts": {
-        "en": "Every observation is bound to the exact receipt, permit, and context.",
-        "pt-BR": "Cada observação está vinculada ao comprovante, permissão e contexto exatos.",
-        "ru": "Каждое наблюдение связано с точными квитанцией, разрешением и контекстом."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-014",
-      "texts": {
-        "en": "Every verification is bound to the exact observation, receipt, permit, and context.",
-        "pt-BR": "Cada verificação está vinculada à observação, comprovante, permissão e contexto exatos.",
-        "ru": "Каждая проверка связана с точными наблюдением, квитанцией, разрешением и контекстом."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-015",
-      "texts": {
-        "en": "An outcome uses the complete effective verification set of its permit.",
-        "pt-BR": "Um resultado usa o conjunto efetivo completo de verificações de sua permissão.",
-        "ru": "Итоговое признание использует полный действительный набор проверок данного разрешения."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-016",
-      "texts": {
-        "en": "Export, import, and local recognition preserve exact cross-context provenance.",
-        "pt-BR": "Exportação, importação e reconhecimento local preservam proveniência exata entre contextos.",
-        "ru": "Экспорт, импорт и локальное признание сохраняют точную межконтекстную линию происхождения."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-017",
-      "texts": {
-        "en": "A correction targets only a verification before final outcome.",
-        "pt-BR": "Uma correção tem como alvo somente uma verificação antes do resultado final.",
-        "ru": "Исправление относится только к проверке до финального итогового признания."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-018",
-      "texts": {
-        "en": "Transition counts, local ordinals, artifact ownership, and derived causal parents are exact.",
-        "pt-BR": "Contagens de transições, ordinais locais, propriedade de artefatos e pais causais derivados são exatos.",
-        "ru": "Счётчики переходов, локальные порядковые номера, владельцы артефактов и вычисленные причинные родители точны."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-019",
-      "texts": {
-        "en": "A suspended context permits local continuation only through the dedicated partition transition.",
-        "pt-BR": "Um contexto suspenso permite continuação local somente pela transição dedicada de partição.",
-        "ru": "Приостановленный контекст допускает локальное продолжение только через специальный переход разделения."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-020",
-      "texts": {
-        "en": "Reconciliation includes all known local commits and preserves competing-branch evidence.",
-        "pt-BR": "A reconciliação inclui todos os commits locais conhecidos e preserva evidências de ramos concorrentes.",
-        "ru": "Согласование включает все известные локальные коммиты и сохраняет доказательства конкурирующих ветвей."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-021",
-      "texts": {
-        "en": "Dependency edges are unique, non-self-referential, and have existing endpoints.",
-        "pt-BR": "As arestas de dependência são únicas, não autorreferentes e possuem extremidades existentes.",
-        "ru": "Рёбра зависимостей уникальны, не ссылаются на себя и имеют существующие вершины."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-022",
-      "texts": {
-        "en": "Both endpoints of every normative edge are active contexts.",
-        "pt-BR": "As duas extremidades de cada aresta normativa são contextos ativos.",
-        "ru": "Обе вершины каждого нормативного ребра являются действующими контекстами."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-023",
-      "texts": {
-        "en": "Standalone withdrawal leaves no active normative dependant.",
-        "pt-BR": "A retirada autônoma não deixa dependente normativo ativo.",
-        "ru": "Самостоятельный выход не оставляет действующего нормативного зависимого."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-024",
-      "texts": {
-        "en": "AffectedSiblingSet is the exact transitive closure of direct siblings.",
-        "pt-BR": "AffectedSiblingSet é o fechamento transitivo exato dos irmãos diretos.",
-        "ru": "AffectedSiblingSet является точным транзитивным замыканием прямых соседей."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-025",
-      "texts": {
-        "en": "Redefinition uses the canonical digest of the complete proposal and the exact member-authorization set.",
-        "pt-BR": "A redefinição usa o resumo canônico da proposta completa e o conjunto exato de autorizações dos membros.",
-        "ru": "Переопределение использует канонический хеш полного предложения и точный набор разрешений участников."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-026",
-      "texts": {
-        "en": "Context replacement is atomic, preserves identity fields, and remaps dependencies exactly.",
-        "pt-BR": "A substituição de contextos é atômica, preserva campos de identidade e remapeia dependências exatamente.",
-        "ru": "Замена контекстов атомарна, сохраняет поля идентичности и точно переназначает зависимости."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-027",
-      "texts": {
-        "en": "Governance records contain the complete proposal and authentication evidence.",
-        "pt-BR": "Os registros de governança contêm a proposta completa e as evidências de autenticação.",
-        "ru": "Записи управления содержат полное предложение и доказательства аутентификации."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-028",
-      "texts": {
-        "en": "Authority transfer has a complete action trail in the same context.",
-        "pt-BR": "A transferência de autoridade possui uma cadeia de ação completa no mesmo contexto.",
-        "ru": "Передача полномочия имеет полную цепочку действия в том же контексте."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "id": "SEED-INV-029",
-      "texts": {
-        "en": "Context-internal roots and the global state root exactly match canonical state.",
-        "pt-BR": "As raízes internas dos contextos e a raiz global correspondem exatamente ao estado canônico.",
-        "ru": "Внутренние корни контекстов и глобальный корень состояния точно соответствуют каноническому состоянию."
-      },
-      "verification": [
-        "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     }
   ],
@@ -807,15 +381,15 @@
     "en",
     "pt-BR"
   ],
-  "model_id": "ASET-SEED-CANON-RC12",
-  "predecessor": "ASET Seed 0.1-rc11",
+  "model_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA1",
+  "predecessor": "ASET Seed 0.1-rc12 implementation-neutral candidate",
   "protocol_profile_ref": "seed/canonical/protocol/protocol-profile.json",
   "publication": {
     "headings": {
       "assurance": {
-        "en": "Assurance boundaries",
-        "pt-BR": "Limites de garantia",
-        "ru": "Границы гарантий"
+        "en": "Assurance",
+        "pt-BR": "Garantias",
+        "ru": "Гарантии"
       },
       "canonical_model_sha256": {
         "en": "Canonical model SHA-256",
@@ -834,7 +408,7 @@
       },
       "implementation_boundary": {
         "en": "Implementation boundary",
-        "pt-BR": "Limite de implementação",
+        "pt-BR": "Limite da implementação",
         "ru": "Граница реализации"
       },
       "invariants": {
@@ -843,14 +417,14 @@
         "ru": "Инварианты"
       },
       "modality": {
-        "en": "Canonical modality",
-        "pt-BR": "Modalidade canônica",
-        "ru": "Каноническая модальность"
+        "en": "Modality",
+        "pt-BR": "Modalidade",
+        "ru": "Модальность"
       },
       "notice": {
-        "en": "This document is generated automatically from the machine canon. Manual editing is prohibited.",
-        "pt-BR": "Este documento é gerado automaticamente a partir do cânone de máquina. A edição manual é proibida.",
-        "ru": "Документ создан автоматически из машинного канона. Ручное редактирование запрещено."
+        "en": "This edition is derived from the machine canon.",
+        "pt-BR": "Esta edição é derivada do cânone legível por máquina.",
+        "ru": "Эта редакция выводится из машинного канона."
       },
       "predicate": {
         "en": "Predicate",
@@ -864,7 +438,7 @@
       },
       "status": {
         "en": "Status",
-        "pt-BR": "Estado",
+        "pt-BR": "Status",
         "ru": "Статус"
       },
       "transitions": {
@@ -879,740 +453,321 @@
       }
     },
     "titles": {
-      "en": "ASET Seed 0.1-rc12 — machine-readable normative canon",
-      "pt-BR": "ASET Seed 0.1-rc12 — cânone normativo legível por máquina",
-      "ru": "ASET Seed 0.1-rc12 — машиночитаемый нормативный канон"
+      "en": "ASET Seed 0.2 alpha — Resolution Core",
+      "pt-BR": "ASET Seed 0.2 alpha — Núcleo de Resolução",
+      "ru": "ASET Seed 0.2 alpha — ядро разрешения"
     }
   },
   "requirements": [
     {
-      "area": "Schema",
+      "area": "Resolution",
       "id": "ASET-SEED-REQ-001",
       "modality": "MUST",
-      "predicate": "enforce_strict_schemas_fail_closed",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.transition",
+      "predicate": "open_as_unknown_blocked",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_cycle",
       "texts": {
-        "en": "The public API MUST enforce strict schemas and fail closed.",
-        "pt-BR": "A API pública DEVE aplicar esquemas estritos e falhar de modo fechado.",
-        "ru": "Публичный интерфейс ДОЛЖЕН применять строгие схемы и закрываться при любой неопределённости."
+        "en": "A new resolution cycle MUST open as UNKNOWN with BLOCKED enforcement.",
+        "pt-BR": "Um novo ciclo de resolução DEVE ser aberto como UNKNOWN com execução BLOCKED.",
+        "ru": "Новый цикл разрешения ДОЛЖЕН открываться как UNKNOWN с режимом BLOCKED."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Identity",
+      "area": "Decision lattice",
       "id": "ASET-SEED-REQ-002",
       "modality": "MUST",
-      "predicate": "derive_identity_from_genesis",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.genesis",
+      "predicate": "use_three_status_lattice",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_status",
       "texts": {
-        "en": "TrustSpaceID and ContextID MUST be derived from canonical Genesis material.",
-        "pt-BR": "TrustSpaceID e ContextID DEVEM ser derivados do material canônico de Genesis.",
-        "ru": "TrustSpaceID и ContextID ДОЛЖНЫ выводиться из канонического материала Genesis."
+        "en": "A cycle status MUST be one of UNKNOWN, ACCEPT, DENY; only ACCEPT and DENY are terminal.",
+        "pt-BR": "O estado de um ciclo DEVE ser UNKNOWN, ACCEPT ou DENY; somente ACCEPT e DENY são terminais.",
+        "ru": "Статус цикла ДОЛЖЕН принадлежать множеству UNKNOWN, ACCEPT, DENY; терминальными являются только ACCEPT и DENY."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "State",
+      "area": "Fail closed",
       "id": "ASET-SEED-REQ-003",
-      "modality": "MUST",
-      "predicate": "commit_atomically_and_validate_state",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.transition",
+      "modality": "MUST_NOT",
+      "predicate": "authorize_from_unknown",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.enforcement_disposition",
       "texts": {
-        "en": "Every accepted transition MUST be atomic and followed by whole-state validation.",
-        "pt-BR": "Cada transição aceita DEVE ser atômica e seguida pela validação do estado completo.",
-        "ru": "Каждый принятый переход ДОЛЖЕН быть атомарным и завершаться проверкой всего состояния."
+        "en": "UNKNOWN MUST NOT authorize an external effect and MUST NOT be silently coerced to DENY.",
+        "pt-BR": "UNKNOWN NÃO DEVE autorizar um efeito externo nem ser convertido silenciosamente em DENY.",
+        "ru": "UNKNOWN НЕ ДОЛЖЕН разрешать внешний эффект и НЕ ДОЛЖЕН неявно подменяться DENY."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
+      ]
+    },
+    {
+      "area": "Enforcement",
+      "id": "ASET-SEED-REQ-004",
+      "modality": "MUST",
+      "predicate": "bind_enforcement_to_status",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.enforcement_disposition",
+      "texts": {
+        "en": "BLOCKED MUST correspond to UNKNOWN and DENY; ALLOW MAY correspond only to ACCEPT.",
+        "pt-BR": "BLOCKED DEVE corresponder a UNKNOWN e DENY; ALLOW PODE corresponder somente a ACCEPT.",
+        "ru": "BLOCKED ДОЛЖЕН соответствовать UNKNOWN и DENY; ALLOW МОЖЕТ соответствовать только ACCEPT."
+      },
+      "verification": [
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-BOUNDED-MODEL"
+      ]
+    },
+    {
+      "area": "Exact binding",
+      "id": "ASET-SEED-REQ-005",
+      "modality": "MUST",
+      "predicate": "bind_exact_question_state_policy",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.context_binding",
+      "texts": {
+        "en": "Every cycle MUST bind exact context_id, state_root, question_digest, policy_epoch and scope values.",
+        "pt-BR": "Cada ciclo DEVE vincular valores exatos de context_id, state_root, question_digest, policy_epoch e scope.",
+        "ru": "Каждый цикл ДОЛЖЕН быть связан с точными context_id, state_root, question_digest, policy_epoch и scope."
+      },
+      "verification": [
+        "ASET-VERIFY-PORTABLE-CASES",
+        "ASET-VERIFY-SPECIFICATION-TESTS",
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
       "area": "Authority",
-      "id": "ASET-SEED-REQ-004",
-      "modality": "MUST_NOT",
-      "predicate": "prevent_active_scope_overlap",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.authority_binding",
-      "texts": {
-        "en": "Active authority scopes for one context/capability MUST NOT overlap.",
-        "pt-BR": "Os escopos de autoridade vigentes para um mesmo contexto/capacidade NÃO DEVEM se sobrepor.",
-        "ru": "Действующие области полномочий для одной пары контекст/вид полномочия НЕ ДОЛЖНЫ пересекаться."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Permit",
-      "id": "ASET-SEED-REQ-005",
-      "modality": "MUST",
-      "predicate": "bind_permit_terms",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.permit",
-      "texts": {
-        "en": "Permit terms MUST bind readiness and the permit-issue decision.",
-        "pt-BR": "Os termos da permissão DEVEM vincular a prontidão e a decisão de emissão da permissão.",
-        "ru": "Условия разрешения ДОЛЖНЫ связывать заявление о готовности и решение о выдаче разрешения."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Policy",
       "id": "ASET-SEED-REQ-006",
       "modality": "MUST",
-      "predicate": "resolve_success_policy",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.permit",
+      "predicate": "require_exact_resolution_authority",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_authority",
       "texts": {
-        "en": "A permit success predicate MUST resolve to an active constitution rule.",
-        "pt-BR": "O predicado de sucesso da permissão DEVE corresponder a uma regra vigente da constituição.",
-        "ru": "Предикат успеха разрешения ДОЛЖЕН разрешаться в действующее правило конституции."
+        "en": "Narrowing UNKNOWN MUST be performed by an active Resolution Authority in the exact scope and epoch.",
+        "pt-BR": "A restrição de UNKNOWN DEVE ser realizada por uma Resolution Authority ativa no escopo e época exatos.",
+        "ru": "Сужение UNKNOWN ДОЛЖНО выполняться действующей Resolution Authority в точной области и эпохе."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Verification",
+      "area": "Scope",
       "id": "ASET-SEED-REQ-007",
-      "modality": "MUST",
-      "predicate": "match_verification_policy",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.verification",
+      "modality": "MUST_NOT",
+      "predicate": "expand_resolution_scope",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_authority",
       "texts": {
-        "en": "The verification policy MUST equal the permit success predicate.",
-        "pt-BR": "A política de verificação DEVE ser igual ao predicado de sucesso da permissão.",
-        "ru": "Политика проверки ДОЛЖНА совпадать с предикатом успеха разрешения."
+        "en": "A resolution or escalation MUST NOT expand the original question scope.",
+        "pt-BR": "Uma resolução ou escalonamento NÃO DEVE ampliar o escopo original da questão.",
+        "ru": "Решение или эскалация НЕ ДОЛЖНЫ расширять исходную область вопроса."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Outcome",
+      "area": "Escalation",
       "id": "ASET-SEED-REQ-008",
       "modality": "MUST",
-      "predicate": "aggregate_complete_effective_verifications",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.outcome",
+      "predicate": "require_explicit_escalation_grant",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.escalation_grant",
       "texts": {
-        "en": "An outcome MUST aggregate the complete effective set of PASS verifications.",
-        "pt-BR": "O reconhecimento final DEVE agregar o conjunto efetivo completo de verificações PASS.",
-        "ru": "Итоговое признание ДОЛЖНО агрегировать полный действительный набор успешных проверок."
+        "en": "Passing UNKNOWN to the next authority MUST have an explicit EscalationGrant; context ancestry or federation membership alone creates no authority.",
+        "pt-BR": "O encaminhamento de UNKNOWN à próxima autoridade DEVE ter um EscalationGrant explícito; ancestralidade de contexto ou participação federativa, por si só, não cria autoridade.",
+        "ru": "Передача UNKNOWN следующей власти ДОЛЖНА иметь явный EscalationGrant; вложенность контекстов или членство в федерации сами по себе власть не создают."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Correction",
+      "area": "Escalation",
       "id": "ASET-SEED-REQ-009",
       "modality": "MUST",
-      "predicate": "limit_correction_to_nonfinal_verification",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.correction_record",
+      "predicate": "preserve_question_during_escalation",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_chain",
       "texts": {
-        "en": "A correction MUST target only a verification that has not been finalized by an outcome.",
-        "pt-BR": "Uma correção DEVE ter como alvo somente uma verificação ainda não finalizada por um resultado.",
-        "ru": "Исправление ДОЛЖНО относиться только к проверке, ещё не закреплённой итоговым признанием."
+        "en": "Escalation MUST preserve resolution_id, context_id, state_root, question_digest and policy_epoch.",
+        "pt-BR": "O escalonamento DEVE preservar resolution_id, context_id, state_root, question_digest e policy_epoch.",
+        "ru": "Эскалация ДОЛЖНА сохранять resolution_id, context_id, state_root, question_digest и policy_epoch."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Causality",
+      "area": "Escalation",
       "id": "ASET-SEED-REQ-010",
       "modality": "MUST",
-      "predicate": "derive_causal_parents",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.transition_record",
+      "predicate": "keep_resolution_chain_acyclic",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_chain",
       "texts": {
-        "en": "Causal parents MUST be derived from typed artifact references.",
-        "pt-BR": "Os pais causais DEVEM ser derivados de referências tipadas a artefatos.",
-        "ru": "Причинные родители ДОЛЖНЫ вычисляться из типизированных ссылок на артефакты."
+        "en": "The Resolution Authority chain MUST remain acyclic.",
+        "pt-BR": "A cadeia de Resolution Authority DEVE permanecer acíclica.",
+        "ru": "Цепочка Resolution Authority ДОЛЖНА оставаться ациклической."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Partition",
+      "area": "Terminality",
       "id": "ASET-SEED-REQ-011",
       "modality": "MUST_NOT",
-      "predicate": "block_ordinary_transition_in_suspended_context",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context",
+      "predicate": "mutate_terminal_status",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_status",
       "texts": {
-        "en": "Ordinary transitions MUST NOT be accepted in a suspended context.",
-        "pt-BR": "Transições comuns NÃO DEVEM ser aceitas em um contexto suspenso.",
-        "ru": "Обычные переходы НЕ ДОЛЖНЫ приниматься в приостановленном контексте."
+        "en": "Within one cycle, ACCEPT or DENY MUST NOT change to another status; an exact replay MAY be idempotent.",
+        "pt-BR": "Dentro de um ciclo, ACCEPT ou DENY NÃO DEVEM mudar para outro estado; uma repetição exata PODE ser idempotente.",
+        "ru": "Внутри одного цикла ACCEPT или DENY НЕ ДОЛЖНЫ изменяться на другой статус; точный повтор МОЖЕТ быть идемпотентным."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Reconciliation",
+      "area": "New cycle",
       "id": "ASET-SEED-REQ-012",
       "modality": "MUST",
-      "predicate": "reconcile_complete_known_commits",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.reconciliation_receipt",
+      "predicate": "use_new_cycle_for_reconsideration",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_cycle",
       "texts": {
-        "en": "Reconciliation MUST include all known local commits and preserve fork evidence.",
-        "pt-BR": "A reconciliação DEVE incluir todos os commits locais conhecidos e preservar evidências de bifurcação.",
-        "ru": "Согласование ДОЛЖНО включать все известные локальные коммиты и сохранять доказательства развилок."
+        "en": "Reconsidering a terminal decision MUST create a new resolution_id and cycle linked to the prior record.",
+        "pt-BR": "A reconsideração de uma decisão terminal DEVE criar um novo resolution_id e ciclo vinculado ao registro anterior.",
+        "ru": "Пересмотр терминального решения ДОЛЖЕН создавать новый resolution_id и новый цикл, связанный с исходной записью."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Dependency",
+      "area": "Evidence",
       "id": "ASET-SEED-REQ-013",
       "modality": "MUST",
-      "predicate": "require_active_normative_endpoints",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.dependency_edge",
+      "predicate": "append_resolution_records",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_record",
       "texts": {
-        "en": "Both endpoints of a normative dependency MUST be active contexts.",
-        "pt-BR": "As duas extremidades de uma dependência normativa DEVEM ser contextos ativos.",
-        "ru": "Обе вершины нормативной зависимости ДОЛЖНЫ быть действующими контекстами."
+        "en": "Opening, escalation and terminal resolution MUST append an immutable ResolutionRecord with Authority and provenance.",
+        "pt-BR": "A abertura, o escalonamento e a resolução terminal DEVEM adicionar um ResolutionRecord imutável com Authority e proveniência.",
+        "ru": "Открытие, эскалация и терминальное решение ДОЛЖНЫ добавлять неизменяемый ResolutionRecord с Authority и provenance."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
+        "ASET-VERIFY-BOUNDED-MODEL"
       ]
     },
     {
-      "area": "Withdrawal",
+      "area": "Implementation neutrality",
       "id": "ASET-SEED-REQ-014",
       "modality": "MUST",
-      "predicate": "protect_normative_dependants_on_withdrawal",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.membership_withdrawal_record",
+      "predicate": "preserve_implementation_neutrality",
+      "source": "ASET Seed resolution-core narrowing decision",
+      "subject": "seed.resolution_record",
       "texts": {
-        "en": "Standalone withdrawal MUST be member-signed and MUST NOT leave an active normative dependant.",
-        "pt-BR": "A retirada autônoma DEVE ser assinada pelo membro e NÃO DEVE deixar um dependente normativo ativo.",
-        "ru": "Самостоятельный выход ДОЛЖЕН быть подписан участником и НЕ ДОЛЖЕН оставлять действующего нормативного зависимого."
+        "en": "Implementations MUST be checked by observable semantics and have no normative precedence over one another.",
+        "pt-BR": "As implementações DEVEM ser verificadas pela semântica observável e não têm precedência normativa entre si.",
+        "ru": "Реализации ДОЛЖНЫ проверяться по наблюдаемой семантике и НЕ ИМЕЮТ нормативного приоритета друг над другом."
       },
       "verification": [
         "ASET-VERIFY-PORTABLE-CASES",
         "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-015",
-      "modality": "MUST",
-      "predicate": "compute_affected_sibling_closure",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "AffectedSiblingSet MUST be computed transitively from the pre-state.",
-        "pt-BR": "AffectedSiblingSet DEVE ser calculado transitivamente a partir do estado anterior.",
-        "ru": "AffectedSiblingSet ДОЛЖЕН вычисляться транзитивно из состояния до перехода."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-016",
-      "modality": "MUST",
-      "predicate": "bind_full_redefinition_proposal",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "The proposal digest MUST bind the complete embedded proposal.",
-        "pt-BR": "O resumo da proposta DEVE vincular a proposta completa incorporada.",
-        "ru": "Хеш предложения ДОЛЖЕН связывать полное встроенное предложение."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-017",
-      "modality": "MUST",
-      "predicate": "require_all_member_authorizations",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "Every affected member MUST authorize the exact proposal.",
-        "pt-BR": "Cada membro afetado DEVE autorizar a proposta exata.",
-        "ru": "Каждый затронутый участник ДОЛЖЕН разрешить точное предложение."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-018",
-      "modality": "MUST",
-      "predicate": "require_parent_redefinition_authority",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "The parent MUST hold REDEFINE_CONTEXT authority.",
-        "pt-BR": "O contexto pai DEVE possuir a autoridade REDEFINE_CONTEXT.",
-        "ru": "Родитель ДОЛЖЕН обладать полномочием REDEFINE_CONTEXT."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-019",
-      "modality": "MUST",
-      "predicate": "commit_redefinition_atomically",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "Redefinition MUST commit atomically or leave state unchanged.",
-        "pt-BR": "A redefinição DEVE confirmar atomicamente ou deixar o estado inalterado.",
-        "ru": "Переопределение ДОЛЖНО завершаться атомарно либо оставлять состояние неизменным."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-020",
-      "modality": "MUST",
-      "predicate": "preserve_successor_identity_fields",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "Successors MUST preserve parent, alias, member, and kind while receiving a new ContextID.",
-        "pt-BR": "Os sucessores DEVEM preservar pai, alias, membro e tipo, recebendo um novo ContextID.",
-        "ru": "Преемники ДОЛЖНЫ сохранять родителя, псевдоним, участника и вид, получая новый ContextID."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Redefinition",
-      "id": "ASET-SEED-REQ-021",
-      "modality": "MUST",
-      "predicate": "remap_affected_dependencies",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.context_redefinition_record",
-      "texts": {
-        "en": "Dependencies among affected siblings MUST be remapped to successors.",
-        "pt-BR": "As dependências entre irmãos afetados DEVEM ser remapeadas para os sucessores.",
-        "ru": "Зависимости между затронутыми соседями ДОЛЖНЫ переназначаться на преемников."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Audit",
-      "id": "ASET-SEED-REQ-022",
-      "modality": "MUST",
-      "predicate": "retain_governance_evidence",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.transition_record",
-      "texts": {
-        "en": "Governance records MUST retain the complete proposal and proof digests.",
-        "pt-BR": "Os registros de governança DEVEM reter a proposta completa e os resumos das provas.",
-        "ru": "Записи управления ДОЛЖНЫ сохранять полное предложение и хеши доказательств."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Transfer",
-      "id": "ASET-SEED-REQ-023",
-      "modality": "MUST",
-      "predicate": "bind_same_context_authority_transfer",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.authority_binding",
-      "texts": {
-        "en": "Authority transfer MUST use a same-context positive action trail and new-holder readiness.",
-        "pt-BR": "A transferência de autoridade DEVE usar uma cadeia positiva no mesmo contexto e a prontidão do novo titular.",
-        "ru": "Передача полномочия ДОЛЖНА использовать положительную цепочку действия в том же контексте и готовность нового носителя."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Coverage",
-      "id": "ASET-SEED-REQ-024",
-      "modality": "MUST",
-      "predicate": "meet_branch_coverage_threshold",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.reference_core",
-      "texts": {
-        "en": "Reference-core branch coverage MUST be at least 90 percent for release freeze.",
-        "pt-BR": "A cobertura de ramos do núcleo de referência DEVE ser de pelo menos 90 por cento para o congelamento da versão.",
-        "ru": "Покрытие ветвей эталонного ядра ДОЛЖНО быть не ниже 90 процентов для фиксации релиза."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Release",
-      "id": "ASET-SEED-REQ-025",
-      "modality": "MUST",
-      "predicate": "bind_assurance_to_exact_bytes",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.release",
-      "texts": {
-        "en": "Coverage and publication-QA evidence MUST be bound to exact source and document bytes.",
-        "pt-BR": "As evidências de cobertura e qualidade da publicação DEVEM estar vinculadas aos bytes exatos de código e documentos.",
-        "ru": "Доказательства покрытия и проверки публикации ДОЛЖНЫ быть связаны с точными байтами исходников и документов."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Freeze",
-      "id": "ASET-SEED-REQ-026",
-      "modality": "MUST",
-      "predicate": "perform_clean_room_release_validation",
-      "source": "ASET Seed 0.1-rc11 requirements register",
-      "subject": "seed.release",
-      "texts": {
-        "en": "Release freeze MUST include clean-room validation of the deterministic archive.",
-        "pt-BR": "O congelamento da versão DEVE incluir validação em sala limpa do arquivo determinístico.",
-        "ru": "Фиксация релиза ДОЛЖНА включать чистую проверку детерминированного архива."
-      },
-      "verification": [
-        "ASET-VERIFY-PORTABLE-CASES",
-        "ASET-VERIFY-SPECIFICATION-TESTS",
-        "ASET-VERIFY-COMPONENT-BLACKBOX"
-      ]
-    },
-    {
-      "area": "Documentation",
-      "id": "ASET-SEED-DOC-001",
-      "modality": "MUST",
-      "predicate": "derive_editions_from_canon",
-      "source": "ASET Seed rc12 canonicality policy",
-      "subject": "seed.generated_edition",
-      "texts": {
-        "en": "Official language editions MUST be derived deterministically from the machine-readable canon.",
-        "pt-BR": "As edições oficiais DEVEM ser derivadas deterministicamente do cânone legível por máquina.",
-        "ru": "Официальные языковые редакции ДОЛЖНЫ детерминированно строиться из машиночитаемого канона."
-      },
-      "verification": [
-        "ASET-VERIFY-GENERATED-EDITION-PARITY",
-        "ASET-VERIFY-SEMANTIC-ID-PARITY"
-      ]
-    },
-    {
-      "area": "Documentation",
-      "id": "ASET-SEED-DOC-002",
-      "modality": "MUST",
-      "predicate": "preserve_semantic_identifiers",
-      "source": "ASET Seed rc12 canonicality policy",
-      "subject": "seed.generated_edition",
-      "texts": {
-        "en": "All representations MUST preserve stable semantic identifiers for requirements, invariants, and transitions.",
-        "pt-BR": "Todas as representações DEVEM preservar identificadores semânticos estáveis de requisitos, invariantes e transições.",
-        "ru": "Все представления ДОЛЖНЫ сохранять стабильные семантические идентификаторы требований, инвариантов и переходов."
-      },
-      "verification": [
-        "ASET-VERIFY-GENERATED-EDITION-PARITY",
-        "ASET-VERIFY-SEMANTIC-ID-PARITY"
+        "ASET-VERIFY-EXTERNAL-CONFORMANCE"
       ]
     }
   ],
-  "schema_version": 2,
-  "status": "RC12_RELEASE_CANDIDATE_READY",
+  "schema_version": 3,
+  "status": "RESOLUTION_CORE_ALPHA",
   "transitions": [
     {
-      "authorization_rule": "bootstrap predicate or CREATE_MEMBER_CONTEXT",
+      "authority_rule": "The opening authority must be explicit and exactly bound to context, scope and policy epoch.",
       "created_artifacts": [
-        "ContextDescriptor",
-        "AuthorityBinding"
+        "ResolutionCycle",
+        "ResolutionRecord"
       ],
-      "handler": "_handle_member_context_genesis",
+      "from_status": null,
       "id": "SEED-TX-001",
-      "kind": "MEMBER_CONTEXT_GENESIS",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-member-context-genesis.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
+      "kind": "OPEN_RESOLUTION",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-open-resolution.schema.json",
+      "scope_rule": "The opened scope becomes the maximum scope of this cycle.",
+      "terminal": false,
+      "to_status": "UNKNOWN"
     },
     {
-      "authorization_rule": "self-signed readiness or capability selected by decision kind",
+      "authority_rule": "The current Resolution Authority must match exact binding and scope.",
       "created_artifacts": [
-        "Decision"
+        "ResolutionRecord"
       ],
-      "handler": "_handle_decision",
+      "from_status": "UNKNOWN",
       "id": "SEED-TX-002",
-      "kind": "DECISION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-decision.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
+      "kind": "RESOLVE_ACCEPT",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
+      "scope_rule": "Decision scope must be equal to or narrower than the opened scope.",
+      "terminal": true,
+      "to_status": "ACCEPT"
     },
     {
-      "authorization_rule": "ISSUE_PERMIT",
+      "authority_rule": "The current Resolution Authority must match exact binding and scope.",
       "created_artifacts": [
-        "Permit"
+        "ResolutionRecord"
       ],
-      "handler": "_handle_permit_issue",
+      "from_status": "UNKNOWN",
       "id": "SEED-TX-003",
-      "kind": "PERMIT_ISSUE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-permit-issue.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
+      "kind": "RESOLVE_DENY",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
+      "scope_rule": "Decision scope must be equal to or narrower than the opened scope.",
+      "terminal": true,
+      "to_status": "DENY"
     },
     {
-      "authorization_rule": "active parent permit and new-delegate readiness",
+      "authority_rule": "An exact EscalationGrant must authorize the current and next Resolution Authorities.",
       "created_artifacts": [
-        "Permit"
+        "ResolutionRecord"
       ],
-      "handler": "_handle_permit_attenuate",
+      "from_status": "UNKNOWN",
       "id": "SEED-TX-004",
-      "kind": "PERMIT_ATTENUATE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-permit-attenuate.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "permit delegate and available attempt",
-      "created_artifacts": [
-        "ExecutionIntent",
-        "PermitUseReceipt"
-      ],
-      "handler": "_handle_permit_use",
-      "id": "SEED-TX-005",
-      "kind": "PERMIT_USE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-permit-use.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "presenter bound to permit-use receipt",
-      "created_artifacts": [
-        "Observation"
-      ],
-      "handler": "_handle_observation",
-      "id": "SEED-TX-006",
-      "kind": "OBSERVATION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-observation.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "VERIFY",
-      "created_artifacts": [
-        "Verification"
-      ],
-      "handler": "_handle_verification",
-      "id": "SEED-TX-007",
-      "kind": "VERIFICATION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-verification.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "CONFIRM_OUTCOME",
-      "created_artifacts": [
-        "Outcome"
-      ],
-      "handler": "_handle_outcome",
-      "id": "SEED-TX-008",
-      "kind": "OUTCOME",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-outcome.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "EXPORT",
-      "created_artifacts": [
-        "ExportReceipt"
-      ],
-      "handler": "_handle_export",
-      "id": "SEED-TX-009",
-      "kind": "EXPORT",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-export.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "IMPORT and local permit-use receipt",
-      "created_artifacts": [
-        "ImportRecord",
-        "Observation"
-      ],
-      "handler": "_handle_import",
-      "id": "SEED-TX-010",
-      "kind": "IMPORT",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-import.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "SUSPEND_GUARANTEE in parent context",
-      "created_artifacts": [
-        "context guarantee status"
-      ],
-      "handler": "_handle_guarantee_suspend",
-      "id": "SEED-TX-011",
-      "kind": "GUARANTEE_SUSPEND",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-guarantee-suspend.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "constitution-classified local operation and accepted proof",
-      "created_artifacts": [
-        "LocalCommit"
-      ],
-      "handler": "_handle_partition_local_transition",
-      "id": "SEED-TX-012",
-      "kind": "PARTITION_LOCAL_TRANSITION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-partition-local-transition.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "RECONCILE",
-      "created_artifacts": [
-        "ReconciliationReceipt"
-      ],
-      "handler": "_handle_reconcile",
-      "id": "SEED-TX-013",
-      "kind": "RECONCILE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-reconcile.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "member signature and no active normative dependant",
-      "created_artifacts": [
-        "MembershipWithdrawalRecord"
-      ],
-      "handler": "_handle_membership_withdraw",
-      "id": "SEED-TX-014",
-      "kind": "MEMBERSHIP_WITHDRAW",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-membership-withdraw.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "parent REDEFINE_CONTEXT plus exact member authorizations",
-      "created_artifacts": [
-        "ContextDescriptor",
-        "AuthorityBinding",
-        "MembershipWithdrawalRecord",
-        "ContextRedefinitionRecord"
-      ],
-      "handler": "_handle_context_redefine",
-      "id": "SEED-TX-015",
-      "kind": "CONTEXT_REDEFINE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-context-redefine.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "TERMINATE_CONTEXT plus PASS TRUST_LINEAGE_LOST verification",
-      "created_artifacts": [
-        "context lifecycle changes"
-      ],
-      "handler": "_handle_context_terminate",
-      "id": "SEED-TX-016",
-      "kind": "CONTEXT_TERMINATE",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-context-terminate.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "VERIFY",
-      "created_artifacts": [
-        "CorrectionRecord"
-      ],
-      "handler": "_handle_correction",
-      "id": "SEED-TX-017",
-      "kind": "CORRECTION",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-correction.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "authorization_rule": "TRANSFER_AUTHORITY plus same-context positive action trail",
-      "created_artifacts": [
-        "AuthorityBinding"
-      ],
-      "handler": "_handle_authority_transfer",
-      "id": "SEED-TX-018",
-      "kind": "AUTHORITY_TRANSFER",
-      "payload_schema": "seed/canonical/protocol/schemas/payload-authority-transfer.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "wire_schema_version": "0.1-rc11"
+      "kind": "ESCALATE_UNKNOWN",
+      "payload_schema": "seed/canonical/protocol/schemas/payload-escalate-unknown.schema.json",
+      "scope_rule": "Escalated scope must not expand and exact question binding must remain unchanged.",
+      "terminal": false,
+      "to_status": "UNKNOWN"
     }
   ],
-  "version": "0.1-rc12"
+  "version": "0.2.0-alpha.1"
 }

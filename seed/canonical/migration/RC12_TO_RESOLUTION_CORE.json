@@ -1,0 +1,163 @@
+{
+  "compatibility": "BREAKING",
+  "concept_mapping": [
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "TrustSpace",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "Genesis",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "Constitution",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "Context",
+      "resolution_core_target": "ContextBinding"
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "ContextDescriptor",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "Authority",
+      "resolution_core_target": "ResolutionAuthority"
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "AuthorityBinding",
+      "resolution_core_target": "ResolutionAuthority"
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "Decision",
+      "resolution_core_target": "ResolutionStatus"
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "Permit",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "ExecutionIntent",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "PermitUseReceipt",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "Observation",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "Verification",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "Outcome",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "Transition",
+      "resolution_core_target": "ResolutionRecord"
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "TransitionRecord",
+      "resolution_core_target": "ResolutionRecord"
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "ExportReceipt",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "ImportRecord",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "LocalCommit",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "ReconciliationReceipt",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "DependencyEdge",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "MembershipWithdrawalRecord",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "ContextRedefinitionRecord",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "MOVED_TO_CONTEXT_OR_FEDERATION_EXTENSION",
+      "predecessor_concept": "CorrectionRecord",
+      "resolution_core_target": null
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "StateRoot",
+      "resolution_core_target": "ContextBinding"
+    },
+    {
+      "disposition": "NARROWED_INTO_RESOLUTION_CORE",
+      "predecessor_concept": "Proof",
+      "resolution_core_target": "EvidenceReference"
+    },
+    {
+      "disposition": "MOVED_TO_MONADE_OR_IMPLEMENTATION_EXTENSION",
+      "predecessor_concept": "RuntimeStore",
+      "resolution_core_target": null
+    }
+  ],
+  "decision": "The active Seed is narrowed to verifiable resolution of UNKNOWN into ACCEPT or DENY with explicit authority escalation.",
+  "document_type": "aset-seed-breaking-semantic-narrowing",
+  "downstream_effect": "Existing 0.1-rc12 implementations must not update only the canon lock and continue to claim conformance. They must implement ASET-SEED-RESOLUTION-CONFORMANCE-V1 or remain pinned to the historical canon.",
+  "from_version": "0.1-rc12",
+  "preserved_principles": [
+    "implementation neutrality",
+    "fail-closed rejection",
+    "exact state binding",
+    "scoped authority",
+    "append-only provenance",
+    "no implicit authority inheritance"
+  ],
+  "removed_from_core": [
+    "execution lifecycle",
+    "Permit consumption",
+    "Observation and Verification workflow",
+    "federation topology",
+    "partition and reconciliation",
+    "membership lifecycle",
+    "runtime storage"
+  ],
+  "schema_version": 1,
+  "to_version": "0.2.0-alpha.1"
+}

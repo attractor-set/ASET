@@ -1,0 +1,58 @@
+{
+  "candidate": {
+    "kind": "OPEN_RESOLUTION",
+    "payload": {
+      "authority": {
+        "authority_id": "authority:local",
+        "context_id": "context:local",
+        "policy_epoch": 1,
+        "scope": [
+          "repo:patch"
+        ]
+      },
+      "context_id": "context:local",
+      "escalation_grants": [],
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "case_id": "RES-NEG-013",
+  "description": "An already opened resolution cycle cannot be opened again.",
+  "expected": {
+    "accepted": false,
+    "code": "RESOLUTION_ALREADY_OPEN",
+    "enforcement": "BLOCKED",
+    "semantic_status": "UNKNOWN",
+    "state_changed": false
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "UNKNOWN"
+  },
+  "postconditions": [
+    {
+      "equals": "UNKNOWN",
+      "path": "/status"
+    }
+  ],
+  "setup": []
+}

@@ -43,7 +43,7 @@ def test_ci_workflows_have_distinct_assurance_roles():
 def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
     model_report = tmp_path / "model.json"
     first = subprocess.run(
-        [sys.executable, "tools/model_check_rc12.py", "--output", str(model_report)],
+        [sys.executable, "tools/model_check_seed.py", "--output", str(model_report)],
         cwd=ROOT,
         text=True,
         capture_output=True,

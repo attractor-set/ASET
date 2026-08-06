@@ -6,8 +6,6 @@ on:
       - main
     paths:
       - seed/canonical/CANON_PACKAGE.json
-      - aset/components/monade/canonical/**
-      - aset/profiles/monade-attempt-evidence/**
 
   workflow_dispatch:
 
@@ -41,6 +39,8 @@ jobs:
           )
 
           digest = package["package_digest"]
+          version = package["canon_version"]
+          protocol = package["conformance_protocol"]
 
           if (
               not isinstance(digest, str)
@@ -56,12 +56,22 @@ jobs:
           printf 'ASET_REF=%s\n' "$GITHUB_SHA"
           printf 'ASET_PACKAGE_DIGEST=%s\n' "$DIGEST"
 
+          VERSION="$(python -c 'import json; print(json.load(open("seed/canonical/CANON_PACKAGE.json"))["canon_version"])')"
+          PROTOCOL="$(python -c 'import json; print(json.load(open("seed/canonical/CANON_PACKAGE.json"))["conformance_protocol"])')"
+          CHANGE_CLASS="$(python -c 'import json; print(json.load(open("seed/canonical/migration/CANON_CHANGE_DECLARATION.json"))["change_class"])')"
+
           printf 'digest=%s\n' "$DIGEST" >> "$GITHUB_OUTPUT"
+          printf 'version=%s\n' "$VERSION" >> "$GITHUB_OUTPUT"
+          printf 'protocol=%s\n' "$PROTOCOL" >> "$GITHUB_OUTPUT"
+          printf 'change_class=%s\n' "$CHANGE_CLASS" >> "$GITHUB_OUTPUT"
 
       - name: Notify aset-python-sqlite
         env:
           GH_TOKEN: ${{ secrets.ASET_PROFILE_AUTOMATION_TOKEN }}
           PACKAGE_DIGEST: ${{ steps.canon.outputs.digest }}
+          CANON_VERSION: ${{ steps.canon.outputs.version }}
+          CONFORMANCE_PROTOCOL: ${{ steps.canon.outputs.protocol }}
+          CHANGE_CLASS: ${{ steps.canon.outputs.change_class }}
         shell: bash
         run: |
           set -euo pipefail
@@ -70,11 +80,17 @@ jobs:
             jq -n \
               --arg ref "$GITHUB_SHA" \
               --arg digest "$PACKAGE_DIGEST" \
+              --arg version "$CANON_VERSION" \
+              --arg protocol "$CONFORMANCE_PROTOCOL" \
+              --arg change_class "$CHANGE_CLASS" \
               '{
                 event_type: "aset-canon-updated",
                 client_payload: {
                   ref: $ref,
-                  package_digest: $digest
+                  package_digest: $digest,
+                  canon_version: $version,
+                  conformance_protocol: $protocol,
+                  change_class: $change_class
                 }
               }'
           )"

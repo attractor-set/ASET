@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
+    "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
     "topics": [
       "accountability",
       "ai-governance",
@@ -20,7 +20,8 @@
       "trust-infrastructure",
       "trustworthy-ai",
       "implementation-neutral",
-      "model-based-testing"
+      "model-based-testing",
+      "resolution-protocol"
     ]
   },
   "abstract": "ASET defines an open, implementation-neutral trust and accountability semantics that binds authority, context, decisions, permits, gates, transitions, evidence, verification and outcomes. Its machine canon, formal models and language-neutral conformance protocol allow independent implementations to be tested without giving any technology semantic precedence.",
@@ -30,7 +31,7 @@
     "type": "Person",
     "url": "https://github.com/attractor-set"
   },
-  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, enabling model-based conformance and verifiable accountability across heterogeneous sociotechnical systems.",
+  "description": "ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails, with a minimal Seed for verifiable UNKNOWN-to-ACCEPT-or-DENY resolution.",
   "document_type": "aset-project-metadata",
   "expanded_name": "Authority-Signed Evidence Trail",
   "languages": [
@@ -53,7 +54,7 @@
   "release": {
     "date_released": "2026-08-04",
     "development_status": "active",
-    "version": "0.1-rc12"
+    "version": "0.2.0-alpha.1"
   },
   "repository": {
     "actions": "https://github.com/attractor-set/ASET/actions",

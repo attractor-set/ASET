@@ -1,3 +1,3 @@
-# Formal assurance
+# ASET Seed resolution-core formal projection
 
-`SeedRC12.tla` is a bounded safety abstraction of the production profile. The executable `tools/model_check_rc12.py` explores the corresponding finite transition system in CI. It does not replace the concrete 55-vector conformance suite or prove deployment-specific key management, distributed consensus, or physical truth.
+`SeedResolution.tla` models the bounded decision lattice `UNKNOWN -> ACCEPT | DENY` and an explicitly authorized acyclic authority chain. It is an assurance projection, not an implementation or an unbounded proof.

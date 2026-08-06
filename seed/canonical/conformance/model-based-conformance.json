@@ -1,14 +1,14 @@
 {
   "document_type": "aset-model-based-conformance",
   "model": {
-    "command_set": "canonical Transition documents admitted by the protocol profile",
-    "formal_projection": "seed/canonical/formal/SeedRC12.tla",
-    "state_set": "canonical TrustSpace states valid under Seed requirements and invariants",
-    "transition_relation": "delta(state, command) -> accepted result with next state and artifacts, or rejected result with unchanged state"
+    "command_set": "OPEN_RESOLUTION, RESOLVE_ACCEPT, RESOLVE_DENY and ESCALATE_UNKNOWN",
+    "formal_projection": "seed/canonical/formal/SeedResolution.tla",
+    "state_set": "ResolutionCycle states satisfying the Seed resolution invariants",
+    "transition_relation": "delta(state, command) produces a canonical result or rejects with unchanged state"
   },
   "normative": true,
-  "profile_boundary": "Durability, concurrency, storage, networking and recovery guarantees are tested by the implementation profile and are not Seed semantic conformance.",
-  "refinement_obligation": "For every conformance trace, the canonical observation of an implementation result MUST equal the canonical observation required by the model.",
-  "rejection_obligation": "A rejected command MUST preserve the canonical state and state root.",
-  "schema_version": 1
+  "profile_boundary": "Federation topology, execution, evidence acquisition, memory, planning, storage, durability and cryptographic providers are extension or implementation responsibilities.",
+  "rejection_obligation": "A rejected command MUST preserve canonical state and state root.",
+  "resolution_obligation": "UNKNOWN may narrow only to ACCEPT or DENY, or remain UNKNOWN while moving through an explicitly authorized acyclic Resolution Authority chain.",
+  "schema_version": 2
 }

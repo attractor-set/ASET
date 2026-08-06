@@ -1,78 +1,55 @@
 {
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/implementation-conformance-protocol.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ASET implementation conformance protocol",
-  "type": "object",
   "additionalProperties": false,
-  "required": [
-    "document_type",
-    "protocol_id",
-    "schema_version",
-    "normative",
-    "implementation_precedence",
-    "response_schema_ref",
-    "transport",
-    "operations",
-    "verdict_authority",
-    "observable_equivalence"
-  ],
   "properties": {
-    "document_type": {"const": "aset-implementation-conformance-protocol"},
-    "protocol_id": {"const": "ASET-IMPLEMENTATION-CONFORMANCE-V1"},
-    "schema_version": {"const": 1},
-    "normative": {"const": true},
-    "implementation_precedence": {"const": "NONE"},
+    "document_type": {
+      "const": "aset-implementation-conformance-protocol"
+    },
+    "implementation_precedence": {
+      "const": "NONE"
+    },
+    "normative": {
+      "const": true
+    },
+    "observable_equivalence": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 7,
+      "type": "array"
+    },
+    "operations": {
+      "type": "object"
+    },
+    "protocol_id": {
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+    },
     "response_schema_ref": {
       "const": "seed/canonical/schemas/implementation-conformance-envelope.schema.json"
     },
-    "observable_equivalence": {
-      "type": "array",
-      "minItems": 5,
-      "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
-    },
-    "operations": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["describe", "execute_case", "execute_cases"],
-      "properties": {
-        "describe": {"$ref": "#/$defs/operation"},
-        "execute_case": {"$ref": "#/$defs/operation"},
-        "execute_cases": {"$ref": "#/$defs/operation"}
-      }
+    "schema_version": {
+      "const": 2
     },
     "transport": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "framing",
-        "network_required",
-        "process_exit",
-        "session",
-        "determinism",
-        "timeout_policy"
-      ],
-      "properties": {
-        "framing": {"type": "string", "minLength": 30},
-        "network_required": {"const": false},
-        "process_exit": {"type": "string", "minLength": 30},
-        "session": {"type": "string", "minLength": 50},
-        "determinism": {"type": "string", "minLength": 50},
-        "timeout_policy": {"type": "string", "minLength": 50}
-      }
+      "type": "object"
     },
-    "verdict_authority": {"type": "string", "minLength": 40}
-  },
-  "$defs": {
-    "operation": {
-      "type": "object",
-      "minProperties": 2,
-      "additionalProperties": {
-        "type": "array",
-        "minItems": 1,
-        "uniqueItems": true,
-        "items": {"type": "string", "minLength": 1}
-      }
+    "verdict_authority": {
+      "minLength": 1,
+      "type": "string"
     }
-  }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "protocol_id",
+    "normative",
+    "implementation_precedence",
+    "verdict_authority",
+    "observable_equivalence",
+    "response_schema_ref",
+    "operations",
+    "transport"
+  ],
+  "type": "object"
 }

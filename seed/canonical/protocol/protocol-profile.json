@@ -1,337 +1,86 @@
 {
-  "canonical_encoding": {
-    "domain_separation": true,
-    "encoding": "UTF-8 JSON",
-    "hash": "SHA-256",
-    "length_framing": true,
-    "numbers": "integers only",
-    "object_keys": "sorted",
-    "unicode": "NFC"
-  },
-  "compatibility_policy": "RC12 preserves rc11 accepted/rejected semantics and identity domains. Frozen rc11 bytes remain unchanged.",
-  "document_type": "aset-seed-protocol-profile",
-  "profile_id": "ASET-SEED-WIRE-0.1-RC11-COMPAT",
-  "proof_profiles": [
-    "EXTERNAL_PROOF_VERIFIER",
-    "HMAC_SHA256_V1"
+  "document_type": "aset-seed-resolution-protocol-profile",
+  "enforcement_values": [
+    "BLOCKED",
+    "ALLOW"
   ],
-  "rc12_semantic_release": "0.1-rc12",
-  "schema_count": 39,
+  "implementation_precedence": "NONE",
+  "normative": true,
+  "profile_id": "ASET-SEED-RESOLUTION-WIRE-V1",
+  "schema_count": 10,
   "schema_version": 1,
   "schemas": [
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/authority-binding.schema.json",
-      "name": "authority-binding.schema.json",
-      "path": "seed/canonical/protocol/schemas/authority-binding.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:fffa30b84e6bd54bb873851006c126bdac1856555ec80d6196139233b9d0bb39",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/common.schema.json",
+      "id": "https://spec.aset.example/seed/0.2/schemas/common.schema.json",
       "name": "common.schema.json",
       "path": "seed/canonical/protocol/schemas/common.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:bc7105aebd014a41affecf302fc6b52ee99b4fed5d50058882aeeba66a871df5",
-      "wire_schema_version": "0.1-rc11"
+      "sha256": "sha256:6f46104b4d0958c90fa9a81b456fe2c628efd4dc11292bf04ac3c01b6c749409"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/conformance-case.schema.json",
-      "name": "conformance-case.schema.json",
-      "path": "seed/canonical/protocol/schemas/conformance-case.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:57b45d6329ffdb0f0c4d44b46fff4efe1dd222deb2595bc2b124b0526e895a2f",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-authority.schema.json",
+      "name": "resolution-authority.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-authority.schema.json",
+      "sha256": "sha256:2187015b87225931f69504fb806ba45207636081d48539dc613df4e4d0da24ce"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/constitution.schema.json",
-      "name": "constitution.schema.json",
-      "path": "seed/canonical/protocol/schemas/constitution.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:9a72dc02bf20bbecb4b90a1b610a36f13b86df136e106779cf3559c7afccff58",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/escalation-grant.schema.json",
+      "name": "escalation-grant.schema.json",
+      "path": "seed/canonical/protocol/schemas/escalation-grant.schema.json",
+      "sha256": "sha256:dcc5880785aa3aa4bfb29e6b9241f64e46fb574d2db0f81af66e0d9cc67dce69"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/context-descriptor.schema.json",
-      "name": "context-descriptor.schema.json",
-      "path": "seed/canonical/protocol/schemas/context-descriptor.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:bdb68557cc76d4e455099f55aa9823410be2e91563d8a9eac39ab854a76c48f9",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-record.schema.json",
+      "name": "resolution-record.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-record.schema.json",
+      "sha256": "sha256:a63b22ddc0a819dff77f30da2e7da4d851d01a96df67c798e962d4491c1c9bfe"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/context-redefinition-record.schema.json",
-      "name": "context-redefinition-record.schema.json",
-      "path": "seed/canonical/protocol/schemas/context-redefinition-record.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:2fd0353277cc1ba627e0d2787b93e615696be08d709f3ae1d45a1a8b2f7b90c2",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/resolution-state.schema.json",
+      "name": "resolution-state.schema.json",
+      "path": "seed/canonical/protocol/schemas/resolution-state.schema.json",
+      "sha256": "sha256:ea7a13e18f04a8b5126fbf91cc2b338d3463d9a1c527b95a89fcc3df2a824e64"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/correction-record.schema.json",
-      "name": "correction-record.schema.json",
-      "path": "seed/canonical/protocol/schemas/correction-record.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:c4057bd148f08e4eadc3525ccaad43d6c7936afdb128438dfac3660f22eb8814",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/payload-open-resolution.schema.json",
+      "name": "payload-open-resolution.schema.json",
+      "path": "seed/canonical/protocol/schemas/payload-open-resolution.schema.json",
+      "sha256": "sha256:a34f7125d4158c1ca57faf421e1f0a66fb5fc9b8f4f1b1a762f875d22eb5edfe"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/decision.schema.json",
-      "name": "decision.schema.json",
-      "path": "seed/canonical/protocol/schemas/decision.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:fdeedb26f090d9ae21a73aba67b04e59e97cc6cd88820ad508e52a80e67af4f3",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/payload-resolve.schema.json",
+      "name": "payload-resolve.schema.json",
+      "path": "seed/canonical/protocol/schemas/payload-resolve.schema.json",
+      "sha256": "sha256:fc9faad2f67d922b0c1d27b7f6ddb5b58f3c2c254105ef490f1bdfb4a77eb667"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/execution-intent.schema.json",
-      "name": "execution-intent.schema.json",
-      "path": "seed/canonical/protocol/schemas/execution-intent.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:93362ed26690871b804834f6e7837108fead16a30e352f9a68d0373064389a5c",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/payload-escalate-unknown.schema.json",
+      "name": "payload-escalate-unknown.schema.json",
+      "path": "seed/canonical/protocol/schemas/payload-escalate-unknown.schema.json",
+      "sha256": "sha256:a2b7e22c86ec92c4ccae2720e5ff266d559c6145f06e9f46644818ebe324c6c3"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/export-receipt.schema.json",
-      "name": "export-receipt.schema.json",
-      "path": "seed/canonical/protocol/schemas/export-receipt.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:54820f2ce98a9bb8af5f4977d4bdd559427397de63531b532c40fd06fc9081c5",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/import-observation.schema.json",
-      "name": "import-observation.schema.json",
-      "path": "seed/canonical/protocol/schemas/import-observation.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:1c26f94e93f078d998bbdf3e95ca47b10e2e88602fc0e5ed319b47028ac7eb39",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/membership-withdrawal-record.schema.json",
-      "name": "membership-withdrawal-record.schema.json",
-      "path": "seed/canonical/protocol/schemas/membership-withdrawal-record.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:1e79ca9fb2d7b56a1cbc6a1c00f13358030adf0d4694d592ebef34fba6031e71",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/observation.schema.json",
-      "name": "observation.schema.json",
-      "path": "seed/canonical/protocol/schemas/observation.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:60cac8b03c38ab0524f3d99823c6ac6f4284bfb1f612efeefe47cee913dc7796",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/outcome.schema.json",
-      "name": "outcome.schema.json",
-      "path": "seed/canonical/protocol/schemas/outcome.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:92be42cb436d998f91faf8b8a4b1eac9d332b1432b54e87340121b4869b6c706",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-authority-transfer.schema.json",
-      "name": "payload-authority-transfer.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-authority-transfer.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:4831aafefd0412d5ff1a136fed3b3a657db302d0e7d671a235aef163c79429c8",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-context-redefine.schema.json",
-      "name": "payload-context-redefine.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-context-redefine.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:833084d7ea8bb080f8464370f2991ebfaced6607842dd2d456903f7b0fc52569",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-context-terminate.schema.json",
-      "name": "payload-context-terminate.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-context-terminate.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:6b803ec2d7c6ab9cf098a80a32875cd7aa8f938fd99b6430510a5dd5a086f432",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-correction.schema.json",
-      "name": "payload-correction.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-correction.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:23ea29d8e5da1ed85b4a5566aac7734d7e83927e28ae330e9637aa386df90514",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-decision.schema.json",
-      "name": "payload-decision.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-decision.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:77f482fc4fdec17410dd0a6c59698e2260969a56ea8bd9c18e026899976a6090",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-export.schema.json",
-      "name": "payload-export.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-export.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:1edfadc3582a75bb9832b5a7913f5f50177ef5c8b4faf0a7cacd3bca96419275",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-guarantee-suspend.schema.json",
-      "name": "payload-guarantee-suspend.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-guarantee-suspend.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:ee9e791d467f3b1776f4751d1be46ddc4a394699b5e56e063ff1b1a684651e42",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-import.schema.json",
-      "name": "payload-import.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-import.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:f37c53635c8db33cc849a35e3379a68d9a80be3ec0e44f9cc64af9fbb0d382b4",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-member-context-genesis.schema.json",
-      "name": "payload-member-context-genesis.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-member-context-genesis.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:218cf717aa6c1da148568b0167aa25495d013d9d69755709888113777d969c1c",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-membership-withdraw.schema.json",
-      "name": "payload-membership-withdraw.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-membership-withdraw.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:8953d37084477bb009f2cd5db0accc43b7dc0d6a555903f4d3c6eeee5fbd0528",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-observation.schema.json",
-      "name": "payload-observation.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-observation.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:d218234511b2cf68484bf2d32ec8500506172557f5e46fe5040633463710ab3d",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-outcome.schema.json",
-      "name": "payload-outcome.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-outcome.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:8800f5cb5d66c5758027777b89a0b28acbad9173e1ff89114d0b4ab4a49e91c7",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-partition-local-transition.schema.json",
-      "name": "payload-partition-local-transition.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-partition-local-transition.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:6ae208300829f1f83806506cac1d22cf313ff32a8bdd53f4c7954b5808b3b62f",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-permit-attenuate.schema.json",
-      "name": "payload-permit-attenuate.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-permit-attenuate.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:680dce823fd17f511080f58617b214f5e73d445b16173090112f7ddb3eaa438f",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-permit-issue.schema.json",
-      "name": "payload-permit-issue.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-permit-issue.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:76c28709068fc90467b23cbdc21a10663a479b5c6a855988ca918d00b6daf62c",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-permit-use.schema.json",
-      "name": "payload-permit-use.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-permit-use.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:3bc589d919e1893c066197cb2cc213904c8976bffb0f01df6e0df1e11672ad6f",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-reconcile.schema.json",
-      "name": "payload-reconcile.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-reconcile.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:415450a4a88d20e22489a14aac14e2394f240ed24fcf4fdeecf130c90bba7453",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/payload-verification.schema.json",
-      "name": "payload-verification.schema.json",
-      "path": "seed/canonical/protocol/schemas/payload-verification.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:7709adcc14d5c25c52c8313e5a8642b1a093b5b75fb79522e9ee47bbddcb4674",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/permit-use-receipt.schema.json",
-      "name": "permit-use-receipt.schema.json",
-      "path": "seed/canonical/protocol/schemas/permit-use-receipt.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:375621cc2aeab3a67e1a15e210ad27479ba9772b35dbd126a08dd9878985dc29",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/permit.schema.json",
-      "name": "permit.schema.json",
-      "path": "seed/canonical/protocol/schemas/permit.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:cf4a02399a82a7c1ebf046bececc50ec678d78bc4f93761c22c6e405cd10dc5f",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/reconciliation-receipt.schema.json",
-      "name": "reconciliation-receipt.schema.json",
-      "path": "seed/canonical/protocol/schemas/reconciliation-receipt.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:f5ccd6922da37f1ecf6113d616538346138c25c3654b87e930a8dc6bef2dcd04",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/root-genesis.schema.json",
-      "name": "root-genesis.schema.json",
-      "path": "seed/canonical/protocol/schemas/root-genesis.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:73025e6332df60e341d10cb27e5989cce3935cb42d40ab0cceed46a71f39b99f",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/transition.schema.json",
+      "id": "https://spec.aset.example/seed/0.2/schemas/transition.schema.json",
       "name": "transition.schema.json",
       "path": "seed/canonical/protocol/schemas/transition.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:f6fa72461607e0aade27142da2e9ca7ec1683e57f1e71f148eef3ed4226ebdd7",
-      "wire_schema_version": "0.1-rc11"
+      "sha256": "sha256:15532c4d703030263c636bedfd130c33efd0af5b0185cd1c149cda46d6393ac3"
     },
     {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/trust-space-state.schema.json",
-      "name": "trust-space-state.schema.json",
-      "path": "seed/canonical/protocol/schemas/trust-space-state.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:f245cf6a37a5b67f754ab3df4a151c04c3c301cebf02867374a688880b97cad4",
-      "wire_schema_version": "0.1-rc11"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.1-rc11/schemas/verification.schema.json",
-      "name": "verification.schema.json",
-      "path": "seed/canonical/protocol/schemas/verification.schema.json",
-      "semantic_disposition": "PRESERVED_EXACTLY_FROM_RC11",
-      "sha256": "sha256:0653d498cce281d578a1952682291f3c3e52e71376406a8cfb7c8778751a3872",
-      "wire_schema_version": "0.1-rc11"
+      "id": "https://spec.aset.example/seed/0.2/schemas/conformance-case.schema.json",
+      "name": "conformance-case.schema.json",
+      "path": "seed/canonical/protocol/schemas/conformance-case.schema.json",
+      "sha256": "sha256:ef7214342f5fe36faadea2230412dafd5e4ae7f9239579121fd7d7cd818ad3c5"
     }
   ],
-  "transition_schema": "seed/canonical/protocol/schemas/transition.schema.json",
-  "wire_schema_version": "0.1-rc11"
+  "seed_version": "0.2.0-alpha.1",
+  "status_values": [
+    "UNKNOWN",
+    "ACCEPT",
+    "DENY"
+  ],
+  "transition_kinds": [
+    "OPEN_RESOLUTION",
+    "RESOLVE_ACCEPT",
+    "RESOLVE_DENY",
+    "ESCALATE_UNKNOWN"
+  ]
 }

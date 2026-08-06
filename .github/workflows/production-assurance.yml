@@ -34,32 +34,19 @@ jobs:
       - name: Run independent formal models
         timeout-minutes: 5
         run: |
-          python tools/model_check_rc12.py --output dist/rc12-model-check.json
-          python tools/check_assurance_traceability.py --model-report dist/rc12-model-check.json
-          python tools/model_check_components.py --check
-          python tools/model_check_monade_attempt_profile.py --check
+          python tools/model_check_seed.py --output dist/seed-model-check.json
+          python tools/check_assurance_traceability.py --model-report dist/seed-model-check.json
           python tools/run_tlc.py \
             --jar "$RUNNER_TEMP/tla2tools.jar" \
             --workers 2 \
             --timeout-seconds 180 \
             --output dist/tlc-model-check.json
-      - name: Run component black-box assurance
-        run: |
-          python tools/build_release.py
-          python tools/blackbox_component_audit.py \
-            dist/ASET-Repository-Snapshot.zip \
-            --output-json dist/blackbox-component-audit.json \
-            --output-md dist/blackbox-component-audit.md
-          python tools/run_component_blackbox_adversarial.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: aset-formal-adversarial-assurance
           if-no-files-found: warn
           path: |
-            dist/rc12-model-check.json
+            dist/seed-model-check.json
             dist/assurance-traceability.json
             dist/tlc-model-check.json
-            dist/blackbox-component-audit.json
-            dist/blackbox-component-audit.md
-            aset/profiles/monade-attempt-evidence/canonical/formal/results.json

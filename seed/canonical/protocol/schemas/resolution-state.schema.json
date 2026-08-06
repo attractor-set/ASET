@@ -1,0 +1,70 @@
+{
+  "$id": "https://spec.aset.example/seed/0.2/schemas/resolution-state.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority_chain": {
+      "items": {
+        "$ref": "common.schema.json#/$defs/identifier"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "context_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "current_authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "enforcement": {
+      "$ref": "common.schema.json#/$defs/enforcement"
+    },
+    "escalation_grants": {
+      "items": {
+        "$ref": "escalation-grant.schema.json"
+      },
+      "type": "array"
+    },
+    "policy_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "question_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "records": {
+      "items": {
+        "$ref": "resolution-record.schema.json"
+      },
+      "type": "array"
+    },
+    "resolution_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
+    },
+    "scope": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "state_root": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    }
+  },
+  "required": [
+    "resolution_id",
+    "context_id",
+    "state_root",
+    "question_digest",
+    "policy_epoch",
+    "scope",
+    "status",
+    "enforcement",
+    "current_authority_id",
+    "authority_chain",
+    "escalation_grants",
+    "records"
+  ],
+  "type": "object"
+}

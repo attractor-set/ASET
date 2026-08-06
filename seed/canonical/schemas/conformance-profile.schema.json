@@ -1,35 +1,79 @@
 {
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/conformance-profile.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "case_count": {
-      "type": "integer"
+      "const": 21
     },
     "cases": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "object"
+          },
+          "path": {
+            "type": "string"
+          },
+          "polarity": {
+            "enum": [
+              "positive",
+              "negative"
+            ]
+          },
+          "sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "case_id",
+          "path",
+          "polarity",
+          "expected",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 21,
+      "minItems": 21,
       "type": "array"
     },
     "document_type": {
-      "const": "aset-seed-conformance-profile"
+      "const": "aset-seed-resolution-conformance-profile"
+    },
+    "negative_count": {
+      "const": 13
+    },
+    "positive_count": {
+      "const": 8
     },
     "profile_id": {
-      "type": "string"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V1"
     },
-    "schema_count": {
-      "type": "integer"
+    "protocol": {
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
     },
     "schema_version": {
       "const": 1
     },
-    "schemas": {
-      "type": "array"
+    "seed_version": {
+      "const": "0.2.0-alpha.1"
     }
   },
   "required": [
     "document_type",
     "schema_version",
     "profile_id",
+    "seed_version",
+    "protocol",
     "case_count",
+    "positive_count",
+    "negative_count",
     "cases"
   ],
   "type": "object"

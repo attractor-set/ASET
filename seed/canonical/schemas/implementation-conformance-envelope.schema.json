@@ -1,66 +1,141 @@
 {
-  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/implementation-conformance-envelope.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ASET implementation conformance response envelopes",
   "$defs": {
     "actual": {
-      "type": "object",
       "additionalProperties": false,
-      "required": ["accepted", "code", "state_changed"],
       "properties": {
-        "accepted": {"type": "boolean"},
-        "code": {"type": "string", "minLength": 1},
-        "state_changed": {"type": "boolean"}
-      }
-    },
-    "case_result": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["protocol", "case_id", "actual", "final_state"],
-      "properties": {
-        "protocol": {"const": "ASET-IMPLEMENTATION-CONFORMANCE-V1"},
-        "case_id": {"type": "string", "minLength": 1},
-        "actual": {"$ref": "#/$defs/actual"},
-        "final_state": {"type": ["object", "null"]}
-      }
-    },
-    "describe_response": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["protocol", "implementation", "supported_operations"],
-      "properties": {
-        "protocol": {"const": "ASET-IMPLEMENTATION-CONFORMANCE-V1"},
-        "implementation": {
-          "type": "object",
-          "required": ["profile_id", "normative"],
-          "properties": {
-            "profile_id": {"type": "string", "minLength": 1},
-            "normative": {"const": false}
-          }
+        "accepted": {
+          "type": "boolean"
         },
-        "supported_operations": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {"enum": ["describe", "execute_case", "execute_cases"]},
-          "allOf": [
-            {"contains": {"const": "describe"}},
-            {"contains": {"const": "execute_case"}},
-            {"contains": {"const": "execute_cases"}}
-          ]
+        "code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "enforcement": {
+          "$ref": "common.schema.json#/$defs/enforcement"
+        },
+        "semantic_status": {
+          "$ref": "common.schema.json#/$defs/status"
+        },
+        "state_changed": {
+          "type": "boolean"
         }
-      }
+      },
+      "required": [
+        "accepted",
+        "code",
+        "state_changed",
+        "semantic_status",
+        "enforcement"
+      ],
+      "type": "object"
     },
     "batch_response": {
-      "type": "object",
       "additionalProperties": false,
-      "required": ["protocol", "results"],
       "properties": {
-        "protocol": {"const": "ASET-IMPLEMENTATION-CONFORMANCE-V1"},
+        "protocol": {
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+        },
         "results": {
-          "type": "array",
-          "items": {"$ref": "#/$defs/case_result"}
+          "items": {
+            "$ref": "#/$defs/case_result"
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "protocol",
+        "results"
+      ],
+      "type": "object"
+    },
+    "case_result": {
+      "additionalProperties": false,
+      "properties": {
+        "actual": {
+          "$ref": "#/$defs/actual"
+        },
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "final_state": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "protocol": {
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+        }
+      },
+      "required": [
+        "protocol",
+        "case_id",
+        "actual",
+        "final_state"
+      ],
+      "type": "object"
+    },
+    "describe_response": {
+      "additionalProperties": false,
+      "properties": {
+        "implementation": {
+          "properties": {
+            "normative": {
+              "const": false
+            },
+            "profile_id": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "profile_id",
+            "normative"
+          ],
+          "type": "object"
+        },
+        "protocol": {
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
+        },
+        "supported_operations": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "describe"
+              }
+            },
+            {
+              "contains": {
+                "const": "execute_case"
+              }
+            },
+            {
+              "contains": {
+                "const": "execute_cases"
+              }
+            }
+          ],
+          "items": {
+            "enum": [
+              "describe",
+              "execute_case",
+              "execute_cases"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "protocol",
+        "implementation",
+        "supported_operations"
+      ],
+      "type": "object"
     }
-  }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/implementation-conformance-envelope.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ASET Seed resolution conformance response envelopes"
 }

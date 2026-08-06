@@ -3,104 +3,56 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "assurance_boundary": {
-      "additionalProperties": {
-        "type": "string"
-      },
-      "minProperties": 8,
-      "type": "object"
+    "active_conformance_protocol": {
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
     },
-    "current_stable_seed_release": {
-      "const": "0.1-rc11"
+    "active_seed_model": {
+      "const": "seed/canonical/source/seed-model.json"
     },
-    "current_stable_seed_status": {
-      "const": "FROZEN_AUDITED_PASS_WITH_LIMITATIONS"
+    "active_seed_status": {
+      "const": "RESOLUTION_CORE_ALPHA"
+    },
+    "active_seed_version": {
+      "const": "0.2.0-alpha.1"
     },
     "document_type": {
       "const": "aset-repository-status"
     },
-    "embedded_runtime": {
-      "const": "NOT_PROVIDED"
-    },
-    "expanded_rc11": {
-      "const": "BYTE_EXACT_MATERIALIZATION"
+    "extension_separation": {
+      "const": "IN_PROGRESS"
     },
     "external_third_party_audit": {
       "const": "PENDING"
     },
-    "frozen_seed_bundle_sha256": {
-      "pattern": "^sha256:[0-9a-f]{64}$"
-    },
-    "frozen_seed_documentation_sha256": {
-      "pattern": "^sha256:[0-9a-f]{64}$"
-    },
-    "generated_languages": {
-      "const": [
-        "ru",
-        "en",
-        "pt-BR"
-      ]
-    },
     "implementation_precedence": {
       "const": "NONE"
     },
-    "machine_readable_canon": {
-      "const": "NORMATIVE_CANON_COMPLETE"
+    "predecessor_status": {
+      "const": "HISTORICAL_MIGRATION_SOURCE"
     },
-    "next_seed_status": {
-      "const": "RC12_RELEASE_CANDIDATE_READY"
-    },
-    "next_seed_version": {
+    "predecessor_version": {
       "const": "0.1-rc12"
     },
-    "reference_implementation": {
-      "const": "NOT_INCLUDED_IN_SPECIFICATION_REPOSITORY"
-    },
-    "repository": {
-      "const": "ASET"
-    },
-    "repository_release_gate": {
-      "const": "REPOSITORY_RELEASE_GATE_REQUIRED_ON_EVERY_MAIN_CHANGE"
-    },
-    "repository_release_readiness": {
-      "const": "SPECIFICATION_AND_CONFORMANCE_PACKAGE_READY"
-    },
     "repository_role": {
-      "const": "NORMATIVE_SPECIFICATION_CONFORMANCE_AND_FORMAL_MODELS"
-    },
-    "repository_url": {
-      "const": "https://github.com/attractor-set/ASET"
+      "const": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION"
     },
     "schema_version": {
-      "const": 3
-    },
-    "wire_compatibility_profile": {
-      "const": "ASET-SEED-WIRE-0.1-RC11-COMPAT"
+      "const": 2
     }
   },
   "required": [
     "document_type",
     "schema_version",
-    "repository",
-    "repository_url",
     "repository_role",
-    "repository_release_readiness",
-    "repository_release_gate",
-    "current_stable_seed_release",
-    "current_stable_seed_status",
-    "next_seed_version",
-    "next_seed_status",
-    "machine_readable_canon",
-    "reference_implementation",
-    "embedded_runtime",
+    "active_seed_version",
+    "active_seed_status",
+    "active_seed_model",
+    "active_conformance_protocol",
+    "predecessor_status",
+    "predecessor_version",
     "implementation_precedence",
-    "wire_compatibility_profile",
-    "external_third_party_audit",
-    "expanded_rc11",
-    "frozen_seed_bundle_sha256",
-    "frozen_seed_documentation_sha256",
-    "generated_languages",
-    "assurance_boundary"
+    "extension_separation",
+    "external_third_party_audit"
   ],
   "title": "ASET repository status",
   "type": "object"

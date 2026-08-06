@@ -1,0 +1,106 @@
+{
+  "candidate": {
+    "kind": "ESCALATE_UNKNOWN",
+    "payload": {
+      "context_id": "context:local",
+      "from_authority_id": "authority:regional",
+      "grant_id": "grant:regional-federal",
+      "policy_epoch": 1,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "to_authority": {
+        "authority_id": "authority:federal",
+        "context_id": "context:federation",
+        "policy_epoch": 1,
+        "scope": [
+          "repo:patch"
+        ]
+      }
+    }
+  },
+  "case_id": "RES-POS-007",
+  "description": "UNKNOWN can follow an explicitly authorized multi-level resolution chain.",
+  "expected": {
+    "accepted": true,
+    "code": "ESCALATED_UNKNOWN",
+    "enforcement": "BLOCKED",
+    "semantic_status": "UNKNOWN",
+    "state_changed": true
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [
+      {
+        "context_id": "context:local",
+        "from_authority_id": "authority:local",
+        "grant_id": "grant:local-regional",
+        "policy_epoch": 1,
+        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "scope": [
+          "repo:patch"
+        ],
+        "to_authority_id": "authority:regional"
+      },
+      {
+        "context_id": "context:local",
+        "from_authority_id": "authority:regional",
+        "grant_id": "grant:regional-federal",
+        "policy_epoch": 1,
+        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "scope": [
+          "repo:patch"
+        ],
+        "to_authority_id": "authority:federal"
+      }
+    ],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "UNKNOWN"
+  },
+  "postconditions": [
+    {
+      "equals": "authority:federal",
+      "path": "/current_authority_id"
+    }
+  ],
+  "setup": [
+    {
+      "kind": "ESCALATE_UNKNOWN",
+      "payload": {
+        "context_id": "context:local",
+        "from_authority_id": "authority:local",
+        "grant_id": "grant:local-regional",
+        "policy_epoch": 1,
+        "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "resolution_id": "resolution:001",
+        "scope": [
+          "repo:patch"
+        ],
+        "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+        "to_authority": {
+          "authority_id": "authority:regional",
+          "context_id": "context:federation",
+          "policy_epoch": 1,
+          "scope": [
+            "repo:patch"
+          ]
+        }
+      }
+    }
+  ]
+}

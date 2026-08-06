@@ -1,0 +1,53 @@
+{
+  "candidate": {
+    "kind": "RESOLVE_DENY",
+    "payload": {
+      "authority_id": "authority:local",
+      "context_id": "context:local",
+      "evidence_digests": [
+        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "policy_epoch": 2,
+      "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "resolution_id": "resolution:001",
+      "scope": [
+        "repo:patch"
+      ],
+      "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "case_id": "RES-NEG-005",
+  "description": "A different policy epoch is rejected.",
+  "expected": {
+    "accepted": false,
+    "code": "POLICY_EPOCH_MISMATCH",
+    "enforcement": "BLOCKED",
+    "semantic_status": "UNKNOWN",
+    "state_changed": false
+  },
+  "initial_state": {
+    "authority_chain": [
+      "authority:local"
+    ],
+    "context_id": "context:local",
+    "current_authority_id": "authority:local",
+    "enforcement": "BLOCKED",
+    "escalation_grants": [],
+    "policy_epoch": 1,
+    "question_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "records": [],
+    "resolution_id": "resolution:001",
+    "scope": [
+      "repo:patch"
+    ],
+    "state_root": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "status": "UNKNOWN"
+  },
+  "postconditions": [
+    {
+      "equals": "UNKNOWN",
+      "path": "/status"
+    }
+  ],
+  "setup": []
+}

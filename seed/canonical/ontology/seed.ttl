@@ -3,166 +3,64 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 aset:SeedOntology a owl:Ontology ;
-    rdfs:label "ASET Seed 0.1-rc12 ontology"@en .
+    rdfs:label "ASET Seed 0.2 alpha resolution ontology"@en .
 
-aset:trust_space a owl:Class ;
-    rdfs:label "пространство доверия"@ru ;
-    rdfs:label "trust space"@en ;
-    rdfs:label "espaço de confiança"@pt-BR ;
-    rdfs:comment "The state of one Genesis lineage with an isolated normative history."@en .
+aset:resolution_cycle a owl:Class ;
+    rdfs:label "цикл разрешения"@ru ;
+    rdfs:label "resolution cycle"@en ;
+    rdfs:label "ciclo de resolução"@pt-BR ;
+    rdfs:comment "One immutably bound cycle for resolving an exact normative question."@en .
 
-aset:genesis a owl:Class ;
-    rdfs:label "генезис"@ru ;
-    rdfs:label "genesis"@en ;
-    rdfs:label "gênese"@pt-BR ;
-    rdfs:comment "Immutable initial material anchoring a trust-space identity."@en .
+aset:context_binding a owl:Class ;
+    rdfs:label "связка контекста"@ru ;
+    rdfs:label "context binding"@en ;
+    rdfs:label "vinculação de contexto"@pt-BR ;
+    rdfs:comment "The exact context, state-root and policy-epoch binding within which a question is resolved."@en .
 
-aset:constitution a owl:Class ;
-    rdfs:label "конституция доверия"@ru ;
-    rdfs:label "trust constitution"@en ;
-    rdfs:label "constituição de confiança"@pt-BR ;
-    rdfs:comment "The canonical policy of admissible authority, procedures, and transitions."@en .
+aset:resolution_question a owl:Class ;
+    rdfs:label "вопрос разрешения"@ru ;
+    rdfs:label "resolution question"@en ;
+    rdfs:label "questão de resolução"@pt-BR ;
+    rdfs:comment "A canonically digested question and its bounded resolution scope."@en .
 
-aset:context a owl:Class ;
-    rdfs:label "контекст"@ru ;
-    rdfs:label "context"@en ;
-    rdfs:label "contexto"@pt-BR ;
-    rdfs:comment "A normative namespace with immutable ContextID and local state."@en .
+aset:resolution_status a owl:Class ;
+    rdfs:label "статус разрешения"@ru ;
+    rdfs:label "resolution status"@en ;
+    rdfs:label "estado de resolução"@pt-BR ;
+    rdfs:comment "The normative status UNKNOWN, ACCEPT or DENY within one cycle."@en .
 
-aset:context_descriptor a owl:Class ;
-    rdfs:label "описатель контекста"@ru ;
-    rdfs:label "context descriptor"@en ;
-    rdfs:label "descritor de contexto"@pt-BR ;
-    rdfs:comment "A protocol record of context identity, parent, address, member, and lifecycle."@en .
+aset:enforcement_disposition a owl:Class ;
+    rdfs:label "режим исполнения"@ru ;
+    rdfs:label "enforcement disposition"@en ;
+    rdfs:label "disposição de execução"@pt-BR ;
+    rdfs:comment "The operational consequence of a decision: BLOCKED for UNKNOWN and DENY, ALLOW only for ACCEPT."@en .
 
-aset:authority a owl:Class ;
-    rdfs:label "институциональное полномочие"@ru ;
-    rdfs:label "institutional authority"@en ;
-    rdfs:label "autoridade institucional"@pt-BR ;
-    rdfs:comment "An active institutional power in an exact context, scope, and state."@en .
+aset:resolution_authority a owl:Class ;
+    rdfs:label "власть разрешения"@ru ;
+    rdfs:label "resolution authority"@en ;
+    rdfs:label "autoridade de resolução"@pt-BR ;
+    rdfs:comment "An explicitly empowered subject able to narrow UNKNOWN in an exact scope and epoch."@en .
 
-aset:authority_binding a owl:Class ;
-    rdfs:label "связка полномочия"@ru ;
-    rdfs:label "authority binding"@en ;
-    rdfs:label "vínculo de autoridade"@pt-BR ;
-    rdfs:comment "A protocol record binding an authority holder, kind, scope, epoch, and provenance."@en .
+aset:escalation_grant a owl:Class ;
+    rdfs:label "разрешение эскалации"@ru ;
+    rdfs:label "escalation grant"@en ;
+    rdfs:label "autorização de escalonamento"@pt-BR ;
+    rdfs:comment "An explicit authorization to pass an unresolved question to the next Resolution Authority without automatic authority inheritance."@en .
 
-aset:decision a owl:Class ;
-    rdfs:label "решение"@ru ;
-    rdfs:label "decision"@en ;
-    rdfs:label "decisão"@pt-BR ;
-    rdfs:comment "A recorded normative choice or declaration of readiness."@en .
+aset:evidence_reference a owl:Class ;
+    rdfs:label "ссылка на доказательство"@ru ;
+    rdfs:label "evidence reference"@en ;
+    rdfs:label "referência de evidência"@pt-BR ;
+    rdfs:comment "A content-addressed reference to material used when narrowing UNKNOWN."@en .
 
-aset:permit a owl:Class ;
-    rdfs:label "разрешение"@ru ;
-    rdfs:label "permit"@en ;
-    rdfs:label "permissão"@pt-BR ;
-    rdfs:comment "A bounded authorization to submit the result of a specific action."@en .
+aset:resolution_record a owl:Class ;
+    rdfs:label "запись разрешения"@ru ;
+    rdfs:label "resolution record"@en ;
+    rdfs:label "registro de resolução"@pt-BR ;
+    rdfs:comment "An immutable record of opening, escalation or terminal resolution and its provenance."@en .
 
-aset:execution_intent a owl:Class ;
-    rdfs:label "намерение исполнения"@ru ;
-    rdfs:label "execution intent"@en ;
-    rdfs:label "intenção de execução"@pt-BR ;
-    rdfs:comment "A materialized use of a permit for a specific attempt."@en .
-
-aset:permit_use_receipt a owl:Class ;
-    rdfs:label "квитанция использования разрешения"@ru ;
-    rdfs:label "permit-use receipt"@en ;
-    rdfs:label "comprovante de uso da permissão"@pt-BR ;
-    rdfs:comment "Immutable evidence that a specific permit attempt was consumed."@en .
-
-aset:observation a owl:Class ;
-    rdfs:label "наблюдение"@ru ;
-    rdfs:label "observation"@en ;
-    rdfs:label "observação"@pt-BR ;
-    rdfs:comment "A claim about an action result or external fact bound to evidence."@en .
-
-aset:verification a owl:Class ;
-    rdfs:label "проверка"@ru ;
-    rdfs:label "verification"@en ;
-    rdfs:label "verificação"@pt-BR ;
-    rdfs:comment "Recognition that a claim passed the prescribed verification procedure."@en .
-
-aset:outcome a owl:Class ;
-    rdfs:label "итоговое признание"@ru ;
-    rdfs:label "outcome"@en ;
-    rdfs:label "reconhecimento final"@pt-BR ;
-    rdfs:comment "The final institutional recognition of an action result."@en .
-
-aset:transition a owl:Class ;
-    rdfs:label "переход состояния"@ru ;
-    rdfs:label "state transition"@en ;
-    rdfs:label "transição de estado"@pt-BR ;
-    rdfs:comment "An atomic candidate change to the canonical state of one context."@en .
-
-aset:transition_record a owl:Class ;
-    rdfs:label "запись перехода"@ru ;
-    rdfs:label "transition record"@en ;
-    rdfs:label "registro de transição"@pt-BR ;
-    rdfs:comment "An immutable record of an accepted transition, its causes, and created artifacts."@en .
-
-aset:export_receipt a owl:Class ;
-    rdfs:label "квитанция экспорта"@ru ;
-    rdfs:label "export receipt"@en ;
-    rdfs:label "comprovante de exportação"@pt-BR ;
-    rdfs:comment "A source-local commitment transferable to another context as evidence."@en .
-
-aset:import_record a owl:Class ;
-    rdfs:label "запись импорта"@ru ;
-    rdfs:label "import record"@en ;
-    rdfs:label "registro de importação"@pt-BR ;
-    rdfs:comment "A local record accepting foreign evidence without importing its outcome automatically."@en .
-
-aset:local_commit a owl:Class ;
-    rdfs:label "локальный коммит"@ru ;
-    rdfs:label "local commit"@en ;
-    rdfs:label "commit local"@pt-BR ;
-    rdfs:comment "A pre-classified transition admissible during a network partition."@en .
-
-aset:reconciliation_receipt a owl:Class ;
-    rdfs:label "квитанция согласования"@ru ;
-    rdfs:label "reconciliation receipt"@en ;
-    rdfs:label "comprovante de reconciliação"@pt-BR ;
-    rdfs:comment "A record of local-commit validation, confirmed prefix, and detected forks."@en .
-
-aset:dependency_edge a owl:Class ;
-    rdfs:label "ребро зависимости"@ru ;
-    rdfs:label "dependency edge"@en ;
-    rdfs:label "aresta de dependência"@pt-BR ;
-    rdfs:comment "A typed directed relation of normative or non-normative dependency between contexts."@en .
-
-aset:membership_withdrawal_record a owl:Class ;
-    rdfs:label "запись выхода участника"@ru ;
-    rdfs:label "membership-withdrawal record"@en ;
-    rdfs:label "registro de retirada de membro"@pt-BR ;
-    rdfs:comment "An immutable record of voluntary exit or context replacement."@en .
-
-aset:context_redefinition_record a owl:Class ;
-    rdfs:label "запись переопределения контекста"@ru ;
-    rdfs:label "context-redefinition record"@en ;
-    rdfs:label "registro de redefinição de contexto"@pt-BR ;
-    rdfs:comment "A complete record of the atomic replacement of an exact set of interdependent contexts."@en .
-
-aset:correction_record a owl:Class ;
-    rdfs:label "запись исправления"@ru ;
-    rdfs:label "correction record"@en ;
-    rdfs:label "registro de correção"@pt-BR ;
-    rdfs:comment "An append-only record withdrawing or replacing a verification before final outcome."@en .
-
-aset:state_root a owl:Class ;
-    rdfs:label "корень состояния"@ru ;
-    rdfs:label "state root"@en ;
-    rdfs:label "raiz de estado"@pt-BR ;
-    rdfs:comment "A domain-separated hash of the complete canonical trust-space state."@en .
-
-aset:proof a owl:Class ;
-    rdfs:label "доказательство аутентификации"@ru ;
-    rdfs:label "authentication proof"@en ;
-    rdfs:label "prova de autenticação"@pt-BR ;
-    rdfs:comment "Externally verifiable evidence bound to a principal and exact transition."@en .
-
-aset:runtime_store a owl:Class ;
-    rdfs:label "устойчивое хранилище исполнения"@ru ;
-    rdfs:label "durable runtime store"@en ;
-    rdfs:label "armazenamento durável de execução"@pt-BR ;
-    rdfs:comment "A transactional store for state and the append-only transition-attempt audit log."@en .
+aset:resolution_chain a owl:Class ;
+    rdfs:label "цепочка разрешения"@ru ;
+    rdfs:label "resolution chain"@en ;
+    rdfs:label "cadeia de resolução"@pt-BR ;
+    rdfs:comment "An acyclic sequence of explicitly authorized Resolution Authorities for one question."@en .

@@ -31,8 +31,8 @@ def main() -> int:
         "-workers",
         str(args.workers),
         "-config",
-        "SeedRC12.cfg",
-        "SeedRC12.tla",
+        "SeedResolution.cfg",
+        "SeedResolution.tla",
     ]
     print(
         f"TLC_MODEL_CHECK=START workers={args.workers} timeout_seconds={args.timeout_seconds}",

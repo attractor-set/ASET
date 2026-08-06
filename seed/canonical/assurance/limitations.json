@@ -2,55 +2,48 @@
   "document_type": "aset-seed-assurance-limitations",
   "limitations": [
     {
-      "closure_criteria": "A separately versioned cryptographic profile, key lifecycle, revocation model and interoperable vectors are frozen and externally audited.",
-      "description": "Cryptographic proof mechanisms and federation-wide key lifecycle are implementation-profile concerns; the Seed canon defines their semantic binding points without selecting a provider.",
+      "closure_criteria": "A separately versioned federation extension defines topology, delegation and coordination without weakening Seed invariants.",
+      "description": "Seed permits an explicit next Resolution Authority but does not define local, federal or metafederal topology, discovery or consensus.",
       "id": "LIMIT-001",
-      "scope": "cryptographic-profiles",
-      "status": "PROFILE_DEFINED_EXTERNALLY"
+      "scope": "federation-topology",
+      "status": "EXTENSION_RESPONSIBILITY"
     },
     {
-      "closure_criteria": "Each implementation profile publishes independent persistence, atomicity, recovery and fault-injection evidence.",
-      "description": "The specification does not select or certify a storage backend. Persistence guarantees belong to separately identified implementations.",
+      "closure_criteria": "Monade and evidence extensions define those behaviours and conform to the active Seed package.",
+      "description": "Seed resolves normative questions; it does not execute work, acquire evidence or retain negative attempts.",
       "id": "LIMIT-002",
-      "scope": "implementation-persistence",
-      "status": "OUT_OF_SPECIFICATION_SCOPE"
+      "scope": "execution-and-evidence",
+      "status": "EXTENSION_RESPONSIBILITY"
     },
     {
-      "closure_criteria": "Specify, implement and audit a separate coordination profile when consensus is required.",
-      "description": "Distributed consensus is not part of the minimal Seed semantics.",
+      "closure_criteria": "Each implementation profile publishes independent operational evidence.",
+      "description": "Storage, durability, concurrency, recovery and availability guarantees are not selected by Seed.",
       "id": "LIMIT-003",
-      "scope": "distributed-coordination",
-      "status": "OUT_OF_SCOPE_ACCEPTED"
+      "scope": "implementation-persistence",
+      "status": "IMPLEMENTATION_RESPONSIBILITY"
     },
     {
-      "closure_criteria": "Complete unbounded formal refinement and breach-propagation proofs for a separately scoped assurance level.",
-      "description": "Critical lifecycle properties are bounded-model checked, but universal breach propagation and unbounded implementation refinement proofs are not claimed.",
+      "closure_criteria": "Complete an independently reviewed unbounded refinement or state the accepted assurance level for 1.0.",
+      "description": "The decision lattice and escalation chain are bounded-model checked, but unbounded refinement is not claimed.",
       "id": "LIMIT-004",
       "scope": "formal-assurance",
       "status": "OPEN_ACCEPTED"
     },
     {
-      "closure_criteria": "Publish an external audit report bound to exact release bytes, source commit and canonical-package digest.",
-      "description": "Independent external third-party audit of exact rc12 specification release bytes has not been completed.",
+      "closure_criteria": "Publish an external audit tied to commit and package digest.",
+      "description": "No independent third-party audit is bound to the exact 0.2 alpha package.",
       "id": "LIMIT-005",
       "scope": "external-assurance",
       "status": "PENDING"
     },
     {
-      "closure_criteria": "Maintain complete migration coverage, canonical-package parity, generated-view parity, formal checks and black-box component audits.",
-      "description": "The rc12 candidate retains rc11 compatibility evidence while moving implementation-specific guarantees outside the Seed canon.",
+      "closure_criteria": "Migration profiles explicitly map predecessor concepts into extensions and implementations update conformance claims.",
+      "description": "Seed 0.2 deliberately narrows the active canon and is not wire- or semantic-compatible with the rc11/rc12 lifecycle model.",
       "id": "LIMIT-006",
-      "scope": "rc12-canon",
-      "status": "CLOSED_FOR_RELEASE_CANDIDATE"
-    },
-    {
-      "closure_criteria": "Each implementation and deployment publishes and retains its own operational acceptance evidence.",
-      "description": "Host hardening, secret provisioning, backup retention, access control, monitoring and incident response depend on the implementation and deployment environment.",
-      "id": "LIMIT-007",
-      "scope": "deployment",
-      "status": "IMPLEMENTATION_RESPONSIBILITY"
+      "scope": "predecessor-compatibility",
+      "status": "BREAKING_CHANGE_DECLARED"
     }
   ],
-  "schema_version": 3,
-  "version": "0.1-rc12-implementation-neutral"
+  "schema_version": 4,
+  "version": "0.2.0-alpha.1-resolution-core"
 }

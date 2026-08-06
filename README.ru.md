@@ -2,38 +2,16 @@
 
 # ASET
 
-ASET — открытая, технологически нейтральная спецификация Authority-Signed Evidence Trails для модельной проверки соответствия и проверяемой ответственности в гетерогенных социотехнических системах.
+ASET — открытая технологически нейтральная спецификация. Её Seed определяет проверяемое и ограниченное полномочиями разрешение точного нормативного вопроса из `UNKNOWN` в `ACCEPT` или `DENY`.
 
-## Что определяет ASET
+`UNKNOWN` не разрешает эффект и не подменяется `DENY`. Неразрешённый вопрос может остаться `UNKNOWN` и перейти следующей явно уполномоченной Resolution Authority. Вложенность контекстов или членство в федерации сами по себе полномочие не создают.
 
-ASET определяется машиночитаемым каноном, нормативными схемами, условиями действительности, инвариантами, семантикой переходов и корпусом conformance. Ни одна реализация, язык, хранилище, checker или deployment profile не имеет семантического приоритета.
+Активный машинный канон находится в [`seed/canonical/`](seed/canonical/). Исполнение, журналы попыток, Monade, Master, память, топология федерации, consensus и хранение принадлежат независимым расширениям и реализациям.
 
-- Машинный канон: [`seed/canonical/source/seed-model.json`](seed/canonical/source/seed-model.json)
-- Идентичность пакета канона: [`seed/canonical/CANON_PACKAGE.json`](seed/canonical/CANON_PACKAGE.json)
-- Формальная проекция: [`seed/canonical/formal/`](seed/canonical/formal/)
-- Корпус соответствия: [`seed/canonical/conformance/`](seed/canonical/conformance/)
-- Каноны компонентов: [`aset/README.md`](aset/README.md)
-- Необязательный профиль Monade для evidence попыток: [`aset/profiles/monade-attempt-evidence/canonical/README.md`](aset/profiles/monade-attempt-evidence/canonical/README.md)
+Миграция с rc12 намеренно несовместима: [`seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md`](seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md).
 
-## Проверка реализаций моделью
+## Исторические расширения и пример
 
-Независимые реализации проверяются как black box через `ASET-IMPLEMENTATION-CONFORMANCE-V1`. Реализация возвращает наблюдаемый результат, а внешний runner потребляет закреплённый пакет канона и формирует verdict.
+Текущие component canons являются историческими источниками миграции до их выделения: [`aset/README.md`](aset/README.md). Ненормативный пример управляемого patch: [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md).
 
-```text
-python tools/run_external_conformance.py   --canon-root /path/to/ASET   --adapter "/path/to/implementation-adapter"
-```
-
-Хранилище, долговечность, конкурентность, recovery, consensus, сеть и custody ключей относятся к implementation profiles и не определяют Seed.
-
-## Сквозной пример
-
-Ненормативный сквозной пример контролируемого patch репозитория от AI-агента доступен в [`docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md`](docs/tutorials/CONTROLLED_PATCH_WORKFLOW.ru.md). Авторитетными остаются машинный канон и conformance corpus.
-
-
-## Реализации
-
-Реализации поддерживаются отдельно от спецификации. [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) — ненормативная референсная реализация и учебный профиль на Python + SQLite. Она не имеет семантического приоритета; Python и SQLite не становятся частью определения ASET.
-
-## Лицензия и права
-
-ASET независимо создан **Dzmitry Prychyna**, публично известным как **Attractor Set**. Проект распространяется по Apache License 2.0. Лицензирование не передаёт авторство или право собственности. См. [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) и [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+Ненормативная reference-реализация не имеет семантического приоритета: [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite). Происхождение background IP: [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).

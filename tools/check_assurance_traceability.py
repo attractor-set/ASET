@@ -42,7 +42,7 @@ def cfg_invariants(path: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-report", type=Path, default=Path("dist/rc12-model-check.json"))
+    parser.add_argument("--model-report", type=Path, default=Path("dist/seed-model-check.json"))
     parser.add_argument("--output", type=Path, default=Path("dist/assurance-traceability.json"))
     args = parser.parse_args()
 
@@ -69,7 +69,7 @@ def main() -> int:
                 errors.append(f"{item['id']} references unknown verification methods: {unknown}")
 
     formal = {item["name"]: item for item in registry["formal_properties"]}
-    cfg_names = cfg_invariants(ROOT / "seed/canonical/formal/SeedRC12.cfg")
+    cfg_names = cfg_invariants(ROOT / "seed/canonical/formal/SeedResolution.cfg")
     if set(cfg_names) != set(formal):
         errors.append(f"TLA invariant registry mismatch: cfg={cfg_names} registry={sorted(formal)}")
     invariant_ids = {item["id"] for item in model["invariants"]}

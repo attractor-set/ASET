@@ -4,9 +4,13 @@ import hashlib
 import json
 import subprocess
 import sys
+
+import pytest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+pytestmark = pytest.mark.legacy_extensions
 
 
 def load(relative: str) -> dict[str, object]:
@@ -68,7 +72,7 @@ def test_historical_seed_rc12_baseline_is_preserved_as_evidence() -> None:
 def test_active_seed_uses_canon_package_identity() -> None:
     package = load("seed/canonical/CANON_PACKAGE.json")
     assert package["implementation_precedence"] == "NONE"
-    assert package["conformance_protocol"] == "ASET-IMPLEMENTATION-CONFORMANCE-V1"
+    assert package["conformance_protocol"] == "ASET-SEED-RESOLUTION-CONFORMANCE-V1"
 
 
 def test_component_validator_and_generated_views() -> None:
@@ -140,10 +144,11 @@ def test_component_assurance_packages_are_self_contained() -> None:
     assert total == 177
 
 
-def test_component_blackbox_is_required_by_production_gate() -> None:
+def test_component_blackbox_is_not_part_of_active_seed_gate() -> None:
     gate = (ROOT / "tools/repository_release_gate.py").read_text(encoding="utf-8")
-    assert "tools/blackbox_component_audit.py" in gate
-    assert "tools/run_component_blackbox_adversarial.py" in gate
+    assert "tools/blackbox_component_audit.py" not in gate
+    assert "tools/run_component_blackbox_adversarial.py" not in gate
+    assert "tools/model_check_components.py" not in gate
 
 
 def test_component_canons_are_discoverable_from_root_docs() -> None:

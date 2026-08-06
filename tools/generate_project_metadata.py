@@ -165,8 +165,8 @@ def generated_docs_readme() -> str:
             "python tools/generate_repository_views.py --check",
             "```",
             "",
-            "ASET Seed 0.1-rc11 remains the immutable current stable release until",
-            "rc12 exact release bytes complete every mandatory gate and are separately frozen.",
+            "ASET Seed 0.2 alpha is the active breaking resolution-core candidate.",
+            "Historical rc11/rc12 files remain immutable migration evidence.",
             "",
         ]
     )

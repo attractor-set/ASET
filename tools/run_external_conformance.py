@@ -12,7 +12,7 @@ from typing import Any
 from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = "ASET-IMPLEMENTATION-CONFORMANCE-V1"
+PROTOCOL_PATH = "seed/canonical/conformance/implementation-conformance-protocol.json"
 
 
 def strict(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -103,6 +103,8 @@ def main() -> int:
 
     canon = args.canon_root.resolve()
     profile = load(canon / "seed/canonical/conformance/conformance-profile.json")
+    protocol_document = load(canon / PROTOCOL_PATH)
+    protocol = protocol_document["protocol_id"]
     envelope_schema = load(
         canon / "seed/canonical/schemas/implementation-conformance-envelope.schema.json"
     )
@@ -118,7 +120,7 @@ def main() -> int:
 
     description = invoke(
         args.adapter,
-        {"protocol": PROTOCOL, "operation": "describe"},
+        {"protocol": protocol, "operation": "describe"},
         args.adapter_cwd,
         args.timeout,
     )
@@ -127,7 +129,7 @@ def main() -> int:
     probe_case = cases[0]
     probe = invoke(
         args.adapter,
-        {"protocol": PROTOCOL, "operation": "execute_case", "case": probe_case},
+        {"protocol": protocol, "operation": "execute_case", "case": probe_case},
         args.adapter_cwd,
         args.timeout,
     )
@@ -136,7 +138,7 @@ def main() -> int:
     if not probe_result["pass"]:
         raise RuntimeError("mandatory execute_case probe failed")
 
-    request = {"protocol": PROTOCOL, "operation": "execute_cases", "cases": cases}
+    request = {"protocol": protocol, "operation": "execute_cases", "cases": cases}
     first_batch = invoke(args.adapter, request, args.adapter_cwd, args.timeout)
     second_batch = invoke(args.adapter, request, args.adapter_cwd, args.timeout)
     validate(envelope_schema, "batch_response", first_batch)
@@ -156,7 +158,7 @@ def main() -> int:
 
     report = {
         "document_type": "aset-external-implementation-conformance-results",
-        "protocol": PROTOCOL,
+        "protocol": protocol,
         "implementation": description["implementation"],
         "operations_verified": ["describe", "execute_case", "execute_cases"],
         "deterministic_replay": True,

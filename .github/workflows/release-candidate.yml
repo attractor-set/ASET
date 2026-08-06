@@ -42,7 +42,7 @@ jobs:
           if-no-files-found: warn
           path: |
             dist/canon-compatibility.json
-            dist/rc12-model-check.json
+            dist/seed-model-check.json
             dist/assurance-traceability.json
             dist/blackbox-documentation-audit.json
             dist/repository-release-gate.json
