@@ -22,6 +22,7 @@ BASE_COMMANDS = [
     ["tools/model_check_rc12.py", "--output", "dist/rc12-model-check.json"],
     ["tools/check_assurance_traceability.py", "--model-report", "dist/rc12-model-check.json"],
     ["tools/model_check_components.py", "--check"],
+    ["tools/validate_background_ip_supplement.py"],
     ["-m", "pytest", "-q"],
     ["-m", "ruff", "check", "tools", "tests"],
     ["tools/static_python_sanity.py"],

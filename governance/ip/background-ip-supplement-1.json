@@ -1,0 +1,229 @@
+{
+  "added_assets": [
+    {
+      "asset_classes": [
+        "SPECIFICATION",
+        "MACHINE_CANON",
+        "FORMAL_MODEL",
+        "SCHEMAS",
+        "CONFORMANCE"
+      ],
+      "asset_id": "BI-S1-001",
+      "name": "Implementation-neutral ASET Seed 0.1-rc12 candidate line",
+      "paths": [
+        "seed/canonical/source/seed-model.json",
+        "seed/canonical/CANON_PACKAGE.json",
+        "seed/canonical/schemas",
+        "seed/canonical/conformance",
+        "seed/canonical/formal"
+      ],
+      "qualification": "No implementation, programming language, storage engine or deployment profile has semantic precedence.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "IMPLEMENTATION_CONFORMANCE_PROTOCOL",
+        "EXTERNAL_VERDICT",
+        "MODEL_BASED_CONFORMANCE",
+        "DETERMINISTIC_REPLAY"
+      ],
+      "asset_id": "BI-S1-002",
+      "name": "External implementation-conformance boundary",
+      "paths": [
+        "seed/canonical/conformance/implementation-conformance-protocol.json",
+        "seed/canonical/conformance/model-based-conformance.json",
+        "seed/canonical/schemas/implementation-conformance-protocol.schema.json",
+        "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
+        "tools/run_external_conformance.py"
+      ],
+      "qualification": "Implementations return observations; the external runner applies the pinned canon and determines the conformance verdict.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "SYSTEM_COMPOSITION",
+        "COMPONENT_CANONS",
+        "ASSURANCE",
+        "IMPLEMENTATION_NEUTRALITY"
+      ],
+      "asset_id": "BI-S1-003",
+      "name": "Implementation-neutral System Composition and component assurance",
+      "paths": [
+        "aset/system",
+        "aset/components",
+        "aset/shared",
+        "docs/generated",
+        "tests/test_component_canons.py"
+      ],
+      "qualification": "Active assurance language is separated from language-specific or storage-specific implementation claims; historical evidence remains preserved as historical evidence.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "SOFTWARE",
+        "REFERENCE_IMPLEMENTATION",
+        "EDUCATIONAL_PROFILE",
+        "SQLITE_PROFILE",
+        "PYTHON_PROFILE"
+      ],
+      "asset_id": "BI-S1-004",
+      "name": "Separate aset-python-sqlite reference implementation profile",
+      "paths": [
+        "src/aset_python_sqlite",
+        "profile/PROFILE.json",
+        "canon.lock.json",
+        "tools",
+        "tests",
+        "docs"
+      ],
+      "qualification": "This repository is non-normative and not production-ready at the cutoff. It has no semantic precedence and consumes an externally pinned ASET canon package.",
+      "repository_id": "ASET_PYTHON_SQLITE_REFERENCE"
+    },
+    {
+      "asset_classes": [
+        "CROSS_REPOSITORY_AUTOMATION",
+        "CANON_LOCK",
+        "PROFILE_NOTIFICATION",
+        "RELEASE_INTEGRATION"
+      ],
+      "asset_id": "BI-S1-005",
+      "name": "Specification-to-profile canon update integration",
+      "paths": [
+        "ASET:.github/workflows/notify-implementation-profiles.yml",
+        "aset-python-sqlite:.github/workflows/update-canon-lock.yml",
+        "aset-python-sqlite:canon.lock.json"
+      ],
+      "qualification": "Automation transports exact canon identities; it does not transfer ownership or confer normative authority on an implementation.",
+      "repository_id": "MULTI_REPOSITORY"
+    },
+    {
+      "asset_classes": [
+        "DOCUMENTATION",
+        "GOVERNANCE",
+        "TECHNICAL_KNOW_HOW",
+        "ORIGINAL_SELECTION_AND_ARRANGEMENT"
+      ],
+      "asset_id": "BI-S1-006",
+      "name": "Implementation-neutrality documentation and associated know-how",
+      "paths": [
+        "ASET:README.md",
+        "ASET:README.ru.md",
+        "ASET:README.pt-BR.md",
+        "ASET:ROADMAP.md",
+        "ASET:audit/REFACTORING_LOG.md",
+        "aset-python-sqlite:README.md",
+        "aset-python-sqlite:README.ru.md",
+        "aset-python-sqlite:README.pt-BR.md",
+        "aset-python-sqlite:BACKGROUND_IP_NOTICE.md",
+        "aset-python-sqlite:ORIGIN.json"
+      ],
+      "qualification": "Abstract ideas, generic methods and third-party material are not claimed as copyrighted expression merely by being listed.",
+      "repository_id": "MULTI_REPOSITORY"
+    }
+  ],
+  "amendment_rule": "NEW_SUPPLEMENT_OR_VERSION_NEW_CUTOFF_PRESERVE_PARENT_AND_PRIOR_SUPPLEMENTS",
+  "brazil_profile": {
+    "applicable_frameworks": [
+      "LEI_9609_1998",
+      "LEI_9610_1998",
+      "LEI_10973_2004",
+      "DECRETO_9283_2018"
+    ],
+    "future_company_assignment_required": true,
+    "inpi_registration_required_for_protection": false,
+    "inpi_registration_status": "NOT_FILED",
+    "recommended_contract_annex": "PROPRIEDADE_INTELECTUAL_PREEXISTENTE",
+    "university_partnership_rule": "THE_PARENT_SCHEDULE_AND_THIS_SUPPLEMENT_MUST_BE_IDENTIFIED_AS_PREEXISTING_IP_SEPARATELY_FROM_PROJECT_FOREGROUND_IP"
+  },
+  "confidential_evidence_rule": "PERSONAL_IDENTIFIERS_SIGNATURES_CONTRACTS_EMPLOYMENT_RECORDS_PRIVATE_SOURCE_ARCHIVES_AND_LEGAL_OPINIONS_MUST_NOT_BE_COMMITTED",
+  "continuity_declaration": {
+    "assignment_to_company_laboratory_university_or_investor": false,
+    "client_deliverable": false,
+    "commissioned_by_current_employer": false,
+    "current_employer_confidential_information_used": false,
+    "current_employer_directed_or_supervised": false,
+    "current_employer_funding_used": false,
+    "current_employer_resources_used": false,
+    "developed_outside_employment_scope": true,
+    "own_equipment_accounts_storage_tools_and_time_used": true,
+    "statement_basis": "DECLARATION_BY_CREATOR"
+  },
+  "creator": {
+    "legal_name": "Dzmitry Prychyna",
+    "pseudonym_is_separate_legal_entity": false,
+    "public_profile_url": "https://github.com/attractor-set",
+    "public_pseudonym": "Attractor Set"
+  },
+  "current_rights_holder": {
+    "assignment_to_legal_entity": false,
+    "basis": "INDEPENDENT_CREATION_AND_CONTINUITY_FROM_PARENT_SCHEDULE",
+    "legal_name": "Dzmitry Prychyna",
+    "public_pseudonym": "Attractor Set",
+    "type": "NATURAL_PERSON"
+  },
+  "cutoffs": [
+    {
+      "archive_name": "ASET-a122e2f-source.zip",
+      "archive_sha256": "sha256:fa0c7096bfbca5463911b9566e3e011fd8e150b79cce212c3baa97eeadf41876",
+      "canon_package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
+      "canon_package_file_sha256": "sha256:f2217d384098d9a880ae897c4b3a9f5fb68325f74cfc8dffad6d88abcaf18d1d",
+      "canon_package_path": "seed/canonical/CANON_PACKAGE.json",
+      "commit_sha": "a122e2f828256501abb645b89046cc866f4466ed",
+      "manifest_files_count": 654,
+      "manifest_path": "MANIFEST.json",
+      "manifest_sha256": "sha256:1496fa5ba43b2490af8b3d18b649ae6dadf42f025213773be6be0eb93d5f82c5",
+      "name": "ASET",
+      "repository_id": "ASET_SPECIFICATION",
+      "source": "GITHUB_BRANCH_ARCHIVE_COMMIT_COMMENT_AND_LOCAL_POST_MERGE_VERIFICATION",
+      "tree_sha": "265640e8e842f6a1f384713cfab5c2acacf040b6",
+      "url": "https://github.com/attractor-set/ASET"
+    },
+    {
+      "archive_name": "aset-python-sqlite-2038f84-source.zip",
+      "archive_sha256": "sha256:8adb6f9bfdf7c40715b914e1c061d5c23dad83b0dde4e500ef22dfc7441dba39",
+      "canon_lock_path": "canon.lock.json",
+      "canon_lock_required_package_digest": "sha256:026494e546a0504fddd81a16df3c4f4bcc35f308cff6f5d58371b79c91d94562",
+      "canon_lock_sha256": "sha256:1b1e4623bafc4011e161dc27f7a5bba483a9a1ecbee2eb201518600567dd7af8",
+      "canon_lock_source_ref": "a122e2f828256501abb645b89046cc866f4466ed",
+      "commit_sha": "2038f84b6b5f6a0aed3636c1685d2c1fb79a1ed1",
+      "manifest_evidentiary_role": "NOT_CONTROLLING_FOR_THIS_SUPPLEMENT",
+      "name": "aset-python-sqlite",
+      "profile_id": "ASET-PYTHON-SQLITE-LEARNING-V1",
+      "profile_path": "profile/PROFILE.json",
+      "profile_sha256": "sha256:4b435d75dd41b4094a2fb6830cd98fd390609045af68a03e94aaf0d2d03ad83b",
+      "repository_id": "ASET_PYTHON_SQLITE_REFERENCE",
+      "source": "GITHUB_BRANCH_ARCHIVE_COMMIT_COMMENT",
+      "url": "https://github.com/attractor-set/aset-python-sqlite"
+    }
+  ],
+  "document_type": "aset-background-ip-supplement",
+  "effective_date": "2026-08-05",
+  "exclusions": [
+    "ASSETS_ALREADY_CLASSIFIED_BY_PARENT_SCHEDULE",
+    "THIRD_PARTY_SOFTWARE_STANDARDS_PUBLICATIONS_AND_TRADEMARKS",
+    "UNASSIGNED_OR_UNLICENSED_INDEPENDENT_CONTRIBUTIONS",
+    "GENERIC_IDEAS_METHODS_AND_PROCEDURES_AS_SUCH",
+    "WORK_CREATED_AFTER_EACH_REPOSITORY_CUTOFF",
+    "FUTURE_RUST_POSTGRESQL_OR_OTHER_IMPLEMENTATIONS_NOT_PRESENT_AT_CUTOFF",
+    "UNMERGED_ASSURANCE_REMEDIATION_PATCHES_CREATED_AFTER_CUTOFF",
+    "CONFIDENTIAL_PERSONAL_CONTRACTUAL_AND_EMPLOYMENT_RECORDS"
+  ],
+  "future_ip_rule": "WORK_CREATED_AFTER_EACH_REPOSITORY_CUTOFF_IS_NOT_AUTOMATICALLY_CLASSIFIED_BY_THIS_SUPPLEMENT",
+  "jurisdiction_profile": "BR",
+  "legal_effect": "EVIDENTIARY_SUPPLEMENT_NOT_ASSIGNMENT_REGISTRATION_TRADEMARK_REGISTRATION_OR_LEGAL_OPINION",
+  "license_boundary": "APACHE_2_0_PERMISSIONS_REMAIN_UNCHANGED_AND_DO_NOT_BY_THEMSELVES_TRANSFER_AUTHORSHIP_OR_OWNERSHIP",
+  "parent_schedule": {
+    "document_type": "aset-background-ip-schedule",
+    "evidence_package_name": "aset-background-ip-schedule-v1-evidence-r3-2026-08-05.tar.gz",
+    "evidence_package_sha256": "sha256:3153921cf9546c83113497289b49e4e03e2a5745f073e6dd4bdac1ad1bc81f84",
+    "release_immutable": true,
+    "release_published_at": "2026-08-05T19:18:55Z",
+    "release_tag": "aset-background-ip-schedule-v1-2026-08-05",
+    "release_url": "https://github.com/attractor-set/ASET/releases/tag/aset-background-ip-schedule-v1-2026-08-05",
+    "schedule_version": "1.0"
+  },
+  "schema_version": 1,
+  "status": "PUBLIC_EVIDENTIARY_SUPPLEMENT",
+  "supplement_id": "ASET-BACKGROUND-IP-SUPPLEMENT-1",
+  "supplement_version": "1.0"
+}

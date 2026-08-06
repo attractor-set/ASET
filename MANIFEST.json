@@ -77,6 +77,21 @@
       "size_bytes": 9319
     },
     {
+      "path": "BACKGROUND_IP_SUPPLEMENT_1.md",
+      "sha256": "sha256:cfafd92179f29f373b0bfb53440a4f2f5e825827a0f0cb5ec651406ecd221919",
+      "size_bytes": 7807
+    },
+    {
+      "path": "BACKGROUND_IP_SUPPLEMENT_1.pt-BR.md",
+      "sha256": "sha256:8b69e61485786f139d06dd7103cb513db6bfd27f3d608017da757ca406786909",
+      "size_bytes": 8031
+    },
+    {
+      "path": "BACKGROUND_IP_SUPPLEMENT_1.ru.md",
+      "sha256": "sha256:65186de7fdebea59aec33dcc11252b17f9a52b91915c3783a8f5c5ab453039c4",
+      "size_bytes": 11430
+    },
+    {
       "path": "CANONICALITY.md",
       "sha256": "sha256:c46bfde98e2555b97fede64a3e887c4fb595865c97377006e59e1faaafa5b904",
       "size_bytes": 4119
@@ -1738,8 +1753,8 @@
     },
     {
       "path": "governance/ip/README.md",
-      "sha256": "sha256:808bc2f109cfdbe186549f4a55b27fef5049bdaad9a623d8d71d7b7c9bc07338",
-      "size_bytes": 1890
+      "sha256": "sha256:b9907e5f8461c800284bba5232a6df9fee0d3a1573f46a603f1fdfa1cdd4afcd",
+      "size_bytes": 2523
     },
     {
       "path": "governance/ip/background-ip-schedule.json",
@@ -1750,6 +1765,16 @@
       "path": "governance/ip/background-ip-schedule.schema.json",
       "sha256": "sha256:498af05e3ca5fdc9911b7e43686d043ff1d842d6443c598812a35d21659a3ab9",
       "size_bytes": 8061
+    },
+    {
+      "path": "governance/ip/background-ip-supplement-1.json",
+      "sha256": "sha256:bc17a7314f83752ce6a2d6b458e41f2f5f7c4b49d1d8ac695170389f4166c607",
+      "size_bytes": 10021
+    },
+    {
+      "path": "governance/ip/background-ip-supplement.schema.json",
+      "sha256": "sha256:772030f9d2cf3f7847afb4bb308303a0d73024d7004d8834dcbfc666e5163f66",
+      "size_bytes": 12591
     },
     {
       "path": "metadata/project.json",
@@ -3117,6 +3142,11 @@
       "size_bytes": 2310
     },
     {
+      "path": "tests/test_background_ip_supplement.py",
+      "sha256": "sha256:97dcf60fc4af561f74d8dada5530ccdc0ab9dad26fa7028ecced39212bab269a",
+      "size_bytes": 3003
+    },
+    {
       "path": "tests/test_canonical_model.py",
       "sha256": "sha256:bcf4563d93aef985cbd0bdbd4b466574f84e3df51de6ad44dca34e8f264119c1",
       "size_bytes": 895
@@ -3248,8 +3278,8 @@
     },
     {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:3c2579d8a677d8b83156367578f292372fa130ab833783b2c6bfb91ac8cd4a38",
-      "size_bytes": 3469
+      "sha256": "sha256:e5d2cb267c2cd13d0e6c6bace7ea1a2cde5f4bec2d5fc954cb9001e6461dcdc9",
+      "size_bytes": 3521
     },
     {
       "path": "tools/run_component_blackbox_adversarial.py",
@@ -3287,6 +3317,11 @@
       "size_bytes": 7365
     },
     {
+      "path": "tools/validate_background_ip_supplement.py",
+      "sha256": "sha256:58450b7d026e1c1860c1c78183f1f9417903fda681f2731ff2b740ad04b2870b",
+      "size_bytes": 11521
+    },
+    {
       "path": "tools/validate_canon_package.py",
       "sha256": "sha256:9222c065f0142ff260c698328f9af2cad0de6aa6b3d1f8d6da0cc4b4179987c7",
       "size_bytes": 2166
@@ -3307,7 +3342,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 661,
+  "files_count": 668,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.1-rc12-Specification-Candidate",
   "repository_root": "ASET"
