@@ -167,7 +167,7 @@
     {
       "engine": "TLA_TLC",
       "kind": "TEMPORAL_PROPERTY",
-      "name": "RejectedOperationPreservesStore",
+      "name": "CanonicalStateChangesOnlyByRecognizedTransition",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
         "SEED-INV-011"

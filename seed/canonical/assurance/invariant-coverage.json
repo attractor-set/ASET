@@ -180,7 +180,7 @@
         "RES-NEG-010"
       ],
       "formal_properties": [
-        "RejectedOperationPreservesStore"
+        "CanonicalStateChangesOnlyByRecognizedTransition"
       ],
       "id": "SEED-INV-011",
       "semantic_mutations": [
@@ -350,9 +350,9 @@
       "case_ids": [
         "RES-NEG-001"
       ],
-      "description": "Mutate canonical state on rejection.",
+      "description": "Mutate canonical state for an invalid or unrecognized candidate.",
       "id": "SEED-MUT-011",
-      "operator": "rejection_mutates_store",
+      "operator": "unrecognized_candidate_mutates_store",
       "seed_invariants": [
         "SEED-INV-011"
       ],

@@ -15,7 +15,8 @@ The model covers:
 - fresh reconsideration lineage;
 - append-only requests and inputs;
 - immutable terminal records;
-- preservation of canonical state by rejected operations.
+- exclusion of invalid or unrecognized candidates from the Seed transition relation;
+- canonical-state changes only through recognized Seed transitions.
 
 The TLC configuration checks eleven state invariants and four temporal
 properties. The Python bounded explorer checks the identical property names and

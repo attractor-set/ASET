@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**Canonical model SHA-256:** `sha256:fe748a9c4328ab118ad9f40e2f9805e577015ef38b56e517fe2f5e572f3647b6`
+**Canonical model SHA-256:** `sha256:c46d584f96acee6b182823f2483b4985600736511a847580848f46a5ba7b4a98`
 
 > This edition is derived from the machine canon.
 
@@ -198,7 +198,7 @@ Predicate: `implementation_neutral`
 - `SEED-INV-008` — At most one valid terminal record exists for one resolution_id.
 - `SEED-INV-009` — Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.
 - `SEED-INV-010` — Resolution records are append-only, immutable and content-addressed.
-- `SEED-INV-011` — A rejected operation preserves the canonical store.
+- `SEED-INV-011` — Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.
 - `SEED-INV-012` — Reconsideration uses a fresh resolution_id linked to a prior unique terminal record.
 
 ## Transitions

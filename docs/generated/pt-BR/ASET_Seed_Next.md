@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 do modelo canônico:** `sha256:fe748a9c4328ab118ad9f40e2f9805e577015ef38b56e517fe2f5e572f3647b6`
+**SHA-256 do modelo canônico:** `sha256:c46d584f96acee6b182823f2483b4985600736511a847580848f46a5ba7b4a98`
 
 > Esta edição é derivada do cânone legível por máquina.
 
@@ -198,7 +198,7 @@ Predicado: `implementation_neutral`
 - `SEED-INV-008` — Existe no máximo um registro terminal válido para um resolution_id.
 - `SEED-INV-009` — Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.
 - `SEED-INV-010` — Registros de resolução são append-only, imutáveis e endereçados por conteúdo.
-- `SEED-INV-011` — Uma operação rejeitada preserva o armazenamento canônico.
+- `SEED-INV-011` — Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.
 - `SEED-INV-012` — A reconsideração usa um resolution_id novo vinculado a um registro terminal único anterior.
 
 ## Transições

@@ -1,5 +1,5 @@
 ------------------------------ MODULE SeedResolution ------------------------------
-EXTENDS FiniteSets, Naturals
+EXTENDS FiniteSets
 
 CONSTANTS ResolutionIds, Bindings, Authorities, NoResolution, NoRecord
 
@@ -30,8 +30,7 @@ VARIABLES
     terminalAuthority,
     conflicts,
     invalidMaterial,
-    observedInputs,
-    rejectedCount
+    observedInputs
 
 canonicalVars ==
     <<localAuthorityBindings,
@@ -59,8 +58,7 @@ vars ==
       terminalAuthority,
       conflicts,
       invalidMaterial,
-      observedInputs,
-      rejectedCount>>
+      observedInputs>>
 
 Init ==
   /\ localAuthorityBindings \in SUBSET (Authorities \X Bindings)
@@ -76,7 +74,6 @@ Init ==
   /\ conflicts = {}
   /\ invalidMaterial = {}
   /\ observedInputs = {}
-  /\ rejectedCount = 0
 
 RegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ requests
@@ -99,8 +96,7 @@ RegisterRequest(r, b, a, previous) ==
                   terminalAuthority,
                   conflicts,
                   invalidMaterial,
-                  observedInputs,
-                  rejectedCount>>
+                  observedInputs>>
 
 SubmitResolution(r, b, a, value) ==
   /\ r \in requests
@@ -121,8 +117,7 @@ SubmitResolution(r, b, a, value) ==
                   previousResolution,
                   conflicts,
                   invalidMaterial,
-                  observedInputs,
-                  rejectedCount>>
+                  observedInputs>>
 
 ObserveConflict(r) ==
   /\ r \in ResolutionIds
@@ -137,8 +132,7 @@ ObserveConflict(r) ==
                   terminalBinding,
                   terminalAuthority,
                   invalidMaterial,
-                  observedInputs,
-                  rejectedCount>>
+                  observedInputs>>
 
 ObserveInvalidMaterial(r) ==
   /\ r \in ResolutionIds
@@ -153,8 +147,7 @@ ObserveInvalidMaterial(r) ==
                   terminalBinding,
                   terminalAuthority,
                   conflicts,
-                  observedInputs,
-                  rejectedCount>>
+                  observedInputs>>
 
 ObserveNonAuthoritativeInput(r) ==
   /\ r \in ResolutionIds
@@ -169,16 +162,11 @@ ObserveNonAuthoritativeInput(r) ==
                   terminalBinding,
                   terminalAuthority,
                   conflicts,
-                  invalidMaterial,
-                  rejectedCount>>
-
-RejectOperation ==
-  /\ rejectedCount' = rejectedCount + 1
-  /\ UNCHANGED canonicalVars
+                  invalidMaterial>>
 
 Evaluate == UNCHANGED vars
 
-Next ==
+RecognizedCanonicalTransition ==
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
         previous \in ResolutionIds \cup {NoResolution} :
         RegisterRequest(r, b, a, previous)
@@ -188,7 +176,9 @@ Next ==
   \/ \E r \in ResolutionIds : ObserveConflict(r)
   \/ \E r \in ResolutionIds : ObserveInvalidMaterial(r)
   \/ \E r \in ResolutionIds : ObserveNonAuthoritativeInput(r)
-  \/ RejectOperation
+
+Next ==
+  \/ RecognizedCanonicalTransition
   \/ Evaluate
 
 ResolutionOf(r) ==
@@ -214,7 +204,6 @@ TypeOK ==
   /\ conflicts \subseteq ResolutionIds
   /\ invalidMaterial \subseteq ResolutionIds
   /\ observedInputs \subseteq ResolutionIds
-  /\ rejectedCount \in Nat
 
 ResolutionDomain ==
   \A r \in ResolutionIds : ResolutionOf(r) \in Resolutions
@@ -267,19 +256,33 @@ FreshReconsideration ==
        /\ previousResolution[r] # r
        /\ terminalRecord[previousResolution[r]] \in TerminalResolutions
 
-RequestsAppendOnly == [] (requests \subseteq requests')
+RequestsAppendOnlyStep ==
+  requests \subseteq requests'
+
+RequestsAppendOnly ==
+  [][RequestsAppendOnlyStep]_vars
+
+TerminalRecordsImmutableStep ==
+  \A r \in ResolutionIds :
+    terminalRecord[r] # NoRecord =>
+      /\ terminalRecord'[r] = terminalRecord[r]
+      /\ terminalBinding'[r] = terminalBinding[r]
+      /\ terminalAuthority'[r] = terminalAuthority[r]
 
 TerminalRecordsImmutable ==
-  [] (\A r \in ResolutionIds :
-        terminalRecord[r] # NoRecord =>
-          /\ terminalRecord'[r] = terminalRecord[r]
-          /\ terminalBinding'[r] = terminalBinding[r]
-          /\ terminalAuthority'[r] = terminalAuthority[r])
+  [][TerminalRecordsImmutableStep]_vars
 
-RejectedOperationPreservesStore ==
-  [] (rejectedCount' > rejectedCount => UNCHANGED canonicalVars)
+CanonicalStateChangesOnlyByRecognizedTransitionStep ==
+  canonicalVars' # canonicalVars => RecognizedCanonicalTransition
 
-ObservedInputsAppendOnly == [] (observedInputs \subseteq observedInputs')
+CanonicalStateChangesOnlyByRecognizedTransition ==
+  [][CanonicalStateChangesOnlyByRecognizedTransitionStep]_vars
+
+ObservedInputsAppendOnlyStep ==
+  observedInputs \subseteq observedInputs'
+
+ObservedInputsAppendOnly ==
+  [][ObservedInputsAppendOnlyStep]_vars
 
 Spec == Init /\ [][Next]_vars
 =================================================================================

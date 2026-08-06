@@ -32,7 +32,7 @@ STATE_PROPERTIES = (
 TEMPORAL_PROPERTIES = (
     "RequestsAppendOnly",
     "TerminalRecordsImmutable",
-    "RejectedOperationPreservesStore",
+    "CanonicalStateChangesOnlyByRecognizedTransition",
     "ObservedInputsAppendOnly",
 )
 FORMAL_PROPERTIES = STATE_PROPERTIES + TEMPORAL_PROPERTIES
@@ -47,11 +47,10 @@ class State:
     conflicts: frozenset[int]
     invalid_material: frozenset[int]
     observed_inputs: frozenset[int]
-    rejected: bool
 
 
 def initial() -> State:
-    return State((), (), frozenset(), frozenset(), frozenset(), False)
+    return State((), (), frozenset(), frozenset(), frozenset())
 
 
 def request_map(state: State) -> dict[int, tuple[int, int, int]]:
@@ -100,7 +99,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     state.conflicts,
                     state.invalid_material,
                     state.observed_inputs,
-                    state.rejected,
                 ),
             )
         for previous in IDS:
@@ -115,7 +113,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                         state.conflicts,
                         state.invalid_material,
                         state.observed_inputs,
-                        state.rejected,
                     ),
                 )
 
@@ -134,7 +131,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                         state.conflicts,
                         state.invalid_material,
                         state.observed_inputs,
-                        state.rejected,
                     ),
                 )
 
@@ -148,7 +144,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     state.conflicts | {rid},
                     state.invalid_material,
                     state.observed_inputs,
-                    state.rejected,
                 ),
             )
         if rid not in state.invalid_material:
@@ -160,7 +155,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     state.conflicts,
                     state.invalid_material | {rid},
                     state.observed_inputs,
-                    state.rejected,
                 ),
             )
         if rid not in state.observed_inputs:
@@ -172,22 +166,9 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     state.conflicts,
                     state.invalid_material,
                     state.observed_inputs | {rid},
-                    state.rejected,
                 ),
             )
 
-    if not state.rejected:
-        yield (
-            "RejectOperation",
-            State(
-                state.requests,
-                state.records,
-                state.conflicts,
-                state.invalid_material,
-                state.observed_inputs,
-                True,
-            ),
-        )
     yield "Evaluate", state
 
 
@@ -255,8 +236,19 @@ def transition_errors(action: str, before: State, after: State) -> list[str]:
     for rid, record in before_records.items():
         if after_records.get(rid) != record:
             errors.append("TerminalRecordsImmutable")
-    if action == "RejectOperation" and canonical_projection(before) != canonical_projection(after):
-        errors.append("RejectedOperationPreservesStore")
+    recognized_canonical_actions = {
+        "RegisterRequest",
+        "RegisterReconsideration",
+        "SubmitResolution",
+        "ObserveConflict",
+        "ObserveInvalidMaterial",
+        "ObserveNonAuthoritativeInput",
+    }
+    if (
+        canonical_projection(before) != canonical_projection(after)
+        and action not in recognized_canonical_actions
+    ):
+        errors.append("CanonicalStateChangesOnlyByRecognizedTransition")
     if not before.observed_inputs.issubset(after.observed_inputs):
         errors.append("ObservedInputsAppendOnly")
     return sorted(set(errors))

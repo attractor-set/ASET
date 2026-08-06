@@ -66,7 +66,7 @@ def apply_operator(operator: str, result: dict[str, Any]) -> dict[str, Any]:
                 "reason": "UNIQUE_VALID_TERMINAL_RECORD",
             }
         )
-    elif operator == "rejection_mutates_store":
+    elif operator == "unrecognized_candidate_mutates_store":
         mutated["state_changed"] = True
     elif operator == "reuse_resolution_id":
         mutated.update(

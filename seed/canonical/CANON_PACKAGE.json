@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:747f2a2684d97dc9af81e77e81c924e098e1803c8be07b3be85e2b919babd1af"
+      "sha256": "sha256:011365c6bc4b2fb06641514f7e02fda3c5ed8b1d2895fd86ad9d476bb48ff6a2"
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
@@ -46,15 +46,15 @@
     },
     {
       "path": "seed/canonical/conformance/model-based-conformance.json",
-      "sha256": "sha256:ecf1a727a41e548e3c7380c7b26c0a2af5ea3ce65a1acf2d6996801d03093225"
+      "sha256": "sha256:6e833d150f4f8dc1fbac5f0c69fae6a68fc785182a0974875e4f273793cd7065"
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:a20fbf4593df0a85e26b23f0ee074462e3350b18e494ae7d44ce55e04bacebe9"
+      "sha256": "sha256:33b5cf26f51c51cf13beba24b8e2a29f9c2a6bcc1e4fed095a648def6ab08fbb"
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:d6d4acf1976534ad71aa063b078f8d9fa4da51973cd5ccd0f6eaf8057f99a51e"
+      "sha256": "sha256:8a4d0e591977a0fa9a5d36de926b7928fb2468daeaadcd2c864af58e9113b043"
     },
     {
       "path": "seed/canonical/schemas/invariant-coverage.schema.json",
@@ -82,11 +82,11 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:e75a71e8adeef876a3465dc31384f35c997e68f730cf9bec00965521d6db5689"
+      "sha256": "sha256:29195d271e799f407f12f33be1e0fc2f17484b69d17fbd73dc6dbdd6b691ec86"
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:8f182f3df4992d290b5b288de38cb46c04fd5815a0b77e762d2c1d2a01add444"
+      "sha256": "sha256:b231f71993c4a03770bce172f2e3ab1cef944adf8c087086c79818513c7d7b76"
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
@@ -247,6 +247,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:6a89bd50c90fee8d9edff2e3caba5fc70c3024762f6400ee937e50d4d415e15c",
+  "package_digest": "sha256:aee2b524787b82c4c2115b8fa2b350525658727223510dd7bf53606a8056610d",
   "schema_version": 2
 }

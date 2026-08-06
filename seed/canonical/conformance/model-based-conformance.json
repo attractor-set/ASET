@@ -4,11 +4,11 @@
     "command_set": "REGISTER_REQUEST, SUBMIT_RESOLUTION and EVALUATE_RESOLUTION",
     "formal_projection": "seed/canonical/formal/SeedResolution.tla",
     "state_set": "Append-only request and terminal-record stores satisfying the minimal Seed invariants",
-    "transition_relation": "delta(store, operation) appends a valid request or record, evaluates without mutation, or rejects with unchanged store"
+    "transition_relation": "delta(store, operation) appends a valid request or record or evaluates without mutation; invalid and unrecognized candidates are outside the Seed transition relation"
   },
   "normative": true,
   "profile_boundary": "Policy evaluation, evidence acquisition, workflow, enforcement, federation, storage and cryptographic mechanisms are extension or implementation responsibilities.",
-  "rejection_obligation": "A rejected operation MUST preserve the canonical store.",
   "resolution_obligation": "UNKNOWN is derived when no unique valid terminal record exists; only one valid locally authorized exact-binding ALLOW record permits the effect.",
-  "schema_version": 3
+  "schema_version": 3,
+  "transition_boundary_obligation": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate MUST NOT become a Seed transition."
 }
