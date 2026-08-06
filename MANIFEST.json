@@ -113,8 +113,8 @@
     },
     {
       "path": "EXTENSIONS.md",
-      "sha256": "sha256:ad3612e4f78659f33f27c0b3d46368aa28a5190c963bb14996b506e5aa5b647c",
-      "size_bytes": 1124
+      "sha256": "sha256:e6361f9e8b14f7b0e17e82440882e9b855c5a6127e8d829f3a69d7889753e5c5",
+      "size_bytes": 1414
     },
     {
       "path": "EXTRACTION.json",
@@ -158,8 +158,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:607e3b0710f37625880a12a6b5b1f7402958446dea378ea4318ceac05c1be850",
-      "size_bytes": 2190
+      "sha256": "sha256:7505023332d95851a2976e325cd3b1be83dab5ea55be931ab2351f9f9d2b7bb5",
+      "size_bytes": 2272
     },
     {
       "path": "README.pt-BR.md",
@@ -188,7 +188,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:2a9c094d9e73db51d087da1ed507301c27a5098b4c3ac4478aaa3662daa02cf3",
+      "sha256": "sha256:b4cc3e66c4405c334da7b207f9b408b5fd77f8192722d951601a60e1ddce2cbe",
       "size_bytes": 2459
     },
     {
@@ -208,7 +208,7 @@
     },
     {
       "path": "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",
-      "sha256": "sha256:48d8b922e1a6144b203864e436ac5c736ae5342d86bfbbfffa355874ae386286",
+      "sha256": "sha256:838fbb142cb74c92bd4e9c8adb5fa3914678afbcce24839c58bb64ed2ecdc64e",
       "size_bytes": 1177
     },
     {
@@ -362,6 +362,11 @@
       "size_bytes": 3017
     },
     {
+      "path": "docs/implementation/EXTENSION_CONFORMANCE.md",
+      "sha256": "sha256:fd1c1bf3945ef82df4a22f16361eae7b4b7547ffc3529492f25605dac3eb1d60",
+      "size_bytes": 1569
+    },
+    {
       "path": "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
       "sha256": "sha256:cdfad9ef4666388cae31cc6dff7baa494e79bda6caa4e38805e0083d624b6846",
       "size_bytes": 2144
@@ -448,8 +453,8 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:3d01b4c0aab5f87cf08d99a5f9bab3ce9bbcdf43b58eef06384c145bab7f4f76",
-      "size_bytes": 9283
+      "sha256": "sha256:7c71e9b5e694aa037d467b54426c27c86d986fe755fdd9019d0c13b43fb65e9f",
+      "size_bytes": 10271
     },
     {
       "path": "seed/canonical/README.md",
@@ -468,8 +473,8 @@
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:49709c77f128840c76f531de91f8756100ce3f8f9f06bf44d16e976d804520d8",
-      "size_bytes": 2975
+      "sha256": "sha256:fc931b8eb0e90a22f5614351503e7a11f384612b846df4f8fe5cebb4448d7ff4",
+      "size_bytes": 3253
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
@@ -580,6 +585,11 @@
       "path": "seed/canonical/conformance/conformance-profile.json",
       "sha256": "sha256:ba132f0095d85d61e1f1df188bcbbb7e3e97ec249e2b1c0ed18807f1c400e3a7",
       "size_bytes": 9501
+    },
+    {
+      "path": "seed/canonical/conformance/extension-conformance-protocol.json",
+      "sha256": "sha256:069b48ca62da2d1e5e8eb920530f95bbaaa4d4f79ae3d4b7a26f4fa71079985d",
+      "size_bytes": 2690
     },
     {
       "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
@@ -933,7 +943,7 @@
     },
     {
       "path": "seed/canonical/release/SEED_0.2_ALPHA2_EXTRACTION.json",
-      "sha256": "sha256:d6e2348f9846d670b5d75ee98bff4af6d2abd13cb1a9d04e4c6c6af6a93d2d69",
+      "sha256": "sha256:537ed8694d2418e7804bead85b9ef35d99e1b9eb8de361556e4a893cda0dd15f",
       "size_bytes": 1091
     },
     {
@@ -950,6 +960,26 @@
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
       "sha256": "sha256:e9fbd43a7a3b129ba29fe05bf0bb90c0e3db33b6312bf139451c812045691193",
       "size_bytes": 1724
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-envelope.schema.json",
+      "sha256": "sha256:0c1625fec3ef4c638d7a73ded61499b8bee303db7456a4b25a43db9132a69011",
+      "size_bytes": 3829
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-map.schema.json",
+      "sha256": "sha256:3f2c764f0ca6a03b63239dc213a9264ccc6ea29c4890cd14a0710e8086f0655c",
+      "size_bytes": 1630
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-protocol.schema.json",
+      "sha256": "sha256:fed3bfcdcc1a5f6c38127c133ae83fc3b4875ad277496131551ccf4d5c05ca5d",
+      "size_bytes": 2980
+    },
+    {
+      "path": "seed/canonical/schemas/extension-seed-binding.schema.json",
+      "sha256": "sha256:acd47ef4f4263aba57f86a9bded64d94bf1f2b0ed9990ae0f7dd21cda5590888",
+      "size_bytes": 1816
     },
     {
       "path": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
@@ -1982,6 +2012,11 @@
       "size_bytes": 3717
     },
     {
+      "path": "tests/test_extension_conformance_protocol.py",
+      "sha256": "sha256:e764f0e8456a47973c8f64fda5695e53959e5e4fe1cf713585ec5ce929428da0",
+      "size_bytes": 1524
+    },
+    {
       "path": "tests/test_implementation_conformance_protocol.py",
       "sha256": "sha256:816bc01e9172c1d506d1282283599edb4cf2b4cf7c10d45de2bfa700d5727a09",
       "size_bytes": 703
@@ -2018,8 +2053,8 @@
     },
     {
       "path": "tools/build_canon_package.py",
-      "sha256": "sha256:b8bbc4abc8a884874486bd6997848571c63a2fbadb28ab43c7a6b4e2872b0e2f",
-      "size_bytes": 3219
+      "sha256": "sha256:1d0c4633b104dd62e39a789e4f7ddce930066f55d8098ba728fe640a72224fc5",
+      "size_bytes": 3648
     },
     {
       "path": "tools/build_release.py",
@@ -2097,6 +2132,11 @@
       "size_bytes": 7247
     },
     {
+      "path": "tools/run_external_extension_conformance.py",
+      "sha256": "sha256:a05e3800af5b4d67ebda3c20c382161dd4fda7aee95d65f6339d25021251492c",
+      "size_bytes": 13645
+    },
+    {
       "path": "tools/run_tlc.py",
       "sha256": "sha256:91af5fe8e7f49675f9e7a812dd55dd7ac916d41c3a4355325a80abd552801235",
       "size_bytes": 3051
@@ -2123,8 +2163,8 @@
     },
     {
       "path": "tools/validate_canon_package.py",
-      "sha256": "sha256:9222c065f0142ff260c698328f9af2cad0de6aa6b3d1f8d6da0cc4b4179987c7",
-      "size_bytes": 2166
+      "sha256": "sha256:a7ea653d094d4b8ec9f01a3e8082fe8749ac12dd4f0cb6b74e6cbb06847254ff",
+      "size_bytes": 3242
     },
     {
       "path": "tools/validate_ecosystem_registry.py",
@@ -2147,7 +2187,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 429,
+  "files_count": 437,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.2.0-alpha.2-Resolution-Core",
   "repository_root": "ASET"

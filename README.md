@@ -53,3 +53,5 @@ python tools/repository_release_gate.py
 ASET was independently created by **Dzmitry Prychyna**, publicly known as **Attractor Set**,
 and is licensed under Apache License 2.0. See [`LICENSE`](LICENSE), [`NOTICE`](NOTICE) and
 [`BACKGROUND_IP_SCHEDULE.md`](BACKGROUND_IP_SCHEDULE.md).
+
+- [External extension conformance](docs/implementation/EXTENSION_CONFORMANCE.md)

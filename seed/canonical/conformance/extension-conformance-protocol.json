@@ -1,0 +1,93 @@
+{
+  "binding_requirements": [
+    "exact Seed canon identifier and version",
+    "exact Seed canon package file digest",
+    "exact Seed canon package internal digest",
+    "exact extension conformance protocol identifier",
+    "implementation precedence NONE",
+    "STRICT_EXTENSION_NO_WEAKENING compatibility claim"
+  ],
+  "boundary_roles": [
+    {
+      "expected": {
+        "accepted": true,
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN"
+      },
+      "role_id": "UNRESOLVED_INPUT"
+    },
+    {
+      "expected": {
+        "accepted": true,
+        "enforcement": "ALLOW",
+        "semantic_status": "ACCEPT"
+      },
+      "role_id": "LOCAL_ACCEPT"
+    },
+    {
+      "expected": {
+        "accepted": true,
+        "enforcement": "BLOCKED",
+        "semantic_status": "DENY"
+      },
+      "role_id": "LOCAL_DENY"
+    },
+    {
+      "expected": {
+        "accepted": false,
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN"
+      },
+      "role_id": "PRE_RESOLUTION_BYPASS_REJECTED"
+    },
+    {
+      "expected": {
+        "accepted": false,
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN"
+      },
+      "role_id": "ENFORCEMENT_MISMATCH_REJECTED"
+    },
+    {
+      "expected": {
+        "accepted": false,
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN"
+      },
+      "role_id": "BINDING_MISMATCH_REJECTED"
+    },
+    {
+      "expected": {
+        "accepted": false,
+        "enforcement": "BLOCKED",
+        "semantic_status": "UNKNOWN"
+      },
+      "role_id": "NON_LOCAL_AUTHORITY_REJECTED"
+    }
+  ],
+  "claim_boundary": {
+    "does_not_prove": [
+      "completeness of extension semantics",
+      "production security or deployment correctness",
+      "truth of external evidence",
+      "unbounded formal refinement of the entire Seed model"
+    ],
+    "proves": [
+      "exact upstream Seed package binding at the tested revision",
+      "extension canon package integrity at the tested revision",
+      "portable black-box preservation of the listed Seed boundary roles",
+      "deterministic replay of the mapped boundary cases"
+    ]
+  },
+  "deterministic_replay_required": true,
+  "document_type": "aset-seed-extension-conformance-protocol",
+  "implementation_precedence": "NONE",
+  "protocol_id": "ASET-SEED-EXTENSION-CONFORMANCE-V1",
+  "purpose": "Verify that a separately versioned extension pins this exact Seed package and preserves the Seed decision boundary for unresolved input, local terminal resolution, enforcement, binding, and authority locality.",
+  "required_operations": [
+    "describe",
+    "execute_case",
+    "execute_cases"
+  ],
+  "schema_version": 1
+}

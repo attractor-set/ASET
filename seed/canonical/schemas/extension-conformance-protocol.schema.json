@@ -1,0 +1,139 @@
+{
+  "$defs": {
+    "result": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "enforcement": {
+          "enum": [
+            "BLOCKED",
+            "ALLOW"
+          ]
+        },
+        "semantic_status": {
+          "enum": [
+            "UNKNOWN",
+            "ACCEPT",
+            "DENY"
+          ]
+        }
+      },
+      "required": [
+        "accepted",
+        "semantic_status",
+        "enforcement"
+      ],
+      "type": "object"
+    },
+    "role": {
+      "additionalProperties": false,
+      "properties": {
+        "expected": {
+          "$ref": "#/$defs/result"
+        },
+        "role_id": {
+          "enum": [
+            "UNRESOLVED_INPUT",
+            "LOCAL_ACCEPT",
+            "LOCAL_DENY",
+            "PRE_RESOLUTION_BYPASS_REJECTED",
+            "ENFORCEMENT_MISMATCH_REJECTED",
+            "BINDING_MISMATCH_REJECTED",
+            "NON_LOCAL_AUTHORITY_REJECTED"
+          ]
+        }
+      },
+      "required": [
+        "role_id",
+        "expected"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/extension-conformance-protocol.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "binding_requirements": {
+      "items": {
+        "minLength": 8,
+        "type": "string"
+      },
+      "minItems": 6,
+      "type": "array"
+    },
+    "boundary_roles": {
+      "items": {
+        "$ref": "#/$defs/role"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+    },
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "does_not_prove": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "type": "array"
+        },
+        "proves": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "type": "array"
+        }
+      },
+      "required": [
+        "proves",
+        "does_not_prove"
+      ],
+      "type": "object"
+    },
+    "deterministic_replay_required": {
+      "const": true
+    },
+    "document_type": {
+      "const": "aset-seed-extension-conformance-protocol"
+    },
+    "implementation_precedence": {
+      "const": "NONE"
+    },
+    "protocol_id": {
+      "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+    },
+    "purpose": {
+      "minLength": 80,
+      "type": "string"
+    },
+    "required_operations": {
+      "const": [
+        "describe",
+        "execute_case",
+        "execute_cases"
+      ]
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "protocol_id",
+    "implementation_precedence",
+    "purpose",
+    "required_operations",
+    "deterministic_replay_required",
+    "binding_requirements",
+    "boundary_roles",
+    "claim_boundary"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,169 @@
+{
+  "$defs": {
+    "batch_response": {
+      "additionalProperties": false,
+      "properties": {
+        "protocol": {
+          "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/case_result"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "protocol",
+        "results"
+      ],
+      "type": "object"
+    },
+    "case_result": {
+      "additionalProperties": false,
+      "properties": {
+        "actual": {
+          "$ref": "#/$defs/result"
+        },
+        "case_id": {
+          "type": "string"
+        },
+        "final_state": {},
+        "protocol": {
+          "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+        }
+      },
+      "required": [
+        "protocol",
+        "case_id",
+        "actual",
+        "final_state"
+      ],
+      "type": "object"
+    },
+    "describe_response": {
+      "additionalProperties": false,
+      "properties": {
+        "extension": {
+          "$ref": "#/$defs/extension"
+        },
+        "operations": {
+          "const": [
+            "describe",
+            "execute_case",
+            "execute_cases"
+          ]
+        },
+        "protocol": {
+          "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+        },
+        "seed_binding": {
+          "$ref": "#/$defs/seed_binding"
+        }
+      },
+      "required": [
+        "protocol",
+        "extension",
+        "seed_binding",
+        "operations"
+      ],
+      "type": "object"
+    },
+    "extension": {
+      "additionalProperties": false,
+      "properties": {
+        "canon_id": {
+          "type": "string"
+        },
+        "extension_id": {
+          "type": "string"
+        },
+        "package_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "extension_id",
+        "canon_id",
+        "version",
+        "package_digest"
+      ],
+      "type": "object"
+    },
+    "result": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "enforcement": {
+          "enum": [
+            "NOT_APPLICABLE",
+            "BLOCKED",
+            "ALLOW"
+          ]
+        },
+        "semantic_status": {
+          "enum": [
+            "NOT_APPLICABLE",
+            "UNKNOWN",
+            "ACCEPT",
+            "DENY"
+          ]
+        },
+        "state_changed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "accepted",
+        "code",
+        "state_changed",
+        "semantic_status",
+        "enforcement"
+      ],
+      "type": "object"
+    },
+    "seed_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "canon_id": {
+          "type": "string"
+        },
+        "canon_package_file_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "canon_package_internal_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "canon_version": {
+          "type": "string"
+        },
+        "extension_conformance_protocol": {
+          "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+        }
+      },
+      "required": [
+        "canon_id",
+        "canon_version",
+        "canon_package_file_digest",
+        "canon_package_internal_digest",
+        "extension_conformance_protocol"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/extension-conformance-envelope.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

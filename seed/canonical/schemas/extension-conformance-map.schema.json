@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/extension-conformance-map.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter": {
+      "minLength": 8,
+      "type": "string"
+    },
+    "document_type": {
+      "const": "aset-seed-extension-conformance-map"
+    },
+    "extension_canon_id": {
+      "minLength": 8,
+      "type": "string"
+    },
+    "extension_id": {
+      "minLength": 4,
+      "type": "string"
+    },
+    "mappings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_path": {
+            "minLength": 8,
+            "type": "string"
+          },
+          "case_sha256": {
+            "$ref": "#/$defs/digest"
+          },
+          "role_id": {
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "role_id",
+          "case_path",
+          "case_sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+    },
+    "protocol_id": {
+      "const": "ASET-SEED-EXTENSION-CONFORMANCE-V1"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "seed_binding": {
+      "minLength": 8,
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "protocol_id",
+    "extension_id",
+    "extension_canon_id",
+    "seed_binding",
+    "adapter",
+    "mappings"
+  ],
+  "type": "object"
+}

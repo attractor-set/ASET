@@ -3,6 +3,7 @@
   "canon_version": "0.2.0-alpha.2",
   "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V1",
   "document_type": "aset-canon-package",
+  "extension_conformance_protocol": "ASET-SEED-EXTENSION-CONFORMANCE-V1",
   "files": [
     {
       "path": "seed/canonical/source/seed-model.json",
@@ -41,12 +42,32 @@
       "sha256": "sha256:4765c04d494cc30b5a91d338c7332696c1c24c257d536d384ea69d85acc4bd67"
     },
     {
+      "path": "seed/canonical/conformance/extension-conformance-protocol.json",
+      "sha256": "sha256:069b48ca62da2d1e5e8eb920530f95bbaaa4d4f79ae3d4b7a26f4fa71079985d"
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-protocol.schema.json",
+      "sha256": "sha256:fed3bfcdcc1a5f6c38127c133ae83fc3b4875ad277496131551ccf4d5c05ca5d"
+    },
+    {
+      "path": "seed/canonical/schemas/extension-seed-binding.schema.json",
+      "sha256": "sha256:acd47ef4f4263aba57f86a9bded64d94bf1f2b0ed9990ae0f7dd21cda5590888"
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-map.schema.json",
+      "sha256": "sha256:3f2c764f0ca6a03b63239dc213a9264ccc6ea29c4890cd14a0710e8086f0655c"
+    },
+    {
+      "path": "seed/canonical/schemas/extension-conformance-envelope.schema.json",
+      "sha256": "sha256:0c1625fec3ef4c638d7a73ded61499b8bee303db7456a4b25a43db9132a69011"
+    },
+    {
       "path": "seed/canonical/conformance/model-based-conformance.json",
       "sha256": "sha256:b023bcbda58d28c2a3361b95469f7fc2761a0b9a105a206b8ee4010f4247381e"
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:49709c77f128840c76f531de91f8756100ce3f8f9f06bf44d16e976d804520d8"
+      "sha256": "sha256:fc931b8eb0e90a22f5614351503e7a11f384612b846df4f8fe5cebb4448d7ff4"
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
@@ -207,6 +228,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+  "package_digest": "sha256:c9ef36b5bc00c9630ae4f8aee461e7e71308b136ad620ea9c133ec7cdf1e6aa1",
   "schema_version": 2
 }

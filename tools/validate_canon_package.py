@@ -45,7 +45,30 @@ def main() -> int:
     envelope_schema = load(
         ROOT / "seed/canonical/schemas/implementation-conformance-envelope.schema.json"
     )
-    for name, schema in (("protocol", protocol_schema), ("envelope", envelope_schema)):
+    extension_protocol = load(
+        ROOT / "seed/canonical/conformance/extension-conformance-protocol.json"
+    )
+    extension_protocol_schema = load(
+        ROOT / "seed/canonical/schemas/extension-conformance-protocol.schema.json"
+    )
+    extension_binding_schema = load(
+        ROOT / "seed/canonical/schemas/extension-seed-binding.schema.json"
+    )
+    extension_map_schema = load(
+        ROOT / "seed/canonical/schemas/extension-conformance-map.schema.json"
+    )
+    extension_envelope_schema = load(
+        ROOT / "seed/canonical/schemas/extension-conformance-envelope.schema.json"
+    )
+    schemas = (
+        ("protocol", protocol_schema),
+        ("envelope", envelope_schema),
+        ("extension_protocol", extension_protocol_schema),
+        ("extension_binding", extension_binding_schema),
+        ("extension_map", extension_map_schema),
+        ("extension_envelope", extension_envelope_schema),
+    )
+    for name, schema in schemas:
         try:
             Draft202012Validator.check_schema(schema)
         except Exception as exc:
@@ -53,6 +76,12 @@ def main() -> int:
     errors.extend(
         "protocol_schema:" + error.message
         for error in Draft202012Validator(protocol_schema).iter_errors(protocol)
+    )
+    errors.extend(
+        "extension_protocol_schema:" + error.message
+        for error in Draft202012Validator(extension_protocol_schema).iter_errors(
+            extension_protocol
+        )
     )
 
     if errors:

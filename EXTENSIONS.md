@@ -14,3 +14,10 @@ compatibility while retaining each exact upstream package identity.
 
 Every extension must pin an exact Seed package, preserve all Seed invariants, publish its own
 invariants and portable conformance cases, and remain independently versioned.
+
+## Seed-owned conformance
+
+A registry entry is not a conformance verdict. Published extensions MUST run
+`ASET-SEED-EXTENSION-CONFORMANCE-V1` from the exact pinned Seed checkout and publish a
+PASS report for all mandatory boundary roles. See
+`docs/implementation/EXTENSION_CONFORMANCE.md`.

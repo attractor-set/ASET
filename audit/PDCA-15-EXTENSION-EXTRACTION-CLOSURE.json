@@ -1,7 +1,7 @@
 {
   "archived_source_files": 294,
   "candidate_canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
-  "candidate_package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+  "candidate_package_digest": "sha256:c9ef36b5bc00c9630ae4f8aee461e7e71308b136ad620ea9c133ec7cdf1e6aa1",
   "checks": {
     "assurance_traceability": "PASS",
     "bounded_model_check": "PASS",

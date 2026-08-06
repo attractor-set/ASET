@@ -109,6 +109,13 @@
       "gate_ids": [],
       "id": "ASET-VERIFY-EXTERNAL-CONFORMANCE",
       "kind": "EXTERNAL_IMPLEMENTATION_CONFORMANCE"
+    },
+    {
+      "evidence": "tools/run_external_extension_conformance.py executed by an extension repository",
+      "external_profile_gate": true,
+      "gate_ids": [],
+      "id": "ASET-VERIFY-EXTERNAL-EXTENSION-CONFORMANCE",
+      "kind": "EXTERNAL_EXTENSION_CONFORMANCE"
     }
   ]
 }

@@ -12,6 +12,6 @@
   "schema_version": 1,
   "semantic_change_class": "NONE",
   "to_canon_id": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2",
-  "to_package_digest": "sha256:2a94d50b97d405af40e97de610aa45a5d51f0befdce7a012c302d923c8a01861",
+  "to_package_digest": "sha256:c9ef36b5bc00c9630ae4f8aee461e7e71308b136ad620ea9c133ec7cdf1e6aa1",
   "to_version": "0.2.0-alpha.2"
 }
