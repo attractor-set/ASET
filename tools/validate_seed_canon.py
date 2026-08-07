@@ -67,6 +67,45 @@ def validate_document(
     return document
 
 
+def json_pointer(value: Any, pointer: str) -> Any:
+    if pointer == "":
+        return value
+    if not pointer.startswith("/"):
+        raise ValueError("invalid JSON pointer")
+    current = value
+    for raw in pointer[1:].split("/"):
+        token = raw.replace("~1", "/").replace("~0", "~")
+        if isinstance(current, list):
+            try:
+                index = int(token)
+            except ValueError as exc:
+                raise KeyError(pointer) from exc
+            if index < 0 or index >= len(current):
+                raise KeyError(pointer)
+            current = current[index]
+        elif isinstance(current, dict):
+            if token not in current:
+                raise KeyError(pointer)
+            current = current[token]
+        else:
+            raise KeyError(pointer)
+    return current
+
+
+def validate_postconditions(
+    errors: list[str], case_id: str, case: dict[str, Any], store: dict[str, Any]
+) -> None:
+    for condition in case.get("postconditions", []):
+        pointer = condition["path"]
+        try:
+            actual = json_pointer(store, pointer)
+        except (KeyError, ValueError):
+            errors.append(f"case_postcondition:{case_id}:{pointer}:path_missing")
+            continue
+        if actual != condition["equals"]:
+            errors.append(f"case_postcondition:{case_id}:{pointer}:value_mismatch")
+
+
 def main() -> int:
     errors: list[str] = []
     model = validate_document(
@@ -161,12 +200,13 @@ def main() -> int:
         if case["expected"] != item["expected"]:
             errors.append("case_expected:" + item["case_id"])
         try:
-            actual, _ = execute_case(case)
+            actual, final_store = execute_case(case)
         except Exception as exc:
             errors.append("case_execution:" + item["case_id"] + ":" + str(exc))
         else:
             if actual != case["expected"]:
                 errors.append("case_oracle:" + item["case_id"])
+            validate_postconditions(errors, item["case_id"], case, final_store)
 
     validate_document(
         errors,

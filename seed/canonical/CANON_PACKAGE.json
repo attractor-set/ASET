@@ -26,7 +26,7 @@
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:8b5aaa3b5890315f001ee68257c9a316d1523000db26ddd9b112fd16456f2cf4"
+      "sha256": "sha256:4b84cbf665c5188a39f186bf4a8a51f82c6c77cac13efb4bc02a2cc6fad58f17"
     },
     {
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
@@ -119,6 +119,10 @@
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
       "sha256": "sha256:a20a2b37ff02e5ad3a83708722556ce0045764bd0d3a4ea1488af76a24de2c10"
+    },
+    {
+      "path": "seed/canonical/migration/ALPHA1_CONFORMANCE_ERRATUM_1.json",
+      "sha256": "sha256:2aba3e5ab019a7776e8681652154f4d4dec16bc8a9244f2ae7e41ac3b74d927a"
     },
     {
       "path": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
@@ -286,7 +290,7 @@
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5"
+      "sha256": "sha256:68c556b6231e9ca9b88d6b7653edf16c880c8042a50e2e19d2f210d54dd5ce18"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
@@ -299,6 +303,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:0f0a51e4655fac186a70445f717027e42f1adc7a722f99b2eecf4dd3a2410c8d",
+  "package_digest": "sha256:c5d48a418466ea7a60fccb7161adbd5ad568174bbc9a28fc03fd7e6e77955d31",
   "schema_version": 2
 }

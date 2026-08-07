@@ -41,7 +41,7 @@
   },
   "postconditions": [
     {
-      "equals": "sha256:036914e827dcd520081da16232f409942e0f768d343b44e03079f2f73f749ae8",
+      "equals": "sha256:4f32a4864d57c647b1761a084507ce9c081bc257ac9ba4cd7f066a5598083499",
       "path": "/records/0/record_digest"
     }
   ],

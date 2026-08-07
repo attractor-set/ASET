@@ -38,13 +38,13 @@
     },
     {
       "path": ".github/workflows/release-candidate.yml",
-      "sha256": "sha256:6f10a7c689a24679a2a7e83aaae62201a4d107d93cce962a483e4cf8a5f1cb8f",
-      "size_bytes": 3087
+      "sha256": "sha256:d78958be57ae35189aac8557b19db7404ebafbb42bd3fd2404d85c380ca9a870",
+      "size_bytes": 3360
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:fe2d9f9f3261fdd0c9f985b3edfcb235ec8381a47c956231f028bc9da4a1c8cb",
-      "size_bytes": 2014
+      "sha256": "sha256:d64c6747250bfd337da41435302d3e6f08b2fd1712592a5c6a6c237949bf1a6c",
+      "size_bytes": 2397
     },
     {
       "path": ".gitignore",
@@ -168,7 +168,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:76f257a09e5a79e3244b995b72db87ce2d01072e11fb100d41c488442fef7732",
+      "sha256": "sha256:ac84f3df2fc7f1efa3a6c564d652726e073eedfdc3f7521251b1360927a6ccb6",
       "size_bytes": 2938
     },
     {
@@ -438,8 +438,8 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:d18bb95f0650be8f5e0356cecb79413d06b9696c0ca20d2ecd8d84857db2eae7",
-      "size_bytes": 13446
+      "sha256": "sha256:25f3c07fc95d960cd16cf7c041ec00b610c83bde0eb7d31d9918e622881f01dd",
+      "size_bytes": 13625
     },
     {
       "path": "seed/canonical/README.md",
@@ -588,7 +588,7 @@
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5",
+      "sha256": "sha256:68c556b6231e9ca9b88d6b7653edf16c880c8042a50e2e19d2f210d54dd5ce18",
       "size_bytes": 3211
     },
     {
@@ -603,7 +603,7 @@
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:8b5aaa3b5890315f001ee68257c9a316d1523000db26ddd9b112fd16456f2cf4",
+      "sha256": "sha256:4b84cbf665c5188a39f186bf4a8a51f82c6c77cac13efb4bc02a2cc6fad58f17",
       "size_bytes": 12423
     },
     {
@@ -695,6 +695,11 @@
       "path": "seed/canonical/formal/SeedResolutionProofs.tla",
       "sha256": "sha256:3d6bdada8c1c0f93c247eb5c5b4df895e793c174768270138f2d6e6176990ad7",
       "size_bytes": 21965
+    },
+    {
+      "path": "seed/canonical/migration/ALPHA1_CONFORMANCE_ERRATUM_1.json",
+      "sha256": "sha256:2aba3e5ab019a7776e8681652154f4d4dec16bc8a9244f2ae7e41ac3b74d927a",
+      "size_bytes": 1247
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
@@ -1902,9 +1907,19 @@
       "size_bytes": 9775
     },
     {
+      "path": "tests/test_conformance_artifact_generation.py",
+      "sha256": "sha256:a77c1460a3fb264a258a974b1e1632fa450fb1af04c9b5b08342dba1affb2aa1",
+      "size_bytes": 1762
+    },
+    {
       "path": "tests/test_implementation_conformance_protocol.py",
       "sha256": "sha256:957de7274384b7ef319c4f4b7fc6c6fa52186cfbc413e4fcd0ef6d5a8b741874",
       "size_bytes": 703
+    },
+    {
+      "path": "tests/test_inpi_deposit_generation.py",
+      "sha256": "sha256:dd1f97426347c676e6995e8ff09e77d25dcb5bec70e2b3ee2fbc239258fbb6a7",
+      "size_bytes": 1306
     },
     {
       "path": "tests/test_invariant_coverage.py",
@@ -1948,8 +1963,18 @@
     },
     {
       "path": "tools/build_canon_package.py",
-      "sha256": "sha256:f79501e64c6bd95eebad7411e2d487a9c27a2c866b2b54d72ea84a004752ebd0",
-      "size_bytes": 4464
+      "sha256": "sha256:34a435726aa8eea1a638c6e12d4cdd87667f2d043b73d58accacb8583c419b52",
+      "size_bytes": 4530
+    },
+    {
+      "path": "tools/build_conformance_profile.py",
+      "sha256": "sha256:15727ba8ddae66dd246c5a22d0ccd2d48aa21cd6b487a4c3667257fbd2e1cf92",
+      "size_bytes": 2360
+    },
+    {
+      "path": "tools/build_inpi_software_deposit.py",
+      "sha256": "sha256:5cdfed11dbba1ef030d9d5d73a81da197c605a6951bbb297f94fd66c19467a6f",
+      "size_bytes": 7551
     },
     {
       "path": "tools/build_release.py",
@@ -1970,6 +1995,11 @@
       "path": "tools/check_canon_tla_refinement.py",
       "sha256": "sha256:1e5dcdd478bc88ce1e7b2a972b5d135b3089b12d47f2c626e42def0f95b7d0e9",
       "size_bytes": 8977
+    },
+    {
+      "path": "tools/check_inpi_deposit_profile_stability.py",
+      "sha256": "sha256:7369f521314fbff96e2011dca7662dfe00eba6281569cc745fef9f209deb7c23",
+      "size_bytes": 1161
     },
     {
       "path": "tools/check_invariant_coverage.py",
@@ -2037,9 +2067,24 @@
       "size_bytes": 2746
     },
     {
+      "path": "tools/regenerate_derived_artifacts.py",
+      "sha256": "sha256:d1efa40c8240b5c50477aa4192fb52db165db3264d612b87079b73c6d8183f66",
+      "size_bytes": 721
+    },
+    {
+      "path": "tools/registration/README.md",
+      "sha256": "sha256:16e915cc2611bcd5253e8ce3a35afd32cded4d5278c17b448f10319c6b748707",
+      "size_bytes": 1237
+    },
+    {
+      "path": "tools/registration/inpi-software-deposit-profile-v1.json",
+      "sha256": "sha256:6b69d4dc8edd1614e6cbdcaf24bad55f5e5ecb777fe3209c94aac2d781780a5c",
+      "size_bytes": 613
+    },
+    {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:8ea682b16115979680592c742201c0de1b2c89ccb333c034926323a8b471e914",
-      "size_bytes": 5208
+      "sha256": "sha256:cb6a0c04f492c1591ed6ca70e5a5c51b7749dc483e0ee2616afefdae4da30d6c",
+      "size_bytes": 5453
     },
     {
       "path": "tools/run_canon_tla_refinement.py",
@@ -2113,8 +2158,8 @@
     },
     {
       "path": "tools/validate_seed_canon.py",
-      "sha256": "sha256:d340da0aef7c9f94537dd4a8558e786d90b921b53f58d6544981252726ae777d",
-      "size_bytes": 8201
+      "sha256": "sha256:39db19baa5d868bdbe76f307adaa9f2036fe24d8b9fd2474e475cac31af64dcd",
+      "size_bytes": 9660
     },
     {
       "path": "tools/verify_frozen_release.py",
@@ -2122,7 +2167,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 424,
+  "files_count": 433,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

@@ -38,6 +38,7 @@ BASE = [
     "seed/canonical/formal/SeedCanonRefinementProofs.tla",
     "seed/canonical/formal/SeedResolution.cfg",
     "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
+    "seed/canonical/migration/ALPHA1_CONFORMANCE_ERRATUM_1.json",
     "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
     "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
     "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
