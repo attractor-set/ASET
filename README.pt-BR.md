@@ -2,7 +2,9 @@
 
 # ASET
 
-ASET é uma especificação aberta e neutra de implementação para um núcleo mínimo de reconhecimento de resolução no escopo da Authority local.
+**ASET — Authority-Seeded Evidence Trail.**
+
+ASET é uma especificação aberta e neutra de implementação para um núcleo mínimo de reconhecimento de resolução no escopo da Authority local. Aqui, *seeded* significa que a admissibilidade se origina de um vínculo de Authority explicitamente reconhecido; o Seed não exige um mecanismo específico de assinatura criptográfica.
 
 ```text
 UNKNOWN | ALLOW | BLOCK

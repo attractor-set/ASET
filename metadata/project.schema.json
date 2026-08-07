@@ -32,7 +32,7 @@
       "const": "ASET"
     },
     "expanded_name": {
-      "const": "Authority-Signed Evidence Trail"
+      "const": "Authority-Seeded Evidence Trail"
     },
     "description": {
       "type": "string",

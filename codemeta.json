@@ -3,7 +3,7 @@
   "@id": "https://github.com/attractor-set/ASET",
   "@type": "SoftwareSourceCode",
   "abstract": "ASET defines a minimal, implementation-neutral kernel that recognizes one locally authorized exact-binding terminal resolution record. Only ALLOW permits the bound effect; missing, invalid or conflicting material remains fail-closed.",
-  "alternateName": "Authority-Signed Evidence Trail",
+  "alternateName": "Authority-Seeded Evidence Trail",
   "author": {
     "@type": "Person",
     "alternateName": "Attractor Set",

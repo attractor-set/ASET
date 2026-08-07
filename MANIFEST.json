@@ -123,18 +123,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:1150d7e13cb4bfe52696d98efbddf6a0b792f4c806da17d696b667006b42c215",
-      "size_bytes": 904
+      "sha256": "sha256:1bfec90dd704e5a7c9f9e87cd38b9a4c1756cb9d038de291073e1b0ee77e0483",
+      "size_bytes": 1124
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:39fa25467c1422f68198c8b682e789902121d13a8155214ec4005e86ac012563",
-      "size_bytes": 1009
+      "sha256": "sha256:9c2b5e770a9bed2835e78ff23d86d974fc64df72c01dd0e1adf2f882b451f277",
+      "size_bytes": 1243
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:fc3b1b03b01266affceb0e52d1b6c900520c4c43834dd55292a59eeb078ca935",
-      "size_bytes": 1400
+      "sha256": "sha256:e138e652feecf73a1fe5ce8751e3f8f10cbe5ab174a6df5cb9dddf42b6d37c41",
+      "size_bytes": 1722
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -278,7 +278,7 @@
     },
     {
       "path": "codemeta.json",
-      "sha256": "sha256:3b542b790b967a43c4fecda4c357b05d194007699ec7c428194c3577c4b9ce3d",
+      "sha256": "sha256:591f09f88f9cbc8a8e77a543253da9d6e9ed468e73156bf7336e92fc5dd9e19a",
       "size_bytes": 2110
     },
     {
@@ -418,12 +418,12 @@
     },
     {
       "path": "metadata/project.json",
-      "sha256": "sha256:244b6fe0ff254ad40079cd8d466b55d61e93543f2cdf06b9b82625fb3b949cf8",
+      "sha256": "sha256:bc12b036f192fd29df3a3a1b7492ec6cf0596b00292db824d34452fd1d9f2f47",
       "size_bytes": 1921
     },
     {
       "path": "metadata/project.schema.json",
-      "sha256": "sha256:c5fb767976f2182d31eacbef3adcf462b453d67e6fe8559dc03a117d8fd213d6",
+      "sha256": "sha256:15a9a5180a80a1ba3023f8859b2444c54a48b0d8d33c0213bfe6fba547333acf",
       "size_bytes": 3782
     },
     {
@@ -1923,7 +1923,7 @@
     },
     {
       "path": "tests/test_project_metadata.py",
-      "sha256": "sha256:a34cce37e691c681162d024610934fdf6874044e2217b19a7334c41f68425ea3",
+      "sha256": "sha256:0f69ae74c586ec6545a1dd494b9bf7830bcc21031368fc2f293860f392e4bb19",
       "size_bytes": 3429
     },
     {

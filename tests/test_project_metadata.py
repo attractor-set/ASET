@@ -31,7 +31,7 @@ def test_project_metadata_is_the_single_about_source():
     assert about["description"] == EXPECTED_DESCRIPTION
     assert codemeta["description"] == EXPECTED_DESCRIPTION
     assert repository_metadata["description"] == EXPECTED_DESCRIPTION
-    assert codemeta["alternateName"] == "Authority-Signed Evidence Trail"
+    assert codemeta["alternateName"] == "Authority-Seeded Evidence Trail"
 
 
 def test_github_topics_are_exact_and_valid():
