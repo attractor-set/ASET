@@ -8,7 +8,7 @@ ASET é uma especificação aberta e neutra de implementação para Authority-Si
 UNKNOWN | ALLOW | BLOCK
 ```
 
-Somente um registro `ALLOW` único, válido, localmente autorizado e exatamente vinculado permite o efeito vinculado. Material ausente, inválido ou conflitante resulta em `UNKNOWN`; proibição explícita é `BLOCK`. Evidence, saída de AI e outcome remoto não criam Authority local por si só.
+Somente um registro `ALLOW` único, válido, localmente autorizado e exatamente vinculado permite o efeito vinculado. A ausência de estado terminal válido ou o conflito entre registros terminais válidos resulta em `UNKNOWN`; proibição explícita é `BLOCK`. Material inválido ou não autoritativo não pode substituir um registro terminal válido que, de outro modo, seria único. Evidence, saída de AI e outcome remoto não criam Authority local por si só.
 
 Repository boundary records: [EXTRACTION.md](EXTRACTION.md), [IMPLEMENTATIONS.md](IMPLEMENTATIONS.md), [EXTENSIONS.md](EXTENSIONS.md).
 

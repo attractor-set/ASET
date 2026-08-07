@@ -13,9 +13,9 @@
           ],
           "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         },
-        "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "initial_authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
         "previous_terminal_record_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        "request_digest": "sha256:d3f94d38c625b857cfaf9318e4565c21bf671b4e2cea83c3f1994b2ad4ec6e98",
+        "request_digest": "sha256:f576a90486dd05617b3c117f3915b405b61185c7eb0bbb9a11f84586743d3e0f",
         "resolution_id": "res.2"
       }
     }
@@ -33,16 +33,13 @@
   "initial_store": {
     "authority_bindings": [
       {
-        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
         "authority_id": "authority.root",
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
         "context_id": "ctx.local",
-        "delegation_allowed": true,
         "policy_epoch": 1
       }
     ],
-    "authority_grants": [],
     "records": [],
     "requests": []
   },

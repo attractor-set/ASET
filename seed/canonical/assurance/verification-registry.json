@@ -1,5 +1,5 @@
 {
-  "claim_boundary": "Registry membership proves complete machine traceability for the published minimal Seed safety contract. The committed abstract TLA+ projection has bounded TLC coverage and an unbounded TLAPS deductive proof of all eleven registered state invariants and five registered temporal safety properties over the normalized three-variable state. A source-locked generated canonical TLA+ projection is machine-checked against the exact seed-model.json identity, and TLAPS proves behavioral equivalence between that declared projection and SeedResolution.tla. Opaque Binding construction, concrete Authority grant-chain construction, cryptographic primitive security, implementation refinement, liveness, implementation correctness and external certification are not claimed.",
+  "claim_boundary": "Registry membership provides machine traceability for the active minimal Seed contract. The formal model separates two Seed-owned mutable state dimensions (requestMeta, terminalMeta) from one environment conflict dimension. Fourteen TLA/TLC properties (ten state invariants and four temporal safety properties) have bounded finite-state coverage and TLAPS deductive closure. A standalone source-locked canonical TLA+ projection is behaviorally equivalent to SeedResolution.tla under the declared abstraction mapping. Invalid/non-authoritative material processing, concrete Binding construction, concrete Authority evidence/signatures/delegation-chain construction, cryptographic security, implementation refinement, liveness and external certification remain outside the formal Seed state-machine proof boundary.",
   "document_type": "aset-seed-verification-registry",
   "formal_properties": [
     {
@@ -46,8 +46,7 @@
       "name": "FailClosed",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
-        "SEED-INV-003",
-        "SEED-INV-009"
+        "SEED-INV-003"
       ],
       "seed_requirements": [
         "ASET-SEED-REQ-005"
@@ -68,8 +67,8 @@
     {
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
-      "name": "LocalAuthorityRoot",
-      "projection_status": "BOUNDED_ABSTRACTION",
+      "name": "RequestAuthorityRecognized",
+      "projection_status": "ABSTRACT_AUTHORITY_RECOGNITION",
       "seed_invariants": [
         "SEED-INV-005"
       ],
@@ -80,8 +79,8 @@
     {
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
-      "name": "DelegatedAuthoritySound",
-      "projection_status": "ABSTRACT_PROOF_PREDICATE",
+      "name": "TerminalAuthorityRecognized",
+      "projection_status": "ABSTRACT_AUTHORITY_RECOGNITION",
       "seed_invariants": [
         "SEED-INV-006"
       ],
@@ -92,20 +91,8 @@
     {
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
-      "name": "InputsNonAuthoritative",
-      "projection_status": "STRUCTURAL_NO_STATE_SLOT",
-      "seed_invariants": [
-        "SEED-INV-007"
-      ],
-      "seed_requirements": [
-        "ASET-SEED-REQ-008"
-      ]
-    },
-    {
-      "engine": "TLA_TLC",
-      "kind": "STATE_INVARIANT",
       "name": "TerminalUnique",
-      "projection_status": "BOUNDED_ABSTRACTION",
+      "projection_status": "STRUCTURAL_BY_CONSTRUCTION",
       "seed_invariants": [
         "SEED-INV-008"
       ],
@@ -130,7 +117,7 @@
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
       "name": "FreshReconsideration",
-      "projection_status": "BOUNDED_ABSTRACTION",
+      "projection_status": "ABSTRACT_COMMITMENT_RECOGNITION",
       "seed_invariants": [
         "SEED-INV-012"
       ],
@@ -167,8 +154,8 @@
     {
       "engine": "TLA_TLC",
       "kind": "TEMPORAL_PROPERTY",
-      "name": "CanonicalStateChangesOnlyByRecognizedTransition",
-      "projection_status": "BOUNDED_ABSTRACTION",
+      "name": "SeedStateChangesOnlyByRecognizedTransition",
+      "projection_status": "SEED_STATE_BOUNDARY",
       "seed_invariants": [
         "SEED-INV-011"
       ],
@@ -177,26 +164,12 @@
     {
       "engine": "TLA_TLC",
       "kind": "TEMPORAL_PROPERTY",
-      "name": "NonAuthoritativeInputsStutter",
-      "projection_status": "STRUCTURAL_STUTTER_ABSTRACTION",
+      "name": "ConflictObservationPreservesSeedState",
+      "projection_status": "ENVIRONMENT_STATE_BOUNDARY",
       "seed_invariants": [
-        "SEED-INV-007"
+        "SEED-INV-011"
       ],
-      "seed_requirements": [
-        "ASET-SEED-REQ-008"
-      ]
-    },
-    {
-      "engine": "TLA_TLC",
-      "kind": "TEMPORAL_PROPERTY",
-      "name": "InvalidMaterialStutter",
-      "projection_status": "STRUCTURAL_STUTTER_ABSTRACTION",
-      "seed_invariants": [
-        "SEED-INV-009"
-      ],
-      "seed_requirements": [
-        "ASET-SEED-REQ-005"
-      ]
+      "seed_requirements": []
     },
     {
       "engine": "EXECUTABLE_ORACLE",
@@ -215,7 +188,7 @@
     {
       "engine": "EXECUTABLE_ORACLE",
       "kind": "EXECUTABLE_PROPERTY",
-      "name": "GrantChainValidation",
+      "name": "AuthorityRecognitionBoundary",
       "projection_status": "EXACT_CANON_PROPERTY",
       "seed_invariants": [
         "SEED-INV-005",
@@ -224,6 +197,20 @@
       "seed_requirements": [
         "ASET-SEED-REQ-006",
         "ASET-SEED-REQ-007"
+      ]
+    },
+    {
+      "engine": "EXECUTABLE_ORACLE",
+      "kind": "EXECUTABLE_PROPERTY",
+      "name": "ExternalMaterialNonAuthoritative",
+      "projection_status": "BOUNDARY_PROPERTY",
+      "seed_invariants": [
+        "SEED-INV-007",
+        "SEED-INV-009"
+      ],
+      "seed_requirements": [
+        "ASET-SEED-REQ-005",
+        "ASET-SEED-REQ-008"
       ]
     },
     {
@@ -257,7 +244,7 @@
     }
   ],
   "normative": true,
-  "schema_version": 3,
+  "schema_version": 4,
   "transition_case_policy": {
     "declared_exceptions": [],
     "require_negative_case": true,
@@ -292,7 +279,7 @@
       "kind": "DECLARATIVE_INVARIANT_VALIDATION"
     },
     {
-      "evidence": "Python bounded model and TLC formal model",
+      "evidence": "Python finite-state saturation check and TLC formal model",
       "gate_ids": [
         "ASET-GATE-010",
         "ASET-GATE-019"
@@ -346,7 +333,7 @@
         "ASET-GATE-031"
       ],
       "id": "ASET-VERIFY-CANON-TLA-REFINEMENT",
-      "kind": "DECLARED_CANONICAL_PROJECTION_BEHAVIORAL_EQUIVALENCE_PROOF"
+      "kind": "STANDALONE_CANONICAL_PROJECTION_BEHAVIORAL_EQUIVALENCE_PROOF"
     }
   ]
 }

@@ -3,15 +3,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "authority_id": {
-      "$ref": "common.schema.json#/$defs/identifier"
-    },
-    "authority_proof_digests": {
+    "authority_evidence_digests": {
       "items": {
         "$ref": "common.schema.json#/$defs/digest"
       },
       "type": "array",
       "uniqueItems": true
+    },
+    "authority_id": {
+      "$ref": "common.schema.json#/$defs/identifier"
     },
     "basis_digests": {
       "items": {
@@ -43,7 +43,7 @@
     "binding_digest",
     "resolution",
     "authority_id",
-    "authority_proof_digests",
+    "authority_evidence_digests",
     "basis_digests"
   ],
   "type": "object"

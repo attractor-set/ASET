@@ -11,7 +11,7 @@ aggregate command.
 - deterministic generated views;
 - language policy;
 - machine-canon and canon-package validity;
-- bounded model output;
+- finite-state saturation output;
 - assurance, proof traceability and canon-to-TLA refinement integrity;
 - specification tests;
 - critical Ruff rules;
@@ -24,7 +24,7 @@ normative change.
 
 `.github/workflows/production-assurance.yml` independently executes:
 
-- the bounded Python state-space model;
+- the Python finite-state model to saturation;
 - the checked formal-property registry;
 - TLC over the committed TLA+ model;
 - TLAPS over the committed safety proof module;
@@ -77,16 +77,16 @@ An implementation adapter cannot issue its own PASS verdict.
 
 The formal contour establishes:
 
-- bounded model assurance for the committed finite configuration;
+- exhaustive reachable-state assurance for the committed finite Python configuration, with saturation asserted;
 - unbounded deductive safety for the committed abstract TLA+ projection;
-- byte-for-byte parity of the deterministic canonical projection generated from the exact machine-readable Seed identity;
-- TLAPS-proved behavioral equivalence between that declared projection and `SeedResolution.tla`.
+- byte-for-byte parity of a standalone deterministic canonical projection generated from the exact machine-readable Seed identity;
+- TLAPS-proved behavioral equivalence between that standalone projection and `SeedResolution.tla`.
 
 The canon-to-TLA theorem is scoped to the declared abstraction profile. It does not establish:
 
 - equivalence of every natural-language sentence;
 - concrete Binding/digest construction;
-- concrete Authority grant-chain construction;
+- concrete Authority-recognition evidence, signature or delegation-chain construction;
 - implementation refinement or production readiness;
 - liveness;
 - cryptographic primitive security;

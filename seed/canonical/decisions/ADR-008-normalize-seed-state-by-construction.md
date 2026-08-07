@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted for the abstract Seed 0.3 safety projection. This ADR does not change
+Superseded in part by ADR-009 for state/environment and Authority-boundary semantics. The representation-normalization decision remains historical context for the abstract Seed 0.3 safety projection. This ADR does not change
 the normative wire/protocol contract in `seed-model.json`; it reduces the
 formal representation while preserving its observable resolution semantics.
 
@@ -22,8 +22,7 @@ Make local/validated Authority-binding relations immutable context constants.
 Represent `requestMeta` and `terminalMeta` as partial functions and derive
 request/terminal membership directly from their domains. No `NoRequest` or
 `NoTerminal` sentinel is retained. Do not store an independent
-terminal binding; derive it from the immutable request binding. Model invalid
-material and non-authoritative inputs as explicit stuttering observations.
+terminal binding; derive it from the immutable request binding. Do not retain invalid or non-authoritative material in Seed state. ADR-009 later clarified that these are admission/external-material boundaries rather than artificial TLA stutter actions.
 
 ## Consequences
 
@@ -33,7 +32,7 @@ material and non-authoritative inputs as explicit stuttering observations.
 - initial local Authority need not be duplicated in mutable state after the
   local-root check;
 - terminal uniqueness follows from one keyed terminal metadata cell;
-- invalid/non-authoritative observation bookkeeping no longer grows state;
+- invalid/non-authoritative material is not retained in Seed state;
 - conflict remains explicit because it changes `ResolutionOf` to `UNKNOWN`;
 - the formal state space and proof surface are reduced without adding crypto or
   accumulator assumptions.

@@ -41,6 +41,10 @@ BASE = [
     "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
     "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
     "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
+    "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
+    "seed/canonical/decisions/ADR-009-seed-state-environment-observer-and-authority-boundary.md",
+    "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
+    "seed/canonical/migration/WIRE_V2_TO_V3.md",
 ]
 
 
@@ -76,7 +80,7 @@ def expected() -> dict[str, Any]:
         "canon_version": "0.3.0-alpha.1",
         "normative_source": "seed/canonical/source/seed-model.json",
         "implementation_precedence": "NONE",
-        "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
+        "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V3",
         "files": rows,
         "package_digest": package_digest,
     }

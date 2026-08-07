@@ -3,26 +3,26 @@
     "kind": "SUBMIT_RESOLUTION",
     "payload": {
       "record": {
-        "authority_id": "authority.delegate",
-        "authority_proof_digests": [
+        "authority_evidence_digests": [
           "sha256:e3346d498d01abf928a71d70d0b157ca4727afb2efd8189694a3ec42a7002988"
         ],
+        "authority_id": "authority.delegate",
         "basis_digests": [
           "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         ],
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "record_digest": "sha256:b0b887903271a5f7698fede3a0000fd125a01319084b6682d19f7c3858278d6c",
-        "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+        "record_digest": "sha256:ab8f76cf551d48b875e93a031dd501f7315a10efb090a8d212c62bc51924e76f",
+        "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
         "resolution": "ALLOW",
         "resolution_id": "res.1"
       }
     }
   },
   "case_id": "RES-NEG-008",
-  "description": "Reject an Authority grant bound to a different resolution binding.",
+  "description": "Reject a terminal Authority recognized only for a different binding.",
   "expected": {
     "accepted": false,
-    "code": "AUTHORITY_GRANT_BINDING_MISMATCH",
+    "code": "TERMINAL_AUTHORITY_BINDING_MISMATCH",
     "effect_permitted": false,
     "reason": "TERMINAL_RECORD_ABSENT",
     "resolution": "UNKNOWN",
@@ -31,23 +31,18 @@
   "initial_store": {
     "authority_bindings": [
       {
-        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
         "authority_id": "authority.root",
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
         "context_id": "ctx.local",
-        "delegation_allowed": true,
         "policy_epoch": 1
-      }
-    ],
-    "authority_grants": [
+      },
       {
-        "binding_digest": "sha256:bed87a20469ae35fc516742005f4851f7be80855a08a9d6d265d82907f5d7fb1",
-        "delegation_allowed": false,
-        "grant_digest": "sha256:e3346d498d01abf928a71d70d0b157ca4727afb2efd8189694a3ec42a7002988",
-        "issuer_authority_id": "authority.root",
-        "previous_grant_digest": null,
-        "subject_authority_id": "authority.delegate"
+        "authority_binding_digest": "sha256:67e0831c5d4cd0381241f09873e3fb0e47feaa7e8446e8a99ce6347d6e47c546",
+        "authority_id": "authority.delegate",
+        "binding_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "context_id": "ctx.local",
+        "policy_epoch": 1
       }
     ],
     "records": [],
@@ -69,9 +64,9 @@
             ],
             "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           },
-          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "initial_authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
           "previous_terminal_record_digest": null,
-          "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+          "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
           "resolution_id": "res.1"
         }
       }

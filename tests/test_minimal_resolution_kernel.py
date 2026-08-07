@@ -29,3 +29,12 @@ def test_historical_recognition_context_is_not_canonical_store_state():
  case_schema=json.loads((ROOT/'seed/canonical/protocol/schemas/conformance-case.schema.json').read_text())
  assert 'recognized_terminal_record_digests' not in store_schema['properties']
  assert 'recognized_terminal_record_digests' in case_schema['properties']
+
+
+def test_invalid_extra_material_cannot_override_unique_valid_allow():
+ case=json.loads((ROOT/'seed/canonical/conformance/cases/positive/RES-POS-009.json').read_text())
+ actual,final_store=execute_case(case)
+ assert actual['resolution']=='ALLOW'
+ assert actual['effect_permitted'] is True
+ assert actual['reason']=='UNIQUE_VALID_TERMINAL_RECORD'
+ assert len(final_store['records'])==2

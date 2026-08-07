@@ -12,4 +12,12 @@ def test_localization_is_complete():
 def test_minimal_resolution_algebra_is_exact():
  algebra=model()['resolution_algebra']; assert algebra['values']==['UNKNOWN','ALLOW','BLOCK']; assert algebra['stored_terminal']==['ALLOW','BLOCK']; assert algebra['effect_permitted_if']=='ALLOW'
 def test_operations_are_minimal():
- assert [item['kind'] for item in model()['transitions']]==['REGISTER_REQUEST','SUBMIT_RESOLUTION','EVALUATE_RESOLUTION']
+ transitions=model()['transitions']
+ assert [item['kind'] for item in transitions]==['REGISTER_REQUEST','SUBMIT_RESOLUTION','EVALUATE_RESOLUTION']
+ assert [item['role'] for item in transitions]==['STATE_TRANSITION','STATE_TRANSITION','OBSERVER']
+
+def test_protocol_directory_contains_only_active_profile_schemas():
+ profile=json.loads((ROOT/'seed/canonical/protocol/protocol-profile.json').read_text(encoding='utf-8'))
+ declared={Path(item['path']).name for item in profile['schemas']}
+ physical={path.name for path in (ROOT/'seed/canonical/protocol/schemas').glob('*.json')}
+ assert physical==declared

@@ -14,8 +14,8 @@ AUTHORITIES = (0, 1)
 TERMINALS = ("ALLOW", "BLOCK")
 NO_COMMITMENT = -1
 RECOGNIZED_TERMINAL_COMMITMENTS = frozenset({0, 1})
-LOCAL_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1)})
-AUTHORITY_PROOF_BINDINGS = frozenset({(0, 0), (1, 1), (1, 0)})
+REQUEST_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1)})
+TERMINAL_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1), (1, 0)})
 
 STATE_PROPERTIES = (
     "TypeOK",
@@ -23,9 +23,8 @@ STATE_PROPERTIES = (
     "AllowSoundness",
     "FailClosed",
     "TerminalBindingDerived",
-    "LocalAuthorityRoot",
-    "DelegatedAuthoritySound",
-    "InputsNonAuthoritative",
+    "RequestAuthorityRecognized",
+    "TerminalAuthorityRecognized",
     "TerminalUnique",
     "ConflictUnknown",
     "FreshReconsideration",
@@ -33,20 +32,19 @@ STATE_PROPERTIES = (
 TEMPORAL_PROPERTIES = (
     "RequestsAppendOnly",
     "TerminalRecordsImmutable",
-    "CanonicalStateChangesOnlyByRecognizedTransition",
-    "InvalidMaterialStutter",
-    "NonAuthoritativeInputsStutter",
+    "SeedStateChangesOnlyByRecognizedTransition",
+    "ConflictObservationPreservesSeedState",
 )
 FORMAL_PROPERTIES = STATE_PROPERTIES + TEMPORAL_PROPERTIES
 
 
 @dataclass(frozen=True)
 class State:
-    # request tuple: resolution_id, binding, previous_terminal_commitment
+    # Seed-owned request provenance: resolution_id, binding, previous commitment.
     requests: tuple[tuple[int, int, int], ...]
-    # accepted terminal tuple: resolution_id, authority, terminal_value
+    # Seed-owned accepted terminal provenance: resolution_id, authority, terminal value.
     records: tuple[tuple[int, int, str], ...]
-    # conflict is the only environment observation that changes resolution semantics
+    # Environment state: observed conflict among valid terminal records.
     conflicts: frozenset[int]
 
 
@@ -74,22 +72,18 @@ def effect_permitted(state: State, rid: int) -> bool:
     return resolution_of(state, rid) == "ALLOW"
 
 
-def canonical_projection(state: State) -> tuple[object, ...]:
-    return (state.requests, state.records, state.conflicts)
+def seed_projection(state: State) -> tuple[object, ...]:
+    return (state.requests, state.records)
 
 
 def successors(state: State) -> Iterable[tuple[str, State]]:
     requests = request_map(state)
     records = record_map(state)
 
-    # Initial Authority identity is checked at admission but not retained as an
-    # independent state component. The binding remains sufficient to prove the
-    # existence of a local root because LOCAL_AUTHORITY_BINDINGS is immutable.
     for rid in IDS:
         if rid in requests:
             continue
-        for binding, authority in LOCAL_AUTHORITY_BINDINGS:
-            del authority
+        for binding, _authority in REQUEST_AUTHORITY_BINDINGS:
             yield (
                 "RegisterRequest",
                 State(
@@ -108,10 +102,10 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     ),
                 )
 
-    for rid, (binding, _) in requests.items():
+    for rid, (binding, _previous) in requests.items():
         if rid in records or rid in state.conflicts:
             continue
-        for authority, proof_binding in AUTHORITY_PROOF_BINDINGS:
+        for authority, proof_binding in TERMINAL_AUTHORITY_BINDINGS:
             if proof_binding != binding:
                 continue
             for value in TERMINALS:
@@ -131,13 +125,6 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                 State(state.requests, state.records, state.conflicts | {rid}),
             )
 
-        # These observations are explicit semantic stutters. They are not
-        # retained as Seed state and therefore cannot create ALLOW.
-        yield "ObserveInvalidMaterial", state
-        yield "ObserveNonAuthoritativeInput", state
-
-    yield "Evaluate", state
-
 
 def state_errors(state: State) -> list[str]:
     errors: list[str] = []
@@ -149,28 +136,23 @@ def state_errors(state: State) -> list[str]:
     if not state.conflicts.issubset(IDS):
         errors.append("TypeOK")
 
-    # Structural properties created by representation rather than duplicated state.
     if not set(records).issubset(requests):
         errors.append("TerminalBindingDerived")
     if len(records) != len(state.records):
         errors.append("TerminalUnique")
 
-    for rid, (binding, _) in requests.items():
+    for _rid, (binding, _previous) in requests.items():
         if not any(
-            authority in AUTHORITIES and (authority, binding) in LOCAL_AUTHORITY_BINDINGS
+            authority in AUTHORITIES
+            and (authority, binding) in REQUEST_AUTHORITY_BINDINGS
             for authority in AUTHORITIES
         ):
-            errors.append("LocalAuthorityRoot")
+            errors.append("RequestAuthorityRecognized")
 
-    for rid, (authority, _) in records.items():
+    for rid, (authority, _value) in records.items():
         request = requests.get(rid)
-        if request is None or (authority, request[0]) not in AUTHORITY_PROOF_BINDINGS:
-            errors.append("DelegatedAuthoritySound")
-
-    # InputsNonAuthoritative is structural in the minimized model: State has
-    # exactly the three canonical decision components and no observed-input slot.
-    if tuple(State.__dataclass_fields__) != ("requests", "records", "conflicts"):
-        errors.append("InputsNonAuthoritative")
+        if request is None or (authority, request[0]) not in TERMINAL_AUTHORITY_BINDINGS:
+            errors.append("TerminalAuthorityRecognized")
 
     for rid in IDS:
         value = resolution_of(state, rid)
@@ -185,7 +167,7 @@ def state_errors(state: State) -> list[str]:
                 or rid in state.conflicts
                 or record is None
                 or record[1] != "ALLOW"
-                or (record[0], request[0]) not in AUTHORITY_PROOF_BINDINGS
+                or (record[0], request[0]) not in TERMINAL_AUTHORITY_BINDINGS
             ):
                 errors.append("AllowSoundness")
 
@@ -195,7 +177,7 @@ def state_errors(state: State) -> list[str]:
         if rid in state.conflicts and value != "UNKNOWN":
             errors.append("ConflictUnknown")
 
-    for _, (_, previous) in requests.items():
+    for _rid, (_binding, previous) in requests.items():
         if previous == NO_COMMITMENT:
             continue
         if previous not in RECOGNIZED_TERMINAL_COMMITMENTS:
@@ -216,31 +198,24 @@ def transition_errors(action: str, before: State, after: State) -> list[str]:
         if after_records.get(rid) != record:
             errors.append("TerminalRecordsImmutable")
 
-    recognized_canonical_actions = {
-        "RegisterRequest",
-        "RegisterReconsideration",
-        "SubmitResolution",
-        "ObserveConflict",
-        "ObserveInvalidMaterial",
-        "ObserveNonAuthoritativeInput",
-    }
-    if (
-        canonical_projection(before) != canonical_projection(after)
-        and action not in recognized_canonical_actions
-    ):
-        errors.append("CanonicalStateChangesOnlyByRecognizedTransition")
+    recognized_seed_actions = {"RegisterRequest", "RegisterReconsideration", "SubmitResolution"}
+    if seed_projection(before) != seed_projection(after) and action not in recognized_seed_actions:
+        errors.append("SeedStateChangesOnlyByRecognizedTransition")
 
-    if action == "ObserveInvalidMaterial" and before != after:
-        errors.append("InvalidMaterialStutter")
-    if action == "ObserveNonAuthoritativeInput" and before != after:
-        errors.append("NonAuthoritativeInputsStutter")
+    if action == "ObserveConflict" and seed_projection(before) != seed_projection(after):
+        errors.append("ConflictObservationPreservesSeedState")
 
     return sorted(set(errors))
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--depth", type=int, default=5)
+    parser.add_argument(
+        "--depth",
+        type=int,
+        default=None,
+        help="Optional diagnostic depth bound. Omit for exhaustive finite-state saturation.",
+    )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
@@ -249,15 +224,19 @@ def main() -> int:
     transitions = 0
     failures: list[dict[str, object]] = []
     terminal_states = 0
+    max_depth_seen = 0
+    truncated = False
 
     while queue:
         state, depth = queue.popleft()
+        max_depth_seen = max(max_depth_seen, depth)
         errors = state_errors(state)
         if errors:
             failures.append({"state": repr(state), "errors": errors})
             continue
         terminal_states += sum(resolution_of(state, rid) in TERMINALS for rid in IDS)
-        if depth >= args.depth:
+        if args.depth is not None and depth >= args.depth:
+            truncated = True
             continue
         for action, successor in successors(state):
             transitions += 1
@@ -276,9 +255,12 @@ def main() -> int:
                 seen.add(successor)
                 queue.append((successor, depth + 1))
 
+    saturated = args.depth is None and not truncated
     report = {
-        "document_type": "aset-seed-minimal-kernel-bounded-model-check",
-        "depth": args.depth,
+        "document_type": "aset-seed-minimal-kernel-finite-model-check",
+        "depth_limit": args.depth,
+        "max_depth_reached": max_depth_seen,
+        "saturated": saturated,
         "states": len(seen),
         "transitions": transitions,
         "terminal_states": terminal_states,
@@ -294,10 +276,11 @@ def main() -> int:
             json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8"
         )
 
-    print(f"MODEL_CHECK_STATES={report['states']}")
+    print(f"MODEL_CHECK_STATES={len(seen)}")
     print(f"MODEL_CHECK_TRANSITIONS={transitions}")
     print(f"MODEL_CHECK_TERMINAL_STATES={terminal_states}")
     print(f"MODEL_CHECK_FORMAL_PROPERTIES={len(FORMAL_PROPERTIES)}")
+    print("MODEL_CHECK_SATURATED=" + ("true" if saturated else "false"))
     print("MODEL_CHECK_VERDICT=" + report["verdict"])
     return 0 if not failures else 1
 

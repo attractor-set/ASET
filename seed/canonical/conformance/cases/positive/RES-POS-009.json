@@ -5,14 +5,14 @@
       "resolution_id": "res.1"
     }
   },
-  "case_id": "RES-NEG-014",
-  "description": "Treat a remote terminal-shaped statement as non-authoritative and derive UNKNOWN.",
+  "case_id": "RES-POS-009",
+  "description": "A unique valid ALLOW remains authoritative when additional malformed terminal material is present.",
   "expected": {
     "accepted": true,
     "code": "EVALUATED",
-    "effect_permitted": false,
-    "reason": "NO_VALID_TERMINAL_RECORD",
-    "resolution": "UNKNOWN",
+    "effect_permitted": true,
+    "reason": "UNIQUE_VALID_TERMINAL_RECORD",
+    "resolution": "ALLOW",
     "state_changed": false
   },
   "initial_store": {
@@ -28,12 +28,24 @@
     "records": [
       {
         "authority_evidence_digests": [],
-        "authority_id": "authority.remote",
+        "authority_id": "authority.root",
         "basis_digests": [
           "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         ],
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "record_digest": "sha256:20f9eb1547646f68b1cc889d77f916b89823ad27aa8fe8ed6927d8605ff17e18",
+        "record_digest": "sha256:4f32a4864d57c647b1761a084507ce9c081bc257ac9ba4cd7f066a5598083499",
+        "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
+        "resolution": "ALLOW",
+        "resolution_id": "res.1"
+      },
+      {
+        "authority_evidence_digests": [],
+        "authority_id": "authority.root",
+        "basis_digests": [
+          "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        ],
+        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
+        "record_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
         "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
         "resolution": "ALLOW",
         "resolution_id": "res.1"

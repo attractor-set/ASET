@@ -1,20 +1,38 @@
 # Role of ASET Seed
 
-ASET Seed is the minimal local resolution-recognition kernel of the ecosystem.
+ASET Seed is the minimal local resolution-recognition core.
 
-It defines:
+It owns only the state necessary to remember admitted requests and accepted
+terminal resolutions. It does not own the world that supplies evidence,
+conflict observations, policy results or cryptographic proofs.
 
-- exact `ResolutionBinding`;
-- fresh `ResolutionRequest`;
-- locally rooted Authority and attenuating Authority proof;
-- immutable terminal `ResolutionRecord`;
-- derived `UNKNOWN`, terminal `ALLOW` and terminal `BLOCK`;
-- fail-closed effect permission;
-- fresh reconsideration linked by an immutable recognized terminal-record commitment.
+## Seed-owned state
 
-It does not define policy evaluation, evidence acquisition, workflow, federation, storage, retention/compaction, a concrete cryptographic accumulator or enforcement. Extensions may produce and transport inputs and proof material, but only Seed semantics determine whether a terminal record is valid.
+- immutable request metadata for registered `resolution_id` values;
+- immutable terminal metadata for accepted terminal `ALLOW`/`BLOCK` values.
 
-Evidence, AI output, consensus and remote outcomes remain non-authoritative until a locally authorized exact-binding terminal record is recognized.
+## Environment and observers
 
+Conflict is environment state because an independently established conflict
+between valid terminal records changes the derived resolution to `UNKNOWN`.
+`EVALUATE_RESOLUTION` is a pure observer and never mutates Seed-owned state.
 
-Historical predecessor objects are not part of the reconsideration requirement. An implementation may prune them after preserving profile-specific proof material sufficient to re-establish recognition of the terminal commitment. A bounded hot buffer plus an authenticated accumulator is one scalable profile; Merkle/MMR or any other concrete construction is non-normative.
+Invalid, malformed or non-authoritative material has no Seed state slot. It may
+fail admission or be ignored by the resolution algebra, but it cannot create
+Authority, `ALLOW` or a conflict by mere presence.
+
+## Authority boundary
+
+Seed requires an exact-binding Authority to be explicitly recognized by the
+local Context. How that recognition is established—signature, certificate,
+delegation chain, hardware root, external verifier or another mechanism—is a
+profile concern. Opaque evidence references are not Authority by themselves.
+
+## Outside Seed
+
+Policy evaluation, evidence acquisition, workflow, federation, storage,
+retention/compaction, cryptographic accumulators, signature schemes and effect
+enforcement are extension or implementation concerns.
+
+Reconsideration refers to a recognized immutable terminal commitment. The
+predecessor object need not remain physically retained.

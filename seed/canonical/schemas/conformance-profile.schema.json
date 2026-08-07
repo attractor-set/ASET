@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "case_count": {
-      "const": 24
+      "const": 25
     },
     "cases": {
       "items": {
@@ -39,8 +39,8 @@
         ],
         "type": "object"
       },
-      "maxItems": 24,
-      "minItems": 24,
+      "maxItems": 25,
+      "minItems": 25,
       "type": "array"
     },
     "document_type": {
@@ -50,16 +50,16 @@
       "const": 16
     },
     "positive_count": {
-      "const": 8
+      "const": 9
     },
     "profile_id": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V2"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-CORPUS-V3"
     },
     "protocol": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
     },
     "schema_version": {
-      "const": 2
+      "const": 3
     },
     "seed_version": {
       "const": "0.3.0-alpha.1"

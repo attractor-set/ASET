@@ -4,7 +4,7 @@
 
 **Статус:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 канонической модели:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
+**SHA-256 канонической модели:** `sha256:54c46e46d4e6b5870353bb0ed229310f60583e9acd11798b655bdd837c8dba74`
 
 > Эта редакция выводится из машинного канона.
 
@@ -40,21 +40,21 @@ Authority, явно признанная одним Context для одной т
 
 Идентификатор: `seed.local_authority`
 
-### доказательство Authority (`AuthorityProof`)
+### признание Authority (`AuthorityRecognition`)
 
-Локально укоренённая, точно связанная, ациклическая и нерасширяющая цепочка явных разрешений Authority.
+Локальный результат точного признания, устанавливающий полномочие одной Authority для одной ResolutionBinding; конкретные цепочки делегирования, подписи и построение доказательства находятся вне Seed.
 
-Идентификатор: `seed.authority_proof`
+Идентификатор: `seed.authority_recognition`
 
 ### ссылка на основание (`EvidenceReference`)
 
-Контентно-адресуемый неавторитетный вход, указанный как основание терминальной записи.
+Непрозрачная контентно-адресуемая ссылка на неавторитетное основание или доказательный материал. Она не имеет нормативного эффекта, пока граница допуска Seed не признает подтверждаемый ею факт.
 
 Идентификатор: `seed.evidence_reference`
 
 ### запись разрешения (`ResolutionRecord`)
 
-Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой и доказательством Authority.
+Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой, признанной Authority и необязательными непрозрачными ссылками на основания.
 
 Идентификатор: `seed.resolution_record`
 
@@ -108,7 +108,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 ### `ASET-SEED-REQ-005`
 
-UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутствие, недействительность, неоднозначность или ошибка проверки ДОЛЖНЫ давать UNKNOWN, а не ALLOW.
+UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект. Отсутствие или неоднозначность действительного терминального состояния либо невозможность установить действительную терминальную запись ДОЛЖНЫ давать UNKNOWN. Недействительный или неавторитетный материал НЕ ДОЛЖЕН переопределять уже установленную единственную действительную терминальную запись.
 
 Модальность: `MUST`
 
@@ -128,17 +128,17 @@ UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутств�
 
 ### `ASET-SEED-REQ-007`
 
-Каждое делегированное доказательство Authority ДОЛЖНО быть явным, ациклическим, точно связанным и нерасширяющим.
+Доказательный или делегационный материал Authority НЕ ДОЛЖЕН сам по себе создавать или расширять полномочие; Authority терминальной записи ДОЛЖНА быть явно признана для точной связки до того, как запись может стать действительной.
 
 Модальность: `MUST`
 
-Предикат: `proof_attenuating`
+Предикат: `authority_recognition_boundary`
 
 `verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-008`
 
-Evidence, результаты проверки, выходы AI, результаты консенсуса и удалённые outcomes НЕ ДОЛЖНЫ сами по себе создавать ALLOW или локальную Authority.
+Evidence, результаты проверки, выводы ИИ, результаты консенсуса, удалённые outcomes и иные внешние утверждения НЕ ДОЛЖНЫ сами по себе изменять принадлежащее Seed каноническое состояние либо создавать ALLOW или локальную Authority.
 
 Модальность: `MUST`
 
@@ -192,13 +192,13 @@ Evidence, результаты проверки, выходы AI, результ
 - `SEED-INV-002` — Разрешение эффекта истинно тогда и только тогда, когда единственная действительная терминальная запись равна ALLOW.
 - `SEED-INV-003` — UNKNOWN и BLOCK никогда не разрешают эффект.
 - `SEED-INV-004` — Каждый запрос и терминальная запись сохраняют один точный digest связки.
-- `SEED-INV-005` — Каждая действительная терминальная запись укоренена в локальной связке Authority.
-- `SEED-INV-006` — Каждое делегированное доказательство Authority точно связано, ациклично и не расширяет полномочие.
-- `SEED-INV-007` — Evidence и внешние утверждения являются неавторитетными входами.
+- `SEED-INV-005` — Каждая действительная терминальная запись использует Authority, явно признанную для точной локальной связки.
+- `SEED-INV-006` — Доказательный материал Authority неавторитетен до успешного точного признания Authority; непрозрачный proof material не может сам по себе создать или расширить полномочие.
+- `SEED-INV-007` — Внешние утверждения и Evidence находятся вне принадлежащего Seed канонического состояния, пока не приняты признанным переходом Seed.
 - `SEED-INV-008` — Для одного resolution_id существует не более одной действительной терминальной записи.
-- `SEED-INV-009` — Конфликтующий или недействительный терминальный материал даёт UNKNOWN и никогда не ALLOW.
+- `SEED-INV-009` — Конфликтующие действительные терминальные записи дают UNKNOWN. Недействительный или неавторитетный материал не может создать ALLOW, создать конфликт или переопределить единственную действительную терминальную запись.
 - `SEED-INV-010` — Записи разрешения являются append-only, неизменяемыми и контентно-адресуемыми.
-- `SEED-INV-011` — Только признанные переходы Seed могут изменять каноническое хранилище; недействительный или непризнанный кандидат не является переходом Seed.
+- `SEED-INV-011` — Только признанные переходы состояния Seed могут изменять принадлежащее Seed каноническое состояние; наблюдения среды и observer-операции его не изменяют.
 - `SEED-INV-012` — Пересмотр использует свежий resolution_id, связанный неизменяемым контентно-адресуемым коммитментом с ранее признанной терминальной ResolutionRecord; хранение объекта-предшественника не требуется.
 
 ## Переходы
@@ -213,7 +213,7 @@ Evidence, результаты проверки, выходы AI, результ
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-submit-resolution.schema.json`
-- `authority_rule`: The record Authority must be the local root Authority or be justified by a valid exact-binding Authority proof.
+- `authority_rule`: The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.
 - `binding_rule`: The record request_digest and binding_digest must exactly match the registered request.
 - `created_artifacts`: `ResolutionRecord`
 
@@ -221,7 +221,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 - `payload_schema`: `seed/canonical/protocol/schemas/operation.schema.json`
 - `authority_rule`: Evaluation creates no Authority and accepts no external statement as a resolution.
-- `binding_rule`: Evaluation is performed for one registered resolution_id and fails closed on missing, invalid or conflicting terminal material.
+- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.
 - `created_artifacts`: `ResolutionEvaluation`
 
 ## Граница реализации
@@ -229,4 +229,4 @@ Evidence, результаты проверки, выходы AI, результ
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `concrete Authority grant-chain construction and validation`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

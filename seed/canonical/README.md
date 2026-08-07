@@ -1,65 +1,61 @@
-# ASET Seed 0.3 minimal strong core
+# ASET Seed 0.3 minimal resolution core
 
 ASET Seed is a local resolution-recognition kernel.
 
     Resolution = UNKNOWN | ALLOW | BLOCK
-    EffectPermitted(binding) iff one unique valid exact-binding
-    terminal record is ALLOW
+    EffectPermitted(r) iff ResolutionOf(r) = ALLOW
 
-`UNKNOWN` is derived when no unique valid terminal record exists. `BLOCK` is
-an explicit terminal prohibition. Both are fail-closed.
+A valid terminal `ALLOW` or `BLOCK` is immutable and exact-binding. `UNKNOWN`
+is derived when no unique valid terminal record can be established or when
+valid terminal material conflicts. Invalid or non-authoritative material cannot
+create Authority, create `ALLOW`, create a valid conflict, or override an
+otherwise unique valid terminal record.
 
-Seed normatively defines exact binding, local Authority roots, attenuating
-Authority proof, terminal uniqueness, immutable content-addressed records and
-fresh reconsideration identifiers and recognized immutable predecessor commitments.
+Seed normatively defines:
 
-Policy evaluation, evidence acquisition, workflow, federation, persistence,
-retention/compaction and concrete terminal-commitment accumulation are extension
-or implementation concerns. Seed does not require predecessor requests or records
-to remain physically retained after recognition evidence has been preserved.
+- exact `ResolutionBinding`;
+- fresh request identity and reconsideration commitment;
+- exact-binding local Authority recognition as an admission boundary;
+- immutable content-addressed terminal records;
+- terminal uniqueness and fail-closed evaluation;
+- implementation-neutral observable semantics.
+
+Concrete policy evaluation, evidence acquisition, signatures, delegation-chain
+construction, workflow, federation, persistence, retention/compaction,
+cryptographic accumulators and enforcement are outside Seed.
+
+## State boundary
+
+The formal model deliberately distinguishes ownership:
+
+- Seed-owned mutable state: `requestMeta`, `terminalMeta`;
+- environment state: `conflicts`;
+- pure observer: `EvaluateResolution(r)`.
+
+`Requests` and `TerminalRequests` are derived from partial-function domains.
+Terminal binding is derived from immutable request metadata. Environment
+conflict observation cannot mutate Seed-owned state.
 
 ## Assurance closure
 
-The published safety contract has complete machine traceability:
+The active assurance surface contains:
 
-- 12/12 canonical requirements covered;
-- 12/12 canonical invariants covered;
-- 3/3 transitions covered positively and negatively;
-- 16 bounded TLA+/TLC properties;
-- 16/16 registered TLA+/TLC safety properties covered by unbounded TLAPS proof;
-- 4 exact executable-or-static properties;
-- 24 portable conformance cases;
-- 13 semantic mutations, all required to be killed.
+- 12 canonical requirements and 12 canonical invariants;
+- 3 canonical operations: two state transitions and one observer;
+- 25 portable conformance cases;
+- 13 semantic mutations;
+- 14 TLA/TLC properties: 10 state invariants and 4 temporal properties;
+- finite Python state exploration to saturation for the published fixture;
+- independent TLC checking;
+- unbounded TLAPS safety proof for the abstract TLA model;
+- a standalone generated canonical TLA projection with TLAPS-proved behavioral
+  equivalence to `SeedResolution.tla`.
 
-The unbounded safety proof applies to the committed abstract TLA+ safety
-projection. It establishes all eleven registered state invariants and all five
-registered temporal safety properties for every behaviour of `Spec`.
+The TLA proof boundary intentionally abstracts exact Binding construction,
+Authority-recognition establishment and recognized terminal-commitment
+establishment. External invalid/non-authoritative material processing is checked
+at executable/conformance boundaries rather than represented as Seed state.
 
-The abstract formal projection is normalized to three state variables
-(`requestMeta`, `terminalMeta`, `conflicts`). Authority relations are immutable
-context constants; exact terminal binding is derived from request metadata;
-invalid material and non-authoritative inputs have no retained state slot and
-are proved to be semantic stutters.
-
-The canon-to-TLA assurance adds a second proof layer.
-`SeedCanonProjection.tla` is generated deterministically from the exact
-`seed-model.json` identity under a versioned projection profile, and TLAPS
-proves behavioral equivalence between that generated projection and
-`SeedResolution.tla`.
-
-That relation is explicitly scoped. It does not establish:
-
-- equivalence of every natural-language sentence;
-- concrete Binding or digest construction;
-- correctness or refinement of implementations;
-- concrete Authority grant-chain construction;
-- liveness;
-- cryptographic primitive security;
-- concrete terminal-commitment accumulator or witness correctness;
-- external certification.
-
-The normative source remains
-`seed/canonical/source/seed-model.json`.
-
-Neither the TLA+ model, the proof module nor TLAPM receives normative,
-semantic or implementation precedence.
+The normative source remains `seed/canonical/source/seed-model.json`. Generated
+projections, TLA modules and reference implementations have no normative
+precedence.

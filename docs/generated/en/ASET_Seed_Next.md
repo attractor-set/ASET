@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**Canonical model SHA-256:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
+**Canonical model SHA-256:** `sha256:54c46e46d4e6b5870353bb0ed229310f60583e9acd11798b655bdd837c8dba74`
 
 > This edition is derived from the machine canon.
 
@@ -40,21 +40,21 @@ An Authority explicitly recognized by one Context for one exact binding and poli
 
 Identifier: `seed.local_authority`
 
-### Authority proof (`AuthorityProof`)
+### Authority recognition (`AuthorityRecognition`)
 
-A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants.
+A local exact-binding recognition result stating that one Authority is authorized for one ResolutionBinding; concrete grant chains, signatures and proof construction are external to Seed.
 
-Identifier: `seed.authority_proof`
+Identifier: `seed.authority_recognition`
 
 ### evidence reference (`EvidenceReference`)
 
-A content-addressed non-authoritative input cited as the basis of a terminal record.
+An opaque content-addressed reference to non-authoritative evidence or proof material. It has no normative effect until a Seed admission boundary recognizes the fact it supports.
 
 Identifier: `seed.evidence_reference`
 
 ### resolution record (`ResolutionRecord`)
 
-One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof.
+One immutable content-addressed terminal ALLOW or BLOCK record with exact binding, a recognized Authority, and optional opaque evidence references.
 
 Identifier: `seed.resolution_record`
 
@@ -108,7 +108,7 @@ Predicate: `allow_only`
 
 ### `ASET-SEED-REQ-005`
 
-UNKNOWN and BLOCK MUST prohibit the effect; absence, invalidity, ambiguity or verification error MUST resolve to UNKNOWN rather than ALLOW.
+UNKNOWN and BLOCK MUST prohibit the effect. Missing or ambiguous valid terminal state, or failure to establish a valid terminal record, MUST resolve to UNKNOWN. Invalid or non-authoritative material MUST NOT override an otherwise unique valid terminal record.
 
 Modality: `MUST`
 
@@ -128,17 +128,17 @@ Predicate: `local_authority`
 
 ### `ASET-SEED-REQ-007`
 
-Every delegated Authority proof MUST be explicit, acyclic, exact-binding and non-expanding.
+Authority evidence or delegation material MUST NOT create or expand Authority by itself; a terminal record Authority MUST be explicitly recognized for the exact binding before the record can become valid.
 
 Modality: `MUST`
 
-Predicate: `proof_attenuating`
+Predicate: `authority_recognition_boundary`
 
 `verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-008`
 
-Evidence, verification results, AI outputs, consensus results and remote outcomes MUST NOT by themselves create ALLOW or local Authority.
+Evidence, verification results, AI outputs, consensus results, remote outcomes and other external statements MUST NOT by themselves mutate Seed-owned canonical state or create ALLOW or local Authority.
 
 Modality: `MUST`
 
@@ -192,13 +192,13 @@ Predicate: `implementation_neutral`
 - `SEED-INV-002` — Effect permission is true if and only if the unique valid terminal record is ALLOW.
 - `SEED-INV-003` — UNKNOWN and BLOCK never permit an effect.
 - `SEED-INV-004` — Every request and terminal record preserves one exact binding digest.
-- `SEED-INV-005` — Every valid terminal record is rooted in a local Authority binding.
-- `SEED-INV-006` — Every delegated Authority proof is exact-binding, acyclic and non-expanding.
-- `SEED-INV-007` — Evidence and external statements are non-authoritative inputs.
+- `SEED-INV-005` — Every valid terminal record uses an Authority explicitly recognized for the exact local binding.
+- `SEED-INV-006` — Authority evidence is non-authoritative until exact-binding Authority recognition succeeds; opaque proof material cannot create or expand Authority by itself.
+- `SEED-INV-007` — External statements and evidence are outside Seed-owned canonical state unless accepted by a recognized Seed transition.
 - `SEED-INV-008` — At most one valid terminal record exists for one resolution_id.
-- `SEED-INV-009` — Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.
+- `SEED-INV-009` — Conflicting valid terminal records yield UNKNOWN. Invalid or non-authoritative material cannot create ALLOW, create a conflict, or override an otherwise unique valid terminal record.
 - `SEED-INV-010` — Resolution records are append-only, immutable and content-addressed.
-- `SEED-INV-011` — Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.
+- `SEED-INV-011` — Only recognized Seed state transitions may change Seed-owned canonical state; environment observations and observer operations do not mutate that state.
 - `SEED-INV-012` — Reconsideration uses a fresh resolution_id linked by an immutable content-addressed commitment to a previously recognized terminal ResolutionRecord; predecessor object retention is not required.
 
 ## Transitions
@@ -213,7 +213,7 @@ Predicate: `implementation_neutral`
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-submit-resolution.schema.json`
-- `authority_rule`: The record Authority must be the local root Authority or be justified by a valid exact-binding Authority proof.
+- `authority_rule`: The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.
 - `binding_rule`: The record request_digest and binding_digest must exactly match the registered request.
 - `created_artifacts`: `ResolutionRecord`
 
@@ -221,7 +221,7 @@ Predicate: `implementation_neutral`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/operation.schema.json`
 - `authority_rule`: Evaluation creates no Authority and accepts no external statement as a resolution.
-- `binding_rule`: Evaluation is performed for one registered resolution_id and fails closed on missing, invalid or conflicting terminal material.
+- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.
 - `created_artifacts`: `ResolutionEvaluation`
 
 ## Implementation boundary
@@ -229,4 +229,4 @@ Predicate: `implementation_neutral`
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `concrete Authority grant-chain construction and validation`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

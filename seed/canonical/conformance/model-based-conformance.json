@@ -1,14 +1,14 @@
 {
   "document_type": "aset-model-based-conformance",
   "model": {
-    "command_set": "REGISTER_REQUEST, SUBMIT_RESOLUTION and EVALUATE_RESOLUTION",
+    "command_set": "REGISTER_REQUEST and SUBMIT_RESOLUTION are state transitions; EVALUATE_RESOLUTION is a pure observer.",
     "formal_projection": "seed/canonical/formal/SeedResolution.tla",
-    "state_set": "Append-only request and terminal-record stores satisfying the minimal Seed invariants",
-    "transition_relation": "delta(store, operation) appends a valid request or record or evaluates without mutation; invalid and unrecognized candidates are outside the Seed transition relation"
+    "state_set": "Seed-owned request/terminal metadata plus separate environment conflict observations satisfying the active minimal Seed invariants.",
+    "transition_relation": "delta(seed_state, environment_state, operation) mutates Seed-owned state only for recognized REGISTER_REQUEST or SUBMIT_RESOLUTION operations; conflict observation changes only environment state; EVALUATE_RESOLUTION observes without mutation."
   },
   "normative": true,
   "profile_boundary": "Policy evaluation, evidence acquisition, workflow, enforcement, federation, storage and cryptographic mechanisms are extension or implementation responsibilities.",
-  "resolution_obligation": "UNKNOWN is derived when no unique valid terminal record exists; only one valid locally authorized exact-binding ALLOW record permits the effect.",
+  "resolution_obligation": "UNKNOWN is derived when no unique valid terminal record can be established or valid terminal material conflicts. Invalid/non-authoritative material cannot override an otherwise unique valid record. Only ALLOW permits the effect.",
   "schema_version": 3,
-  "transition_boundary_obligation": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate MUST NOT become a Seed transition."
+  "transition_boundary_obligation": "Only recognized Seed state transitions may change Seed-owned state. Environment conflict observation and observer operations do not mutate Seed-owned state; invalid/unrecognized material cannot become accepted state by mere presence."
 }

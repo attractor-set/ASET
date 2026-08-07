@@ -2,11 +2,11 @@
   "claim_boundary": {
     "covered": [
       "all twelve canonical requirements have machine-traceable assurance evidence",
-      "all twelve canonical safety invariants have formal properties, conformance cases and semantic mutations",
-      "all three canonical transitions have positive and negative conformance coverage",
-      "bounded state and transition preservation for the published finite model",
-      "all sixteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection",
-      "source-locked generated canonical projection with TLAPS-proved behavioral equivalence to SeedResolution.tla under the declared abstraction profile"
+      "all twelve canonical safety invariants have explicit formal, executable or boundary evidence",
+      "all three canonical operations have positive and negative conformance coverage, with EVALUATE_RESOLUTION classified as an observer",
+      "finite-state saturation for the published Python model and independent TLC model checking",
+      "all fourteen registered TLA/TLC safety properties have TLAPS deductive closure over the abstract model",
+      "standalone source-locked canonical projection with TLAPS-proved behavioral equivalence to SeedResolution.tla under the declared abstraction profile"
     ],
     "not_claimed": [
       "cryptographic primitive security",
@@ -14,7 +14,9 @@
       "liveness or workflow completion",
       "external certification",
       "implementation refinement proof",
-      "full natural-language, concrete binding/digest and concrete Authority-proof refinement beyond the declared projection"
+      "concrete Binding/digest construction",
+      "concrete Authority evidence, signature or delegation-chain correctness",
+      "external invalid/non-authoritative material processing beyond the declared boundary"
     ]
   },
   "coverage_policy": {
@@ -93,8 +95,8 @@
         "RES-NEG-014"
       ],
       "formal_properties": [
-        "LocalAuthorityRoot",
-        "GrantChainValidation"
+        "RequestAuthorityRecognized",
+        "AuthorityRecognitionBoundary"
       ],
       "id": "SEED-INV-005",
       "semantic_mutations": [
@@ -111,8 +113,8 @@
         "RES-NEG-016"
       ],
       "formal_properties": [
-        "DelegatedAuthoritySound",
-        "GrantChainValidation"
+        "TerminalAuthorityRecognized",
+        "AuthorityRecognitionBoundary"
       ],
       "id": "SEED-INV-006",
       "semantic_mutations": [
@@ -125,8 +127,7 @@
         "RES-NEG-014"
       ],
       "formal_properties": [
-        "InputsNonAuthoritative",
-        "NonAuthoritativeInputsStutter"
+        "ExternalMaterialNonAuthoritative"
       ],
       "id": "SEED-INV-007",
       "semantic_mutations": [
@@ -150,12 +151,13 @@
       "conformance_cases": [
         "RES-NEG-005",
         "RES-NEG-014",
-        "RES-NEG-015"
+        "RES-NEG-015",
+        "RES-POS-009"
       ],
       "formal_properties": [
         "FailClosed",
         "ConflictUnknown",
-        "InvalidMaterialStutter"
+        "ExternalMaterialNonAuthoritative"
       ],
       "id": "SEED-INV-009",
       "semantic_mutations": [
@@ -184,7 +186,8 @@
         "RES-NEG-010"
       ],
       "formal_properties": [
-        "CanonicalStateChangesOnlyByRecognizedTransition"
+        "SeedStateChangesOnlyByRecognizedTransition",
+        "ConflictObservationPreservesSeedState"
       ],
       "id": "SEED-INV-011",
       "semantic_mutations": [
@@ -283,9 +286,9 @@
       "case_ids": [
         "RES-NEG-016"
       ],
-      "description": "Accept a cyclic Authority proof.",
+      "description": "Treat opaque Authority evidence as sufficient exact-binding Authority recognition.",
       "id": "SEED-MUT-006",
-      "operator": "accept_cyclic_grant",
+      "operator": "authority_evidence_creates_recognition",
       "seed_invariants": [
         "SEED-INV-006"
       ],
@@ -325,7 +328,7 @@
       "case_ids": [
         "RES-NEG-005"
       ],
-      "description": "Allow invalid terminal material.",
+      "description": "Allow invalid or non-authoritative terminal material to create ALLOW.",
       "id": "SEED-MUT-009",
       "operator": "invalid_material_allows",
       "seed_invariants": [
@@ -354,7 +357,7 @@
       "case_ids": [
         "RES-NEG-001"
       ],
-      "description": "Mutate canonical state for an invalid or unrecognized candidate.",
+      "description": "Mutate Seed-owned state for an invalid or unrecognized candidate.",
       "id": "SEED-MUT-011",
       "operator": "unrecognized_candidate_mutates_store",
       "seed_invariants": [
@@ -466,7 +469,8 @@
         "RES-POS-003",
         "RES-POS-006",
         "RES-NEG-005",
-        "RES-NEG-015"
+        "RES-NEG-015",
+        "RES-POS-009"
       ],
       "formal_properties": [
         "FailClosed",
@@ -490,8 +494,8 @@
         "RES-NEG-014"
       ],
       "formal_properties": [
-        "LocalAuthorityRoot",
-        "GrantChainValidation"
+        "RequestAuthorityRecognized",
+        "AuthorityRecognitionBoundary"
       ],
       "id": "ASET-SEED-REQ-006",
       "invariants": [
@@ -510,8 +514,8 @@
         "RES-NEG-016"
       ],
       "formal_properties": [
-        "DelegatedAuthoritySound",
-        "GrantChainValidation"
+        "TerminalAuthorityRecognized",
+        "AuthorityRecognitionBoundary"
       ],
       "id": "ASET-SEED-REQ-007",
       "invariants": [
@@ -527,8 +531,7 @@
         "RES-NEG-014"
       ],
       "formal_properties": [
-        "InputsNonAuthoritative",
-        "NonAuthoritativeInputsStutter"
+        "ExternalMaterialNonAuthoritative"
       ],
       "id": "ASET-SEED-REQ-008",
       "invariants": [
@@ -651,7 +654,8 @@
         "RES-NEG-015"
       ],
       "positive_cases": [
-        "RES-POS-006"
+        "RES-POS-006",
+        "RES-POS-009"
       ]
     }
   ]

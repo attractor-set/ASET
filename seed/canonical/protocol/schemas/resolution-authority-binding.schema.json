@@ -12,14 +12,8 @@
     "binding_digest": {
       "$ref": "common.schema.json#/$defs/digest"
     },
-    "constitution_digest": {
-      "$ref": "common.schema.json#/$defs/digest"
-    },
     "context_id": {
       "$ref": "common.schema.json#/$defs/identifier"
-    },
-    "delegation_allowed": {
-      "type": "boolean"
     },
     "policy_epoch": {
       "minimum": 0,
@@ -31,9 +25,7 @@
     "authority_id",
     "context_id",
     "policy_epoch",
-    "binding_digest",
-    "constitution_digest",
-    "delegation_allowed"
+    "binding_digest"
   ],
   "type": "object"
 }

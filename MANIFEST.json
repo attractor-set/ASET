@@ -158,22 +158,22 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:209a08a5840f099e46cb6e6f16885e83384193508ded90d947a4b71d6b073106",
-      "size_bytes": 777
+      "sha256": "sha256:ee26300d85ffa55761724a943b8a954869c747badbe8d1200ad8b98d4993b843",
+      "size_bytes": 877
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:cfc5adab18ebb417b5a8890dcc0bca48e786d57b571812c8d192bb93137813af",
-      "size_bytes": 823
+      "sha256": "sha256:0a5692fbb3765e89bc6fd4d87a0208f44ab3dfce8cff6481aac30d0b86ffb2c3",
+      "size_bytes": 992
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:f35e536cea37ff61e45901b35e8d13232c1ef3097a8ecdf126973d6749d5f009",
-      "size_bytes": 1110
+      "sha256": "sha256:30d594f18c5e0f8a8f8f39c1b00ed362cac1e253f88bd7f72faed58f28ddeee4",
+      "size_bytes": 1427
     },
     {
       "path": "REPOSITORY_STATUS.json",
-      "sha256": "sha256:d0a94d62bbe61591800bd41ab5028526854412d30f29a289199d8ec22476edf6",
+      "sha256": "sha256:a05e0e7b45ee4be79185de047741a97ac906b5fe5a10ff0d9f2a000a8d69ffbe",
       "size_bytes": 593
     },
     {
@@ -188,7 +188,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:6e410436a80d0e672a12e479aee0b85e875a77814041a9d46616c995f5ef8e0f",
+      "sha256": "sha256:9990eedf03b0b6f95911df34d6cca15e966204abdc12918f62937f07e2be0a18",
       "size_bytes": 2781
     },
     {
@@ -313,13 +313,13 @@
     },
     {
       "path": "docs/architecture/SEED_ROLE.md",
-      "sha256": "sha256:d14912b58d582e3a6515bb6332842ae3c3d57ea1947154021d37a34d0cf23b28",
-      "size_bytes": 1277
+      "sha256": "sha256:d5f3f88f91959131304988f264932f1373c7527cda2cbf16c259d3877acd7989",
+      "size_bytes": 1615
     },
     {
       "path": "docs/architecture/SEED_STATE_MINIMIZATION.md",
-      "sha256": "sha256:33b601825012426108ed03380295096337ad649406970d46109f74b6ae72e86e",
-      "size_bytes": 2981
+      "sha256": "sha256:73c0f19ed820dc44e34624f6e4f1829972437ba90a8fc439f563ca7d23e75058",
+      "size_bytes": 1570
     },
     {
       "path": "docs/architecture/TERMINAL_COMMITMENT_ACCUMULATION.md",
@@ -338,13 +338,13 @@
     },
     {
       "path": "docs/generated/en/ASET_Seed_Next.md",
-      "sha256": "sha256:817160ba2cf58d9fe16281328ad1240f29db6c61ade27935aab4076d71f4ae4f",
-      "size_bytes": 10185
+      "sha256": "sha256:b348604389008b45d1eebcbf93214040c5b18d63614fa62b12f77231d13ee8b2",
+      "size_bytes": 11273
     },
     {
       "path": "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:817160ba2cf58d9fe16281328ad1240f29db6c61ade27935aab4076d71f4ae4f",
-      "size_bytes": 10185
+      "sha256": "sha256:b348604389008b45d1eebcbf93214040c5b18d63614fa62b12f77231d13ee8b2",
+      "size_bytes": 11273
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_0.1-rc12.md",
@@ -353,13 +353,13 @@
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Next.md",
-      "sha256": "sha256:6fab8822bc7c065a44782734daf8c860097b972be82115034314e99caaa9a57a",
-      "size_bytes": 10802
+      "sha256": "sha256:1998e820c3144e2303fc0e330a00b489a41f6b83301686f81871334b3dcbf1e7",
+      "size_bytes": 12022
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:6fab8822bc7c065a44782734daf8c860097b972be82115034314e99caaa9a57a",
-      "size_bytes": 10802
+      "sha256": "sha256:1998e820c3144e2303fc0e330a00b489a41f6b83301686f81871334b3dcbf1e7",
+      "size_bytes": 12022
     },
     {
       "path": "docs/generated/ru/ASET_Seed_0.1-rc12.md",
@@ -368,13 +368,13 @@
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Next.md",
-      "sha256": "sha256:756a29b5e133ed2e8431b7ec0a9eeb9e866365615e6c76159fc6f386e90f7eb6",
-      "size_bytes": 14024
+      "sha256": "sha256:f5ee3f5db4a02c6ccd3182af886a6efbe6cbf8c5b531a283c9260cefeda917d0",
+      "size_bytes": 15982
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:756a29b5e133ed2e8431b7ec0a9eeb9e866365615e6c76159fc6f386e90f7eb6",
-      "size_bytes": 14024
+      "sha256": "sha256:f5ee3f5db4a02c6ccd3182af886a6efbe6cbf8c5b531a283c9260cefeda917d0",
+      "size_bytes": 15982
     },
     {
       "path": "docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md",
@@ -393,8 +393,8 @@
     },
     {
       "path": "docs/repository/CI_ASSURANCE.md",
-      "sha256": "sha256:0430d1e771f7f12bc3462a2f7903308e475543d254cd10a0e1f2ae6fbcee6547",
-      "size_bytes": 3190
+      "sha256": "sha256:e233f5f4ce76e4b156e85d18edba23f70bd785a83f3a08c85f2b747e29c4092e",
+      "size_bytes": 3304
     },
     {
       "path": "docs/repository/DEPENDENCY_POLICY.md",
@@ -468,178 +468,183 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:f81e9c80be5ef0a6c2ce79c8bfce27746bb98654955f7697a095502caf70bccc",
-      "size_bytes": 12501
+      "sha256": "sha256:58455e83e101e7a112a521c66cd68e56312227cfbf2accdbf668eba493d17942",
+      "size_bytes": 13241
     },
     {
       "path": "seed/canonical/README.md",
-      "sha256": "sha256:1e211f4db5cce375d7a51b7997161a6cb82ade38e103a407af1f2614b64ec49e",
-      "size_bytes": 2802
+      "sha256": "sha256:dd873b7b201da02d7b9ea6f8e1f219b6c6ca31eca1c6c44be42af0d0cf4399cb",
+      "size_bytes": 2556
     },
     {
       "path": "seed/canonical/assurance/canon-tla-refinement.json",
-      "sha256": "sha256:d29c941ee0dca9fc725c2dcaec0b6a78d661cbe6630726418fc370c79d73ee38",
-      "size_bytes": 6661
+      "sha256": "sha256:2095b62595d056c8a5a3b0700239a0211417979e4d5f2b4a535df0827017371b",
+      "size_bytes": 6791
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:da7a577b4f160ba5ac436808711f101dd2d9c66509ff1f7772dedc05174b9163",
-      "size_bytes": 14733
+      "sha256": "sha256:2d89e21d092bf4d340e271dc3bcba2d7df618c4c4b41e67beb626f518cdb163b",
+      "size_bytes": 15093
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:2b6bbf827dcb12b9674154efebcb6134366c614769b5874a5f4db0cbb81cb25f",
-      "size_bytes": 3803
+      "sha256": "sha256:c9379206486a61592398485658cb434174e0a1cbdbb6a37c2792d1d312f35c3b",
+      "size_bytes": 3846
     },
     {
       "path": "seed/canonical/assurance/proof-traceability.json",
-      "sha256": "sha256:3c49b80547bf7a148688d49aeaa61a5e2074e14161b5597967613a07b0925609",
-      "size_bytes": 6944
+      "sha256": "sha256:043bb3b1717d0c41123d326dc9b1d8dcae1cdde78c7ebf2d2ae26e79d2248eaf",
+      "size_bytes": 6966
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:9b945c1665038e8e4a642ffa6b9510d5ab8aaeeb45b5403bf578fb230e666c77",
-      "size_bytes": 6815
+      "sha256": "sha256:96c3b5f009b64eedc0348109f6545b92b8a0c67b1a9087765868afaff7be11dd",
+      "size_bytes": 6819
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:a3306079e7c38496063c5e46ec6a464bdf744d1271568963291cb71c08991b19",
-      "size_bytes": 9887
+      "sha256": "sha256:b4bb28e5a8965e984013ad7408522749cfef3008c913a518f455fefda7136187",
+      "size_bytes": 9717
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
-      "sha256": "sha256:3352af05c6a51a02aef9c94639fe43903c22969f3d9a8e2836f23fce065507a7",
-      "size_bytes": 1822
+      "sha256": "sha256:e5688046d1ccc8cafffb0520aa044a2f37f1ca3a4df7325052661213d6ba15fc",
+      "size_bytes": 1652
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-002.json",
-      "sha256": "sha256:ee69ab8301eea93cf52ab45114e56922f620e8aad8d4f621bbc98b6cf040cfa9",
-      "size_bytes": 2718
+      "sha256": "sha256:ca9b2b633ae32bffefdd3d8939e9614917e8cd04cafb7813c547f641122949ce",
+      "size_bytes": 2548
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-003.json",
-      "sha256": "sha256:4318727895ac37e61933c6686e785351211acdda10dd9c6f19f6c69f37820eac",
-      "size_bytes": 1866
+      "sha256": "sha256:0a71111771482553160e98363d6f8773c965697cd9325673ed82ba64cc8c85f7",
+      "size_bytes": 1696
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-004.json",
-      "sha256": "sha256:22b06e4c5bfac480dfddbba7a52370b7fdf104da371fe65dc3e8a928fed9b02c",
-      "size_bytes": 2342
+      "sha256": "sha256:e30ce83892f1c90f546e7410596a8f35936622f999efebb172b83d08f8fe181c",
+      "size_bytes": 2030
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-005.json",
-      "sha256": "sha256:15e6d3059b4d769eabb5a166d350509b23ec359856eb4c0bae2c9f975377af07",
-      "size_bytes": 2531
+      "sha256": "sha256:52a9c7253bfb886dcc2b091b643fa36a75f3d96ae01e89d5c6621c8552de9d9a",
+      "size_bytes": 2364
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-006.json",
-      "sha256": "sha256:4fcce1e7ebf701e5e994606320cb86a0129193154a33ee63792ee669419fbfec",
-      "size_bytes": 2536
+      "sha256": "sha256:03d11760f4abe91ed1913933600097f52babf57a76984a6ff5d75b4f0ff386ce",
+      "size_bytes": 2369
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-007.json",
-      "sha256": "sha256:e95d67c12b028b328c538fb83cf00a01946734acc5048fd1035f3c2eeb9f8ff2",
-      "size_bytes": 2634
+      "sha256": "sha256:24774174dc294a03106711abeb39c0ef4f776ecca89b8b41d0e6dff21c42b2ab",
+      "size_bytes": 2528
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-008.json",
-      "sha256": "sha256:783d86ab36bbcb1bdbad0d16c0481ea448d46c67b3501e1a76abfc828e7dde2f",
-      "size_bytes": 3048
+      "sha256": "sha256:fcbdef8907d41df526a388217a234c6e966adbce259924bf60027a14aaa418cb",
+      "size_bytes": 2823
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-009.json",
-      "sha256": "sha256:2ff892ee2e91c8d5c117a0990157f326d602876cda637f9a34eda454fee41b9f",
-      "size_bytes": 3579
+      "sha256": "sha256:b7342e2b2ebd187ddaf0b02ff925f27f4f00d42eb079667620e745bf8e3e74a5",
+      "size_bytes": 2562
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-010.json",
-      "sha256": "sha256:184aaf7b609ab4ab6947b2b1df68bde7facacd7b0b5452973a73f7e998d3f8a2",
-      "size_bytes": 3236
+      "sha256": "sha256:0d0dc5feddea9bf480b0f1ab5c4a43ef61967f53ed615ffa3cb8b1720b1e79e9",
+      "size_bytes": 3072
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-011.json",
-      "sha256": "sha256:675d861e51f13df1c5ec10ad6ddc4909c827f7e893fb3485471023130175f123",
-      "size_bytes": 3504
+      "sha256": "sha256:94d472765378007e09ccf295a46ad1d244e2d34accd17bd2b8d33eb8d9c223e4",
+      "size_bytes": 3337
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-012.json",
-      "sha256": "sha256:9c16ba5f4d95d959f1f4419fb2b646202204448fde49ac2669e0a5839c7a10a8",
-      "size_bytes": 1940
+      "sha256": "sha256:be05dfafb0ff2c0dda6eb91f01425d57a4940c1c5716dd8089512337a93ec4fb",
+      "size_bytes": 1770
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
-      "sha256": "sha256:f36aa4d3809a20c9842eac49c7aed6b31a916a8c089d376e83b0c29023863604",
-      "size_bytes": 2088
+      "sha256": "sha256:84e3849b6c1f9ebec704385974f065bbee233d48abfd5819521d97c2814910a0",
+      "size_bytes": 1918
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-014.json",
-      "sha256": "sha256:822f9b125bdb8ebbd50288b7360108c9657791caca7638a3d25ee4d095b249ee",
-      "size_bytes": 2461
+      "sha256": "sha256:3716a2847f9c31788d2d705629b036d53b8646404be135922e64f61de8fad5ea",
+      "size_bytes": 2294
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-015.json",
-      "sha256": "sha256:49990c7ca0564af284139ad4ce276ecd33d7f3d05a4f3094449ea87e93825809",
-      "size_bytes": 3046
+      "sha256": "sha256:fd697dbb671d55d99bab8cedc87d81bca1d312d3e542b8fd297f2f4583021ca7",
+      "size_bytes": 2882
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-016.json",
-      "sha256": "sha256:90741b3701cd8e9ec043e978ba1f7bbb22b349ef04f425605f019bf599774311",
-      "size_bytes": 3599
+      "sha256": "sha256:2834c82838393611694ceb7171cdbb406d39bfba60a0fa6d5cb01c1b02e4f0f5",
+      "size_bytes": 2590
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
-      "sha256": "sha256:60585b00221d867f21ea98fe198b4d35f2acdf56118de3ab7403a8a6c3c1b9c7",
-      "size_bytes": 1921
+      "sha256": "sha256:661cd889e7b091ed6dc969c17dd5934a6104d1919a108b790c3ffdcf1cf5a322",
+      "size_bytes": 1751
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
-      "sha256": "sha256:06e6f20764094764047c1b68404b30b135505214003082d52c2896d4d82c2f5c",
-      "size_bytes": 2597
+      "sha256": "sha256:916fc7a3bcc353612e1c4a09882e24f20e41e2a8ca3f8dfff2b3613a97b3f215",
+      "size_bytes": 2430
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
-      "sha256": "sha256:92f21b9d2efe2ecc2e3c11ec72f1969ebd78d48b91b39c1f2aa096c475766cfa",
-      "size_bytes": 2607
+      "sha256": "sha256:c77ea28272320c3bd7a8e240b896ac4d21923b32ce5ccc0704f84797cfaa5665",
+      "size_bytes": 2440
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
-      "sha256": "sha256:a687f38d83674d2d3a92372be3048860463da19542ca74b2024d61d8361e9ffc",
-      "size_bytes": 3118
+      "sha256": "sha256:dcf5f81b0e60f2aa0c157aab5297177d3f082544d64a54081d83e9d7d6093763",
+      "size_bytes": 2888
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
-      "sha256": "sha256:9459583800f64781bcda6e638200a6cb128a7a20aa8d177720966ac70e1d7308",
-      "size_bytes": 3665
+      "sha256": "sha256:7e37edfaeb010ba65dfc197bf60a7bdcf883c41d686eb2ab5ea44de23ee6da0d",
+      "size_bytes": 3028
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
-      "sha256": "sha256:fded1536ea25f1c32d63907703bc9bccc46e3a74d5205a1ddf86991d2078c7f3",
-      "size_bytes": 1970
+      "sha256": "sha256:e99a01c9d4acf1833697124bf4d75f3d077b80af49c3dc53c73a4d9a245c92fd",
+      "size_bytes": 1800
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "sha256": "sha256:a309d632b1cd18b986cbe0a2442687fd111158eab72d689b0e266fb7d862d92a",
-      "size_bytes": 3375
+      "sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5",
+      "size_bytes": 3211
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
-      "sha256": "sha256:b227d0736e9344953a03afa436427bff54a52c6c58089375e16e154baf6fbcd9",
-      "size_bytes": 2247
+      "sha256": "sha256:415e874abf0e1212b542546bfceea41681d9c30252ff7d955e1cfbb214964efb",
+      "size_bytes": 2077
+    },
+    {
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-009.json",
+      "sha256": "sha256:b7fd5b2160abe684c05af1408468d94590a9bd45355b87cecb910799f9a852c8",
+      "size_bytes": 2899
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:ecdfee84abc59767bb32b15639ec9503896c4cbda16c8f00ff2f5e4cea10963c",
-      "size_bytes": 11926
+      "sha256": "sha256:aabbf317e0c51a1a1f1021dfbd0b2981c3dcf1142b89eb6a1bbfb1c7e1e9dcd6",
+      "size_bytes": 12423
     },
     {
       "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
-      "sha256": "sha256:79e949885857af3797a84432b12902ee55f24b296a66325a94a7131254ad31f4",
+      "sha256": "sha256:b34572ee7a8394ef173d3ae45519c39dc24f77602b956ecf583772ca1aa64040",
       "size_bytes": 2125
     },
     {
       "path": "seed/canonical/conformance/model-based-conformance.json",
-      "sha256": "sha256:6e833d150f4f8dc1fbac5f0c69fae6a68fc785182a0974875e4f273793cd7065",
-      "size_bytes": 1107
+      "sha256": "sha256:db4b3f9e76aff7e8ef3a87f02ae748bb4f718428370306454eb94b9dcc6212b4",
+      "size_bytes": 1453
     },
     {
       "path": "seed/canonical/decisions/ADR-001-semantic-canon-authority.md",
@@ -653,8 +658,8 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-003-narrow-seed-to-resolution-core.md",
-      "sha256": "sha256:92af6ba2f6d08118f3706845e99d04998ec94a5ca6c2077a2ddaf4fdf14e9fc0",
-      "size_bytes": 817
+      "sha256": "sha256:efa447147768ba6a9aef4654f56e2f92700f1e2cf7658c085b7ed4b9849114a5",
+      "size_bytes": 1109
     },
     {
       "path": "seed/canonical/decisions/ADR-004-externalize-legacy-components.md",
@@ -668,8 +673,8 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
-      "sha256": "sha256:e7f91577c81b6659bb6129e31ffe6b37a78bd05ca53c985511df4c9faaec1128",
-      "size_bytes": 2659
+      "sha256": "sha256:0545be007291eb0e2be22fce7af30a528919afe2bf57e5ccb5502f4e958692d2",
+      "size_bytes": 2937
     },
     {
       "path": "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
@@ -678,63 +683,48 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
-      "sha256": "sha256:229de9ba5db018f2726ae7e2b23e33a321eb12f4187c7dfffa35773691f2285c",
-      "size_bytes": 1980
+      "sha256": "sha256:b219bd91da708861847f017c35328d47fee298c2313326b326d75660b733ae63",
+      "size_bytes": 2219
+    },
+    {
+      "path": "seed/canonical/decisions/ADR-009-seed-state-environment-observer-and-authority-boundary.md",
+      "sha256": "sha256:fdb642c8f306d2136345e19c3650c22805f63139ac93d8f81f6773aa249881a0",
+      "size_bytes": 2604
     },
     {
       "path": "seed/canonical/formal/README.md",
-      "sha256": "sha256:6672e2fecb4e81ac2a538be478f3f67ed7d0a866b8e9f7fc2a23cf636d0d3dc6",
-      "size_bytes": 4340
-    },
-    {
-      "path": "seed/canonical/formal/SeedBootstrap.cfg",
-      "sha256": "sha256:e6ef020e118b298adb25015a335a360450bde33ebf2794b35032ce80aecea282",
-      "size_bytes": 95
-    },
-    {
-      "path": "seed/canonical/formal/SeedBootstrap.tla",
-      "sha256": "sha256:eed849079a74056710d47d8d243131305742e86acd6995b1272e598c0dc05e6a",
-      "size_bytes": 512
+      "sha256": "sha256:38ef56c859221204201f3bed365f810bc383ca1fb257328ea6b774a67fe7ff82",
+      "size_bytes": 2373
     },
     {
       "path": "seed/canonical/formal/SeedCanonProjection.tla",
-      "sha256": "sha256:26d6508c8c091fc9d204331be627a3a6cdb15600a1eddf4e755d67240da4efd5",
-      "size_bytes": 3383
+      "sha256": "sha256:b7265eb707795b592c678842f764a5bfa7ce303bdc66f55f858366e20d64eb4e",
+      "size_bytes": 4377
     },
     {
       "path": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
-      "sha256": "sha256:2445164299b87a1e819edc5df585cb84d18b8b6817e2b14a5158c79e3dca44d2",
-      "size_bytes": 2543
-    },
-    {
-      "path": "seed/canonical/formal/SeedRC12.cfg",
-      "sha256": "sha256:4f8c0f53530247ed4306f9ca00376d3d4bb9962ee870c0a477aff198fb9f278a",
-      "size_bytes": 175
-    },
-    {
-      "path": "seed/canonical/formal/SeedRC12.tla",
-      "sha256": "sha256:a94408e12ed4ca06fc5e0ee816dff4eba8acac22c6370f7027fe76c628db6573",
-      "size_bytes": 2957
+      "sha256": "sha256:46ef7336b86d066ee531eb2c43873d9b6e1622dd48632b9af08ea6f412cf6338",
+      "size_bytes": 3391
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:c5549986cb036f550e0c030a13944e8fb00372c28ccecacc88d84ede2a34d588",
-      "size_bytes": 731
+      "sha256": "sha256:b4ee7fb775fbf8909fded4e7b2086b8022e1412e648e21f470c464a625f690c0",
+      "size_bytes": 706
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f",
-      "size_bytes": 8765
+      "sha256": "sha256:1c53b058d738e074c2a9de96fe27d8d7dd384d3ffa52f3bb95f7732908d66276",
+      "size_bytes": 7417
     },
     {
       "path": "seed/canonical/formal/SeedResolutionProofs.tla",
-      "sha256": "sha256:32c9f90bebcb1503f13b41535847ed5b4c16b066143fcf02578b63f627cf3805",
-      "size_bytes": 26293
+      "sha256": "sha256:bcb4652249d66cbcb16f7c5a4538ad3bc2c31ef7d37b49fd27328eff6a6725f9",
+      "size_bytes": 21892
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
-      "sha256": "sha256:c270eaedbcfc42354198191e5ed74641743578c46124332c57b0523c94f15c6c",
-      "size_bytes": 780
+      "sha256": "sha256:181e53833e17c71136343f2dbd0e3381379a057f568d4bce4f1109b739c04b56",
+      "size_bytes": 810
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
@@ -743,8 +733,8 @@
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
-      "sha256": "sha256:997134c763754c726b939823ffa37528a5860cde7111584f577029982c379767",
-      "size_bytes": 679
+      "sha256": "sha256:4eb176ddb006c0957a2bf1d79685fd86b263b89500cc53df919193ec91459bf8",
+      "size_bytes": 820
     },
     {
       "path": "seed/canonical/migration/RC11_TO_RC12_SEMANTIC_COVERAGE.json",
@@ -768,13 +758,23 @@
     },
     {
       "path": "seed/canonical/migration/RC12_TO_RESOLUTION_CORE.md",
-      "sha256": "sha256:1affaba5d5bc41489b1c1e0cc98117a432f9745cff4fc91b348e4667d681ecd2",
-      "size_bytes": 727
+      "sha256": "sha256:05b6f0b3b304915ac7d3cc37eaed6efe55b693af4a328d3c00c508355a2edf96",
+      "size_bytes": 931
+    },
+    {
+      "path": "seed/canonical/migration/WIRE_V2_TO_V3.md",
+      "sha256": "sha256:b01a89274299c4a21f876dc811fdf61b87f00c8be1735cef37b9adad7e5cc4c3",
+      "size_bytes": 1185
     },
     {
       "path": "seed/canonical/ontology/seed.ttl",
-      "sha256": "sha256:a5c9e95511eb45edfb16672bf9149178829b6a87486507e373800097c67aaa0a",
-      "size_bytes": 2885
+      "sha256": "sha256:291c2fb5b81baad7515c03cc8b6c6c5df1ac2c07b02f9de0e633c778f3700ac9",
+      "size_bytes": 3128
+    },
+    {
+      "path": "seed/canonical/protocol/README.md",
+      "sha256": "sha256:c80ad3eab8fa110dc83214355fa19eb5643156945e79f0c83104e7c282ab779d",
+      "size_bytes": 682
     },
     {
       "path": "seed/canonical/protocol/digest-profile.json",
@@ -783,18 +783,8 @@
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
-      "sha256": "sha256:cb699538f0f6fa10d5958b6f059a2891fdd89cb7fdef56e458f10cd4968b955f",
-      "size_bytes": 4405
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/authority-binding.schema.json",
-      "sha256": "sha256:fffa30b84e6bd54bb873851006c126bdac1856555ec80d6196139233b9d0bb39",
-      "size_bytes": 1619
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/authority-grant.schema.json",
-      "sha256": "sha256:1acedba9b138bbf18969bccdc77cdc891e768338f90a6a527adf75fa49f7204f",
-      "size_bytes": 972
+      "sha256": "sha256:b0f147bad148bf4f2369b157c79c1ac96b87da3d4727bdec46427732960c84b1",
+      "size_bytes": 4094
     },
     {
       "path": "seed/canonical/protocol/schemas/common.schema.json",
@@ -807,149 +797,9 @@
       "size_bytes": 2220
     },
     {
-      "path": "seed/canonical/protocol/schemas/constitution.schema.json",
-      "sha256": "sha256:9a72dc02bf20bbecb4b90a1b610a36f13b86df136e106779cf3559c7afccff58",
-      "size_bytes": 1482
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/context-descriptor.schema.json",
-      "sha256": "sha256:bdb68557cc76d4e455099f55aa9823410be2e91563d8a9eac39ab854a76c48f9",
-      "size_bytes": 3499
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/context-redefinition-record.schema.json",
-      "sha256": "sha256:2fd0353277cc1ba627e0d2787b93e615696be08d709f3ae1d45a1a8b2f7b90c2",
-      "size_bytes": 1828
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/correction-record.schema.json",
-      "sha256": "sha256:c4057bd148f08e4eadc3525ccaad43d6c7936afdb128438dfac3660f22eb8814",
-      "size_bytes": 1434
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/decision.schema.json",
-      "sha256": "sha256:fdeedb26f090d9ae21a73aba67b04e59e97cc6cd88820ad508e52a80e67af4f3",
-      "size_bytes": 1857
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/execution-intent.schema.json",
-      "sha256": "sha256:93362ed26690871b804834f6e7837108fead16a30e352f9a68d0373064389a5c",
-      "size_bytes": 1263
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/export-receipt.schema.json",
-      "sha256": "sha256:54820f2ce98a9bb8af5f4977d4bdd559427397de63531b532c40fd06fc9081c5",
-      "size_bytes": 1921
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/import-observation.schema.json",
-      "sha256": "sha256:1c26f94e93f078d998bbdf3e95ca47b10e2e88602fc0e5ed319b47028ac7eb39",
-      "size_bytes": 1243
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/membership-withdrawal-record.schema.json",
-      "sha256": "sha256:1e79ca9fb2d7b56a1cbc6a1c00f13358030adf0d4694d592ebef34fba6031e71",
-      "size_bytes": 2003
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/observation.schema.json",
-      "sha256": "sha256:60cac8b03c38ab0524f3d99823c6ac6f4284bfb1f612efeefe47cee913dc7796",
-      "size_bytes": 1796
-    },
-    {
       "path": "seed/canonical/protocol/schemas/operation.schema.json",
       "sha256": "sha256:be3c89c9c2068c1707070f0ab94226b0bd1052b8ae6dfd3851a691ba83c91742",
       "size_bytes": 1585
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/outcome.schema.json",
-      "sha256": "sha256:92be42cb436d998f91faf8b8a4b1eac9d332b1432b54e87340121b4869b6c706",
-      "size_bytes": 1340
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-authority-transfer.schema.json",
-      "sha256": "sha256:4831aafefd0412d5ff1a136fed3b3a657db302d0e7d671a235aef163c79429c8",
-      "size_bytes": 799
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-context-redefine.schema.json",
-      "sha256": "sha256:833084d7ea8bb080f8464370f2991ebfaced6607842dd2d456903f7b0fc52569",
-      "size_bytes": 3943
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-context-terminate.schema.json",
-      "sha256": "sha256:6b803ec2d7c6ab9cf098a80a32875cd7aa8f938fd99b6430510a5dd5a086f432",
-      "size_bytes": 816
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-correction.schema.json",
-      "sha256": "sha256:23ea29d8e5da1ed85b4a5566aac7734d7e83927e28ae330e9637aa386df90514",
-      "size_bytes": 898
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-decision.schema.json",
-      "sha256": "sha256:77f482fc4fdec17410dd0a6c59698e2260969a56ea8bd9c18e026899976a6090",
-      "size_bytes": 1347
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-export.schema.json",
-      "sha256": "sha256:1edfadc3582a75bb9832b5a7913f5f50177ef5c8b4faf0a7cacd3bca96419275",
-      "size_bytes": 764
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-guarantee-suspend.schema.json",
-      "sha256": "sha256:ee9e791d467f3b1776f4751d1be46ddc4a394699b5e56e063ff1b1a684651e42",
-      "size_bytes": 554
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-import.schema.json",
-      "sha256": "sha256:f37c53635c8db33cc849a35e3379a68d9a80be3ec0e44f9cc64af9fbb0d382b4",
-      "size_bytes": 779
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-member-context-genesis.schema.json",
-      "sha256": "sha256:218cf717aa6c1da148568b0167aa25495d013d9d69755709888113777d969c1c",
-      "size_bytes": 2184
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-membership-withdraw.schema.json",
-      "sha256": "sha256:8953d37084477bb009f2cd5db0accc43b7dc0d6a555903f4d3c6eeee5fbd0528",
-      "size_bytes": 407
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-observation.schema.json",
-      "sha256": "sha256:d218234511b2cf68484bf2d32ec8500506172557f5e46fe5040633463710ab3d",
-      "size_bytes": 1267
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-outcome.schema.json",
-      "sha256": "sha256:8800f5cb5d66c5758027777b89a0b28acbad9173e1ff89114d0b4ab4a49e91c7",
-      "size_bytes": 817
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-partition-local-transition.schema.json",
-      "sha256": "sha256:6ae208300829f1f83806506cac1d22cf313ff32a8bdd53f4c7954b5808b3b62f",
-      "size_bytes": 847
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-permit-attenuate.schema.json",
-      "sha256": "sha256:680dce823fd17f511080f58617b214f5e73d445b16173090112f7ddb3eaa438f",
-      "size_bytes": 1405
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-permit-issue.schema.json",
-      "sha256": "sha256:76c28709068fc90467b23cbdc21a10663a479b5c6a855988ca918d00b6daf62c",
-      "size_bytes": 1718
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-permit-use.schema.json",
-      "sha256": "sha256:3bc589d919e1893c066197cb2cc213904c8976bffb0f01df6e0df1e11672ad6f",
-      "size_bytes": 716
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/payload-reconcile.schema.json",
-      "sha256": "sha256:415450a4a88d20e22489a14aac14e2394f240ed24fcf4fdeecf130c90bba7453",
-      "size_bytes": 1937
     },
     {
       "path": "seed/canonical/protocol/schemas/payload-register-request.schema.json",
@@ -962,29 +812,9 @@
       "size_bytes": 335
     },
     {
-      "path": "seed/canonical/protocol/schemas/payload-verification.schema.json",
-      "sha256": "sha256:7709adcc14d5c25c52c8313e5a8642b1a093b5b75fb79522e9ee47bbddcb4674",
-      "size_bytes": 1420
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/permit-use-receipt.schema.json",
-      "sha256": "sha256:375621cc2aeab3a67e1a15e210ad27479ba9772b35dbd126a08dd9878985dc29",
-      "size_bytes": 1531
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/permit.schema.json",
-      "sha256": "sha256:cf4a02399a82a7c1ebf046bececc50ec678d78bc4f93761c22c6e405cd10dc5f",
-      "size_bytes": 3358
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/reconciliation-receipt.schema.json",
-      "sha256": "sha256:f5ccd6922da37f1ecf6113d616538346138c25c3654b87e930a8dc6bef2dcd04",
-      "size_bytes": 1481
-    },
-    {
       "path": "seed/canonical/protocol/schemas/resolution-authority-binding.schema.json",
-      "sha256": "sha256:803f1747968009dd4f4a6d35406439ec52036686bb0eecd57be56a606dc9e022",
-      "size_bytes": 969
+      "sha256": "sha256:7d5858951bc412ea095cf36867304293c521ee03bc1682ce9683782004d1c94d",
+      "size_bytes": 772
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-binding.schema.json",
@@ -998,8 +828,8 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-record.schema.json",
-      "sha256": "sha256:0f37ae49b8365f89efdd96ba3bcc8adb827ecaf973b8ddbaf40169fb7ee6f6ca",
-      "size_bytes": 1235
+      "sha256": "sha256:a5f49bd2dcfd0aff0bc6413a0b32e7f6996250fd06d8bc2ab53ff98eb22a9450",
+      "size_bytes": 1241
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-request.schema.json",
@@ -1008,23 +838,8 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-store.schema.json",
-      "sha256": "sha256:bebd92802b3e6bb6264c08599bdff34bcc40e26e76d0163470953ea0e1d1e5da",
-      "size_bytes": 835
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/root-genesis.schema.json",
-      "sha256": "sha256:73025e6332df60e341d10cb27e5989cce3935cb42d40ab0cceed46a71f39b99f",
-      "size_bytes": 2622
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/trust-space-state.schema.json",
-      "sha256": "sha256:f245cf6a37a5b67f754ab3df4a151c04c3c301cebf02867374a688880b97cad4",
-      "size_bytes": 10489
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/verification.schema.json",
-      "sha256": "sha256:0653d498cce281d578a1952682291f3c3e52e71376406a8cfb7c8778751a3872",
-      "size_bytes": 1951
+      "sha256": "sha256:24a175ef5345c0f9fb0b555a7eeec08c20e557937e7aa51682dd4dcc50acc449",
+      "size_bytes": 684
     },
     {
       "path": "seed/canonical/release/RC12_FREEZE_ENTRY.json",
@@ -1058,22 +873,22 @@
     },
     {
       "path": "seed/canonical/schemas/canon-tla-refinement.schema.json",
-      "sha256": "sha256:aaba0b7c0cc6a27158318702c87e5396ae2a0951852fcb21094b60d2d1dfccb6",
-      "size_bytes": 6582
+      "sha256": "sha256:17b142a998bbc8dd7b82b61c54d75e0c0e735211f35f90312565b78a4e7758e5",
+      "size_bytes": 6776
     },
     {
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
-      "sha256": "sha256:3d4eab2037567b55a8903d55a71f97bd98851d2282766332a86460f2c83d5bb7",
+      "sha256": "sha256:01d5156f63f850946fbb7c8ed31bb9b3e1b4f21d01b200271da9ad3a13f5a0e8",
       "size_bytes": 1724
     },
     {
       "path": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
-      "sha256": "sha256:e7d0b4674a6db735c485822c6a541eccc265f8f07cb6d12425f32f5aef4ba6d6",
+      "sha256": "sha256:491b9aa4458a11f57424a5eb92f0f7f61d776c8de00a333e47985ff956701e9d",
       "size_bytes": 3331
     },
     {
       "path": "seed/canonical/schemas/implementation-conformance-protocol.schema.json",
-      "sha256": "sha256:939ee1ac9a8921ceb0f735fbb79cc6925269cfbed5c16232809b385e19f3922a",
+      "sha256": "sha256:40295089c6bb1e8a0f5b7181bd4cfda4526be61095a822c9014a2a7ebac69de8",
       "size_bytes": 1280
     },
     {
@@ -1083,12 +898,12 @@
     },
     {
       "path": "seed/canonical/schemas/proof-traceability.schema.json",
-      "sha256": "sha256:7139c370d2cf0709a8c2dfcf891ffc2aecc374d6558f6124aa4bc639795de53f",
-      "size_bytes": 2875
+      "sha256": "sha256:855790c3357025cae6110b813c13b66edc9685433b41873c20c6b9d41fb82517",
+      "size_bytes": 3050
     },
     {
       "path": "seed/canonical/schemas/protocol-profile.schema.json",
-      "sha256": "sha256:b8a85e60203997172f05b64ed73bcac46121fbc9aee7b2762f77a8f3f8cbf1f2",
+      "sha256": "sha256:6a4f07a2e94a5b72c1136e92a7385ad3b4e3c70aa473b9ec9788d02b905ae4d1",
       "size_bytes": 2025
     },
     {
@@ -1103,13 +918,13 @@
     },
     {
       "path": "seed/canonical/schemas/repository-status.schema.json",
-      "sha256": "sha256:cea3bd42e5b7a1feeb4c668d5a1ad2f92d99abf1c44bffd0e64a4ead0550654f",
+      "sha256": "sha256:a3178e72ef74aeffd1ea30c4ae8f31ad505ea0fa3d793b36d39573b208040781",
       "size_bytes": 1525
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
-      "sha256": "sha256:09e679bc379fdab2ff78c09ad6f71b3969ca654bbb53f5f1d432e10a79921fa1",
-      "size_bytes": 8661
+      "sha256": "sha256:1f1a727764b5d0138951f76fac1ab1155f4ba67c92f21aa8a21f7ef105bf9f94",
+      "size_bytes": 8807
     },
     {
       "path": "seed/canonical/shapes/seed.shacl.ttl",
@@ -1118,8 +933,8 @@
     },
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
-      "size_bytes": 36127
+      "sha256": "sha256:c43ca7b642a11c3ab140884a6bbff34bbd741f5cb905e6a779c860c813998fcf",
+      "size_bytes": 40151
     },
     {
       "path": "seed/canonical/terminology/foreign-terms.json",
@@ -1128,13 +943,13 @@
     },
     {
       "path": "seed/canonical/terminology/seed.skos.ttl",
-      "sha256": "sha256:02359ded1ff2f14a7252fb489f18c0ab3f3dbceab9932d4503cb2b5ce376b8bd",
-      "size_bytes": 3712
+      "sha256": "sha256:ac10d88a1001cc0cfef57e31f076c2e4a54639085fba6289d8ba523731933ca8",
+      "size_bytes": 3961
     },
     {
       "path": "seed/canonical/terminology/seed.tbx",
-      "sha256": "sha256:fbb6350feb0d8061352b8ca7b3da3eb3a60038668568c22db88460e111a156d8",
-      "size_bytes": 4541
+      "sha256": "sha256:572d4f8a4e506256ba4658987262fb2e1f0138ac663c76f3bac60c9f31eeaade",
+      "size_bytes": 4552
     },
     {
       "path": "seed/releases/0.1-rc11/README.md",
@@ -2098,17 +1913,17 @@
     },
     {
       "path": "tests/test_canonical_model.py",
-      "sha256": "sha256:6d317d4cba9d10c771c86b6629c80c07a9dd1e2041892cf76626ecc4af38b507",
-      "size_bytes": 970
+      "sha256": "sha256:a31ea5918db6c34161996edbe3a1ea11fe664aa311134c13ed92f35a6e25ea4e",
+      "size_bytes": 1451
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:b53064afba5d98de8c77cabd6fb54a85e8567741ca0d722d0a1cbbc47a7ba4df",
-      "size_bytes": 9103
+      "sha256": "sha256:d9339a902b4c78bf0b2d9d5dce3d705b2dce0a58f51a9c45f7efceaddd87c8f6",
+      "size_bytes": 9353
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
-      "sha256": "sha256:7994b642e82e31809a81606efdb72ad7d4e8625b385816bb80b7f1db2d0edd67",
+      "sha256": "sha256:957de7274384b7ef319c4f4b7fc6c6fa52186cfbc413e4fcd0ef6d5a8b741874",
       "size_bytes": 703
     },
     {
@@ -2118,8 +1933,8 @@
     },
     {
       "path": "tests/test_minimal_resolution_kernel.py",
-      "sha256": "sha256:44a236f50aa85c960eb58f74a5b84a51fd0d91a2cc249c689a488282dba807fa",
-      "size_bytes": 1722
+      "sha256": "sha256:a15c9e4146a1c9ff469848a0e2b25854c6df2bedd4dbcdf38304ce905c738a66",
+      "size_bytes": 2108
     },
     {
       "path": "tests/test_production_repository.py",
@@ -2153,8 +1968,8 @@
     },
     {
       "path": "tools/build_canon_package.py",
-      "sha256": "sha256:d3fdf7895f3910feb3d6974dfd72ef25f317834035e95d398c58bf249ea12569",
-      "size_bytes": 4083
+      "sha256": "sha256:ec71afc2e51b342694d061e6117360602aebde4ac2c74799b85a9dfda255e2fd",
+      "size_bytes": 4372
     },
     {
       "path": "tools/build_release.py",
@@ -2163,8 +1978,8 @@
     },
     {
       "path": "tools/check_assurance_traceability.py",
-      "sha256": "sha256:753b76fa5a7293c5bf389a188a264719b51b778f0b53a984fcdc22d32e0fedae",
-      "size_bytes": 10316
+      "sha256": "sha256:7a4076a25b2e73af9244f1bb8e9d57ffede103a454c36dec028a415ed36ecbc6",
+      "size_bytes": 10419
     },
     {
       "path": "tools/check_canon_compatibility.py",
@@ -2173,8 +1988,8 @@
     },
     {
       "path": "tools/check_canon_tla_refinement.py",
-      "sha256": "sha256:ea28442031c166417173649141304b9fe343fde7223af165f62897c559466ffb",
-      "size_bytes": 8507
+      "sha256": "sha256:95a6a771244177f7e4fe83921baadd11170c4b6967fc39d6238a1a87a5e3c02b",
+      "size_bytes": 8989
     },
     {
       "path": "tools/check_invariant_coverage.py",
@@ -2188,13 +2003,13 @@
     },
     {
       "path": "tools/check_proof_traceability.py",
-      "sha256": "sha256:53edb5e064e9d9db9a2bb54afb752d098bb60e61815544d401135408249ef957",
-      "size_bytes": 9369
+      "sha256": "sha256:332c6055d77dac1c83c0491e82009b7bbaa7ed50ff844285255985fe468249df",
+      "size_bytes": 9612
     },
     {
       "path": "tools/generate_canon_tla_projection.py",
-      "sha256": "sha256:c81fadbdf922068a95c67bb3d80f81bdf48ae7deaabb42df0908919711c44597",
-      "size_bytes": 8140
+      "sha256": "sha256:fb0bc3d79d0d8e4c7bffa4a1f5ab6c76b45bb621adae8ef4367958e9a7b16127",
+      "size_bytes": 9119
     },
     {
       "path": "tools/generate_editions.py",
@@ -2228,8 +2043,8 @@
     },
     {
       "path": "tools/model_check_seed.py",
-      "sha256": "sha256:118d2519eadae60c5105d9506bd69d54fc4acda321ed277b9328230c90081626",
-      "size_bytes": 10388
+      "sha256": "sha256:40411d867950450af17bbdf5f4db47c83916c6edb65a45fb565d26d7fbbe67be",
+      "size_bytes": 9720
     },
     {
       "path": "tools/production_gate.py",
@@ -2248,8 +2063,8 @@
     },
     {
       "path": "tools/run_canon_tla_refinement.py",
-      "sha256": "sha256:f6b6228d979badccb2705a515a9a97bd9dc051c907a0ad9d90f2c339ca30a280",
-      "size_bytes": 6441
+      "sha256": "sha256:8f15d25a41eaa5f20b71533b4fccc71ebc703c98ca3dbb9eb5bba36c10d15ee7",
+      "size_bytes": 6762
     },
     {
       "path": "tools/run_external_conformance.py",
@@ -2258,13 +2073,13 @@
     },
     {
       "path": "tools/run_invariant_mutations.py",
-      "sha256": "sha256:03f277e79b597eb787e2431725151308d75193983c4af16e9340aa7c682570be",
-      "size_bytes": 5649
+      "sha256": "sha256:8b5b70289d46ed97b70fa17b082564aff01709744a3a1218873e702393e5567b",
+      "size_bytes": 5668
     },
     {
       "path": "tools/run_tlaps.py",
-      "sha256": "sha256:860c16d6fe19934f5b04590723671b626c0f5da83e33fc338fc24ee4be225bda",
-      "size_bytes": 6796
+      "sha256": "sha256:aff11c54128a248ed9fe697b019b8ef4e9fe501ef0ee3b25b0ece65fac647f8b",
+      "size_bytes": 6758
     },
     {
       "path": "tools/run_tlc.py",
@@ -2273,8 +2088,8 @@
     },
     {
       "path": "tools/seed_resolution_oracle.py",
-      "sha256": "sha256:f7af5e9ba460b1c4947e769c84adc4f81421d7c6ba7acf85b1035af8d9e525be",
-      "size_bytes": 14076
+      "sha256": "sha256:24fb9c2a54479c19eadba837b2000c8f8f25169de4bbcae5d69b4f7788803406",
+      "size_bytes": 13489
     },
     {
       "path": "tools/semantic_diff.py",
@@ -2313,8 +2128,8 @@
     },
     {
       "path": "tools/validate_seed_canon.py",
-      "sha256": "sha256:e92f2c8e3e47bae69a69f33d7069b50df3f25262a6b3794737ad5827e8449e7e",
-      "size_bytes": 7211
+      "sha256": "sha256:39100a61aef4cfed479a9a91a98e7312976bb31970c32aa2fa9e90a093b1d87d",
+      "size_bytes": 7891
     },
     {
       "path": "tools/verify_frozen_release.py",
@@ -2322,7 +2137,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 464,
+  "files_count": 427,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

@@ -14,9 +14,8 @@ TLAPS_FINAL_THEOREMS = (
     "SpecImpliesAlwaysSeedStateSafety",
     "SpecImpliesRequestsAppendOnly",
     "SpecImpliesTerminalRecordsImmutable",
-    "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
-    "SpecImpliesInvalidMaterialStutter",
-    "SpecImpliesNonAuthoritativeInputsStutter",
+    "SpecImpliesSeedStateChangesOnlyByRecognizedTransition",
+    "SpecImpliesConflictObservationPreservesSeedState",
 )
 
 
@@ -171,15 +170,17 @@ def main() -> int:
 
     model_report_path = ROOT / args.model_report
     if not model_report_path.is_file():
-        errors.append(f"missing bounded model report: {args.model_report}")
+        errors.append(f"missing finite-state model report: {args.model_report}")
     else:
         model_report = load(model_report_path)
         if set(model_report.get("invariants", [])) != set(tla_formal):
             errors.append(
-                "bounded model property set differs from TLA/TLC verification registry"
+                "finite-state model property set differs from TLA/TLC verification registry"
             )
         if model_report.get("verdict") != "PASS":
-            errors.append("bounded model report is not PASS")
+            errors.append("finite-state model report is not PASS")
+        if model_report.get("saturated") is not True:
+            errors.append("finite-state model report is not saturated")
 
     formal_invariant_coverage = {
         identifier

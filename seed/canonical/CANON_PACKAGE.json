@@ -1,20 +1,20 @@
 {
   "canon_id": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
   "canon_version": "0.3.0-alpha.1",
-  "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
+  "conformance_protocol": "ASET-SEED-RESOLUTION-CONFORMANCE-V3",
   "document_type": "aset-canon-package",
   "files": [
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6"
+      "sha256": "sha256:c43ca7b642a11c3ab140884a6bbff34bbd741f5cb905e6a779c860c813998fcf"
     },
     {
       "path": "seed/canonical/schemas/seed-model.schema.json",
-      "sha256": "sha256:09e679bc379fdab2ff78c09ad6f71b3969ca654bbb53f5f1d432e10a79921fa1"
+      "sha256": "sha256:1f1a727764b5d0138951f76fac1ab1155f4ba67c92f21aa8a21f7ef105bf9f94"
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
-      "sha256": "sha256:cb699538f0f6fa10d5958b6f059a2891fdd89cb7fdef56e458f10cd4968b955f"
+      "sha256": "sha256:b0f147bad148bf4f2369b157c79c1ac96b87da3d4727bdec46427732960c84b1"
     },
     {
       "path": "seed/canonical/protocol/digest-profile.json",
@@ -22,39 +22,39 @@
     },
     {
       "path": "seed/canonical/schemas/protocol-profile.schema.json",
-      "sha256": "sha256:b8a85e60203997172f05b64ed73bcac46121fbc9aee7b2762f77a8f3f8cbf1f2"
+      "sha256": "sha256:6a4f07a2e94a5b72c1136e92a7385ad3b4e3c70aa473b9ec9788d02b905ae4d1"
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:ecdfee84abc59767bb32b15639ec9503896c4cbda16c8f00ff2f5e4cea10963c"
+      "sha256": "sha256:aabbf317e0c51a1a1f1021dfbd0b2981c3dcf1142b89eb6a1bbfb1c7e1e9dcd6"
     },
     {
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
-      "sha256": "sha256:3d4eab2037567b55a8903d55a71f97bd98851d2282766332a86460f2c83d5bb7"
+      "sha256": "sha256:01d5156f63f850946fbb7c8ed31bb9b3e1b4f21d01b200271da9ad3a13f5a0e8"
     },
     {
       "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
-      "sha256": "sha256:79e949885857af3797a84432b12902ee55f24b296a66325a94a7131254ad31f4"
+      "sha256": "sha256:b34572ee7a8394ef173d3ae45519c39dc24f77602b956ecf583772ca1aa64040"
     },
     {
       "path": "seed/canonical/schemas/implementation-conformance-protocol.schema.json",
-      "sha256": "sha256:939ee1ac9a8921ceb0f735fbb79cc6925269cfbed5c16232809b385e19f3922a"
+      "sha256": "sha256:40295089c6bb1e8a0f5b7181bd4cfda4526be61095a822c9014a2a7ebac69de8"
     },
     {
       "path": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
-      "sha256": "sha256:e7d0b4674a6db735c485822c6a541eccc265f8f07cb6d12425f32f5aef4ba6d6"
+      "sha256": "sha256:491b9aa4458a11f57424a5eb92f0f7f61d776c8de00a333e47985ff956701e9d"
     },
     {
       "path": "seed/canonical/conformance/model-based-conformance.json",
-      "sha256": "sha256:6e833d150f4f8dc1fbac5f0c69fae6a68fc785182a0974875e4f273793cd7065"
+      "sha256": "sha256:db4b3f9e76aff7e8ef3a87f02ae748bb4f718428370306454eb94b9dcc6212b4"
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:a3306079e7c38496063c5e46ec6a464bdf744d1271568963291cb71c08991b19"
+      "sha256": "sha256:b4bb28e5a8965e984013ad7408522749cfef3008c913a518f455fefda7136187"
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:da7a577b4f160ba5ac436808711f101dd2d9c66509ff1f7772dedc05174b9163"
+      "sha256": "sha256:2d89e21d092bf4d340e271dc3bcba2d7df618c4c4b41e67beb626f518cdb163b"
     },
     {
       "path": "seed/canonical/schemas/invariant-coverage.schema.json",
@@ -62,23 +62,23 @@
     },
     {
       "path": "seed/canonical/assurance/proof-traceability.json",
-      "sha256": "sha256:3c49b80547bf7a148688d49aeaa61a5e2074e14161b5597967613a07b0925609"
+      "sha256": "sha256:043bb3b1717d0c41123d326dc9b1d8dcae1cdde78c7ebf2d2ae26e79d2248eaf"
     },
     {
       "path": "seed/canonical/schemas/proof-traceability.schema.json",
-      "sha256": "sha256:7139c370d2cf0709a8c2dfcf891ffc2aecc374d6558f6124aa4bc639795de53f"
+      "sha256": "sha256:855790c3357025cae6110b813c13b66edc9685433b41873c20c6b9d41fb82517"
     },
     {
       "path": "seed/canonical/assurance/canon-tla-refinement.json",
-      "sha256": "sha256:d29c941ee0dca9fc725c2dcaec0b6a78d661cbe6630726418fc370c79d73ee38"
+      "sha256": "sha256:2095b62595d056c8a5a3b0700239a0211417979e4d5f2b4a535df0827017371b"
     },
     {
       "path": "seed/canonical/schemas/canon-tla-refinement.schema.json",
-      "sha256": "sha256:aaba0b7c0cc6a27158318702c87e5396ae2a0951852fcb21094b60d2d1dfccb6"
+      "sha256": "sha256:17b142a998bbc8dd7b82b61c54d75e0c0e735211f35f90312565b78a4e7758e5"
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:2b6bbf827dcb12b9674154efebcb6134366c614769b5874a5f4db0cbb81cb25f"
+      "sha256": "sha256:c9379206486a61592398485658cb434174e0a1cbdbb6a37c2792d1d312f35c3b"
     },
     {
       "path": "seed/canonical/schemas/assurance-limitations.schema.json",
@@ -86,7 +86,7 @@
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:9b945c1665038e8e4a642ffa6b9510d5ab8aaeeb45b5403bf578fb230e666c77"
+      "sha256": "sha256:96c3b5f009b64eedc0348109f6545b92b8a0c67b1a9087765868afaff7be11dd"
     },
     {
       "path": "seed/canonical/schemas/repository-release-gates.schema.json",
@@ -98,23 +98,23 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f"
+      "sha256": "sha256:1c53b058d738e074c2a9de96fe27d8d7dd384d3ffa52f3bb95f7732908d66276"
     },
     {
       "path": "seed/canonical/formal/SeedResolutionProofs.tla",
-      "sha256": "sha256:32c9f90bebcb1503f13b41535847ed5b4c16b066143fcf02578b63f627cf3805"
+      "sha256": "sha256:bcb4652249d66cbcb16f7c5a4538ad3bc2c31ef7d37b49fd27328eff6a6725f9"
     },
     {
       "path": "seed/canonical/formal/SeedCanonProjection.tla",
-      "sha256": "sha256:26d6508c8c091fc9d204331be627a3a6cdb15600a1eddf4e755d67240da4efd5"
+      "sha256": "sha256:b7265eb707795b592c678842f764a5bfa7ce303bdc66f55f858366e20d64eb4e"
     },
     {
       "path": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
-      "sha256": "sha256:2445164299b87a1e819edc5df585cb84d18b8b6817e2b14a5158c79e3dca44d2"
+      "sha256": "sha256:46ef7336b86d066ee531eb2c43873d9b6e1622dd48632b9af08ea6f412cf6338"
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:c5549986cb036f550e0c030a13944e8fb00372c28ccecacc88d84ede2a34d588"
+      "sha256": "sha256:b4ee7fb775fbf8909fded4e7b2086b8022e1412e648e21f470c464a625f690c0"
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
@@ -126,11 +126,27 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
-      "sha256": "sha256:e7f91577c81b6659bb6129e31ffe6b37a78bd05ca53c985511df4c9faaec1128"
+      "sha256": "sha256:0545be007291eb0e2be22fce7af30a528919afe2bf57e5ccb5502f4e958692d2"
     },
     {
       "path": "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
       "sha256": "sha256:ed0fd693b305cbf93dae3533a348de837e4462bb57e204134a49d2b2c19bb457"
+    },
+    {
+      "path": "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
+      "sha256": "sha256:b219bd91da708861847f017c35328d47fee298c2313326b326d75660b733ae63"
+    },
+    {
+      "path": "seed/canonical/decisions/ADR-009-seed-state-environment-observer-and-authority-boundary.md",
+      "sha256": "sha256:fdb642c8f306d2136345e19c3650c22805f63139ac93d8f81f6773aa249881a0"
+    },
+    {
+      "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
+      "sha256": "sha256:4eb176ddb006c0957a2bf1d79685fd86b263b89500cc53df919193ec91459bf8"
+    },
+    {
+      "path": "seed/canonical/migration/WIRE_V2_TO_V3.md",
+      "sha256": "sha256:b01a89274299c4a21f876dc811fdf61b87f00c8be1735cef37b9adad7e5cc4c3"
     },
     {
       "path": "seed/canonical/protocol/schemas/common.schema.json",
@@ -142,11 +158,7 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-authority-binding.schema.json",
-      "sha256": "sha256:803f1747968009dd4f4a6d35406439ec52036686bb0eecd57be56a606dc9e022"
-    },
-    {
-      "path": "seed/canonical/protocol/schemas/authority-grant.schema.json",
-      "sha256": "sha256:1acedba9b138bbf18969bccdc77cdc891e768338f90a6a527adf75fa49f7204f"
+      "sha256": "sha256:7d5858951bc412ea095cf36867304293c521ee03bc1682ce9683782004d1c94d"
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-request.schema.json",
@@ -154,11 +166,11 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-record.schema.json",
-      "sha256": "sha256:0f37ae49b8365f89efdd96ba3bcc8adb827ecaf973b8ddbaf40169fb7ee6f6ca"
+      "sha256": "sha256:a5f49bd2dcfd0aff0bc6413a0b32e7f6996250fd06d8bc2ab53ff98eb22a9450"
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-store.schema.json",
-      "sha256": "sha256:bebd92802b3e6bb6264c08599bdff34bcc40e26e76d0163470953ea0e1d1e5da"
+      "sha256": "sha256:24a175ef5345c0f9fb0b555a7eeec08c20e557937e7aa51682dd4dcc50acc449"
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-evaluation.schema.json",
@@ -182,103 +194,107 @@
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
-      "sha256": "sha256:3352af05c6a51a02aef9c94639fe43903c22969f3d9a8e2836f23fce065507a7"
+      "sha256": "sha256:e5688046d1ccc8cafffb0520aa044a2f37f1ca3a4df7325052661213d6ba15fc"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-002.json",
-      "sha256": "sha256:ee69ab8301eea93cf52ab45114e56922f620e8aad8d4f621bbc98b6cf040cfa9"
+      "sha256": "sha256:ca9b2b633ae32bffefdd3d8939e9614917e8cd04cafb7813c547f641122949ce"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-003.json",
-      "sha256": "sha256:4318727895ac37e61933c6686e785351211acdda10dd9c6f19f6c69f37820eac"
+      "sha256": "sha256:0a71111771482553160e98363d6f8773c965697cd9325673ed82ba64cc8c85f7"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-004.json",
-      "sha256": "sha256:22b06e4c5bfac480dfddbba7a52370b7fdf104da371fe65dc3e8a928fed9b02c"
+      "sha256": "sha256:e30ce83892f1c90f546e7410596a8f35936622f999efebb172b83d08f8fe181c"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-005.json",
-      "sha256": "sha256:15e6d3059b4d769eabb5a166d350509b23ec359856eb4c0bae2c9f975377af07"
+      "sha256": "sha256:52a9c7253bfb886dcc2b091b643fa36a75f3d96ae01e89d5c6621c8552de9d9a"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-006.json",
-      "sha256": "sha256:4fcce1e7ebf701e5e994606320cb86a0129193154a33ee63792ee669419fbfec"
+      "sha256": "sha256:03d11760f4abe91ed1913933600097f52babf57a76984a6ff5d75b4f0ff386ce"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-007.json",
-      "sha256": "sha256:e95d67c12b028b328c538fb83cf00a01946734acc5048fd1035f3c2eeb9f8ff2"
+      "sha256": "sha256:24774174dc294a03106711abeb39c0ef4f776ecca89b8b41d0e6dff21c42b2ab"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-008.json",
-      "sha256": "sha256:783d86ab36bbcb1bdbad0d16c0481ea448d46c67b3501e1a76abfc828e7dde2f"
+      "sha256": "sha256:fcbdef8907d41df526a388217a234c6e966adbce259924bf60027a14aaa418cb"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-009.json",
-      "sha256": "sha256:2ff892ee2e91c8d5c117a0990157f326d602876cda637f9a34eda454fee41b9f"
+      "sha256": "sha256:b7342e2b2ebd187ddaf0b02ff925f27f4f00d42eb079667620e745bf8e3e74a5"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-010.json",
-      "sha256": "sha256:184aaf7b609ab4ab6947b2b1df68bde7facacd7b0b5452973a73f7e998d3f8a2"
+      "sha256": "sha256:0d0dc5feddea9bf480b0f1ab5c4a43ef61967f53ed615ffa3cb8b1720b1e79e9"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-011.json",
-      "sha256": "sha256:675d861e51f13df1c5ec10ad6ddc4909c827f7e893fb3485471023130175f123"
+      "sha256": "sha256:94d472765378007e09ccf295a46ad1d244e2d34accd17bd2b8d33eb8d9c223e4"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-012.json",
-      "sha256": "sha256:9c16ba5f4d95d959f1f4419fb2b646202204448fde49ac2669e0a5839c7a10a8"
+      "sha256": "sha256:be05dfafb0ff2c0dda6eb91f01425d57a4940c1c5716dd8089512337a93ec4fb"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
-      "sha256": "sha256:f36aa4d3809a20c9842eac49c7aed6b31a916a8c089d376e83b0c29023863604"
+      "sha256": "sha256:84e3849b6c1f9ebec704385974f065bbee233d48abfd5819521d97c2814910a0"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-014.json",
-      "sha256": "sha256:822f9b125bdb8ebbd50288b7360108c9657791caca7638a3d25ee4d095b249ee"
+      "sha256": "sha256:3716a2847f9c31788d2d705629b036d53b8646404be135922e64f61de8fad5ea"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-015.json",
-      "sha256": "sha256:49990c7ca0564af284139ad4ce276ecd33d7f3d05a4f3094449ea87e93825809"
+      "sha256": "sha256:fd697dbb671d55d99bab8cedc87d81bca1d312d3e542b8fd297f2f4583021ca7"
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-016.json",
-      "sha256": "sha256:90741b3701cd8e9ec043e978ba1f7bbb22b349ef04f425605f019bf599774311"
+      "sha256": "sha256:2834c82838393611694ceb7171cdbb406d39bfba60a0fa6d5cb01c1b02e4f0f5"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
-      "sha256": "sha256:60585b00221d867f21ea98fe198b4d35f2acdf56118de3ab7403a8a6c3c1b9c7"
+      "sha256": "sha256:661cd889e7b091ed6dc969c17dd5934a6104d1919a108b790c3ffdcf1cf5a322"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
-      "sha256": "sha256:06e6f20764094764047c1b68404b30b135505214003082d52c2896d4d82c2f5c"
+      "sha256": "sha256:916fc7a3bcc353612e1c4a09882e24f20e41e2a8ca3f8dfff2b3613a97b3f215"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
-      "sha256": "sha256:92f21b9d2efe2ecc2e3c11ec72f1969ebd78d48b91b39c1f2aa096c475766cfa"
+      "sha256": "sha256:c77ea28272320c3bd7a8e240b896ac4d21923b32ce5ccc0704f84797cfaa5665"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
-      "sha256": "sha256:a687f38d83674d2d3a92372be3048860463da19542ca74b2024d61d8361e9ffc"
+      "sha256": "sha256:dcf5f81b0e60f2aa0c157aab5297177d3f082544d64a54081d83e9d7d6093763"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
-      "sha256": "sha256:9459583800f64781bcda6e638200a6cb128a7a20aa8d177720966ac70e1d7308"
+      "sha256": "sha256:7e37edfaeb010ba65dfc197bf60a7bdcf883c41d686eb2ab5ea44de23ee6da0d"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
-      "sha256": "sha256:fded1536ea25f1c32d63907703bc9bccc46e3a74d5205a1ddf86991d2078c7f3"
+      "sha256": "sha256:e99a01c9d4acf1833697124bf4d75f3d077b80af49c3dc53c73a4d9a245c92fd"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "sha256": "sha256:a309d632b1cd18b986cbe0a2442687fd111158eab72d689b0e266fb7d862d92a"
+      "sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5"
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
-      "sha256": "sha256:b227d0736e9344953a03afa436427bff54a52c6c58089375e16e154baf6fbcd9"
+      "sha256": "sha256:415e874abf0e1212b542546bfceea41681d9c30252ff7d955e1cfbb214964efb"
+    },
+    {
+      "path": "seed/canonical/conformance/cases/positive/RES-POS-009.json",
+      "sha256": "sha256:b7fd5b2160abe684c05af1408468d94590a9bd45355b87cecb910799f9a852c8"
     }
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:ff77a6a022aae70c576613f31ab083778adc27bc7ff5af94363481d77f4161e1",
+  "package_digest": "sha256:392ff8e36eecb2bf6cfa9a6cbc76117025a4c7d8a170e8ddf562f1ea5df27d38",
   "schema_version": 2
 }

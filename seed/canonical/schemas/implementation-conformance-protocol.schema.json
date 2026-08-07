@@ -23,7 +23,7 @@
       "type": "object"
     },
     "protocol_id": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
     },
     "response_schema_ref": {
       "const": "seed/canonical/schemas/implementation-conformance-envelope.schema.json"

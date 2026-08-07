@@ -3,16 +3,16 @@ EXTENDS FiniteSets
 
 CONSTANTS ResolutionIds, Bindings, Authorities, TerminalCommitments,
           RecognizedTerminalCommitments, NoCommitment,
-          LocalAuthorityBindings, AuthorityProofBindings
+          RequestAuthorityBindings, TerminalAuthorityBindings
 
 ASSUME ResolutionIds # {}
 ASSUME Bindings # {}
 ASSUME Authorities # {}
 ASSUME RecognizedTerminalCommitments \subseteq TerminalCommitments
 ASSUME NoCommitment \notin TerminalCommitments
-ASSUME LocalAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME AuthorityProofBindings \subseteq Authorities \X Bindings
-ASSUME LocalAuthorityBindings \subseteq AuthorityProofBindings
+ASSUME RequestAuthorityBindings \subseteq Authorities \X Bindings
+ASSUME TerminalAuthorityBindings \subseteq Authorities \X Bindings
+ASSUME RequestAuthorityBindings \subseteq TerminalAuthorityBindings
 
 Resolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
 TerminalResolutions == {"ALLOW", "BLOCK"}
@@ -25,47 +25,37 @@ TerminalMetaType ==
   [resolution : TerminalResolutions,
    authority : Authorities]
 
-(*
-Bounded TLC fixture values for relation-valued constants. TLC configuration
-files accept simple values and sets of simple values, but not tuple-valued set
-literals. These operators are used only through cfg definition overrides; they
-do not participate in the normative Seed transition semantics or TLAPS proofs.
-The bounded cfg supplies exactly two Authorities and two Bindings.
-*)
+(* Bounded TLC fixture relations. They are configuration helpers only. *)
 TLC_Authority1 == CHOOSE a \in Authorities : TRUE
 TLC_Authority2 == CHOOSE a \in Authorities \ {TLC_Authority1} : TRUE
 TLC_Binding1 == CHOOSE b \in Bindings : TRUE
 TLC_Binding2 == CHOOSE b \in Bindings \ {TLC_Binding1} : TRUE
 
-TLC_LocalAuthorityBindings ==
+TLC_RequestAuthorityBindings ==
   {<<TLC_Authority1, TLC_Binding1>>,
    <<TLC_Authority2, TLC_Binding2>>}
 
-TLC_AuthorityProofBindings ==
-  TLC_LocalAuthorityBindings \cup
+TLC_TerminalAuthorityBindings ==
+  TLC_RequestAuthorityBindings \cup
     {<<TLC_Authority2, TLC_Binding1>>}
 
 (*
-Minimal abstract state.
+Seed-owned state and environment state are deliberately separated.
 
-The two Authority relations are immutable context parameters rather than state:
-Seed has no transition that mutates them. Request identity is represented once
-in requestMeta; terminal state stores only facts that are not derivable from the
-request. Consequently an accepted terminal binding cannot diverge from the
-registered binding because there is no independent terminal-binding field.
-
-Invalid material and non-authoritative inputs have no canonical state component.
-They are modeled as explicit stuttering observations. Conflict is retained
-because it changes the derived resolution to UNKNOWN even after a terminal
-record exists.
+- requestMeta and terminalMeta are the only Seed-owned mutable state.
+- conflicts is an environment observation because a later independently
+  established conflicting valid terminal record changes the derived resolution.
+- invalid/unrecognized/non-authoritative material has no state slot and is not
+  a transition. It cannot mutate accepted Seed state by construction.
 *)
 VARIABLES
     requestMeta,
     terminalMeta,
     conflicts
 
-canonicalVars == <<requestMeta, terminalMeta, conflicts>>
-vars == canonicalVars
+seedVars == <<requestMeta, terminalMeta>>
+environmentVars == <<conflicts>>
+vars == <<requestMeta, terminalMeta, conflicts>>
 
 Requests == DOMAIN requestMeta
 TerminalRequests == DOMAIN terminalMeta
@@ -74,8 +64,6 @@ RequestBinding(r) == requestMeta[r].binding
 PreviousCommitment(r) == requestMeta[r].previous
 TerminalResolution(r) == terminalMeta[r].resolution
 TerminalAuthority(r) == terminalMeta[r].authority
-
-(* Binding of an accepted terminal record is derived from its immutable request. *)
 TerminalBinding(r) == RequestBinding(r)
 
 Init ==
@@ -87,7 +75,7 @@ RegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ Requests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in LocalAuthorityBindings
+  /\ <<a, b>> \in RequestAuthorityBindings
   /\ \/ previous = NoCommitment
      \/ previous \in RecognizedTerminalCommitments
   /\ requestMeta' =
@@ -101,7 +89,7 @@ SubmitResolution(r, b, a, value) ==
   /\ r \in Requests
   /\ b = RequestBinding(r)
   /\ a \in Authorities
-  /\ <<a, b>> \in AuthorityProofBindings
+  /\ <<a, b>> \in TerminalAuthorityBindings
   /\ value \in TerminalResolutions
   /\ r \notin TerminalRequests
   /\ r \notin conflicts
@@ -112,22 +100,11 @@ SubmitResolution(r, b, a, value) ==
           ELSE terminalMeta[x]]
   /\ UNCHANGED <<requestMeta, conflicts>>
 
+(* Environment transition: it changes only environment state. *)
 ObserveConflict(r) ==
   /\ r \in ResolutionIds
   /\ conflicts' = conflicts \cup {r}
-  /\ UNCHANGED <<requestMeta, terminalMeta>>
-
-(* Invalid material cannot become accepted terminal state. *)
-ObserveInvalidMaterial(r) ==
-  /\ r \in ResolutionIds
-  /\ UNCHANGED vars
-
-(* Non-authoritative inputs have no canonical state representation. *)
-ObserveNonAuthoritativeInput(r) ==
-  /\ r \in ResolutionIds
-  /\ UNCHANGED vars
-
-Evaluate == UNCHANGED vars
+  /\ UNCHANGED seedVars
 
 RecognizedSeedTransition ==
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -138,17 +115,11 @@ RecognizedSeedTransition ==
         SubmitResolution(r, b, a, value)
 
 RecognizedEnvironmentTransition ==
-  \/ \E r \in ResolutionIds : ObserveConflict(r)
-  \/ \E r \in ResolutionIds : ObserveInvalidMaterial(r)
-  \/ \E r \in ResolutionIds : ObserveNonAuthoritativeInput(r)
-
-RecognizedCanonicalTransition ==
-  \/ RecognizedSeedTransition
-  \/ RecognizedEnvironmentTransition
+  \E r \in ResolutionIds : ObserveConflict(r)
 
 Next ==
-  \/ RecognizedCanonicalTransition
-  \/ Evaluate
+  \/ RecognizedSeedTransition
+  \/ RecognizedEnvironmentTransition
 
 ResolutionOf(r) ==
   IF r \notin Requests \/ r \in conflicts
@@ -158,6 +129,11 @@ ResolutionOf(r) ==
        ELSE TerminalResolution(r)
 
 EffectPermitted(r) == ResolutionOf(r) = "ALLOW"
+
+(* Pure observer corresponding to wire operation EVALUATE_RESOLUTION. *)
+EvaluateResolution(r) ==
+  [resolution |-> ResolutionOf(r),
+   effect_permitted |-> EffectPermitted(r)]
 
 TypeOK ==
   /\ DOMAIN requestMeta \subseteq ResolutionIds
@@ -177,37 +153,29 @@ AllowSoundness ==
       /\ r \in TerminalRequests
       /\ TerminalResolution(r) = "ALLOW"
       /\ <<TerminalAuthority(r), RequestBinding(r)>>
-           \in AuthorityProofBindings
+           \in TerminalAuthorityBindings
 
 FailClosed ==
   \A r \in ResolutionIds :
     ResolutionOf(r) # "ALLOW" => ~EffectPermitted(r)
 
-(* Exact binding is structural: accepted terminal state has no second binding. *)
 TerminalBindingDerived ==
   \A r \in TerminalRequests :
     /\ r \in Requests
     /\ TerminalBinding(r) = RequestBinding(r)
 
-LocalAuthorityRoot ==
+RequestAuthorityRecognized ==
   \A r \in Requests :
     \E a \in Authorities :
-      <<a, RequestBinding(r)>> \in LocalAuthorityBindings
+      <<a, RequestBinding(r)>> \in RequestAuthorityBindings
 
-DelegatedAuthoritySound ==
+TerminalAuthorityRecognized ==
   \A r \in TerminalRequests :
     /\ r \in Requests
     /\ <<TerminalAuthority(r), RequestBinding(r)>>
-         \in AuthorityProofBindings
+         \in TerminalAuthorityBindings
 
-(*
-Structural assurance: the complete canonical decision state is exactly the
-three variables above; non-authoritative inputs have no independent state slot.
-*)
-InputsNonAuthoritative ==
-  canonicalVars = <<requestMeta, terminalMeta, conflicts>>
-
-(* A function keyed by resolution_id makes multiple accepted terminals unrepresentable. *)
+(* One keyed terminal metadata cell makes multiple accepted terminals unrepresentable. *)
 TerminalUnique ==
   terminalMeta \in [DOMAIN terminalMeta -> TerminalMetaType]
 
@@ -228,9 +196,8 @@ SeedStateSafety ==
   /\ AllowSoundness
   /\ FailClosed
   /\ TerminalBindingDerived
-  /\ LocalAuthorityRoot
-  /\ DelegatedAuthoritySound
-  /\ InputsNonAuthoritative
+  /\ RequestAuthorityRecognized
+  /\ TerminalAuthorityRecognized
   /\ TerminalUnique
   /\ ConflictUnknown
   /\ FreshReconsideration
@@ -238,8 +205,8 @@ SeedStateSafety ==
 InductiveInvariant ==
   /\ TypeOK
   /\ TerminalBindingDerived
-  /\ LocalAuthorityRoot
-  /\ DelegatedAuthoritySound
+  /\ RequestAuthorityRecognized
+  /\ TerminalAuthorityRecognized
   /\ FreshReconsideration
   /\ TerminalRecordRequiresRequest
 
@@ -257,25 +224,18 @@ TerminalRecordsImmutableStep ==
 TerminalRecordsImmutable ==
   [][TerminalRecordsImmutableStep]_vars
 
-CanonicalStateChangesOnlyByRecognizedTransitionStep ==
-  canonicalVars' # canonicalVars => RecognizedCanonicalTransition
+SeedStateChangesOnlyByRecognizedTransitionStep ==
+  seedVars' # seedVars => RecognizedSeedTransition
 
-CanonicalStateChangesOnlyByRecognizedTransition ==
-  [][CanonicalStateChangesOnlyByRecognizedTransitionStep]_vars
+SeedStateChangesOnlyByRecognizedTransition ==
+  [][SeedStateChangesOnlyByRecognizedTransitionStep]_vars
 
-InvalidMaterialStutterStep ==
+ConflictObservationPreservesSeedStateStep ==
   \A r \in ResolutionIds :
-    ObserveInvalidMaterial(r) => UNCHANGED vars
+    ObserveConflict(r) => UNCHANGED seedVars
 
-InvalidMaterialStutter ==
-  [][InvalidMaterialStutterStep]_vars
-
-NonAuthoritativeInputsStutterStep ==
-  \A r \in ResolutionIds :
-    ObserveNonAuthoritativeInput(r) => UNCHANGED vars
-
-NonAuthoritativeInputsStutter ==
-  [][NonAuthoritativeInputsStutterStep]_vars
+ConflictObservationPreservesSeedState ==
+  [][ConflictObservationPreservesSeedStateStep]_vars
 
 Spec == Init /\ [][Next]_vars
 =================================================================================

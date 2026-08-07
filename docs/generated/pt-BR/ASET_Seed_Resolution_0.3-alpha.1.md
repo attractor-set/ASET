@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 do modelo canônico:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
+**SHA-256 do modelo canônico:** `sha256:54c46e46d4e6b5870353bb0ed229310f60583e9acd11798b655bdd837c8dba74`
 
 > Esta edição é derivada do cânone legível por máquina.
 
@@ -40,21 +40,21 @@ Uma Authority explicitamente reconhecida por um Context para uma vinculação ex
 
 Identificador: `seed.local_authority`
 
-### prova de Authority (`AuthorityProof`)
+### reconhecimento de Authority (`AuthorityRecognition`)
 
-Uma cadeia localmente enraizada, exatamente vinculada, acíclica e não expansiva de concessões explícitas de Authority.
+Um resultado local de reconhecimento com vinculação exata que declara uma Authority autorizada para uma ResolutionBinding; cadeias de concessão, assinaturas e construção de prova concretas são externas ao Seed.
 
-Identificador: `seed.authority_proof`
+Identificador: `seed.authority_recognition`
 
 ### referência de evidência (`EvidenceReference`)
 
-Uma entrada não autoritativa endereçada por conteúdo, citada como base de um registro terminal.
+Uma referência opaca e endereçada por conteúdo a evidência ou material de prova não autoritativo. Ela não tem efeito normativo até que uma fronteira de admissão do Seed reconheça o fato que suporta.
 
 Identificador: `seed.evidence_reference`
 
 ### registro de resolução (`ResolutionRecord`)
 
-Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata e prova de Authority.
+Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata, uma Authority reconhecida e referências opacas de evidência opcionais.
 
 Identificador: `seed.resolution_record`
 
@@ -108,7 +108,7 @@ Predicado: `allow_only`
 
 ### `ASET-SEED-REQ-005`
 
-UNKNOWN e BLOCK DEVEM proibir o efeito; ausência, invalidade, ambiguidade ou erro de verificação DEVEM resultar em UNKNOWN, nunca ALLOW.
+UNKNOWN e BLOCK DEVEM proibir o efeito. Estado terminal válido ausente ou ambíguo, ou falha em estabelecer um registro terminal válido, DEVE resultar em UNKNOWN. Material inválido ou não autoritativo NÃO DEVE substituir um registro terminal válido e único.
 
 Modalidade: `MUST`
 
@@ -128,17 +128,17 @@ Predicado: `local_authority`
 
 ### `ASET-SEED-REQ-007`
 
-Toda prova de Authority delegada DEVE ser explícita, acíclica, exatamente vinculada e não expansiva.
+Evidência de Authority ou material de delegação NÃO DEVE criar ou ampliar Authority por si só; a Authority de um registro terminal DEVE ser explicitamente reconhecida para a vinculação exata antes que o registro possa se tornar válido.
 
 Modalidade: `MUST`
 
-Predicado: `proof_attenuating`
+Predicado: `authority_recognition_boundary`
 
 `verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
 ### `ASET-SEED-REQ-008`
 
-Evidence, resultados de verificação, saídas de AI, resultados de consenso e outcomes remotos NÃO DEVEM, por si só, criar ALLOW ou Authority local.
+Evidence, resultados de verificação, saídas de IA, resultados de consenso, outcomes remotos e outras declarações externas NÃO DEVEM, por si só, alterar o estado canônico pertencente ao Seed nem criar ALLOW ou Authority local.
 
 Modalidade: `MUST`
 
@@ -192,13 +192,13 @@ Predicado: `implementation_neutral`
 - `SEED-INV-002` — A permissão do efeito é verdadeira se, e somente se, o único registro terminal válido for ALLOW.
 - `SEED-INV-003` — UNKNOWN e BLOCK nunca permitem um efeito.
 - `SEED-INV-004` — Toda solicitação e registro terminal preservam um único digest exato de vinculação.
-- `SEED-INV-005` — Todo registro terminal válido está enraizado em uma vinculação de Authority local.
-- `SEED-INV-006` — Toda prova de Authority delegada é exatamente vinculada, acíclica e não expansiva.
-- `SEED-INV-007` — Evidence e declarações externas são entradas não autoritativas.
+- `SEED-INV-005` — Todo registro terminal válido usa uma Authority explicitamente reconhecida para a vinculação local exata.
+- `SEED-INV-006` — Evidência de Authority é não autoritativa até que o reconhecimento de Authority com vinculação exata seja bem-sucedido; material de prova opaco não pode criar ou ampliar Authority por si só.
+- `SEED-INV-007` — Declarações externas e Evidence ficam fora do estado canônico pertencente ao Seed, salvo quando aceitas por uma transição reconhecida do Seed.
 - `SEED-INV-008` — Existe no máximo um registro terminal válido para um resolution_id.
-- `SEED-INV-009` — Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.
+- `SEED-INV-009` — Registros terminais válidos conflitantes resultam em UNKNOWN. Material inválido ou não autoritativo não pode criar ALLOW, criar conflito nem substituir um registro terminal válido e único.
 - `SEED-INV-010` — Registros de resolução são append-only, imutáveis e endereçados por conteúdo.
-- `SEED-INV-011` — Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.
+- `SEED-INV-011` — Somente transições de estado reconhecidas do Seed podem alterar o estado canônico pertencente ao Seed; observações do ambiente e operações de observador não alteram esse estado.
 - `SEED-INV-012` — A reconsideração usa um resolution_id novo vinculado por um compromisso imutável e endereçado por conteúdo a um ResolutionRecord terminal previamente reconhecido; a retenção do objeto predecessor não é obrigatória.
 
 ## Transições
@@ -213,7 +213,7 @@ Predicado: `implementation_neutral`
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-submit-resolution.schema.json`
-- `authority_rule`: The record Authority must be the local root Authority or be justified by a valid exact-binding Authority proof.
+- `authority_rule`: The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.
 - `binding_rule`: The record request_digest and binding_digest must exactly match the registered request.
 - `created_artifacts`: `ResolutionRecord`
 
@@ -221,7 +221,7 @@ Predicado: `implementation_neutral`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/operation.schema.json`
 - `authority_rule`: Evaluation creates no Authority and accepts no external statement as a resolution.
-- `binding_rule`: Evaluation is performed for one registered resolution_id and fails closed on missing, invalid or conflicting terminal material.
+- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.
 - `created_artifacts`: `ResolutionEvaluation`
 
 ## Limite da implementação
@@ -229,4 +229,4 @@ Predicado: `implementation_neutral`
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `concrete Authority grant-chain construction and validation`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

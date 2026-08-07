@@ -36,7 +36,6 @@ def empty_store() -> dict[str, list[dict[str, Any]]]:
         "requests": [],
         "records": [],
         "authority_bindings": [],
-        "authority_grants": [],
     }
 
 
@@ -55,10 +54,6 @@ def binding_valid(binding: dict[str, Any]) -> bool:
 
 def authority_binding_valid(binding: dict[str, Any]) -> bool:
     return valid_digest(binding, "authority_binding_digest")
-
-
-def grant_valid(grant: dict[str, Any]) -> bool:
-    return valid_digest(grant, "grant_digest")
 
 
 def request_valid(request: dict[str, Any]) -> bool:
@@ -80,58 +75,49 @@ class AuthorityVerdict:
     reason: str
 
 
-def authority_proof_valid(
+def authority_recognition_valid(
     store: dict[str, list[dict[str, Any]]],
     request: dict[str, Any],
     record: dict[str, Any],
 ) -> AuthorityVerdict:
-    bindings = indexed(store["authority_bindings"], "authority_binding_digest")
-    root = bindings.get(request["initial_authority_binding_digest"])
-    if root is None or not authority_binding_valid(root):
+    """Validate the Seed-level Authority recognition boundary.
+
+    Seed does not interpret delegation chains. Concrete signatures, grant chains,
+    federation proofs and other evidence may justify an Authority recognition,
+    but the canonical kernel consumes only the already-recognized exact-binding
+    result represented by a valid ResolutionAuthorityBinding.
+    """
+    bindings = [
+        item
+        for item in store["authority_bindings"]
+        if authority_binding_valid(item)
+    ]
+    by_digest = {item["authority_binding_digest"]: item for item in bindings}
+    root = by_digest.get(request["initial_authority_binding_digest"])
+    if root is None:
         return AuthorityVerdict(False, "LOCAL_AUTHORITY_BINDING_INVALID")
+
     binding = request["binding"]
-    if (
-        root.get("context_id") != binding.get("context_id")
-        or root.get("policy_epoch") != binding.get("policy_epoch")
-        or root.get("binding_digest") != binding.get("binding_digest")
-    ):
+    exact = (
+        root.get("context_id") == binding.get("context_id")
+        and root.get("policy_epoch") == binding.get("policy_epoch")
+        and root.get("binding_digest") == binding.get("binding_digest")
+    )
+    if not exact:
         return AuthorityVerdict(False, "LOCAL_AUTHORITY_BINDING_MISMATCH")
 
-    current = root.get("authority_id")
     target = record.get("authority_id")
-    proof = record.get("authority_proof_digests")
-    if not isinstance(proof, list):
-        return AuthorityVerdict(False, "AUTHORITY_PROOF_INVALID")
-    if current == target:
-        return AuthorityVerdict(not proof, "LOCAL_ROOT_AUTHORITY" if not proof else "UNEXPECTED_AUTHORITY_PROOF")
-    if not root.get("delegation_allowed"):
-        return AuthorityVerdict(False, "DELEGATION_NOT_ALLOWED")
-
-    grants = indexed(store["authority_grants"], "grant_digest")
-    seen = {current}
-    previous_digest: str | None = None
-    for position, grant_digest in enumerate(proof):
-        grant = grants.get(grant_digest)
-        if grant is None or not grant_valid(grant):
-            return AuthorityVerdict(False, "AUTHORITY_GRANT_INVALID")
-        if grant.get("binding_digest") != binding.get("binding_digest"):
-            return AuthorityVerdict(False, "AUTHORITY_GRANT_BINDING_MISMATCH")
-        if grant.get("issuer_authority_id") != current:
-            return AuthorityVerdict(False, "AUTHORITY_GRANT_CHAIN_MISMATCH")
-        if grant.get("previous_grant_digest") != previous_digest:
-            return AuthorityVerdict(False, "AUTHORITY_GRANT_PREDECESSOR_MISMATCH")
-        subject = grant.get("subject_authority_id")
-        if subject in seen:
-            return AuthorityVerdict(False, "AUTHORITY_GRANT_CYCLE")
-        if position < len(proof) - 1 and not grant.get("delegation_allowed"):
-            return AuthorityVerdict(False, "DELEGATION_NOT_ALLOWED")
-        seen.add(subject)
-        current = subject
-        previous_digest = grant_digest
-
-    if current != target:
-        return AuthorityVerdict(False, "AUTHORITY_PROOF_TARGET_MISMATCH")
-    return AuthorityVerdict(True, "DELEGATED_AUTHORITY")
+    target_bindings = [item for item in bindings if item.get("authority_id") == target]
+    if not target_bindings:
+        return AuthorityVerdict(False, "TERMINAL_AUTHORITY_UNRECOGNIZED")
+    if not any(
+        item.get("context_id") == binding.get("context_id")
+        and item.get("policy_epoch") == binding.get("policy_epoch")
+        and item.get("binding_digest") == binding.get("binding_digest")
+        for item in target_bindings
+    ):
+        return AuthorityVerdict(False, "TERMINAL_AUTHORITY_BINDING_MISMATCH")
+    return AuthorityVerdict(True, "EXACT_BINDING_AUTHORITY_RECOGNIZED")
 
 
 def record_valid(
@@ -149,7 +135,10 @@ def record_valid(
         return False, "REQUEST_DIGEST_MISMATCH"
     if record.get("binding_digest") != request["binding"].get("binding_digest"):
         return False, "BINDING_MISMATCH"
-    authority = authority_proof_valid(store, request, record)
+    evidence = record.get("authority_evidence_digests")
+    if not isinstance(evidence, list) or not all(isinstance(item, str) for item in evidence):
+        return False, "AUTHORITY_EVIDENCE_INVALID"
+    authority = authority_recognition_valid(store, request, record)
     if not authority.valid:
         return False, authority.reason
     return True, authority.reason

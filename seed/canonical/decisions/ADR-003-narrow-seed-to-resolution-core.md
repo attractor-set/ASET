@@ -11,3 +11,7 @@ Execution, Permit consumption, evidence acquisition, attempt journals, Context l
 ## Compatibility
 
 This is a breaking semantic change from 0.1-rc12. Historical bytes and component bridges remain evidence for migration but do not expand the active Seed.
+
+## Supersession note
+
+ADR-005 fixed the active resolution algebra to `UNKNOWN | ALLOW | BLOCK`; ADR-009 removed the active escalation/grant-chain interpretation and defined the exact-binding Authority-recognition boundary. The original text above is retained as historical decision context.
