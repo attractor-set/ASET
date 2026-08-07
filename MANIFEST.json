@@ -378,8 +378,8 @@
     },
     {
       "path": "governance/ip/README.md",
-      "sha256": "sha256:cfd252dcafd9c959cb9850fad9ebb139b5f4e07ddf7003eb78f368f1ae898191",
-      "size_bytes": 3150
+      "sha256": "sha256:3f42ffab823a6dba90b67d894497b435f4d3001cb0e6bb373bb6fc1b56f5d523",
+      "size_bytes": 3649
     },
     {
       "path": "governance/ip/background-ip-schedule.json",
