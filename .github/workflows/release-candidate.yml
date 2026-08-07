@@ -71,6 +71,13 @@ jobs:
           ASET_APPROVED_REF: ${{ steps.approved.outputs.ref }}
         run: python tools/repository_release_gate.py
 
+      - name: Verify deterministic INPI deposit generation
+        run: |
+          python tools/build_inpi_software_deposit.py \
+            --ref HEAD \
+            --output-dir dist/inpi-deposit-ci \
+            --verify-determinism
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -87,3 +94,4 @@ jobs:
             dist/tlc-model-check.json
             dist/tlaps-proof.json
             dist/canon-tla-refinement-proof.json
+            dist/inpi-deposit-ci/**

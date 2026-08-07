@@ -17,6 +17,7 @@ REQUIRED_FORMAL_ENV = (
 BASE_COMMANDS = [
     ["tools/generate_repository_views.py", "--check"],
     ["tools/check_language.py"],
+    ["tools/build_conformance_profile.py", "--check"],
     ["tools/validate_seed_canon.py"],
     ["tools/build_canon_package.py", "--check"],
     ["tools/validate_canon_package.py"],
@@ -68,6 +69,13 @@ def commands() -> list[list[str]]:
                 approved_ref,
                 "--output",
                 "dist/canon-compatibility.json",
+            ]
+        )
+        result.append(
+            [
+                "tools/check_inpi_deposit_profile_stability.py",
+                "--approved-ref",
+                approved_ref,
             ]
         )
     result.extend(BASE_COMMANDS)

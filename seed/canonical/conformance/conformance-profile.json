@@ -321,7 +321,7 @@
       },
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
       "polarity": "positive",
-      "sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5"
+      "sha256": "sha256:68c556b6231e9ca9b88d6b7653edf16c880c8042a50e2e19d2f210d54dd5ce18"
     },
     {
       "case_id": "RES-POS-008",

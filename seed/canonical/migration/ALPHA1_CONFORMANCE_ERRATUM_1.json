@@ -1,0 +1,21 @@
+{
+  "affected_case": "RES-POS-007",
+  "change_class": "NONE",
+  "corrected_postcondition": {
+    "equals": "sha256:4f32a4864d57c647b1761a084507ce9c081bc257ac9ba4cd7f066a5598083499",
+    "path": "/records/0/record_digest"
+  },
+  "corrected_vector_sha256": "sha256:68c556b6231e9ca9b88d6b7653edf16c880c8042a50e2e19d2f210d54dd5ce18",
+  "document_type": "aset-conformance-erratum",
+  "erratum_id": "ASET-SEED-0.3-ALPHA1-CONFORMANCE-ERRATUM-1",
+  "erroneous_postcondition": {
+    "equals": "sha256:036914e827dcd520081da16232f409942e0f768d343b44e03079f2f73f749ae8",
+    "path": "/records/0/record_digest"
+  },
+  "published_vector_sha256": "sha256:4f13d237a0868177d216a31635e8fec220b67cbda9c6fe2419a36aff289663c5",
+  "rationale": "RES-POS-007 specifies an exact idempotent replay with state_changed=false. The published postcondition required a different record digest than the terminal record already created during setup, contradicting the expected verdict and the Seed-owned executable oracle. The correction changes assurance data only; Seed semantics and the formal model are unchanged.",
+  "schema_version": 1,
+  "semantic_delta": "NONE",
+  "semantic_freeze_tag": "seed-0.3.0-alpha.1-semantic-freeze",
+  "source_release_tag": "seed-0.3.0-alpha.1"
+}

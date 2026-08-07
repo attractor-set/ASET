@@ -27,10 +27,18 @@ jobs:
           python tools/check_language.py
       - name: Validate candidate canon package
         run: |
+          python tools/build_conformance_profile.py --check
           python tools/validate_seed_canon.py
           python tools/build_canon_package.py --check
           python tools/validate_canon_package.py
+          python tools/rebuild_manifest.py --check
           python tools/validate_reference_boundary.py
+      - name: Verify deterministic INPI deposit generation
+        run: |
+          python tools/build_inpi_software_deposit.py \
+            --ref HEAD \
+            --output-dir dist/inpi-deposit-ci \
+            --verify-determinism
       - name: Run bounded model and traceability checks
         run: |
           python tools/model_check_seed.py --output dist/seed-model-check.json
@@ -55,3 +63,4 @@ jobs:
             dist/proof-traceability-check.json
             dist/canon-tla-refinement-check.json
             dist/blackbox-documentation-audit.json
+            dist/inpi-deposit-ci/**
