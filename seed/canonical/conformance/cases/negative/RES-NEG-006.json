@@ -9,8 +9,8 @@
           "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         ],
         "binding_digest": "sha256:bed87a20469ae35fc516742005f4851f7be80855a08a9d6d265d82907f5d7fb1",
-        "record_digest": "sha256:4ff2ae212b9f236349c06123b9b9a6ff582fcef5d521dd5aec1d021f83f6108d",
-        "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+        "record_digest": "sha256:2003cf6837a7708318faccef76b451e0ad30ed135c666b3e0c4633d9b3debfd5",
+        "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
         "resolution": "ALLOW",
         "resolution_id": "res.1"
       }
@@ -59,9 +59,8 @@
             "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           },
           "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
-          "previous_resolution_id": null,
           "previous_terminal_record_digest": null,
-          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
+          "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
           "resolution_id": "res.1"
         }
       }

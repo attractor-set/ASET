@@ -9,10 +9,11 @@
       "physical-world truth",
       "deployment-specific key management",
       "external certification",
-      "machine-canon-to-TLA refinement proof",
       "implementation refinement proof",
       "liveness proof",
-      "cryptographic correctness proof"
+      "cryptographic correctness proof",
+      "full natural-language, cryptographic, opaque-binding and concrete Authority-proof refinement beyond the declared canonical projection",
+      "concrete terminal-commitment accumulator/witness correctness and profile-specific storage-bound proof"
     ],
     "included": [
       "machine-readable minimal resolution-recognition kernel",
@@ -27,7 +28,9 @@
       "complete normative requirement and invariant coverage",
       "semantic mutation closure with zero surviving canonical mutants",
       "unbounded deductive safety closure of the abstract TLA+ Seed projection",
-      "stable machine-checkable traceability from canonical Seed invariants to abstract TLA+ operators and TLAPS theorems"
+      "stable machine-checkable traceability from canonical Seed invariants to abstract TLA+ operators and TLAPS theorems",
+      "source-locked generated canonical TLA+ projection with TLAPS-proved behavioral equivalence to SeedResolution.tla",
+      "predecessor-independent reconsideration through an abstract recognized terminal-record commitment boundary"
     ]
   },
   "document_type": "aset-repository-release-gates",
@@ -176,6 +179,18 @@
       "id": "ASET-GATE-029",
       "mandatory": true,
       "name": "proof_traceability_integrity"
+    },
+    {
+      "evidence": "python tools/check_canon_tla_refinement.py --output dist/canon-tla-refinement-check.json",
+      "id": "ASET-GATE-030",
+      "mandatory": true,
+      "name": "canon_tla_refinement_integrity"
+    },
+    {
+      "evidence": "python tools/run_canon_tla_refinement.py --tlapm $TLAPM_BIN --output dist/canon-tla-refinement-proof.json",
+      "id": "ASET-GATE-031",
+      "mandatory": true,
+      "name": "canon_tla_behavioral_equivalence_proof"
     }
   ],
   "profile": "ASET_SEED_MINIMAL_STRONG_CORE_ALPHA1",

@@ -46,6 +46,14 @@
       ],
       "type": "object"
     },
+    "recognized_terminal_record_digests": {
+      "description": "Externally validated terminal-record commitments available at the conformance verification boundary. This is recognition evidence, not retained canonical Seed state.",
+      "items": {
+        "$ref": "common.schema.json#/$defs/digest"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
     "initial_store": {
       "$ref": "resolution-store.schema.json"
     },

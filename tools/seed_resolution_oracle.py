@@ -216,7 +216,40 @@ def actual(accepted: bool, code: str, state_changed: bool, evaluation: dict[str,
     }
 
 
-def register_request(store: dict[str, list[dict[str, Any]]], request: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+def recognized_terminal_record_digests(
+    store: dict[str, Any],
+    externally_recognized: list[str] | tuple[str, ...] = (),
+) -> set[str]:
+    """Return terminal commitments recognized at the verification boundary.
+
+    `externally_recognized` represents proof material already validated by an
+    implementation/profile (for example an accumulator membership witness). It
+    is deliberately not canonical Seed state. Valid terminal records still
+    retained in the current store are recognized directly.
+    """
+    recognized = {item for item in externally_recognized if isinstance(item, str)}
+    requests_by_id: dict[str, list[dict[str, Any]]] = {}
+    for request in store.get("requests", []):
+        rid = request.get("resolution_id")
+        if isinstance(rid, str):
+            requests_by_id.setdefault(rid, []).append(request)
+    for record in store.get("records", []):
+        rid = record.get("resolution_id")
+        candidates = requests_by_id.get(rid, [])
+        if len(candidates) != 1 or not request_valid(candidates[0]):
+            continue
+        ok, _ = record_valid(store, candidates[0], record)
+        digest = record.get("record_digest")
+        if ok and isinstance(digest, str):
+            recognized.add(digest)
+    return recognized
+
+
+def register_request(
+    store: dict[str, list[dict[str, Any]]],
+    request: dict[str, Any],
+    externally_recognized: list[str] | tuple[str, ...] = (),
+) -> tuple[dict[str, Any], dict[str, Any]]:
     resolution_id = str(request.get("resolution_id", "invalid-resolution"))
     before = copy.deepcopy(store)
     if not request_valid(request):
@@ -236,19 +269,15 @@ def register_request(store: dict[str, list[dict[str, Any]]], request: dict[str, 
     ):
         return actual(False, "LOCAL_AUTHORITY_BINDING_MISMATCH", False, evaluate(before, resolution_id)), before
 
-    previous_id = request.get("previous_resolution_id")
     previous_digest = request.get("previous_terminal_record_digest")
-    if previous_id is None:
-        if previous_digest is not None:
-            return actual(False, "RECONSIDERATION_LINK_INVALID", False, evaluate(before, resolution_id)), before
-    else:
-        if previous_id == resolution_id:
-            return actual(False, "RESOLUTION_ID_NOT_FRESH", False, evaluate(before, resolution_id)), before
-        previous = evaluate(store, previous_id)
-        if previous["resolution"] not in {"ALLOW", "BLOCK"}:
-            return actual(False, "PREVIOUS_RESOLUTION_NOT_TERMINAL", False, evaluate(before, resolution_id)), before
-        if previous_digest != previous["terminal_record_digest"]:
-            return actual(False, "PREVIOUS_TERMINAL_RECORD_MISMATCH", False, evaluate(before, resolution_id)), before
+    if previous_digest is not None:
+        if previous_digest not in recognized_terminal_record_digests(store, externally_recognized):
+            return actual(
+                False,
+                "PREVIOUS_TERMINAL_COMMITMENT_UNRECOGNIZED",
+                False,
+                evaluate(before, resolution_id),
+            ), before
 
     store = copy.deepcopy(store)
     store["requests"].append(copy.deepcopy(request))
@@ -281,6 +310,7 @@ def submit_resolution(store: dict[str, list[dict[str, Any]]], record: dict[str, 
 def execute_operation(
     store: dict[str, list[dict[str, Any]]],
     operation: dict[str, Any],
+    externally_recognized: list[str] | tuple[str, ...] = (),
 ) -> tuple[dict[str, Any], dict[str, list[dict[str, Any]]]]:
     kind = operation.get("kind")
     payload = operation.get("payload")
@@ -291,7 +321,7 @@ def execute_operation(
         request = payload.get("request")
         if not isinstance(request, dict):
             return actual(False, "OPERATION_INVALID", False, evaluate(store, "invalid-resolution")), copy.deepcopy(store)
-        return register_request(store, request)
+        return register_request(store, request, externally_recognized)
     if kind == "SUBMIT_RESOLUTION":
         record = payload.get("record")
         if not isinstance(record, dict):
@@ -307,8 +337,9 @@ def execute_operation(
 
 def execute_case(case: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
     store = copy.deepcopy(case["initial_store"])
+    externally_recognized = case.get("recognized_terminal_record_digests", [])
     for operation in case.get("setup", []):
-        result, store = execute_operation(store, operation)
+        result, store = execute_operation(store, operation, externally_recognized)
         if not result["accepted"]:
             raise ValueError(f"setup rejected for {case['case_id']}: {result['code']}")
-    return execute_operation(store, case["candidate"])
+    return execute_operation(store, case["candidate"], externally_recognized)

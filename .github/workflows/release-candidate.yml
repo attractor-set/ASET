@@ -81,7 +81,9 @@ jobs:
             dist/seed-model-check.json
             dist/assurance-traceability.json
             dist/proof-traceability-check.json
+            dist/canon-tla-refinement-check.json
             dist/blackbox-documentation-audit.json
             dist/repository-release-gate.json
             dist/tlc-model-check.json
             dist/tlaps-proof.json
+            dist/canon-tla-refinement-proof.json

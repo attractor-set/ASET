@@ -67,7 +67,7 @@
         },
         {
           "kind": "STATE_INVARIANT",
-          "operator": "ExactBinding",
+          "operator": "TerminalBindingDerived",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
         }
       ],
@@ -124,8 +124,8 @@
         },
         {
           "kind": "TEMPORAL_PROPERTY",
-          "operator": "ObservedInputsAppendOnly",
-          "proof_theorem": "SpecImpliesObservedInputsAppendOnly"
+          "operator": "NonAuthoritativeInputsStutter",
+          "proof_theorem": "SpecImpliesNonAuthoritativeInputsStutter"
         }
       ],
       "id": "ASET-PROOF-INV-007",
@@ -163,8 +163,13 @@
         },
         {
           "kind": "STATE_INVARIANT",
-          "operator": "InvalidOrConflictUnknown",
+          "operator": "ConflictUnknown",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
+        },
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "InvalidMaterialStutter",
+          "proof_theorem": "SpecImpliesInvalidMaterialStutter"
         }
       ],
       "id": "ASET-PROOF-INV-009",

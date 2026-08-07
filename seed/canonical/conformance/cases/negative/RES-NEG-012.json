@@ -14,18 +14,17 @@
           "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         },
         "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
-        "previous_resolution_id": "res.1",
         "previous_terminal_record_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        "request_digest": "sha256:fbb621af47286412fd4f5766a9d7d003c7f64b2424170a365411afb6ccf2b12d",
+        "request_digest": "sha256:d3f94d38c625b857cfaf9318e4565c21bf671b4e2cea83c3f1994b2ad4ec6e98",
         "resolution_id": "res.2"
       }
     }
   },
   "case_id": "RES-NEG-012",
-  "description": "Reject reconsideration linked to a non-terminal previous request.",
+  "description": "Reject reconsideration whose terminal-record commitment is not recognized.",
   "expected": {
     "accepted": false,
-    "code": "PREVIOUS_RESOLUTION_NOT_TERMINAL",
+    "code": "PREVIOUS_TERMINAL_COMMITMENT_UNRECOGNIZED",
     "effect_permitted": false,
     "reason": "REQUEST_NOT_FOUND_OR_INVALID",
     "resolution": "UNKNOWN",
@@ -48,28 +47,5 @@
     "requests": []
   },
   "postconditions": [],
-  "setup": [
-    {
-      "kind": "REGISTER_REQUEST",
-      "payload": {
-        "request": {
-          "binding": {
-            "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-            "context_id": "ctx.local",
-            "policy_epoch": 1,
-            "question_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-            "scope": [
-              "effect:publish"
-            ],
-            "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          },
-          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
-          "previous_resolution_id": null,
-          "previous_terminal_record_digest": null,
-          "request_digest": "sha256:fadf0b74f42e057ea9e55190acf5ac9a222f60688b8514fbaa4ea8826a47d564",
-          "resolution_id": "res.1"
-        }
-      }
-    }
-  ]
+  "setup": []
 }

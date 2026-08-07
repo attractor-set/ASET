@@ -73,9 +73,13 @@ jobs:
 
           python tools/check_proof_traceability.py             --output dist/proof-traceability-check.json
 
+          python tools/check_canon_tla_refinement.py             --output dist/canon-tla-refinement-check.json
+
           python tools/run_tlc.py             --jar "$RUNNER_TEMP/tla2tools.jar"             --workers 2             --timeout-seconds 180             --output dist/tlc-model-check.json
 
           python tools/run_tlaps.py             --tlapm "$TLAPM_BIN"             --timeout-seconds 900             --output dist/tlaps-proof.json
+
+          python tools/run_canon_tla_refinement.py             --tlapm "$TLAPM_BIN"             --timeout-seconds 900             --output dist/canon-tla-refinement-proof.json
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -86,5 +90,7 @@ jobs:
             dist/seed-model-check.json
             dist/assurance-traceability.json
             dist/proof-traceability-check.json
+            dist/canon-tla-refinement-check.json
             dist/tlc-model-check.json
             dist/tlaps-proof.json
+            dist/canon-tla-refinement-proof.json

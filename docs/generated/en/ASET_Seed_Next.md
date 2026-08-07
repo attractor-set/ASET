@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**Canonical model SHA-256:** `sha256:2db8db8c61aebc801c5fedd67250e64c09bfc29367e99b061e4a8bec74230fe0`
+**Canonical model SHA-256:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
 
 > This edition is derived from the machine canon.
 
@@ -58,11 +58,11 @@ One immutable content-addressed terminal ALLOW or BLOCK record with exact bindin
 
 Identifier: `seed.resolution_record`
 
-### reconsideration link (`ReconsiderationLink`)
+### reconsideration commitment (`ReconsiderationCommitment`)
 
-A link from a fresh request to the unique terminal record of a previous resolution without mutating that record.
+An immutable content-addressed commitment from a fresh request to a previously recognized terminal ResolutionRecord; the predecessor request or record need not remain physically retained by the implementation. Recognition may be established by current retained material or by externally validated authenticated-set/accumulator proof material.
 
-Identifier: `seed.reconsideration_link`
+Identifier: `seed.reconsideration_commitment`
 
 ## Requirements
 
@@ -168,7 +168,7 @@ Predicate: `record_immutable`
 
 ### `ASET-SEED-REQ-011`
 
-Reconsideration MUST create a fresh resolution_id linked to the unique terminal record of the previous resolution.
+Reconsideration MUST create a fresh resolution_id and carry an immutable content-addressed commitment to a previously recognized terminal ResolutionRecord; the predecessor request or record need not remain physically retained.
 
 Modality: `MUST`
 
@@ -199,7 +199,7 @@ Predicate: `implementation_neutral`
 - `SEED-INV-009` — Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.
 - `SEED-INV-010` — Resolution records are append-only, immutable and content-addressed.
 - `SEED-INV-011` — Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.
-- `SEED-INV-012` — Reconsideration uses a fresh resolution_id linked to a prior unique terminal record.
+- `SEED-INV-012` — Reconsideration uses a fresh resolution_id linked by an immutable content-addressed commitment to a previously recognized terminal ResolutionRecord; predecessor object retention is not required.
 
 ## Transitions
 
@@ -207,7 +207,7 @@ Predicate: `implementation_neutral`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-register-request.schema.json`
 - `authority_rule`: The initial Authority binding must be locally rooted and exactly match the request binding.
-- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id.
+- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id. For reconsideration, previous_terminal_record_digest must be a recognized immutable terminal-record commitment; predecessor object presence in retained storage is not required.
 - `created_artifacts`: `ResolutionRequest`
 
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
@@ -229,4 +229,4 @@ Predicate: `implementation_neutral`
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

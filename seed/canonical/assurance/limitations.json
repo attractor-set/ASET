@@ -24,7 +24,7 @@
     },
     {
       "closure_criteria": "Keep the pinned TLAPS gate passing for the exact committed formal model and proof-module identities.",
-      "description": "The abstract TLA+ Seed safety projection has an unbounded deductive proof covering all eleven registered state invariants and all four registered temporal safety properties.",
+      "description": "The abstract TLA+ Seed safety projection has an unbounded deductive proof covering all eleven registered state invariants and all five registered temporal safety properties.",
       "id": "LIMIT-004",
       "scope": "abstract-tla-safety-proof",
       "status": "CLOSED"
@@ -44,11 +44,18 @@
       "status": "BREAKING_CHANGE_DECLARED"
     },
     {
-      "closure_criteria": "Publish independently reviewed refinement proofs for the machine canon and selected implementation profiles, and add separate liveness or cryptographic proofs where those claims are made.",
-      "description": "The TLAPS result proves the current abstract TLA+ safety projection. It does not prove refinement from the machine-readable canon, correctness of implementations, liveness, cryptographic primitive security or concrete grant-chain construction.",
+      "closure_criteria": "Add separate proofs only for concrete binding/digest construction, concrete Authority grant chains, selected terminal-commitment accumulator profiles, selected implementation profiles, liveness or cryptography where those stronger claims are required.",
+      "description": "The generated canonical TLA+ projection is source-locked and behaviorally equivalent to SeedResolution.tla under the declared abstraction profile. Full refinement of natural-language semantics, concrete binding/digest construction, concrete Authority grant chains, concrete terminal-commitment accumulator/witness verification, implementations, liveness and cryptographic primitive security is not proved.",
       "id": "LIMIT-007",
-      "scope": "refinement-liveness-and-cryptography",
+      "scope": "remaining-refinement-liveness-and-cryptography",
       "status": "OPEN_ACCEPTED"
+    },
+    {
+      "closure_criteria": "Keep the projection parity, source/target digest checks and pinned TLAPS behavioral-equivalence gate passing for the exact committed identities.",
+      "description": "The exact machine-readable Seed model is source-locked to a deterministic generated TLA+ projection, and TLAPS proves behavioral equivalence between that declared projection and SeedResolution.tla.",
+      "id": "LIMIT-008",
+      "scope": "declared-canon-tla-projection-refinement",
+      "status": "CLOSED"
     }
   ],
   "schema_version": 4,

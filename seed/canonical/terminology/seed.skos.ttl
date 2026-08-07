@@ -60,10 +60,10 @@ aset:resolution_record a skos:Concept ;
     skos:prefLabel "registro de resolução"@pt-BR ;
     skos:definition "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
 
-aset:reconsideration_link a skos:Concept ;
+aset:reconsideration_commitment a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.reconsideration_link" ;
-    skos:prefLabel "связь пересмотра"@ru ;
-    skos:prefLabel "reconsideration link"@en ;
-    skos:prefLabel "vínculo de reconsideração"@pt-BR ;
-    skos:definition "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record."@en .
+    skos:notation "seed.reconsideration_commitment" ;
+    skos:prefLabel "коммитмент пересмотра"@ru ;
+    skos:prefLabel "reconsideration commitment"@en ;
+    skos:prefLabel "compromisso de reconsideração"@pt-BR ;
+    skos:definition "An immutable content-addressed commitment from a fresh request to a previously recognized terminal ResolutionRecord; the predecessor request or record need not remain physically retained by the implementation. Recognition may be established by current retained material or by externally validated authenticated-set/accumulator proof material."@en .

@@ -14,9 +14,8 @@
           "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         },
         "initial_authority_binding_digest": "sha256:a59dcf9a37fe20a954493350b44a6f983ace899be77c5a4fc49476f4c95da254",
-        "previous_resolution_id": null,
         "previous_terminal_record_digest": null,
-        "request_digest": "sha256:a9a9bda6e83487d4db055b44963edc581c8a65cc27c7bb3c568fcfa13f5605b7",
+        "request_digest": "sha256:a32ea50cac3aadea4342b1aa36ede8a8fdb743633334bb56feeb7c3b732548c5",
         "resolution_id": "res.mismatch"
       }
     }

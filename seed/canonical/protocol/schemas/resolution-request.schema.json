@@ -9,16 +9,6 @@
     "initial_authority_binding_digest": {
       "$ref": "common.schema.json#/$defs/digest"
     },
-    "previous_resolution_id": {
-      "anyOf": [
-        {
-          "$ref": "common.schema.json#/$defs/identifier"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
     "previous_terminal_record_digest": {
       "anyOf": [
         {
@@ -27,7 +17,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Immutable content-addressed commitment to a previously recognized terminal ResolutionRecord. Null means this request is not a reconsideration. The predecessor request or record need not remain in retained storage."
     },
     "request_digest": {
       "$ref": "common.schema.json#/$defs/digest"
@@ -40,7 +31,6 @@
     "resolution_id",
     "binding",
     "initial_authority_binding_digest",
-    "previous_resolution_id",
     "previous_terminal_record_digest",
     "request_digest"
   ],

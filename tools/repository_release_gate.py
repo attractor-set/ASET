@@ -35,6 +35,11 @@ BASE_COMMANDS = [
         "dist/proof-traceability-check.json",
     ],
     [
+        "tools/check_canon_tla_refinement.py",
+        "--output",
+        "dist/canon-tla-refinement-check.json",
+    ],
+    [
         "tools/check_invariant_coverage.py",
         "--mutation-report",
         "dist/invariant-mutations.json",
@@ -88,6 +93,15 @@ def commands() -> list[list[str]]:
                 "dist/tlaps-proof.json",
             ]
         )
+        result.append(
+            [
+                "tools/run_canon_tla_refinement.py",
+                "--tlapm",
+                tlapm_bin,
+                "--output",
+                "dist/canon-tla-refinement-proof.json",
+            ]
+        )
 
     return result
 
@@ -103,6 +117,7 @@ def write_report(rows: list[dict[str, object]], verdict: str) -> None:
                 "approved_ref_checked": os.environ.get("ASET_APPROVED_REF"),
                 "tlc_executed": bool(os.environ.get("TLA2TOOLS_JAR")),
                 "tlaps_executed": bool(os.environ.get("TLAPM_BIN")),
+                "canon_tla_refinement_executed": bool(os.environ.get("TLAPM_BIN")),
                 "verdict": verdict,
             },
             sort_keys=True,

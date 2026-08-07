@@ -45,7 +45,7 @@
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-request.schema.json",
       "name": "resolution-request.schema.json",
       "path": "seed/canonical/protocol/schemas/resolution-request.schema.json",
-      "sha256": "sha256:b2f50024b439cacb5cea8f3f38f8f150dd797a1511b961c7e9a23bd666d10662"
+      "sha256": "sha256:503473e6c492dac110f06fb5b9b1472341b7e3ccabef8949288fbad93c81fdda"
     },
     {
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-record.schema.json",
@@ -87,7 +87,7 @@
       "id": "https://spec.aset.example/seed/0.3/schemas/conformance-case.schema.json",
       "name": "conformance-case.schema.json",
       "path": "seed/canonical/protocol/schemas/conformance-case.schema.json",
-      "sha256": "sha256:3992493600276b2f8117b3f8541c26555cf422f117e1e90f7ceb1977e1294983"
+      "sha256": "sha256:622cd3eb866b7fbfc2cc2f494b66e831cf8713a329ee89f73ed0f5f062a0343a"
     }
   ],
   "seed_version": "0.3.0-alpha.1",

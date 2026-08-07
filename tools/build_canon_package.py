@@ -25,6 +25,8 @@ BASE = [
     "seed/canonical/schemas/invariant-coverage.schema.json",
     "seed/canonical/assurance/proof-traceability.json",
     "seed/canonical/schemas/proof-traceability.schema.json",
+    "seed/canonical/assurance/canon-tla-refinement.json",
+    "seed/canonical/schemas/canon-tla-refinement.schema.json",
     "seed/canonical/assurance/limitations.json",
     "seed/canonical/schemas/assurance-limitations.schema.json",
     "seed/canonical/assurance/repository-release-gates.json",
@@ -32,10 +34,13 @@ BASE = [
     "seed/canonical/shapes/seed.shacl.ttl",
     "seed/canonical/formal/SeedResolution.tla",
     "seed/canonical/formal/SeedResolutionProofs.tla",
+    "seed/canonical/formal/SeedCanonProjection.tla",
+    "seed/canonical/formal/SeedCanonRefinementProofs.tla",
     "seed/canonical/formal/SeedResolution.cfg",
     "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
     "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
     "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
+    "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
 ]
 
 

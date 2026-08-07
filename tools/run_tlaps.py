@@ -23,7 +23,8 @@ FINAL_THEOREMS = (
     "SpecImpliesRequestsAppendOnly",
     "SpecImpliesTerminalRecordsImmutable",
     "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
-    "SpecImpliesObservedInputsAppendOnly",
+    "SpecImpliesInvalidMaterialStutter",
+    "SpecImpliesNonAuthoritativeInputsStutter",
 )
 
 

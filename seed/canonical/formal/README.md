@@ -7,20 +7,35 @@ The model covers:
 
 - the closed resolution domain `UNKNOWN | ALLOW | BLOCK`;
 - sound and fail-closed effect permission;
-- exact request/record binding;
+- exact request/record binding by construction: accepted terminal state derives binding from immutable request metadata;
 - local Authority roots;
 - an abstract validated delegated-Authority predicate;
-- non-authoritative external inputs;
-- conflict and invalid-material handling;
-- fresh reconsideration lineage;
-- append-only requests and inputs;
+- non-authoritative external inputs as explicit semantic stutters with no retained state slot;
+- explicit conflict handling and invalid-material admission as a semantic stutter;
+- fresh reconsideration through recognized immutable terminal commitments without predecessor-object retention;
+- append-only request identity;
 - immutable terminal records;
 - exclusion of invalid or unrecognized candidates from the Seed transition relation;
 - canonical-state changes only through recognized Seed transitions.
 
 `SeedResolution.cfg` drives bounded TLC checking of eleven state invariants
-and four temporal safety properties. The Python bounded explorer checks the
+and five temporal safety properties. The Python bounded explorer checks the
 same registered property names and validates bounded transition preservation.
+
+
+The formal state is intentionally normalized to three variables:
+
+- `requestMeta`: a partial function containing one immutable metadata cell per registered `resolution_id`;
+- `terminalMeta`: a partial function containing one accepted metadata cell per terminal `resolution_id`;
+- `conflicts`: the only retained environment observation because it changes resolution semantics.
+
+`LocalAuthorityBindings` and `AuthorityProofBindings` are immutable context
+constants. `requestBinding`, `requestAuthority`, `terminalBinding`,
+`terminalAuthority`, `invalidMaterial` and `observedInputs` are not independent
+state components. `Requests` and `TerminalRequests` are the domains of the two
+metadata functions; absence uses no sentinel value. This removes representable
+disagreement and mixed-type states instead of merely adding invariants that forbid
+them.
 
 `SeedResolutionProofs.tla` provides the unbounded deductive safety layer.
 Its final theorems establish:
@@ -29,7 +44,8 @@ Its final theorems establish:
 - `Spec => RequestsAppendOnly`;
 - `Spec => TerminalRecordsImmutable`;
 - `Spec => CanonicalStateChangesOnlyByRecognizedTransition`;
-- `Spec => ObservedInputsAppendOnly`.
+- `Spec => InvalidMaterialStutter`;
+- `Spec => NonAuthoritativeInputsStutter`.
 
 The proof uses a strengthened inductive invariant containing the auxiliary
 reachability property that a terminal record can exist only for a registered
@@ -39,15 +55,27 @@ a new normative Seed requirement.
 Detailed grant-chain construction, canonical digest computation and static
 implementation neutrality are checked by the executable oracle and canon
 validators. The formal model abstracts validated Authority evidence through
-`authorityProofBindings`.
+`authorityProofBindings` and validated historical terminal-commitment recognition
+through `RecognizedTerminalCommitments`. Concrete accumulator construction,
+membership/update witnesses and retention are profile-level concerns.
 
-The proof does not establish:
+`SeedCanonProjection.tla` is a deterministic generated interpretation of the
+exact machine-readable Seed identity under
+`ASET-SEED-CANON-TLA-PROJECTION-V3`. `SeedCanonRefinementProofs.tla` proves
+behavioral equivalence between that generated projection and
+`SeedResolution.tla`. Projection parity and source/target digests are mandatory
+release checks.
 
-- refinement from the normative machine-readable canon to the TLA+ model;
+This canon-to-TLA relation preserves the declared abstractions. It does not
+establish:
+
+- equivalence of every natural-language sentence;
+- concrete Binding or digest construction;
 - refinement from the TLA+ model to an implementation;
 - correctness of any implementation;
-- concrete grant-chain construction;
+- concrete Authority grant-chain construction;
 - cryptographic primitive security;
+- concrete terminal-commitment accumulator or witness correctness;
 - liveness.
 
 `UNKNOWN` may remain unresolved indefinitely. This is intentional fail-closed

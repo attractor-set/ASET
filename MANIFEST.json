@@ -38,18 +38,18 @@
     },
     {
       "path": ".github/workflows/production-assurance.yml",
-      "sha256": "sha256:7f4d72f8601ced197f75c8dadea35a5bde25c09d2410c35ed12952dc80d12074",
-      "size_bytes": 3102
+      "sha256": "sha256:c18832e025537de56a27db7e3f890c33e21c858e51a42d0826bdb9ba8f272bc9",
+      "size_bytes": 3489
     },
     {
       "path": ".github/workflows/release-candidate.yml",
-      "sha256": "sha256:3088f4d15676371fab42554a1c44dd0282b4f4191aac1e7fdf1bef2bfabfe7af",
-      "size_bytes": 2989
+      "sha256": "sha256:6f10a7c689a24679a2a7e83aaae62201a4d107d93cce962a483e4cf8a5f1cb8f",
+      "size_bytes": 3087
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:2381e42cb258c532af838625df92fa69988bcde5d4b693a6647f18aa81750e02",
-      "size_bytes": 1866
+      "sha256": "sha256:b5aeba44ab39d173d59f0f886676a3be9f1363d785f602d43c7275efdd3e990a",
+      "size_bytes": 2014
     },
     {
       "path": ".gitignore",
@@ -188,8 +188,8 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:1e443e721bdba8b8837b7e8ee6d0d5c043d174a663bf9964a71ae87d1f9a8f68",
-      "size_bytes": 2693
+      "sha256": "sha256:6e410436a80d0e672a12e479aee0b85e875a77814041a9d46616c995f5ef8e0f",
+      "size_bytes": 2781
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.md",
@@ -313,8 +313,18 @@
     },
     {
       "path": "docs/architecture/SEED_ROLE.md",
-      "sha256": "sha256:9c4f854fbb40f711cae4c91062692d22d6bacf9c92959ab5318098ff398cc5f3",
-      "size_bytes": 788
+      "sha256": "sha256:d14912b58d582e3a6515bb6332842ae3c3d57ea1947154021d37a34d0cf23b28",
+      "size_bytes": 1277
+    },
+    {
+      "path": "docs/architecture/SEED_STATE_MINIMIZATION.md",
+      "sha256": "sha256:33b601825012426108ed03380295096337ad649406970d46109f74b6ae72e86e",
+      "size_bytes": 2981
+    },
+    {
+      "path": "docs/architecture/TERMINAL_COMMITMENT_ACCUMULATION.md",
+      "sha256": "sha256:2205fb3e83e5709c0900b41f12c136e4d8ccbf95588762b8833e10942f4fc718",
+      "size_bytes": 2853
     },
     {
       "path": "docs/generated/README.md",
@@ -328,13 +338,13 @@
     },
     {
       "path": "docs/generated/en/ASET_Seed_Next.md",
-      "sha256": "sha256:90f3ec3017d3e7873ec80e89eea172474ed15d02691f136004975caf04b6a762",
-      "size_bytes": 9353
+      "sha256": "sha256:817160ba2cf58d9fe16281328ad1240f29db6c61ade27935aab4076d71f4ae4f",
+      "size_bytes": 10185
     },
     {
       "path": "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:90f3ec3017d3e7873ec80e89eea172474ed15d02691f136004975caf04b6a762",
-      "size_bytes": 9353
+      "sha256": "sha256:817160ba2cf58d9fe16281328ad1240f29db6c61ade27935aab4076d71f4ae4f",
+      "size_bytes": 10185
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_0.1-rc12.md",
@@ -343,13 +353,13 @@
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Next.md",
-      "sha256": "sha256:e1e7d4da1665d500a7c93cdce878b08ff92442a670f943f435b507caa88bb2f0",
-      "size_bytes": 9893
+      "sha256": "sha256:6fab8822bc7c065a44782734daf8c860097b972be82115034314e99caaa9a57a",
+      "size_bytes": 10802
     },
     {
       "path": "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:e1e7d4da1665d500a7c93cdce878b08ff92442a670f943f435b507caa88bb2f0",
-      "size_bytes": 9893
+      "sha256": "sha256:6fab8822bc7c065a44782734daf8c860097b972be82115034314e99caaa9a57a",
+      "size_bytes": 10802
     },
     {
       "path": "docs/generated/ru/ASET_Seed_0.1-rc12.md",
@@ -358,13 +368,13 @@
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Next.md",
-      "sha256": "sha256:2f93a7abe0c8836fb56665c2489e4c0e911f40a3de1d6ead5ee43822f0a744b1",
-      "size_bytes": 12835
+      "sha256": "sha256:756a29b5e133ed2e8431b7ec0a9eeb9e866365615e6c76159fc6f386e90f7eb6",
+      "size_bytes": 14024
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Resolution_0.3-alpha.1.md",
-      "sha256": "sha256:2f93a7abe0c8836fb56665c2489e4c0e911f40a3de1d6ead5ee43822f0a744b1",
-      "size_bytes": 12835
+      "sha256": "sha256:756a29b5e133ed2e8431b7ec0a9eeb9e866365615e6c76159fc6f386e90f7eb6",
+      "size_bytes": 14024
     },
     {
       "path": "docs/implementation/CROSS_IMPLEMENTATION_CONFORMANCE_PLAN.md",
@@ -383,8 +393,8 @@
     },
     {
       "path": "docs/repository/CI_ASSURANCE.md",
-      "sha256": "sha256:a887bb9e4735ee50599d57abc9de0bb1c10f14aaf15138077600762f31deb08b",
-      "size_bytes": 2718
+      "sha256": "sha256:0430d1e771f7f12bc3462a2f7903308e475543d254cd10a0e1f2ae6fbcee6547",
+      "size_bytes": 3190
     },
     {
       "path": "docs/repository/DEPENDENCY_POLICY.md",
@@ -458,163 +468,168 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:692f6e072995714ae7ea3530509d9c847765f52d1d65488937368202edbba7bf",
-      "size_bytes": 11610
+      "sha256": "sha256:f81e9c80be5ef0a6c2ce79c8bfce27746bb98654955f7697a095502caf70bccc",
+      "size_bytes": 12501
     },
     {
       "path": "seed/canonical/README.md",
-      "sha256": "sha256:71ba69143af23fa70af145629b23590c69d35930b5cd8d1c3f86620a537efd4b",
-      "size_bytes": 1780
+      "sha256": "sha256:1e211f4db5cce375d7a51b7997161a6cb82ade38e103a407af1f2614b64ec49e",
+      "size_bytes": 2802
+    },
+    {
+      "path": "seed/canonical/assurance/canon-tla-refinement.json",
+      "sha256": "sha256:d29c941ee0dca9fc725c2dcaec0b6a78d661cbe6630726418fc370c79d73ee38",
+      "size_bytes": 6661
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:a4bd10c7fe7bd68b3e4ce4aa5a79da50579c2acc13bdc10bd1ddb7da48825773",
-      "size_bytes": 14460
+      "sha256": "sha256:da7a577b4f160ba5ac436808711f101dd2d9c66509ff1f7772dedc05174b9163",
+      "size_bytes": 14733
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:f7aaa95ce0c877b2b0ed142b7b0047809677b01ee923f86f418c46d8692d682f",
-      "size_bytes": 3049
+      "sha256": "sha256:2b6bbf827dcb12b9674154efebcb6134366c614769b5874a5f4db0cbb81cb25f",
+      "size_bytes": 3803
     },
     {
       "path": "seed/canonical/assurance/proof-traceability.json",
-      "sha256": "sha256:697d40a01f30fc9a14d5f79203c00795bc2126ee0c02878e91f2429547d1791e",
-      "size_bytes": 6762
+      "sha256": "sha256:3c49b80547bf7a148688d49aeaa61a5e2074e14161b5597967613a07b0925609",
+      "size_bytes": 6944
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:fe75e412403f4adebdc009652f68e1d843a2c1a3c0cbf95de315a9bd88b20d58",
-      "size_bytes": 5897
+      "sha256": "sha256:9b945c1665038e8e4a642ffa6b9510d5ab8aaeeb45b5403bf578fb230e666c77",
+      "size_bytes": 6815
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:2c1c7591e79983e2fd607566baba81888bf1b6f507ef5d434b8c77dffdf3f603",
-      "size_bytes": 9037
+      "sha256": "sha256:a3306079e7c38496063c5e46ec6a464bdf744d1271568963291cb71c08991b19",
+      "size_bytes": 9887
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
-      "sha256": "sha256:69b42c72acce747e3094c6ff9eca2d13e8e2d0fda1b63c9587dd9ce7d16d7fc4",
-      "size_bytes": 1862
+      "sha256": "sha256:3352af05c6a51a02aef9c94639fe43903c22969f3d9a8e2836f23fce065507a7",
+      "size_bytes": 1822
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-002.json",
-      "sha256": "sha256:8b1c7052db75a56c7abcf21a2822ca245878896f6f3f912920b41ff0959a9e1b",
-      "size_bytes": 2800
+      "sha256": "sha256:ee69ab8301eea93cf52ab45114e56922f620e8aad8d4f621bbc98b6cf040cfa9",
+      "size_bytes": 2718
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-003.json",
-      "sha256": "sha256:2da32fb30992c6132ae1546b9ed0837ac76c70672ad89c929d4f24d229e51b77",
-      "size_bytes": 1906
+      "sha256": "sha256:4318727895ac37e61933c6686e785351211acdda10dd9c6f19f6c69f37820eac",
+      "size_bytes": 1866
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-004.json",
-      "sha256": "sha256:a4faf9c34999fefb8093421027214501581b79b2ae6ffc343139035c35ee287d",
-      "size_bytes": 2382
+      "sha256": "sha256:22b06e4c5bfac480dfddbba7a52370b7fdf104da371fe65dc3e8a928fed9b02c",
+      "size_bytes": 2342
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-005.json",
-      "sha256": "sha256:be334721fa8539ff0c49c91aef264a9572ce0f9d69cdf53e7520c1e960972f46",
-      "size_bytes": 2573
+      "sha256": "sha256:15e6d3059b4d769eabb5a166d350509b23ec359856eb4c0bae2c9f975377af07",
+      "size_bytes": 2531
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-006.json",
-      "sha256": "sha256:c7aab9eecb2c6be1458c6fb992661b4ba78983cb7ba4e89f5d1159bda15ee04b",
-      "size_bytes": 2578
+      "sha256": "sha256:4fcce1e7ebf701e5e994606320cb86a0129193154a33ee63792ee669419fbfec",
+      "size_bytes": 2536
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-007.json",
-      "sha256": "sha256:27c1299c07a798b79d0de15036018f32996702fba156e0a73dad11606e31297e",
-      "size_bytes": 2676
+      "sha256": "sha256:e95d67c12b028b328c538fb83cf00a01946734acc5048fd1035f3c2eeb9f8ff2",
+      "size_bytes": 2634
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-008.json",
-      "sha256": "sha256:87351ee1cc22f2231bc9d9c1628bf5f54af34285f7fb6f67b4bced3e8bfd6e26",
-      "size_bytes": 3090
+      "sha256": "sha256:783d86ab36bbcb1bdbad0d16c0481ea448d46c67b3501e1a76abfc828e7dde2f",
+      "size_bytes": 3048
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-009.json",
-      "sha256": "sha256:61c50a87bd3e402de908d3231c469969a82412e1723e1f9eeeb58465d545feeb",
-      "size_bytes": 3621
+      "sha256": "sha256:2ff892ee2e91c8d5c117a0990157f326d602876cda637f9a34eda454fee41b9f",
+      "size_bytes": 3579
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-010.json",
-      "sha256": "sha256:538ad9f9aae5ab6f1e0b0d0635bb56e8db929bbad2fbb39642658257be56657f",
-      "size_bytes": 3278
+      "sha256": "sha256:184aaf7b609ab4ab6947b2b1df68bde7facacd7b0b5452973a73f7e998d3f8a2",
+      "size_bytes": 3236
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-011.json",
-      "sha256": "sha256:76eacf88aa6bd4b7430d16a0b6abd83306f0cafe1bdb1878ac2d604dcaa5e993",
-      "size_bytes": 3589
+      "sha256": "sha256:675d861e51f13df1c5ec10ad6ddc4909c827f7e893fb3485471023130175f123",
+      "size_bytes": 3504
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-012.json",
-      "sha256": "sha256:783c7f76d2eb4cb02af1f077fa77ae22108cda0e92220fd40745cd18931510b2",
-      "size_bytes": 2910
+      "sha256": "sha256:9c16ba5f4d95d959f1f4419fb2b646202204448fde49ac2669e0a5839c7a10a8",
+      "size_bytes": 1940
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-013.json",
-      "sha256": "sha256:e6dc8c007e837a9ac2c0af50c87f8b5e2ae59a53afb7e99bbf570172b9b73d2e",
-      "size_bytes": 3610
+      "sha256": "sha256:f36aa4d3809a20c9842eac49c7aed6b31a916a8c089d376e83b0c29023863604",
+      "size_bytes": 2088
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-014.json",
-      "sha256": "sha256:64355c1f3addd2dcbca60cdd4d7e1a3e7eb2d5e3eded9ca8ab7a75cdcdf7e068",
-      "size_bytes": 2501
+      "sha256": "sha256:822f9b125bdb8ebbd50288b7360108c9657791caca7638a3d25ee4d095b249ee",
+      "size_bytes": 2461
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-015.json",
-      "sha256": "sha256:8b73adb652f0962663ea7a7a86467037919fad636ab138c33886bfb3bce03a06",
-      "size_bytes": 3086
+      "sha256": "sha256:49990c7ca0564af284139ad4ce276ecd33d7f3d05a4f3094449ea87e93825809",
+      "size_bytes": 3046
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-016.json",
-      "sha256": "sha256:3db680a11ad82baa915ee0673dab19f1314b6c841a4cf72b5ea6997872168598",
-      "size_bytes": 3641
+      "sha256": "sha256:90741b3701cd8e9ec043e978ba1f7bbb22b349ef04f425605f019bf599774311",
+      "size_bytes": 3599
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-001.json",
-      "sha256": "sha256:629c8ec5d5c8754accc3bfb8371be70517cd22eff6df77b05f80b924d504db0c",
-      "size_bytes": 1961
+      "sha256": "sha256:60585b00221d867f21ea98fe198b4d35f2acdf56118de3ab7403a8a6c3c1b9c7",
+      "size_bytes": 1921
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-002.json",
-      "sha256": "sha256:d9e91bbbc7f4107a876f748951ba8bf6d54bdec7fc07d3c337865acc581748f8",
-      "size_bytes": 2639
+      "sha256": "sha256:06e6f20764094764047c1b68404b30b135505214003082d52c2896d4d82c2f5c",
+      "size_bytes": 2597
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-003.json",
-      "sha256": "sha256:2beb58bb1a248feae6ae4e58c3e79090d9968619eee02bfcc9d964e62daee472",
-      "size_bytes": 2649
+      "sha256": "sha256:92f21b9d2efe2ecc2e3c11ec72f1969ebd78d48b91b39c1f2aa096c475766cfa",
+      "size_bytes": 2607
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-004.json",
-      "sha256": "sha256:382fd819df34e3a07813d2bfb242699a0ac8ba3ca4237574640940c58aacba70",
-      "size_bytes": 3160
+      "sha256": "sha256:a687f38d83674d2d3a92372be3048860463da19542ca74b2024d61d8361e9ffc",
+      "size_bytes": 3118
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-005.json",
-      "sha256": "sha256:0a7bd554fc68db99cba30dfe8dd8573f176b573a4c30c5bc79820255c1f64171",
-      "size_bytes": 3707
+      "sha256": "sha256:9459583800f64781bcda6e638200a6cb128a7a20aa8d177720966ac70e1d7308",
+      "size_bytes": 3665
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-006.json",
-      "sha256": "sha256:1a77e9fb1ded33823854070104eb93e4cfdf57137bf544ece8dc9854b5c18429",
-      "size_bytes": 2012
+      "sha256": "sha256:fded1536ea25f1c32d63907703bc9bccc46e3a74d5205a1ddf86991d2078c7f3",
+      "size_bytes": 1970
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-007.json",
-      "sha256": "sha256:a5aa8a79fef5a07ccf35b1d296e421f801de66d4d74b57b82f96702ccc5208dd",
-      "size_bytes": 3417
+      "sha256": "sha256:a309d632b1cd18b986cbe0a2442687fd111158eab72d689b0e266fb7d862d92a",
+      "size_bytes": 3375
     },
     {
       "path": "seed/canonical/conformance/cases/positive/RES-POS-008.json",
-      "sha256": "sha256:866012e9620f528a28e41ab9372c63c2c27eba30a1badacf3eccbaaae271a334",
-      "size_bytes": 3688
+      "sha256": "sha256:b227d0736e9344953a03afa436427bff54a52c6c58089375e16e154baf6fbcd9",
+      "size_bytes": 2247
     },
     {
       "path": "seed/canonical/conformance/conformance-profile.json",
-      "sha256": "sha256:daaa6fe6acaefc882d27f1ed7ab2f095a08fce73559d77b9f094386b05681488",
-      "size_bytes": 11909
+      "sha256": "sha256:ecdfee84abc59767bb32b15639ec9503896c4cbda16c8f00ff2f5e4cea10963c",
+      "size_bytes": 11926
     },
     {
       "path": "seed/canonical/conformance/implementation-conformance-protocol.json",
@@ -653,13 +668,23 @@
     },
     {
       "path": "seed/canonical/decisions/ADR-006-complete-invariant-closure.md",
-      "sha256": "sha256:3201c5d00f86f83e8ea829dae62fc2bb9a965db84da5c99a50615707b0bad9e9",
-      "size_bytes": 2335
+      "sha256": "sha256:e7f91577c81b6659bb6129e31ffe6b37a78bd05ca53c985511df4c9faaec1128",
+      "size_bytes": 2659
+    },
+    {
+      "path": "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
+      "sha256": "sha256:ed0fd693b305cbf93dae3533a348de837e4462bb57e204134a49d2b2c19bb457",
+      "size_bytes": 3136
+    },
+    {
+      "path": "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
+      "sha256": "sha256:229de9ba5db018f2726ae7e2b23e33a321eb12f4187c7dfffa35773691f2285c",
+      "size_bytes": 1980
     },
     {
       "path": "seed/canonical/formal/README.md",
-      "sha256": "sha256:798d32713cf6b1064019bc2ca605d6f2f5400d5dfcae1fe80d62b185e0aa3ad9",
-      "size_bytes": 2476
+      "sha256": "sha256:6672e2fecb4e81ac2a538be478f3f67ed7d0a866b8e9f7fc2a23cf636d0d3dc6",
+      "size_bytes": 4340
     },
     {
       "path": "seed/canonical/formal/SeedBootstrap.cfg",
@@ -670,6 +695,16 @@
       "path": "seed/canonical/formal/SeedBootstrap.tla",
       "sha256": "sha256:eed849079a74056710d47d8d243131305742e86acd6995b1272e598c0dc05e6a",
       "size_bytes": 512
+    },
+    {
+      "path": "seed/canonical/formal/SeedCanonProjection.tla",
+      "sha256": "sha256:26d6508c8c091fc9d204331be627a3a6cdb15600a1eddf4e755d67240da4efd5",
+      "size_bytes": 3383
+    },
+    {
+      "path": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
+      "sha256": "sha256:2445164299b87a1e819edc5df585cb84d18b8b6817e2b14a5158c79e3dca44d2",
+      "size_bytes": 2543
     },
     {
       "path": "seed/canonical/formal/SeedRC12.cfg",
@@ -683,18 +718,18 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:b231f71993c4a03770bce172f2e3ab1cef944adf8c087086c79818513c7d7b76",
-      "size_bytes": 536
+      "sha256": "sha256:c5549986cb036f550e0c030a13944e8fb00372c28ccecacc88d84ede2a34d588",
+      "size_bytes": 731
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:29195d271e799f407f12f33be1e0fc2f17484b69d17fbd73dc6dbdd6b691ec86",
-      "size_bytes": 9445
+      "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f",
+      "size_bytes": 8765
     },
     {
       "path": "seed/canonical/formal/SeedResolutionProofs.tla",
-      "sha256": "sha256:eba6d8668cb0195b0c3444e878c851649b8e24c2995677c37a606f6882511095",
-      "size_bytes": 43882
+      "sha256": "sha256:32c9f90bebcb1503f13b41535847ed5b4c16b066143fcf02578b63f627cf3805",
+      "size_bytes": 26293
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
@@ -708,8 +743,8 @@
     },
     {
       "path": "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
-      "sha256": "sha256:a48c17122fddda221855354c3defa9f65bd1070a54ebee147d280acb44feb960",
-      "size_bytes": 591
+      "sha256": "sha256:997134c763754c726b939823ffa37528a5860cde7111584f577029982c379767",
+      "size_bytes": 679
     },
     {
       "path": "seed/canonical/migration/RC11_TO_RC12_SEMANTIC_COVERAGE.json",
@@ -738,8 +773,8 @@
     },
     {
       "path": "seed/canonical/ontology/seed.ttl",
-      "sha256": "sha256:6cdf3132d06e560f16f3bb70229396c4e3e9497abda137f54b4cd6a60fceb05b",
-      "size_bytes": 2630
+      "sha256": "sha256:a5c9e95511eb45edfb16672bf9149178829b6a87486507e373800097c67aaa0a",
+      "size_bytes": 2885
     },
     {
       "path": "seed/canonical/protocol/digest-profile.json",
@@ -748,7 +783,7 @@
     },
     {
       "path": "seed/canonical/protocol/protocol-profile.json",
-      "sha256": "sha256:34fd781b298c634fd539cabe38d6b51d0518e40df8dfaf0bc7f1847bc696ca97",
+      "sha256": "sha256:cb699538f0f6fa10d5958b6f059a2891fdd89cb7fdef56e458f10cd4968b955f",
       "size_bytes": 4405
     },
     {
@@ -768,8 +803,8 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/conformance-case.schema.json",
-      "sha256": "sha256:3992493600276b2f8117b3f8541c26555cf422f117e1e90f7ceb1977e1294983",
-      "size_bytes": 1853
+      "sha256": "sha256:622cd3eb866b7fbfc2cc2f494b66e831cf8713a329ee89f73ed0f5f062a0343a",
+      "size_bytes": 2220
     },
     {
       "path": "seed/canonical/protocol/schemas/constitution.schema.json",
@@ -968,8 +1003,8 @@
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-request.schema.json",
-      "sha256": "sha256:b2f50024b439cacb5cea8f3f38f8f150dd797a1511b961c7e9a23bd666d10662",
-      "size_bytes": 1123
+      "sha256": "sha256:503473e6c492dac110f06fb5b9b1472341b7e3ccabef8949288fbad93c81fdda",
+      "size_bytes": 1144
     },
     {
       "path": "seed/canonical/protocol/schemas/resolution-store.schema.json",
@@ -1022,6 +1057,11 @@
       "size_bytes": 1264
     },
     {
+      "path": "seed/canonical/schemas/canon-tla-refinement.schema.json",
+      "sha256": "sha256:aaba0b7c0cc6a27158318702c87e5396ae2a0951852fcb21094b60d2d1dfccb6",
+      "size_bytes": 6582
+    },
+    {
       "path": "seed/canonical/schemas/conformance-profile.schema.json",
       "sha256": "sha256:3d4eab2037567b55a8903d55a71f97bd98851d2282766332a86460f2c83d5bb7",
       "size_bytes": 1724
@@ -1058,7 +1098,7 @@
     },
     {
       "path": "seed/canonical/schemas/repository-release-gates.schema.json",
-      "sha256": "sha256:13af21197ec809262bbbff0d8a6dadf0cfc88e53114f67408401bfa7b7d000f1",
+      "sha256": "sha256:66984ee6fa589f916b5c0b8ecdbeaaa7ae16740ad28c34d87c97312ea4de3080",
       "size_bytes": 1299
     },
     {
@@ -1078,8 +1118,8 @@
     },
     {
       "path": "seed/canonical/source/seed-model.json",
-      "sha256": "sha256:5b70adad64933b5785cbde54290c4c1db2916e8efe37b222c0928f4a1017a017",
-      "size_bytes": 33876
+      "sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
+      "size_bytes": 36127
     },
     {
       "path": "seed/canonical/terminology/foreign-terms.json",
@@ -1088,13 +1128,13 @@
     },
     {
       "path": "seed/canonical/terminology/seed.skos.ttl",
-      "sha256": "sha256:339482099f5bcf62f0dd872d44894547a531f84a27219b60ebf90c4cc5162d7c",
-      "size_bytes": 3451
+      "sha256": "sha256:02359ded1ff2f14a7252fb489f18c0ab3f3dbceab9932d4503cb2b5ce376b8bd",
+      "size_bytes": 3712
     },
     {
       "path": "seed/canonical/terminology/seed.tbx",
-      "sha256": "sha256:7a0d45d1179ff93dbf4185a22ef4a6ef0bae039bf5ff4fe712f063604946eec5",
-      "size_bytes": 4516
+      "sha256": "sha256:fbb6350feb0d8061352b8ca7b3da3eb3a60038668568c22db88460e111a156d8",
+      "size_bytes": 4541
     },
     {
       "path": "seed/releases/0.1-rc11/README.md",
@@ -2063,8 +2103,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:5b958d26c82a195d8f43ff69caefae151f3b26e064c89a2300869064dfc7c8aa",
-      "size_bytes": 6073
+      "sha256": "sha256:b53064afba5d98de8c77cabd6fb54a85e8567741ca0d722d0a1cbbc47a7ba4df",
+      "size_bytes": 9103
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
@@ -2078,8 +2118,8 @@
     },
     {
       "path": "tests/test_minimal_resolution_kernel.py",
-      "sha256": "sha256:32c3101b22e94febf3db2a3b034a6b0937604cc557dcd5268c600c8213959f54",
-      "size_bytes": 710
+      "sha256": "sha256:44a236f50aa85c960eb58f74a5b84a51fd0d91a2cc249c689a488282dba807fa",
+      "size_bytes": 1722
     },
     {
       "path": "tests/test_production_repository.py",
@@ -2113,8 +2153,8 @@
     },
     {
       "path": "tools/build_canon_package.py",
-      "sha256": "sha256:77dcd3c3d6e204c00391b69a9d54bdc56c06ebfbe4757460e5835a6ddad02f85",
-      "size_bytes": 3757
+      "sha256": "sha256:d3fdf7895f3910feb3d6974dfd72ef25f317834035e95d398c58bf249ea12569",
+      "size_bytes": 4083
     },
     {
       "path": "tools/build_release.py",
@@ -2123,13 +2163,18 @@
     },
     {
       "path": "tools/check_assurance_traceability.py",
-      "sha256": "sha256:afb10fe7a8dc45d62a505a6071b9dae8a0b142d2ef3b060e970358540b285e21",
-      "size_bytes": 10270
+      "sha256": "sha256:753b76fa5a7293c5bf389a188a264719b51b778f0b53a984fcdc22d32e0fedae",
+      "size_bytes": 10316
     },
     {
       "path": "tools/check_canon_compatibility.py",
       "sha256": "sha256:d1130da7274498255176d3a7b637822efb9f94591912309d6146ac45b80e8ce4",
       "size_bytes": 5702
+    },
+    {
+      "path": "tools/check_canon_tla_refinement.py",
+      "sha256": "sha256:ea28442031c166417173649141304b9fe343fde7223af165f62897c559466ffb",
+      "size_bytes": 8507
     },
     {
       "path": "tools/check_invariant_coverage.py",
@@ -2143,8 +2188,13 @@
     },
     {
       "path": "tools/check_proof_traceability.py",
-      "sha256": "sha256:4a8fbf3306ef99da1f73a6c3b829e6a68c9450390726fa7f46ba04e8ed138406",
-      "size_bytes": 9292
+      "sha256": "sha256:53edb5e064e9d9db9a2bb54afb752d098bb60e61815544d401135408249ef957",
+      "size_bytes": 9369
+    },
+    {
+      "path": "tools/generate_canon_tla_projection.py",
+      "sha256": "sha256:c81fadbdf922068a95c67bb3d80f81bdf48ae7deaabb42df0908919711c44597",
+      "size_bytes": 8140
     },
     {
       "path": "tools/generate_editions.py",
@@ -2178,8 +2228,8 @@
     },
     {
       "path": "tools/model_check_seed.py",
-      "sha256": "sha256:654dd28e548696c580522093c0964af6a9e409ec30f34c9dc96ec6ec785a8a66",
-      "size_bytes": 11080
+      "sha256": "sha256:118d2519eadae60c5105d9506bd69d54fc4acda321ed277b9328230c90081626",
+      "size_bytes": 10388
     },
     {
       "path": "tools/production_gate.py",
@@ -2193,8 +2243,13 @@
     },
     {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:599333e1d62aeae7c105eb2dc4288caa27d4b2f866ed0897958fc79fa8d49dbf",
-      "size_bytes": 4690
+      "sha256": "sha256:9742f2d10198558c85a6caf76ddd335bd736d669d95f37dcb1a3e7fd141e5f44",
+      "size_bytes": 5154
+    },
+    {
+      "path": "tools/run_canon_tla_refinement.py",
+      "sha256": "sha256:f6b6228d979badccb2705a515a9a97bd9dc051c907a0ad9d90f2c339ca30a280",
+      "size_bytes": 6441
     },
     {
       "path": "tools/run_external_conformance.py",
@@ -2208,8 +2263,8 @@
     },
     {
       "path": "tools/run_tlaps.py",
-      "sha256": "sha256:6cb99f93a34fc462f03b52c4df62d1c32a7ea032039a67aa49be34b01e0cc323",
-      "size_bytes": 6750
+      "sha256": "sha256:860c16d6fe19934f5b04590723671b626c0f5da83e33fc338fc24ee4be225bda",
+      "size_bytes": 6796
     },
     {
       "path": "tools/run_tlc.py",
@@ -2218,8 +2273,8 @@
     },
     {
       "path": "tools/seed_resolution_oracle.py",
-      "sha256": "sha256:541d4716c3f2ae6dbaa018827d51f882b93c5cdba36aad161df2cc12aed347e8",
-      "size_bytes": 12985
+      "sha256": "sha256:f7af5e9ba460b1c4947e769c84adc4f81421d7c6ba7acf85b1035af8d9e525be",
+      "size_bytes": 14076
     },
     {
       "path": "tools/semantic_diff.py",
@@ -2258,8 +2313,8 @@
     },
     {
       "path": "tools/validate_seed_canon.py",
-      "sha256": "sha256:fb580b1888c61d5e46c1681425d7001c227fa01b398a179dde08b13458f66473",
-      "size_bytes": 7005
+      "sha256": "sha256:e92f2c8e3e47bae69a69f33d7069b50df3f25262a6b3794737ad5827e8449e7e",
+      "size_bytes": 7211
     },
     {
       "path": "tools/verify_frozen_release.py",
@@ -2267,7 +2322,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 453,
+  "files_count": 464,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

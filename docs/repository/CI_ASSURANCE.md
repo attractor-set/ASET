@@ -12,7 +12,7 @@ aggregate command.
 - language policy;
 - machine-canon and canon-package validity;
 - bounded model output;
-- assurance and proof traceability;
+- assurance, proof traceability and canon-to-TLA refinement integrity;
 - specification tests;
 - critical Ruff rules;
 - active-documentation claims.
@@ -27,7 +27,8 @@ normative change.
 - the bounded Python state-space model;
 - the checked formal-property registry;
 - TLC over the committed TLA+ model;
-- TLAPS over the committed proof module.
+- TLAPS over the committed safety proof module;
+- TLAPS over the source-locked canon-to-TLA behavioral-equivalence proof.
 
 TLC is downloaded from the pinned upstream TLA+ v1.7.4 release and its
 configured identity is verified before execution.
@@ -77,14 +78,17 @@ An implementation adapter cannot issue its own PASS verdict.
 The formal contour establishes:
 
 - bounded model assurance for the committed finite configuration;
-- unbounded deductive safety for the committed abstract TLA+ projection.
+- unbounded deductive safety for the committed abstract TLA+ projection;
+- byte-for-byte parity of the deterministic canonical projection generated from the exact machine-readable Seed identity;
+- TLAPS-proved behavioral equivalence between that declared projection and `SeedResolution.tla`.
 
-It does not establish:
+The canon-to-TLA theorem is scoped to the declared abstraction profile. It does not establish:
 
-- machine-canon-to-TLA refinement;
+- equivalence of every natural-language sentence;
+- concrete Binding/digest construction;
+- concrete Authority grant-chain construction;
 - implementation refinement or production readiness;
 - liveness;
-- concrete grant-chain construction;
 - cryptographic primitive security;
 - factual truth of external evidence;
 - external certification.

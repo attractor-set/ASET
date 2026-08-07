@@ -36,6 +36,7 @@ jobs:
           python tools/model_check_seed.py --output dist/seed-model-check.json
           python tools/check_assurance_traceability.py --model-report dist/seed-model-check.json
           python tools/check_proof_traceability.py --output dist/proof-traceability-check.json
+          python tools/check_canon_tla_refinement.py --output dist/canon-tla-refinement-check.json
       - name: Run specification tests and static analysis
         run: |
           python -m pytest -q
@@ -52,4 +53,5 @@ jobs:
             dist/seed-model-check.json
             dist/assurance-traceability.json
             dist/proof-traceability-check.json
+            dist/canon-tla-refinement-check.json
             dist/blackbox-documentation-audit.json

@@ -25,7 +25,8 @@ TEMPORAL_THEOREMS = {
     "CanonicalStateChangesOnlyByRecognizedTransition": (
         "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition"
     ),
-    "ObservedInputsAppendOnly": "SpecImpliesObservedInputsAppendOnly",
+    "InvalidMaterialStutter": "SpecImpliesInvalidMaterialStutter",
+    "NonAuthoritativeInputsStutter": "SpecImpliesNonAuthoritativeInputsStutter",
 }
 
 STATE_SAFETY_THEOREM = "SpecImpliesAlwaysSeedStateSafety"

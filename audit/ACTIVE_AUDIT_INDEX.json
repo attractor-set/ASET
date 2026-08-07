@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:3ac093adb4575eb7202ac25abcdb128ad90913279b7a897e48877b8548c055d8",
+    "canon_package_digest": "sha256:ff77a6a022aae70c576613f31ab083778adc27bc7ff5af94363481d77f4161e1",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
@@ -36,7 +36,9 @@
     "dist/invariant-mutations.json",
     "dist/invariant-coverage.json",
     "dist/tlaps-proof.json",
-    "dist/proof-traceability-check.json"
+    "dist/proof-traceability-check.json",
+    "dist/canon-tla-refinement-check.json",
+    "dist/canon-tla-refinement-proof.json"
   ],
   "historical_noncontrolling_records": [
     "audit/FINDING_CLOSURE_MATRIX.json",

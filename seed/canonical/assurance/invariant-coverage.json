@@ -5,15 +5,16 @@
       "all twelve canonical safety invariants have formal properties, conformance cases and semantic mutations",
       "all three canonical transitions have positive and negative conformance coverage",
       "bounded state and transition preservation for the published finite model",
-      "all fifteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection"
+      "all sixteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection",
+      "source-locked generated canonical projection with TLAPS-proved behavioral equivalence to SeedResolution.tla under the declared abstraction profile"
     ],
     "not_claimed": [
       "cryptographic primitive security",
       "correctness of every implementation",
       "liveness or workflow completion",
       "external certification",
-      "machine-canon-to-TLA refinement proof",
-      "implementation refinement proof"
+      "implementation refinement proof",
+      "full natural-language, concrete binding/digest and concrete Authority-proof refinement beyond the declared projection"
     ]
   },
   "coverage_policy": {
@@ -76,7 +77,7 @@
         "RES-NEG-006"
       ],
       "formal_properties": [
-        "ExactBinding",
+        "TerminalBindingDerived",
         "CanonicalDigestIdentity"
       ],
       "id": "SEED-INV-004",
@@ -125,7 +126,7 @@
       ],
       "formal_properties": [
         "InputsNonAuthoritative",
-        "ObservedInputsAppendOnly"
+        "NonAuthoritativeInputsStutter"
       ],
       "id": "SEED-INV-007",
       "semantic_mutations": [
@@ -153,7 +154,8 @@
       ],
       "formal_properties": [
         "FailClosed",
-        "InvalidOrConflictUnknown"
+        "ConflictUnknown",
+        "InvalidMaterialStutter"
       ],
       "id": "SEED-INV-009",
       "semantic_mutations": [
@@ -395,7 +397,7 @@
       ],
       "formal_properties": [
         "TypeOK",
-        "ExactBinding",
+        "TerminalBindingDerived",
         "CanonicalDigestIdentity"
       ],
       "id": "ASET-SEED-REQ-001",
@@ -468,7 +470,7 @@
       ],
       "formal_properties": [
         "FailClosed",
-        "InvalidOrConflictUnknown"
+        "ConflictUnknown"
       ],
       "id": "ASET-SEED-REQ-005",
       "invariants": [
@@ -526,7 +528,7 @@
       ],
       "formal_properties": [
         "InputsNonAuthoritative",
-        "ObservedInputsAppendOnly"
+        "NonAuthoritativeInputsStutter"
       ],
       "id": "ASET-SEED-REQ-008",
       "invariants": [
@@ -543,7 +545,7 @@
       ],
       "formal_properties": [
         "TerminalUnique",
-        "InvalidOrConflictUnknown"
+        "ConflictUnknown"
       ],
       "id": "ASET-SEED-REQ-009",
       "invariants": [

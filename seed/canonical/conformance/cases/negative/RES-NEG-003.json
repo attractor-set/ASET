@@ -14,9 +14,8 @@
           "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         },
         "initial_authority_binding_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
-        "previous_resolution_id": null,
         "previous_terminal_record_digest": null,
-        "request_digest": "sha256:c65139b2c5276af5e32370c98a99946ee5f6f1f9a99cd3d7ea5a68339bb5e3c7",
+        "request_digest": "sha256:af5e16ad8048b82307864b7a592d58b34ec023a744b9227dcb3fc670ca51a213",
         "resolution_id": "res.bad.auth"
       }
     }
