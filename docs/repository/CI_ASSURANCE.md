@@ -24,7 +24,7 @@ normative change.
 
 `.github/workflows/production-assurance.yml` independently executes:
 
-- the Python finite-state model to saturation;
+- the Python finite-state model to saturation, reporting unique labelled graph edges separately from generated action instances;
 - the checked formal-property registry;
 - TLC over the committed TLA+ model;
 - TLAPS over the committed safety proof module;
@@ -77,7 +77,7 @@ An implementation adapter cannot issue its own PASS verdict.
 
 The formal contour establishes:
 
-- exhaustive reachable-state assurance for the committed finite Python configuration, with saturation asserted;
+- exhaustive reachable-state assurance for the committed finite Python configuration, with saturation asserted and graph-edge counts deduplicated from equivalent action instantiations;
 - unbounded deductive safety for the committed abstract TLA+ projection;
 - byte-for-byte parity of a standalone deterministic canonical projection generated from the exact machine-readable Seed identity;
 - TLAPS-proved behavioral equivalence between that standalone projection and `SeedResolution.tla`.

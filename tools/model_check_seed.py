@@ -220,6 +220,7 @@ def main() -> int:
 
     queue = deque([(initial(), 0)])
     seen = {initial()}
+    generated_action_instances = 0
     transitions = 0
     failures: list[dict[str, object]] = []
     terminal_states = 0
@@ -237,7 +238,13 @@ def main() -> int:
         if args.depth is not None and depth >= args.depth:
             truncated = True
             continue
+        unique_edges: set[tuple[str, State]] = set()
         for action, successor in successors(state):
+            generated_action_instances += 1
+            edge = (action, successor)
+            if edge in unique_edges:
+                continue
+            unique_edges.add(edge)
             transitions += 1
             edge_errors = transition_errors(action, state, successor)
             if edge_errors:
@@ -262,6 +269,9 @@ def main() -> int:
         "saturated": saturated,
         "states": len(seen),
         "transitions": transitions,
+        "transition_metric": "unique_labelled_graph_edges",
+        "generated_action_instances": generated_action_instances,
+        "duplicate_action_instances": generated_action_instances - transitions,
         "terminal_states": terminal_states,
         "state_properties": list(STATE_PROPERTIES),
         "temporal_properties": list(TEMPORAL_PROPERTIES),
@@ -277,6 +287,11 @@ def main() -> int:
 
     print(f"MODEL_CHECK_STATES={len(seen)}")
     print(f"MODEL_CHECK_TRANSITIONS={transitions}")
+    print(f"MODEL_CHECK_ACTION_INSTANCES={generated_action_instances}")
+    print(
+        "MODEL_CHECK_DUPLICATE_ACTION_INSTANCES="
+        f"{generated_action_instances - transitions}"
+    )
     print(f"MODEL_CHECK_TERMINAL_STATES={terminal_states}")
     print(f"MODEL_CHECK_FORMAL_PROPERTIES={len(FORMAL_PROPERTIES)}")
     print("MODEL_CHECK_SATURATED=" + ("true" if saturated else "false"))

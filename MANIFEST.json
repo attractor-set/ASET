@@ -228,13 +228,13 @@
     },
     {
       "path": "audit/PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.json",
-      "sha256": "sha256:a324d126b6ae9860de5c2a7d89fb55faaace17c4e1d823bbbe47efb45ef14eb0",
-      "size_bytes": 2140
+      "sha256": "sha256:985b5e4cd6bd33f7a50d0a82a844cfdd333edd478731e4db4e7c1cda2bab59d9",
+      "size_bytes": 2379
     },
     {
       "path": "audit/PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.md",
-      "sha256": "sha256:9d2320b93110c3b8dbd61c956cde68e5b5f45534ad7d28d4363f6fc03fb1fb27",
-      "size_bytes": 1346
+      "sha256": "sha256:53f89940429b77395596d79f91b0cfa9fd1b38199062359e0f09085373ee9ef9",
+      "size_bytes": 1518
     },
     {
       "path": "audit/PDCA_HISTORY.md",
@@ -403,8 +403,8 @@
     },
     {
       "path": "docs/repository/CI_ASSURANCE.md",
-      "sha256": "sha256:f1d57be6d4f9a27bc8eaac526f605e263be96184d205fd71a277e19d626aa967",
-      "size_bytes": 3308
+      "sha256": "sha256:3c777825f5949120957d9ebf9ba3a0293d35c1c0ed1c65149926b5e006ace381",
+      "size_bytes": 3463
     },
     {
       "path": "docs/repository/DEPENDENCY_POLICY.md",
@@ -708,8 +708,8 @@
     },
     {
       "path": "seed/canonical/formal/README.md",
-      "sha256": "sha256:88d6c9a655bfe61b057bc09af68d7ffa528fa61d7cac4ac6971cd33681a113d4",
-      "size_bytes": 2492
+      "sha256": "sha256:b81e93c2ab4e9ca7323394d6080563317fd4ced742e4388911b6433f612591b5",
+      "size_bytes": 2575
     },
     {
       "path": "seed/canonical/formal/SeedCanonProjection.tla",
@@ -1933,8 +1933,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:e6d44a7bf9790e4c99262025ec3f487377760c2928f45d5319729a52456261f3",
-      "size_bytes": 9410
+      "sha256": "sha256:ee2bbbfecc335f096bb27102e9e409a35db1d29e2ec56e289381818dd20279ea",
+      "size_bytes": 9775
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
@@ -2058,8 +2058,8 @@
     },
     {
       "path": "tools/model_check_seed.py",
-      "sha256": "sha256:a5fa0f1808a562d6a774daccbab5a244517f6261a0e8d68f3d5952fe635fcb3d",
-      "size_bytes": 9693
+      "sha256": "sha256:88afdfd0470a2d41007db1e643649dd35f239b4c465a1d74912c32007881c533",
+      "size_bytes": 10360
     },
     {
       "path": "tools/production_gate.py",

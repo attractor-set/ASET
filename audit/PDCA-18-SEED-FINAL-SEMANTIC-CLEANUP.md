@@ -18,7 +18,10 @@ The candidate:
 - uses `SEED-OP-*` identifiers for two state transitions and one observer;
 - advances the standalone canon projection to profile V5;
 - replaces the obsolete RC12 runtime black-box methodology with the actual
-  active specification-repository audit boundary.
+  active specification-repository audit boundary;
+- reports finite-model unique labelled graph edges separately from generated
+  action instances so transition counts are graph metrics rather than
+  enumeration artifacts.
 
 ## Check
 
