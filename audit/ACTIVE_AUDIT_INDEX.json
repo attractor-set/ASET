@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:1cdd37e997626a15471b6125dfccf22895b4b104a7239b5c4ced8679165a07f8",
+    "canon_package_digest": "sha256:ff77a6a022aae70c576613f31ab083778adc27bc7ff5af94363481d77f4161e1",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",

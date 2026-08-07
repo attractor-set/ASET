@@ -13,11 +13,11 @@
       "id": "TERMINAL_COMMITMENT_ORACLE"
     },
     {
-      "description": "Conflict, invalid-material and non-authoritative-input observations are modeled as environment bookkeeping actions outside the three canonical command kinds.",
+      "description": "Conflict remains explicit because it changes derived resolution; invalid-material and non-authoritative-input observations are separate semantic stutters with no retained canonical state component.",
       "id": "ENVIRONMENT_OBSERVATION"
     }
   ],
-  "claim_boundary": "The proof establishes behavioral equivalence between SeedResolution.tla and a deterministic TLA+ projection generated from the exact machine-readable Seed model under ASET-SEED-CANON-TLA-PROJECTION-V2. It is not a proof that every natural-language sentence, cryptographic construction, opaque binding representation, concrete Authority-proof implementation, terminal-commitment provenance mechanism, storage compaction, or implementation refinement is fully verified by the TLA+ model. The deterministic projection generator is part of the assurance trusted computing base; this proof does not itself verify the generator implementation.",
+  "claim_boundary": "The proof establishes behavioral equivalence between SeedResolution.tla and a deterministic TLA+ projection generated from the exact machine-readable Seed model under ASET-SEED-CANON-TLA-PROJECTION-V3. It is not a proof that every natural-language sentence, cryptographic construction, opaque binding representation, concrete Authority-proof implementation, terminal-commitment provenance mechanism, storage compaction, or implementation refinement is fully verified by the TLA+ model. The deterministic projection generator is part of the assurance trusted computing base; this proof does not itself verify the generator implementation.",
   "document_type": "aset-canon-tla-refinement",
   "excluded_claims": [
     "natural-language-text equivalence",
@@ -33,7 +33,7 @@
     "generator": "tools/generate_canon_tla_projection.py",
     "module": "SeedCanonProjection",
     "path": "seed/canonical/formal/SeedCanonProjection.tla",
-    "profile": "ASET-SEED-CANON-TLA-PROJECTION-V2"
+    "profile": "ASET-SEED-CANON-TLA-PROJECTION-V3"
   },
   "invariant_coverage": [
     {
@@ -173,7 +173,7 @@
   "target_model": {
     "module": "SeedResolution",
     "path": "seed/canonical/formal/SeedResolution.tla",
-    "sha256": "sha256:89ae6f8500cedefdb2e4cc1a3939d074b1ccd480766384977115a7bd70290afe"
+    "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f"
   },
   "transition_coverage": [
     {

@@ -24,7 +24,7 @@
     },
     {
       "closure_criteria": "Keep the pinned TLAPS gate passing for the exact committed formal model and proof-module identities.",
-      "description": "The abstract TLA+ Seed safety projection has an unbounded deductive proof covering all eleven registered state invariants and all four registered temporal safety properties.",
+      "description": "The abstract TLA+ Seed safety projection has an unbounded deductive proof covering all eleven registered state invariants and all five registered temporal safety properties.",
       "id": "LIMIT-004",
       "scope": "abstract-tla-safety-proof",
       "status": "CLOSED"

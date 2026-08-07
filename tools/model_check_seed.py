@@ -22,44 +22,44 @@ STATE_PROPERTIES = (
     "ResolutionDomain",
     "AllowSoundness",
     "FailClosed",
-    "ExactBinding",
+    "TerminalBindingDerived",
     "LocalAuthorityRoot",
     "DelegatedAuthoritySound",
     "InputsNonAuthoritative",
     "TerminalUnique",
-    "InvalidOrConflictUnknown",
+    "ConflictUnknown",
     "FreshReconsideration",
 )
 TEMPORAL_PROPERTIES = (
     "RequestsAppendOnly",
     "TerminalRecordsImmutable",
     "CanonicalStateChangesOnlyByRecognizedTransition",
-    "ObservedInputsAppendOnly",
+    "InvalidMaterialStutter",
+    "NonAuthoritativeInputsStutter",
 )
 FORMAL_PROPERTIES = STATE_PROPERTIES + TEMPORAL_PROPERTIES
 
 
 @dataclass(frozen=True)
 class State:
-    # request tuple: resolution_id, binding, initial_authority, previous_terminal_commitment
-    requests: tuple[tuple[int, int, int, int], ...]
-    # record tuple: resolution_id, binding, authority, terminal_value
-    records: tuple[tuple[int, int, int, str], ...]
+    # request tuple: resolution_id, binding, previous_terminal_commitment
+    requests: tuple[tuple[int, int, int], ...]
+    # accepted terminal tuple: resolution_id, authority, terminal_value
+    records: tuple[tuple[int, int, str], ...]
+    # conflict is the only environment observation that changes resolution semantics
     conflicts: frozenset[int]
-    invalid_material: frozenset[int]
-    observed_inputs: frozenset[int]
 
 
 def initial() -> State:
-    return State((), (), frozenset(), frozenset(), frozenset())
+    return State((), (), frozenset())
 
 
-def request_map(state: State) -> dict[int, tuple[int, int, int]]:
-    return {rid: (binding, authority, previous) for rid, binding, authority, previous in state.requests}
+def request_map(state: State) -> dict[int, tuple[int, int]]:
+    return {rid: (binding, previous) for rid, binding, previous in state.requests}
 
 
-def record_map(state: State) -> dict[int, tuple[int, int, str]]:
-    return {rid: (binding, authority, value) for rid, binding, authority, value in state.records}
+def record_map(state: State) -> dict[int, tuple[int, str]]:
+    return {rid: (authority, value) for rid, authority, value in state.records}
 
 
 def resolution_of(state: State, rid: int) -> str:
@@ -67,7 +67,7 @@ def resolution_of(state: State, rid: int) -> str:
     records = record_map(state)
     if rid not in requests or rid in state.conflicts or rid not in records:
         return "UNKNOWN"
-    return records[rid][2]
+    return records[rid][1]
 
 
 def effect_permitted(state: State, rid: int) -> bool:
@@ -75,47 +75,40 @@ def effect_permitted(state: State, rid: int) -> bool:
 
 
 def canonical_projection(state: State) -> tuple[object, ...]:
-    return (
-        state.requests,
-        state.records,
-        state.conflicts,
-        state.invalid_material,
-        state.observed_inputs,
-    )
+    return (state.requests, state.records, state.conflicts)
 
 
 def successors(state: State) -> Iterable[tuple[str, State]]:
     requests = request_map(state)
     records = record_map(state)
 
+    # Initial Authority identity is checked at admission but not retained as an
+    # independent state component. The binding remains sufficient to prove the
+    # existence of a local root because LOCAL_AUTHORITY_BINDINGS is immutable.
     for rid in IDS:
         if rid in requests:
             continue
         for binding, authority in LOCAL_AUTHORITY_BINDINGS:
+            del authority
             yield (
                 "RegisterRequest",
                 State(
-                    tuple(sorted((*state.requests, (rid, binding, authority, NO_COMMITMENT)))),
+                    tuple(sorted((*state.requests, (rid, binding, NO_COMMITMENT)))),
                     state.records,
                     state.conflicts,
-                    state.invalid_material,
-                    state.observed_inputs,
                 ),
             )
-        for previous in RECOGNIZED_TERMINAL_COMMITMENTS:
-            for binding, authority in LOCAL_AUTHORITY_BINDINGS:
+            for previous in RECOGNIZED_TERMINAL_COMMITMENTS:
                 yield (
                     "RegisterReconsideration",
                     State(
-                        tuple(sorted((*state.requests, (rid, binding, authority, previous)))),
+                        tuple(sorted((*state.requests, (rid, binding, previous)))),
                         state.records,
                         state.conflicts,
-                        state.invalid_material,
-                        state.observed_inputs,
                     ),
                 )
 
-    for rid, (binding, _, _) in requests.items():
+    for rid, (binding, _) in requests.items():
         if rid in records or rid in state.conflicts:
             continue
         for authority, proof_binding in AUTHORITY_PROOF_BINDINGS:
@@ -126,10 +119,8 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     "SubmitResolution",
                     State(
                         state.requests,
-                        tuple(sorted((*state.records, (rid, binding, authority, value)))),
+                        tuple(sorted((*state.records, (rid, authority, value)))),
                         state.conflicts,
-                        state.invalid_material,
-                        state.observed_inputs,
                     ),
                 )
 
@@ -137,36 +128,13 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
         if rid not in state.conflicts:
             yield (
                 "ObserveConflict",
-                State(
-                    state.requests,
-                    state.records,
-                    state.conflicts | {rid},
-                    state.invalid_material,
-                    state.observed_inputs,
-                ),
+                State(state.requests, state.records, state.conflicts | {rid}),
             )
-        if rid not in state.invalid_material:
-            yield (
-                "ObserveInvalidMaterial",
-                State(
-                    state.requests,
-                    state.records,
-                    state.conflicts,
-                    state.invalid_material | {rid},
-                    state.observed_inputs,
-                ),
-            )
-        if rid not in state.observed_inputs:
-            yield (
-                "ObserveNonAuthoritativeInput",
-                State(
-                    state.requests,
-                    state.records,
-                    state.conflicts,
-                    state.invalid_material,
-                    state.observed_inputs | {rid},
-                ),
-            )
+
+        # These observations are explicit semantic stutters. They are not
+        # retained as Seed state and therefore cannot create ALLOW.
+        yield "ObserveInvalidMaterial", state
+        yield "ObserveNonAuthoritativeInput", state
 
     yield "Evaluate", state
 
@@ -178,46 +146,56 @@ def state_errors(state: State) -> list[str]:
 
     if len(requests) != len(state.requests) or len(records) != len(state.records):
         errors.append("TypeOK")
-    if not state.conflicts.issubset(IDS) or not state.invalid_material.issubset(IDS):
+    if not state.conflicts.issubset(IDS):
         errors.append("TypeOK")
-    if not state.observed_inputs.issubset(IDS):
-        errors.append("TypeOK")
+
+    # Structural properties created by representation rather than duplicated state.
+    if not set(records).issubset(requests):
+        errors.append("TerminalBindingDerived")
+    if len(records) != len(state.records):
+        errors.append("TerminalUnique")
+
+    for rid, (binding, _) in requests.items():
+        if not any(
+            authority in AUTHORITIES and (authority, binding) in LOCAL_AUTHORITY_BINDINGS
+            for authority in AUTHORITIES
+        ):
+            errors.append("LocalAuthorityRoot")
+
+    for rid, (authority, _) in records.items():
+        request = requests.get(rid)
+        if request is None or (authority, request[0]) not in AUTHORITY_PROOF_BINDINGS:
+            errors.append("DelegatedAuthoritySound")
+
+    # InputsNonAuthoritative is structural in the minimized model: State has
+    # exactly the three canonical decision components and no observed-input slot.
+    if tuple(State.__dataclass_fields__) != ("requests", "records", "conflicts"):
+        errors.append("InputsNonAuthoritative")
 
     for rid in IDS:
         value = resolution_of(state, rid)
         if value not in {"UNKNOWN", "ALLOW", "BLOCK"}:
             errors.append("ResolutionDomain")
+
         if effect_permitted(state, rid):
             record = records.get(rid)
+            request = requests.get(rid)
             if (
-                rid not in requests
+                request is None
                 or rid in state.conflicts
                 or record is None
-                or record[2] != "ALLOW"
-                or record[0] != requests[rid][0]
-                or (record[1], record[0]) not in AUTHORITY_PROOF_BINDINGS
+                or record[1] != "ALLOW"
+                or (record[0], request[0]) not in AUTHORITY_PROOF_BINDINGS
             ):
                 errors.append("AllowSoundness")
+
         if value != "ALLOW" and effect_permitted(state, rid):
             errors.append("FailClosed")
 
-        if rid in records and rid in requests and records[rid][0] != requests[rid][0]:
-            errors.append("ExactBinding")
-        if rid in requests and (requests[rid][1], requests[rid][0]) not in LOCAL_AUTHORITY_BINDINGS:
-            errors.append("LocalAuthorityRoot")
-        if rid in records and (records[rid][1], records[rid][0]) not in AUTHORITY_PROOF_BINDINGS:
-            errors.append("DelegatedAuthoritySound")
-        if rid in state.observed_inputs and rid not in records and value != "UNKNOWN":
-            errors.append("InputsNonAuthoritative")
         if rid in state.conflicts and value != "UNKNOWN":
-            errors.append("TerminalUnique")
-        if (
-            (rid in state.conflicts or (rid in state.invalid_material and rid not in records))
-            and value != "UNKNOWN"
-        ):
-            errors.append("InvalidOrConflictUnknown")
+            errors.append("ConflictUnknown")
 
-    for _, (_, _, previous) in requests.items():
+    for _, (_, previous) in requests.items():
         if previous == NO_COMMITMENT:
             continue
         if previous not in RECOGNIZED_TERMINAL_COMMITMENTS:
@@ -228,13 +206,16 @@ def state_errors(state: State) -> list[str]:
 
 def transition_errors(action: str, before: State, after: State) -> list[str]:
     errors: list[str] = []
+
     if not set(before.requests).issubset(after.requests):
         errors.append("RequestsAppendOnly")
+
     before_records = record_map(before)
     after_records = record_map(after)
     for rid, record in before_records.items():
         if after_records.get(rid) != record:
             errors.append("TerminalRecordsImmutable")
+
     recognized_canonical_actions = {
         "RegisterRequest",
         "RegisterReconsideration",
@@ -248,8 +229,12 @@ def transition_errors(action: str, before: State, after: State) -> list[str]:
         and action not in recognized_canonical_actions
     ):
         errors.append("CanonicalStateChangesOnlyByRecognizedTransition")
-    if not before.observed_inputs.issubset(after.observed_inputs):
-        errors.append("ObservedInputsAppendOnly")
+
+    if action == "ObserveInvalidMaterial" and before != after:
+        errors.append("InvalidMaterialStutter")
+    if action == "ObserveNonAuthoritativeInput" and before != after:
+        errors.append("NonAuthoritativeInputsStutter")
+
     return sorted(set(errors))
 
 
@@ -305,7 +290,9 @@ def main() -> int:
     }
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+        args.output.write_text(
+            json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+        )
 
     print(f"MODEL_CHECK_STATES={report['states']}")
     print(f"MODEL_CHECK_TRANSITIONS={transitions}")

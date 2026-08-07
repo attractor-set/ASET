@@ -1,20 +1,14 @@
 ------------------------- MODULE SeedResolutionProofs -------------------------
-
 EXTENDS SeedResolution, TLAPS
 
 (*
-The first unbounded proof layer covers the pure resolution evaluator.
+Unbounded safety proof for the normalized Seed state.
 
-It does not yet claim:
-- inductiveness of the complete state invariant;
-- preservation by every Next action;
-- temporal safety of Spec;
-- liveness;
-- cryptographic correctness;
-- implementation conformance.
+Compared with the previous projection, request/terminal metadata are stored once,
+Authority relations are immutable context constants, and invalid/non-authoritative
+observations are explicit semantic stutters. The proof therefore establishes the
+same observable resolution safety over a smaller representable state space.
 *)
-
-ASSUME NoRecordIsNotTerminal == NoRecord \notin {"ALLOW", "BLOCK"}
 
 THEOREM EffectPermissionDefinition ==
   \A r \in ResolutionIds :
@@ -25,7 +19,7 @@ PROOF
 
 THEOREM UnregisteredResolutionIsUnknown ==
   \A r \in ResolutionIds :
-    r \notin requests => ResolutionOf(r) = "UNKNOWN"
+    r \notin Requests => ResolutionOf(r) = "UNKNOWN"
 PROOF
   BY DEF ResolutionOf
 
@@ -39,17 +33,17 @@ PROOF
 
 THEOREM MissingTerminalRecordIsUnknown ==
   \A r \in ResolutionIds :
-    terminalRecord[r] = NoRecord => ResolutionOf(r) = "UNKNOWN"
+    r \notin TerminalRequests => ResolutionOf(r) = "UNKNOWN"
 PROOF
   BY DEF ResolutionOf
 
 
 THEOREM TerminalRecordDeterminesResolution ==
   \A r \in ResolutionIds :
-    (/\ r \in requests
+    (/\ r \in Requests
      /\ r \notin conflicts
-     /\ terminalRecord[r] # NoRecord)
-    => ResolutionOf(r) = terminalRecord[r]
+     /\ r \in TerminalRequests)
+    => ResolutionOf(r) = TerminalResolution(r)
 PROOF
   BY DEF ResolutionOf
 
@@ -57,58 +51,69 @@ PROOF
 THEOREM AllowResolutionCharacterization ==
   \A r \in ResolutionIds :
     EffectPermitted(r) <=>
-      /\ r \in requests
+      /\ r \in Requests
       /\ r \notin conflicts
-      /\ terminalRecord[r] = "ALLOW"
+      /\ r \in TerminalRequests
+      /\ TerminalResolution(r) = "ALLOW"
 PROOF
-  BY NoRecordIsNotTerminal DEF EffectPermitted, ResolutionOf
+  BY DEF EffectPermitted, ResolutionOf
 
 
 THEOREM BlockResolutionCharacterization ==
   \A r \in ResolutionIds :
     ResolutionOf(r) = "BLOCK" <=>
-      /\ r \in requests
+      /\ r \in Requests
       /\ r \notin conflicts
-      /\ terminalRecord[r] = "BLOCK"
+      /\ r \in TerminalRequests
+      /\ TerminalResolution(r) = "BLOCK"
 PROOF
-  BY NoRecordIsNotTerminal DEF ResolutionOf
+  BY DEF ResolutionOf
 
 
-THEOREM NoAllowWithoutTerminalAllow ==
-  \A r \in ResolutionIds :
-    terminalRecord[r] # "ALLOW" => ~EffectPermitted(r)
+THEOREM FailClosedByEvaluator ==
+  FailClosed
 PROOF
-  BY DEF EffectPermitted, ResolutionOf
+  BY DEF FailClosed, EffectPermitted
+
+
+THEOREM InputsNonAuthoritativeByStructure ==
+  InputsNonAuthoritative
+PROOF
+  BY DEF InputsNonAuthoritative, canonicalVars
+
+
+THEOREM ConflictUnknownFromTypeOK ==
+  TypeOK => ConflictUnknown
+PROOF
+  BY ConflictedResolutionIsUnknown
+     DEF TypeOK, ConflictUnknown
+
 
 THEOREM ResolutionDomainPointwise ==
   ASSUME TypeOK,
          NEW r \in ResolutionIds
   PROVE ResolutionOf(r) \in Resolutions
 PROOF
-  <1>1. terminalRecord[r] \in TerminalResolutions \cup {NoRecord}
-    BY DEF TypeOK
-
-  <1>2. CASE r \notin requests \/ r \in conflicts
+  <1>1. CASE r \notin Requests \/ r \in conflicts
     <2>1. QED
-      BY <1>2
-         DEF ResolutionOf, Resolutions
-
+      BY <1>1 DEF ResolutionOf, Resolutions
+  <1>2. CASE
+          /\ ~(r \notin Requests \/ r \in conflicts)
+          /\ r \notin TerminalRequests
+    <2>1. QED
+      BY <1>2 DEF ResolutionOf, Resolutions
   <1>3. CASE
-          /\ ~(r \notin requests \/ r \in conflicts)
-          /\ terminalRecord[r] = NoRecord
-    <2>1. QED
-      BY <1>3
-         DEF ResolutionOf, Resolutions
-
-  <1>4. CASE
-          /\ ~(r \notin requests \/ r \in conflicts)
-          /\ terminalRecord[r] # NoRecord
-    <2>1. QED
-      BY <1>1, <1>4
+          /\ ~(r \notin Requests \/ r \in conflicts)
+          /\ r \in TerminalRequests
+    <2>1. terminalMeta[r] \in TerminalMetaType
+      BY <1>3 DEF TypeOK, TerminalRequests
+    <2>2. TerminalResolution(r) \in TerminalResolutions
+      BY <2>1 DEF TerminalMetaType, TerminalResolution
+    <2>3. QED
+      BY <1>3, <2>2
          DEF ResolutionOf, Resolutions, TerminalResolutions
-
-  <1>5. QED
-    BY <1>2, <1>3, <1>4
+  <1>4. QED
+    BY <1>1, <1>2, <1>3
 
 
 THEOREM ResolutionDomainFromTypeOK ==
@@ -118,104 +123,45 @@ PROOF
      DEF ResolutionDomain
 
 
-THEOREM FailClosedByEvaluator ==
-  FailClosed
+THEOREM TerminalUniqueFromTypeOK ==
+  TypeOK => TerminalUnique
 PROOF
-  BY DEF FailClosed, EffectPermitted
-
-
-THEOREM InputsNonAuthoritativeFromTypeOK ==
-  TypeOK => InputsNonAuthoritative
-PROOF
-  BY MissingTerminalRecordIsUnknown
-     DEF TypeOK, InputsNonAuthoritative
-
-
-THEOREM TerminalUniqueByEvaluator ==
-  TerminalUnique
-PROOF
-  BY ConflictedResolutionIsUnknown
-     DEF TerminalUnique
-
-
-THEOREM InvalidOrConflictUnknownByEvaluator ==
-  InvalidOrConflictUnknown
-PROOF
-  BY ConflictedResolutionIsUnknown,
-     MissingTerminalRecordIsUnknown
-     DEF InvalidOrConflictUnknown
+  BY DEF TypeOK, TerminalUnique
 
 
 THEOREM AllowSoundnessPointwise ==
-  ASSUME ExactBinding,
+  ASSUME TerminalBindingDerived,
          DelegatedAuthoritySound,
          NEW r \in ResolutionIds,
          EffectPermitted(r)
   PROVE
-    /\ r \in requests
+    /\ r \in Requests
     /\ r \notin conflicts
-    /\ terminalRecord[r] = "ALLOW"
-    /\ terminalBinding[r] = requestBinding[r]
-    /\ <<terminalAuthority[r], requestBinding[r]>>
-         \in authorityProofBindings
+    /\ r \in TerminalRequests
+    /\ TerminalResolution(r) = "ALLOW"
+    /\ <<TerminalAuthority(r), RequestBinding(r)>>
+         \in AuthorityProofBindings
 PROOF
   <1>1.
-    /\ r \in requests
+    /\ r \in Requests
     /\ r \notin conflicts
-    /\ terminalRecord[r] = "ALLOW"
+    /\ r \in TerminalRequests
+    /\ TerminalResolution(r) = "ALLOW"
     BY AllowResolutionCharacterization
-
-  <1>2. terminalRecord[r] # NoRecord
-    BY <1>1, NoRecordIsNotTerminal
-
-  <1>3. terminalBinding[r] = requestBinding[r]
+  <1>2.
+    <<TerminalAuthority(r), RequestBinding(r)>>
+      \in AuthorityProofBindings
+    BY <1>1 DEF DelegatedAuthoritySound
+  <1>3. QED
     BY <1>1, <1>2
-       DEF ExactBinding
-
-  <1>4.
-    <<terminalAuthority[r], requestBinding[r]>>
-      \in authorityProofBindings
-    BY <1>1, <1>2
-       DEF DelegatedAuthoritySound
-
-  <1>5. QED
-    BY <1>1, <1>3, <1>4
 
 
 THEOREM AllowSoundnessFromStructuralInvariants ==
-  ExactBinding /\ DelegatedAuthoritySound
+  TerminalBindingDerived /\ DelegatedAuthoritySound
     => AllowSoundness
 PROOF
   BY AllowSoundnessPointwise
      DEF AllowSoundness
-
-
-SeedStateSafety ==
-  /\ TypeOK
-  /\ ResolutionDomain
-  /\ AllowSoundness
-  /\ FailClosed
-  /\ ExactBinding
-  /\ LocalAuthorityRoot
-  /\ DelegatedAuthoritySound
-  /\ InputsNonAuthoritative
-  /\ TerminalUnique
-  /\ InvalidOrConflictUnknown
-  /\ FreshReconsideration
-
-
-TerminalRecordRequiresRequest ==
-  \A r \in ResolutionIds :
-    terminalRecord[r] # NoRecord => r \in requests
-
-
-InductiveInvariant ==
-  /\ TypeOK
-  /\ TerminalRecordRequiresRequest
-  /\ ExactBinding
-  /\ LocalAuthorityRoot
-  /\ DelegatedAuthoritySound
-  /\ FreshReconsideration
 
 
 THEOREM InductiveInvariantImpliesSeedStateSafety ==
@@ -224,917 +170,275 @@ PROOF
   BY ResolutionDomainFromTypeOK,
      AllowSoundnessFromStructuralInvariants,
      FailClosedByEvaluator,
-     InputsNonAuthoritativeFromTypeOK,
-     TerminalUniqueByEvaluator,
-     InvalidOrConflictUnknownByEvaluator
+     InputsNonAuthoritativeByStructure,
+     TerminalUniqueFromTypeOK,
+     ConflictUnknownFromTypeOK
      DEF InductiveInvariant, SeedStateSafety
-
-
-ASSUME BindingsNonempty ==
-  Bindings # {}
-
-ASSUME AuthoritiesNonempty ==
-  Authorities # {}
-
-
-THEOREM ChosenBindingInBindings ==
-  (CHOOSE b \in Bindings : TRUE) \in Bindings
-PROOF
-  BY BindingsNonempty
-
-
-THEOREM ChosenAuthorityInAuthorities ==
-  (CHOOSE a \in Authorities : TRUE) \in Authorities
-PROOF
-  BY AuthoritiesNonempty
 
 
 THEOREM InitImpliesTypeOK ==
   Init => TypeOK
 PROOF
-  BY ChosenBindingInBindings,
-     ChosenAuthorityInAuthorities
-     DEF Init, TypeOK, TerminalResolutions
+  BY DEF Init,
+         TypeOK,
+         RequestMetaType,
+         TerminalMetaType
 
 
-THEOREM InitImpliesExactBinding ==
-  Init => ExactBinding
+THEOREM InitImpliesTerminalBindingDerived ==
+  Init => TerminalBindingDerived
 PROOF
-  BY DEF Init, ExactBinding
+  BY DEF Init,
+         TerminalBindingDerived,
+         Requests,
+         TerminalRequests
 
 
 THEOREM InitImpliesLocalAuthorityRoot ==
   Init => LocalAuthorityRoot
 PROOF
-  BY DEF Init, LocalAuthorityRoot
+  BY DEF Init,
+         LocalAuthorityRoot,
+         Requests
 
 
 THEOREM InitImpliesDelegatedAuthoritySound ==
   Init => DelegatedAuthoritySound
 PROOF
-  BY DEF Init, DelegatedAuthoritySound
+  BY DEF Init,
+         DelegatedAuthoritySound,
+         TerminalRequests
 
 
 THEOREM InitImpliesFreshReconsideration ==
   Init => FreshReconsideration
 PROOF
-  BY DEF Init, FreshReconsideration
+  BY DEF Init,
+         FreshReconsideration,
+         Requests
 
 
 THEOREM InitImpliesTerminalRecordRequiresRequest ==
   Init => TerminalRecordRequiresRequest
 PROOF
-  BY DEF Init, TerminalRecordRequiresRequest
+  BY DEF Init,
+         TerminalRecordRequiresRequest,
+         Requests,
+         TerminalRequests
 
 
 THEOREM InitImpliesInductiveInvariant ==
   Init => InductiveInvariant
 PROOF
   BY InitImpliesTypeOK,
-     InitImpliesTerminalRecordRequiresRequest,
-     InitImpliesExactBinding,
+     InitImpliesTerminalBindingDerived,
      InitImpliesLocalAuthorityRoot,
      InitImpliesDelegatedAuthoritySound,
-     InitImpliesFreshReconsideration
+     InitImpliesFreshReconsideration,
+     InitImpliesTerminalRecordRequiresRequest
      DEF InductiveInvariant
 
 
-THEOREM UnrequestedHasNoTerminalRecord ==
-  ASSUME TerminalRecordRequiresRequest,
-         NEW r \in ResolutionIds,
-         r \notin requests
-  PROVE terminalRecord[r] = NoRecord
-PROOF
-  BY DEF TerminalRecordRequiresRequest
-
-
 THEOREM RegisterRequestPreservesTypeOK ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE TypeOK'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => TypeOK'
 PROOF
-  BY DEF RegisterRequest, InductiveInvariant, TypeOK
+  BY DEF InductiveInvariant,
+         TypeOK,
+         RegisterRequest,
+         Requests,
+         RequestMetaType,
+         TerminalMetaType
 
 
 THEOREM RegisterRequestPreservesTerminalRecordRequiresRequest ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE TerminalRecordRequiresRequest'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => TerminalRecordRequiresRequest'
 PROOF
-  BY DEF RegisterRequest,
-         InductiveInvariant,
-         TerminalRecordRequiresRequest
+  BY DEF InductiveInvariant,
+         TerminalRecordRequiresRequest,
+         TerminalBindingDerived,
+         RegisterRequest,
+         Requests,
+         TerminalRequests
 
 
-THEOREM RegisterRequestNewKeyValues ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE
-    /\ requestBinding'[r] = b
-    /\ requestAuthority'[r] = a
-    /\ previousResolutionCommitment'[r] = previous
+THEOREM RegisterRequestPreservesTerminalBindingDerived ==
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => TerminalBindingDerived'
 PROOF
-  BY DEF RegisterRequest, InductiveInvariant, TypeOK
-
-
-THEOREM RegisterRequestOldKeyValues ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous),
-         NEW q \in requests,
-         q # r
-  PROVE
-    /\ requestBinding'[q] = requestBinding[q]
-    /\ requestAuthority'[q] = requestAuthority[q]
-    /\ previousResolutionCommitment'[q] = previousResolutionCommitment[q]
-PROOF
-  BY DEF RegisterRequest, InductiveInvariant, TypeOK
-
-
-THEOREM RegisterRequestUnchangedValues ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE
-    /\ localAuthorityBindings' = localAuthorityBindings
-    /\ authorityProofBindings' = authorityProofBindings
-    /\ terminalRecord' = terminalRecord
-    /\ terminalBinding' = terminalBinding
-    /\ terminalAuthority' = terminalAuthority
-PROOF
-  BY DEF RegisterRequest
-
-
-THEOREM RegisterRequestSetFacts ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE
-    /\ requests' = requests \cup {r}
-    /\ requests \subseteq requests'
-PROOF
-  BY DEF RegisterRequest
-
-
-THEOREM RegisterRequestPreviousGuard ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE
-    \/ previous = NoCommitment
-    \/ previous \in RecognizedTerminalCommitments
-PROOF
-  BY DEF RegisterRequest
-
-
-THEOREM RegisterRequestPreservesExactBindingPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous),
-         NEW q \in requests'
-  PROVE
-    terminalRecord'[q] = NoRecord \/
-      terminalBinding'[q] = requestBinding'[q]
-PROOF
-  <1>1. CASE q = r
-    <2>1. terminalRecord[r] = NoRecord
-      BY DEF RegisterRequest,
-             InductiveInvariant,
-             TerminalRecordRequiresRequest
-
-    <2>2. terminalRecord' = terminalRecord
-      BY RegisterRequestUnchangedValues
-
-    <2>3. QED
-      BY <1>1, <2>1, <2>2
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2
-         DEF RegisterRequest
-
-    <2>2.
-      terminalRecord[q] = NoRecord \/
-        terminalBinding[q] = requestBinding[q]
-      BY <2>1
-         DEF InductiveInvariant, ExactBinding
-
-    <2>3.
-      /\ requestBinding'[q] = requestBinding[q]
-      /\ terminalRecord'[q] = terminalRecord[q]
-      /\ terminalBinding'[q] = terminalBinding[q]
-      BY <1>2, <2>1,
-         RegisterRequestOldKeyValues,
-         RegisterRequestUnchangedValues
-
-    <2>4. QED
-      BY <2>2, <2>3
-
-  <1>3. QED
-    BY <1>1, <1>2
-
-
-THEOREM RegisterRequestPreservesExactBinding ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE ExactBinding'
-PROOF
-  BY RegisterRequestPreservesExactBindingPointwise
-     DEF ExactBinding
-
-
-THEOREM RegisterRequestPreservesLocalAuthorityRootPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous),
-         NEW q \in requests'
-  PROVE
-    <<requestAuthority'[q], requestBinding'[q]>>
-      \in localAuthorityBindings'
-PROOF
-  <1>1. CASE q = r
-    <2>1. <<a, b>> \in localAuthorityBindings
-      BY DEF RegisterRequest
-
-    <2>2.
-      /\ requestAuthority'[q] = a
-      /\ requestBinding'[q] = b
-      /\ localAuthorityBindings' = localAuthorityBindings
-      BY <1>1,
-         RegisterRequestNewKeyValues,
-         RegisterRequestUnchangedValues
-
-    <2>3. QED
-      BY <2>1, <2>2
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2
-         DEF RegisterRequest
-
-    <2>2.
-      <<requestAuthority[q], requestBinding[q]>>
-        \in localAuthorityBindings
-      BY <2>1
-         DEF InductiveInvariant, LocalAuthorityRoot
-
-    <2>3.
-      /\ requestAuthority'[q] = requestAuthority[q]
-      /\ requestBinding'[q] = requestBinding[q]
-      /\ localAuthorityBindings' = localAuthorityBindings
-      BY <1>2, <2>1,
-         RegisterRequestOldKeyValues,
-         RegisterRequestUnchangedValues
-
-    <2>4. QED
-      BY <2>2, <2>3
-
-  <1>3. QED
-    BY <1>1, <1>2
+  BY DEF InductiveInvariant,
+         TerminalBindingDerived,
+         TerminalRecordRequiresRequest,
+         RegisterRequest,
+         Requests,
+         TerminalRequests,
+         TerminalBinding,
+         RequestBinding
 
 
 THEOREM RegisterRequestPreservesLocalAuthorityRoot ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE LocalAuthorityRoot'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => LocalAuthorityRoot'
 PROOF
-  BY RegisterRequestPreservesLocalAuthorityRootPointwise
-     DEF LocalAuthorityRoot
-
-
-THEOREM RegisterRequestPreservesDelegatedAuthorityPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous),
-         NEW q \in requests'
-  PROVE
-    terminalRecord'[q] = NoRecord \/
-      <<terminalAuthority'[q], requestBinding'[q]>>
-        \in authorityProofBindings'
-PROOF
-  <1>1. CASE q = r
-    <2>1. terminalRecord[r] = NoRecord
-      BY DEF RegisterRequest,
-             InductiveInvariant,
-             TerminalRecordRequiresRequest
-
-    <2>2. terminalRecord' = terminalRecord
-      BY RegisterRequestUnchangedValues
-
-    <2>3. QED
-      BY <1>1, <2>1, <2>2
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2
-         DEF RegisterRequest
-
-    <2>2.
-      terminalRecord[q] = NoRecord \/
-        <<terminalAuthority[q], requestBinding[q]>>
-          \in authorityProofBindings
-      BY <2>1
-         DEF InductiveInvariant, DelegatedAuthoritySound
-
-    <2>3.
-      /\ terminalRecord'[q] = terminalRecord[q]
-      /\ terminalAuthority'[q] = terminalAuthority[q]
-      /\ requestBinding'[q] = requestBinding[q]
-      /\ authorityProofBindings' = authorityProofBindings
-      BY <1>2, <2>1,
-         RegisterRequestOldKeyValues,
-         RegisterRequestUnchangedValues
-
-    <2>4. QED
-      BY <2>2, <2>3
-
-  <1>3. QED
-    BY <1>1, <1>2
+  BY DEF InductiveInvariant,
+         LocalAuthorityRoot,
+         RegisterRequest,
+         Requests,
+         RequestBinding
 
 
 THEOREM RegisterRequestPreservesDelegatedAuthoritySound ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE DelegatedAuthoritySound'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => DelegatedAuthoritySound'
 PROOF
-  <1>1.
-    localAuthorityBindings' \subseteq authorityProofBindings'
-    BY RegisterRequestUnchangedValues
-       DEF InductiveInvariant, DelegatedAuthoritySound
-
-  <1>2.
-    \A q \in requests' :
-      terminalRecord'[q] = NoRecord \/
-        <<terminalAuthority'[q], requestBinding'[q]>>
-          \in authorityProofBindings'
-    BY RegisterRequestPreservesDelegatedAuthorityPointwise
-
-  <1>3. QED
-    BY <1>1, <1>2
-       DEF DelegatedAuthoritySound
-
-
-THEOREM RegisterRequestPreservesFreshReconsiderationPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous),
-         NEW q \in requests'
-  PROVE
-    \/ previousResolutionCommitment'[q] = NoCommitment
-    \/ previousResolutionCommitment'[q] \in RecognizedTerminalCommitments
-PROOF
-  <1>1. CASE q = r
-    <2>1. previousResolutionCommitment'[q] = previous
-      BY <1>1, RegisterRequestNewKeyValues
-
-    <2>2.
-      \/ previous = NoCommitment
-      \/ previous \in RecognizedTerminalCommitments
-      BY RegisterRequestPreviousGuard
-
-    <2>3. QED
-      BY <2>1, <2>2
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2
-         DEF RegisterRequest
-
-    <2>2.
-      \/ previousResolutionCommitment[q] = NoCommitment
-      \/ previousResolutionCommitment[q] \in RecognizedTerminalCommitments
-      BY <2>1
-         DEF InductiveInvariant, FreshReconsideration
-
-    <2>3. previousResolutionCommitment'[q] = previousResolutionCommitment[q]
-      BY <1>2, <2>1, RegisterRequestOldKeyValues
-
-    <2>4. QED
-      BY <2>2, <2>3
-
-  <1>3. QED
-    BY <1>1, <1>2
+  BY DEF InductiveInvariant,
+         DelegatedAuthoritySound,
+         TerminalRecordRequiresRequest,
+         RegisterRequest,
+         Requests,
+         TerminalRequests,
+         RequestBinding,
+         TerminalAuthority
 
 
 THEOREM RegisterRequestPreservesFreshReconsideration ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE FreshReconsideration'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => FreshReconsideration'
 PROOF
-  BY RegisterRequestPreservesFreshReconsiderationPointwise
-     DEF FreshReconsideration
-
+  BY DEF InductiveInvariant,
+         FreshReconsideration,
+         RegisterRequest,
+         Requests,
+         PreviousCommitment
 
 
 THEOREM RegisterRequestPreservesInductiveInvariant ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE InductiveInvariant'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    InductiveInvariant /\ RegisterRequest(r, b, a, previous)
+      => InductiveInvariant'
 PROOF
   BY RegisterRequestPreservesTypeOK,
      RegisterRequestPreservesTerminalRecordRequiresRequest,
-     RegisterRequestPreservesExactBinding,
+     RegisterRequestPreservesTerminalBindingDerived,
      RegisterRequestPreservesLocalAuthorityRoot,
      RegisterRequestPreservesDelegatedAuthoritySound,
      RegisterRequestPreservesFreshReconsideration
      DEF InductiveInvariant
 
 
-THEOREM SubmitResolutionNewKeyValues ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE
-    /\ terminalRecord'[r] = value
-    /\ terminalBinding'[r] = b
-    /\ terminalAuthority'[r] = a
-PROOF
-  BY DEF SubmitResolution, InductiveInvariant, TypeOK
-
-
-THEOREM SubmitResolutionOldKeyValues ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW q \in ResolutionIds,
-         q # r
-  PROVE
-    /\ terminalRecord'[q] = terminalRecord[q]
-    /\ terminalBinding'[q] = terminalBinding[q]
-    /\ terminalAuthority'[q] = terminalAuthority[q]
-PROOF
-  BY DEF SubmitResolution, InductiveInvariant, TypeOK
-
-
-THEOREM SubmitResolutionUnchangedValues ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE
-    /\ localAuthorityBindings' = localAuthorityBindings
-    /\ authorityProofBindings' = authorityProofBindings
-    /\ requests' = requests
-    /\ requestBinding' = requestBinding
-    /\ requestAuthority' = requestAuthority
-    /\ previousResolutionCommitment' = previousResolutionCommitment
-PROOF
-  BY DEF SubmitResolution
-
-
-THEOREM SubmitResolutionGuardFacts ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE
-    /\ r \in requests
-    /\ b = requestBinding[r]
-    /\ <<a, b>> \in authorityProofBindings
-    /\ value \in TerminalResolutions
-    /\ terminalRecord[r] = NoRecord
-    /\ r \notin conflicts
-PROOF
-  BY DEF SubmitResolution
-
-
 THEOREM SubmitResolutionPreservesTypeOK ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE TypeOK'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => TypeOK'
 PROOF
-  BY DEF SubmitResolution,
-         InductiveInvariant,
+  BY DEF InductiveInvariant,
          TypeOK,
-         TerminalResolutions
-
-
-THEOREM SubmitResolutionPreservesTerminalRecordRequiresRequestPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW q \in ResolutionIds,
-         terminalRecord'[q] # NoRecord
-  PROVE q \in requests'
-PROOF
-  <1>1. CASE q = r
-    <2>1. r \in requests
-      BY SubmitResolutionGuardFacts
-
-    <2>2. requests' = requests
-      BY SubmitResolutionUnchangedValues
-
-    <2>3. QED
-      BY <1>1, <2>1, <2>2
-
-  <1>2. CASE q # r
-    <2>1. terminalRecord'[q] = terminalRecord[q]
-      BY <1>2,
-         SubmitResolutionOldKeyValues
-
-    <2>2. terminalRecord[q] # NoRecord
-      BY <2>1
-
-    <2>3. q \in requests
-      BY <2>2
-         DEF InductiveInvariant,
-             TerminalRecordRequiresRequest
-
-    <2>4. requests' = requests
-      BY SubmitResolutionUnchangedValues
-
-    <2>5. QED
-      BY <2>3, <2>4
-
-  <1>3. QED
-    BY <1>1, <1>2
+         SubmitResolution,
+         Requests,
+         TerminalRequests,
+         RequestMetaType,
+         TerminalMetaType
 
 
 THEOREM SubmitResolutionPreservesTerminalRecordRequiresRequest ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE TerminalRecordRequiresRequest'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => TerminalRecordRequiresRequest'
 PROOF
-  BY SubmitResolutionPreservesTerminalRecordRequiresRequestPointwise
-     DEF TerminalRecordRequiresRequest
+  BY DEF InductiveInvariant,
+         TerminalRecordRequiresRequest,
+         SubmitResolution,
+         Requests,
+         TerminalRequests
 
 
-THEOREM SubmitResolutionPreservesExactBindingPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW q \in requests'
-  PROVE
-    terminalRecord'[q] = NoRecord \/
-      terminalBinding'[q] = requestBinding'[q]
+THEOREM SubmitResolutionPreservesTerminalBindingDerived ==
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => TerminalBindingDerived'
 PROOF
-  <1>1. CASE q = r
-    <2>1.
-      /\ terminalBinding'[r] = b
-      /\ b = requestBinding[r]
-      /\ requestBinding' = requestBinding
-      BY SubmitResolutionNewKeyValues,
-         SubmitResolutionGuardFacts,
-         SubmitResolutionUnchangedValues
-
-    <2>2. QED
-      BY <1>1, <2>1
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2,
-         SubmitResolutionUnchangedValues
-
-    <2>2.
-      terminalRecord[q] = NoRecord \/
-        terminalBinding[q] = requestBinding[q]
-      BY <2>1
-         DEF InductiveInvariant, ExactBinding
-
-    <2>3. q \in ResolutionIds
-      BY <2>1
-         DEF InductiveInvariant, TypeOK
-
-    <2>4. terminalRecord'[q] = terminalRecord[q]
-      BY <1>2, <2>3,
-         SubmitResolutionOldKeyValues
-
-    <2>5. terminalBinding'[q] = terminalBinding[q]
-      BY <1>2, <2>3,
-         SubmitResolutionOldKeyValues
-
-    <2>6. requestBinding' = requestBinding
-      BY SubmitResolutionUnchangedValues
-
-    <2>7. QED
-      BY <2>2, <2>4, <2>5, <2>6
-
-  <1>3. QED
-    BY <1>1, <1>2
-
-
-THEOREM SubmitResolutionPreservesExactBinding ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE ExactBinding'
-PROOF
-  BY SubmitResolutionPreservesExactBindingPointwise
-     DEF ExactBinding
+  BY DEF InductiveInvariant,
+         TerminalBindingDerived,
+         TerminalRecordRequiresRequest,
+         SubmitResolution,
+         Requests,
+         TerminalRequests,
+         TerminalBinding,
+         RequestBinding
 
 
 THEOREM SubmitResolutionPreservesLocalAuthorityRoot ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE LocalAuthorityRoot'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => LocalAuthorityRoot'
 PROOF
-  BY SubmitResolutionUnchangedValues
-     DEF InductiveInvariant, LocalAuthorityRoot
-
-
-THEOREM SubmitResolutionPreservesDelegatedAuthorityPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW q \in requests'
-  PROVE
-    terminalRecord'[q] = NoRecord \/
-      <<terminalAuthority'[q], requestBinding'[q]>>
-        \in authorityProofBindings'
-PROOF
-  <1>1. CASE q = r
-    <2>1.
-      /\ terminalAuthority'[r] = a
-      /\ requestBinding' = requestBinding
-      /\ authorityProofBindings' = authorityProofBindings
-      /\ b = requestBinding[r]
-      /\ <<a, b>> \in authorityProofBindings
-      BY SubmitResolutionNewKeyValues,
-         SubmitResolutionUnchangedValues,
-         SubmitResolutionGuardFacts
-
-    <2>2. QED
-      BY <1>1, <2>1
-
-  <1>2. CASE q # r
-    <2>1. q \in requests
-      BY <1>2,
-         SubmitResolutionUnchangedValues
-
-    <2>2.
-      terminalRecord[q] = NoRecord \/
-        <<terminalAuthority[q], requestBinding[q]>>
-          \in authorityProofBindings
-      BY <2>1
-         DEF InductiveInvariant, DelegatedAuthoritySound
-
-    <2>3. q \in ResolutionIds
-      BY <2>1
-         DEF InductiveInvariant, TypeOK
-
-    <2>4. terminalRecord'[q] = terminalRecord[q]
-      BY <1>2, <2>3,
-         SubmitResolutionOldKeyValues
-
-    <2>5. terminalAuthority'[q] = terminalAuthority[q]
-      BY <1>2, <2>3,
-         SubmitResolutionOldKeyValues
-
-    <2>6. requestBinding' = requestBinding
-      BY SubmitResolutionUnchangedValues
-
-    <2>7. authorityProofBindings' = authorityProofBindings
-      BY SubmitResolutionUnchangedValues
-
-    <2>8. QED
-      BY <2>2, <2>4, <2>5, <2>6, <2>7
-
-  <1>3. QED
-    BY <1>1, <1>2
+  BY DEF InductiveInvariant,
+         LocalAuthorityRoot,
+         SubmitResolution,
+         Requests,
+         RequestBinding
 
 
 THEOREM SubmitResolutionPreservesDelegatedAuthoritySound ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE DelegatedAuthoritySound'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => DelegatedAuthoritySound'
 PROOF
-  <1>1.
-    localAuthorityBindings' \subseteq authorityProofBindings'
-    BY SubmitResolutionUnchangedValues
-       DEF InductiveInvariant, DelegatedAuthoritySound
-
-  <1>2.
-    \A q \in requests' :
-      terminalRecord'[q] = NoRecord \/
-        <<terminalAuthority'[q], requestBinding'[q]>>
-          \in authorityProofBindings'
-    BY SubmitResolutionPreservesDelegatedAuthorityPointwise
-
-  <1>3. QED
-    BY <1>1, <1>2
-       DEF DelegatedAuthoritySound
-
-
-THEOREM SubmitResolutionPreservesExistingTerminal ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW p \in ResolutionIds,
-         terminalRecord[p] \in TerminalResolutions
-  PROVE terminalRecord'[p] \in TerminalResolutions
-PROOF
-  <1>1. terminalRecord[r] = NoRecord
-    BY SubmitResolutionGuardFacts
-
-  <1>2. p # r
-    BY <1>1, NoRecordIsNotTerminal
-       DEF TerminalResolutions
-
-  <1>3. terminalRecord'[p] = terminalRecord[p]
-    BY <1>2,
-       SubmitResolutionOldKeyValues
-
-  <1>4. QED
-    BY <1>3
-
-
-THEOREM SubmitResolutionPreservesFreshReconsiderationPointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW q \in requests'
-  PROVE
-    \/ previousResolutionCommitment'[q] = NoCommitment
-    \/ previousResolutionCommitment'[q] \in RecognizedTerminalCommitments
-PROOF
-  <1>1. q \in requests
-    BY SubmitResolutionUnchangedValues
-
-  <1>2.
-    \/ previousResolutionCommitment[q] = NoCommitment
-    \/ previousResolutionCommitment[q] \in RecognizedTerminalCommitments
-    BY <1>1
-       DEF InductiveInvariant, FreshReconsideration
-
-  <1>3. previousResolutionCommitment' = previousResolutionCommitment
-    BY SubmitResolutionUnchangedValues
-
-  <1>4. QED
-    BY <1>2, <1>3
+  BY DEF InductiveInvariant,
+         DelegatedAuthoritySound,
+         TerminalRecordRequiresRequest,
+         SubmitResolution,
+         Requests,
+         TerminalRequests,
+         RequestBinding,
+         TerminalAuthority
 
 
 THEOREM SubmitResolutionPreservesFreshReconsideration ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE FreshReconsideration'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => FreshReconsideration'
 PROOF
-  BY SubmitResolutionPreservesFreshReconsiderationPointwise
-     DEF FreshReconsideration
+  BY DEF InductiveInvariant,
+         FreshReconsideration,
+         SubmitResolution,
+         Requests,
+         PreviousCommitment
 
 
 THEOREM SubmitResolutionPreservesInductiveInvariant ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE InductiveInvariant'
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    InductiveInvariant /\ SubmitResolution(r, b, a, value)
+      => InductiveInvariant'
 PROOF
   BY SubmitResolutionPreservesTypeOK,
      SubmitResolutionPreservesTerminalRecordRequiresRequest,
-     SubmitResolutionPreservesExactBinding,
+     SubmitResolutionPreservesTerminalBindingDerived,
      SubmitResolutionPreservesLocalAuthorityRoot,
      SubmitResolutionPreservesDelegatedAuthoritySound,
      SubmitResolutionPreservesFreshReconsideration
      DEF InductiveInvariant
-
-
-THEOREM ObserveConflictPreservesInductiveInvariant ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         ObserveConflict(r)
-  PROVE InductiveInvariant'
-PROOF
-  BY DEF ObserveConflict,
-         InductiveInvariant,
-         TypeOK,
-         TerminalRecordRequiresRequest,
-         ExactBinding,
-         LocalAuthorityRoot,
-         DelegatedAuthoritySound,
-         FreshReconsideration
-
-
-THEOREM ObserveInvalidMaterialPreservesInductiveInvariant ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         ObserveInvalidMaterial(r)
-  PROVE InductiveInvariant'
-PROOF
-  BY DEF ObserveInvalidMaterial,
-         InductiveInvariant,
-         TypeOK,
-         TerminalRecordRequiresRequest,
-         ExactBinding,
-         LocalAuthorityRoot,
-         DelegatedAuthoritySound,
-         FreshReconsideration
-
-
-THEOREM ObserveNonAuthoritativeInputPreservesInductiveInvariant ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         ObserveNonAuthoritativeInput(r)
-  PROVE InductiveInvariant'
-PROOF
-  BY DEF ObserveNonAuthoritativeInput,
-         InductiveInvariant,
-         TypeOK,
-         TerminalRecordRequiresRequest,
-         ExactBinding,
-         LocalAuthorityRoot,
-         DelegatedAuthoritySound,
-         FreshReconsideration
 
 
 THEOREM StateStutterPreservesInductiveInvariant ==
@@ -1142,13 +446,117 @@ THEOREM StateStutterPreservesInductiveInvariant ==
     => InductiveInvariant'
 PROOF
   BY DEF vars,
+         canonicalVars,
          InductiveInvariant,
          TypeOK,
-         TerminalRecordRequiresRequest,
-         ExactBinding,
+         TerminalBindingDerived,
          LocalAuthorityRoot,
          DelegatedAuthoritySound,
-         FreshReconsideration
+         FreshReconsideration,
+         TerminalRecordRequiresRequest,
+         Requests,
+         TerminalRequests,
+         RequestBinding,
+         PreviousCommitment,
+         TerminalBinding,
+         TerminalAuthority
+
+
+THEOREM ObserveConflictPreservesTypeOK ==
+  \A r \in ResolutionIds :
+    TypeOK /\ ObserveConflict(r) => TypeOK'
+PROOF
+  BY DEF TypeOK, ObserveConflict
+
+
+THEOREM ObserveConflictPreservesTerminalBindingDerived ==
+  \A r \in ResolutionIds :
+    TerminalBindingDerived /\ ObserveConflict(r)
+      => TerminalBindingDerived'
+PROOF
+  BY DEF TerminalBindingDerived,
+         ObserveConflict,
+         Requests,
+         TerminalRequests,
+         TerminalBinding,
+         RequestBinding
+
+
+THEOREM ObserveConflictPreservesLocalAuthorityRoot ==
+  \A r \in ResolutionIds :
+    LocalAuthorityRoot /\ ObserveConflict(r) => LocalAuthorityRoot'
+PROOF
+  BY DEF LocalAuthorityRoot,
+         ObserveConflict,
+         Requests,
+         RequestBinding
+
+
+THEOREM ObserveConflictPreservesDelegatedAuthoritySound ==
+  \A r \in ResolutionIds :
+    DelegatedAuthoritySound /\ ObserveConflict(r)
+      => DelegatedAuthoritySound'
+PROOF
+  BY DEF DelegatedAuthoritySound,
+         ObserveConflict,
+         Requests,
+         TerminalRequests,
+         RequestBinding,
+         TerminalAuthority
+
+
+THEOREM ObserveConflictPreservesFreshReconsideration ==
+  \A r \in ResolutionIds :
+    FreshReconsideration /\ ObserveConflict(r)
+      => FreshReconsideration'
+PROOF
+  BY DEF FreshReconsideration,
+         ObserveConflict,
+         Requests,
+         PreviousCommitment
+
+
+THEOREM ObserveConflictPreservesTerminalRecordRequiresRequest ==
+  \A r \in ResolutionIds :
+    TerminalRecordRequiresRequest /\ ObserveConflict(r)
+      => TerminalRecordRequiresRequest'
+PROOF
+  BY DEF TerminalRecordRequiresRequest,
+         ObserveConflict,
+         Requests,
+         TerminalRequests
+
+
+THEOREM ObserveConflictPreservesInductiveInvariant ==
+  \A r \in ResolutionIds :
+    InductiveInvariant /\ ObserveConflict(r)
+      => InductiveInvariant'
+PROOF
+  BY ObserveConflictPreservesTypeOK,
+     ObserveConflictPreservesTerminalBindingDerived,
+     ObserveConflictPreservesLocalAuthorityRoot,
+     ObserveConflictPreservesDelegatedAuthoritySound,
+     ObserveConflictPreservesFreshReconsideration,
+     ObserveConflictPreservesTerminalRecordRequiresRequest
+     DEF InductiveInvariant
+
+
+THEOREM ObserveInvalidMaterialPreservesInductiveInvariant ==
+  \A r \in ResolutionIds :
+    InductiveInvariant /\ ObserveInvalidMaterial(r)
+      => InductiveInvariant'
+PROOF
+  BY StateStutterPreservesInductiveInvariant
+     DEF ObserveInvalidMaterial
+
+
+THEOREM ObserveNonAuthoritativeInputPreservesInductiveInvariant ==
+  \A r \in ResolutionIds :
+    InductiveInvariant /\ ObserveNonAuthoritativeInput(r)
+      => InductiveInvariant'
+PROOF
+  BY StateStutterPreservesInductiveInvariant
+     DEF ObserveNonAuthoritativeInput
 
 
 THEOREM EvaluatePreservesInductiveInvariant ==
@@ -1159,15 +567,31 @@ PROOF
      DEF Evaluate
 
 
+THEOREM RecognizedSeedTransitionPreservesInductiveInvariant ==
+  InductiveInvariant /\ RecognizedSeedTransition
+    => InductiveInvariant'
+PROOF
+  BY RegisterRequestPreservesInductiveInvariant,
+     SubmitResolutionPreservesInductiveInvariant
+     DEF RecognizedSeedTransition
+
+
+THEOREM RecognizedEnvironmentTransitionPreservesInductiveInvariant ==
+  InductiveInvariant /\ RecognizedEnvironmentTransition
+    => InductiveInvariant'
+PROOF
+  BY ObserveConflictPreservesInductiveInvariant,
+     ObserveInvalidMaterialPreservesInductiveInvariant,
+     ObserveNonAuthoritativeInputPreservesInductiveInvariant
+     DEF RecognizedEnvironmentTransition
+
+
 THEOREM RecognizedCanonicalTransitionPreservesInductiveInvariant ==
   InductiveInvariant /\ RecognizedCanonicalTransition
     => InductiveInvariant'
 PROOF
-  BY RegisterRequestPreservesInductiveInvariant,
-     SubmitResolutionPreservesInductiveInvariant,
-     ObserveConflictPreservesInductiveInvariant,
-     ObserveInvalidMaterialPreservesInductiveInvariant,
-     ObserveNonAuthoritativeInputPreservesInductiveInvariant
+  BY RecognizedSeedTransitionPreservesInductiveInvariant,
+     RecognizedEnvironmentTransitionPreservesInductiveInvariant
      DEF RecognizedCanonicalTransition
 
 
@@ -1186,6 +610,7 @@ THEOREM BoxNextPreservesInductiveInvariant ==
 PROOF
   BY NextPreservesInductiveInvariant,
      StateStutterPreservesInductiveInvariant
+     DEF vars
 
 
 THEOREM SpecImpliesAlwaysInductiveInvariant ==
@@ -1212,55 +637,61 @@ PROOF
 
 
 THEOREM RegisterRequestSatisfiesRequestsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE RequestsAppendOnlyStep
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    RegisterRequest(r, b, a, previous) => RequestsAppendOnlyStep
 PROOF
-  BY DEF RegisterRequest, RequestsAppendOnlyStep
+  BY DEF RegisterRequest,
+         RequestsAppendOnlyStep,
+         Requests
 
 
 THEOREM SubmitResolutionSatisfiesRequestsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE RequestsAppendOnlyStep
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    SubmitResolution(r, b, a, value) => RequestsAppendOnlyStep
 PROOF
-  BY DEF SubmitResolution, RequestsAppendOnlyStep
+  BY DEF SubmitResolution,
+         RequestsAppendOnlyStep,
+         Requests
 
 
 THEOREM ObserveConflictSatisfiesRequestsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveConflict(r)
-  PROVE RequestsAppendOnlyStep
+  \A r \in ResolutionIds :
+    ObserveConflict(r) => RequestsAppendOnlyStep
 PROOF
-  BY DEF ObserveConflict, RequestsAppendOnlyStep
+  BY DEF ObserveConflict,
+         RequestsAppendOnlyStep,
+         Requests
+
+
+THEOREM StateStutterSatisfiesRequestsAppendOnlyStep ==
+  UNCHANGED vars => RequestsAppendOnlyStep
+PROOF
+  BY DEF vars, canonicalVars, RequestsAppendOnlyStep, Requests
 
 
 THEOREM ObserveInvalidMaterialSatisfiesRequestsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveInvalidMaterial(r)
-  PROVE RequestsAppendOnlyStep
+  \A r \in ResolutionIds :
+    ObserveInvalidMaterial(r) => RequestsAppendOnlyStep
 PROOF
-  BY DEF ObserveInvalidMaterial, RequestsAppendOnlyStep
+  BY StateStutterSatisfiesRequestsAppendOnlyStep
+     DEF ObserveInvalidMaterial
 
 
 THEOREM ObserveNonAuthoritativeInputSatisfiesRequestsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveNonAuthoritativeInput(r)
-  PROVE RequestsAppendOnlyStep
+  \A r \in ResolutionIds :
+    ObserveNonAuthoritativeInput(r) => RequestsAppendOnlyStep
 PROOF
-  BY DEF ObserveNonAuthoritativeInput, RequestsAppendOnlyStep
+  BY StateStutterSatisfiesRequestsAppendOnlyStep
+     DEF ObserveNonAuthoritativeInput
 
 
 THEOREM EvaluateSatisfiesRequestsAppendOnlyStep ==
   Evaluate => RequestsAppendOnlyStep
 PROOF
-  BY DEF Evaluate, vars, RequestsAppendOnlyStep
+  BY StateStutterSatisfiesRequestsAppendOnlyStep
+     DEF Evaluate
 
 
 THEOREM RecognizedCanonicalTransitionSatisfiesRequestsAppendOnlyStep ==
@@ -1271,7 +702,9 @@ PROOF
      ObserveConflictSatisfiesRequestsAppendOnlyStep,
      ObserveInvalidMaterialSatisfiesRequestsAppendOnlyStep,
      ObserveNonAuthoritativeInputSatisfiesRequestsAppendOnlyStep
-     DEF RecognizedCanonicalTransition
+     DEF RecognizedCanonicalTransition,
+         RecognizedSeedTransition,
+         RecognizedEnvironmentTransition
 
 
 THEOREM NextSatisfiesRequestsAppendOnlyStep ==
@@ -1297,187 +730,79 @@ PROOF
      DEF Spec, RequestsAppendOnly
 
 
-THEOREM RegisterRequestSatisfiesObservedInputsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF RegisterRequest, ObservedInputsAppendOnlyStep
-
-
-THEOREM SubmitResolutionSatisfiesObservedInputsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF SubmitResolution, ObservedInputsAppendOnlyStep
-
-
-THEOREM ObserveConflictSatisfiesObservedInputsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveConflict(r)
-  PROVE ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF ObserveConflict, ObservedInputsAppendOnlyStep
-
-
-THEOREM ObserveInvalidMaterialSatisfiesObservedInputsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveInvalidMaterial(r)
-  PROVE ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF ObserveInvalidMaterial, ObservedInputsAppendOnlyStep
-
-
-THEOREM ObserveNonAuthoritativeInputSatisfiesObservedInputsAppendOnlyStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveNonAuthoritativeInput(r)
-  PROVE ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF ObserveNonAuthoritativeInput, ObservedInputsAppendOnlyStep
-
-
-THEOREM EvaluateSatisfiesObservedInputsAppendOnlyStep ==
-  Evaluate => ObservedInputsAppendOnlyStep
-PROOF
-  BY DEF Evaluate, vars, ObservedInputsAppendOnlyStep
-
-
-THEOREM RecognizedCanonicalTransitionSatisfiesObservedInputsAppendOnlyStep ==
-  RecognizedCanonicalTransition => ObservedInputsAppendOnlyStep
-PROOF
-  BY RegisterRequestSatisfiesObservedInputsAppendOnlyStep,
-     SubmitResolutionSatisfiesObservedInputsAppendOnlyStep,
-     ObserveConflictSatisfiesObservedInputsAppendOnlyStep,
-     ObserveInvalidMaterialSatisfiesObservedInputsAppendOnlyStep,
-     ObserveNonAuthoritativeInputSatisfiesObservedInputsAppendOnlyStep
-     DEF RecognizedCanonicalTransition
-
-
-THEOREM NextSatisfiesObservedInputsAppendOnlyStep ==
-  Next => ObservedInputsAppendOnlyStep
-PROOF
-  BY RecognizedCanonicalTransitionSatisfiesObservedInputsAppendOnlyStep,
-     EvaluateSatisfiesObservedInputsAppendOnlyStep
-     DEF Next
-
-
-THEOREM BoxNextSatisfiesBoxObservedInputsAppendOnlyStep ==
-  [Next]_vars => [ObservedInputsAppendOnlyStep]_vars
-PROOF
-  BY NextSatisfiesObservedInputsAppendOnlyStep
-     DEF vars, ObservedInputsAppendOnlyStep
-
-
-THEOREM SpecImpliesObservedInputsAppendOnly ==
-  Spec => ObservedInputsAppendOnly
-PROOF
-  BY PTL,
-     BoxNextSatisfiesBoxObservedInputsAppendOnlyStep
-     DEF Spec, ObservedInputsAppendOnly
-
-
 THEOREM RegisterRequestSatisfiesTerminalRecordsImmutableStep ==
-  ASSUME NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW previous \in TerminalCommitments \cup {NoCommitment},
-         RegisterRequest(r, b, a, previous)
-  PROVE TerminalRecordsImmutableStep
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     previous \in TerminalCommitments \cup {NoCommitment} :
+    RegisterRequest(r, b, a, previous) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF RegisterRequest, TerminalRecordsImmutableStep
-
-
-THEOREM SubmitResolutionSatisfiesTerminalRecordsImmutablePointwise ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value),
-         NEW p \in ResolutionIds,
-         terminalRecord[p] # NoRecord
-  PROVE
-    /\ terminalRecord'[p] = terminalRecord[p]
-    /\ terminalBinding'[p] = terminalBinding[p]
-    /\ terminalAuthority'[p] = terminalAuthority[p]
-PROOF
-  <1>1. terminalRecord[r] = NoRecord
-    BY SubmitResolutionGuardFacts
-
-  <1>2. p # r
-    BY <1>1
-
-  <1>3. QED
-    BY <1>2,
-       SubmitResolutionOldKeyValues
+  BY DEF RegisterRequest,
+         TerminalRecordsImmutableStep,
+         TerminalRequests
 
 
 THEOREM SubmitResolutionSatisfiesTerminalRecordsImmutableStep ==
-  ASSUME InductiveInvariant,
-         NEW r \in ResolutionIds,
-         NEW b \in Bindings,
-         NEW a \in Authorities,
-         NEW value \in TerminalResolutions,
-         SubmitResolution(r, b, a, value)
-  PROVE TerminalRecordsImmutableStep
+  \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
+     value \in TerminalResolutions :
+    SubmitResolution(r, b, a, value) => TerminalRecordsImmutableStep
 PROOF
-  BY SubmitResolutionSatisfiesTerminalRecordsImmutablePointwise
-     DEF TerminalRecordsImmutableStep
+  BY DEF SubmitResolution,
+         TerminalRecordsImmutableStep,
+         TerminalRequests
 
 
 THEOREM ObserveConflictSatisfiesTerminalRecordsImmutableStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveConflict(r)
-  PROVE TerminalRecordsImmutableStep
+  \A r \in ResolutionIds :
+    ObserveConflict(r) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF ObserveConflict, TerminalRecordsImmutableStep
+  BY DEF ObserveConflict,
+         TerminalRecordsImmutableStep,
+         TerminalRequests
+
+
+THEOREM StateStutterSatisfiesTerminalRecordsImmutableStep ==
+  UNCHANGED vars => TerminalRecordsImmutableStep
+PROOF
+  BY DEF vars, canonicalVars, TerminalRecordsImmutableStep, TerminalRequests
 
 
 THEOREM ObserveInvalidMaterialSatisfiesTerminalRecordsImmutableStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveInvalidMaterial(r)
-  PROVE TerminalRecordsImmutableStep
+  \A r \in ResolutionIds :
+    ObserveInvalidMaterial(r) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF ObserveInvalidMaterial, TerminalRecordsImmutableStep
+  BY StateStutterSatisfiesTerminalRecordsImmutableStep
+     DEF ObserveInvalidMaterial
 
 
 THEOREM ObserveNonAuthoritativeInputSatisfiesTerminalRecordsImmutableStep ==
-  ASSUME NEW r \in ResolutionIds,
-         ObserveNonAuthoritativeInput(r)
-  PROVE TerminalRecordsImmutableStep
+  \A r \in ResolutionIds :
+    ObserveNonAuthoritativeInput(r) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF ObserveNonAuthoritativeInput,
-         TerminalRecordsImmutableStep
+  BY StateStutterSatisfiesTerminalRecordsImmutableStep
+     DEF ObserveNonAuthoritativeInput
 
 
 THEOREM EvaluateSatisfiesTerminalRecordsImmutableStep ==
   Evaluate => TerminalRecordsImmutableStep
 PROOF
-  BY DEF Evaluate, vars, TerminalRecordsImmutableStep
+  BY StateStutterSatisfiesTerminalRecordsImmutableStep
+     DEF Evaluate
 
 
 THEOREM RecognizedCanonicalTransitionSatisfiesTerminalRecordsImmutableStep ==
-  InductiveInvariant /\ RecognizedCanonicalTransition
-    => TerminalRecordsImmutableStep
+  RecognizedCanonicalTransition => TerminalRecordsImmutableStep
 PROOF
   BY RegisterRequestSatisfiesTerminalRecordsImmutableStep,
      SubmitResolutionSatisfiesTerminalRecordsImmutableStep,
      ObserveConflictSatisfiesTerminalRecordsImmutableStep,
      ObserveInvalidMaterialSatisfiesTerminalRecordsImmutableStep,
      ObserveNonAuthoritativeInputSatisfiesTerminalRecordsImmutableStep
-     DEF RecognizedCanonicalTransition
+     DEF RecognizedCanonicalTransition,
+         RecognizedSeedTransition,
+         RecognizedEnvironmentTransition
 
 
 THEOREM NextSatisfiesTerminalRecordsImmutableStep ==
-  InductiveInvariant /\ Next
-    => TerminalRecordsImmutableStep
+  Next => TerminalRecordsImmutableStep
 PROOF
   BY RecognizedCanonicalTransitionSatisfiesTerminalRecordsImmutableStep,
      EvaluateSatisfiesTerminalRecordsImmutableStep
@@ -1485,8 +810,7 @@ PROOF
 
 
 THEOREM BoxNextSatisfiesBoxTerminalRecordsImmutableStep ==
-  InductiveInvariant /\ [Next]_vars
-    => [TerminalRecordsImmutableStep]_vars
+  [Next]_vars => [TerminalRecordsImmutableStep]_vars
 PROOF
   BY NextSatisfiesTerminalRecordsImmutableStep
      DEF vars, TerminalRecordsImmutableStep
@@ -1496,7 +820,6 @@ THEOREM SpecImpliesTerminalRecordsImmutable ==
   Spec => TerminalRecordsImmutable
 PROOF
   BY PTL,
-     SpecImpliesAlwaysInductiveInvariant,
      BoxNextSatisfiesBoxTerminalRecordsImmutableStep
      DEF Spec, TerminalRecordsImmutable
 
@@ -1509,8 +832,7 @@ PROOF
 
 
 THEOREM EvaluateSatisfiesCanonicalTransitionStep ==
-  Evaluate
-    => CanonicalStateChangesOnlyByRecognizedTransitionStep
+  Evaluate => CanonicalStateChangesOnlyByRecognizedTransitionStep
 PROOF
   BY DEF Evaluate,
          vars,
@@ -1519,8 +841,7 @@ PROOF
 
 
 THEOREM NextSatisfiesCanonicalTransitionStep ==
-  Next
-    => CanonicalStateChangesOnlyByRecognizedTransitionStep
+  Next => CanonicalStateChangesOnlyByRecognizedTransitionStep
 PROOF
   BY RecognizedCanonicalTransitionSatisfiesCanonicalTransitionStep,
      EvaluateSatisfiesCanonicalTransitionStep
@@ -1528,8 +849,7 @@ PROOF
 
 
 THEOREM BoxNextSatisfiesBoxCanonicalTransitionStep ==
-  [Next]_vars
-    => [CanonicalStateChangesOnlyByRecognizedTransitionStep]_vars
+  [Next]_vars => [CanonicalStateChangesOnlyByRecognizedTransitionStep]_vars
 PROOF
   BY NextSatisfiesCanonicalTransitionStep
      DEF vars,
@@ -1542,7 +862,64 @@ THEOREM SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition ==
 PROOF
   BY PTL,
      BoxNextSatisfiesBoxCanonicalTransitionStep
-     DEF Spec,
-         CanonicalStateChangesOnlyByRecognizedTransition
+     DEF Spec, CanonicalStateChangesOnlyByRecognizedTransition
+
+
+THEOREM InvalidMaterialActionIsStutter ==
+  \A r \in ResolutionIds :
+    ObserveInvalidMaterial(r) => UNCHANGED vars
+PROOF
+  BY DEF ObserveInvalidMaterial
+
+
+THEOREM NextSatisfiesInvalidMaterialStutterStep ==
+  Next => InvalidMaterialStutterStep
+PROOF
+  BY InvalidMaterialActionIsStutter
+     DEF InvalidMaterialStutterStep
+
+
+THEOREM BoxNextSatisfiesBoxInvalidMaterialStutterStep ==
+  [Next]_vars => [InvalidMaterialStutterStep]_vars
+PROOF
+  BY NextSatisfiesInvalidMaterialStutterStep
+     DEF vars, InvalidMaterialStutterStep
+
+
+THEOREM SpecImpliesInvalidMaterialStutter ==
+  Spec => InvalidMaterialStutter
+PROOF
+  BY PTL,
+     BoxNextSatisfiesBoxInvalidMaterialStutterStep
+     DEF Spec, InvalidMaterialStutter
+
+
+THEOREM NonAuthoritativeInputActionIsStutter ==
+  \A r \in ResolutionIds :
+    ObserveNonAuthoritativeInput(r) => UNCHANGED vars
+PROOF
+  BY DEF ObserveNonAuthoritativeInput
+
+
+THEOREM NextSatisfiesNonAuthoritativeInputsStutterStep ==
+  Next => NonAuthoritativeInputsStutterStep
+PROOF
+  BY NonAuthoritativeInputActionIsStutter
+     DEF NonAuthoritativeInputsStutterStep
+
+
+THEOREM BoxNextSatisfiesBoxNonAuthoritativeInputsStutterStep ==
+  [Next]_vars => [NonAuthoritativeInputsStutterStep]_vars
+PROOF
+  BY NextSatisfiesNonAuthoritativeInputsStutterStep
+     DEF vars, NonAuthoritativeInputsStutterStep
+
+
+THEOREM SpecImpliesNonAuthoritativeInputsStutter ==
+  Spec => NonAuthoritativeInputsStutter
+PROOF
+  BY PTL,
+     BoxNextSatisfiesBoxNonAuthoritativeInputsStutterStep
+     DEF Spec, NonAuthoritativeInputsStutter
 
 =============================================================================

@@ -3,10 +3,10 @@ EXTENDS SeedCanonProjection, TLAPS
 
 (*
 This proof establishes equivalence between SeedResolution and the generated
-canonical projection for ASET-SEED-CANON-TLA-PROJECTION-V2.
+canonical projection for ASET-SEED-CANON-TLA-PROJECTION-V3.
 
 The theorem is intentionally limited to the declared projection. Opaque
-Bindings, authorityProofBindings and RecognizedTerminalCommitments remain
+Bindings, AuthorityProofBindings and RecognizedTerminalCommitments remain
 abstractions; cryptographic digest construction, concrete Authority grant-chain
 construction, terminal-commitment provenance, storage-compaction refinement,
 natural-language text equivalence, implementation refinement and liveness are
@@ -56,6 +56,10 @@ PROOF
          CanonNext,
          RecognizedCanonicalTransition,
          CanonRecognizedCanonicalTransition,
+         RecognizedSeedTransition,
+         CanonRecognizedSeedTransition,
+         RecognizedEnvironmentTransition,
+         CanonRecognizedEnvironmentTransition,
          RegisterRequest,
          CanonRegisterRequest,
          SubmitResolution,

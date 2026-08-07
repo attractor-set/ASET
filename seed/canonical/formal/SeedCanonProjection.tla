@@ -5,12 +5,12 @@ EXTENDS SeedResolution
 GENERATED FILE. DO NOT EDIT.
 Source: seed/canonical/source/seed-model.json
 Source SHA-256: sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6
-Projection profile: ASET-SEED-CANON-TLA-PROJECTION-V2
+Projection profile: ASET-SEED-CANON-TLA-PROJECTION-V3
 
-This module is the deterministic TLA+ interpretation used by the
-canon-to-TLA refinement assurance. It intentionally preserves the declared
-opaque Binding, authorityProofBindings and RecognizedTerminalCommitments
-abstractions.
+V3 projects the same canonical behavior onto the normalized three-variable
+Seed state. Immutable Authority relations are context constants. Accepted
+terminal binding is derived from requestMeta; invalid/non-authoritative inputs
+are stuttering observations rather than retained canonical state.
 *)
 
 CanonResolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
@@ -21,129 +21,81 @@ CanonFailClosedValues == {"UNKNOWN", "BLOCK"}
 CanonConflictResult == "UNKNOWN"
 
 CanonInit ==
-  /\ localAuthorityBindings \in SUBSET (Authorities \X Bindings)
-  /\ authorityProofBindings \in SUBSET (Authorities \X Bindings)
-  /\ localAuthorityBindings \subseteq authorityProofBindings
-  /\ requests = {}
-  /\ requestBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
-  /\ requestAuthority = [r \in ResolutionIds |-> CHOOSE a \in Authorities : TRUE]
-  /\ previousResolutionCommitment = [r \in ResolutionIds |-> NoCommitment]
-  /\ terminalRecord = [r \in ResolutionIds |-> NoRecord]
-  /\ terminalBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
-  /\ terminalAuthority = [r \in ResolutionIds |-> CHOOSE a \in Authorities : TRUE]
+  /\ requestMeta = [r \in {} |-> r]
+  /\ terminalMeta = [r \in {} |-> r]
   /\ conflicts = {}
-  /\ invalidMaterial = {}
-  /\ observedInputs = {}
 
 CanonRegisterRequest(r, b, a, previous) ==
-  /\ r \in ResolutionIds \ requests
+  /\ r \in ResolutionIds \ Requests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in localAuthorityBindings
+  /\ <<a, b>> \in LocalAuthorityBindings
   /\ \/ previous = NoCommitment
      \/ previous \in RecognizedTerminalCommitments
-  /\ requests' = requests \cup {r}
-  /\ requestBinding' = [requestBinding EXCEPT ![r] = b]
-  /\ requestAuthority' = [requestAuthority EXCEPT ![r] = a]
-  /\ previousResolutionCommitment' = [previousResolutionCommitment EXCEPT ![r] = previous]
-  /\ UNCHANGED <<localAuthorityBindings,
-                  authorityProofBindings,
-                  terminalRecord,
-                  terminalBinding,
-                  terminalAuthority,
-                  conflicts,
-                  invalidMaterial,
-                  observedInputs>>
+  /\ requestMeta' =
+       [x \in Requests \cup {r} |->
+          IF x = r
+          THEN [binding |-> b, previous |-> previous]
+          ELSE requestMeta[x]]
+  /\ UNCHANGED <<terminalMeta, conflicts>>
 
 CanonSubmitResolution(r, b, a, value) ==
-  /\ r \in requests
-  /\ b = requestBinding[r]
+  /\ r \in Requests
+  /\ b = RequestBinding(r)
   /\ a \in Authorities
-  /\ <<a, b>> \in authorityProofBindings
+  /\ <<a, b>> \in AuthorityProofBindings
   /\ value \in CanonTerminalResolutions
-  /\ terminalRecord[r] = NoRecord
+  /\ r \notin TerminalRequests
   /\ r \notin conflicts
-  /\ terminalRecord' = [terminalRecord EXCEPT ![r] = value]
-  /\ terminalBinding' = [terminalBinding EXCEPT ![r] = b]
-  /\ terminalAuthority' = [terminalAuthority EXCEPT ![r] = a]
-  /\ UNCHANGED <<localAuthorityBindings,
-                  authorityProofBindings,
-                  requests,
-                  requestBinding,
-                  requestAuthority,
-                  previousResolutionCommitment,
-                  conflicts,
-                  invalidMaterial,
-                  observedInputs>>
+  /\ terminalMeta' =
+       [x \in TerminalRequests \cup {r} |->
+          IF x = r
+          THEN [resolution |-> value, authority |-> a]
+          ELSE terminalMeta[x]]
+  /\ UNCHANGED <<requestMeta, conflicts>>
 
 CanonObserveConflict(r) ==
   /\ r \in ResolutionIds
   /\ conflicts' = conflicts \cup {r}
-  /\ UNCHANGED <<localAuthorityBindings,
-                  authorityProofBindings,
-                  requests,
-                  requestBinding,
-                  requestAuthority,
-                  previousResolutionCommitment,
-                  terminalRecord,
-                  terminalBinding,
-                  terminalAuthority,
-                  invalidMaterial,
-                  observedInputs>>
+  /\ UNCHANGED <<requestMeta, terminalMeta>>
 
 CanonObserveInvalidMaterial(r) ==
   /\ r \in ResolutionIds
-  /\ invalidMaterial' = invalidMaterial \cup {r}
-  /\ UNCHANGED <<localAuthorityBindings,
-                  authorityProofBindings,
-                  requests,
-                  requestBinding,
-                  requestAuthority,
-                  previousResolutionCommitment,
-                  terminalRecord,
-                  terminalBinding,
-                  terminalAuthority,
-                  conflicts,
-                  observedInputs>>
+  /\ UNCHANGED vars
 
 CanonObserveNonAuthoritativeInput(r) ==
   /\ r \in ResolutionIds
-  /\ observedInputs' = observedInputs \cup {r}
-  /\ UNCHANGED <<localAuthorityBindings,
-                  authorityProofBindings,
-                  requests,
-                  requestBinding,
-                  requestAuthority,
-                  previousResolutionCommitment,
-                  terminalRecord,
-                  terminalBinding,
-                  terminalAuthority,
-                  conflicts,
-                  invalidMaterial>>
+  /\ UNCHANGED vars
 
 CanonEvaluate == UNCHANGED vars
 
-CanonRecognizedCanonicalTransition ==
+CanonRecognizedSeedTransition ==
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
         previous \in TerminalCommitments \cup {NoCommitment} :
         CanonRegisterRequest(r, b, a, previous)
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
         value \in CanonTerminalResolutions :
         CanonSubmitResolution(r, b, a, value)
+
+CanonRecognizedEnvironmentTransition ==
   \/ \E r \in ResolutionIds : CanonObserveConflict(r)
   \/ \E r \in ResolutionIds : CanonObserveInvalidMaterial(r)
   \/ \E r \in ResolutionIds : CanonObserveNonAuthoritativeInput(r)
+
+CanonRecognizedCanonicalTransition ==
+  \/ CanonRecognizedSeedTransition
+  \/ CanonRecognizedEnvironmentTransition
 
 CanonNext ==
   \/ CanonRecognizedCanonicalTransition
   \/ CanonEvaluate
 
 CanonResolutionOf(r) ==
-  IF r \notin requests \/ r \in conflicts
+  IF r \notin Requests \/ r \in conflicts
   THEN CanonConflictResult
-  ELSE IF terminalRecord[r] = NoRecord
+  ELSE IF r \notin TerminalRequests
        THEN CanonDerivedResolution
-       ELSE terminalRecord[r]
+       ELSE TerminalResolution(r)
 
 CanonEffectPermitted(r) ==
   CanonResolutionOf(r) = CanonEffectPermittedValue

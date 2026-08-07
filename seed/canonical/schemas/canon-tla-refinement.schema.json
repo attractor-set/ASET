@@ -141,7 +141,7 @@
           "const": "seed/canonical/formal/SeedCanonProjection.tla"
         },
         "profile": {
-          "const": "ASET-SEED-CANON-TLA-PROJECTION-V2"
+          "const": "ASET-SEED-CANON-TLA-PROJECTION-V3"
         }
       },
       "required": [

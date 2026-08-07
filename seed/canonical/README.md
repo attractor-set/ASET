@@ -25,15 +25,21 @@ The published safety contract has complete machine traceability:
 - 12/12 canonical requirements covered;
 - 12/12 canonical invariants covered;
 - 3/3 transitions covered positively and negatively;
-- 15 bounded TLA+/TLC properties;
-- 15/15 registered TLA+/TLC safety properties covered by unbounded TLAPS proof;
+- 16 bounded TLA+/TLC properties;
+- 16/16 registered TLA+/TLC safety properties covered by unbounded TLAPS proof;
 - 4 exact executable-or-static properties;
 - 24 portable conformance cases;
 - 13 semantic mutations, all required to be killed.
 
 The unbounded safety proof applies to the committed abstract TLA+ safety
-projection. It establishes all eleven registered state invariants and all four
+projection. It establishes all eleven registered state invariants and all five
 registered temporal safety properties for every behaviour of `Spec`.
+
+The abstract formal projection is normalized to three state variables
+(`requestMeta`, `terminalMeta`, `conflicts`). Authority relations are immutable
+context constants; exact terminal binding is derived from request metadata;
+invalid material and non-authoritative inputs have no retained state slot and
+are proved to be semantic stutters.
 
 The canon-to-TLA assurance adds a second proof layer.
 `SeedCanonProjection.tla` is generated deterministically from the exact

@@ -85,7 +85,8 @@ def test_tlaps_gate_and_final_theorems_are_declared():
         "SpecImpliesRequestsAppendOnly",
         "SpecImpliesTerminalRecordsImmutable",
         "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
-        "SpecImpliesObservedInputsAppendOnly",
+        "SpecImpliesInvalidMaterialStutter",
+    "SpecImpliesNonAuthoritativeInputsStutter",
     ):
         assert f"THEOREM {theorem} ==" in proof
 
@@ -121,14 +122,20 @@ def test_seed_resolution_tla_uses_valid_operator_tokens():
     specification = (ROOT / "seed/canonical/formal/SeedResolution.tla").read_text(
         encoding="utf-8"
     )
-    assert "/\\\\" not in specification
+    assert r"/\\" not in specification
     assert "Range(" not in specification
-    assert (
-        "Init ==\n  /\\ localAuthorityBindings \\in SUBSET (Authorities \\X Bindings)"
-        in specification
-    )
-    assert "  /\\ requests = {}" in specification
-    assert "Spec == Init /\\ [][Next]_vars" in specification
+    assert "VARIABLES\n    requestMeta,\n    terminalMeta,\n    conflicts" in specification
+    assert "LocalAuthorityBindings" in specification
+    assert "AuthorityProofBindings" in specification
+    assert "observedInputs" not in specification
+    assert "invalidMaterial" not in specification
+    assert "terminalBinding," not in specification
+    assert "requestAuthority," not in specification
+    assert "Requests == DOMAIN requestMeta" in specification
+    assert "TerminalRequests == DOMAIN terminalMeta" in specification
+    assert "NoRequest" not in specification
+    assert "NoTerminal" not in specification
+    assert r"Spec == Init /\ [][Next]_vars" in specification
 
 
 def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
@@ -140,10 +147,9 @@ def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
     )
     assert "TerminalUnique ==" in specification
     assert "CHECK_DEADLOCK FALSE" in configuration
-    assert "LocalAuthorityBindings =" not in configuration
-    assert (
-        r"localAuthorityBindings \in SUBSET (Authorities \X Bindings)" in specification
-    )
+    assert "LocalAuthorityBindings <- TLC_LocalAuthorityBindings" in configuration
+    assert "AuthorityProofBindings <- TLC_AuthorityProofBindings" in configuration
+    assert r"LocalAuthorityBindings \subseteq AuthorityProofBindings" in specification
 
 
 def test_active_audit_index_tracks_active_canon_package():

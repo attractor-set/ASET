@@ -188,7 +188,7 @@
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
-      "sha256": "sha256:ccb148db338c7f447fa7b200c982e4808fb5d6e56f34b099e0385915fe513c7e",
+      "sha256": "sha256:6e410436a80d0e672a12e479aee0b85e875a77814041a9d46616c995f5ef8e0f",
       "size_bytes": 2781
     },
     {
@@ -315,6 +315,11 @@
       "path": "docs/architecture/SEED_ROLE.md",
       "sha256": "sha256:d14912b58d582e3a6515bb6332842ae3c3d57ea1947154021d37a34d0cf23b28",
       "size_bytes": 1277
+    },
+    {
+      "path": "docs/architecture/SEED_STATE_MINIMIZATION.md",
+      "sha256": "sha256:33b601825012426108ed03380295096337ad649406970d46109f74b6ae72e86e",
+      "size_bytes": 2981
     },
     {
       "path": "docs/architecture/TERMINAL_COMMITMENT_ACCUMULATION.md",
@@ -463,33 +468,33 @@
     },
     {
       "path": "seed/canonical/CANON_PACKAGE.json",
-      "sha256": "sha256:52d29ae90734b1978398f15ce79a33487d191dc9b1f0c5dd58295bbf1eaa2658",
+      "sha256": "sha256:f81e9c80be5ef0a6c2ce79c8bfce27746bb98654955f7697a095502caf70bccc",
       "size_bytes": 12501
     },
     {
       "path": "seed/canonical/README.md",
-      "sha256": "sha256:1ee05c433e6b42f48daea4319970fdb531efbec5bde04366d7676459d9e07b35",
-      "size_bytes": 2461
+      "sha256": "sha256:1e211f4db5cce375d7a51b7997161a6cb82ade38e103a407af1f2614b64ec49e",
+      "size_bytes": 2802
     },
     {
       "path": "seed/canonical/assurance/canon-tla-refinement.json",
-      "sha256": "sha256:8d510b7757c1afbfde9ffc808e4a6366a91c9f44368eca94413a0f019b6822e6",
-      "size_bytes": 6621
+      "sha256": "sha256:d29c941ee0dca9fc725c2dcaec0b6a78d661cbe6630726418fc370c79d73ee38",
+      "size_bytes": 6661
     },
     {
       "path": "seed/canonical/assurance/invariant-coverage.json",
-      "sha256": "sha256:36a8da2d0ef0826c72d8ebe1196ecf65485f310a3e276a95ef72c491ac57461c",
-      "size_bytes": 14696
+      "sha256": "sha256:da7a577b4f160ba5ac436808711f101dd2d9c66509ff1f7772dedc05174b9163",
+      "size_bytes": 14733
     },
     {
       "path": "seed/canonical/assurance/limitations.json",
-      "sha256": "sha256:76550e4414ee5d8f70a82c57296425bdc72f99f3af4c940223aadae3e66da3f8",
+      "sha256": "sha256:2b6bbf827dcb12b9674154efebcb6134366c614769b5874a5f4db0cbb81cb25f",
       "size_bytes": 3803
     },
     {
       "path": "seed/canonical/assurance/proof-traceability.json",
-      "sha256": "sha256:697d40a01f30fc9a14d5f79203c00795bc2126ee0c02878e91f2429547d1791e",
-      "size_bytes": 6762
+      "sha256": "sha256:3c49b80547bf7a148688d49aeaa61a5e2074e14161b5597967613a07b0925609",
+      "size_bytes": 6944
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
@@ -498,8 +503,8 @@
     },
     {
       "path": "seed/canonical/assurance/verification-registry.json",
-      "sha256": "sha256:7a45c470a14c5dd1e55a1b12cd9438b9f43e0170ecdfe817eeb256ee61e225f6",
-      "size_bytes": 9517
+      "sha256": "sha256:a3306079e7c38496063c5e46ec6a464bdf744d1271568963291cb71c08991b19",
+      "size_bytes": 9887
     },
     {
       "path": "seed/canonical/conformance/cases/negative/RES-NEG-001.json",
@@ -672,9 +677,14 @@
       "size_bytes": 3136
     },
     {
+      "path": "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
+      "sha256": "sha256:229de9ba5db018f2726ae7e2b23e33a321eb12f4187c7dfffa35773691f2285c",
+      "size_bytes": 1980
+    },
+    {
       "path": "seed/canonical/formal/README.md",
-      "sha256": "sha256:5c2bdf91639aad1277f133a73d8c2ccc0f648e96b31ee14444ace919c81365e1",
-      "size_bytes": 3264
+      "sha256": "sha256:6672e2fecb4e81ac2a538be478f3f67ed7d0a866b8e9f7fc2a23cf636d0d3dc6",
+      "size_bytes": 4340
     },
     {
       "path": "seed/canonical/formal/SeedBootstrap.cfg",
@@ -688,13 +698,13 @@
     },
     {
       "path": "seed/canonical/formal/SeedCanonProjection.tla",
-      "sha256": "sha256:696036279144ade00fcc83d59902a2bc4c93b0c16ba81d53606b271501922280",
-      "size_bytes": 5643
+      "sha256": "sha256:26d6508c8c091fc9d204331be627a3a6cdb15600a1eddf4e755d67240da4efd5",
+      "size_bytes": 3383
     },
     {
       "path": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
-      "sha256": "sha256:869c32d6ddcbd82f107c5093c73ec4d4962dde0e9ce533deb0530d911b70d385",
-      "size_bytes": 2379
+      "sha256": "sha256:2445164299b87a1e819edc5df585cb84d18b8b6817e2b14a5158c79e3dca44d2",
+      "size_bytes": 2543
     },
     {
       "path": "seed/canonical/formal/SeedRC12.cfg",
@@ -708,18 +718,18 @@
     },
     {
       "path": "seed/canonical/formal/SeedResolution.cfg",
-      "sha256": "sha256:45b03f914a6b81389fd41afe22b414486047437fe2e8b98617da5bc92c0e9b94",
-      "size_bytes": 612
+      "sha256": "sha256:c5549986cb036f550e0c030a13944e8fb00372c28ccecacc88d84ede2a34d588",
+      "size_bytes": 731
     },
     {
       "path": "seed/canonical/formal/SeedResolution.tla",
-      "sha256": "sha256:89ae6f8500cedefdb2e4cc1a3939d074b1ccd480766384977115a7bd70290afe",
-      "size_bytes": 9616
+      "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f",
+      "size_bytes": 8765
     },
     {
       "path": "seed/canonical/formal/SeedResolutionProofs.tla",
-      "sha256": "sha256:078e123f28fbf012179484c8b559bbc55a6d24200e0b3ecc2b7ba9deeeefcbe3",
-      "size_bytes": 42571
+      "sha256": "sha256:32c9f90bebcb1503f13b41535847ed5b4c16b066143fcf02578b63f627cf3805",
+      "size_bytes": 26293
     },
     {
       "path": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1.md",
@@ -1048,7 +1058,7 @@
     },
     {
       "path": "seed/canonical/schemas/canon-tla-refinement.schema.json",
-      "sha256": "sha256:ac5d713265a8ec0b6a229252fc5adab2f988da21fa69ff26bea082e3f103b4e4",
+      "sha256": "sha256:aaba0b7c0cc6a27158318702c87e5396ae2a0951852fcb21094b60d2d1dfccb6",
       "size_bytes": 6582
     },
     {
@@ -2093,8 +2103,8 @@
     },
     {
       "path": "tests/test_ci_assurance.py",
-      "sha256": "sha256:531cae74d46487a2a9fc8f19e43474368050aec86524c3df9383f64f8b31f895",
-      "size_bytes": 8532
+      "sha256": "sha256:b53064afba5d98de8c77cabd6fb54a85e8567741ca0d722d0a1cbbc47a7ba4df",
+      "size_bytes": 9103
     },
     {
       "path": "tests/test_implementation_conformance_protocol.py",
@@ -2153,8 +2163,8 @@
     },
     {
       "path": "tools/check_assurance_traceability.py",
-      "sha256": "sha256:afb10fe7a8dc45d62a505a6071b9dae8a0b142d2ef3b060e970358540b285e21",
-      "size_bytes": 10270
+      "sha256": "sha256:753b76fa5a7293c5bf389a188a264719b51b778f0b53a984fcdc22d32e0fedae",
+      "size_bytes": 10316
     },
     {
       "path": "tools/check_canon_compatibility.py",
@@ -2178,13 +2188,13 @@
     },
     {
       "path": "tools/check_proof_traceability.py",
-      "sha256": "sha256:4a8fbf3306ef99da1f73a6c3b829e6a68c9450390726fa7f46ba04e8ed138406",
-      "size_bytes": 9292
+      "sha256": "sha256:53edb5e064e9d9db9a2bb54afb752d098bb60e61815544d401135408249ef957",
+      "size_bytes": 9369
     },
     {
       "path": "tools/generate_canon_tla_projection.py",
-      "sha256": "sha256:178f45c8c1c88cfc9a7c073b3dad19512d9b19c2f8a1222bbe2e19b74e65f37b",
-      "size_bytes": 10429
+      "sha256": "sha256:c81fadbdf922068a95c67bb3d80f81bdf48ae7deaabb42df0908919711c44597",
+      "size_bytes": 8140
     },
     {
       "path": "tools/generate_editions.py",
@@ -2218,8 +2228,8 @@
     },
     {
       "path": "tools/model_check_seed.py",
-      "sha256": "sha256:b9acdb54d70548e83acc799463dc04f338a4ba134097ce5e21400f09082ee86f",
-      "size_bytes": 11042
+      "sha256": "sha256:118d2519eadae60c5105d9506bd69d54fc4acda321ed277b9328230c90081626",
+      "size_bytes": 10388
     },
     {
       "path": "tools/production_gate.py",
@@ -2253,8 +2263,8 @@
     },
     {
       "path": "tools/run_tlaps.py",
-      "sha256": "sha256:6cb99f93a34fc462f03b52c4df62d1c32a7ea032039a67aa49be34b01e0cc323",
-      "size_bytes": 6750
+      "sha256": "sha256:860c16d6fe19934f5b04590723671b626c0f5da83e33fc338fc24ee4be225bda",
+      "size_bytes": 6796
     },
     {
       "path": "tools/run_tlc.py",
@@ -2312,7 +2322,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 462,
+  "files_count": 464,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"
