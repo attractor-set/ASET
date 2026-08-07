@@ -34,14 +34,14 @@ def main() -> int:
 
     requirement_ids = {item["id"] for item in model["requirements"]}
     invariant_ids = {item["id"] for item in model["invariants"]}
-    transition_ids = {item["id"] for item in model["transitions"]}
+    operation_ids = {item["id"] for item in model["operations"]}
     case_entries = {item["case_id"]: item for item in profile["cases"]}
     formal_names = {item["name"] for item in registry["formal_properties"]}
     mutation_ids = {item["id"] for item in coverage["mutation_catalog"]}
 
     covered_requirements = {item["id"] for item in coverage["requirements"]}
     covered_invariants = {item["id"] for item in coverage["invariants"]}
-    covered_transitions = {item["id"] for item in coverage["transitions"]}
+    covered_operations = {item["id"] for item in coverage["operations"]}
     if covered_requirements != requirement_ids:
         errors.append(
             f"requirement coverage mismatch: missing={sorted(requirement_ids-covered_requirements)} "
@@ -52,10 +52,10 @@ def main() -> int:
             f"invariant coverage mismatch: missing={sorted(invariant_ids-covered_invariants)} "
             f"extra={sorted(covered_invariants-invariant_ids)}"
         )
-    if covered_transitions != transition_ids:
+    if covered_operations != operation_ids:
         errors.append(
-            f"transition coverage mismatch: missing={sorted(transition_ids-covered_transitions)} "
-            f"extra={sorted(covered_transitions-transition_ids)}"
+            f"operation coverage mismatch: missing={sorted(operation_ids-covered_operations)} "
+            f"extra={sorted(covered_operations-operation_ids)}"
         )
 
     referenced_formal: set[str] = set()
@@ -79,7 +79,7 @@ def main() -> int:
                 if invariant_id not in invariant_ids:
                     errors.append(f"{entry['id']} references unknown invariant {invariant_id}")
 
-    for entry in coverage["transitions"]:
+    for entry in coverage["operations"]:
         for case_id in entry["positive_cases"]:
             if case_id not in case_entries or case_entries[case_id]["polarity"] != "positive":
                 errors.append(f"{entry['id']} invalid positive case {case_id}")
@@ -114,8 +114,8 @@ def main() -> int:
         "requirements_covered": len(covered_requirements & requirement_ids),
         "invariants_total": len(invariant_ids),
         "invariants_covered": len(covered_invariants & invariant_ids),
-        "transitions_total": len(transition_ids),
-        "transitions_covered": len(covered_transitions & transition_ids),
+        "operations_total": len(operation_ids),
+        "operations_covered": len(covered_operations & operation_ids),
         "formal_properties": len(formal_names),
         "conformance_cases": len(case_entries),
         "semantic_mutations": len(mutation_ids),
@@ -129,7 +129,7 @@ def main() -> int:
 
     print(f"INVARIANT_COVERAGE_REQUIREMENTS={report['requirements_covered']}/{report['requirements_total']}")
     print(f"INVARIANT_COVERAGE_INVARIANTS={report['invariants_covered']}/{report['invariants_total']}")
-    print(f"INVARIANT_COVERAGE_TRANSITIONS={report['transitions_covered']}/{report['transitions_total']}")
+    print(f"INVARIANT_COVERAGE_OPERATIONS={report['operations_covered']}/{report['operations_total']}")
     print(f"INVARIANT_COVERAGE_FORMAL_PROPERTIES={report['formal_properties']}")
     print(f"INVARIANT_COVERAGE_CONFORMANCE_CASES={report['conformance_cases']}")
     print(f"INVARIANT_COVERAGE_MUTATIONS={report['semantic_mutations_killed']}/{report['semantic_mutations']}")

@@ -86,7 +86,7 @@ The canon-to-TLA theorem is scoped to the declared abstraction profile. It does 
 
 - equivalence of every natural-language sentence;
 - concrete Binding/digest construction;
-- concrete Authority-recognition evidence, signature or delegation-chain construction;
+- concrete Authority-recognition evidence, signature or delegation-mechanism construction;
 - implementation refinement or production readiness;
 - liveness;
 - cryptographic primitive security;

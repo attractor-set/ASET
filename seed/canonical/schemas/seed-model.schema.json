@@ -161,6 +161,84 @@
     "model_id": {
       "const": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1"
     },
+    "operations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "authority_rule": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "binding_rule": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "created_artifacts": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "from_resolution": {
+            "enum": [
+              null,
+              "UNKNOWN"
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "pattern": "^SEED-OP-[0-9]{3}$",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "REGISTER_REQUEST",
+              "SUBMIT_RESOLUTION",
+              "EVALUATE_RESOLUTION"
+            ]
+          },
+          "payload_schema": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "STATE_TRANSITION",
+              "OBSERVER"
+            ]
+          },
+          "terminal": {
+            "type": "boolean"
+          },
+          "to_resolution": {
+            "enum": [
+              "UNKNOWN",
+              "ALLOW_OR_BLOCK",
+              "DERIVED"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "payload_schema",
+          "from_resolution",
+          "to_resolution",
+          "authority_rule",
+          "binding_rule",
+          "created_artifacts",
+          "role",
+          "terminal"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
     "predecessor": {
       "const": "ASET-SEED-RESOLUTION-CANON-0.2-ALPHA2"
     },
@@ -281,88 +359,10 @@
       "type": "object"
     },
     "schema_version": {
-      "const": 4
+      "const": 5
     },
     "status": {
       "const": "MINIMAL_STRONG_CORE_ALPHA"
-    },
-    "transitions": {
-      "items": {
-        "additionalProperties": false,
-        "properties": {
-          "authority_rule": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "binding_rule": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "created_artifacts": {
-            "items": {
-              "type": "string"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "from_resolution": {
-            "enum": [
-              null,
-              "UNKNOWN"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "id": {
-            "pattern": "^SEED-TX-[0-9]{3}$",
-            "type": "string"
-          },
-          "kind": {
-            "enum": [
-              "REGISTER_REQUEST",
-              "SUBMIT_RESOLUTION",
-              "EVALUATE_RESOLUTION"
-            ]
-          },
-          "payload_schema": {
-            "type": "string"
-          },
-          "role": {
-            "enum": [
-              "STATE_TRANSITION",
-              "OBSERVER"
-            ]
-          },
-          "terminal": {
-            "type": "boolean"
-          },
-          "to_resolution": {
-            "enum": [
-              "UNKNOWN",
-              "ALLOW_OR_BLOCK",
-              "DERIVED"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "kind",
-          "payload_schema",
-          "from_resolution",
-          "to_resolution",
-          "authority_rule",
-          "binding_rule",
-          "created_artifacts",
-          "role",
-          "terminal"
-        ],
-        "type": "object"
-      },
-      "maxItems": 3,
-      "minItems": 3,
-      "type": "array"
     },
     "version": {
       "const": "0.3.0-alpha.1"
@@ -381,7 +381,7 @@
     "concepts",
     "requirements",
     "invariants",
-    "transitions",
+    "operations",
     "protocol_profile_ref",
     "conformance_profile_ref",
     "assurance",

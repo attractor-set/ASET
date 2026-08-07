@@ -1,19 +1,52 @@
 # Black-box audit method
 
-The final `Check` step of every PDCA cycle evaluates only the deterministic repository snapshot and the public runtime interface. It does not trust internal pass records or import the repository validator.
+The active black-box audit evaluates the exact repository snapshot from public
+repository artifacts and deterministic commands. It does not treat historical
+runtime evidence as controlling evidence for Seed 0.3.
 
-## Documentation black-box boundary
+## Active documentation boundary
 
-The snapshot auditor performs 28 independent checks: archive safety and CRC; exact manifest scope and hashes; license and citation; claim boundaries; mandatory gates and findings; frozen and expanded rc11 byte identity; requirements, traceability and conformance inventories; strict JSON; Python syntax; generated multilingual parity; migration completeness; required documents and local links; terminology and secret scanning; workflows; Git byte preservation; rc12 canon counts; canonical/runtime schema identity; installable runtime presence; bounded-profile exclusions; formal projection; absence of implicit effect adapters; residual limitations; and complete production-gate registration.
+`tools/blackbox_documentation_audit.py` checks the curated active documentation
+surface, generated multilingual Seed editions, language navigation, the active
+audit classification, implementation-neutrality claims, and prohibited legacy
+runtime/readiness claims. Every file under `audit/` must be classified as
+active, historical, or explicitly excluded by `ACTIVE_AUDIT_INDEX.json`.
 
-## Runtime black-box boundary
+The method document itself is part of the active documentation surface so that
+the description of the gate cannot silently diverge from the gate.
 
-The runtime auditor extracts the built snapshot and uses only `python -m aset_seed`. It verifies durable initialization, fail-closed invalid proof handling, accepted signed transition commit, replay idempotency, process-reopen validation, database and audit health, consistent semantic backup, exact-content HMAC binding, invalid identifier handling, corrupt-state isolation, and audit-tampering detection.
+## Canon and assurance boundary
 
-## Adversarial step
+The repository release gate independently requires:
 
-The mutation harness rebuilds a valid manifest after each malicious change. It must still reject removal or drift of required documents, generated editions, frozen rc11 bytes, Git byte policy, migration coverage, runtime files, protocol schemas, formal model, limitation records and release gates; it also rejects a secret marker, readiness overclaim, open blocking finding, and implicit network/effect import.
+- deterministic repository-view parity;
+- machine-canon and canon-package validation;
+- exhaustive finite-state saturation for the published finite fixture;
+- semantic mutation closure;
+- requirement/invariant/operation coverage;
+- assurance and proof traceability;
+- standalone canon-to-TLA projection parity;
+- TLC model checking;
+- TLAPS safety proofs;
+- TLAPS canon-to-TLA behavioral-equivalence proof;
+- specification tests, lint/sanity checks, archive construction and manifest
+  parity.
 
-Any failed mandatory check forms a finding for the next PDCA cycle. A cycle may close only with zero failed black-box checks and zero open blocking findings.
+These checks establish consistency and the declared safety properties of the
+exact candidate snapshot. They do not establish implementation production
+readiness, cryptographic security, factual truth of external evidence, or
+correctness of mechanisms intentionally outside the Seed boundary.
 
-The final documentation audit also verifies that technical freeze readiness is explicit while owner approval and exact-byte freeze remain pending.
+## Historical evidence
+
+RC11/RC12 runtime, SQLite, HMAC, permit, outcome, membership and related audit
+records are preserved as historical evidence. They are non-controlling for the
+active Seed 0.3 minimal resolution-recognition semantics unless explicitly
+listed as active by `ACTIVE_AUDIT_INDEX.json`.
+
+## Failure rule
+
+Any mandatory failing gate or unclassified active audit artifact is a blocking
+finding for the candidate snapshot. A candidate may be treated as release-gate
+closed only when the aggregate repository release gate passes for that exact
+snapshot.

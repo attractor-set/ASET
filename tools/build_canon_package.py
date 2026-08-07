@@ -43,6 +43,7 @@ BASE = [
     "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
     "seed/canonical/decisions/ADR-008-normalize-seed-state-by-construction.md",
     "seed/canonical/decisions/ADR-009-seed-state-environment-observer-and-authority-boundary.md",
+    "seed/canonical/decisions/ADR-010-unify-authority-conflict-and-operation-semantics.md",
     "seed/canonical/migration/CANON_CHANGE_DECLARATION.json",
     "seed/canonical/migration/WIRE_V2_TO_V3.md",
 ]

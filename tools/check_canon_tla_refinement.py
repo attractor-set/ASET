@@ -140,16 +140,16 @@ def main() -> int:
         "SUBMIT_RESOLUTION": "SubmitResolution",
         "EVALUATE_RESOLUTION": "EvaluateResolution",
     }
-    expected_transitions = [
+    expected_operations = [
         (item["id"], item["kind"], action_by_kind[item["kind"]])
-        for item in model["transitions"]
+        for item in model["operations"]
     ]
-    actual_transitions = [
+    actual_operations = [
         (item["id"], item["kind"], item["tla_action"])
-        for item in relation["transition_coverage"]
+        for item in relation["operation_coverage"]
     ]
-    if actual_transitions != expected_transitions:
-        errors.append("transition coverage differs from machine canon")
+    if actual_operations != expected_operations:
+        errors.append("operation coverage differs from machine canon")
 
     if set(relation["resolution_algebra_fields"]) != set(model["resolution_algebra"]):
         errors.append("resolution algebra field coverage differs from machine canon")
@@ -166,7 +166,7 @@ def main() -> int:
     projection_text = PROJECTION_PATH.read_text(encoding="utf-8") if PROJECTION_PATH.is_file() else ""
     if "EXTENDS SeedResolution" in projection_text or "INSTANCE SeedResolution" in projection_text:
         errors.append("generated projection depends on target SeedResolution module")
-    if "V4 is a standalone projection" not in projection_text:
+    if "V5 is a standalone projection" not in projection_text:
         errors.append("standalone projection marker missing")
 
     generator = subprocess.run(
@@ -195,7 +195,7 @@ def main() -> int:
         ),
         "requirements_classified": len(actual_requirements),
         "invariants_classified": len(actual_invariants),
-        "transitions_classified": len(actual_transitions),
+        "operations_classified": len(actual_operations),
         "resolution_algebra_fields_classified": len(
             relation["resolution_algebra_fields"]
         ),
@@ -219,7 +219,7 @@ def main() -> int:
     )
     print(f"CANON_TLA_INVARIANTS={len(actual_invariants)}/{len(expected_invariants)}")
     print(
-        f"CANON_TLA_TRANSITIONS={len(actual_transitions)}/{len(expected_transitions)}"
+        f"CANON_TLA_OPERATIONS={len(actual_operations)}/{len(expected_operations)}"
     )
     print(
         "CANON_TLA_RESOLUTION_ALGEBRA="

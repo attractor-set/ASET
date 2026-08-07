@@ -17,6 +17,42 @@
       ],
       "type": "object"
     },
+    "operationCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^SEED-OP-[0-9]{3}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "REGISTER_REQUEST",
+            "SUBMIT_RESOLUTION",
+            "EVALUATE_RESOLUTION"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PROVED_IN_DECLARED_PROJECTION",
+            "OBSERVER_EQUIVALENCE_PROVED"
+          ]
+        },
+        "tla_action": {
+          "enum": [
+            "RegisterRequest",
+            "SubmitResolution",
+            "EvaluateResolution"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "tla_action",
+        "status"
+      ],
+      "type": "object"
+    },
     "requirementCoverage": {
       "additionalProperties": false,
       "properties": {
@@ -69,42 +105,6 @@
         "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION",
         "META_OUTSIDE_BEHAVIORAL_MODEL"
       ]
-    },
-    "transitionCoverage": {
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "pattern": "^SEED-TX-[0-9]{3}$",
-          "type": "string"
-        },
-        "kind": {
-          "enum": [
-            "REGISTER_REQUEST",
-            "SUBMIT_RESOLUTION",
-            "EVALUATE_RESOLUTION"
-          ]
-        },
-        "status": {
-          "enum": [
-            "PROVED_IN_DECLARED_PROJECTION",
-            "OBSERVER_EQUIVALENCE_PROVED"
-          ]
-        },
-        "tla_action": {
-          "enum": [
-            "RegisterRequest",
-            "SubmitResolution",
-            "EvaluateResolution"
-          ]
-        }
-      },
-      "required": [
-        "id",
-        "kind",
-        "tla_action",
-        "status"
-      ],
-      "type": "object"
     }
   },
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/canon-tla-refinement.schema.json",
@@ -146,7 +146,7 @@
           "const": "seed/canonical/formal/SeedCanonProjection.tla"
         },
         "profile": {
-          "const": "ASET-SEED-CANON-TLA-PROJECTION-V4"
+          "const": "ASET-SEED-CANON-TLA-PROJECTION-V5"
         }
       },
       "required": [
@@ -163,6 +163,14 @@
       },
       "maxItems": 12,
       "minItems": 12,
+      "type": "array"
+    },
+    "operation_coverage": {
+      "items": {
+        "$ref": "#/$defs/operationCoverage"
+      },
+      "maxItems": 3,
+      "minItems": 3,
       "type": "array"
     },
     "proof": {
@@ -266,14 +274,6 @@
         "module"
       ],
       "type": "object"
-    },
-    "transition_coverage": {
-      "items": {
-        "$ref": "#/$defs/transitionCoverage"
-      },
-      "maxItems": 3,
-      "minItems": 3,
-      "type": "array"
     }
   },
   "required": [
@@ -288,7 +288,7 @@
     "resolution_algebra_fields",
     "requirement_coverage",
     "invariant_coverage",
-    "transition_coverage",
+    "operation_coverage",
     "abstractions",
     "excluded_claims",
     "claim_boundary"

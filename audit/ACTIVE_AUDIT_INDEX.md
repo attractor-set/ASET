@@ -6,7 +6,7 @@ This index separates the current implementation-neutral Seed candidate from hist
 
 The current candidate is Seed `0.3.0-alpha.1`. Its machine identity is [`seed/canonical/CANON_PACKAGE.json`](../seed/canonical/CANON_PACKAGE.json), and its repository claim boundary is [`REPOSITORY_STATUS.json`](../REPOSITORY_STATUS.json).
 
-Static controlling records are listed in [`ACTIVE_AUDIT_INDEX.json`](ACTIVE_AUDIT_INDEX.json). Candidate-specific executable evidence is generated under `dist/` by [`tools/repository_release_gate.py`](../tools/repository_release_gate.py). The active assurance line additionally requires complete invariant coverage and zero surviving semantic mutations as defined by [`PDCA-17-INVARIANT-CLOSURE.md`](PDCA-17-INVARIANT-CLOSURE.md).
+Static controlling records are listed in [`ACTIVE_AUDIT_INDEX.json`](ACTIVE_AUDIT_INDEX.json). Candidate-specific executable evidence is generated under `dist/` by [`tools/repository_release_gate.py`](../tools/repository_release_gate.py). The active assurance line is controlled by [`PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.md`](PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.md), which requires role-classified operation coverage, saturated finite-state exploration, zero surviving semantic mutations, TLC/TLAPS closure and standalone canon-to-TLA refinement.
 
 ## Historical records
 

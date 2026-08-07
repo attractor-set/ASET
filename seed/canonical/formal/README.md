@@ -19,15 +19,11 @@ state dimensions. `Requests` and `TerminalRequests` are partial-map domains.
 
 ## Authority and external-material boundary
 
-`RequestAuthorityBindings` and `TerminalAuthorityBindings` are immutable
-abstract recognition relations. They mean that Authority recognition has
-already succeeded for an exact binding; the formal model does not interpret
-signatures, credentials or delegation chains.
+`RecognizedAuthorityBindings` is the single immutable abstract recognition relation. It means that Authority recognition has already succeeded for an exact binding and is used consistently by both request registration and terminal submission; the formal model does not interpret signatures, credentials or delegation mechanisms.
 
 Invalid or non-authoritative material has no state variable and no artificial
 transition. It cannot enter accepted state by construction of the admission
-boundary. The TLA model covers conflict between valid terminal material as an
-environment observation.
+boundary. The TLA model covers additional distinct valid terminal material as an environment observation only after a terminal record has already been accepted.
 
 ## Checked properties
 
@@ -46,7 +42,7 @@ The final TLAPS theorem surface is:
 ## Canon-to-TLA relation
 
 `SeedCanonProjection.tla` is generated under
-`ASET-SEED-CANON-TLA-PROJECTION-V4` as a **standalone module**. It does not
+`ASET-SEED-CANON-TLA-PROJECTION-V5` as a **standalone module**. It does not
 `EXTEND` or instantiate `SeedResolution`. `SeedCanonRefinementProofs.tla`
 explicitly instantiates the standalone projection onto the handwritten model
 and proves evaluator and behavioral equivalence.

@@ -68,11 +68,11 @@ THEOREM FailClosedByEvaluator ==
 PROOF
   BY DEF FailClosed, EffectPermitted
 
-THEOREM ConflictUnknownFromTypeOK ==
-  TypeOK => ConflictUnknown
+THEOREM ConflictSoundFromTypeOK ==
+  TypeOK => ConflictSound
 PROOF
   BY ConflictedResolutionIsUnknown
-     DEF TypeOK, ConflictUnknown
+     DEF TypeOK, ConflictSound
 
 THEOREM ResolutionDomainPointwise ==
   ASSUME TypeOK,
@@ -106,10 +106,10 @@ PROOF
   BY ResolutionDomainPointwise
      DEF ResolutionDomain
 
-THEOREM TerminalUniqueFromTypeOK ==
-  TypeOK => TerminalUnique
+THEOREM AcceptedTerminalUniqueFromTypeOK ==
+  TypeOK => AcceptedTerminalUnique
 PROOF
-  BY DEF TypeOK, TerminalUnique
+  BY DEF TypeOK, AcceptedTerminalUnique
 
 THEOREM AllowSoundnessPointwise ==
   ASSUME TerminalBindingDerived,
@@ -122,7 +122,7 @@ THEOREM AllowSoundnessPointwise ==
     /\ r \in TerminalRequests
     /\ TerminalResolution(r) = "ALLOW"
     /\ <<TerminalAuthority(r), RequestBinding(r)>>
-         \in TerminalAuthorityBindings
+         \in RecognizedAuthorityBindings
 PROOF
   <1>1.
     /\ r \in Requests
@@ -132,7 +132,7 @@ PROOF
     BY AllowResolutionCharacterization
   <1>2.
     <<TerminalAuthority(r), RequestBinding(r)>>
-      \in TerminalAuthorityBindings
+      \in RecognizedAuthorityBindings
     BY <1>1 DEF TerminalAuthorityRecognized
   <1>3. QED
     BY <1>1, <1>2
@@ -150,8 +150,8 @@ PROOF
   BY ResolutionDomainFromTypeOK,
      AllowSoundnessFromStructuralInvariants,
      FailClosedByEvaluator,
-     TerminalUniqueFromTypeOK,
-     ConflictUnknownFromTypeOK
+     AcceptedTerminalUniqueFromTypeOK,
+     ConflictSoundFromTypeOK
      DEF InductiveInvariant, SeedStateSafety
 
 THEOREM InitImpliesTypeOK ==
@@ -220,6 +220,7 @@ PROOF
          TypeOK,
          RegisterRequest,
          Requests,
+         TerminalRequests,
          RequestMetaType,
          TerminalMetaType
 
@@ -423,7 +424,7 @@ THEOREM ObserveConflictPreservesTypeOK ==
   \A r \in ResolutionIds :
     TypeOK /\ ObserveConflict(r) => TypeOK'
 PROOF
-  BY DEF TypeOK, ObserveConflict, seedVars
+  BY DEF TypeOK, ObserveConflict, seedVars, TerminalRequests
 
 THEOREM ObserveConflictPreservesTerminalBindingDerived ==
   \A r \in ResolutionIds :

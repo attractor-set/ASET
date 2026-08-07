@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:392ff8e36eecb2bf6cfa9a6cbc76117025a4c7d8a170e8ddf562f1ea5df27d38",
+    "canon_package_digest": "sha256:0e1518c4ff6bd6b0da71089bfe5e1a9802929016c8ec2547024a1a0e2b84a19d",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
@@ -11,8 +11,8 @@
     "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",
     "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.md",
     "audit/REFACTORING_LOG.md",
-    "audit/PDCA-17-INVARIANT-CLOSURE.json",
-    "audit/PDCA-17-INVARIANT-CLOSURE.md"
+    "audit/PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.json",
+    "audit/PDCA-18-SEED-FINAL-SEMANTIC-CLEANUP.md"
   ],
   "classification_rules": [
     "Only active_controlling_records may support static claims about the current implementation-neutral candidate.",
@@ -55,7 +55,9 @@
     "audit/pdca/PDCA-11-PREFREEZE-BLOCKER-CLOSURE.md",
     "audit/pdca/PDCA-12-FINAL-PREFREEZE-ASSURANCE.md",
     "audit/pdca/PDCA-13-PROJECT-METADATA-AND-DOCUMENTATION-GENERATION.md",
-    "audit/pdca/PDCA-14-SEED-SEMANTIC-NUCLEUS.md"
+    "audit/pdca/PDCA-14-SEED-SEMANTIC-NUCLEUS.md",
+    "audit/PDCA-17-INVARIANT-CLOSURE.json",
+    "audit/PDCA-17-INVARIANT-CLOSURE.md"
   ],
   "index_exclusions": [
     "audit/README.md",

@@ -90,18 +90,18 @@ def render(model: dict, language: str) -> str:
     lines.extend([f'## {headings["invariants"][language]}', ""])
     for invariant in model["invariants"]:
         lines.append(f'- `{invariant["id"]}` — {invariant["texts"][language]}')
-    lines.extend(["", f'## {headings["transitions"][language]}', ""])
-    for transition in model["transitions"]:
+    lines.extend(["", f'## {headings["operations"][language]}', ""])
+    for operation in model["operations"]:
         lines.extend(
             [
-                f'### `{transition["id"]}` — `{transition["kind"]}`',
+                f'### `{operation["id"]}` — `{operation["kind"]}`',
                 "",
-                f'- `payload_schema`: `{transition["payload_schema"]}`',
-                f'- `authority_rule`: {transition["authority_rule"]}',
-                f'- `binding_rule`: {transition["binding_rule"]}',
+                f'- `payload_schema`: `{operation["payload_schema"]}`',
+                f'- `authority_rule`: {operation["authority_rule"]}',
+                f'- `binding_rule`: {operation["binding_rule"]}',
                 "- `created_artifacts`: "
                 + ", ".join(
-                    f"`{item}`" for item in transition["created_artifacts"]
+                    f"`{item}`" for item in operation["created_artifacts"]
                 ),
                 "",
             ]

@@ -23,10 +23,10 @@
     "conformance_case_required": true,
     "formal_property_required": true,
     "invariants_complete": true,
+    "operations_complete": true,
     "orphan_evidence_forbidden": true,
     "requirements_complete": true,
-    "semantic_mutation_required": true,
-    "transitions_complete": true
+    "semantic_mutation_required": true
   },
   "document_type": "aset-seed-invariant-coverage",
   "invariants": [
@@ -140,7 +140,7 @@
         "RES-NEG-015"
       ],
       "formal_properties": [
-        "TerminalUnique"
+        "AcceptedTerminalUnique"
       ],
       "id": "SEED-INV-008",
       "semantic_mutations": [
@@ -156,7 +156,7 @@
       ],
       "formal_properties": [
         "FailClosed",
-        "ConflictUnknown",
+        "ConflictSound",
         "ExternalMaterialNonAuthoritative"
       ],
       "id": "SEED-INV-009",
@@ -392,6 +392,54 @@
     }
   ],
   "normative": true,
+  "operations": [
+    {
+      "id": "SEED-OP-001",
+      "negative_cases": [
+        "RES-NEG-001",
+        "RES-NEG-002",
+        "RES-NEG-003",
+        "RES-NEG-004",
+        "RES-NEG-011",
+        "RES-NEG-012",
+        "RES-NEG-013"
+      ],
+      "positive_cases": [
+        "RES-POS-001",
+        "RES-POS-008"
+      ]
+    },
+    {
+      "id": "SEED-OP-002",
+      "negative_cases": [
+        "RES-NEG-005",
+        "RES-NEG-006",
+        "RES-NEG-007",
+        "RES-NEG-008",
+        "RES-NEG-009",
+        "RES-NEG-010",
+        "RES-NEG-016"
+      ],
+      "positive_cases": [
+        "RES-POS-002",
+        "RES-POS-003",
+        "RES-POS-004",
+        "RES-POS-005",
+        "RES-POS-007"
+      ]
+    },
+    {
+      "id": "SEED-OP-003",
+      "negative_cases": [
+        "RES-NEG-014",
+        "RES-NEG-015"
+      ],
+      "positive_cases": [
+        "RES-POS-006",
+        "RES-POS-009"
+      ]
+    }
+  ],
   "requirements": [
     {
       "conformance_cases": [
@@ -474,7 +522,7 @@
       ],
       "formal_properties": [
         "FailClosed",
-        "ConflictUnknown"
+        "ConflictSound"
       ],
       "id": "ASET-SEED-REQ-005",
       "invariants": [
@@ -547,8 +595,8 @@
         "RES-NEG-015"
       ],
       "formal_properties": [
-        "TerminalUnique",
-        "ConflictUnknown"
+        "AcceptedTerminalUnique",
+        "ConflictSound"
       ],
       "id": "ASET-SEED-REQ-009",
       "invariants": [
@@ -610,53 +658,5 @@
       ]
     }
   ],
-  "schema_version": 1,
-  "transitions": [
-    {
-      "id": "SEED-TX-001",
-      "negative_cases": [
-        "RES-NEG-001",
-        "RES-NEG-002",
-        "RES-NEG-003",
-        "RES-NEG-004",
-        "RES-NEG-011",
-        "RES-NEG-012",
-        "RES-NEG-013"
-      ],
-      "positive_cases": [
-        "RES-POS-001",
-        "RES-POS-008"
-      ]
-    },
-    {
-      "id": "SEED-TX-002",
-      "negative_cases": [
-        "RES-NEG-005",
-        "RES-NEG-006",
-        "RES-NEG-007",
-        "RES-NEG-008",
-        "RES-NEG-009",
-        "RES-NEG-010",
-        "RES-NEG-016"
-      ],
-      "positive_cases": [
-        "RES-POS-002",
-        "RES-POS-003",
-        "RES-POS-004",
-        "RES-POS-005",
-        "RES-POS-007"
-      ]
-    },
-    {
-      "id": "SEED-TX-003",
-      "negative_cases": [
-        "RES-NEG-014",
-        "RES-NEG-015"
-      ],
-      "positive_cases": [
-        "RES-POS-006",
-        "RES-POS-009"
-      ]
-    }
-  ]
+  "schema_version": 1
 }

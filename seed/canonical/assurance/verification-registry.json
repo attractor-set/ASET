@@ -91,7 +91,7 @@
     {
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
-      "name": "TerminalUnique",
+      "name": "AcceptedTerminalUnique",
       "projection_status": "STRUCTURAL_BY_CONSTRUCTION",
       "seed_invariants": [
         "SEED-INV-008"
@@ -103,7 +103,7 @@
     {
       "engine": "TLA_TLC",
       "kind": "STATE_INVARIANT",
-      "name": "ConflictUnknown",
+      "name": "ConflictSound",
       "projection_status": "BOUNDED_ABSTRACTION",
       "seed_invariants": [
         "SEED-INV-009"
@@ -244,12 +244,12 @@
     }
   ],
   "normative": true,
-  "schema_version": 4,
-  "transition_case_policy": {
+  "operation_case_policy": {
     "declared_exceptions": [],
     "require_negative_case": true,
     "require_positive_case": true
   },
+  "schema_version": 4,
   "verification_methods": [
     {
       "evidence": "seed/canonical/conformance/conformance-profile.json",

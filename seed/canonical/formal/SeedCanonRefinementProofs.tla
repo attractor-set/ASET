@@ -2,7 +2,7 @@
 EXTENDS SeedResolution, TLAPS
 
 (*
-Behavioral equivalence proof for projection profile V4.
+Behavioral equivalence proof for projection profile V5.
 
 SeedCanonProjection is standalone and does not import SeedResolution. The
 instance below explicitly maps the generated projection constants and state
@@ -18,8 +18,7 @@ Canon == INSTANCE SeedCanonProjection
        TerminalCommitments <- TerminalCommitments,
        RecognizedTerminalCommitments <- RecognizedTerminalCommitments,
        NoCommitment <- NoCommitment,
-       RequestAuthorityBindings <- RequestAuthorityBindings,
-       TerminalAuthorityBindings <- TerminalAuthorityBindings,
+       RecognizedAuthorityBindings <- RecognizedAuthorityBindings,
        requestMeta <- requestMeta,
        terminalMeta <- terminalMeta,
        conflicts <- conflicts

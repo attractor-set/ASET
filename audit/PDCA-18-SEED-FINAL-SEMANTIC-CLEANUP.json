@@ -1,0 +1,43 @@
+{
+  "act": {
+    "freeze_rule": "After this cleanup, further Seed changes should strengthen assurance or fix demonstrated semantic defects; new capabilities belong in extensions.",
+    "release_rule": "The exact candidate must pass canon validation, saturated finite-state exploration, semantic mutations, operation coverage, TLC, TLAPS, standalone canon-to-TLA refinement and the repository release gate."
+  },
+  "candidate": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
+  "check": {
+    "required_results": {
+      "canon_operations": "3 = 2 state transitions + 1 observer",
+      "invariants": "12/12",
+      "requirements": "12/12",
+      "semantic_mutations": "13/13 killed",
+      "standalone_projection": "V5 parity + TLAPS refinement proof",
+      "tlaps": "REQUIRED_BY_RELEASE_GATE",
+      "tlc": "REQUIRED_BY_RELEASE_GATE"
+    }
+  },
+  "cycle_id": "PDCA-18",
+  "do": {
+    "changes": [
+      "unified request and terminal Authority admission under RecognizedAuthorityBindings",
+      "restricted conflict observation to already accepted terminal resolutions",
+      "renamed terminal uniqueness to AcceptedTerminalUnique and strengthened conflict semantics as ConflictSound",
+      "replaced the machine-canon transitions catalogue with a role-classified operations catalogue",
+      "moved operation identifiers from SEED-TX-* to SEED-OP-*",
+      "advanced the standalone canon-to-TLA projection profile to V5",
+      "updated active black-box audit methodology and made that methodology part of the audited documentation surface",
+      "recorded the cleanup in ADR-010 and the active audit line"
+    ]
+  },
+  "document_type": "aset-pdca-seed-final-semantic-cleanup",
+  "plan": {
+    "constraints": [
+      "do not add new Seed capabilities",
+      "preserve implementation neutrality",
+      "preserve the wire-level single AuthorityBinding semantics",
+      "preserve historical RC11/RC12 evidence as non-controlling history"
+    ],
+    "objective": "Remove the final formal/wire and terminology mismatches from the Seed 0.3 minimal resolution kernel."
+  },
+  "schema_version": 1,
+  "verdict": "FINAL_SEMANTIC_CLEANUP_DEFINED"
+}

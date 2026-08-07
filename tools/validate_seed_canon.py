@@ -79,17 +79,17 @@ def main() -> int:
         ids = [item["id"] for item in model[group]]
         if len(ids) != len(set(ids)):
             errors.append("duplicate:" + group)
-    kinds = [item["kind"] for item in model["transitions"]]
+    kinds = [item["kind"] for item in model["operations"]]
     expected_kinds = [
         "REGISTER_REQUEST",
         "SUBMIT_RESOLUTION",
         "EVALUATE_RESOLUTION",
     ]
     if kinds != expected_kinds:
-        errors.append("transition_catalogue")
-    roles = [item.get("role") for item in model["transitions"]]
+        errors.append("operation_catalogue")
+    roles = [item.get("role") for item in model["operations"]]
     if roles != ["STATE_TRANSITION", "STATE_TRANSITION", "OBSERVER"]:
-        errors.append("transition_roles")
+        errors.append("operation_roles")
     if model["resolution_algebra"] != {
         "values": ["UNKNOWN", "ALLOW", "BLOCK"],
         "derived": "UNKNOWN",
@@ -210,7 +210,13 @@ def main() -> int:
     print(f"SEED_CONCEPTS={len(model['concepts'])}")
     print(f"SEED_REQUIREMENTS={len(model['requirements'])}")
     print(f"SEED_INVARIANTS={len(model['invariants'])}")
-    print(f"SEED_TRANSITIONS={len(model['transitions'])}")
+    print(f"SEED_OPERATIONS={len(model['operations'])}")
+    state_transition_count = sum(
+        item.get("role") == "STATE_TRANSITION" for item in model["operations"]
+    )
+    observer_count = sum(item.get("role") == "OBSERVER" for item in model["operations"])
+    print(f"SEED_STATE_TRANSITIONS={state_transition_count}")
+    print(f"SEED_OBSERVERS={observer_count}")
     print(f"SEED_CONFORMANCE_CASES={profile['case_count']}")
     print("SEED_CANON_VALIDATION=PASS")
     return 0
