@@ -14,57 +14,48 @@ These instructions apply to the entire repository. More specific instructions ma
 - Add only code required by the current goal.
 - Do not introduce speculative abstractions, adapters, configuration, services, or extension points.
 - Prefer one clear implementation over a framework for hypothetical implementations.
-- Refactor code introduced by the current change when a smaller design provides the same verified behavior.
+- Refactor only when the smaller design preserves the verified behavior and stated boundary.
 
 ## Surgical changes
 
-- Every changed line must trace to the requested behavior, a failing test, or an audit finding.
+- Every changed line must trace to requested behavior, a failing check, or an audit finding.
 - Do not reformat, rename, or clean adjacent code without a direct need.
-- Preserve existing style and public behavior unless the task explicitly changes them.
-- Remove only imports, variables, functions, and files made obsolete by the current change.
-- Never modify `seed/releases/0.1-rc11/`; it is an immutable frozen release.
+- Preserve public behavior unless the task explicitly changes it.
+- Never modify `seed/releases/0.1-rc11/`; it is immutable historical release evidence.
+- Never move or rewrite an existing protected semantic-freeze tag.
 
 ## Goal-driven execution
 
-For each non-trivial change, use this form:
+For each non-trivial change:
 
-1. state the intended behavior and assumptions;
+1. state intended behavior and assumptions;
 2. add or identify a reproducing test or machine check;
 3. make the smallest implementation change;
-4. run focused tests;
+4. run focused checks;
 5. run regression and release checks;
-6. perform a full black-box audit of the built snapshot.
+6. inspect the built snapshot independently of internal success claims.
 
-A task is not complete because code was written. It is complete only when stated success criteria are machine-verifiable and pass.
+A task is complete only when its success criteria are machine-verifiable and pass.
 
 ## PDCA requirement
 
-Multi-step work must use Deming cycles. Each cycle records Plan, Do, Check, and Act. The final step of every cycle is a black-box analysis of the built project, independent of internal success claims. Findings from that analysis define the next cycle.
-
-Regular refactoring is required only when it strengthens or simplifies the model without widening scope. Refactoring must preserve regression results and be recorded in `audit/REFACTORING_LOG.md`.
+Multi-step work uses Deming cycles: Plan, Do, Check, Act. Findings from the Check step define the next cycle. Refactoring must not widen scope or weaken verified boundaries.
 
 ## ASET Seed boundaries
 
-- The current stable release is immutable ASET Seed 0.1-rc11 until a separately identified rc12 release is frozen.
-- The specification repository makes no embedded runtime production claim.
-- Implementation-profile guarantees are external to the Seed canon and must be claimed and tested separately.
-- The default proof verifier rejects all proofs.
-- Do not add implicit network, subprocess, tool, or physical-effect execution to the Seed runtime.
-- Do not claim distributed consensus, multi-primary safety, physical-world truth, deployment key management, universal formal proof, or external certification.
-- External third-party audit remains `PENDING` until exact release bytes receive an externally published audit.
+- The active Seed source is `seed/canonical/` at version `0.3.0-alpha.1`.
+- The semantic baseline is frozen by `seed-0.3.0-alpha.1-semantic-freeze`.
+- Frozen Seed semantics change only through an explicitly versioned future Seed revision.
+- Demonstrated defect fixes, assurance strengthening, and non-semantic documentation or metadata cleanup may proceed without redefining Seed semantics.
+- New capabilities belong in external extensions or implementations and have no semantic precedence over the Seed canon.
+- The repository makes no embedded production-runtime claim.
+- Concrete cryptographic providers, Authority grant-chain validation, storage, durability, networking, consensus, orchestration, evidence acquisition, AI models, and external effects remain outside Seed semantics unless a future canon revision states otherwise.
+- External third-party audit remains `PENDING` while the canon declares it so.
 
 ## Required verification
 
-A release-candidate change must pass all mandatory gates in `seed/canonical/assurance/repository-release-gates.json`, including:
+The authoritative release-gate list is `seed/canonical/assurance/repository-release-gates.json`.
 
-- canonical and generated-view parity;
-- frozen rc11 working-tree and Git-stored byte identity;
-- 55-vector semantic conformance and 252 branch guards;
-- bounded formal model checking;
-- unit, integration, security, and concurrency tests;
-- Ruff and real PySHACL validation;
-- installable wheel verification;
-- deterministic snapshot construction;
-- documentation, runtime, and adversarial black-box audits.
+Do not duplicate historical gate counts in engineering instructions. Run the gates declared by the current canon and tooling, including generated-view parity, canon/package validation, frozen-release integrity, finite-state checks, tests and static analysis, manifest/snapshot integrity, traceability, documentation audit, compatibility classification, invariant mutation/coverage, TLC, TLAPS, and canon-to-TLA refinement.
 
-Failure of any mandatory gate blocks commit, merge, or release promotion.
+Failure of a mandatory gate blocks merge or release promotion. Never weaken a gate merely to make a change pass.

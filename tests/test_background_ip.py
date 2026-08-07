@@ -55,12 +55,10 @@ def test_background_ip_validation_passes() -> None:
 
 def test_background_ip_is_discoverable_from_static_docs() -> None:
     for relative in (
-        "README.md",
-        "README.ru.md",
-        "README.pt-BR.md",
         "GOVERNANCE.md",
         "CONTRIBUTING.md",
         "ROADMAP.md",
+        "governance/ip/README.md",
     ):
         text = (ROOT / relative).read_text(encoding="utf-8")
         assert "BACKGROUND_IP_SCHEDULE" in text

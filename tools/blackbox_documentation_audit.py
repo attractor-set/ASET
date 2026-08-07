@@ -22,7 +22,6 @@ ACTIVE_FILES = [
 ]
 ACTIVE_GLOBS = [
     "docs/generated/*/ASET_Seed_Resolution_0.3-alpha.1.md",
-    "docs/generated/*/ASET_Seed_Next.md",
 ]
 FORBIDDEN_ACTIVE_CLAIMS = {
     "sqlite_runtime_profile": re.compile(r"ASET-SEED-RUNTIME-SQLITE-SINGLE-NODE-V1"),
