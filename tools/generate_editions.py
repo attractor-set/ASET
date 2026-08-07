@@ -12,11 +12,14 @@ OUTPUTS = {
     "en": ROOT / "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
     "pt-BR": ROOT / "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
 }
-LEGACY_OUTPUTS = {
-    "ru": ROOT / "docs/generated/ru/ASET_Seed_Next.md",
-    "en": ROOT / "docs/generated/en/ASET_Seed_Next.md",
-    "pt-BR": ROOT / "docs/generated/pt-BR/ASET_Seed_Next.md",
-}
+DEPRECATED_OUTPUTS = (
+    ROOT / "docs/generated/ru/ASET_Seed_Next.md",
+    ROOT / "docs/generated/en/ASET_Seed_Next.md",
+    ROOT / "docs/generated/pt-BR/ASET_Seed_Next.md",
+    ROOT / "docs/generated/ru/ASET_Seed_0.1-rc12.md",
+    ROOT / "docs/generated/en/ASET_Seed_0.1-rc12.md",
+    ROOT / "docs/generated/pt-BR/ASET_Seed_0.1-rc12.md",
+)
 
 
 def canonical_bytes(value: object) -> bytes:
@@ -122,22 +125,28 @@ def render(model: dict, language: str) -> str:
 
 def expected_outputs() -> dict[Path, str]:
     model = load_model()
-    outputs = {path: render(model, language) for language, path in OUTPUTS.items()}
-    outputs.update({path: outputs[OUTPUTS[language]] for language, path in LEGACY_OUTPUTS.items()})
-    return outputs
+    return {path: render(model, language) for language, path in OUTPUTS.items()}
 
 
 def generate() -> int:
+    removed = 0
+    for path in DEPRECATED_OUTPUTS:
+        if path.exists():
+            path.unlink()
+            removed += 1
     for path, content in expected_outputs().items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
     print("GENERATED_EDITIONS=3")
-    print("GENERATED_COMPATIBILITY_ALIASES=3")
+    print(f"GENERATED_DEPRECATED_EDITIONS_REMOVED={removed}")
     return 0
 
 
 def check() -> int:
     failures = []
+    for path in DEPRECATED_OUTPUTS:
+        if path.exists():
+            failures.append(f"deprecated-present:{path.relative_to(ROOT)}")
     for path, expected in expected_outputs().items():
         if not path.is_file():
             failures.append(f"missing:{path.relative_to(ROOT)}")

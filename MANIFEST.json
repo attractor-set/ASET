@@ -53,8 +53,8 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "sha256:0e93c29376700aaa74f528365e7546526e3baf7172bb131d9a51ed6e6a12d362",
-      "size_bytes": 3694
+      "sha256": "sha256:25361e239ab5b701a4005c0e165a86637eee9cf63aa058d50879640fac8b0bac",
+      "size_bytes": 3529
     },
     {
       "path": "BACKGROUND_IP_SCHEDULE.md",
@@ -118,23 +118,23 @@
     },
     {
       "path": "NOTICE",
-      "sha256": "sha256:d291987f5add5a7c021931f57e2114bfeeecb367a02b4604c26c25435dc27452",
-      "size_bytes": 340
+      "sha256": "sha256:07c48646e5788d0671a54c86c41ced56ce054100921ffd7361b53ce25fc88834",
+      "size_bytes": 362
     },
     {
       "path": "README.md",
-      "sha256": "sha256:1bfec90dd704e5a7c9f9e87cd38b9a4c1756cb9d038de291073e1b0ee77e0483",
-      "size_bytes": 1124
+      "sha256": "sha256:bd52cd5ff0ccb13464af5ddb1b0d2f0dca5ef030a1878d74b7481838bd24ce86",
+      "size_bytes": 1052
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:9c2b5e770a9bed2835e78ff23d86d974fc64df72c01dd0e1adf2f882b451f277",
-      "size_bytes": 1243
+      "sha256": "sha256:88408cc086e3d9ef64a1b3bf1a1edca86b96a0a9f71e41ef10828da1e2299f21",
+      "size_bytes": 1171
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:e138e652feecf73a1fe5ce8751e3f8f10cbe5ab174a6df5cb9dddf42b6d37c41",
-      "size_bytes": 1722
+      "sha256": "sha256:80d3bd0f9a0bfe6d3b1b34a3070c9a74271171bd17858d98219a58091e715d68",
+      "size_bytes": 1650
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -148,8 +148,8 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "sha256:97771797069da84af6af470a1969948d7df6d2ae5e1ab4e0e9d878c6738a5be2",
-      "size_bytes": 972
+      "sha256": "sha256:f43e6651a9fdad36995c739eaa826a817a5dcbde2c9291a126c12f80ba97f74a",
+      "size_bytes": 1695
     },
     {
       "path": "audit/ACTIVE_AUDIT_INDEX.json",
@@ -303,18 +303,8 @@
     },
     {
       "path": "docs/generated/README.md",
-      "sha256": "sha256:0639d06a9e42e96a46a3c891411a5cf7a2ece73d24c16a6739f18f7e8db061c0",
-      "size_bytes": 731
-    },
-    {
-      "path": "docs/generated/en/ASET_Seed_0.1-rc12.md",
-      "sha256": "sha256:a325273ac4a4c68dbb3c387b5672d0d2a98e7dde8c5b17124a7540a89bfd3c96",
-      "size_bytes": 20152
-    },
-    {
-      "path": "docs/generated/en/ASET_Seed_Next.md",
-      "sha256": "sha256:cc8db0a091b1b7065ea50583e2190b0325b59efdc6dfe2e47e1ae64df5e6c656",
-      "size_bytes": 11789
+      "sha256": "sha256:10937ac579640b2be9dd0cea7a13e114086795c1d09c3280923baed8dbd5ee79",
+      "size_bytes": 713
     },
     {
       "path": "docs/generated/en/ASET_Seed_Resolution_0.3-alpha.1.md",
@@ -322,29 +312,9 @@
       "size_bytes": 11789
     },
     {
-      "path": "docs/generated/pt-BR/ASET_Seed_0.1-rc12.md",
-      "sha256": "sha256:5416399261958c0a6bffc17de50d556ff0bef1a41cb36465c3dfcb5f909ebf3d",
-      "size_bytes": 21531
-    },
-    {
-      "path": "docs/generated/pt-BR/ASET_Seed_Next.md",
-      "sha256": "sha256:c89f8dfa3303c3d7d7f3626ec9ce55b6a85076786cb6d9ee5f5bca6919c4f5b2",
-      "size_bytes": 12541
-    },
-    {
       "path": "docs/generated/pt-BR/ASET_Seed_Resolution_0.3-alpha.1.md",
       "sha256": "sha256:c89f8dfa3303c3d7d7f3626ec9ce55b6a85076786cb6d9ee5f5bca6919c4f5b2",
       "size_bytes": 12541
-    },
-    {
-      "path": "docs/generated/ru/ASET_Seed_0.1-rc12.md",
-      "sha256": "sha256:cd0ad252295c9856840960f3608916961b85d7466ed0d93d6fe2c13f4925412a",
-      "size_bytes": 28882
-    },
-    {
-      "path": "docs/generated/ru/ASET_Seed_Next.md",
-      "sha256": "sha256:adea55c232c339a2107e4d7c408c8bf85d9fe7dc7e7be2a5a571da341e042dac",
-      "size_bytes": 16760
     },
     {
       "path": "docs/generated/ru/ASET_Seed_Resolution_0.3-alpha.1.md",
@@ -753,8 +723,8 @@
     },
     {
       "path": "seed/canonical/protocol/README.md",
-      "sha256": "sha256:c80ad3eab8fa110dc83214355fa19eb5643156945e79f0c83104e7c282ab779d",
-      "size_bytes": 682
+      "sha256": "sha256:610ff9ed2b41d1bd71ad0560e7d6ca5e04e751b97c2eda75b56e620ce997728b",
+      "size_bytes": 630
     },
     {
       "path": "seed/canonical/protocol/digest-profile.json",
@@ -1873,8 +1843,8 @@
     },
     {
       "path": "seed/releases/README.md",
-      "sha256": "sha256:c23fb3f63d0d6a4d4ea9a7c27f52d9e207385f2c9239e419be1365cb25dc1a41",
-      "size_bytes": 462
+      "sha256": "sha256:5764408106b867012b51e9cfd56d05262904dc77b8fbd9e8859ffa37bbab8437",
+      "size_bytes": 796
     },
     {
       "path": "tests/test_audit_index_and_onboarding.py",
@@ -1883,8 +1853,8 @@
     },
     {
       "path": "tests/test_background_ip.py",
-      "sha256": "sha256:268d0b124b4293d3ffaa40c4089d191cfa4301eae371c4c2a004e72d487ea7dd",
-      "size_bytes": 2310
+      "sha256": "sha256:9a45515699300a3d977a9cd78b0ffccdcd47500830fb89fb1c2d23ef73923695",
+      "size_bytes": 2273
     },
     {
       "path": "tests/test_background_ip_supplement.py",
@@ -1943,8 +1913,8 @@
     },
     {
       "path": "tools/blackbox_documentation_audit.py",
-      "sha256": "sha256:c2893e68466ee90075f78ad984b3837bc75fdc893ba24013f5061402f239aa88",
-      "size_bytes": 4092
+      "sha256": "sha256:1614d45e74f6047947fea6bfacad54d30885b606c115394e5ee0c487d701fe3a",
+      "size_bytes": 4050
     },
     {
       "path": "tools/build_canon_package.py",
@@ -1993,13 +1963,13 @@
     },
     {
       "path": "tools/generate_editions.py",
-      "sha256": "sha256:085e795b3913bcf5cb5be5751292de6a321b6cf6744cd1cdea2f77813024f616",
-      "size_bytes": 5805
+      "sha256": "sha256:9277a33e20004fb0ea452b38fdb9eebb9db9d43965a156d51235c6b374b09d1f",
+      "size_bytes": 6113
     },
     {
       "path": "tools/generate_project_metadata.py",
-      "sha256": "sha256:20798bb81d05d46f2c3625d904fd0560a0425566e617a64ea17b0975be1985a9",
-      "size_bytes": 8696
+      "sha256": "sha256:29ea142bcd00f1ea3a9d247bf5750fa28ddfe413d1e4285ae9bba155738d46ae",
+      "size_bytes": 8678
     },
     {
       "path": "tools/generate_repository_views.py",
@@ -2117,7 +2087,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 423,
+  "files_count": 417,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

@@ -18,5 +18,3 @@ Only one unique valid, locally recognized and exact-binding `ALLOW` record permi
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — non-normative reference implementation.
 
 Normative source: [Seed canon](seed/canonical/README.md).
-
-Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).

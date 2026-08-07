@@ -18,5 +18,3 @@ Somente um registro `ALLOW` único, válido, exatamente vinculado e reconhecido 
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — implementação de referência não normativa.
 
 Fonte normativa: [cânone Seed](seed/canonical/README.md).
-
-Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).

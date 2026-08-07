@@ -18,5 +18,3 @@ UNKNOWN | ALLOW | BLOCK
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — ненормативная эталонная реализация.
 
 Нормативный источник: [канон Seed](seed/canonical/README.md).
-
-Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).

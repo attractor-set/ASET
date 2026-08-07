@@ -5,8 +5,7 @@ This directory contains only schemas declared by
 
 Older RC11/RC12 permit, outcome, membership, context-lifecycle and federation
 schemas are not part of the active Seed 0.3 protocol. Their immutable historical
-copies remain in frozen release bundles and historical generated editions under
-`seed/releases/` and `docs/generated/*/ASET_Seed_0.1-rc12.md`.
+copies remain in frozen release bundles, migration records, audit records and Git history.
 
 The active protocol intentionally exposes an exact-binding Authority recognition
 record rather than a grant-chain interpreter. `authority_evidence_digests` in a

@@ -19,5 +19,5 @@ Check committed parity without changing files with:
 python tools/generate_repository_views.py --check
 ```
 
-ASET Seed 0.3 alpha 1 is the active minimal strong-core candidate.
-Historical Seed files remain immutable migration evidence; legacy component material is externalized.
+ASET Seed 0.3 alpha 1 is the active frozen semantic baseline.
+Historical release evidence remains immutable under `seed/releases/` and in Git history.
