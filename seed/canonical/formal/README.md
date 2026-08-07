@@ -29,7 +29,8 @@ boundary. The TLA model covers additional distinct valid terminal material as an
 
 `SeedResolution.cfg` registers ten state invariants and four temporal safety
 properties. The Python finite model checker explores its published finite
-fixture to saturation; TLC independently checks the TLA model.
+fixture to saturation and reports unique labelled graph edges separately from
+generated action instances; TLC independently checks the TLA model.
 
 The final TLAPS theorem surface is:
 

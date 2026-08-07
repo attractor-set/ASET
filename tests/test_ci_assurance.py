@@ -100,6 +100,13 @@ def test_assurance_traceability_tool_passes_after_model_check(tmp_path):
         check=False,
     )
     assert first.returncode == 0, first.stdout + first.stderr
+    report = json.loads(model_report.read_text(encoding="utf-8"))
+    assert report["saturated"] is True
+    assert report["states"] == 1849
+    assert report["transitions"] == 3612
+    assert report["transition_metric"] == "unique_labelled_graph_edges"
+    assert report["generated_action_instances"] == 3870
+    assert report["duplicate_action_instances"] == 258
     second = subprocess.run(
         [
             sys.executable,

@@ -7,6 +7,7 @@
   "check": {
     "required_results": {
       "canon_operations": "3 = 2 state transitions + 1 observer",
+      "finite_model_transition_metric": "unique graph edges reported separately from generated action instances",
       "invariants": "12/12",
       "requirements": "12/12",
       "semantic_mutations": "13/13 killed",
@@ -25,7 +26,8 @@
       "moved operation identifiers from SEED-TX-* to SEED-OP-*",
       "advanced the standalone canon-to-TLA projection profile to V5",
       "updated active black-box audit methodology and made that methodology part of the audited documentation surface",
-      "recorded the cleanup in ADR-010 and the active audit line"
+      "recorded the cleanup in ADR-010 and the active audit line",
+      "clarified finite-model transition metrics by separating unique labelled graph edges from generated action instances"
     ]
   },
   "document_type": "aset-pdca-seed-final-semantic-cleanup",
