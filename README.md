@@ -2,7 +2,9 @@
 
 # ASET
 
-ASET is an open, implementation-neutral specification for a minimal authority-scoped resolution kernel.
+**ASET — Authority-Seeded Evidence Trail.**
+
+ASET is an open, implementation-neutral specification for a minimal authority-scoped resolution kernel. Here, *seeded* means that admissibility originates from an explicitly recognized Authority binding; no particular cryptographic signature mechanism is required by the Seed.
 
 ```text
 UNKNOWN | ALLOW | BLOCK

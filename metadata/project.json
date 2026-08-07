@@ -24,7 +24,7 @@
   },
   "description": "ASET is an open, implementation-neutral specification for a minimal authority-scoped UNKNOWN, ALLOW or BLOCK resolution-recognition kernel.",
   "document_type": "aset-project-metadata",
-  "expanded_name": "Authority-Signed Evidence Trail",
+  "expanded_name": "Authority-Seeded Evidence Trail",
   "languages": [
     "en",
     "ru",
