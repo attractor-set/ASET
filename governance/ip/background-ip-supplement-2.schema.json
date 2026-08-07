@@ -1,0 +1,386 @@
+{
+  "$defs": {
+    "asset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_classes": {
+          "items": {
+            "pattern": "^[A-Z0-9_]+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "asset_id": {
+          "pattern": "^BI-S2-[0-9]{3}$",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "paths": {
+          "items": {
+            "$ref": "#/$defs/path"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "qualification": {
+          "minLength": 40,
+          "type": "string"
+        },
+        "repository_id": {
+          "const": "ASET_SPECIFICATION"
+        }
+      },
+      "required": [
+        "asset_classes",
+        "asset_id",
+        "name",
+        "paths",
+        "qualification",
+        "repository_id"
+      ],
+      "type": "object"
+    },
+    "creator": {
+      "additionalProperties": false,
+      "properties": {
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "pseudonym_is_separate_legal_entity": {
+          "const": false
+        },
+        "public_profile_url": {
+          "const": "https://github.com/attractor-set"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        }
+      },
+      "required": [
+        "legal_name",
+        "pseudonym_is_separate_legal_entity",
+        "public_profile_url",
+        "public_pseudonym"
+      ],
+      "type": "object"
+    },
+    "holder": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_to_legal_entity": {
+          "const": false
+        },
+        "basis": {
+          "const": "INDEPENDENT_CREATION_AND_CONTINUITY_FROM_PARENT_SCHEDULE"
+        },
+        "legal_name": {
+          "const": "Dzmitry Prychyna"
+        },
+        "public_pseudonym": {
+          "const": "Attractor Set"
+        },
+        "type": {
+          "const": "NATURAL_PERSON"
+        }
+      },
+      "required": [
+        "assignment_to_legal_entity",
+        "basis",
+        "legal_name",
+        "public_pseudonym",
+        "type"
+      ],
+      "type": "object"
+    },
+    "path": {
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+      "type": "string"
+    },
+    "priorSupplement": {
+      "additionalProperties": false,
+      "properties": {
+        "document_path": {
+          "const": "governance/ip/background-ip-supplement-1.json"
+        },
+        "document_sha256": {
+          "const": "sha256:bc17a7314f83752ce6a2d6b458e41f2f5f7c4b49d1d8ac695170389f4166c607"
+        },
+        "supplement_id": {
+          "const": "ASET-BACKGROUND-IP-SUPPLEMENT-1"
+        },
+        "supplement_version": {
+          "const": "1.0"
+        }
+      },
+      "required": [
+        "document_path",
+        "document_sha256",
+        "supplement_id",
+        "supplement_version"
+      ],
+      "type": "object"
+    },
+    "releaseCutoff": {
+      "additionalProperties": false,
+      "properties": {
+        "canon_package_digest": {
+          "const": "sha256:0f0a51e4655fac186a70445f717027e42f1adc7a722f99b2eecf4dd3a2410c8d"
+        },
+        "canon_package_file_sha256": {
+          "const": "sha256:d18bb95f0650be8f5e0356cecb79413d06b9696c0ca20d2ecd8d84857db2eae7"
+        },
+        "canon_package_path": {
+          "const": "seed/canonical/CANON_PACKAGE.json"
+        },
+        "commit_sha": {
+          "const": "ade1e2fe58c34ca4fa53695ea9e2ec3d08552518"
+        },
+        "manifest_files_count": {
+          "const": 417
+        },
+        "manifest_path": {
+          "const": "MANIFEST.json"
+        },
+        "manifest_sha256": {
+          "const": "sha256:438725020438178b28a7f7a814dc25dd407ee122039e798b106f23a7f19aeff3"
+        },
+        "name": {
+          "const": "ASET"
+        },
+        "release_is_prerelease": {
+          "const": true
+        },
+        "release_tag": {
+          "const": "seed-0.3.0-alpha.1"
+        },
+        "release_tag_object_sha": {
+          "const": "03eaa7c36c4cbf938e43d39ece7a3d1ef69f2d13"
+        },
+        "release_url": {
+          "const": "https://github.com/attractor-set/ASET/releases/tag/seed-0.3.0-alpha.1"
+        },
+        "repository_id": {
+          "const": "ASET_SPECIFICATION"
+        },
+        "semantic_freeze_commit_sha": {
+          "const": "a96689b1f1da17ac126058f5ee0175c90df3ef4f"
+        },
+        "semantic_freeze_tag": {
+          "const": "seed-0.3.0-alpha.1-semantic-freeze"
+        },
+        "semantic_freeze_tag_object_sha": {
+          "const": "7004dcfebf5bd9566fa70a53c7da00c36aaf069c"
+        },
+        "source": {
+          "const": "GITHUB_ANNOTATED_RELEASE_TAG_AND_RELEASED_COMMIT_MANIFEST"
+        },
+        "url": {
+          "const": "https://github.com/attractor-set/ASET"
+        }
+      },
+      "required": [
+        "canon_package_digest",
+        "canon_package_file_sha256",
+        "canon_package_path",
+        "commit_sha",
+        "manifest_files_count",
+        "manifest_path",
+        "manifest_sha256",
+        "name",
+        "release_is_prerelease",
+        "release_tag",
+        "release_tag_object_sha",
+        "release_url",
+        "repository_id",
+        "semantic_freeze_commit_sha",
+        "semantic_freeze_tag",
+        "semantic_freeze_tag_object_sha",
+        "source",
+        "url"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/governance/ip/background-ip-supplement-2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "added_assets": {
+      "items": {
+        "$ref": "#/$defs/asset"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    },
+    "amendment_rule": {
+      "const": "NEW_SUPPLEMENT_OR_VERSION_NEW_CUTOFF_PRESERVE_PARENT_AND_PRIOR_SUPPLEMENTS"
+    },
+    "brazil_profile": {
+      "additionalProperties": false,
+      "properties": {
+        "applicable_frameworks": {
+          "const": [
+            "LEI_9609_1998",
+            "LEI_9610_1998",
+            "LEI_10973_2004",
+            "DECRETO_9283_2018"
+          ]
+        },
+        "future_company_assignment_required": {
+          "const": true
+        },
+        "inpi_registration_required_for_protection": {
+          "const": false
+        },
+        "inpi_registration_status": {
+          "enum": [
+            "NOT_FILED",
+            "FILED",
+            "REGISTERED"
+          ]
+        },
+        "recommended_contract_annex": {
+          "const": "PROPRIEDADE_INTELECTUAL_PREEXISTENTE"
+        },
+        "university_partnership_rule": {
+          "minLength": 40,
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicable_frameworks",
+        "future_company_assignment_required",
+        "inpi_registration_required_for_protection",
+        "inpi_registration_status",
+        "recommended_contract_annex",
+        "university_partnership_rule"
+      ],
+      "type": "object"
+    },
+    "confidential_evidence_rule": {
+      "minLength": 40,
+      "type": "string"
+    },
+    "continuity_declaration": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_to_company_laboratory_university_or_investor": {"const": false},
+        "client_deliverable": {"const": false},
+        "commissioned_by_current_employer": {"const": false},
+        "current_employer_confidential_information_used": {"const": false},
+        "current_employer_directed_or_supervised": {"const": false},
+        "current_employer_funding_used": {"const": false},
+        "current_employer_resources_used": {"const": false},
+        "developed_outside_employment_scope": {"const": true},
+        "own_equipment_accounts_storage_tools_and_time_used": {"const": true},
+        "statement_basis": {"const": "DECLARATION_BY_CREATOR"}
+      },
+      "required": [
+        "assignment_to_company_laboratory_university_or_investor",
+        "client_deliverable",
+        "commissioned_by_current_employer",
+        "current_employer_confidential_information_used",
+        "current_employer_directed_or_supervised",
+        "current_employer_funding_used",
+        "current_employer_resources_used",
+        "developed_outside_employment_scope",
+        "own_equipment_accounts_storage_tools_and_time_used",
+        "statement_basis"
+      ],
+      "type": "object"
+    },
+    "creator": {"$ref": "#/$defs/creator"},
+    "current_rights_holder": {"$ref": "#/$defs/holder"},
+    "cutoffs": {
+      "items": false,
+      "maxItems": 1,
+      "minItems": 1,
+      "prefixItems": [
+        {"$ref": "#/$defs/releaseCutoff"}
+      ],
+      "type": "array"
+    },
+    "document_type": {"const": "aset-background-ip-supplement"},
+    "effective_date": {"const": "2026-08-07"},
+    "exclusions": {
+      "items": {"minLength": 3, "type": "string"},
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "future_ip_rule": {"const": "WORK_CREATED_AFTER_EACH_REPOSITORY_CUTOFF_IS_NOT_AUTOMATICALLY_CLASSIFIED_BY_THIS_SUPPLEMENT"},
+    "jurisdiction_profile": {"const": "BR"},
+    "legal_effect": {"const": "EVIDENTIARY_SUPPLEMENT_NOT_ASSIGNMENT_REGISTRATION_TRADEMARK_REGISTRATION_OR_LEGAL_OPINION"},
+    "license_boundary": {"const": "APACHE_2_0_PERMISSIONS_REMAIN_UNCHANGED_AND_DO_NOT_BY_THEMSELVES_TRANSFER_AUTHORSHIP_OR_OWNERSHIP"},
+    "parent_schedule": {
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {"const": "aset-background-ip-schedule"},
+        "evidence_package_name": {"const": "aset-background-ip-schedule-v1-evidence-r3-2026-08-05.tar.gz"},
+        "evidence_package_sha256": {"const": "sha256:3153921cf9546c83113497289b49e4e03e2a5745f073e6dd4bdac1ad1bc81f84"},
+        "release_immutable": {"const": true},
+        "release_published_at": {"const": "2026-08-05T19:18:55Z"},
+        "release_tag": {"const": "aset-background-ip-schedule-v1-2026-08-05"},
+        "release_url": {"const": "https://github.com/attractor-set/ASET/releases/tag/aset-background-ip-schedule-v1-2026-08-05"},
+        "schedule_version": {"const": "1.0"}
+      },
+      "required": [
+        "document_type",
+        "evidence_package_name",
+        "evidence_package_sha256",
+        "release_immutable",
+        "release_published_at",
+        "release_tag",
+        "release_url",
+        "schedule_version"
+      ],
+      "type": "object"
+    },
+    "prior_supplements": {
+      "items": false,
+      "maxItems": 1,
+      "minItems": 1,
+      "prefixItems": [
+        {"$ref": "#/$defs/priorSupplement"}
+      ],
+      "type": "array"
+    },
+    "schema_version": {"const": 1},
+    "status": {"const": "PUBLIC_EVIDENTIARY_SUPPLEMENT"},
+    "supplement_id": {"const": "ASET-BACKGROUND-IP-SUPPLEMENT-2"},
+    "supplement_version": {"const": "1.0"}
+  },
+  "required": [
+    "added_assets",
+    "amendment_rule",
+    "brazil_profile",
+    "confidential_evidence_rule",
+    "continuity_declaration",
+    "creator",
+    "current_rights_holder",
+    "cutoffs",
+    "document_type",
+    "effective_date",
+    "exclusions",
+    "future_ip_rule",
+    "jurisdiction_profile",
+    "legal_effect",
+    "license_boundary",
+    "parent_schedule",
+    "prior_supplements",
+    "schema_version",
+    "status",
+    "supplement_id",
+    "supplement_version"
+  ],
+  "title": "ASET Background IP Supplement 2",
+  "type": "object"
+}
