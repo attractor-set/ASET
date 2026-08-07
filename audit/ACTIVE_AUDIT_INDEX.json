@@ -1,6 +1,6 @@
 {
   "active_candidate": {
-    "canon_package_digest": "sha256:0e1518c4ff6bd6b0da71089bfe5e1a9802929016c8ec2547024a1a0e2b84a19d",
+    "canon_package_digest": "sha256:0f0a51e4655fac186a70445f717027e42f1adc7a722f99b2eecf4dd3a2410c8d",
     "extension_separation": "COMPLETE",
     "implementation_precedence": "NONE",
     "repository_role": "OPEN_IMPLEMENTATION_NEUTRAL_SPECIFICATION",
@@ -17,13 +17,13 @@
   "classification_rules": [
     "Only active_controlling_records may support static claims about the current implementation-neutral candidate.",
     "Historical records are non-controlling and do not grant implementation precedence.",
-    "Externalized component evidence is interpreted only through the exact extraction record and source revision.",
+    "Externalized component evidence is interpreted only through the extraction-closure audit record and historical source revision.",
     "Generated dist reports control only the exact snapshot that produced them and only when mandatory gates pass."
   ],
   "document_type": "aset-active-audit-index",
   "externalized_historical_evidence": {
     "asset": "ASET-legacy-component-corpus-0.1-rc1.zip",
-    "record": "EXTRACTION.json",
+    "record": "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json",
     "sha256": "sha256:e2fd10bbf0d9ab871624ef7347ddc6dd8827607a1b45db238de1fa26364d4587"
   },
   "generated_controlling_evidence": [

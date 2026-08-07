@@ -2,14 +2,19 @@
 
 # ASET
 
-ASET é uma especificação aberta e neutra de implementação para Authority-Signed Evidence Trails. Seu Seed é um núcleo mínimo local de reconhecimento de resolução.
+ASET é uma especificação aberta e neutra de implementação para um núcleo mínimo de reconhecimento de resolução no escopo da Authority local.
 
 ```text
 UNKNOWN | ALLOW | BLOCK
 ```
 
-Somente um registro `ALLOW` único, válido, localmente autorizado e exatamente vinculado permite o efeito vinculado. A ausência de estado terminal válido ou o conflito entre registros terminais válidos resulta em `UNKNOWN`; proibição explícita é `BLOCK`. Material inválido ou não autoritativo não pode substituir um registro terminal válido que, de outro modo, seria único. Evidence, saída de AI e outcome remoto não criam Authority local por si só.
+Somente um registro `ALLOW` único, válido, exatamente vinculado e reconhecido pela Authority local permite o efeito vinculado. A ausência ou o conflito de material terminal válido resulta em `UNKNOWN`; proibição explícita é `BLOCK`. Material externo não cria Authority local por si só.
 
-Repository boundary records: [EXTRACTION.md](EXTRACTION.md), [IMPLEMENTATIONS.md](IMPLEMENTATIONS.md), [EXTENSIONS.md](EXTENSIONS.md).
+## Artefatos de referência
+
+- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — extensão de referência não normativa.
+- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — implementação de referência não normativa.
+
+Fonte normativa: [cânone Seed](seed/canonical/README.md).
 
 Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).

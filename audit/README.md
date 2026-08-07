@@ -10,9 +10,9 @@ The exact classification is recorded in:
 - [`ACTIVE_AUDIT_INDEX.json`](ACTIVE_AUDIT_INDEX.json);
 - [`ACTIVE_AUDIT_INDEX.md`](ACTIVE_AUDIT_INDEX.md).
 
-Legacy component audits were externalized with the component corpus. Their exact source revision
-and release-asset digest are recorded in [`../EXTRACTION.json`](../EXTRACTION.json). Removal from
-the active tree does not rewrite their historical content or make them current Seed evidence.
+Legacy component audits were externalized with the component corpus. The extraction closure and
+release-asset digest remain recorded in [`PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json`](PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json).
+Removal from the active tree does not rewrite their historical content or make them current Seed evidence.
 
 Executable evidence is produced under `dist/` by:
 

@@ -2,14 +2,19 @@
 
 # ASET
 
-ASET — открытая технологически нейтральная спецификация Authority-Signed Evidence Trails. Её Seed является минимальным локальным ядром признания разрешения.
+ASET — открытая технологически нейтральная спецификация минимального ядра локального распознавания разрешений в границах Authority.
 
 ```text
 UNKNOWN | ALLOW | BLOCK
 ```
 
-Точно связанный эффект разрешает только одна уникальная действительная, локально авторизованная запись `ALLOW`. Отсутствие действительной терминальной записи или конфликт между действительными терминальными записями даёт `UNKNOWN`; явный запрет — `BLOCK`. Недействительный или неавторитетный материал не может переопределить иначе уникальную действительную терминальную запись. Evidence, выход AI и удалённый outcome сами по себе не создают локальную Authority.
+Только одна уникальная действительная и точно связанная запись `ALLOW`, признанная локальной Authority, разрешает связанный эффект. Отсутствие или конфликт действительного терминального материала даёт `UNKNOWN`; явный запрет — `BLOCK`. Внешний материал сам по себе не создаёт локальную Authority.
 
-Repository boundary records: [EXTRACTION.md](EXTRACTION.md), [IMPLEMENTATIONS.md](IMPLEMENTATIONS.md), [EXTENSIONS.md](EXTENSIONS.md).
+## Эталонные артефакты
+
+- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — ненормативное эталонное расширение.
+- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — ненормативная эталонная реализация.
+
+Нормативный источник: [канон Seed](seed/canonical/README.md).
 
 Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).

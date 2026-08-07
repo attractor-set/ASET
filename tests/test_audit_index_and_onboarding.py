@@ -38,14 +38,17 @@ def test_historical_runtime_audit_is_explicitly_noncontrolling() -> None:
     assert "historical non-controlling" in readme
 
 
-def test_extraction_record_is_discoverable_and_non_normative() -> None:
-    for readme_name in ("README.md", "README.ru.md", "README.pt-BR.md"):
-        text = (ROOT / readme_name).read_text(encoding="utf-8")
-        assert "EXTRACTION.md" in text
-    extraction = load("EXTRACTION.json")
-    assert extraction["status"] == "EXTRACTION_COMPLETE"
-    assert extraction["normative_effect"] == "NONE_ON_RESOLUTION_SEMANTICS"
-    assert extraction["legacy_release_asset"]["files_count"] == 294
+def test_extraction_history_is_retained_without_root_registry_surface() -> None:
+    for relative in ("EXTRACTION.json", "EXTRACTION.md"):
+        assert not (ROOT / relative).exists()
+    closure = load("audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json")
+    assert closure["archived_source_files"] == 294
+    assert closure["legacy_asset"]["sha256"].startswith("sha256:")
+    index = load("audit/ACTIVE_AUDIT_INDEX.json")
+    assert index["externalized_historical_evidence"]["record"] == (
+        "audit/PDCA-15-EXTENSION-EXTRACTION-CLOSURE.json"
+    )
+
 
 def test_cross_implementation_claim_has_explicit_admission_plan() -> None:
     roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")

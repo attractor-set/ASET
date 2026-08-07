@@ -30,7 +30,7 @@ jobs:
           python tools/validate_seed_canon.py
           python tools/build_canon_package.py --check
           python tools/validate_canon_package.py
-          python tools/validate_ecosystem_registry.py
+          python tools/validate_reference_boundary.py
       - name: Run bounded model and traceability checks
         run: |
           python tools/model_check_seed.py --output dist/seed-model-check.json

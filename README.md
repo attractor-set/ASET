@@ -2,14 +2,19 @@
 
 # ASET
 
-ASET is an open, implementation-neutral specification for Authority-Signed Evidence Trails. Its Seed is a minimal local resolution-recognition kernel.
+ASET is an open, implementation-neutral specification for a minimal authority-scoped resolution kernel.
 
 ```text
 UNKNOWN | ALLOW | BLOCK
 ```
 
-Only one unique valid, locally authorized and exact-binding `ALLOW` record permits the bound effect. Missing or conflicting valid terminal state is `UNKNOWN`; explicit prohibition is `BLOCK`. Invalid or non-authoritative material cannot override an otherwise unique valid terminal record. Evidence, AI output and remote outcomes never create local Authority by themselves.
+Only one unique valid, locally recognized and exact-binding `ALLOW` record permits the bound effect. Missing or conflicting valid terminal material is `UNKNOWN`; explicit prohibition is `BLOCK`. External material does not create local Authority by itself.
 
-Repository boundary records: [EXTRACTION.md](EXTRACTION.md), [IMPLEMENTATIONS.md](IMPLEMENTATIONS.md), [EXTENSIONS.md](EXTENSIONS.md).
+## Reference artifacts
+
+- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — non-normative reference extension.
+- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — non-normative reference implementation.
+
+Normative source: [Seed canon](seed/canonical/README.md).
 
 Background IP: [BACKGROUND_IP_SCHEDULE.md](BACKGROUND_IP_SCHEDULE.md).
