@@ -1,0 +1,194 @@
+{
+  "added_assets": [
+    {
+      "asset_classes": [
+        "SPECIFICATION",
+        "MACHINE_CANON",
+        "CONFORMANCE",
+        "IMPLEMENTATION_NEUTRALITY"
+      ],
+      "asset_id": "BI-S2-001",
+      "name": "Released minimal ASET Seed 0.3.0-alpha.1 normative state",
+      "paths": [
+        "seed/canonical/source/seed-model.json",
+        "seed/canonical/CANON_PACKAGE.json",
+        "seed/canonical/schemas",
+        "seed/canonical/conformance",
+        "REPOSITORY_STATUS.json"
+      ],
+      "qualification": "This entry records the implementation-neutral normative Seed state published by release seed-0.3.0-alpha.1; implementations and extensions remain non-normative.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "FORMAL_MODEL",
+        "THEOREM_PROVING",
+        "MODEL_CHECKING",
+        "REFINEMENT",
+        "ASSURANCE"
+      ],
+      "asset_id": "BI-S2-002",
+      "name": "Formal assurance and canon-to-TLA refinement closure",
+      "paths": [
+        "seed/canonical/formal/SeedResolution.tla",
+        "seed/canonical/formal/SeedResolutionProofs.tla",
+        "seed/canonical/formal/SeedCanonProjection.tla",
+        "seed/canonical/formal/SeedCanonRefinementProofs.tla",
+        "seed/canonical/assurance/canon-tla-refinement.json",
+        "seed/canonical/assurance/proof-traceability.json",
+        "tools/check_canon_tla_refinement.py",
+        "tools/generate_canon_tla_projection.py",
+        "tools/run_canon_tla_refinement.py",
+        "tools/run_tlaps.py",
+        "tools/model_check_seed.py"
+      ],
+      "qualification": "This entry records the authored formal model, proof structure, generated canon projection relation and assurance tooling present at the released cutoff; it does not claim protection over abstract mathematical methods as such.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "SEMANTIC_FREEZE",
+        "RELEASE_ASSURANCE",
+        "TRACEABILITY",
+        "DETERMINISTIC_EVIDENCE"
+      ],
+      "asset_id": "BI-S2-003",
+      "name": "Semantic-freeze and release-assurance evidence",
+      "paths": [
+        "seed/canonical/assurance/verification-registry.json",
+        "seed/canonical/assurance/invariant-coverage.json",
+        "seed/canonical/assurance/repository-release-gates.json",
+        "seed/canonical/assurance/limitations.json",
+        "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json",
+        "tools/repository_release_gate.py",
+        "MANIFEST.json"
+      ],
+      "qualification": "This entry records the authored assurance and traceability material linking the semantic-freeze baseline to the public release while preserving the declaration that intervening release preparation changes are non-semantic.",
+      "repository_id": "ASET_SPECIFICATION"
+    },
+    {
+      "asset_classes": [
+        "DOCUMENTATION",
+        "GOVERNANCE",
+        "PROJECT_IDENTITY",
+        "ORIGINAL_SELECTION_AND_ARRANGEMENT",
+        "TECHNICAL_KNOW_HOW"
+      ],
+      "asset_id": "BI-S2-004",
+      "name": "Final Authority-Seeded identity and universal Seed repository boundary",
+      "paths": [
+        "README.md",
+        "README.ru.md",
+        "README.pt-BR.md",
+        "NOTICE",
+        "CITATION.cff",
+        "codemeta.json",
+        "metadata",
+        "governance/ip",
+        "GOVERNANCE.md",
+        "CANONICALITY.md"
+      ],
+      "qualification": "This entry records the authored Authority-Seeded Evidence Trail terminology, implementation-neutral repository framing, governance expression and original selection and arrangement present at the release cutoff; generic terms, ideas and third-party material remain excluded.",
+      "repository_id": "ASET_SPECIFICATION"
+    }
+  ],
+  "amendment_rule": "NEW_SUPPLEMENT_OR_VERSION_NEW_CUTOFF_PRESERVE_PARENT_AND_PRIOR_SUPPLEMENTS",
+  "brazil_profile": {
+    "applicable_frameworks": [
+      "LEI_9609_1998",
+      "LEI_9610_1998",
+      "LEI_10973_2004",
+      "DECRETO_9283_2018"
+    ],
+    "future_company_assignment_required": true,
+    "inpi_registration_required_for_protection": false,
+    "inpi_registration_status": "NOT_FILED",
+    "recommended_contract_annex": "PROPRIEDADE_INTELECTUAL_PREEXISTENTE",
+    "university_partnership_rule": "THE_PARENT_SCHEDULE_AND_ALL_PUBLISHED_SUPPLEMENTS_MUST_BE_IDENTIFIED_AS_PREEXISTING_IP_SEPARATELY_FROM_PROJECT_FOREGROUND_IP"
+  },
+  "confidential_evidence_rule": "PERSONAL_IDENTIFIERS_SIGNATURES_CONTRACTS_EMPLOYMENT_RECORDS_PRIVATE_SOURCE_ARCHIVES_AND_LEGAL_OPINIONS_MUST_NOT_BE_COMMITTED",
+  "continuity_declaration": {
+    "assignment_to_company_laboratory_university_or_investor": false,
+    "client_deliverable": false,
+    "commissioned_by_current_employer": false,
+    "current_employer_confidential_information_used": false,
+    "current_employer_directed_or_supervised": false,
+    "current_employer_funding_used": false,
+    "current_employer_resources_used": false,
+    "developed_outside_employment_scope": true,
+    "own_equipment_accounts_storage_tools_and_time_used": true,
+    "statement_basis": "DECLARATION_BY_CREATOR"
+  },
+  "creator": {
+    "legal_name": "Dzmitry Prychyna",
+    "pseudonym_is_separate_legal_entity": false,
+    "public_profile_url": "https://github.com/attractor-set",
+    "public_pseudonym": "Attractor Set"
+  },
+  "current_rights_holder": {
+    "assignment_to_legal_entity": false,
+    "basis": "INDEPENDENT_CREATION_AND_CONTINUITY_FROM_PARENT_SCHEDULE",
+    "legal_name": "Dzmitry Prychyna",
+    "public_pseudonym": "Attractor Set",
+    "type": "NATURAL_PERSON"
+  },
+  "cutoffs": [
+    {
+      "canon_package_digest": "sha256:0f0a51e4655fac186a70445f717027e42f1adc7a722f99b2eecf4dd3a2410c8d",
+      "canon_package_file_sha256": "sha256:d18bb95f0650be8f5e0356cecb79413d06b9696c0ca20d2ecd8d84857db2eae7",
+      "canon_package_path": "seed/canonical/CANON_PACKAGE.json",
+      "commit_sha": "ade1e2fe58c34ca4fa53695ea9e2ec3d08552518",
+      "manifest_files_count": 417,
+      "manifest_path": "MANIFEST.json",
+      "manifest_sha256": "sha256:438725020438178b28a7f7a814dc25dd407ee122039e798b106f23a7f19aeff3",
+      "name": "ASET",
+      "release_is_prerelease": true,
+      "release_tag": "seed-0.3.0-alpha.1",
+      "release_tag_object_sha": "03eaa7c36c4cbf938e43d39ece7a3d1ef69f2d13",
+      "release_url": "https://github.com/attractor-set/ASET/releases/tag/seed-0.3.0-alpha.1",
+      "repository_id": "ASET_SPECIFICATION",
+      "semantic_freeze_commit_sha": "a96689b1f1da17ac126058f5ee0175c90df3ef4f",
+      "semantic_freeze_tag": "seed-0.3.0-alpha.1-semantic-freeze",
+      "semantic_freeze_tag_object_sha": "7004dcfebf5bd9566fa70a53c7da00c36aaf069c",
+      "source": "GITHUB_ANNOTATED_RELEASE_TAG_AND_RELEASED_COMMIT_MANIFEST",
+      "url": "https://github.com/attractor-set/ASET"
+    }
+  ],
+  "document_type": "aset-background-ip-supplement",
+  "effective_date": "2026-08-07",
+  "exclusions": [
+    "ASSETS_ALREADY_CLASSIFIED_BY_PARENT_SCHEDULE_OR_PRIOR_SUPPLEMENTS",
+    "THIRD_PARTY_SOFTWARE_STANDARDS_PUBLICATIONS_AND_TRADEMARKS",
+    "UNASSIGNED_OR_UNLICENSED_INDEPENDENT_CONTRIBUTIONS",
+    "GENERIC_IDEAS_METHODS_AND_PROCEDURES_AS_SUCH",
+    "WORK_CREATED_AFTER_THE_RELEASE_CUTOFF",
+    "ASET_NETWORK_EXTENSION_CONTENT_NOT_PRESENT_AT_RELEASE_CUTOFF",
+    "CONFIDENTIAL_PERSONAL_CONTRACTUAL_AND_EMPLOYMENT_RECORDS"
+  ],
+  "future_ip_rule": "WORK_CREATED_AFTER_EACH_REPOSITORY_CUTOFF_IS_NOT_AUTOMATICALLY_CLASSIFIED_BY_THIS_SUPPLEMENT",
+  "jurisdiction_profile": "BR",
+  "legal_effect": "EVIDENTIARY_SUPPLEMENT_NOT_ASSIGNMENT_REGISTRATION_TRADEMARK_REGISTRATION_OR_LEGAL_OPINION",
+  "license_boundary": "APACHE_2_0_PERMISSIONS_REMAIN_UNCHANGED_AND_DO_NOT_BY_THEMSELVES_TRANSFER_AUTHORSHIP_OR_OWNERSHIP",
+  "parent_schedule": {
+    "document_type": "aset-background-ip-schedule",
+    "evidence_package_name": "aset-background-ip-schedule-v1-evidence-r3-2026-08-05.tar.gz",
+    "evidence_package_sha256": "sha256:3153921cf9546c83113497289b49e4e03e2a5745f073e6dd4bdac1ad1bc81f84",
+    "release_immutable": true,
+    "release_published_at": "2026-08-05T19:18:55Z",
+    "release_tag": "aset-background-ip-schedule-v1-2026-08-05",
+    "release_url": "https://github.com/attractor-set/ASET/releases/tag/aset-background-ip-schedule-v1-2026-08-05",
+    "schedule_version": "1.0"
+  },
+  "prior_supplements": [
+    {
+      "document_path": "governance/ip/background-ip-supplement-1.json",
+      "document_sha256": "sha256:bc17a7314f83752ce6a2d6b458e41f2f5f7c4b49d1d8ac695170389f4166c607",
+      "supplement_id": "ASET-BACKGROUND-IP-SUPPLEMENT-1",
+      "supplement_version": "1.0"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PUBLIC_EVIDENTIARY_SUPPLEMENT",
+  "supplement_id": "ASET-BACKGROUND-IP-SUPPLEMENT-2",
+  "supplement_version": "1.0"
+}
