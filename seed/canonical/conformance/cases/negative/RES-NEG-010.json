@@ -3,14 +3,14 @@
     "kind": "SUBMIT_RESOLUTION",
     "payload": {
       "record": {
+        "authority_evidence_digests": [],
         "authority_id": "authority.root",
-        "authority_proof_digests": [],
         "basis_digests": [
           "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         ],
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "record_digest": "sha256:16f9e0b7709be009f3b00039f2b8cecb68932bca18ce9ceca099f44a3b32c2f5",
-        "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+        "record_digest": "sha256:203822912499460c097e98c0c63569965609cc77be909e4b30b5639748a6804e",
+        "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
         "resolution": "BLOCK",
         "resolution_id": "res.1"
       }
@@ -29,16 +29,13 @@
   "initial_store": {
     "authority_bindings": [
       {
-        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
         "authority_id": "authority.root",
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
         "context_id": "ctx.local",
-        "delegation_allowed": true,
         "policy_epoch": 1
       }
     ],
-    "authority_grants": [],
     "records": [],
     "requests": []
   },
@@ -58,9 +55,9 @@
             ],
             "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           },
-          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "initial_authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
           "previous_terminal_record_digest": null,
-          "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+          "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
           "resolution_id": "res.1"
         }
       }
@@ -69,14 +66,14 @@
       "kind": "SUBMIT_RESOLUTION",
       "payload": {
         "record": {
+          "authority_evidence_digests": [],
           "authority_id": "authority.root",
-          "authority_proof_digests": [],
           "basis_digests": [
             "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
           ],
           "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-          "record_digest": "sha256:036914e827dcd520081da16232f409942e0f768d343b44e03079f2f73f749ae8",
-          "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+          "record_digest": "sha256:4f32a4864d57c647b1761a084507ce9c081bc257ac9ba4cd7f066a5598083499",
+          "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
           "resolution": "ALLOW",
           "resolution_id": "res.1"
         }

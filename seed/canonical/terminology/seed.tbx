@@ -22,10 +22,10 @@
       <langSec xml:lang="en"><termSec><term>local Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
       <langSec xml:lang="pt-BR"><termSec><term>Authority local</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.authority_proof">
-      <langSec xml:lang="ru"><termSec><term>доказательство Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>Authority proof</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>prova de Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.authority_recognition">
+      <langSec xml:lang="ru"><termSec><term>признание Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>Authority recognition</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>reconhecimento de Authority</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
     <conceptEntry id="seed.evidence_reference">
       <langSec xml:lang="ru"><termSec><term>ссылка на основание</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>

@@ -61,3 +61,7 @@ natural-language equivalence, concrete Binding/digest construction,
 implementation refinement or correctness, concrete Authority grant-chain
 construction, liveness, cryptographic primitive security or external
 certification.
+
+## Supersession note
+
+ADR-009 supersedes the active property-count, state-boundary and Authority grant-chain wording in this historical assurance decision. The active formal property set and Authority boundary are defined by the current verification registry and formal model.

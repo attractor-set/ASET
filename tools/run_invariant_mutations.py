@@ -47,7 +47,7 @@ def apply_operator(operator: str, result: dict[str, Any]) -> dict[str, Any]:
     elif operator in {
         "ignore_binding_mismatch",
         "trust_remote_authority",
-        "accept_cyclic_grant",
+        "authority_evidence_creates_recognition",
         "external_input_authorizes",
         "invalid_material_allows",
     }:

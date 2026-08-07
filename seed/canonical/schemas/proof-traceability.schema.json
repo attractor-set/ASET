@@ -37,7 +37,7 @@
               ],
               "type": "object"
             },
-            "minItems": 1,
+            "minItems": 0,
             "type": "array"
           },
           "id": {
@@ -62,6 +62,12 @@
             "type": "array",
             "uniqueItems": true
           },
+          "status": {
+            "enum": [
+              "PROVED_IN_TLA",
+              "PARTIAL_BOUNDARY"
+            ]
+          },
           "verification_method": {
             "const": "ASET-VERIFY-TLAPS-UNBOUNDED"
           }
@@ -70,6 +76,7 @@
           "id",
           "seed_invariants",
           "seed_requirements",
+          "status",
           "formal_projection",
           "verification_method"
         ],
@@ -89,13 +96,13 @@
       "const": "seed/canonical/formal/SeedResolutionProofs.tla"
     },
     "refinement_status": {
-      "const": "DECLARED_PROJECTION_NOT_REFINEMENT_PROOF"
+      "const": "STANDALONE_CANON_PROJECTION_EQUIVALENCE_PROVED"
     },
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "scope": {
-      "const": "ABSTRACT_TLA_SAFETY_PROJECTION"
+      "const": "ABSTRACT_TLA_SAFETY_WITH_EXPLICIT_BOUNDARIES"
     }
   },
   "required": [

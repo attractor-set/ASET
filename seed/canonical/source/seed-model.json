@@ -78,23 +78,23 @@
     },
     {
       "definitions": {
-        "en": "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants.",
-        "pt-BR": "Uma cadeia localmente enraizada, exatamente vinculada, acíclica e não expansiva de concessões explícitas de Authority.",
-        "ru": "Локально укоренённая, точно связанная, ациклическая и нерасширяющая цепочка явных разрешений Authority."
+        "en": "A local exact-binding recognition result stating that one Authority is authorized for one ResolutionBinding; concrete grant chains, signatures and proof construction are external to Seed.",
+        "pt-BR": "Um resultado local de reconhecimento com vinculação exata que declara uma Authority autorizada para uma ResolutionBinding; cadeias de concessão, assinaturas e construção de prova concretas são externas ao Seed.",
+        "ru": "Локальный результат точного признания, устанавливающий полномочие одной Authority для одной ResolutionBinding; конкретные цепочки делегирования, подписи и построение доказательства находятся вне Seed."
       },
-      "id": "seed.authority_proof",
+      "id": "seed.authority_recognition",
       "labels": {
-        "en": "Authority proof",
-        "pt-BR": "prova de Authority",
-        "ru": "доказательство Authority"
+        "en": "Authority recognition",
+        "pt-BR": "reconhecimento de Authority",
+        "ru": "признание Authority"
       },
-      "symbol": "AuthorityProof"
+      "symbol": "AuthorityRecognition"
     },
     {
       "definitions": {
-        "en": "A content-addressed non-authoritative input cited as the basis of a terminal record.",
-        "pt-BR": "Uma entrada não autoritativa endereçada por conteúdo, citada como base de um registro terminal.",
-        "ru": "Контентно-адресуемый неавторитетный вход, указанный как основание терминальной записи."
+        "en": "An opaque content-addressed reference to non-authoritative evidence or proof material. It has no normative effect until a Seed admission boundary recognizes the fact it supports.",
+        "pt-BR": "Uma referência opaca e endereçada por conteúdo a evidência ou material de prova não autoritativo. Ela não tem efeito normativo até que uma fronteira de admissão do Seed reconheça o fato que suporta.",
+        "ru": "Непрозрачная контентно-адресуемая ссылка на неавторитетное основание или доказательный материал. Она не имеет нормативного эффекта, пока граница допуска Seed не признает подтверждаемый ею факт."
       },
       "id": "seed.evidence_reference",
       "labels": {
@@ -106,9 +106,9 @@
     },
     {
       "definitions": {
-        "en": "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof.",
-        "pt-BR": "Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata e prova de Authority.",
-        "ru": "Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой и доказательством Authority."
+        "en": "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding, a recognized Authority, and optional opaque evidence references.",
+        "pt-BR": "Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com vinculação exata, uma Authority reconhecida e referências opacas de evidência opcionais.",
+        "ru": "Одна неизменяемая контентно-адресуемая терминальная запись ALLOW или BLOCK с точной связкой, признанной Authority и необязательными непрозрачными ссылками на основания."
       },
       "id": "seed.resolution_record",
       "labels": {
@@ -138,7 +138,7 @@
     "conformance_protocol_ref": "seed/canonical/conformance/implementation-conformance-protocol.json",
     "implementation_precedence": "NONE",
     "normative_status": "IMPLEMENTATION_NEUTRAL",
-    "profile_rule": "Profiles and extensions may produce evidence, assessments, policies, authority proof material and transport, but they may not create ALLOW without one valid locally rooted exact-binding terminal ResolutionRecord, weaken fail-closed evaluation, mutate a terminal record, reuse a resolution_id for reconsideration, accept an unrecognized reconsideration commitment, or claim semantic precedence.",
+    "profile_rule": "Profiles and extensions may produce evidence, assessments, policies, Authority-recognition evidence and transport, but they may not create ALLOW without one valid exact-binding terminal ResolutionRecord whose Authority has been locally recognized, weaken fail-closed evaluation, mutate a terminal record, reuse a resolution_id for reconsideration, accept an unrecognized reconsideration commitment, mutate Seed-owned state outside recognized Seed transitions, or claim semantic precedence.",
     "required_observables": [
       "accepted",
       "code",
@@ -159,6 +159,7 @@
       "network topology",
       "consensus protocol",
       "cryptographic provider",
+      "concrete Authority grant-chain construction and validation",
       "key custody",
       "federation topology",
       "AI model",
@@ -247,9 +248,9 @@
       ],
       "id": "SEED-INV-005",
       "texts": {
-        "en": "Every valid terminal record is rooted in a local Authority binding.",
-        "pt-BR": "Todo registro terminal válido está enraizado em uma vinculação de Authority local.",
-        "ru": "Каждая действительная терминальная запись укоренена в локальной связке Authority."
+        "en": "Every valid terminal record uses an Authority explicitly recognized for the exact local binding.",
+        "pt-BR": "Todo registro terminal válido usa uma Authority explicitamente reconhecida para a vinculação local exata.",
+        "ru": "Каждая действительная терминальная запись использует Authority, явно признанную для точной локальной связки."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -265,9 +266,9 @@
       ],
       "id": "SEED-INV-006",
       "texts": {
-        "en": "Every delegated Authority proof is exact-binding, acyclic and non-expanding.",
-        "pt-BR": "Toda prova de Authority delegada é exatamente vinculada, acíclica e não expansiva.",
-        "ru": "Каждое делегированное доказательство Authority точно связано, ациклично и не расширяет полномочие."
+        "en": "Authority evidence is non-authoritative until exact-binding Authority recognition succeeds; opaque proof material cannot create or expand Authority by itself.",
+        "pt-BR": "Evidência de Authority é não autoritativa até que o reconhecimento de Authority com vinculação exata seja bem-sucedido; material de prova opaco não pode criar ou ampliar Authority por si só.",
+        "ru": "Доказательный материал Authority неавторитетен до успешного точного признания Authority; непрозрачный proof material не может сам по себе создать или расширить полномочие."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -283,9 +284,9 @@
       ],
       "id": "SEED-INV-007",
       "texts": {
-        "en": "Evidence and external statements are non-authoritative inputs.",
-        "pt-BR": "Evidence e declarações externas são entradas não autoritativas.",
-        "ru": "Evidence и внешние утверждения являются неавторитетными входами."
+        "en": "External statements and evidence are outside Seed-owned canonical state unless accepted by a recognized Seed transition.",
+        "pt-BR": "Declarações externas e Evidence ficam fora do estado canônico pertencente ao Seed, salvo quando aceitas por uma transição reconhecida do Seed.",
+        "ru": "Внешние утверждения и Evidence находятся вне принадлежащего Seed канонического состояния, пока не приняты признанным переходом Seed."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -319,9 +320,9 @@
       ],
       "id": "SEED-INV-009",
       "texts": {
-        "en": "Conflicting or invalid terminal material yields UNKNOWN and never ALLOW.",
-        "pt-BR": "Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.",
-        "ru": "Конфликтующий или недействительный терминальный материал даёт UNKNOWN и никогда не ALLOW."
+        "en": "Conflicting valid terminal records yield UNKNOWN. Invalid or non-authoritative material cannot create ALLOW, create a conflict, or override an otherwise unique valid terminal record.",
+        "pt-BR": "Registros terminais válidos conflitantes resultam em UNKNOWN. Material inválido ou não autoritativo não pode criar ALLOW, criar conflito nem substituir um registro terminal válido e único.",
+        "ru": "Конфликтующие действительные терминальные записи дают UNKNOWN. Недействительный или неавторитетный материал не может создать ALLOW, создать конфликт или переопределить единственную действительную терминальную запись."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -355,9 +356,9 @@
       ],
       "id": "SEED-INV-011",
       "texts": {
-        "en": "Only recognized Seed transitions may change the canonical store; an invalid or unrecognized candidate is not a Seed transition.",
-        "pt-BR": "Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.",
-        "ru": "Только признанные переходы Seed могут изменять каноническое хранилище; недействительный или непризнанный кандидат не является переходом Seed."
+        "en": "Only recognized Seed state transitions may change Seed-owned canonical state; environment observations and observer operations do not mutate that state.",
+        "pt-BR": "Somente transições de estado reconhecidas do Seed podem alterar o estado canônico pertencente ao Seed; observações do ambiente e operações de observador não alteram esse estado.",
+        "ru": "Только признанные переходы состояния Seed могут изменять принадлежащее Seed каноническое состояние; наблюдения среды и observer-операции его не изменяют."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -557,9 +558,9 @@
       "source": "ASET Seed 0.3 minimal strong core",
       "subject": "ASET Seed",
       "texts": {
-        "en": "UNKNOWN and BLOCK MUST prohibit the effect; absence, invalidity, ambiguity or verification error MUST resolve to UNKNOWN rather than ALLOW.",
-        "pt-BR": "UNKNOWN e BLOCK DEVEM proibir o efeito; ausência, invalidade, ambiguidade ou erro de verificação DEVEM resultar em UNKNOWN, nunca ALLOW.",
-        "ru": "UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект; отсутствие, недействительность, неоднозначность или ошибка проверки ДОЛЖНЫ давать UNKNOWN, а не ALLOW."
+        "en": "UNKNOWN and BLOCK MUST prohibit the effect. Missing or ambiguous valid terminal state, or failure to establish a valid terminal record, MUST resolve to UNKNOWN. Invalid or non-authoritative material MUST NOT override an otherwise unique valid terminal record.",
+        "pt-BR": "UNKNOWN e BLOCK DEVEM proibir o efeito. Estado terminal válido ausente ou ambíguo, ou falha em estabelecer um registro terminal válido, DEVE resultar em UNKNOWN. Material inválido ou não autoritativo NÃO DEVE substituir um registro terminal válido e único.",
+        "ru": "UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект. Отсутствие или неоднозначность действительного терминального состояния либо невозможность установить действительную терминальную запись ДОЛЖНЫ давать UNKNOWN. Недействительный или неавторитетный материал НЕ ДОЛЖЕН переопределять уже установленную единственную действительную терминальную запись."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -593,13 +594,13 @@
       "area": "minimal resolution-recognition kernel",
       "id": "ASET-SEED-REQ-007",
       "modality": "MUST",
-      "predicate": "proof_attenuating",
+      "predicate": "authority_recognition_boundary",
       "source": "ASET Seed 0.3 minimal strong core",
       "subject": "ASET Seed",
       "texts": {
-        "en": "Every delegated Authority proof MUST be explicit, acyclic, exact-binding and non-expanding.",
-        "pt-BR": "Toda prova de Authority delegada DEVE ser explícita, acíclica, exatamente vinculada e não expansiva.",
-        "ru": "Каждое делегированное доказательство Authority ДОЛЖНО быть явным, ациклическим, точно связанным и нерасширяющим."
+        "en": "Authority evidence or delegation material MUST NOT create or expand Authority by itself; a terminal record Authority MUST be explicitly recognized for the exact binding before the record can become valid.",
+        "pt-BR": "Evidência de Authority ou material de delegação NÃO DEVE criar ou ampliar Authority por si só; a Authority de um registro terminal DEVE ser explicitamente reconhecida para a vinculação exata antes que o registro possa se tornar válido.",
+        "ru": "Доказательный или делегационный материал Authority НЕ ДОЛЖЕН сам по себе создавать или расширять полномочие; Authority терминальной записи ДОЛЖНА быть явно признана для точной связки до того, как запись может стать действительной."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -617,9 +618,9 @@
       "source": "ASET Seed 0.3 minimal strong core",
       "subject": "ASET Seed",
       "texts": {
-        "en": "Evidence, verification results, AI outputs, consensus results and remote outcomes MUST NOT by themselves create ALLOW or local Authority.",
-        "pt-BR": "Evidence, resultados de verificação, saídas de AI, resultados de consenso e outcomes remotos NÃO DEVEM, por si só, criar ALLOW ou Authority local.",
-        "ru": "Evidence, результаты проверки, выходы AI, результаты консенсуса и удалённые outcomes НЕ ДОЛЖНЫ сами по себе создавать ALLOW или локальную Authority."
+        "en": "Evidence, verification results, AI outputs, consensus results, remote outcomes and other external statements MUST NOT by themselves mutate Seed-owned canonical state or create ALLOW or local Authority.",
+        "pt-BR": "Evidence, resultados de verificação, saídas de IA, resultados de consenso, outcomes remotos e outras declarações externas NÃO DEVEM, por si só, alterar o estado canônico pertencente ao Seed nem criar ALLOW ou Authority local.",
+        "ru": "Evidence, результаты проверки, выводы ИИ, результаты консенсуса, удалённые outcomes и иные внешние утверждения НЕ ДОЛЖНЫ сами по себе изменять принадлежащее Seed каноническое состояние либо создавать ALLOW или локальную Authority."
       },
       "verification": [
         "ASET-VERIFY-DECLARATIVE-STATE-VALIDATION",
@@ -722,7 +723,7 @@
       "ALLOW",
       "BLOCK"
     ],
-    "unknown_semantics": "No unique valid terminal ResolutionRecord exists for the exact request binding.",
+    "unknown_semantics": "No unique valid terminal ResolutionRecord is established for the exact request binding, or conflicting valid terminal records are observed.",
     "values": [
       "UNKNOWN",
       "ALLOW",
@@ -742,11 +743,12 @@
       "id": "SEED-TX-001",
       "kind": "REGISTER_REQUEST",
       "payload_schema": "seed/canonical/protocol/schemas/payload-register-request.schema.json",
+      "role": "STATE_TRANSITION",
       "terminal": false,
       "to_resolution": "UNKNOWN"
     },
     {
-      "authority_rule": "The record Authority must be the local root Authority or be justified by a valid exact-binding Authority proof.",
+      "authority_rule": "The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.",
       "binding_rule": "The record request_digest and binding_digest must exactly match the registered request.",
       "created_artifacts": [
         "ResolutionRecord"
@@ -755,12 +757,13 @@
       "id": "SEED-TX-002",
       "kind": "SUBMIT_RESOLUTION",
       "payload_schema": "seed/canonical/protocol/schemas/payload-submit-resolution.schema.json",
+      "role": "STATE_TRANSITION",
       "terminal": true,
       "to_resolution": "ALLOW_OR_BLOCK"
     },
     {
       "authority_rule": "Evaluation creates no Authority and accepts no external statement as a resolution.",
-      "binding_rule": "Evaluation is performed for one registered resolution_id and fails closed on missing, invalid or conflicting terminal material.",
+      "binding_rule": "Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.",
       "created_artifacts": [
         "ResolutionEvaluation"
       ],
@@ -768,6 +771,7 @@
       "id": "SEED-TX-003",
       "kind": "EVALUATE_RESOLUTION",
       "payload_schema": "seed/canonical/protocol/schemas/operation.schema.json",
+      "role": "OBSERVER",
       "terminal": false,
       "to_resolution": "DERIVED"
     }

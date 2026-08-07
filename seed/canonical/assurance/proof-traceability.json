@@ -1,5 +1,5 @@
 {
-  "claim_boundary": "This document declares machine-checkable traceability from canonical Seed invariants to operators in the abstract TLA+ projection and to TLAPS theorems proving those projected safety properties. It does not constitute a refinement proof from the machine-readable canon to TLA+.",
+  "claim_boundary": "This document traces the TLA-expressible portion of each canonical Seed invariant to abstract operators and TLAPS theorems. Claims marked PARTIAL_BOUNDARY intentionally leave concrete Authority evidence and invalid/non-authoritative external-material handling outside the TLA state machine. Standalone canon-to-TLA behavioral equivalence is proved separately by SeedCanonRefinementProofs.tla.",
   "claims": [
     {
       "formal_projection": [
@@ -22,6 +22,7 @@
         "ASET-SEED-REQ-001",
         "ASET-SEED-REQ-003"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -39,6 +40,7 @@
       "seed_requirements": [
         "ASET-SEED-REQ-004"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -56,6 +58,7 @@
       "seed_requirements": [
         "ASET-SEED-REQ-005"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -79,13 +82,14 @@
         "ASET-SEED-REQ-001",
         "ASET-SEED-REQ-003"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
       "formal_projection": [
         {
           "kind": "STATE_INVARIANT",
-          "operator": "LocalAuthorityRoot",
+          "operator": "RequestAuthorityRecognized",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
         }
       ],
@@ -96,13 +100,14 @@
       "seed_requirements": [
         "ASET-SEED-REQ-006"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
       "formal_projection": [
         {
           "kind": "STATE_INVARIANT",
-          "operator": "DelegatedAuthoritySound",
+          "operator": "TerminalAuthorityRecognized",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
         }
       ],
@@ -113,28 +118,17 @@
       "seed_requirements": [
         "ASET-SEED-REQ-007"
       ],
+      "status": "PARTIAL_BOUNDARY",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
-      "formal_projection": [
-        {
-          "kind": "STATE_INVARIANT",
-          "operator": "InputsNonAuthoritative",
-          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
-        },
-        {
-          "kind": "TEMPORAL_PROPERTY",
-          "operator": "NonAuthoritativeInputsStutter",
-          "proof_theorem": "SpecImpliesNonAuthoritativeInputsStutter"
-        }
-      ],
+      "formal_projection": [],
       "id": "ASET-PROOF-INV-007",
       "seed_invariants": [
         "SEED-INV-007"
       ],
-      "seed_requirements": [
-        "ASET-SEED-REQ-008"
-      ],
+      "seed_requirements": [],
+      "status": "PARTIAL_BOUNDARY",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -152,24 +146,15 @@
       "seed_requirements": [
         "ASET-SEED-REQ-009"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
       "formal_projection": [
         {
           "kind": "STATE_INVARIANT",
-          "operator": "FailClosed",
-          "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
-        },
-        {
-          "kind": "STATE_INVARIANT",
           "operator": "ConflictUnknown",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
-        },
-        {
-          "kind": "TEMPORAL_PROPERTY",
-          "operator": "InvalidMaterialStutter",
-          "proof_theorem": "SpecImpliesInvalidMaterialStutter"
         }
       ],
       "id": "ASET-PROOF-INV-009",
@@ -180,6 +165,7 @@
         "ASET-SEED-REQ-005",
         "ASET-SEED-REQ-009"
       ],
+      "status": "PARTIAL_BOUNDARY",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -197,14 +183,20 @@
       "seed_requirements": [
         "ASET-SEED-REQ-010"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
       "formal_projection": [
         {
           "kind": "TEMPORAL_PROPERTY",
-          "operator": "CanonicalStateChangesOnlyByRecognizedTransition",
-          "proof_theorem": "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition"
+          "operator": "SeedStateChangesOnlyByRecognizedTransition",
+          "proof_theorem": "SpecImpliesSeedStateChangesOnlyByRecognizedTransition"
+        },
+        {
+          "kind": "TEMPORAL_PROPERTY",
+          "operator": "ConflictObservationPreservesSeedState",
+          "proof_theorem": "SpecImpliesConflictObservationPreservesSeedState"
         }
       ],
       "id": "ASET-PROOF-INV-011",
@@ -212,6 +204,7 @@
         "SEED-INV-011"
       ],
       "seed_requirements": [],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     },
     {
@@ -235,13 +228,14 @@
         "ASET-SEED-REQ-002",
         "ASET-SEED-REQ-011"
       ],
+      "status": "PROVED_IN_TLA",
       "verification_method": "ASET-VERIFY-TLAPS-UNBOUNDED"
     }
   ],
   "document_type": "aset-seed-proof-traceability",
   "formal_model": "seed/canonical/formal/SeedResolution.tla",
   "proof_module": "seed/canonical/formal/SeedResolutionProofs.tla",
-  "refinement_status": "DECLARED_PROJECTION_NOT_REFINEMENT_PROOF",
-  "schema_version": 1,
-  "scope": "ABSTRACT_TLA_SAFETY_PROJECTION"
+  "refinement_status": "STANDALONE_CANON_PROJECTION_EQUIVALENCE_PROVED",
+  "schema_version": 2,
+  "scope": "ABSTRACT_TLA_SAFETY_WITH_EXPLICIT_BOUNDARIES"
 }

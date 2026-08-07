@@ -63,7 +63,7 @@
       ]
     }
   },
-  "protocol_id": "ASET-SEED-RESOLUTION-CONFORMANCE-V2",
+  "protocol_id": "ASET-SEED-RESOLUTION-CONFORMANCE-V3",
   "response_schema_ref": "seed/canonical/schemas/implementation-conformance-envelope.schema.json",
   "schema_version": 3,
   "transport": {

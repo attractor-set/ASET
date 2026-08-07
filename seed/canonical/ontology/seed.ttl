@@ -29,23 +29,23 @@ aset:local_authority a owl:Class ;
     rdfs:label "Authority local"@pt-BR ;
     rdfs:comment "An Authority explicitly recognized by one Context for one exact binding and policy epoch."@en .
 
-aset:authority_proof a owl:Class ;
-    rdfs:label "доказательство Authority"@ru ;
-    rdfs:label "Authority proof"@en ;
-    rdfs:label "prova de Authority"@pt-BR ;
-    rdfs:comment "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants."@en .
+aset:authority_recognition a owl:Class ;
+    rdfs:label "признание Authority"@ru ;
+    rdfs:label "Authority recognition"@en ;
+    rdfs:label "reconhecimento de Authority"@pt-BR ;
+    rdfs:comment "A local exact-binding recognition result stating that one Authority is authorized for one ResolutionBinding; concrete grant chains, signatures and proof construction are external to Seed."@en .
 
 aset:evidence_reference a owl:Class ;
     rdfs:label "ссылка на основание"@ru ;
     rdfs:label "evidence reference"@en ;
     rdfs:label "referência de evidência"@pt-BR ;
-    rdfs:comment "A content-addressed non-authoritative input cited as the basis of a terminal record."@en .
+    rdfs:comment "An opaque content-addressed reference to non-authoritative evidence or proof material. It has no normative effect until a Seed admission boundary recognizes the fact it supports."@en .
 
 aset:resolution_record a owl:Class ;
     rdfs:label "запись разрешения"@ru ;
     rdfs:label "resolution record"@en ;
     rdfs:label "registro de resolução"@pt-BR ;
-    rdfs:comment "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
+    rdfs:comment "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding, a recognized Authority, and optional opaque evidence references."@en .
 
 aset:reconsideration_commitment a owl:Class ;
     rdfs:label "коммитмент пересмотра"@ru ;

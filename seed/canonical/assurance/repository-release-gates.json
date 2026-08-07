@@ -82,7 +82,7 @@
       "evidence": "python tools/model_check_seed.py --output dist/seed-model-check.json",
       "id": "ASET-GATE-010",
       "mandatory": true,
-      "name": "bounded_seed_resolution_model_check"
+      "name": "finite_seed_resolution_saturation_check"
     },
     {
       "evidence": "python -m pytest -q",

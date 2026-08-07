@@ -26,10 +26,10 @@ EXPECTED_REQUIREMENT_STATUS = {
     "ASET-SEED-REQ-002": "PROVED_IN_DECLARED_PROJECTION",
     "ASET-SEED-REQ-003": "PROVED_IN_DECLARED_PROJECTION",
     "ASET-SEED-REQ-004": "PROVED_IN_DECLARED_PROJECTION",
-    "ASET-SEED-REQ-005": "PROVED_IN_DECLARED_PROJECTION",
+    "ASET-SEED-REQ-005": "PARTIAL_EXTERNAL_MATERIAL_BOUNDARY",
     "ASET-SEED-REQ-006": "PARTIAL_AUTHORITY_ABSTRACTION",
-    "ASET-SEED-REQ-007": "ABSTRACTED_AUTHORITY_PROOF",
-    "ASET-SEED-REQ-008": "PROVED_IN_DECLARED_PROJECTION",
+    "ASET-SEED-REQ-007": "ABSTRACTED_AUTHORITY_RECOGNITION",
+    "ASET-SEED-REQ-008": "STRUCTURAL_BOUNDARY_OUTSIDE_STATE_MACHINE",
     "ASET-SEED-REQ-009": "PROVED_IN_DECLARED_PROJECTION",
     "ASET-SEED-REQ-010": "PARTIAL_NO_CONTENT_ADDRESS_PROOF",
     "ASET-SEED-REQ-011": "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION",
@@ -42,10 +42,10 @@ EXPECTED_INVARIANT_STATUS = {
     "SEED-INV-003": "PROVED_IN_DECLARED_PROJECTION",
     "SEED-INV-004": "PARTIAL_OPAQUE_BINDING",
     "SEED-INV-005": "PARTIAL_AUTHORITY_ABSTRACTION",
-    "SEED-INV-006": "ABSTRACTED_AUTHORITY_PROOF",
-    "SEED-INV-007": "PROVED_IN_DECLARED_PROJECTION",
+    "SEED-INV-006": "ABSTRACTED_AUTHORITY_RECOGNITION",
+    "SEED-INV-007": "STRUCTURAL_BOUNDARY_OUTSIDE_STATE_MACHINE",
     "SEED-INV-008": "PROVED_IN_DECLARED_PROJECTION",
-    "SEED-INV-009": "PROVED_IN_DECLARED_PROJECTION",
+    "SEED-INV-009": "PARTIAL_EXTERNAL_MATERIAL_BOUNDARY",
     "SEED-INV-010": "PARTIAL_NO_CONTENT_ADDRESS_PROOF",
     "SEED-INV-011": "PROVED_IN_DECLARED_PROJECTION",
     "SEED-INV-012": "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION",
@@ -138,7 +138,7 @@ def main() -> int:
     action_by_kind = {
         "REGISTER_REQUEST": "RegisterRequest",
         "SUBMIT_RESOLUTION": "SubmitResolution",
-        "EVALUATE_RESOLUTION": "Evaluate",
+        "EVALUATE_RESOLUTION": "EvaluateResolution",
     }
     expected_transitions = [
         (item["id"], item["kind"], action_by_kind[item["kind"]])
@@ -157,11 +157,17 @@ def main() -> int:
     abstraction_ids = [item["id"] for item in relation["abstractions"]]
     if abstraction_ids != [
         "OPAQUE_BINDING",
-        "AUTHORITY_PROOF_ORACLE",
+        "AUTHORITY_RECOGNITION_BOUNDARY",
         "TERMINAL_COMMITMENT_ORACLE",
-        "ENVIRONMENT_OBSERVATION",
+        "ENVIRONMENT_CONFLICT_STATE",
     ]:
         errors.append("declared abstraction profile differs")
+
+    projection_text = PROJECTION_PATH.read_text(encoding="utf-8") if PROJECTION_PATH.is_file() else ""
+    if "EXTENDS SeedResolution" in projection_text or "INSTANCE SeedResolution" in projection_text:
+        errors.append("generated projection depends on target SeedResolution module")
+    if "V4 is a standalone projection" not in projection_text:
+        errors.append("standalone projection marker missing")
 
     generator = subprocess.run(
         [sys.executable, str(GENERATOR_PATH), "--check"],

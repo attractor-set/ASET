@@ -62,7 +62,9 @@
         "PROVED_IN_DECLARED_PROJECTION",
         "PARTIAL_OPAQUE_BINDING",
         "PARTIAL_AUTHORITY_ABSTRACTION",
-        "ABSTRACTED_AUTHORITY_PROOF",
+        "ABSTRACTED_AUTHORITY_RECOGNITION",
+        "PARTIAL_EXTERNAL_MATERIAL_BOUNDARY",
+        "STRUCTURAL_BOUNDARY_OUTSIDE_STATE_MACHINE",
         "PARTIAL_NO_CONTENT_ADDRESS_PROOF",
         "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION",
         "META_OUTSIDE_BEHAVIORAL_MODEL"
@@ -83,13 +85,16 @@
           ]
         },
         "status": {
-          "const": "PROVED_IN_DECLARED_PROJECTION"
+          "enum": [
+            "PROVED_IN_DECLARED_PROJECTION",
+            "OBSERVER_EQUIVALENCE_PROVED"
+          ]
         },
         "tla_action": {
           "enum": [
             "RegisterRequest",
             "SubmitResolution",
-            "Evaluate"
+            "EvaluateResolution"
           ]
         }
       },
@@ -141,7 +146,7 @@
           "const": "seed/canonical/formal/SeedCanonProjection.tla"
         },
         "profile": {
-          "const": "ASET-SEED-CANON-TLA-PROJECTION-V3"
+          "const": "ASET-SEED-CANON-TLA-PROJECTION-V4"
         }
       },
       "required": [
@@ -181,7 +186,7 @@
       "type": "object"
     },
     "relation_type": {
-      "const": "GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF"
+      "const": "STANDALONE_GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF"
     },
     "requirement_coverage": {
       "items": {

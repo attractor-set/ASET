@@ -22,11 +22,12 @@ TLAPS_RUNNER_PATH = ROOT / "tools/run_tlaps.py"
 TEMPORAL_THEOREMS = {
     "RequestsAppendOnly": "SpecImpliesRequestsAppendOnly",
     "TerminalRecordsImmutable": "SpecImpliesTerminalRecordsImmutable",
-    "CanonicalStateChangesOnlyByRecognizedTransition": (
-        "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition"
+    "SeedStateChangesOnlyByRecognizedTransition": (
+        "SpecImpliesSeedStateChangesOnlyByRecognizedTransition"
     ),
-    "InvalidMaterialStutter": "SpecImpliesInvalidMaterialStutter",
-    "NonAuthoritativeInputsStutter": "SpecImpliesNonAuthoritativeInputsStutter",
+    "ConflictObservationPreservesSeedState": (
+        "SpecImpliesConflictObservationPreservesSeedState"
+    ),
 }
 
 STATE_SAFETY_THEOREM = "SpecImpliesAlwaysSeedStateSafety"
@@ -182,25 +183,23 @@ def main() -> int:
         expected_properties = {
             name
             for name, prop in tla_properties.items()
-            if invariant
-            in prop.get(
-                "seed_invariants",
-                [],
-            )
+            if invariant in prop.get("seed_invariants", [])
         }
-
         actual_properties = {item["operator"] for item in claim["formal_projection"]}
-
+        status = claim["status"]
         if actual_properties != expected_properties:
             errors.append(f"{claim_id} formal-property mapping differs from registry")
+        if status == "PROVED_IN_TLA" and not actual_properties:
+            errors.append(f"{claim_id} claims PROVED_IN_TLA without a formal projection")
+        if status == "PARTIAL_BOUNDARY" and invariant not in {
+            "SEED-INV-006", "SEED-INV-007", "SEED-INV-009"
+        }:
+            errors.append(f"{claim_id} uses PARTIAL_BOUNDARY unexpectedly")
 
         expected_requirements = {
             requirement
             for name in expected_properties
-            for requirement in tla_properties[name].get(
-                "seed_requirements",
-                [],
-            )
+            for requirement in tla_properties[name].get("seed_requirements", [])
         }
 
         actual_requirements = set(claim["seed_requirements"])

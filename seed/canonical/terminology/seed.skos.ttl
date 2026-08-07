@@ -36,13 +36,13 @@ aset:local_authority a skos:Concept ;
     skos:prefLabel "Authority local"@pt-BR ;
     skos:definition "An Authority explicitly recognized by one Context for one exact binding and policy epoch."@en .
 
-aset:authority_proof a skos:Concept ;
+aset:authority_recognition a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
-    skos:notation "seed.authority_proof" ;
-    skos:prefLabel "доказательство Authority"@ru ;
-    skos:prefLabel "Authority proof"@en ;
-    skos:prefLabel "prova de Authority"@pt-BR ;
-    skos:definition "A locally rooted, exact-binding, acyclic and non-expanding chain of explicit Authority grants."@en .
+    skos:notation "seed.authority_recognition" ;
+    skos:prefLabel "признание Authority"@ru ;
+    skos:prefLabel "Authority recognition"@en ;
+    skos:prefLabel "reconhecimento de Authority"@pt-BR ;
+    skos:definition "A local exact-binding recognition result stating that one Authority is authorized for one ResolutionBinding; concrete grant chains, signatures and proof construction are external to Seed."@en .
 
 aset:evidence_reference a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
@@ -50,7 +50,7 @@ aset:evidence_reference a skos:Concept ;
     skos:prefLabel "ссылка на основание"@ru ;
     skos:prefLabel "evidence reference"@en ;
     skos:prefLabel "referência de evidência"@pt-BR ;
-    skos:definition "A content-addressed non-authoritative input cited as the basis of a terminal record."@en .
+    skos:definition "An opaque content-addressed reference to non-authoritative evidence or proof material. It has no normative effect until a Seed admission boundary recognizes the fact it supports."@en .
 
 aset:resolution_record a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;
@@ -58,7 +58,7 @@ aset:resolution_record a skos:Concept ;
     skos:prefLabel "запись разрешения"@ru ;
     skos:prefLabel "resolution record"@en ;
     skos:prefLabel "registro de resolução"@pt-BR ;
-    skos:definition "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
+    skos:definition "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding, a recognized Authority, and optional opaque evidence references."@en .
 
 aset:reconsideration_commitment a skos:Concept ;
     skos:inScheme aset:SeedConceptScheme ;

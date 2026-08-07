@@ -329,6 +329,12 @@
           "payload_schema": {
             "type": "string"
           },
+          "role": {
+            "enum": [
+              "STATE_TRANSITION",
+              "OBSERVER"
+            ]
+          },
           "terminal": {
             "type": "boolean"
           },
@@ -349,6 +355,7 @@
           "authority_rule",
           "binding_rule",
           "created_artifacts",
+          "role",
           "terminal"
         ],
         "type": "object"

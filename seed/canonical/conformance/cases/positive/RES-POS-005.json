@@ -3,24 +3,24 @@
     "kind": "SUBMIT_RESOLUTION",
     "payload": {
       "record": {
-        "authority_id": "authority.final",
-        "authority_proof_digests": [
+        "authority_evidence_digests": [
           "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
           "sha256:7029ae832bea27db5ad915ed05929ec7f81a4fd4d46c11f4dcf3eba352979c42"
         ],
+        "authority_id": "authority.final",
         "basis_digests": [
           "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         ],
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "record_digest": "sha256:d6ab5a2233834429d3007bb0e3595327f39433f00b603b61c20cef6e23616db1",
-        "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+        "record_digest": "sha256:9bde7274f2d2f06351adc4d7cc618582b569b35c08e53df7aa8e0db79898283b",
+        "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
         "resolution": "ALLOW",
         "resolution_id": "res.1"
       }
     }
   },
   "case_id": "RES-POS-005",
-  "description": "Record ALLOW through a two-hop attenuating Authority proof.",
+  "description": "Record ALLOW using an Authority that is explicitly recognized for the exact binding; evidence references remain opaque.",
   "expected": {
     "accepted": true,
     "code": "RESOLUTION_RECORDED",
@@ -32,31 +32,18 @@
   "initial_store": {
     "authority_bindings": [
       {
-        "authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+        "authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
         "authority_id": "authority.root",
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "constitution_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
         "context_id": "ctx.local",
-        "delegation_allowed": true,
         "policy_epoch": 1
-      }
-    ],
-    "authority_grants": [
-      {
-        "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "delegation_allowed": true,
-        "grant_digest": "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
-        "issuer_authority_id": "authority.root",
-        "previous_grant_digest": null,
-        "subject_authority_id": "authority.delegate"
       },
       {
+        "authority_binding_digest": "sha256:65e063b22ed629905303f0c6d6759718e429cd565cdb13767e9e862a179a9a8d",
+        "authority_id": "authority.final",
         "binding_digest": "sha256:beabd05fc065bec06af622d23f9c9e45909c1b9d9970fdecf609d10a5efe8c15",
-        "delegation_allowed": false,
-        "grant_digest": "sha256:7029ae832bea27db5ad915ed05929ec7f81a4fd4d46c11f4dcf3eba352979c42",
-        "issuer_authority_id": "authority.delegate",
-        "previous_grant_digest": "sha256:4e8eda2117648c7c437e51dec3a6d061d22b2f45c5ef0013b7b3034cced4d449",
-        "subject_authority_id": "authority.final"
+        "context_id": "ctx.local",
+        "policy_epoch": 1
       }
     ],
     "records": [],
@@ -83,9 +70,9 @@
             ],
             "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           },
-          "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
+          "initial_authority_binding_digest": "sha256:da5da8d35eda73a672311a29bd9b27f75127f10d2817cbdb2171edbc7f61fa8f",
           "previous_terminal_record_digest": null,
-          "request_digest": "sha256:eb016dbdaa1f95ae99f9e0f8dd8dd54865e951e39140e4df2afa3eb0e1b70e92",
+          "request_digest": "sha256:b4be857c41ad7a5884cde2b5b8e78b6f318d7c3b7f10b28b9fe7974446f7e766",
           "resolution_id": "res.1"
         }
       }

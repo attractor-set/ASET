@@ -9,12 +9,6 @@
       },
       "type": "array"
     },
-    "authority_grants": {
-      "items": {
-        "$ref": "authority-grant.schema.json"
-      },
-      "type": "array"
-    },
     "records": {
       "items": {
         "$ref": "resolution-record.schema.json"
@@ -31,8 +25,7 @@
   "required": [
     "requests",
     "records",
-    "authority_bindings",
-    "authority_grants"
+    "authority_bindings"
   ],
   "type": "object"
 }

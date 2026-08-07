@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "active_conformance_protocol": {
-      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+      "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
     },
     "active_seed_model": {
       "const": "seed/canonical/source/seed-model.json"

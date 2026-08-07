@@ -4,10 +4,10 @@ EXTENDS SeedResolution, TLAPS
 (*
 Unbounded safety proof for the normalized Seed state.
 
-Compared with the previous projection, request/terminal metadata are stored once,
-Authority relations are immutable context constants, and invalid/non-authoritative
-observations are explicit semantic stutters. The proof therefore establishes the
-same observable resolution safety over a smaller representable state space.
+The proof separates Seed-owned state from environment conflict state. Authority
+recognition is an exact-binding boundary predicate; concrete evidence and grant
+chains remain external. Invalid and non-authoritative material are outside the
+accepted transition system rather than modeled as artificial stutter actions.
 *)
 
 THEOREM EffectPermissionDefinition ==
@@ -16,13 +16,11 @@ THEOREM EffectPermissionDefinition ==
 PROOF
   BY DEF EffectPermitted
 
-
 THEOREM UnregisteredResolutionIsUnknown ==
   \A r \in ResolutionIds :
     r \notin Requests => ResolutionOf(r) = "UNKNOWN"
 PROOF
   BY DEF ResolutionOf
-
 
 THEOREM ConflictedResolutionIsUnknown ==
   \A r \in ResolutionIds :
@@ -30,13 +28,11 @@ THEOREM ConflictedResolutionIsUnknown ==
 PROOF
   BY DEF ResolutionOf
 
-
 THEOREM MissingTerminalRecordIsUnknown ==
   \A r \in ResolutionIds :
     r \notin TerminalRequests => ResolutionOf(r) = "UNKNOWN"
 PROOF
   BY DEF ResolutionOf
-
 
 THEOREM TerminalRecordDeterminesResolution ==
   \A r \in ResolutionIds :
@@ -46,7 +42,6 @@ THEOREM TerminalRecordDeterminesResolution ==
     => ResolutionOf(r) = TerminalResolution(r)
 PROOF
   BY DEF ResolutionOf
-
 
 THEOREM AllowResolutionCharacterization ==
   \A r \in ResolutionIds :
@@ -58,7 +53,6 @@ THEOREM AllowResolutionCharacterization ==
 PROOF
   BY DEF EffectPermitted, ResolutionOf
 
-
 THEOREM BlockResolutionCharacterization ==
   \A r \in ResolutionIds :
     ResolutionOf(r) = "BLOCK" <=>
@@ -69,25 +63,16 @@ THEOREM BlockResolutionCharacterization ==
 PROOF
   BY DEF ResolutionOf
 
-
 THEOREM FailClosedByEvaluator ==
   FailClosed
 PROOF
   BY DEF FailClosed, EffectPermitted
-
-
-THEOREM InputsNonAuthoritativeByStructure ==
-  InputsNonAuthoritative
-PROOF
-  BY DEF InputsNonAuthoritative, canonicalVars
-
 
 THEOREM ConflictUnknownFromTypeOK ==
   TypeOK => ConflictUnknown
 PROOF
   BY ConflictedResolutionIsUnknown
      DEF TypeOK, ConflictUnknown
-
 
 THEOREM ResolutionDomainPointwise ==
   ASSUME TypeOK,
@@ -115,23 +100,20 @@ PROOF
   <1>4. QED
     BY <1>1, <1>2, <1>3
 
-
 THEOREM ResolutionDomainFromTypeOK ==
   TypeOK => ResolutionDomain
 PROOF
   BY ResolutionDomainPointwise
      DEF ResolutionDomain
 
-
 THEOREM TerminalUniqueFromTypeOK ==
   TypeOK => TerminalUnique
 PROOF
   BY DEF TypeOK, TerminalUnique
 
-
 THEOREM AllowSoundnessPointwise ==
   ASSUME TerminalBindingDerived,
-         DelegatedAuthoritySound,
+         TerminalAuthorityRecognized,
          NEW r \in ResolutionIds,
          EffectPermitted(r)
   PROVE
@@ -140,7 +122,7 @@ THEOREM AllowSoundnessPointwise ==
     /\ r \in TerminalRequests
     /\ TerminalResolution(r) = "ALLOW"
     /\ <<TerminalAuthority(r), RequestBinding(r)>>
-         \in AuthorityProofBindings
+         \in TerminalAuthorityBindings
 PROOF
   <1>1.
     /\ r \in Requests
@@ -150,19 +132,17 @@ PROOF
     BY AllowResolutionCharacterization
   <1>2.
     <<TerminalAuthority(r), RequestBinding(r)>>
-      \in AuthorityProofBindings
-    BY <1>1 DEF DelegatedAuthoritySound
+      \in TerminalAuthorityBindings
+    BY <1>1 DEF TerminalAuthorityRecognized
   <1>3. QED
     BY <1>1, <1>2
 
-
 THEOREM AllowSoundnessFromStructuralInvariants ==
-  TerminalBindingDerived /\ DelegatedAuthoritySound
+  TerminalBindingDerived /\ TerminalAuthorityRecognized
     => AllowSoundness
 PROOF
   BY AllowSoundnessPointwise
      DEF AllowSoundness
-
 
 THEOREM InductiveInvariantImpliesSeedStateSafety ==
   InductiveInvariant => SeedStateSafety
@@ -170,11 +150,9 @@ PROOF
   BY ResolutionDomainFromTypeOK,
      AllowSoundnessFromStructuralInvariants,
      FailClosedByEvaluator,
-     InputsNonAuthoritativeByStructure,
      TerminalUniqueFromTypeOK,
      ConflictUnknownFromTypeOK
      DEF InductiveInvariant, SeedStateSafety
-
 
 THEOREM InitImpliesTypeOK ==
   Init => TypeOK
@@ -184,7 +162,6 @@ PROOF
          RequestMetaType,
          TerminalMetaType
 
-
 THEOREM InitImpliesTerminalBindingDerived ==
   Init => TerminalBindingDerived
 PROOF
@@ -193,22 +170,19 @@ PROOF
          Requests,
          TerminalRequests
 
-
-THEOREM InitImpliesLocalAuthorityRoot ==
-  Init => LocalAuthorityRoot
+THEOREM InitImpliesRequestAuthorityRecognized ==
+  Init => RequestAuthorityRecognized
 PROOF
   BY DEF Init,
-         LocalAuthorityRoot,
+         RequestAuthorityRecognized,
          Requests
 
-
-THEOREM InitImpliesDelegatedAuthoritySound ==
-  Init => DelegatedAuthoritySound
+THEOREM InitImpliesTerminalAuthorityRecognized ==
+  Init => TerminalAuthorityRecognized
 PROOF
   BY DEF Init,
-         DelegatedAuthoritySound,
+         TerminalAuthorityRecognized,
          TerminalRequests
-
 
 THEOREM InitImpliesFreshReconsideration ==
   Init => FreshReconsideration
@@ -216,7 +190,6 @@ PROOF
   BY DEF Init,
          FreshReconsideration,
          Requests
-
 
 THEOREM InitImpliesTerminalRecordRequiresRequest ==
   Init => TerminalRecordRequiresRequest
@@ -226,18 +199,16 @@ PROOF
          Requests,
          TerminalRequests
 
-
 THEOREM InitImpliesInductiveInvariant ==
   Init => InductiveInvariant
 PROOF
   BY InitImpliesTypeOK,
      InitImpliesTerminalBindingDerived,
-     InitImpliesLocalAuthorityRoot,
-     InitImpliesDelegatedAuthoritySound,
+     InitImpliesRequestAuthorityRecognized,
+     InitImpliesTerminalAuthorityRecognized,
      InitImpliesFreshReconsideration,
      InitImpliesTerminalRecordRequiresRequest
      DEF InductiveInvariant
-
 
 THEOREM RegisterRequestPreservesTypeOK ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -252,7 +223,6 @@ PROOF
          RequestMetaType,
          TerminalMetaType
 
-
 THEOREM RegisterRequestPreservesTerminalRecordRequiresRequest ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      previous \in TerminalCommitments \cup {NoCommitment} :
@@ -265,7 +235,6 @@ PROOF
          RegisterRequest,
          Requests,
          TerminalRequests
-
 
 THEOREM RegisterRequestPreservesTerminalBindingDerived ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -282,35 +251,32 @@ PROOF
          TerminalBinding,
          RequestBinding
 
-
-THEOREM RegisterRequestPreservesLocalAuthorityRoot ==
+THEOREM RegisterRequestPreservesRequestAuthorityRecognized ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      previous \in TerminalCommitments \cup {NoCommitment} :
     InductiveInvariant /\ RegisterRequest(r, b, a, previous)
-      => LocalAuthorityRoot'
+      => RequestAuthorityRecognized'
 PROOF
   BY DEF InductiveInvariant,
-         LocalAuthorityRoot,
+         RequestAuthorityRecognized,
          RegisterRequest,
          Requests,
          RequestBinding
 
-
-THEOREM RegisterRequestPreservesDelegatedAuthoritySound ==
+THEOREM RegisterRequestPreservesTerminalAuthorityRecognized ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      previous \in TerminalCommitments \cup {NoCommitment} :
     InductiveInvariant /\ RegisterRequest(r, b, a, previous)
-      => DelegatedAuthoritySound'
+      => TerminalAuthorityRecognized'
 PROOF
   BY DEF InductiveInvariant,
-         DelegatedAuthoritySound,
+         TerminalAuthorityRecognized,
          TerminalRecordRequiresRequest,
          RegisterRequest,
          Requests,
          TerminalRequests,
          RequestBinding,
          TerminalAuthority
-
 
 THEOREM RegisterRequestPreservesFreshReconsideration ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -324,7 +290,6 @@ PROOF
          Requests,
          PreviousCommitment
 
-
 THEOREM RegisterRequestPreservesInductiveInvariant ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      previous \in TerminalCommitments \cup {NoCommitment} :
@@ -334,11 +299,10 @@ PROOF
   BY RegisterRequestPreservesTypeOK,
      RegisterRequestPreservesTerminalRecordRequiresRequest,
      RegisterRequestPreservesTerminalBindingDerived,
-     RegisterRequestPreservesLocalAuthorityRoot,
-     RegisterRequestPreservesDelegatedAuthoritySound,
+     RegisterRequestPreservesRequestAuthorityRecognized,
+     RegisterRequestPreservesTerminalAuthorityRecognized,
      RegisterRequestPreservesFreshReconsideration
      DEF InductiveInvariant
-
 
 THEOREM SubmitResolutionPreservesTypeOK ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -354,7 +318,6 @@ PROOF
          RequestMetaType,
          TerminalMetaType
 
-
 THEOREM SubmitResolutionPreservesTerminalRecordRequiresRequest ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      value \in TerminalResolutions :
@@ -366,7 +329,6 @@ PROOF
          SubmitResolution,
          Requests,
          TerminalRequests
-
 
 THEOREM SubmitResolutionPreservesTerminalBindingDerived ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -383,35 +345,32 @@ PROOF
          TerminalBinding,
          RequestBinding
 
-
-THEOREM SubmitResolutionPreservesLocalAuthorityRoot ==
+THEOREM SubmitResolutionPreservesRequestAuthorityRecognized ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      value \in TerminalResolutions :
     InductiveInvariant /\ SubmitResolution(r, b, a, value)
-      => LocalAuthorityRoot'
+      => RequestAuthorityRecognized'
 PROOF
   BY DEF InductiveInvariant,
-         LocalAuthorityRoot,
+         RequestAuthorityRecognized,
          SubmitResolution,
          Requests,
          RequestBinding
 
-
-THEOREM SubmitResolutionPreservesDelegatedAuthoritySound ==
+THEOREM SubmitResolutionPreservesTerminalAuthorityRecognized ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      value \in TerminalResolutions :
     InductiveInvariant /\ SubmitResolution(r, b, a, value)
-      => DelegatedAuthoritySound'
+      => TerminalAuthorityRecognized'
 PROOF
   BY DEF InductiveInvariant,
-         DelegatedAuthoritySound,
+         TerminalAuthorityRecognized,
          TerminalRecordRequiresRequest,
          SubmitResolution,
          Requests,
          TerminalRequests,
          RequestBinding,
          TerminalAuthority
-
 
 THEOREM SubmitResolutionPreservesFreshReconsideration ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
@@ -425,7 +384,6 @@ PROOF
          Requests,
          PreviousCommitment
 
-
 THEOREM SubmitResolutionPreservesInductiveInvariant ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      value \in TerminalResolutions :
@@ -435,23 +393,23 @@ PROOF
   BY SubmitResolutionPreservesTypeOK,
      SubmitResolutionPreservesTerminalRecordRequiresRequest,
      SubmitResolutionPreservesTerminalBindingDerived,
-     SubmitResolutionPreservesLocalAuthorityRoot,
-     SubmitResolutionPreservesDelegatedAuthoritySound,
+     SubmitResolutionPreservesRequestAuthorityRecognized,
+     SubmitResolutionPreservesTerminalAuthorityRecognized,
      SubmitResolutionPreservesFreshReconsideration
      DEF InductiveInvariant
-
 
 THEOREM StateStutterPreservesInductiveInvariant ==
   InductiveInvariant /\ UNCHANGED vars
     => InductiveInvariant'
 PROOF
   BY DEF vars,
-         canonicalVars,
+         seedVars,
+         environmentVars,
          InductiveInvariant,
          TypeOK,
          TerminalBindingDerived,
-         LocalAuthorityRoot,
-         DelegatedAuthoritySound,
+         RequestAuthorityRecognized,
+         TerminalAuthorityRecognized,
          FreshReconsideration,
          TerminalRecordRequiresRequest,
          Requests,
@@ -461,13 +419,11 @@ PROOF
          TerminalBinding,
          TerminalAuthority
 
-
 THEOREM ObserveConflictPreservesTypeOK ==
   \A r \in ResolutionIds :
     TypeOK /\ ObserveConflict(r) => TypeOK'
 PROOF
-  BY DEF TypeOK, ObserveConflict
-
+  BY DEF TypeOK, ObserveConflict, seedVars
 
 THEOREM ObserveConflictPreservesTerminalBindingDerived ==
   \A r \in ResolutionIds :
@@ -476,34 +432,34 @@ THEOREM ObserveConflictPreservesTerminalBindingDerived ==
 PROOF
   BY DEF TerminalBindingDerived,
          ObserveConflict,
+         seedVars,
          Requests,
          TerminalRequests,
          TerminalBinding,
          RequestBinding
 
-
-THEOREM ObserveConflictPreservesLocalAuthorityRoot ==
+THEOREM ObserveConflictPreservesRequestAuthorityRecognized ==
   \A r \in ResolutionIds :
-    LocalAuthorityRoot /\ ObserveConflict(r) => LocalAuthorityRoot'
+    RequestAuthorityRecognized /\ ObserveConflict(r) => RequestAuthorityRecognized'
 PROOF
-  BY DEF LocalAuthorityRoot,
+  BY DEF RequestAuthorityRecognized,
          ObserveConflict,
+         seedVars,
          Requests,
          RequestBinding
 
-
-THEOREM ObserveConflictPreservesDelegatedAuthoritySound ==
+THEOREM ObserveConflictPreservesTerminalAuthorityRecognized ==
   \A r \in ResolutionIds :
-    DelegatedAuthoritySound /\ ObserveConflict(r)
-      => DelegatedAuthoritySound'
+    TerminalAuthorityRecognized /\ ObserveConflict(r)
+      => TerminalAuthorityRecognized'
 PROOF
-  BY DEF DelegatedAuthoritySound,
+  BY DEF TerminalAuthorityRecognized,
          ObserveConflict,
+         seedVars,
          Requests,
          TerminalRequests,
          RequestBinding,
          TerminalAuthority
-
 
 THEOREM ObserveConflictPreservesFreshReconsideration ==
   \A r \in ResolutionIds :
@@ -512,9 +468,9 @@ THEOREM ObserveConflictPreservesFreshReconsideration ==
 PROOF
   BY DEF FreshReconsideration,
          ObserveConflict,
+         seedVars,
          Requests,
          PreviousCommitment
-
 
 THEOREM ObserveConflictPreservesTerminalRecordRequiresRequest ==
   \A r \in ResolutionIds :
@@ -523,9 +479,9 @@ THEOREM ObserveConflictPreservesTerminalRecordRequiresRequest ==
 PROOF
   BY DEF TerminalRecordRequiresRequest,
          ObserveConflict,
+         seedVars,
          Requests,
          TerminalRequests
-
 
 THEOREM ObserveConflictPreservesInductiveInvariant ==
   \A r \in ResolutionIds :
@@ -534,38 +490,11 @@ THEOREM ObserveConflictPreservesInductiveInvariant ==
 PROOF
   BY ObserveConflictPreservesTypeOK,
      ObserveConflictPreservesTerminalBindingDerived,
-     ObserveConflictPreservesLocalAuthorityRoot,
-     ObserveConflictPreservesDelegatedAuthoritySound,
+     ObserveConflictPreservesRequestAuthorityRecognized,
+     ObserveConflictPreservesTerminalAuthorityRecognized,
      ObserveConflictPreservesFreshReconsideration,
      ObserveConflictPreservesTerminalRecordRequiresRequest
      DEF InductiveInvariant
-
-
-THEOREM ObserveInvalidMaterialPreservesInductiveInvariant ==
-  \A r \in ResolutionIds :
-    InductiveInvariant /\ ObserveInvalidMaterial(r)
-      => InductiveInvariant'
-PROOF
-  BY StateStutterPreservesInductiveInvariant
-     DEF ObserveInvalidMaterial
-
-
-THEOREM ObserveNonAuthoritativeInputPreservesInductiveInvariant ==
-  \A r \in ResolutionIds :
-    InductiveInvariant /\ ObserveNonAuthoritativeInput(r)
-      => InductiveInvariant'
-PROOF
-  BY StateStutterPreservesInductiveInvariant
-     DEF ObserveNonAuthoritativeInput
-
-
-THEOREM EvaluatePreservesInductiveInvariant ==
-  InductiveInvariant /\ Evaluate
-    => InductiveInvariant'
-PROOF
-  BY StateStutterPreservesInductiveInvariant
-     DEF Evaluate
-
 
 THEOREM RecognizedSeedTransitionPreservesInductiveInvariant ==
   InductiveInvariant /\ RecognizedSeedTransition
@@ -575,34 +504,20 @@ PROOF
      SubmitResolutionPreservesInductiveInvariant
      DEF RecognizedSeedTransition
 
-
 THEOREM RecognizedEnvironmentTransitionPreservesInductiveInvariant ==
   InductiveInvariant /\ RecognizedEnvironmentTransition
     => InductiveInvariant'
 PROOF
-  BY ObserveConflictPreservesInductiveInvariant,
-     ObserveInvalidMaterialPreservesInductiveInvariant,
-     ObserveNonAuthoritativeInputPreservesInductiveInvariant
+  BY ObserveConflictPreservesInductiveInvariant
      DEF RecognizedEnvironmentTransition
-
-
-THEOREM RecognizedCanonicalTransitionPreservesInductiveInvariant ==
-  InductiveInvariant /\ RecognizedCanonicalTransition
-    => InductiveInvariant'
-PROOF
-  BY RecognizedSeedTransitionPreservesInductiveInvariant,
-     RecognizedEnvironmentTransitionPreservesInductiveInvariant
-     DEF RecognizedCanonicalTransition
-
 
 THEOREM NextPreservesInductiveInvariant ==
   InductiveInvariant /\ Next
     => InductiveInvariant'
 PROOF
-  BY RecognizedCanonicalTransitionPreservesInductiveInvariant,
-     EvaluatePreservesInductiveInvariant
+  BY RecognizedSeedTransitionPreservesInductiveInvariant,
+     RecognizedEnvironmentTransitionPreservesInductiveInvariant
      DEF Next
-
 
 THEOREM BoxNextPreservesInductiveInvariant ==
   InductiveInvariant /\ [Next]_vars
@@ -612,7 +527,6 @@ PROOF
      StateStutterPreservesInductiveInvariant
      DEF vars
 
-
 THEOREM SpecImpliesAlwaysInductiveInvariant ==
   Spec => []InductiveInvariant
 PROOF
@@ -621,13 +535,11 @@ PROOF
      BoxNextPreservesInductiveInvariant
      DEF Spec
 
-
 THEOREM AlwaysInductiveInvariantImpliesAlwaysSeedStateSafety ==
   []InductiveInvariant => []SeedStateSafety
 PROOF
   BY PTL,
      InductiveInvariantImpliesSeedStateSafety
-
 
 THEOREM SpecImpliesAlwaysSeedStateSafety ==
   Spec => []SeedStateSafety
@@ -635,15 +547,12 @@ PROOF
   BY SpecImpliesAlwaysInductiveInvariant,
      AlwaysInductiveInvariantImpliesAlwaysSeedStateSafety
 
-
 THEOREM RegisterRequestSatisfiesRequestsAppendOnlyStep ==
   \A r \in ResolutionIds, b \in Bindings, a \in Authorities,
      previous \in TerminalCommitments \cup {NoCommitment} :
     RegisterRequest(r, b, a, previous) => RequestsAppendOnlyStep
 PROOF
-  BY DEF RegisterRequest,
-         RequestsAppendOnlyStep,
-         Requests
+  BY DEF RegisterRequest, RequestsAppendOnlyStep, Requests
 
 
 THEOREM SubmitResolutionSatisfiesRequestsAppendOnlyStep ==
@@ -651,68 +560,23 @@ THEOREM SubmitResolutionSatisfiesRequestsAppendOnlyStep ==
      value \in TerminalResolutions :
     SubmitResolution(r, b, a, value) => RequestsAppendOnlyStep
 PROOF
-  BY DEF SubmitResolution,
-         RequestsAppendOnlyStep,
-         Requests
+  BY DEF SubmitResolution, RequestsAppendOnlyStep, Requests
 
 
 THEOREM ObserveConflictSatisfiesRequestsAppendOnlyStep ==
   \A r \in ResolutionIds :
     ObserveConflict(r) => RequestsAppendOnlyStep
 PROOF
-  BY DEF ObserveConflict,
-         RequestsAppendOnlyStep,
-         Requests
-
-
-THEOREM StateStutterSatisfiesRequestsAppendOnlyStep ==
-  UNCHANGED vars => RequestsAppendOnlyStep
-PROOF
-  BY DEF vars, canonicalVars, RequestsAppendOnlyStep, Requests
-
-
-THEOREM ObserveInvalidMaterialSatisfiesRequestsAppendOnlyStep ==
-  \A r \in ResolutionIds :
-    ObserveInvalidMaterial(r) => RequestsAppendOnlyStep
-PROOF
-  BY StateStutterSatisfiesRequestsAppendOnlyStep
-     DEF ObserveInvalidMaterial
-
-
-THEOREM ObserveNonAuthoritativeInputSatisfiesRequestsAppendOnlyStep ==
-  \A r \in ResolutionIds :
-    ObserveNonAuthoritativeInput(r) => RequestsAppendOnlyStep
-PROOF
-  BY StateStutterSatisfiesRequestsAppendOnlyStep
-     DEF ObserveNonAuthoritativeInput
-
-
-THEOREM EvaluateSatisfiesRequestsAppendOnlyStep ==
-  Evaluate => RequestsAppendOnlyStep
-PROOF
-  BY StateStutterSatisfiesRequestsAppendOnlyStep
-     DEF Evaluate
-
-
-THEOREM RecognizedCanonicalTransitionSatisfiesRequestsAppendOnlyStep ==
-  RecognizedCanonicalTransition => RequestsAppendOnlyStep
-PROOF
-  BY RegisterRequestSatisfiesRequestsAppendOnlyStep,
-     SubmitResolutionSatisfiesRequestsAppendOnlyStep,
-     ObserveConflictSatisfiesRequestsAppendOnlyStep,
-     ObserveInvalidMaterialSatisfiesRequestsAppendOnlyStep,
-     ObserveNonAuthoritativeInputSatisfiesRequestsAppendOnlyStep
-     DEF RecognizedCanonicalTransition,
-         RecognizedSeedTransition,
-         RecognizedEnvironmentTransition
+  BY DEF ObserveConflict, RequestsAppendOnlyStep, Requests, seedVars
 
 
 THEOREM NextSatisfiesRequestsAppendOnlyStep ==
   Next => RequestsAppendOnlyStep
 PROOF
-  BY RecognizedCanonicalTransitionSatisfiesRequestsAppendOnlyStep,
-     EvaluateSatisfiesRequestsAppendOnlyStep
-     DEF Next
+  BY RegisterRequestSatisfiesRequestsAppendOnlyStep,
+     SubmitResolutionSatisfiesRequestsAppendOnlyStep,
+     ObserveConflictSatisfiesRequestsAppendOnlyStep
+     DEF Next, RecognizedSeedTransition, RecognizedEnvironmentTransition
 
 
 THEOREM BoxNextSatisfiesBoxRequestsAppendOnlyStep ==
@@ -735,9 +599,7 @@ THEOREM RegisterRequestSatisfiesTerminalRecordsImmutableStep ==
      previous \in TerminalCommitments \cup {NoCommitment} :
     RegisterRequest(r, b, a, previous) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF RegisterRequest,
-         TerminalRecordsImmutableStep,
-         TerminalRequests
+  BY DEF RegisterRequest, TerminalRecordsImmutableStep, TerminalRequests
 
 
 THEOREM SubmitResolutionSatisfiesTerminalRecordsImmutableStep ==
@@ -745,68 +607,23 @@ THEOREM SubmitResolutionSatisfiesTerminalRecordsImmutableStep ==
      value \in TerminalResolutions :
     SubmitResolution(r, b, a, value) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF SubmitResolution,
-         TerminalRecordsImmutableStep,
-         TerminalRequests
+  BY DEF SubmitResolution, TerminalRecordsImmutableStep, TerminalRequests
 
 
 THEOREM ObserveConflictSatisfiesTerminalRecordsImmutableStep ==
   \A r \in ResolutionIds :
     ObserveConflict(r) => TerminalRecordsImmutableStep
 PROOF
-  BY DEF ObserveConflict,
-         TerminalRecordsImmutableStep,
-         TerminalRequests
-
-
-THEOREM StateStutterSatisfiesTerminalRecordsImmutableStep ==
-  UNCHANGED vars => TerminalRecordsImmutableStep
-PROOF
-  BY DEF vars, canonicalVars, TerminalRecordsImmutableStep, TerminalRequests
-
-
-THEOREM ObserveInvalidMaterialSatisfiesTerminalRecordsImmutableStep ==
-  \A r \in ResolutionIds :
-    ObserveInvalidMaterial(r) => TerminalRecordsImmutableStep
-PROOF
-  BY StateStutterSatisfiesTerminalRecordsImmutableStep
-     DEF ObserveInvalidMaterial
-
-
-THEOREM ObserveNonAuthoritativeInputSatisfiesTerminalRecordsImmutableStep ==
-  \A r \in ResolutionIds :
-    ObserveNonAuthoritativeInput(r) => TerminalRecordsImmutableStep
-PROOF
-  BY StateStutterSatisfiesTerminalRecordsImmutableStep
-     DEF ObserveNonAuthoritativeInput
-
-
-THEOREM EvaluateSatisfiesTerminalRecordsImmutableStep ==
-  Evaluate => TerminalRecordsImmutableStep
-PROOF
-  BY StateStutterSatisfiesTerminalRecordsImmutableStep
-     DEF Evaluate
-
-
-THEOREM RecognizedCanonicalTransitionSatisfiesTerminalRecordsImmutableStep ==
-  RecognizedCanonicalTransition => TerminalRecordsImmutableStep
-PROOF
-  BY RegisterRequestSatisfiesTerminalRecordsImmutableStep,
-     SubmitResolutionSatisfiesTerminalRecordsImmutableStep,
-     ObserveConflictSatisfiesTerminalRecordsImmutableStep,
-     ObserveInvalidMaterialSatisfiesTerminalRecordsImmutableStep,
-     ObserveNonAuthoritativeInputSatisfiesTerminalRecordsImmutableStep
-     DEF RecognizedCanonicalTransition,
-         RecognizedSeedTransition,
-         RecognizedEnvironmentTransition
+  BY DEF ObserveConflict, TerminalRecordsImmutableStep, TerminalRequests, seedVars
 
 
 THEOREM NextSatisfiesTerminalRecordsImmutableStep ==
   Next => TerminalRecordsImmutableStep
 PROOF
-  BY RecognizedCanonicalTransitionSatisfiesTerminalRecordsImmutableStep,
-     EvaluateSatisfiesTerminalRecordsImmutableStep
-     DEF Next
+  BY RegisterRequestSatisfiesTerminalRecordsImmutableStep,
+     SubmitResolutionSatisfiesTerminalRecordsImmutableStep,
+     ObserveConflictSatisfiesTerminalRecordsImmutableStep
+     DEF Next, RecognizedSeedTransition, RecognizedEnvironmentTransition
 
 
 THEOREM BoxNextSatisfiesBoxTerminalRecordsImmutableStep ==
@@ -824,102 +641,68 @@ PROOF
      DEF Spec, TerminalRecordsImmutable
 
 
-THEOREM RecognizedCanonicalTransitionSatisfiesCanonicalTransitionStep ==
-  RecognizedCanonicalTransition
-    => CanonicalStateChangesOnlyByRecognizedTransitionStep
+THEOREM RecognizedSeedTransitionSatisfiesSeedStateTransitionStep ==
+  RecognizedSeedTransition => SeedStateChangesOnlyByRecognizedTransitionStep
 PROOF
-  BY DEF CanonicalStateChangesOnlyByRecognizedTransitionStep
+  BY DEF SeedStateChangesOnlyByRecognizedTransitionStep
 
 
-THEOREM EvaluateSatisfiesCanonicalTransitionStep ==
-  Evaluate => CanonicalStateChangesOnlyByRecognizedTransitionStep
-PROOF
-  BY DEF Evaluate,
-         vars,
-         canonicalVars,
-         CanonicalStateChangesOnlyByRecognizedTransitionStep
-
-
-THEOREM NextSatisfiesCanonicalTransitionStep ==
-  Next => CanonicalStateChangesOnlyByRecognizedTransitionStep
-PROOF
-  BY RecognizedCanonicalTransitionSatisfiesCanonicalTransitionStep,
-     EvaluateSatisfiesCanonicalTransitionStep
-     DEF Next
-
-
-THEOREM BoxNextSatisfiesBoxCanonicalTransitionStep ==
-  [Next]_vars => [CanonicalStateChangesOnlyByRecognizedTransitionStep]_vars
-PROOF
-  BY NextSatisfiesCanonicalTransitionStep
-     DEF vars,
-         canonicalVars,
-         CanonicalStateChangesOnlyByRecognizedTransitionStep
-
-
-THEOREM SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition ==
-  Spec => CanonicalStateChangesOnlyByRecognizedTransition
-PROOF
-  BY PTL,
-     BoxNextSatisfiesBoxCanonicalTransitionStep
-     DEF Spec, CanonicalStateChangesOnlyByRecognizedTransition
-
-
-THEOREM InvalidMaterialActionIsStutter ==
+THEOREM ObserveConflictSatisfiesSeedStateTransitionStep ==
   \A r \in ResolutionIds :
-    ObserveInvalidMaterial(r) => UNCHANGED vars
+    ObserveConflict(r) => SeedStateChangesOnlyByRecognizedTransitionStep
 PROOF
-  BY DEF ObserveInvalidMaterial
+  BY DEF ObserveConflict, seedVars, SeedStateChangesOnlyByRecognizedTransitionStep
 
 
-THEOREM NextSatisfiesInvalidMaterialStutterStep ==
-  Next => InvalidMaterialStutterStep
+THEOREM NextSatisfiesSeedStateTransitionStep ==
+  Next => SeedStateChangesOnlyByRecognizedTransitionStep
 PROOF
-  BY InvalidMaterialActionIsStutter
-     DEF InvalidMaterialStutterStep
+  BY RecognizedSeedTransitionSatisfiesSeedStateTransitionStep,
+     ObserveConflictSatisfiesSeedStateTransitionStep
+     DEF Next, RecognizedEnvironmentTransition
 
 
-THEOREM BoxNextSatisfiesBoxInvalidMaterialStutterStep ==
-  [Next]_vars => [InvalidMaterialStutterStep]_vars
+THEOREM BoxNextSatisfiesBoxSeedStateTransitionStep ==
+  [Next]_vars => [SeedStateChangesOnlyByRecognizedTransitionStep]_vars
 PROOF
-  BY NextSatisfiesInvalidMaterialStutterStep
-     DEF vars, InvalidMaterialStutterStep
+  BY NextSatisfiesSeedStateTransitionStep
+     DEF vars, SeedStateChangesOnlyByRecognizedTransitionStep
 
 
-THEOREM SpecImpliesInvalidMaterialStutter ==
-  Spec => InvalidMaterialStutter
+THEOREM SpecImpliesSeedStateChangesOnlyByRecognizedTransition ==
+  Spec => SeedStateChangesOnlyByRecognizedTransition
 PROOF
   BY PTL,
-     BoxNextSatisfiesBoxInvalidMaterialStutterStep
-     DEF Spec, InvalidMaterialStutter
+     BoxNextSatisfiesBoxSeedStateTransitionStep
+     DEF Spec, SeedStateChangesOnlyByRecognizedTransition
 
 
-THEOREM NonAuthoritativeInputActionIsStutter ==
+THEOREM ObserveConflictPreservesSeedState ==
   \A r \in ResolutionIds :
-    ObserveNonAuthoritativeInput(r) => UNCHANGED vars
+    ObserveConflict(r) => UNCHANGED seedVars
 PROOF
-  BY DEF ObserveNonAuthoritativeInput
+  BY DEF ObserveConflict
 
 
-THEOREM NextSatisfiesNonAuthoritativeInputsStutterStep ==
-  Next => NonAuthoritativeInputsStutterStep
+THEOREM NextSatisfiesConflictObservationPreservesSeedStateStep ==
+  Next => ConflictObservationPreservesSeedStateStep
 PROOF
-  BY NonAuthoritativeInputActionIsStutter
-     DEF NonAuthoritativeInputsStutterStep
+  BY ObserveConflictPreservesSeedState
+     DEF ConflictObservationPreservesSeedStateStep
 
 
-THEOREM BoxNextSatisfiesBoxNonAuthoritativeInputsStutterStep ==
-  [Next]_vars => [NonAuthoritativeInputsStutterStep]_vars
+THEOREM BoxNextSatisfiesBoxConflictObservationPreservesSeedStateStep ==
+  [Next]_vars => [ConflictObservationPreservesSeedStateStep]_vars
 PROOF
-  BY NextSatisfiesNonAuthoritativeInputsStutterStep
-     DEF vars, NonAuthoritativeInputsStutterStep
+  BY NextSatisfiesConflictObservationPreservesSeedStateStep
+     DEF vars, ConflictObservationPreservesSeedStateStep
 
 
-THEOREM SpecImpliesNonAuthoritativeInputsStutter ==
-  Spec => NonAuthoritativeInputsStutter
+THEOREM SpecImpliesConflictObservationPreservesSeedState ==
+  Spec => ConflictObservationPreservesSeedState
 PROOF
   BY PTL,
-     BoxNextSatisfiesBoxNonAuthoritativeInputsStutterStep
-     DEF Spec, NonAuthoritativeInputsStutter
+     BoxNextSatisfiesBoxConflictObservationPreservesSeedStateStep
+     DEF Spec, ConflictObservationPreservesSeedState
 
 =============================================================================

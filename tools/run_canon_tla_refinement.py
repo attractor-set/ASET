@@ -60,9 +60,21 @@ def main() -> int:
         errors.append("canon-to-TLA refinement integrity check failed")
 
     proof_text = PROOF_PATH.read_text(encoding="utf-8") if PROOF_PATH.is_file() else ""
-    if "EXTENDS SeedCanonProjection, TLAPS" not in proof_text:
+    if "EXTENDS SeedResolution, TLAPS" not in proof_text:
         errors.append(
-            "refinement proof module does not import SeedCanonProjection and TLAPS"
+            "refinement proof module does not import SeedResolution and TLAPS"
+        )
+    if (
+        re.search(
+            r"^Canon\s*==\s*INSTANCE\s+SeedCanonProjection\s*$",
+            proof_text,
+            flags=re.MULTILINE,
+        )
+        is None
+    ):
+        errors.append(
+            "refinement proof module does not explicitly instantiate "
+            "standalone SeedCanonProjection"
         )
     if (
         re.search(

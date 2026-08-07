@@ -43,7 +43,7 @@
       "additionalProperties": false,
       "properties": {
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
         },
         "results": {
           "items": {
@@ -72,7 +72,7 @@
           "type": "object"
         },
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
         }
       },
       "required": [
@@ -103,7 +103,7 @@
           "type": "object"
         },
         "protocol": {
-          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V2"
+          "const": "ASET-SEED-RESOLUTION-CONFORMANCE-V3"
         },
         "supported_operations": {
           "allOf": [

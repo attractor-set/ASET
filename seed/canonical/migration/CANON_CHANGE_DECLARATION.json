@@ -1,10 +1,10 @@
 {
-  "candidate_model_sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
+  "candidate_model_sha256": "sha256:c43ca7b642a11c3ab140884a6bbff34bbd741f5cb905e6a779c860c813998fcf",
   "change_class": "BREAKING",
   "change_kind": "SEMANTIC_SIMPLIFICATION",
-  "decision_ref": "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
+  "decision_ref": "seed/canonical/decisions/ADR-009-seed-state-environment-observer-and-authority-boundary.md",
   "document_type": "aset-canon-change-declaration",
-  "rationale": "Seed 0.3 keeps reconsideration tied to immutable recognized terminal commitments while removing any requirement to retain predecessor request/record objects or an ever-growing canonical receipt registry.",
+  "rationale": "Seed 0.3 deep-refactors the active resolution core: exact-binding Authority recognition replaces grant-chain semantics, Seed-owned state is separated from environment conflict state, evaluation is an observer, invalid/non-authoritative material cannot override a unique valid terminal record, and the canon-to-TLA projection is standalone.",
   "schema_version": 1,
   "supersession_ref": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json"
 }

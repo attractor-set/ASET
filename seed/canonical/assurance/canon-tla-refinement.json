@@ -5,24 +5,24 @@
       "id": "OPAQUE_BINDING"
     },
     {
-      "description": "authorityProofBindings abstracts exact grant-chain construction, acyclicity, attenuation and cryptographic verification.",
-      "id": "AUTHORITY_PROOF_ORACLE"
+      "description": "RequestAuthorityBindings and TerminalAuthorityBindings represent already-recognized exact-binding Authority facts. Concrete signatures, delegation chains, federation proof material and their validation are external to Seed.",
+      "id": "AUTHORITY_RECOGNITION_BOUNDARY"
     },
     {
-      "description": "RecognizedTerminalCommitments abstracts validation that a previous_terminal_record_digest commits to a previously recognized terminal ResolutionRecord. Recognition may be backed by retained material or externally validated authenticated-set/accumulator proof material; predecessor object retention is not required.",
+      "description": "RecognizedTerminalCommitments abstracts validation that a previous_terminal_record_digest commits to a previously recognized terminal ResolutionRecord; predecessor object retention is not required.",
       "id": "TERMINAL_COMMITMENT_ORACLE"
     },
     {
-      "description": "Conflict remains explicit because it changes derived resolution; invalid-material and non-authoritative-input observations are separate semantic stutters with no retained canonical state component.",
-      "id": "ENVIRONMENT_OBSERVATION"
+      "description": "Conflict is modeled separately from Seed-owned state because an independently established conflicting valid terminal record changes the derived resolution while not mutating accepted request or terminal state.",
+      "id": "ENVIRONMENT_CONFLICT_STATE"
     }
   ],
-  "claim_boundary": "The proof establishes behavioral equivalence between SeedResolution.tla and a deterministic TLA+ projection generated from the exact machine-readable Seed model under ASET-SEED-CANON-TLA-PROJECTION-V3. It is not a proof that every natural-language sentence, cryptographic construction, opaque binding representation, concrete Authority-proof implementation, terminal-commitment provenance mechanism, storage compaction, or implementation refinement is fully verified by the TLA+ model. The deterministic projection generator is part of the assurance trusted computing base; this proof does not itself verify the generator implementation.",
+  "claim_boundary": "The proof establishes behavioral equivalence between SeedResolution.tla and a standalone TLA+ projection generated from the exact machine-readable Seed model under ASET-SEED-CANON-TLA-PROJECTION-V4. The generated projection does not import or extend SeedResolution; the proof explicitly instantiates the independent projection onto the target state. Opaque Binding construction, concrete Authority-recognition evidence, terminal-commitment provenance, cryptographic primitives, implementation refinement, liveness and natural-language completeness remain outside this proof boundary. The deterministic generator remains part of the assurance trusted computing base.",
   "document_type": "aset-canon-tla-refinement",
   "excluded_claims": [
     "natural-language-text equivalence",
     "cryptographic digest correctness",
-    "concrete Authority grant-chain construction",
+    "concrete Authority evidence or delegation-chain validation",
     "implementation refinement",
     "liveness",
     "formal proof of projection-generator correctness",
@@ -33,7 +33,7 @@
     "generator": "tools/generate_canon_tla_projection.py",
     "module": "SeedCanonProjection",
     "path": "seed/canonical/formal/SeedCanonProjection.tla",
-    "profile": "ASET-SEED-CANON-TLA-PROJECTION-V3"
+    "profile": "ASET-SEED-CANON-TLA-PROJECTION-V4"
   },
   "invariant_coverage": [
     {
@@ -58,11 +58,11 @@
     },
     {
       "id": "SEED-INV-006",
-      "status": "ABSTRACTED_AUTHORITY_PROOF"
+      "status": "ABSTRACTED_AUTHORITY_RECOGNITION"
     },
     {
       "id": "SEED-INV-007",
-      "status": "PROVED_IN_DECLARED_PROJECTION"
+      "status": "STRUCTURAL_BOUNDARY_OUTSIDE_STATE_MACHINE"
     },
     {
       "id": "SEED-INV-008",
@@ -70,7 +70,7 @@
     },
     {
       "id": "SEED-INV-009",
-      "status": "PROVED_IN_DECLARED_PROJECTION"
+      "status": "PARTIAL_EXTERNAL_MATERIAL_BOUNDARY"
     },
     {
       "id": "SEED-INV-010",
@@ -90,7 +90,7 @@
     "module": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
     "verification_method": "ASET-VERIFY-CANON-TLA-REFINEMENT"
   },
-  "relation_type": "GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF",
+  "relation_type": "STANDALONE_GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF",
   "requirement_coverage": [
     {
       "id": "ASET-SEED-REQ-001",
@@ -115,7 +115,7 @@
     {
       "id": "ASET-SEED-REQ-005",
       "predicate": "fail_closed",
-      "status": "PROVED_IN_DECLARED_PROJECTION"
+      "status": "PARTIAL_EXTERNAL_MATERIAL_BOUNDARY"
     },
     {
       "id": "ASET-SEED-REQ-006",
@@ -124,13 +124,13 @@
     },
     {
       "id": "ASET-SEED-REQ-007",
-      "predicate": "proof_attenuating",
-      "status": "ABSTRACTED_AUTHORITY_PROOF"
+      "predicate": "authority_recognition_boundary",
+      "status": "ABSTRACTED_AUTHORITY_RECOGNITION"
     },
     {
       "id": "ASET-SEED-REQ-008",
       "predicate": "inputs_non_authoritative",
-      "status": "PROVED_IN_DECLARED_PROJECTION"
+      "status": "STRUCTURAL_BOUNDARY_OUTSIDE_STATE_MACHINE"
     },
     {
       "id": "ASET-SEED-REQ-009",
@@ -167,13 +167,13 @@
   "source_model": {
     "model_id": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
     "path": "seed/canonical/source/seed-model.json",
-    "sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
+    "sha256": "sha256:c43ca7b642a11c3ab140884a6bbff34bbd741f5cb905e6a779c860c813998fcf",
     "version": "0.3.0-alpha.1"
   },
   "target_model": {
     "module": "SeedResolution",
     "path": "seed/canonical/formal/SeedResolution.tla",
-    "sha256": "sha256:8cdbd66db0b4a5fabb38fb1a7739c2a2e3e418ab9bede02d5e49382d4442dd9f"
+    "sha256": "sha256:1c53b058d738e074c2a9de96fe27d8d7dd384d3ffa52f3bb95f7732908d66276"
   },
   "transition_coverage": [
     {
@@ -191,8 +191,8 @@
     {
       "id": "SEED-TX-003",
       "kind": "EVALUATE_RESOLUTION",
-      "status": "PROVED_IN_DECLARED_PROJECTION",
-      "tla_action": "Evaluate"
+      "status": "OBSERVER_EQUIVALENCE_PROVED",
+      "tla_action": "EvaluateResolution"
     }
   ]
 }

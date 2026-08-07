@@ -87,6 +87,9 @@ def main() -> int:
     ]
     if kinds != expected_kinds:
         errors.append("transition_catalogue")
+    roles = [item.get("role") for item in model["transitions"]]
+    if roles != ["STATE_TRANSITION", "STATE_TRANSITION", "OBSERVER"]:
+        errors.append("transition_roles")
     if model["resolution_algebra"] != {
         "values": ["UNKNOWN", "ALLOW", "BLOCK"],
         "derived": "UNKNOWN",
@@ -109,6 +112,15 @@ def main() -> int:
     schema_paths = [ROOT / item["path"] for item in protocol["schemas"]]
     if protocol["schema_count"] != len(protocol["schemas"]):
         errors.append("protocol_schema_count")
+    active_dir = ROOT / "seed/canonical/protocol/schemas"
+    physical_schemas = {path.resolve() for path in active_dir.glob("*.json")}
+    declared_schemas = {path.resolve() for path in schema_paths}
+    if physical_schemas != declared_schemas:
+        errors.append(
+            "protocol_schema_surface:"
+            f"undeclared={sorted(path.name for path in physical_schemas - declared_schemas)}:"
+            f"missing={sorted(path.name for path in declared_schemas - physical_schemas)}"
+        )
     for item, path in zip(protocol["schemas"], schema_paths, strict=True):
         if not path.is_file() or digest(path) != item["sha256"]:
             errors.append("protocol_schema_digest:" + item["name"])

@@ -8,14 +8,14 @@
     "SUBMIT_RESOLUTION",
     "EVALUATE_RESOLUTION"
   ],
-  "profile_id": "ASET-SEED-RESOLUTION-WIRE-V2",
+  "profile_id": "ASET-SEED-RESOLUTION-WIRE-V3",
   "resolution_values": [
     "UNKNOWN",
     "ALLOW",
     "BLOCK"
   ],
-  "schema_count": 12,
-  "schema_version": 2,
+  "schema_count": 11,
+  "schema_version": 3,
   "schemas": [
     {
       "id": "https://spec.aset.example/seed/0.3/schemas/common.schema.json",
@@ -33,13 +33,7 @@
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-authority-binding.schema.json",
       "name": "resolution-authority-binding.schema.json",
       "path": "seed/canonical/protocol/schemas/resolution-authority-binding.schema.json",
-      "sha256": "sha256:803f1747968009dd4f4a6d35406439ec52036686bb0eecd57be56a606dc9e022"
-    },
-    {
-      "id": "https://spec.aset.example/seed/0.3/schemas/authority-grant.schema.json",
-      "name": "authority-grant.schema.json",
-      "path": "seed/canonical/protocol/schemas/authority-grant.schema.json",
-      "sha256": "sha256:1acedba9b138bbf18969bccdc77cdc891e768338f90a6a527adf75fa49f7204f"
+      "sha256": "sha256:7d5858951bc412ea095cf36867304293c521ee03bc1682ce9683782004d1c94d"
     },
     {
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-request.schema.json",
@@ -51,13 +45,13 @@
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-record.schema.json",
       "name": "resolution-record.schema.json",
       "path": "seed/canonical/protocol/schemas/resolution-record.schema.json",
-      "sha256": "sha256:0f37ae49b8365f89efdd96ba3bcc8adb827ecaf973b8ddbaf40169fb7ee6f6ca"
+      "sha256": "sha256:a5f49bd2dcfd0aff0bc6413a0b32e7f6996250fd06d8bc2ab53ff98eb22a9450"
     },
     {
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-store.schema.json",
       "name": "resolution-store.schema.json",
       "path": "seed/canonical/protocol/schemas/resolution-store.schema.json",
-      "sha256": "sha256:bebd92802b3e6bb6264c08599bdff34bcc40e26e76d0163470953ea0e1d1e5da"
+      "sha256": "sha256:24a175ef5345c0f9fb0b555a7eeec08c20e557937e7aa51682dd4dcc50acc449"
     },
     {
       "id": "https://spec.aset.example/seed/0.3/schemas/resolution-evaluation.schema.json",

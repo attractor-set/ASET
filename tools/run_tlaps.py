@@ -22,9 +22,8 @@ FINAL_THEOREMS = (
     "SpecImpliesAlwaysSeedStateSafety",
     "SpecImpliesRequestsAppendOnly",
     "SpecImpliesTerminalRecordsImmutable",
-    "SpecImpliesCanonicalStateChangesOnlyByRecognizedTransition",
-    "SpecImpliesInvalidMaterialStutter",
-    "SpecImpliesNonAuthoritativeInputsStutter",
+    "SpecImpliesSeedStateChangesOnlyByRecognizedTransition",
+    "SpecImpliesConflictObservationPreservesSeedState",
 )
 
 
