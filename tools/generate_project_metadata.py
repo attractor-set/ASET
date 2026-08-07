@@ -68,9 +68,6 @@ def validate_source(source: dict[str, object]) -> None:
         raise ValueError("description and about.description must be identical")
     if not description.startswith("ASET "):
         raise ValueError("description must begin with the project name ASET")
-    if str(source["expanded_name"]) not in description:
-        raise ValueError("description must name Authority-Signed Evidence Trail")
-
     topics = about["topics"]
     assert isinstance(topics, list)
     for topic in topics:

@@ -42,27 +42,30 @@ def test_active_seed_ci_has_no_component_assurance_dependency() -> None:
             assert token not in text, f"{relative} contains {token}"
 
 
-def test_only_seed_package_changes_notify_implementations() -> None:
-    workflow = (
-        ROOT / ".github/workflows/notify-implementation-profiles.yml"
-    ).read_text(encoding="utf-8")
-    assert "seed/canonical/CANON_PACKAGE.json" in workflow
-    assert "aset/components/" not in workflow
-    assert "aset/profiles/" not in workflow
+def test_seed_has_no_implementation_specific_notification_workflow() -> None:
+    assert not (ROOT / ".github/workflows/notify-implementation-profiles.yml").exists()
 
 
-def test_external_registries_are_non_normative() -> None:
-    extensions = load("EXTENSIONS.json")
-    implementations = load("IMPLEMENTATIONS.json")
-    extraction = load("EXTRACTION.json")
-    assert extensions["normative"] is False
-    assert implementations["normative"] is False
-    assert extraction["normative_effect"] == "NONE_ON_RESOLUTION_SEMANTICS"
-    for registry, key in (
-        (extensions, "extensions"),
-        (implementations, "implementations"),
-    ):
-        assert all(
-            item["implementation_precedence"] == "NONE"
-            for item in registry[key]
-        )
+def test_reference_artifacts_are_readme_only_and_non_normative() -> None:
+    removed = (
+        "EXTENSIONS.json",
+        "EXTENSIONS.md",
+        "IMPLEMENTATIONS.json",
+        "IMPLEMENTATIONS.md",
+        "EXTRACTION.json",
+        "EXTRACTION.md",
+    )
+    for relative in removed:
+        assert not (ROOT / relative).exists()
+
+    references = (
+        "https://github.com/attractor-set/aset-network-extension",
+        "https://github.com/attractor-set/aset-python-sqlite",
+    )
+    for readme_name in ("README.md", "README.ru.md", "README.pt-BR.md"):
+        text = (ROOT / readme_name).read_text(encoding="utf-8")
+        for reference in references:
+            assert text.count(reference) == 1
+        assert "non-normative" in text or "ненорматив" in text or "não normativa" in text
+        assert "aset-ai-extension-template" not in text
+        assert "aset-ai-local-stack" not in text

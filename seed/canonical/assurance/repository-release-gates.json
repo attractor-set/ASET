@@ -23,7 +23,7 @@
       "bounded and TLC request-and-record checks",
       "portable resolution conformance cases",
       "historical Seed release integrity",
-      "external ecosystem registry integrity",
+      "external reference boundary integrity",
       "release and manifest integrity",
       "complete normative requirement and invariant coverage",
       "semantic mutation closure with zero surviving canonical mutants",
@@ -151,10 +151,10 @@
       "name": "background_ip_supplement_validation"
     },
     {
-      "evidence": "python tools/validate_ecosystem_registry.py",
+      "evidence": "python tools/validate_reference_boundary.py",
       "id": "ASET-GATE-025",
       "mandatory": true,
-      "name": "external_ecosystem_registry_validation"
+      "name": "external_reference_boundary_validation"
     },
     {
       "evidence": "python tools/check_invariant_coverage.py --mutation-report dist/invariant-mutations.json",

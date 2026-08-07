@@ -46,7 +46,7 @@ BASE_COMMANDS = [
     ],
     ["tools/validate_background_ip.py"],
     ["tools/validate_background_ip_supplement.py"],
-    ["tools/validate_ecosystem_registry.py"],
+    ["tools/validate_reference_boundary.py"],
     ["-m", "pytest", "-q"],
     ["-m", "ruff", "check", "tools", "tests"],
     ["tools/static_python_sanity.py"],

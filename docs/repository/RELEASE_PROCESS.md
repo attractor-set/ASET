@@ -8,8 +8,8 @@
   precedence.
 - Generated language editions, ontology/terminology views, `codemeta.json` and
   `.github/repository-metadata.json` must not be edited manually.
-- Extracted legacy component material is identified by `EXTRACTION.json` and its release-asset
-  digest; it must not be silently reintroduced into Seed.
+- Extracted legacy component material remains historical evidence in Git history and the
+  extraction-closure audit record; it must not be silently reintroduced into Seed.
 
 ## Pull-request path
 

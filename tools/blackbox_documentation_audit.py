@@ -19,9 +19,6 @@ ACTIVE_FILES = [
     ROOT / "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
     ROOT / "audit/README.md",
     ROOT / "audit/ACTIVE_AUDIT_INDEX.md",
-    ROOT / "EXTENSIONS.md",
-    ROOT / "IMPLEMENTATIONS.md",
-    ROOT / "EXTRACTION.md",
 ]
 ACTIVE_GLOBS = [
     "docs/generated/*/ASET_Seed_Resolution_0.3-alpha.1.md",
