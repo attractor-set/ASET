@@ -7,7 +7,7 @@ environment dimension:
 
 1. `requestMeta` — partial map of admitted request metadata;
 2. `terminalMeta` — partial map of accepted terminal metadata;
-3. `conflicts` — environment observation state.
+3. `conflicts` — environment observation state constrained to accepted terminal requests.
 
 `seedVars == <<requestMeta, terminalMeta>>`; conflict is deliberately excluded
 from Seed-owned state.
@@ -34,8 +34,7 @@ separate provenance refinement is specified and proved.
 
 Invalid/non-authoritative material has no artificial stutter action. It remains
 outside the abstract state machine. The executable admission boundary verifies
-that it cannot create accepted state. Valid conflict observation is modeled
-separately as environment state and is proved not to mutate Seed-owned state.
+that it cannot create accepted state. Valid conflict observation is modeled separately as environment state, is admissible only after an accepted terminal record exists, and is proved not to mutate Seed-owned state.
 
 No Merkle tree, MMR, signature algorithm or accumulator is introduced into the
 Seed core.

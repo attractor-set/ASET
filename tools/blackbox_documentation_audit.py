@@ -16,6 +16,7 @@ ACTIVE_FILES = [
     ROOT / "docs/repository/PRODUCTION_READINESS.md",
     ROOT / "docs/repository/OPERATIONS_RUNBOOK.md",
     ROOT / "docs/repository/RELEASE_PROCESS.md",
+    ROOT / "docs/repository/BLACK_BOX_AUDIT_METHOD.md",
     ROOT / "audit/README.md",
     ROOT / "audit/ACTIVE_AUDIT_INDEX.md",
     ROOT / "EXTENSIONS.md",

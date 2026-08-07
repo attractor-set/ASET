@@ -108,7 +108,12 @@ def main() -> int:
         "concepts": compare_group(approved, candidate, "concepts", "id"),
         "requirements": compare_group(approved, candidate, "requirements", "id"),
         "invariants": compare_group(approved, candidate, "invariants", "id"),
-        "transitions": compare_group(approved, candidate, "transitions", "kind"),
+        "operations": compare_group(
+            {"operations": approved.get("operations", approved.get("transitions", []))},
+            {"operations": candidate.get("operations", candidate.get("transitions", []))},
+            "operations",
+            "kind",
+        ),
     }
     ignored = {
         "assurance",
@@ -122,7 +127,8 @@ def main() -> int:
         key
         for key in set(approved) | set(candidate)
         if key not in ignored
-        and key not in {"concepts", "requirements", "invariants", "transitions"}
+        and key
+        not in {"concepts", "requirements", "invariants", "operations", "transitions"}
         and approved.get(key) != candidate.get(key)
     )
     report: dict[str, Any] = {

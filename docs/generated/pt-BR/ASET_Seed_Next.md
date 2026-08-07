@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 do modelo canônico:** `sha256:54c46e46d4e6b5870353bb0ed229310f60583e9acd11798b655bdd837c8dba74`
+**SHA-256 do modelo canônico:** `sha256:d8fde8f21b6524b2442151505f8bf4aec29e17be4a17d2409021ad594597b203`
 
 > Esta edição é derivada do cânone legível por máquina.
 
@@ -98,7 +98,7 @@ Predicado: `resolution_domain`
 
 ### `ASET-SEED-REQ-004`
 
-Um efeito exatamente vinculado DEVE ser permitido se, e somente se, o único ResolutionRecord terminal válido for ALLOW.
+Um efeito exatamente vinculado DEVE ser permitido se, e somente se, o ResolutionRecord terminal autoritativo aceito for ALLOW e nenhum conflito terminal válido for observado.
 
 Modalidade: `MUST`
 
@@ -108,7 +108,7 @@ Predicado: `allow_only`
 
 ### `ASET-SEED-REQ-005`
 
-UNKNOWN e BLOCK DEVEM proibir o efeito. Estado terminal válido ausente ou ambíguo, ou falha em estabelecer um registro terminal válido, DEVE resultar em UNKNOWN. Material inválido ou não autoritativo NÃO DEVE substituir um registro terminal válido e único.
+UNKNOWN e BLOCK DEVEM proibir o efeito. Estado terminal aceito ausente, falha em estabelecer um registro terminal autoritativo ou observação de material terminal válido conflitante adicional DEVE resultar em UNKNOWN. Material inválido ou não autoritativo NÃO DEVE substituir um registro terminal autoritativo já aceito.
 
 Modalidade: `MUST`
 
@@ -148,11 +148,11 @@ Predicado: `inputs_non_authoritative`
 
 ### `ASET-SEED-REQ-009`
 
-No máximo um registro terminal válido PODE existir para um resolution_id; registros terminais conflitantes DEVEM falhar de modo fechado como UNKNOWN.
+O estado pertencente ao Seed DEVE aceitar no máximo um registro terminal para um resolution_id. A observação de material terminal válido distinto adicional para uma resolução terminal já aceita DEVE falhar de modo fechado como UNKNOWN sem substituir o registro aceito.
 
-Modalidade: `MAY`
+Modalidade: `MUST`
 
-Predicado: `terminal_unique`
+Predicado: `accepted_terminal_unique`
 
 `verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
@@ -189,39 +189,39 @@ Predicado: `implementation_neutral`
 ## Invariantes
 
 - `SEED-INV-001` — Toda resolução derivada válida é UNKNOWN, ALLOW ou BLOCK.
-- `SEED-INV-002` — A permissão do efeito é verdadeira se, e somente se, o único registro terminal válido for ALLOW.
+- `SEED-INV-002` — A permissão de efeito é verdadeira se, e somente se, o registro terminal autoritativo aceito for ALLOW e nenhum conflito terminal válido for observado.
 - `SEED-INV-003` — UNKNOWN e BLOCK nunca permitem um efeito.
 - `SEED-INV-004` — Toda solicitação e registro terminal preservam um único digest exato de vinculação.
 - `SEED-INV-005` — Todo registro terminal válido usa uma Authority explicitamente reconhecida para a vinculação local exata.
 - `SEED-INV-006` — Evidência de Authority é não autoritativa até que o reconhecimento de Authority com vinculação exata seja bem-sucedido; material de prova opaco não pode criar ou ampliar Authority por si só.
 - `SEED-INV-007` — Declarações externas e Evidence ficam fora do estado canônico pertencente ao Seed, salvo quando aceitas por uma transição reconhecida do Seed.
-- `SEED-INV-008` — Existe no máximo um registro terminal válido para um resolution_id.
-- `SEED-INV-009` — Registros terminais válidos conflitantes resultam em UNKNOWN. Material inválido ou não autoritativo não pode criar ALLOW, criar conflito nem substituir um registro terminal válido e único.
+- `SEED-INV-008` — O estado pertencente ao Seed aceita no máximo um registro terminal para um resolution_id.
+- `SEED-INV-009` — Uma observação de conflito só é válida para um resolution_id que já possua um registro terminal aceito. Material terminal válido conflitante adicional resulta em UNKNOWN; material inválido ou não autoritativo não pode criar ALLOW, criar conflito nem substituir o registro aceito.
 - `SEED-INV-010` — Registros de resolução são append-only, imutáveis e endereçados por conteúdo.
 - `SEED-INV-011` — Somente transições de estado reconhecidas do Seed podem alterar o estado canônico pertencente ao Seed; observações do ambiente e operações de observador não alteram esse estado.
 - `SEED-INV-012` — A reconsideração usa um resolution_id novo vinculado por um compromisso imutável e endereçado por conteúdo a um ResolutionRecord terminal previamente reconhecido; a retenção do objeto predecessor não é obrigatória.
 
-## Transições
+## Operações
 
-### `SEED-TX-001` — `REGISTER_REQUEST`
+### `SEED-OP-001` — `REGISTER_REQUEST`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-register-request.schema.json`
-- `authority_rule`: The initial Authority binding must be locally rooted and exactly match the request binding.
+- `authority_rule`: The Authority must be explicitly recognized for the exact request binding.
 - `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id. For reconsideration, previous_terminal_record_digest must be a recognized immutable terminal-record commitment; predecessor object presence in retained storage is not required.
 - `created_artifacts`: `ResolutionRequest`
 
-### `SEED-TX-002` — `SUBMIT_RESOLUTION`
+### `SEED-OP-002` — `SUBMIT_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-submit-resolution.schema.json`
-- `authority_rule`: The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.
+- `authority_rule`: The Authority must be explicitly recognized for the exact request binding. Concrete signatures, credentials, delegation mechanisms and proof construction are external validation mechanisms.
 - `binding_rule`: The record request_digest and binding_digest must exactly match the registered request.
 - `created_artifacts`: `ResolutionRecord`
 
-### `SEED-TX-003` — `EVALUATE_RESOLUTION`
+### `SEED-OP-003` — `EVALUATE_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/operation.schema.json`
 - `authority_rule`: Evaluation creates no Authority and accepts no external statement as a resolution.
-- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.
+- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no authoritative accepted terminal result is established or when additional conflicting valid terminal material is observed; invalid or non-authoritative material cannot override an otherwise authoritative accepted terminal result.
 - `created_artifacts`: `ResolutionEvaluation`
 
 ## Limite da implementação

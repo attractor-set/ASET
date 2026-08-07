@@ -1,8 +1,201 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "coverageEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "conformance_cases": {
+          "$ref": "#/$defs/nonEmptyStrings"
+        },
+        "formal_properties": {
+          "$ref": "#/$defs/nonEmptyStrings"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "invariants": {
+          "items": {
+            "pattern": "^SEED-INV-[0-9]{3}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "semantic_mutations": {
+          "$ref": "#/$defs/nonEmptyStrings"
+        }
+      },
+      "required": [
+        "id",
+        "formal_properties",
+        "conformance_cases",
+        "semantic_mutations"
+      ],
+      "type": "object"
+    },
+    "nonEmptyStrings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
   "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/invariant-coverage.schema.json",
-  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "properties": {
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "covered": {
+          "$ref": "#/$defs/nonEmptyStrings"
+        },
+        "not_claimed": {
+          "$ref": "#/$defs/nonEmptyStrings"
+        }
+      },
+      "required": [
+        "covered",
+        "not_claimed"
+      ],
+      "type": "object"
+    },
+    "coverage_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "conformance_case_required": {
+          "const": true
+        },
+        "formal_property_required": {
+          "const": true
+        },
+        "invariants_complete": {
+          "const": true
+        },
+        "operations_complete": {
+          "const": true
+        },
+        "orphan_evidence_forbidden": {
+          "const": true
+        },
+        "requirements_complete": {
+          "const": true
+        },
+        "semantic_mutation_required": {
+          "const": true
+        }
+      },
+      "required": [
+        "requirements_complete",
+        "invariants_complete",
+        "operations_complete",
+        "formal_property_required",
+        "conformance_case_required",
+        "semantic_mutation_required",
+        "orphan_evidence_forbidden"
+      ],
+      "type": "object"
+    },
+    "document_type": {
+      "const": "aset-seed-invariant-coverage"
+    },
+    "invariants": {
+      "items": {
+        "$ref": "#/$defs/coverageEntry"
+      },
+      "minItems": 12,
+      "type": "array"
+    },
+    "mutation_catalog": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^SEED-MUT-[0-9]{3}$",
+            "type": "string"
+          },
+          "operator": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "seed_invariants": {
+            "items": {
+              "pattern": "^SEED-INV-[0-9]{3}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "seed_requirements": {
+            "items": {
+              "pattern": "^ASET-SEED-REQ-[0-9]{3}$",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "operator",
+          "description",
+          "case_ids",
+          "seed_invariants",
+          "seed_requirements"
+        ],
+        "type": "object"
+      },
+      "minItems": 13,
+      "type": "array"
+    },
+    "normative": {
+      "const": true
+    },
+    "operations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^SEED-OP-[0-9]{3}$",
+            "type": "string"
+          },
+          "negative_cases": {
+            "$ref": "#/$defs/nonEmptyStrings"
+          },
+          "positive_cases": {
+            "$ref": "#/$defs/nonEmptyStrings"
+          }
+        },
+        "required": [
+          "id",
+          "positive_cases",
+          "negative_cases"
+        ],
+        "type": "object"
+      },
+      "minItems": 3,
+      "type": "array"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/coverageEntry"
+      },
+      "minItems": 12,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
   "required": [
     "document_type",
     "schema_version",
@@ -10,104 +203,9 @@
     "coverage_policy",
     "requirements",
     "invariants",
-    "transitions",
+    "operations",
     "mutation_catalog",
     "claim_boundary"
   ],
-  "properties": {
-    "document_type": {"const": "aset-seed-invariant-coverage"},
-    "schema_version": {"const": 1},
-    "normative": {"const": true},
-    "coverage_policy": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "requirements_complete",
-        "invariants_complete",
-        "transitions_complete",
-        "formal_property_required",
-        "conformance_case_required",
-        "semantic_mutation_required",
-        "orphan_evidence_forbidden"
-      ],
-      "properties": {
-        "requirements_complete": {"const": true},
-        "invariants_complete": {"const": true},
-        "transitions_complete": {"const": true},
-        "formal_property_required": {"const": true},
-        "conformance_case_required": {"const": true},
-        "semantic_mutation_required": {"const": true},
-        "orphan_evidence_forbidden": {"const": true}
-      }
-    },
-    "requirements": {
-      "type": "array",
-      "minItems": 12,
-      "items": {"$ref": "#/$defs/coverageEntry"}
-    },
-    "invariants": {
-      "type": "array",
-      "minItems": 12,
-      "items": {"$ref": "#/$defs/coverageEntry"}
-    },
-    "transitions": {
-      "type": "array",
-      "minItems": 3,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["id", "positive_cases", "negative_cases"],
-        "properties": {
-          "id": {"pattern": "^SEED-TX-[0-9]{3}$", "type": "string"},
-          "positive_cases": {"$ref": "#/$defs/nonEmptyStrings"},
-          "negative_cases": {"$ref": "#/$defs/nonEmptyStrings"}
-        }
-      }
-    },
-    "mutation_catalog": {
-      "type": "array",
-      "minItems": 13,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["id", "operator", "description", "case_ids", "seed_invariants", "seed_requirements"],
-        "properties": {
-          "id": {"pattern": "^SEED-MUT-[0-9]{3}$", "type": "string"},
-          "operator": {"type": "string", "minLength": 1},
-          "description": {"type": "string", "minLength": 1},
-          "case_ids": {"type": "array", "items": {"type": "string"}},
-          "seed_invariants": {"type": "array", "items": {"pattern": "^SEED-INV-[0-9]{3}$", "type": "string"}},
-          "seed_requirements": {"type": "array", "items": {"pattern": "^ASET-SEED-REQ-[0-9]{3}$", "type": "string"}}
-        }
-      }
-    },
-    "claim_boundary": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["covered", "not_claimed"],
-      "properties": {
-        "covered": {"$ref": "#/$defs/nonEmptyStrings"},
-        "not_claimed": {"$ref": "#/$defs/nonEmptyStrings"}
-      }
-    }
-  },
-  "$defs": {
-    "nonEmptyStrings": {
-      "type": "array",
-      "minItems": 1,
-      "items": {"type": "string", "minLength": 1}
-    },
-    "coverageEntry": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["id", "formal_properties", "conformance_cases", "semantic_mutations"],
-      "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "invariants": {"type": "array", "items": {"pattern": "^SEED-INV-[0-9]{3}$", "type": "string"}},
-        "formal_properties": {"$ref": "#/$defs/nonEmptyStrings"},
-        "conformance_cases": {"$ref": "#/$defs/nonEmptyStrings"},
-        "semantic_mutations": {"$ref": "#/$defs/nonEmptyStrings"}
-      }
-    }
-  }
+  "type": "object"
 }

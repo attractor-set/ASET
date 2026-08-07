@@ -12,9 +12,14 @@ def test_localization_is_complete():
 def test_minimal_resolution_algebra_is_exact():
  algebra=model()['resolution_algebra']; assert algebra['values']==['UNKNOWN','ALLOW','BLOCK']; assert algebra['stored_terminal']==['ALLOW','BLOCK']; assert algebra['effect_permitted_if']=='ALLOW'
 def test_operations_are_minimal():
- transitions=model()['transitions']
- assert [item['kind'] for item in transitions]==['REGISTER_REQUEST','SUBMIT_RESOLUTION','EVALUATE_RESOLUTION']
- assert [item['role'] for item in transitions]==['STATE_TRANSITION','STATE_TRANSITION','OBSERVER']
+ operations=model()['operations']
+ assert [item['kind'] for item in operations]==[
+  'REGISTER_REQUEST','SUBMIT_RESOLUTION','EVALUATE_RESOLUTION'
+ ]
+ assert [item['role'] for item in operations]==['STATE_TRANSITION','STATE_TRANSITION','OBSERVER']
+ assert [item['id'] for item in operations]==[
+  'SEED-OP-001','SEED-OP-002','SEED-OP-003'
+ ]
 
 def test_protocol_directory_contains_only_active_profile_schemas():
  profile=json.loads((ROOT/'seed/canonical/protocol/protocol-profile.json').read_text(encoding='utf-8'))

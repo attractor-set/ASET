@@ -4,7 +4,7 @@
 
 **Статус:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 канонической модели:** `sha256:54c46e46d4e6b5870353bb0ed229310f60583e9acd11798b655bdd837c8dba74`
+**SHA-256 канонической модели:** `sha256:d8fde8f21b6524b2442151505f8bf4aec29e17be4a17d2409021ad594597b203`
 
 > Эта редакция выводится из машинного канона.
 
@@ -98,7 +98,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 ### `ASET-SEED-REQ-004`
 
-Точно связанный эффект ДОЛЖЕН быть разрешён тогда и только тогда, когда единственная действительная терминальная ResolutionRecord имеет значение ALLOW.
+Точно связанный эффект ДОЛЖЕН быть разрешён тогда и только тогда, когда принятая авторитетная терминальная ResolutionRecord имеет значение ALLOW и не наблюдается действительный терминальный конфликт.
 
 Модальность: `MUST`
 
@@ -108,7 +108,7 @@ ResolutionBinding ДОЛЖЕН содержать точные context_id, state
 
 ### `ASET-SEED-REQ-005`
 
-UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект. Отсутствие или неоднозначность действительного терминального состояния либо невозможность установить действительную терминальную запись ДОЛЖНЫ давать UNKNOWN. Недействительный или неавторитетный материал НЕ ДОЛЖЕН переопределять уже установленную единственную действительную терминальную запись.
+UNKNOWN и BLOCK ДОЛЖНЫ запрещать эффект. Отсутствие принятого терминального состояния, невозможность установить авторитетную терминальную запись либо наблюдение дополнительного конфликтующего действительного терминального материала ДОЛЖНЫ давать UNKNOWN. Недействительный или неавторитетный материал НЕ ДОЛЖЕН переопределять уже принятую авторитетную терминальную запись.
 
 Модальность: `MUST`
 
@@ -148,11 +148,11 @@ Evidence, результаты проверки, выводы ИИ, резуль
 
 ### `ASET-SEED-REQ-009`
 
-Для одного resolution_id МОЖЕТ существовать не более одной действительной терминальной записи; конфликтующие терминальные записи ДОЛЖНЫ давать fail-closed UNKNOWN.
+Принадлежащее Seed состояние ДОЛЖНО принимать не более одной терминальной записи для одного resolution_id. Наблюдение дополнительного отличающегося действительного терминального материала для уже принятого терминального разрешения ДОЛЖНО давать fail-closed UNKNOWN без замены принятой записи.
 
-Модальность: `MAY`
+Модальность: `MUST`
 
-Предикат: `terminal_unique`
+Предикат: `accepted_terminal_unique`
 
 `verification`: `ASET-VERIFY-DECLARATIVE-STATE-VALIDATION`, `ASET-VERIFY-PORTABLE-CASES`, `ASET-VERIFY-BOUNDED-MODEL`, `ASET-VERIFY-INVARIANT-COVERAGE`, `ASET-VERIFY-SEMANTIC-MUTATIONS`
 
@@ -189,39 +189,39 @@ Evidence, результаты проверки, выводы ИИ, резуль
 ## Инварианты
 
 - `SEED-INV-001` — Каждое допустимое производное разрешение принадлежит UNKNOWN, ALLOW или BLOCK.
-- `SEED-INV-002` — Разрешение эффекта истинно тогда и только тогда, когда единственная действительная терминальная запись равна ALLOW.
+- `SEED-INV-002` — Разрешение эффекта истинно тогда и только тогда, когда принятая авторитетная терминальная запись имеет значение ALLOW и не наблюдается действительный терминальный конфликт.
 - `SEED-INV-003` — UNKNOWN и BLOCK никогда не разрешают эффект.
 - `SEED-INV-004` — Каждый запрос и терминальная запись сохраняют один точный digest связки.
 - `SEED-INV-005` — Каждая действительная терминальная запись использует Authority, явно признанную для точной локальной связки.
 - `SEED-INV-006` — Доказательный материал Authority неавторитетен до успешного точного признания Authority; непрозрачный proof material не может сам по себе создать или расширить полномочие.
 - `SEED-INV-007` — Внешние утверждения и Evidence находятся вне принадлежащего Seed канонического состояния, пока не приняты признанным переходом Seed.
-- `SEED-INV-008` — Для одного resolution_id существует не более одной действительной терминальной записи.
-- `SEED-INV-009` — Конфликтующие действительные терминальные записи дают UNKNOWN. Недействительный или неавторитетный материал не может создать ALLOW, создать конфликт или переопределить единственную действительную терминальную запись.
+- `SEED-INV-008` — Принадлежащее Seed состояние принимает не более одной терминальной записи для одного resolution_id.
+- `SEED-INV-009` — Наблюдение конфликта допустимо только для resolution_id, у которого уже есть принятая терминальная запись. Дополнительный конфликтующий действительный терминальный материал даёт UNKNOWN; недействительный или неавторитетный материал не может создать ALLOW, создать конфликт или заменить принятую запись.
 - `SEED-INV-010` — Записи разрешения являются append-only, неизменяемыми и контентно-адресуемыми.
 - `SEED-INV-011` — Только признанные переходы состояния Seed могут изменять принадлежащее Seed каноническое состояние; наблюдения среды и observer-операции его не изменяют.
 - `SEED-INV-012` — Пересмотр использует свежий resolution_id, связанный неизменяемым контентно-адресуемым коммитментом с ранее признанной терминальной ResolutionRecord; хранение объекта-предшественника не требуется.
 
-## Переходы
+## Операции
 
-### `SEED-TX-001` — `REGISTER_REQUEST`
+### `SEED-OP-001` — `REGISTER_REQUEST`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-register-request.schema.json`
-- `authority_rule`: The initial Authority binding must be locally rooted and exactly match the request binding.
+- `authority_rule`: The Authority must be explicitly recognized for the exact request binding.
 - `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id. For reconsideration, previous_terminal_record_digest must be a recognized immutable terminal-record commitment; predecessor object presence in retained storage is not required.
 - `created_artifacts`: `ResolutionRequest`
 
-### `SEED-TX-002` — `SUBMIT_RESOLUTION`
+### `SEED-OP-002` — `SUBMIT_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-submit-resolution.schema.json`
-- `authority_rule`: The record Authority must be explicitly recognized for the exact request binding. Concrete signatures, delegation chains and proof construction are external validation mechanisms.
+- `authority_rule`: The Authority must be explicitly recognized for the exact request binding. Concrete signatures, credentials, delegation mechanisms and proof construction are external validation mechanisms.
 - `binding_rule`: The record request_digest and binding_digest must exactly match the registered request.
 - `created_artifacts`: `ResolutionRecord`
 
-### `SEED-TX-003` — `EVALUATE_RESOLUTION`
+### `SEED-OP-003` — `EVALUATE_RESOLUTION`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/operation.schema.json`
 - `authority_rule`: Evaluation creates no Authority and accepts no external statement as a resolution.
-- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no unique valid terminal record is established; invalid or non-authoritative material cannot override a unique valid record.
+- `binding_rule`: Evaluation observes one resolution_id without mutating Seed-owned state. It derives UNKNOWN when no authoritative accepted terminal result is established or when additional conflicting valid terminal material is observed; invalid or non-authoritative material cannot override an otherwise authoritative accepted terminal result.
 - `created_artifacts`: `ResolutionEvaluation`
 
 ## Граница реализации

@@ -14,8 +14,7 @@ AUTHORITIES = (0, 1)
 TERMINALS = ("ALLOW", "BLOCK")
 NO_COMMITMENT = -1
 RECOGNIZED_TERMINAL_COMMITMENTS = frozenset({0, 1})
-REQUEST_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1)})
-TERMINAL_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1), (1, 0)})
+RECOGNIZED_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1), (1, 0)})
 
 STATE_PROPERTIES = (
     "TypeOK",
@@ -25,8 +24,8 @@ STATE_PROPERTIES = (
     "TerminalBindingDerived",
     "RequestAuthorityRecognized",
     "TerminalAuthorityRecognized",
-    "TerminalUnique",
-    "ConflictUnknown",
+    "AcceptedTerminalUnique",
+    "ConflictSound",
     "FreshReconsideration",
 )
 TEMPORAL_PROPERTIES = (
@@ -83,7 +82,7 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
     for rid in IDS:
         if rid in requests:
             continue
-        for binding, _authority in REQUEST_AUTHORITY_BINDINGS:
+        for _authority, binding in RECOGNIZED_AUTHORITY_BINDINGS:
             yield (
                 "RegisterRequest",
                 State(
@@ -105,7 +104,7 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
     for rid, (binding, _previous) in requests.items():
         if rid in records or rid in state.conflicts:
             continue
-        for authority, proof_binding in TERMINAL_AUTHORITY_BINDINGS:
+        for authority, proof_binding in RECOGNIZED_AUTHORITY_BINDINGS:
             if proof_binding != binding:
                 continue
             for value in TERMINALS:
@@ -118,7 +117,7 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
                     ),
                 )
 
-    for rid in IDS:
+    for rid in records:
         if rid not in state.conflicts:
             yield (
                 "ObserveConflict",
@@ -139,19 +138,19 @@ def state_errors(state: State) -> list[str]:
     if not set(records).issubset(requests):
         errors.append("TerminalBindingDerived")
     if len(records) != len(state.records):
-        errors.append("TerminalUnique")
+        errors.append("AcceptedTerminalUnique")
 
     for _rid, (binding, _previous) in requests.items():
         if not any(
             authority in AUTHORITIES
-            and (authority, binding) in REQUEST_AUTHORITY_BINDINGS
+            and (authority, binding) in RECOGNIZED_AUTHORITY_BINDINGS
             for authority in AUTHORITIES
         ):
             errors.append("RequestAuthorityRecognized")
 
     for rid, (authority, _value) in records.items():
         request = requests.get(rid)
-        if request is None or (authority, request[0]) not in TERMINAL_AUTHORITY_BINDINGS:
+        if request is None or (authority, request[0]) not in RECOGNIZED_AUTHORITY_BINDINGS:
             errors.append("TerminalAuthorityRecognized")
 
     for rid in IDS:
@@ -167,7 +166,7 @@ def state_errors(state: State) -> list[str]:
                 or rid in state.conflicts
                 or record is None
                 or record[1] != "ALLOW"
-                or (record[0], request[0]) not in TERMINAL_AUTHORITY_BINDINGS
+                or (record[0], request[0]) not in RECOGNIZED_AUTHORITY_BINDINGS
             ):
                 errors.append("AllowSoundness")
 
@@ -175,7 +174,7 @@ def state_errors(state: State) -> list[str]:
             errors.append("FailClosed")
 
         if rid in state.conflicts and value != "UNKNOWN":
-            errors.append("ConflictUnknown")
+            errors.append("ConflictSound")
 
     for _rid, (_binding, previous) in requests.items():
         if previous == NO_COMMITMENT:

@@ -19,7 +19,7 @@
     }
   },
   "case_id": "RES-POS-004",
-  "description": "Record ALLOW through one exact-binding Authority grant.",
+  "description": "Record ALLOW through an independently recognized exact-binding Authority.",
   "expected": {
     "accepted": true,
     "code": "RESOLUTION_RECORDED",

@@ -135,7 +135,7 @@
       "formal_projection": [
         {
           "kind": "STATE_INVARIANT",
-          "operator": "TerminalUnique",
+          "operator": "AcceptedTerminalUnique",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
         }
       ],
@@ -153,7 +153,7 @@
       "formal_projection": [
         {
           "kind": "STATE_INVARIANT",
-          "operator": "ConflictUnknown",
+          "operator": "ConflictSound",
           "proof_theorem": "SpecImpliesAlwaysSeedStateSafety"
         }
       ],

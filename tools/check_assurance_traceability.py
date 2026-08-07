@@ -201,28 +201,29 @@ def main() -> int:
             f"formal requirement coverage incomplete: missing={sorted(requirement_ids - formal_requirement_coverage)}"
         )
 
-    transition_counts: dict[str, Counter[str]] = {}
+    operation_counts: dict[str, Counter[str]] = {}
     for entry in profile["cases"]:
         case = load(ROOT / entry["path"])
         kind = case.get("candidate", {}).get("kind")
         if not isinstance(kind, str):
             errors.append(f"case {entry['case_id']} has no candidate kind")
             continue
-        transition_counts.setdefault(kind, Counter())[entry["polarity"]] += 1
+        operation_counts.setdefault(kind, Counter())[entry["polarity"]] += 1
 
-    declared_kinds = {item["kind"] for item in model["transitions"]}
-    if set(transition_counts) - declared_kinds:
+    declared_kinds = {item["kind"] for item in model["operations"]}
+    if set(operation_counts) - declared_kinds:
         errors.append(
-            f"cases reference undeclared transition kinds: {sorted(set(transition_counts) - declared_kinds)}"
+            "cases reference undeclared operation kinds: "
+            f"{sorted(set(operation_counts) - declared_kinds)}"
         )
 
-    policy = registry["transition_case_policy"]
+    policy = registry["operation_case_policy"]
     exceptions = {
-        (item["transition_kind"], item["missing_polarity"]): item
+        (item["operation_kind"], item["missing_polarity"]): item
         for item in policy.get("declared_exceptions", [])
     }
     for kind in sorted(declared_kinds):
-        counts = transition_counts.get(kind, Counter())
+        counts = operation_counts.get(kind, Counter())
         for polarity, required in (
             ("positive", policy.get("require_positive_case", False)),
             ("negative", policy.get("require_negative_case", False)),
@@ -232,7 +233,7 @@ def main() -> int:
                 and counts[polarity] == 0
                 and (kind, polarity) not in exceptions
             ):
-                errors.append(f"transition {kind} has no {polarity} conformance case")
+                errors.append(f"operation {kind} has no {polarity} conformance case")
 
     report = {
         "document_type": "aset-assurance-traceability-report",
@@ -244,11 +245,11 @@ def main() -> int:
         "tla_temporal_properties": cfg["PROPERTIES"],
         "formal_seed_requirements_covered": sorted(formal_requirement_coverage),
         "formal_seed_invariants_covered": sorted(formal_invariant_coverage),
-        "transition_case_counts": {
+        "operation_case_counts": {
             key: dict(sorted(value.items()))
-            for key, value in sorted(transition_counts.items())
+            for key, value in sorted(operation_counts.items())
         },
-        "declared_transition_coverage_exceptions": list(exceptions.values()),
+        "declared_operation_coverage_exceptions": list(exceptions.values()),
         "tlaps_proof_module": ("seed/canonical/formal/SeedResolutionProofs.tla"),
         "tlaps_final_theorems": list(TLAPS_FINAL_THEOREMS),
         "errors": errors,

@@ -4,10 +4,10 @@ EXTENDS FiniteSets
 (*
 GENERATED FILE. DO NOT EDIT.
 Source: seed/canonical/source/seed-model.json
-Source SHA-256: sha256:c43ca7b642a11c3ab140884a6bbff34bbd741f5cb905e6a779c860c813998fcf
-Projection profile: ASET-SEED-CANON-TLA-PROJECTION-V4
+Source SHA-256: sha256:1fed5dc95045a287b3e9b8b4ea011a7b977729158f3360ed9a8a7e7e6ba1b4b0
+Projection profile: ASET-SEED-CANON-TLA-PROJECTION-V5
 
-V4 is a standalone projection. It does not EXTEND or import SeedResolution.
+V5 is a standalone projection. It does not EXTEND or import SeedResolution.
 The refinement proof explicitly instantiates this model onto the target state.
 Seed-owned state is requestMeta + terminalMeta. Conflict is environment state.
 EVALUATE_RESOLUTION is a pure observer and is not part of CanonNext.
@@ -15,16 +15,14 @@ EVALUATE_RESOLUTION is a pure observer and is not part of CanonNext.
 
 CONSTANTS ResolutionIds, Bindings, Authorities, TerminalCommitments,
           RecognizedTerminalCommitments, NoCommitment,
-          RequestAuthorityBindings, TerminalAuthorityBindings
+          RecognizedAuthorityBindings
 
 ASSUME ResolutionIds # {}
 ASSUME Bindings # {}
 ASSUME Authorities # {}
 ASSUME RecognizedTerminalCommitments \subseteq TerminalCommitments
 ASSUME NoCommitment \notin TerminalCommitments
-ASSUME RequestAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME TerminalAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME RequestAuthorityBindings \subseteq TerminalAuthorityBindings
+ASSUME RecognizedAuthorityBindings \subseteq Authorities \X Bindings
 
 CanonResolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
 CanonTerminalResolutions == {"ALLOW", "BLOCK"}
@@ -63,7 +61,7 @@ CanonRegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ CanonRequests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in RequestAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ \/ previous = NoCommitment
      \/ previous \in RecognizedTerminalCommitments
   /\ requestMeta' =
@@ -77,7 +75,7 @@ CanonSubmitResolution(r, b, a, value) ==
   /\ r \in CanonRequests
   /\ b = CanonRequestBinding(r)
   /\ a \in Authorities
-  /\ <<a, b>> \in TerminalAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ value \in CanonTerminalResolutions
   /\ r \notin CanonTerminalRequests
   /\ r \notin conflicts
@@ -89,7 +87,7 @@ CanonSubmitResolution(r, b, a, value) ==
   /\ UNCHANGED <<requestMeta, conflicts>>
 
 CanonObserveConflict(r) ==
-  /\ r \in ResolutionIds
+  /\ r \in CanonTerminalRequests \ conflicts
   /\ conflicts' = conflicts \cup {r}
   /\ UNCHANGED CanonSeedVars
 

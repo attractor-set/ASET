@@ -21,8 +21,8 @@ def test_coverage_closes_exact_canonical_sets() -> None:
     assert {item["id"] for item in coverage["invariants"]} == {
         item["id"] for item in model["invariants"]
     }
-    assert {item["id"] for item in coverage["transitions"]} == {
-        item["id"] for item in model["transitions"]
+    assert {item["id"] for item in coverage["operations"]} == {
+        item["id"] for item in model["operations"]
     }
 
 

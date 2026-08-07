@@ -13,8 +13,7 @@ conflict observations, policy results or cryptographic proofs.
 
 ## Environment and observers
 
-Conflict is environment state because an independently established conflict
-between valid terminal records changes the derived resolution to `UNKNOWN`.
+Conflict is environment state because additional distinct valid terminal material for an already accepted terminal resolution changes the derived resolution to `UNKNOWN`. Conflict observation is not admissible before an accepted terminal record exists.
 `EVALUATE_RESOLUTION` is a pure observer and never mutates Seed-owned state.
 
 Invalid, malformed or non-authoritative material has no Seed state slot. It may
@@ -23,10 +22,7 @@ Authority, `ALLOW` or a conflict by mere presence.
 
 ## Authority boundary
 
-Seed requires an exact-binding Authority to be explicitly recognized by the
-local Context. How that recognition is established—signature, certificate,
-delegation chain, hardware root, external verifier or another mechanism—is a
-profile concern. Opaque evidence references are not Authority by themselves.
+Seed consumes one exact-binding Authority-recognition relation for both request registration and terminal submission. How recognition is established—signature, certificate, delegation mechanism, hardware root, external verifier or another mechanism—is a profile concern. Opaque evidence references are not Authority by themselves.
 
 ## Outside Seed
 

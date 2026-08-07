@@ -5,11 +5,12 @@ ASET Seed is a local resolution-recognition kernel.
     Resolution = UNKNOWN | ALLOW | BLOCK
     EffectPermitted(r) iff ResolutionOf(r) = ALLOW
 
-A valid terminal `ALLOW` or `BLOCK` is immutable and exact-binding. `UNKNOWN`
-is derived when no unique valid terminal record can be established or when
-valid terminal material conflicts. Invalid or non-authoritative material cannot
-create Authority, create `ALLOW`, create a valid conflict, or override an
-otherwise unique valid terminal record.
+An accepted terminal `ALLOW` or `BLOCK` is immutable and exact-binding.
+`UNKNOWN` is derived when no authoritative accepted terminal record is
+established or when additional distinct valid terminal material conflicts with
+an accepted terminal resolution. Invalid or non-authoritative material cannot
+create Authority, create `ALLOW`, create a valid conflict, or replace an
+accepted authoritative terminal record.
 
 Seed normatively defines:
 
@@ -17,7 +18,7 @@ Seed normatively defines:
 - fresh request identity and reconsideration commitment;
 - exact-binding local Authority recognition as an admission boundary;
 - immutable content-addressed terminal records;
-- terminal uniqueness and fail-closed evaluation;
+- accepted-terminal uniqueness, conflict soundness and fail-closed evaluation;
 - implementation-neutral observable semantics.
 
 Concrete policy evaluation, evidence acquisition, signatures, delegation-chain
@@ -41,7 +42,7 @@ conflict observation cannot mutate Seed-owned state.
 The active assurance surface contains:
 
 - 12 canonical requirements and 12 canonical invariants;
-- 3 canonical operations: two state transitions and one observer;
+- 3 canonical operations (`SEED-OP-001..003`): two state transitions and one observer;
 - 25 portable conformance cases;
 - 13 semantic mutations;
 - 14 TLA/TLC properties: 10 state invariants and 4 temporal properties;

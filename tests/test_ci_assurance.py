@@ -124,8 +124,9 @@ def test_seed_resolution_tla_uses_valid_operator_tokens():
     assert r"/\\" not in specification
     assert "Range(" not in specification
     assert "VARIABLES\n    requestMeta,\n    terminalMeta,\n    conflicts" in specification
-    assert "RequestAuthorityBindings" in specification
-    assert "TerminalAuthorityBindings" in specification
+    assert "RecognizedAuthorityBindings" in specification
+    assert "RequestAuthorityBindings" not in specification
+    assert "TerminalAuthorityBindings" not in specification
     assert "observedInputs" not in specification
     assert "invalidMaterial" not in specification
     assert "terminalBinding," not in specification
@@ -144,11 +145,11 @@ def test_seed_resolution_tlc_treats_terminal_states_as_intended_quiescence():
     configuration = (ROOT / "seed/canonical/formal/SeedResolution.cfg").read_text(
         encoding="utf-8"
     )
-    assert "TerminalUnique ==" in specification
+    assert "AcceptedTerminalUnique ==" in specification
+    assert r"r \in TerminalRequests \ conflicts" in specification
     assert "CHECK_DEADLOCK FALSE" in configuration
-    assert "RequestAuthorityBindings <- TLC_RequestAuthorityBindings" in configuration
-    assert "TerminalAuthorityBindings <- TLC_TerminalAuthorityBindings" in configuration
-    assert r"RequestAuthorityBindings \subseteq TerminalAuthorityBindings" in specification
+    assert "RecognizedAuthorityBindings <- TLC_RecognizedAuthorityBindings" in configuration
+    assert r"RecognizedAuthorityBindings \subseteq Authorities \X Bindings" in specification
 
 
 def test_active_audit_index_tracks_active_canon_package():
@@ -180,7 +181,7 @@ def test_canon_tla_refinement_relation_is_complete_and_mandatory():
 
     assert len(relation["requirement_coverage"]) == 12
     assert len(relation["invariant_coverage"]) == 12
-    assert len(relation["transition_coverage"]) == 3
+    assert len(relation["operation_coverage"]) == 3
     assert len(relation["resolution_algebra_fields"]) == 7
     assert relation["proof"]["final_theorem"] == (
         "SeedResolutionBehaviorallyEquivalentToCanonProjection"
@@ -188,7 +189,7 @@ def test_canon_tla_refinement_relation_is_complete_and_mandatory():
     projection = (ROOT / "seed/canonical/formal/SeedCanonProjection.tla").read_text(encoding="utf-8")
     assert "EXTENDS SeedResolution" not in projection
     assert "INSTANCE SeedResolution" not in projection
-    assert "V4 is a standalone projection" in projection
+    assert "V5 is a standalone projection" in projection
 
     assert len(gates["gates"]) >= 26
 

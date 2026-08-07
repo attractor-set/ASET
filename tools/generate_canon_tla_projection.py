@@ -12,7 +12,7 @@ MODEL_PATH = ROOT / "seed/canonical/source/seed-model.json"
 RELATION_PATH = ROOT / "seed/canonical/assurance/canon-tla-refinement.json"
 OUTPUT_PATH = ROOT / "seed/canonical/formal/SeedCanonProjection.tla"
 
-EXPECTED_PROFILE = "ASET-SEED-CANON-TLA-PROJECTION-V4"
+EXPECTED_PROFILE = "ASET-SEED-CANON-TLA-PROJECTION-V5"
 EXPECTED_REQUIREMENT_PREDICATES = [
     "binding_exact",
     "request_fresh",
@@ -22,15 +22,15 @@ EXPECTED_REQUIREMENT_PREDICATES = [
     "local_authority",
     "authority_recognition_boundary",
     "inputs_non_authoritative",
-    "terminal_unique",
+    "accepted_terminal_unique",
     "record_immutable",
     "reconsider_fresh",
     "implementation_neutral",
 ]
-EXPECTED_TRANSITIONS = [
-    ("SEED-TX-001", "REGISTER_REQUEST", "STATE_TRANSITION"),
-    ("SEED-TX-002", "SUBMIT_RESOLUTION", "STATE_TRANSITION"),
-    ("SEED-TX-003", "EVALUATE_RESOLUTION", "OBSERVER"),
+EXPECTED_OPERATIONS = [
+    ("SEED-OP-001", "REGISTER_REQUEST", "STATE_TRANSITION"),
+    ("SEED-OP-002", "SUBMIT_RESOLUTION", "STATE_TRANSITION"),
+    ("SEED-OP-003", "EVALUATE_RESOLUTION", "OBSERVER"),
 ]
 EXPECTED_INVARIANTS = [f"SEED-INV-{index:03d}" for index in range(1, 13)]
 
@@ -73,10 +73,10 @@ def validate_inputs(model: dict[str, Any], relation: dict[str, Any]) -> None:
     invariants = [item["id"] for item in model["invariants"]]
     if invariants != EXPECTED_INVARIANTS:
         errors.append("unsupported invariant catalogue")
-    transitions = [
-        (item["id"], item["kind"], item["role"]) for item in model["transitions"]
+    operations = [
+        (item["id"], item["kind"], item["role"]) for item in model["operations"]
     ]
-    if transitions != EXPECTED_TRANSITIONS:
+    if operations != EXPECTED_OPERATIONS:
         errors.append("unsupported operation catalogue")
 
     algebra = model["resolution_algebra"]
@@ -111,7 +111,7 @@ Source: seed/canonical/source/seed-model.json
 Source SHA-256: {source_sha}
 Projection profile: {profile}
 
-V4 is a standalone projection. It does not EXTEND or import SeedResolution.
+V5 is a standalone projection. It does not EXTEND or import SeedResolution.
 The refinement proof explicitly instantiates this model onto the target state.
 Seed-owned state is requestMeta + terminalMeta. Conflict is environment state.
 EVALUATE_RESOLUTION is a pure observer and is not part of CanonNext.
@@ -119,16 +119,14 @@ EVALUATE_RESOLUTION is a pure observer and is not part of CanonNext.
 
 CONSTANTS ResolutionIds, Bindings, Authorities, TerminalCommitments,
           RecognizedTerminalCommitments, NoCommitment,
-          RequestAuthorityBindings, TerminalAuthorityBindings
+          RecognizedAuthorityBindings
 
 ASSUME ResolutionIds # {{}}
 ASSUME Bindings # {{}}
 ASSUME Authorities # {{}}
 ASSUME RecognizedTerminalCommitments \subseteq TerminalCommitments
 ASSUME NoCommitment \notin TerminalCommitments
-ASSUME RequestAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME TerminalAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME RequestAuthorityBindings \subseteq TerminalAuthorityBindings
+ASSUME RecognizedAuthorityBindings \subseteq Authorities \X Bindings
 
 CanonResolutions == {tla_set(algebra["values"])}
 CanonTerminalResolutions == {tla_set(algebra["stored_terminal"])}
@@ -167,7 +165,7 @@ CanonRegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ CanonRequests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in RequestAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ \/ previous = NoCommitment
      \/ previous \in RecognizedTerminalCommitments
   /\ requestMeta' =
@@ -181,7 +179,7 @@ CanonSubmitResolution(r, b, a, value) ==
   /\ r \in CanonRequests
   /\ b = CanonRequestBinding(r)
   /\ a \in Authorities
-  /\ <<a, b>> \in TerminalAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ value \in CanonTerminalResolutions
   /\ r \notin CanonTerminalRequests
   /\ r \notin conflicts
@@ -193,7 +191,7 @@ CanonSubmitResolution(r, b, a, value) ==
   /\ UNCHANGED <<requestMeta, conflicts>>
 
 CanonObserveConflict(r) ==
-  /\ r \in ResolutionIds
+  /\ r \in CanonTerminalRequests \ conflicts
   /\ conflicts' = conflicts \cup {{r}}
   /\ UNCHANGED CanonSeedVars
 

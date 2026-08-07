@@ -24,3 +24,11 @@
 - Rephrased the active System Composition environment invariant so that it binds an externally committed assurance-toolchain and dependency closure without prescribing Python or any implementation runtime.
 - Replaced Python-specific environment descriptions in active component and system verification cases with implementation-neutral assurance-toolchain descriptions; frozen rc11 source evidence remains unchanged.
 - Linked the separate non-normative [`aset-python-sqlite`](https://github.com/attractor-set/aset-python-sqlite) reference implementation from all curated root README editions and the roadmap without granting it semantic precedence.
+
+## Seed final semantic cleanup
+
+- Unified request and terminal admission under one `RecognizedAuthorityBindings` relation to match the single wire AuthorityBinding semantics.
+- Restricted conflict observation to already accepted terminal resolutions, eliminating impossible pre-terminal conflict states.
+- Distinguished accepted terminal uniqueness from external valid conflict material through `AcceptedTerminalUnique` and `ConflictSound`.
+- Reclassified the machine-canon catalogue as three operations: two state transitions and one observer, with `SEED-OP-*` identifiers.
+- Advanced the standalone canon-to-TLA projection to V5 and updated the active audit methodology and evidence line.

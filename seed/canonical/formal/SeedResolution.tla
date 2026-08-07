@@ -3,16 +3,14 @@ EXTENDS FiniteSets
 
 CONSTANTS ResolutionIds, Bindings, Authorities, TerminalCommitments,
           RecognizedTerminalCommitments, NoCommitment,
-          RequestAuthorityBindings, TerminalAuthorityBindings
+          RecognizedAuthorityBindings
 
 ASSUME ResolutionIds # {}
 ASSUME Bindings # {}
 ASSUME Authorities # {}
 ASSUME RecognizedTerminalCommitments \subseteq TerminalCommitments
 ASSUME NoCommitment \notin TerminalCommitments
-ASSUME RequestAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME TerminalAuthorityBindings \subseteq Authorities \X Bindings
-ASSUME RequestAuthorityBindings \subseteq TerminalAuthorityBindings
+ASSUME RecognizedAuthorityBindings \subseteq Authorities \X Bindings
 
 Resolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
 TerminalResolutions == {"ALLOW", "BLOCK"}
@@ -31,13 +29,10 @@ TLC_Authority2 == CHOOSE a \in Authorities \ {TLC_Authority1} : TRUE
 TLC_Binding1 == CHOOSE b \in Bindings : TRUE
 TLC_Binding2 == CHOOSE b \in Bindings \ {TLC_Binding1} : TRUE
 
-TLC_RequestAuthorityBindings ==
+TLC_RecognizedAuthorityBindings ==
   {<<TLC_Authority1, TLC_Binding1>>,
-   <<TLC_Authority2, TLC_Binding2>>}
-
-TLC_TerminalAuthorityBindings ==
-  TLC_RequestAuthorityBindings \cup
-    {<<TLC_Authority2, TLC_Binding1>>}
+   <<TLC_Authority2, TLC_Binding2>>,
+   <<TLC_Authority2, TLC_Binding1>>}
 
 (*
 Seed-owned state and environment state are deliberately separated.
@@ -75,7 +70,7 @@ RegisterRequest(r, b, a, previous) ==
   /\ r \in ResolutionIds \ Requests
   /\ b \in Bindings
   /\ a \in Authorities
-  /\ <<a, b>> \in RequestAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ \/ previous = NoCommitment
      \/ previous \in RecognizedTerminalCommitments
   /\ requestMeta' =
@@ -89,7 +84,7 @@ SubmitResolution(r, b, a, value) ==
   /\ r \in Requests
   /\ b = RequestBinding(r)
   /\ a \in Authorities
-  /\ <<a, b>> \in TerminalAuthorityBindings
+  /\ <<a, b>> \in RecognizedAuthorityBindings
   /\ value \in TerminalResolutions
   /\ r \notin TerminalRequests
   /\ r \notin conflicts
@@ -102,7 +97,7 @@ SubmitResolution(r, b, a, value) ==
 
 (* Environment transition: it changes only environment state. *)
 ObserveConflict(r) ==
-  /\ r \in ResolutionIds
+  /\ r \in TerminalRequests \ conflicts
   /\ conflicts' = conflicts \cup {r}
   /\ UNCHANGED seedVars
 
@@ -141,6 +136,7 @@ TypeOK ==
   /\ DOMAIN terminalMeta \subseteq ResolutionIds
   /\ terminalMeta \in [DOMAIN terminalMeta -> TerminalMetaType]
   /\ conflicts \subseteq ResolutionIds
+  /\ conflicts \subseteq TerminalRequests
 
 ResolutionDomain ==
   \A r \in ResolutionIds : ResolutionOf(r) \in Resolutions
@@ -153,7 +149,7 @@ AllowSoundness ==
       /\ r \in TerminalRequests
       /\ TerminalResolution(r) = "ALLOW"
       /\ <<TerminalAuthority(r), RequestBinding(r)>>
-           \in TerminalAuthorityBindings
+           \in RecognizedAuthorityBindings
 
 FailClosed ==
   \A r \in ResolutionIds :
@@ -167,20 +163,21 @@ TerminalBindingDerived ==
 RequestAuthorityRecognized ==
   \A r \in Requests :
     \E a \in Authorities :
-      <<a, RequestBinding(r)>> \in RequestAuthorityBindings
+      <<a, RequestBinding(r)>> \in RecognizedAuthorityBindings
 
 TerminalAuthorityRecognized ==
   \A r \in TerminalRequests :
     /\ r \in Requests
     /\ <<TerminalAuthority(r), RequestBinding(r)>>
-         \in TerminalAuthorityBindings
+         \in RecognizedAuthorityBindings
 
 (* One keyed terminal metadata cell makes multiple accepted terminals unrepresentable. *)
-TerminalUnique ==
+AcceptedTerminalUnique ==
   terminalMeta \in [DOMAIN terminalMeta -> TerminalMetaType]
 
-ConflictUnknown ==
-  \A r \in conflicts : ResolutionOf(r) = "UNKNOWN"
+ConflictSound ==
+  /\ conflicts \subseteq TerminalRequests
+  /\ \A r \in conflicts : ResolutionOf(r) = "UNKNOWN"
 
 FreshReconsideration ==
   \A r \in Requests :
@@ -198,8 +195,8 @@ SeedStateSafety ==
   /\ TerminalBindingDerived
   /\ RequestAuthorityRecognized
   /\ TerminalAuthorityRecognized
-  /\ TerminalUnique
-  /\ ConflictUnknown
+  /\ AcceptedTerminalUnique
+  /\ ConflictSound
   /\ FreshReconsideration
 
 InductiveInvariant ==
