@@ -44,6 +44,16 @@ PROOF
   BY DEF ResolutionOf
 
 
+THEOREM TerminalRecordDeterminesResolution ==
+  \A r \in ResolutionIds :
+    (/\ r \in requests
+     /\ r \notin conflicts
+     /\ terminalRecord[r] # NoRecord)
+    => ResolutionOf(r) = terminalRecord[r]
+PROOF
+  BY DEF ResolutionOf
+
+
 THEOREM AllowResolutionCharacterization ==
   \A r \in ResolutionIds :
     EffectPermitted(r) <=>
@@ -303,7 +313,7 @@ THEOREM RegisterRequestPreservesTypeOK ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE TypeOK'
 PROOF
@@ -315,7 +325,7 @@ THEOREM RegisterRequestPreservesTerminalRecordRequiresRequest ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE TerminalRecordRequiresRequest'
 PROOF
@@ -329,12 +339,12 @@ THEOREM RegisterRequestNewKeyValues ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE
     /\ requestBinding'[r] = b
     /\ requestAuthority'[r] = a
-    /\ previousResolution'[r] = previous
+    /\ previousResolutionCommitment'[r] = previous
 PROOF
   BY DEF RegisterRequest, InductiveInvariant, TypeOK
 
@@ -344,14 +354,14 @@ THEOREM RegisterRequestOldKeyValues ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous),
          NEW q \in requests,
          q # r
   PROVE
     /\ requestBinding'[q] = requestBinding[q]
     /\ requestAuthority'[q] = requestAuthority[q]
-    /\ previousResolution'[q] = previousResolution[q]
+    /\ previousResolutionCommitment'[q] = previousResolutionCommitment[q]
 PROOF
   BY DEF RegisterRequest, InductiveInvariant, TypeOK
 
@@ -360,7 +370,7 @@ THEOREM RegisterRequestUnchangedValues ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE
     /\ localAuthorityBindings' = localAuthorityBindings
@@ -376,7 +386,7 @@ THEOREM RegisterRequestSetFacts ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE
     /\ requests' = requests \cup {r}
@@ -389,13 +399,11 @@ THEOREM RegisterRequestPreviousGuard ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE
-    \/ previous = NoResolution
-    \/ /\ previous \in requests
-       /\ previous # r
-       /\ terminalRecord[previous] \in TerminalResolutions
+    \/ previous = NoCommitment
+    \/ previous \in RecognizedTerminalCommitments
 PROOF
   BY DEF RegisterRequest
 
@@ -405,7 +413,7 @@ THEOREM RegisterRequestPreservesExactBindingPointwise ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous),
          NEW q \in requests'
   PROVE
@@ -455,7 +463,7 @@ THEOREM RegisterRequestPreservesExactBinding ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE ExactBinding'
 PROOF
@@ -468,7 +476,7 @@ THEOREM RegisterRequestPreservesLocalAuthorityRootPointwise ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous),
          NEW q \in requests'
   PROVE
@@ -521,7 +529,7 @@ THEOREM RegisterRequestPreservesLocalAuthorityRoot ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE LocalAuthorityRoot'
 PROOF
@@ -534,7 +542,7 @@ THEOREM RegisterRequestPreservesDelegatedAuthorityPointwise ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous),
          NEW q \in requests'
   PROVE
@@ -587,7 +595,7 @@ THEOREM RegisterRequestPreservesDelegatedAuthoritySound ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE DelegatedAuthoritySound'
 PROOF
@@ -613,35 +621,24 @@ THEOREM RegisterRequestPreservesFreshReconsiderationPointwise ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous),
          NEW q \in requests'
   PROVE
-    \/ previousResolution'[q] = NoResolution
-    \/ /\ previousResolution'[q] \in requests'
-       /\ previousResolution'[q] # q
-       /\ terminalRecord'[previousResolution'[q]]
-            \in TerminalResolutions
+    \/ previousResolutionCommitment'[q] = NoCommitment
+    \/ previousResolutionCommitment'[q] \in RecognizedTerminalCommitments
 PROOF
   <1>1. CASE q = r
-    <2>1.
-      /\ previousResolution'[q] = previous
-      /\ requests' = requests \cup {r}
-      /\ terminalRecord' = terminalRecord
-      BY <1>1,
-         RegisterRequestNewKeyValues,
-         RegisterRequestSetFacts,
-         RegisterRequestUnchangedValues
+    <2>1. previousResolutionCommitment'[q] = previous
+      BY <1>1, RegisterRequestNewKeyValues
 
     <2>2.
-      \/ previous = NoResolution
-      \/ /\ previous \in requests
-         /\ previous # r
-         /\ terminalRecord[previous] \in TerminalResolutions
+      \/ previous = NoCommitment
+      \/ previous \in RecognizedTerminalCommitments
       BY RegisterRequestPreviousGuard
 
     <2>3. QED
-      BY <1>1, <2>1, <2>2
+      BY <2>1, <2>2
 
   <1>2. CASE q # r
     <2>1. q \in requests
@@ -649,22 +646,13 @@ PROOF
          DEF RegisterRequest
 
     <2>2.
-      \/ previousResolution[q] = NoResolution
-      \/ /\ previousResolution[q] \in requests
-         /\ previousResolution[q] # q
-         /\ terminalRecord[previousResolution[q]]
-              \in TerminalResolutions
+      \/ previousResolutionCommitment[q] = NoCommitment
+      \/ previousResolutionCommitment[q] \in RecognizedTerminalCommitments
       BY <2>1
          DEF InductiveInvariant, FreshReconsideration
 
-    <2>3.
-      /\ previousResolution'[q] = previousResolution[q]
-      /\ requests \subseteq requests'
-      /\ terminalRecord' = terminalRecord
-      BY <1>2, <2>1,
-         RegisterRequestOldKeyValues,
-         RegisterRequestSetFacts,
-         RegisterRequestUnchangedValues
+    <2>3. previousResolutionCommitment'[q] = previousResolutionCommitment[q]
+      BY <1>2, <2>1, RegisterRequestOldKeyValues
 
     <2>4. QED
       BY <2>2, <2>3
@@ -678,7 +666,7 @@ THEOREM RegisterRequestPreservesFreshReconsideration ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE FreshReconsideration'
 PROOF
@@ -692,7 +680,7 @@ THEOREM RegisterRequestPreservesInductiveInvariant ==
          NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE InductiveInvariant'
 PROOF
@@ -749,7 +737,7 @@ THEOREM SubmitResolutionUnchangedValues ==
     /\ requests' = requests
     /\ requestBinding' = requestBinding
     /\ requestAuthority' = requestAuthority
-    /\ previousResolution' = previousResolution
+    /\ previousResolutionCommitment' = previousResolutionCommitment
 PROOF
   BY DEF SubmitResolution
 
@@ -1051,67 +1039,23 @@ THEOREM SubmitResolutionPreservesFreshReconsiderationPointwise ==
          SubmitResolution(r, b, a, value),
          NEW q \in requests'
   PROVE
-    \/ previousResolution'[q] = NoResolution
-    \/ /\ previousResolution'[q] \in requests'
-       /\ previousResolution'[q] # q
-       /\ terminalRecord'[previousResolution'[q]]
-            \in TerminalResolutions
+    \/ previousResolutionCommitment'[q] = NoCommitment
+    \/ previousResolutionCommitment'[q] \in RecognizedTerminalCommitments
 PROOF
   <1>1. q \in requests
     BY SubmitResolutionUnchangedValues
 
   <1>2.
-    \/ previousResolution[q] = NoResolution
-    \/ /\ previousResolution[q] \in requests
-       /\ previousResolution[q] # q
-       /\ terminalRecord[previousResolution[q]]
-            \in TerminalResolutions
+    \/ previousResolutionCommitment[q] = NoCommitment
+    \/ previousResolutionCommitment[q] \in RecognizedTerminalCommitments
     BY <1>1
        DEF InductiveInvariant, FreshReconsideration
 
-  <1>3.
-    /\ requests' = requests
-    /\ previousResolution' = previousResolution
+  <1>3. previousResolutionCommitment' = previousResolutionCommitment
     BY SubmitResolutionUnchangedValues
 
-  <1>4. CASE previousResolution[q] = NoResolution
-    <2>1. QED
-      BY <1>3, <1>4
-
-  <1>5. CASE previousResolution[q] # NoResolution
-    <2>1.
-      /\ previousResolution[q] \in requests
-      /\ previousResolution[q] # q
-      /\ terminalRecord[previousResolution[q]]
-           \in TerminalResolutions
-      BY <1>2, <1>5
-
-    <2>2. previousResolution[q] \in ResolutionIds
-      BY <2>1
-         DEF InductiveInvariant, TypeOK
-
-    <2>3. previousResolution[q] # r
-      BY <2>1,
-         SubmitResolutionGuardFacts,
-         NoRecordIsNotTerminal
-         DEF TerminalResolutions
-
-    <2>4.
-      terminalRecord'[previousResolution[q]]
-        = terminalRecord[previousResolution[q]]
-      BY <2>2, <2>3,
-         SubmitResolutionOldKeyValues
-
-    <2>5.
-      terminalRecord'[previousResolution[q]]
-        \in TerminalResolutions
-      BY <2>1, <2>4
-
-    <2>6. QED
-      BY <1>3, <2>1, <2>5
-
-  <1>6. QED
-    BY <1>4, <1>5
+  <1>4. QED
+    BY <1>2, <1>3
 
 
 THEOREM SubmitResolutionPreservesFreshReconsideration ==
@@ -1271,7 +1215,7 @@ THEOREM RegisterRequestSatisfiesRequestsAppendOnlyStep ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE RequestsAppendOnlyStep
 PROOF
@@ -1357,7 +1301,7 @@ THEOREM RegisterRequestSatisfiesObservedInputsAppendOnlyStep ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE ObservedInputsAppendOnlyStep
 PROOF
@@ -1443,7 +1387,7 @@ THEOREM RegisterRequestSatisfiesTerminalRecordsImmutableStep ==
   ASSUME NEW r \in ResolutionIds,
          NEW b \in Bindings,
          NEW a \in Authorities,
-         NEW previous \in ResolutionIds \cup {NoResolution},
+         NEW previous \in TerminalCommitments \cup {NoCommitment},
          RegisterRequest(r, b, a, previous)
   PROVE TerminalRecordsImmutableStep
 PROOF

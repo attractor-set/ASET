@@ -4,7 +4,7 @@
 
 **Статус:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 канонической модели:** `sha256:2db8db8c61aebc801c5fedd67250e64c09bfc29367e99b061e4a8bec74230fe0`
+**SHA-256 канонической модели:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
 
 > Эта редакция выводится из машинного канона.
 
@@ -58,11 +58,11 @@ Authority, явно признанная одним Context для одной т
 
 Идентификатор: `seed.resolution_record`
 
-### связь пересмотра (`ReconsiderationLink`)
+### коммитмент пересмотра (`ReconsiderationCommitment`)
 
-Связь нового запроса с уникальной терминальной записью предыдущего разрешения без изменения этой записи.
+Неизменяемый контентно-адресуемый коммитмент нового запроса на ранее признанную терминальную ResolutionRecord; запрос или запись-предшественник не обязаны физически сохраняться реализацией. Признание может устанавливаться текущим сохранённым материалом либо внешним проверенным доказательством принадлежности аутентифицированному множеству/аккумулятору.
 
-Идентификатор: `seed.reconsideration_link`
+Идентификатор: `seed.reconsideration_commitment`
 
 ## Требования
 
@@ -168,7 +168,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 ### `ASET-SEED-REQ-011`
 
-Пересмотр ДОЛЖЕН создавать свежий resolution_id, связанный с уникальной терминальной записью предыдущего разрешения.
+Пересмотр ДОЛЖЕН создавать свежий resolution_id и нести неизменяемый контентно-адресуемый коммитмент на ранее признанную терминальную ResolutionRecord; запрос или запись-предшественник не обязаны физически сохраняться.
 
 Модальность: `MUST`
 
@@ -199,7 +199,7 @@ Evidence, результаты проверки, выходы AI, результ
 - `SEED-INV-009` — Конфликтующий или недействительный терминальный материал даёт UNKNOWN и никогда не ALLOW.
 - `SEED-INV-010` — Записи разрешения являются append-only, неизменяемыми и контентно-адресуемыми.
 - `SEED-INV-011` — Только признанные переходы Seed могут изменять каноническое хранилище; недействительный или непризнанный кандидат не является переходом Seed.
-- `SEED-INV-012` — Пересмотр использует свежий resolution_id, связанный с предыдущей уникальной терминальной записью.
+- `SEED-INV-012` — Пересмотр использует свежий resolution_id, связанный неизменяемым контентно-адресуемым коммитментом с ранее признанной терминальной ResolutionRecord; хранение объекта-предшественника не требуется.
 
 ## Переходы
 
@@ -207,7 +207,7 @@ Evidence, результаты проверки, выходы AI, результ
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-register-request.schema.json`
 - `authority_rule`: The initial Authority binding must be locally rooted and exactly match the request binding.
-- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id.
+- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id. For reconsideration, previous_terminal_record_digest must be a recognized immutable terminal-record commitment; predecessor object presence in retained storage is not required.
 - `created_artifacts`: `ResolutionRequest`
 
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
@@ -229,4 +229,4 @@ Evidence, результаты проверки, выходы AI, результ
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

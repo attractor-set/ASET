@@ -1,10 +1,10 @@
 {
-  "candidate_model_sha256": "sha256:5b70adad64933b5785cbde54290c4c1db2916e8efe37b222c0928f4a1017a017",
+  "candidate_model_sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
   "change_class": "BREAKING",
   "change_kind": "SEMANTIC_SIMPLIFICATION",
-  "decision_ref": "seed/canonical/decisions/ADR-005-minimal-resolution-recognition-kernel.md",
+  "decision_ref": "seed/canonical/decisions/ADR-007-reconsideration-commitments-and-bounded-retention.md",
   "document_type": "aset-canon-change-declaration",
-  "rationale": "Seed 0.3 removes coupled status/enforcement and mutable escalation state in favor of one fail-closed record-recognition kernel.",
+  "rationale": "Seed 0.3 keeps reconsideration tied to immutable recognized terminal commitments while removing any requirement to retain predecessor request/record objects or an ever-growing canonical receipt registry.",
   "schema_version": 1,
   "supersession_ref": "seed/canonical/migration/ALPHA2_TO_0.3_ALPHA1_CHANGE_DECLARATION.json"
 }

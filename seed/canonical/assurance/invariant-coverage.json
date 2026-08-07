@@ -5,15 +5,16 @@
       "all twelve canonical safety invariants have formal properties, conformance cases and semantic mutations",
       "all three canonical transitions have positive and negative conformance coverage",
       "bounded state and transition preservation for the published finite model",
-      "all fifteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection"
+      "all fifteen registered TLA/TLC safety properties have unbounded TLAPS deductive closure over the abstract projection",
+      "source-locked generated canonical projection with TLAPS-proved behavioral equivalence to SeedResolution.tla under the declared abstraction profile"
     ],
     "not_claimed": [
       "cryptographic primitive security",
       "correctness of every implementation",
       "liveness or workflow completion",
       "external certification",
-      "machine-canon-to-TLA refinement proof",
-      "implementation refinement proof"
+      "implementation refinement proof",
+      "full natural-language, concrete binding/digest and concrete Authority-proof refinement beyond the declared projection"
     ]
   },
   "coverage_policy": {

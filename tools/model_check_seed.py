@@ -12,7 +12,8 @@ IDS = (0, 1)
 BINDINGS = (0, 1)
 AUTHORITIES = (0, 1)
 TERMINALS = ("ALLOW", "BLOCK")
-NO_PREVIOUS = -1
+NO_COMMITMENT = -1
+RECOGNIZED_TERMINAL_COMMITMENTS = frozenset({0, 1})
 LOCAL_AUTHORITY_BINDINGS = frozenset({(0, 0), (1, 1)})
 AUTHORITY_PROOF_BINDINGS = frozenset({(0, 0), (1, 1), (1, 0)})
 
@@ -40,7 +41,7 @@ FORMAL_PROPERTIES = STATE_PROPERTIES + TEMPORAL_PROPERTIES
 
 @dataclass(frozen=True)
 class State:
-    # request tuple: resolution_id, binding, initial_authority, previous_resolution
+    # request tuple: resolution_id, binding, initial_authority, previous_terminal_commitment
     requests: tuple[tuple[int, int, int, int], ...]
     # record tuple: resolution_id, binding, authority, terminal_value
     records: tuple[tuple[int, int, int, str], ...]
@@ -94,16 +95,14 @@ def successors(state: State) -> Iterable[tuple[str, State]]:
             yield (
                 "RegisterRequest",
                 State(
-                    tuple(sorted((*state.requests, (rid, binding, authority, NO_PREVIOUS)))),
+                    tuple(sorted((*state.requests, (rid, binding, authority, NO_COMMITMENT)))),
                     state.records,
                     state.conflicts,
                     state.invalid_material,
                     state.observed_inputs,
                 ),
             )
-        for previous in IDS:
-            if previous == rid or resolution_of(state, previous) not in TERMINALS:
-                continue
+        for previous in RECOGNIZED_TERMINAL_COMMITMENTS:
             for binding, authority in LOCAL_AUTHORITY_BINDINGS:
                 yield (
                     "RegisterReconsideration",
@@ -218,10 +217,10 @@ def state_errors(state: State) -> list[str]:
         ):
             errors.append("InvalidOrConflictUnknown")
 
-    for rid, (_, _, previous) in requests.items():
-        if previous == NO_PREVIOUS:
+    for _, (_, _, previous) in requests.items():
+        if previous == NO_COMMITMENT:
             continue
-        if previous == rid or previous not in requests or previous not in records:
+        if previous not in RECOGNIZED_TERMINAL_COMMITMENTS:
             errors.append("FreshReconsideration")
 
     return sorted(set(errors))

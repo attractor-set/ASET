@@ -47,8 +47,8 @@ aset:resolution_record a owl:Class ;
     rdfs:label "registro de resolução"@pt-BR ;
     rdfs:comment "One immutable content-addressed terminal ALLOW or BLOCK record with exact binding and Authority proof."@en .
 
-aset:reconsideration_link a owl:Class ;
-    rdfs:label "связь пересмотра"@ru ;
-    rdfs:label "reconsideration link"@en ;
-    rdfs:label "vínculo de reconsideração"@pt-BR ;
-    rdfs:comment "A link from a fresh request to the unique terminal record of a previous resolution without mutating that record."@en .
+aset:reconsideration_commitment a owl:Class ;
+    rdfs:label "коммитмент пересмотра"@ru ;
+    rdfs:label "reconsideration commitment"@en ;
+    rdfs:label "compromisso de reconsideração"@pt-BR ;
+    rdfs:comment "An immutable content-addressed commitment from a fresh request to a previously recognized terminal ResolutionRecord; the predecessor request or record need not remain physically retained by the implementation. Recognition may be established by current retained material or by externally validated authenticated-set/accumulator proof material."@en .

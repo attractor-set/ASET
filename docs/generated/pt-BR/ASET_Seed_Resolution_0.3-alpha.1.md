@@ -4,7 +4,7 @@
 
 **Status:** `MINIMAL_STRONG_CORE_ALPHA`
 
-**SHA-256 do modelo canônico:** `sha256:2db8db8c61aebc801c5fedd67250e64c09bfc29367e99b061e4a8bec74230fe0`
+**SHA-256 do modelo canônico:** `sha256:5bbdfefe35a0adf83fd5e5dd86475a4f57ae92d4f9b9c06a7d530faf2e484396`
 
 > Esta edição é derivada do cânone legível por máquina.
 
@@ -58,11 +58,11 @@ Um registro terminal imutável e endereçado por conteúdo, ALLOW ou BLOCK, com 
 
 Identificador: `seed.resolution_record`
 
-### vínculo de reconsideração (`ReconsiderationLink`)
+### compromisso de reconsideração (`ReconsiderationCommitment`)
 
-Um vínculo de uma nova solicitação ao registro terminal único de uma resolução anterior sem alterar esse registro.
+Um compromisso imutável e endereçado por conteúdo de uma nova solicitação com um ResolutionRecord terminal previamente reconhecido; a solicitação ou o registro predecessor não precisa permanecer fisicamente retido pela implementação. O reconhecimento pode ser estabelecido por material atualmente retido ou por prova externa validada de conjunto autenticado/acumulador.
 
-Identificador: `seed.reconsideration_link`
+Identificador: `seed.reconsideration_commitment`
 
 ## Requisitos
 
@@ -168,7 +168,7 @@ Predicado: `record_immutable`
 
 ### `ASET-SEED-REQ-011`
 
-A reconsideração DEVE criar um resolution_id novo vinculado ao registro terminal único da resolução anterior.
+A reconsideração DEVE criar um resolution_id novo e portar um compromisso imutável e endereçado por conteúdo com um ResolutionRecord terminal previamente reconhecido; a solicitação ou o registro predecessor não precisa permanecer fisicamente retido.
 
 Modalidade: `MUST`
 
@@ -199,7 +199,7 @@ Predicado: `implementation_neutral`
 - `SEED-INV-009` — Material terminal conflitante ou inválido resulta em UNKNOWN e nunca ALLOW.
 - `SEED-INV-010` — Registros de resolução são append-only, imutáveis e endereçados por conteúdo.
 - `SEED-INV-011` — Somente transições reconhecidas do Seed podem alterar o armazenamento canônico; um candidato inválido ou não reconhecido não é uma transição do Seed.
-- `SEED-INV-012` — A reconsideração usa um resolution_id novo vinculado a um registro terminal único anterior.
+- `SEED-INV-012` — A reconsideração usa um resolution_id novo vinculado por um compromisso imutável e endereçado por conteúdo a um ResolutionRecord terminal previamente reconhecido; a retenção do objeto predecessor não é obrigatória.
 
 ## Transições
 
@@ -207,7 +207,7 @@ Predicado: `implementation_neutral`
 
 - `payload_schema`: `seed/canonical/protocol/schemas/payload-register-request.schema.json`
 - `authority_rule`: The initial Authority binding must be locally rooted and exactly match the request binding.
-- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id.
+- `binding_rule`: The request contains one canonical exact binding and a fresh resolution_id. For reconsideration, previous_terminal_record_digest must be a recognized immutable terminal-record commitment; predecessor object presence in retained storage is not required.
 - `created_artifacts`: `ResolutionRequest`
 
 ### `SEED-TX-002` — `SUBMIT_RESOLUTION`
@@ -229,4 +229,4 @@ Predicado: `implementation_neutral`
 - `normative_status`: `IMPLEMENTATION_NEUTRAL`
 - `implementation_precedence`: `NONE`
 - `conformance_protocol_ref`: `seed/canonical/conformance/implementation-conformance-protocol.json`
-- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`
+- `unspecified_by_seed`: `policy evaluation language`, `evidence acquisition`, `orchestration semantics`, `enforcement mechanism`, `storage engine`, `durability level`, `concurrency control`, `network topology`, `consensus protocol`, `cryptographic provider`, `key custody`, `federation topology`, `AI model`, `artifact retention`, `retention, pruning, archiving and compaction of superseded request/record material`, `terminal-commitment accumulator construction`, `accumulator membership/update witness retention`

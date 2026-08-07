@@ -37,10 +37,10 @@
       <langSec xml:lang="en"><termSec><term>resolution record</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
       <langSec xml:lang="pt-BR"><termSec><term>registro de resolução</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
-    <conceptEntry id="seed.reconsideration_link">
-      <langSec xml:lang="ru"><termSec><term>связь пересмотра</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="en"><termSec><term>reconsideration link</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
-      <langSec xml:lang="pt-BR"><termSec><term>vínculo de reconsideração</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+    <conceptEntry id="seed.reconsideration_commitment">
+      <langSec xml:lang="ru"><termSec><term>коммитмент пересмотра</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="en"><termSec><term>reconsideration commitment</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
+      <langSec xml:lang="pt-BR"><termSec><term>compromisso de reconsideração</term><termNote type="administrativeStatus">preferred</termNote></termSec></langSec>
     </conceptEntry>
   </body></text>
 </tbx>

@@ -38,7 +38,7 @@
         ],
         "type": "object"
       },
-      "minItems": 22,
+      "minItems": 26,
       "type": "array"
     },
     "profile": {

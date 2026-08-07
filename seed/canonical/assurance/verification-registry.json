@@ -1,5 +1,5 @@
 {
-  "claim_boundary": "Registry membership proves complete machine traceability for the published minimal Seed safety contract. The committed abstract TLA+ projection has bounded TLC coverage and an unbounded TLAPS deductive proof of all eleven registered state invariants and four registered temporal safety properties. Exact digest and concrete grant-chain construction remain covered by executable-oracle and static-canon evidence. Machine-canon-to-TLA refinement, implementation refinement, liveness, cryptographic primitive security, implementation correctness and external certification are not claimed.",
+  "claim_boundary": "Registry membership proves complete machine traceability for the published minimal Seed safety contract. The committed abstract TLA+ projection has bounded TLC coverage and an unbounded TLAPS deductive proof of all eleven registered state invariants and four registered temporal safety properties. A source-locked generated canonical TLA+ projection is machine-checked against the exact seed-model.json identity, and TLAPS proves behavioral equivalence between that declared projection and SeedResolution.tla. Opaque Binding construction, concrete Authority grant-chain construction, cryptographic primitive security, implementation refinement, liveness, implementation correctness and external certification are not claimed.",
   "document_type": "aset-seed-verification-registry",
   "formal_properties": [
     {
@@ -326,6 +326,15 @@
       ],
       "id": "ASET-VERIFY-TLAPS-UNBOUNDED",
       "kind": "UNBOUNDED_DEDUCTIVE_SAFETY_PROOF"
+    },
+    {
+      "evidence": "python tools/run_canon_tla_refinement.py --tlapm $TLAPM_BIN --output dist/canon-tla-refinement-proof.json",
+      "gate_ids": [
+        "ASET-GATE-030",
+        "ASET-GATE-031"
+      ],
+      "id": "ASET-VERIFY-CANON-TLA-REFINEMENT",
+      "kind": "DECLARED_CANONICAL_PROJECTION_BEHAVIORAL_EQUIVALENCE_PROOF"
     }
   ]
 }

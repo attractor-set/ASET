@@ -1,0 +1,292 @@
+{
+  "$defs": {
+    "invariantCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^SEED-INV-[0-9]{3}$",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ],
+      "type": "object"
+    },
+    "requirementCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^ASET-SEED-REQ-[0-9]{3}$",
+          "type": "string"
+        },
+        "predicate": {
+          "pattern": "^[a-z][a-z0-9_]+$",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        }
+      },
+      "required": [
+        "id",
+        "predicate",
+        "status"
+      ],
+      "type": "object"
+    },
+    "statement": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 20,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "description"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "PROVED_IN_DECLARED_PROJECTION",
+        "PARTIAL_OPAQUE_BINDING",
+        "PARTIAL_AUTHORITY_ABSTRACTION",
+        "ABSTRACTED_AUTHORITY_PROOF",
+        "PARTIAL_NO_CONTENT_ADDRESS_PROOF",
+        "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION",
+        "META_OUTSIDE_BEHAVIORAL_MODEL"
+      ]
+    },
+    "transitionCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^SEED-TX-[0-9]{3}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "REGISTER_REQUEST",
+            "SUBMIT_RESOLUTION",
+            "EVALUATE_RESOLUTION"
+          ]
+        },
+        "status": {
+          "const": "PROVED_IN_DECLARED_PROJECTION"
+        },
+        "tla_action": {
+          "enum": [
+            "RegisterRequest",
+            "SubmitResolution",
+            "Evaluate"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "tla_action",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/attractor-set/ASET/raw/main/seed/canonical/schemas/canon-tla-refinement.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "abstractions": {
+      "items": {
+        "$ref": "#/$defs/statement"
+      },
+      "minItems": 3,
+      "type": "array"
+    },
+    "claim_boundary": {
+      "minLength": 80,
+      "type": "string"
+    },
+    "document_type": {
+      "const": "aset-canon-tla-refinement"
+    },
+    "excluded_claims": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "generated_projection": {
+      "additionalProperties": false,
+      "properties": {
+        "generator": {
+          "const": "tools/generate_canon_tla_projection.py"
+        },
+        "module": {
+          "const": "SeedCanonProjection"
+        },
+        "path": {
+          "const": "seed/canonical/formal/SeedCanonProjection.tla"
+        },
+        "profile": {
+          "const": "ASET-SEED-CANON-TLA-PROJECTION-V2"
+        }
+      },
+      "required": [
+        "path",
+        "module",
+        "generator",
+        "profile"
+      ],
+      "type": "object"
+    },
+    "invariant_coverage": {
+      "items": {
+        "$ref": "#/$defs/invariantCoverage"
+      },
+      "maxItems": 12,
+      "minItems": 12,
+      "type": "array"
+    },
+    "proof": {
+      "additionalProperties": false,
+      "properties": {
+        "final_theorem": {
+          "const": "SeedResolutionBehaviorallyEquivalentToCanonProjection"
+        },
+        "module": {
+          "const": "seed/canonical/formal/SeedCanonRefinementProofs.tla"
+        },
+        "verification_method": {
+          "const": "ASET-VERIFY-CANON-TLA-REFINEMENT"
+        }
+      },
+      "required": [
+        "module",
+        "final_theorem",
+        "verification_method"
+      ],
+      "type": "object"
+    },
+    "relation_type": {
+      "const": "GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF"
+    },
+    "requirement_coverage": {
+      "items": {
+        "$ref": "#/$defs/requirementCoverage"
+      },
+      "maxItems": 12,
+      "minItems": 12,
+      "type": "array"
+    },
+    "resolution_algebra_fields": {
+      "items": {
+        "enum": [
+          "values",
+          "derived",
+          "stored_terminal",
+          "effect_permitted_if",
+          "fail_closed_values",
+          "conflict_result",
+          "unknown_semantics"
+        ]
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "scope": {
+      "const": "DECLARED_CANONICAL_SAFETY_PROJECTION"
+    },
+    "source_model": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "path": {
+          "const": "seed/canonical/source/seed-model.json"
+        },
+        "sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "model_id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "target_model": {
+      "additionalProperties": false,
+      "properties": {
+        "module": {
+          "const": "SeedResolution"
+        },
+        "path": {
+          "const": "seed/canonical/formal/SeedResolution.tla"
+        },
+        "sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "module"
+      ],
+      "type": "object"
+    },
+    "transition_coverage": {
+      "items": {
+        "$ref": "#/$defs/transitionCoverage"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "scope",
+    "relation_type",
+    "source_model",
+    "target_model",
+    "generated_projection",
+    "proof",
+    "resolution_algebra_fields",
+    "requirement_coverage",
+    "invariant_coverage",
+    "transition_coverage",
+    "abstractions",
+    "excluded_claims",
+    "claim_boundary"
+  ],
+  "type": "object"
+}

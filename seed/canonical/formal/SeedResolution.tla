@@ -1,12 +1,14 @@
 ------------------------------ MODULE SeedResolution ------------------------------
 EXTENDS FiniteSets
 
-CONSTANTS ResolutionIds, Bindings, Authorities, NoResolution, NoRecord
+CONSTANTS ResolutionIds, Bindings, Authorities, TerminalCommitments,
+          RecognizedTerminalCommitments, NoCommitment, NoRecord
 
 ASSUME ResolutionIds # {}
 ASSUME Bindings # {}
 ASSUME Authorities # {}
-ASSUME NoResolution \notin ResolutionIds
+ASSUME RecognizedTerminalCommitments \subseteq TerminalCommitments
+ASSUME NoCommitment \notin TerminalCommitments
 ASSUME NoRecord \notin {"ALLOW", "BLOCK"}
 
 Resolutions == {"UNKNOWN", "ALLOW", "BLOCK"}
@@ -15,8 +17,9 @@ TerminalResolutions == {"ALLOW", "BLOCK"}
 (*
 The formal model is a bounded safety projection of the minimal Seed kernel.
 Authority-proof construction is abstracted as the static relation
-`authorityProofBindings`; the executable oracle and conformance corpus validate
-exact grant-chain, acyclicity and non-expansion details.
+`authorityProofBindings`; recognized prior terminal-record commitments are
+abstracted as `RecognizedTerminalCommitments`. The executable oracle and
+conformance corpus validate the corresponding concrete evidence boundaries.
 *)
 VARIABLES
     localAuthorityBindings,
@@ -24,7 +27,7 @@ VARIABLES
     requests,
     requestBinding,
     requestAuthority,
-    previousResolution,
+    previousResolutionCommitment,
     terminalRecord,
     terminalBinding,
     terminalAuthority,
@@ -38,7 +41,7 @@ canonicalVars ==
       requests,
       requestBinding,
       requestAuthority,
-      previousResolution,
+      previousResolutionCommitment,
       terminalRecord,
       terminalBinding,
       terminalAuthority,
@@ -52,7 +55,7 @@ vars ==
       requests,
       requestBinding,
       requestAuthority,
-      previousResolution,
+      previousResolutionCommitment,
       terminalRecord,
       terminalBinding,
       terminalAuthority,
@@ -67,7 +70,7 @@ Init ==
   /\ requests = {}
   /\ requestBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
   /\ requestAuthority = [r \in ResolutionIds |-> CHOOSE a \in Authorities : TRUE]
-  /\ previousResolution = [r \in ResolutionIds |-> NoResolution]
+  /\ previousResolutionCommitment = [r \in ResolutionIds |-> NoCommitment]
   /\ terminalRecord = [r \in ResolutionIds |-> NoRecord]
   /\ terminalBinding = [r \in ResolutionIds |-> CHOOSE b \in Bindings : TRUE]
   /\ terminalAuthority = [r \in ResolutionIds |-> CHOOSE a \in Authorities : TRUE]
@@ -80,15 +83,12 @@ RegisterRequest(r, b, a, previous) ==
   /\ b \in Bindings
   /\ a \in Authorities
   /\ <<a, b>> \in localAuthorityBindings
-  /\ \/ previous = NoResolution
-     \/ /\ previous \in requests
-        /\ previous # r
-        /\ terminalRecord[previous] \in TerminalResolutions
-        /\ previous \notin conflicts
+  /\ \/ previous = NoCommitment
+     \/ previous \in RecognizedTerminalCommitments
   /\ requests' = requests \cup {r}
   /\ requestBinding' = [requestBinding EXCEPT ![r] = b]
   /\ requestAuthority' = [requestAuthority EXCEPT ![r] = a]
-  /\ previousResolution' = [previousResolution EXCEPT ![r] = previous]
+  /\ previousResolutionCommitment' = [previousResolutionCommitment EXCEPT ![r] = previous]
   /\ UNCHANGED <<localAuthorityBindings,
                   authorityProofBindings,
                   terminalRecord,
@@ -114,7 +114,7 @@ SubmitResolution(r, b, a, value) ==
                   requests,
                   requestBinding,
                   requestAuthority,
-                  previousResolution,
+                  previousResolutionCommitment,
                   conflicts,
                   invalidMaterial,
                   observedInputs>>
@@ -127,7 +127,7 @@ ObserveConflict(r) ==
                   requests,
                   requestBinding,
                   requestAuthority,
-                  previousResolution,
+                  previousResolutionCommitment,
                   terminalRecord,
                   terminalBinding,
                   terminalAuthority,
@@ -142,7 +142,7 @@ ObserveInvalidMaterial(r) ==
                   requests,
                   requestBinding,
                   requestAuthority,
-                  previousResolution,
+                  previousResolutionCommitment,
                   terminalRecord,
                   terminalBinding,
                   terminalAuthority,
@@ -157,7 +157,7 @@ ObserveNonAuthoritativeInput(r) ==
                   requests,
                   requestBinding,
                   requestAuthority,
-                  previousResolution,
+                  previousResolutionCommitment,
                   terminalRecord,
                   terminalBinding,
                   terminalAuthority,
@@ -168,7 +168,7 @@ Evaluate == UNCHANGED vars
 
 RecognizedCanonicalTransition ==
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
-        previous \in ResolutionIds \cup {NoResolution} :
+        previous \in TerminalCommitments \cup {NoCommitment} :
         RegisterRequest(r, b, a, previous)
   \/ \E r \in ResolutionIds, b \in Bindings, a \in Authorities,
         value \in TerminalResolutions :
@@ -197,7 +197,7 @@ TypeOK ==
   /\ requests \subseteq ResolutionIds
   /\ requestBinding \in [ResolutionIds -> Bindings]
   /\ requestAuthority \in [ResolutionIds -> Authorities]
-  /\ previousResolution \in [ResolutionIds -> ResolutionIds \cup {NoResolution}]
+  /\ previousResolutionCommitment \in [ResolutionIds -> TerminalCommitments \cup {NoCommitment}]
   /\ terminalRecord \in [ResolutionIds -> TerminalResolutions \cup {NoRecord}]
   /\ terminalBinding \in [ResolutionIds -> Bindings]
   /\ terminalAuthority \in [ResolutionIds -> Authorities]
@@ -251,10 +251,8 @@ InvalidOrConflictUnknown ==
 
 FreshReconsideration ==
   \A r \in requests :
-    \/ previousResolution[r] = NoResolution
-    \/ /\ previousResolution[r] \in requests
-       /\ previousResolution[r] # r
-       /\ terminalRecord[previousResolution[r]] \in TerminalResolutions
+    \/ previousResolutionCommitment[r] = NoCommitment
+    \/ previousResolutionCommitment[r] \in RecognizedTerminalCommitments
 
 RequestsAppendOnlyStep ==
   requests \subseteq requests'

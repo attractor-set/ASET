@@ -1,0 +1,198 @@
+{
+  "abstractions": [
+    {
+      "description": "Bindings are modeled as opaque exact identities; context/state/question/policy/scope digest construction is not re-derived in TLA+.",
+      "id": "OPAQUE_BINDING"
+    },
+    {
+      "description": "authorityProofBindings abstracts exact grant-chain construction, acyclicity, attenuation and cryptographic verification.",
+      "id": "AUTHORITY_PROOF_ORACLE"
+    },
+    {
+      "description": "RecognizedTerminalCommitments abstracts validation that a previous_terminal_record_digest commits to a previously recognized terminal ResolutionRecord. Recognition may be backed by retained material or externally validated authenticated-set/accumulator proof material; predecessor object retention is not required.",
+      "id": "TERMINAL_COMMITMENT_ORACLE"
+    },
+    {
+      "description": "Conflict, invalid-material and non-authoritative-input observations are modeled as environment bookkeeping actions outside the three canonical command kinds.",
+      "id": "ENVIRONMENT_OBSERVATION"
+    }
+  ],
+  "claim_boundary": "The proof establishes behavioral equivalence between SeedResolution.tla and a deterministic TLA+ projection generated from the exact machine-readable Seed model under ASET-SEED-CANON-TLA-PROJECTION-V2. It is not a proof that every natural-language sentence, cryptographic construction, opaque binding representation, concrete Authority-proof implementation, terminal-commitment provenance mechanism, storage compaction, or implementation refinement is fully verified by the TLA+ model. The deterministic projection generator is part of the assurance trusted computing base; this proof does not itself verify the generator implementation.",
+  "document_type": "aset-canon-tla-refinement",
+  "excluded_claims": [
+    "natural-language-text equivalence",
+    "cryptographic digest correctness",
+    "concrete Authority grant-chain construction",
+    "implementation refinement",
+    "liveness",
+    "formal proof of projection-generator correctness",
+    "terminal-commitment provenance verification",
+    "storage pruning/compaction refinement"
+  ],
+  "generated_projection": {
+    "generator": "tools/generate_canon_tla_projection.py",
+    "module": "SeedCanonProjection",
+    "path": "seed/canonical/formal/SeedCanonProjection.tla",
+    "profile": "ASET-SEED-CANON-TLA-PROJECTION-V2"
+  },
+  "invariant_coverage": [
+    {
+      "id": "SEED-INV-001",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-002",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-003",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-004",
+      "status": "PARTIAL_OPAQUE_BINDING"
+    },
+    {
+      "id": "SEED-INV-005",
+      "status": "PARTIAL_AUTHORITY_ABSTRACTION"
+    },
+    {
+      "id": "SEED-INV-006",
+      "status": "ABSTRACTED_AUTHORITY_PROOF"
+    },
+    {
+      "id": "SEED-INV-007",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-008",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-009",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-010",
+      "status": "PARTIAL_NO_CONTENT_ADDRESS_PROOF"
+    },
+    {
+      "id": "SEED-INV-011",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "SEED-INV-012",
+      "status": "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION"
+    }
+  ],
+  "proof": {
+    "final_theorem": "SeedResolutionBehaviorallyEquivalentToCanonProjection",
+    "module": "seed/canonical/formal/SeedCanonRefinementProofs.tla",
+    "verification_method": "ASET-VERIFY-CANON-TLA-REFINEMENT"
+  },
+  "relation_type": "GENERATED_PROJECTION_WITH_BEHAVIORAL_EQUIVALENCE_PROOF",
+  "requirement_coverage": [
+    {
+      "id": "ASET-SEED-REQ-001",
+      "predicate": "binding_exact",
+      "status": "PARTIAL_OPAQUE_BINDING"
+    },
+    {
+      "id": "ASET-SEED-REQ-002",
+      "predicate": "request_fresh",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-003",
+      "predicate": "resolution_domain",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-004",
+      "predicate": "allow_only",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-005",
+      "predicate": "fail_closed",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-006",
+      "predicate": "local_authority",
+      "status": "PARTIAL_AUTHORITY_ABSTRACTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-007",
+      "predicate": "proof_attenuating",
+      "status": "ABSTRACTED_AUTHORITY_PROOF"
+    },
+    {
+      "id": "ASET-SEED-REQ-008",
+      "predicate": "inputs_non_authoritative",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-009",
+      "predicate": "terminal_unique",
+      "status": "PROVED_IN_DECLARED_PROJECTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-010",
+      "predicate": "record_immutable",
+      "status": "PARTIAL_NO_CONTENT_ADDRESS_PROOF"
+    },
+    {
+      "id": "ASET-SEED-REQ-011",
+      "predicate": "reconsider_fresh",
+      "status": "PARTIAL_TERMINAL_COMMITMENT_ABSTRACTION"
+    },
+    {
+      "id": "ASET-SEED-REQ-012",
+      "predicate": "implementation_neutral",
+      "status": "META_OUTSIDE_BEHAVIORAL_MODEL"
+    }
+  ],
+  "resolution_algebra_fields": [
+    "values",
+    "derived",
+    "stored_terminal",
+    "effect_permitted_if",
+    "fail_closed_values",
+    "conflict_result",
+    "unknown_semantics"
+  ],
+  "schema_version": 1,
+  "scope": "DECLARED_CANONICAL_SAFETY_PROJECTION",
+  "source_model": {
+    "model_id": "ASET-SEED-RESOLUTION-CANON-0.3-ALPHA1",
+    "path": "seed/canonical/source/seed-model.json",
+    "sha256": "sha256:b5e68692317600fd2833474a1f9c31f09e44d37ae92ec14573b416076c5dd7f6",
+    "version": "0.3.0-alpha.1"
+  },
+  "target_model": {
+    "module": "SeedResolution",
+    "path": "seed/canonical/formal/SeedResolution.tla",
+    "sha256": "sha256:89ae6f8500cedefdb2e4cc1a3939d074b1ccd480766384977115a7bd70290afe"
+  },
+  "transition_coverage": [
+    {
+      "id": "SEED-TX-001",
+      "kind": "REGISTER_REQUEST",
+      "status": "PROVED_IN_DECLARED_PROJECTION",
+      "tla_action": "RegisterRequest"
+    },
+    {
+      "id": "SEED-TX-002",
+      "kind": "SUBMIT_RESOLUTION",
+      "status": "PROVED_IN_DECLARED_PROJECTION",
+      "tla_action": "SubmitResolution"
+    },
+    {
+      "id": "SEED-TX-003",
+      "kind": "EVALUATE_RESOLUTION",
+      "status": "PROVED_IN_DECLARED_PROJECTION",
+      "tla_action": "Evaluate"
+    }
+  ]
+}

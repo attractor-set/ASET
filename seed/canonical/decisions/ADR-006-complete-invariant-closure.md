@@ -53,6 +53,11 @@ At the time of this decision, this closed the published bounded safety
 contract. Subsequent assurance work added an unbounded TLAPS deductive safety
 proof for the committed abstract TLA+ projection.
 
-That proof does not establish machine-canon-to-TLA refinement, implementation
-refinement or correctness, concrete grant-chain construction, liveness,
-cryptographic primitive security or external certification.
+Subsequent assurance work also added a source-locked generated canonical TLA+
+projection and a TLAPS theorem establishing behavioral equivalence between that
+declared projection and `SeedResolution.tla`. The relation is explicitly
+bounded by opaque Binding and Authority-proof abstractions. It does not prove
+natural-language equivalence, concrete Binding/digest construction,
+implementation refinement or correctness, concrete Authority grant-chain
+construction, liveness, cryptographic primitive security or external
+certification.

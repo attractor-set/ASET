@@ -170,6 +170,12 @@ def main() -> int:
     )
     validate_document(
         errors,
+        "seed/canonical/assurance/canon-tla-refinement.json",
+        "seed/canonical/schemas/canon-tla-refinement.schema.json",
+        "canon_tla_refinement",
+    )
+    validate_document(
+        errors,
         "seed/canonical/assurance/repository-release-gates.json",
         "seed/canonical/schemas/repository-release-gates.schema.json",
         "repository_release_gates",

@@ -11,10 +11,12 @@ an explicit terminal prohibition. Both are fail-closed.
 
 Seed normatively defines exact binding, local Authority roots, attenuating
 Authority proof, terminal uniqueness, immutable content-addressed records and
-fresh reconsideration identifiers.
+fresh reconsideration identifiers and recognized immutable predecessor commitments.
 
-Policy evaluation, evidence acquisition, workflow, federation, persistence
-and enforcement are extension or implementation concerns.
+Policy evaluation, evidence acquisition, workflow, federation, persistence,
+retention/compaction and concrete terminal-commitment accumulation are extension
+or implementation concerns. Seed does not require predecessor requests or records
+to remain physically retained after recognition evidence has been preserved.
 
 ## Assurance closure
 
@@ -29,17 +31,25 @@ The published safety contract has complete machine traceability:
 - 24 portable conformance cases;
 - 13 semantic mutations, all required to be killed.
 
-The unbounded proof applies to the committed abstract TLA+ safety projection.
-It establishes all eleven registered state invariants and all four registered
-temporal safety properties for every behaviour of `Spec`.
+The unbounded safety proof applies to the committed abstract TLA+ safety
+projection. It establishes all eleven registered state invariants and all four
+registered temporal safety properties for every behaviour of `Spec`.
 
-It does not establish:
+The canon-to-TLA assurance adds a second proof layer.
+`SeedCanonProjection.tla` is generated deterministically from the exact
+`seed-model.json` identity under a versioned projection profile, and TLAPS
+proves behavioral equivalence between that generated projection and
+`SeedResolution.tla`.
 
-- refinement from the normative machine-readable canon;
+That relation is explicitly scoped. It does not establish:
+
+- equivalence of every natural-language sentence;
+- concrete Binding or digest construction;
 - correctness or refinement of implementations;
-- concrete grant-chain construction;
+- concrete Authority grant-chain construction;
 - liveness;
 - cryptographic primitive security;
+- concrete terminal-commitment accumulator or witness correctness;
 - external certification.
 
 The normative source remains

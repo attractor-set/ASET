@@ -14,7 +14,6 @@
           "state_root": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         },
         "initial_authority_binding_digest": "sha256:e330f53f77a7adc81a4f37ede069effea59a1267ad4407b3b241bf9ce7b79730",
-        "previous_resolution_id": null,
         "previous_terminal_record_digest": null,
         "request_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
         "resolution_id": "res.1"

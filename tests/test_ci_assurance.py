@@ -42,9 +42,12 @@ def test_ci_workflows_have_distinct_assurance_roles():
     )
     assert "candidate-consistency" in candidate
     assert "tools/check_proof_traceability.py" in candidate
+    assert "tools/check_canon_tla_refinement.py" in candidate
     assert "tools/run_tlc.py" in formal
     assert "tools/run_tlaps.py" in formal
     assert "tools/check_proof_traceability.py" in formal
+    assert "tools/check_canon_tla_refinement.py" in formal
+    assert "tools/run_canon_tla_refinement.py" in formal
     assert "4600b24" in formal
     assert "tlaps-proof.json" in formal
     assert "tools/check_canon_compatibility.py" not in candidate
@@ -52,6 +55,8 @@ def test_ci_workflows_have_distinct_assurance_roles():
     assert "TLA2TOOLS_JAR" in release
     assert "TLAPM_BIN" in release
     assert "proof-traceability-check.json" in release
+    assert "canon-tla-refinement-check.json" in release
+    assert "canon-tla-refinement-proof.json" in release
     assert "tools/repository_release_gate.py" in release
     assert "tlc-model-check.json" in release
     assert "tlaps-proof.json" in release
@@ -160,3 +165,61 @@ def test_mandatory_proof_traceability_gate_is_in_aggregate_runner():
     assert "tools/check_proof_traceability.py" in gate["evidence"]
     assert "tools/check_proof_traceability.py" in runner
     assert "dist/proof-traceability-check.json" in runner
+
+
+def test_canon_tla_refinement_relation_is_complete_and_mandatory():
+    relation = load("seed/canonical/assurance/canon-tla-refinement.json")
+    gates = load("seed/canonical/assurance/repository-release-gates.json")
+    registry = load("seed/canonical/assurance/verification-registry.json")
+    runner = (ROOT / "tools/repository_release_gate.py").read_text(encoding="utf-8")
+
+    assert len(relation["requirement_coverage"]) == 12
+    assert len(relation["invariant_coverage"]) == 12
+    assert len(relation["transition_coverage"]) == 3
+    assert len(relation["resolution_algebra_fields"]) == 7
+    assert relation["proof"]["final_theorem"] == (
+        "SeedResolutionBehaviorallyEquivalentToCanonProjection"
+    )
+
+    assert len(gates["gates"]) >= 26
+
+    gate_030 = next(item for item in gates["gates"] if item["id"] == "ASET-GATE-030")
+    gate_031 = next(item for item in gates["gates"] if item["id"] == "ASET-GATE-031")
+    assert gate_030["mandatory"] is True
+    assert gate_031["mandatory"] is True
+    assert "check_canon_tla_refinement.py" in gate_030["evidence"]
+    assert "run_canon_tla_refinement.py" in gate_031["evidence"]
+    assert "check_canon_tla_refinement.py" in runner
+    assert "run_canon_tla_refinement.py" in runner
+
+    method = next(
+        item
+        for item in registry["verification_methods"]
+        if item["id"] == "ASET-VERIFY-CANON-TLA-REFINEMENT"
+    )
+    assert method["gate_ids"] == ["ASET-GATE-030", "ASET-GATE-031"]
+
+
+def test_generated_canon_tla_projection_is_current(tmp_path):
+    result = subprocess.run(
+        [sys.executable, "tools/generate_canon_tla_projection.py", "--check"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "tools/check_canon_tla_refinement.py",
+            "--output",
+            str(tmp_path / "canon-tla-refinement.json"),
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr

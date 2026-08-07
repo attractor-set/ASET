@@ -12,7 +12,7 @@ The model covers:
 - an abstract validated delegated-Authority predicate;
 - non-authoritative external inputs;
 - conflict and invalid-material handling;
-- fresh reconsideration lineage;
+- fresh reconsideration through recognized immutable terminal commitments without predecessor-object retention;
 - append-only requests and inputs;
 - immutable terminal records;
 - exclusion of invalid or unrecognized candidates from the Seed transition relation;
@@ -39,15 +39,27 @@ a new normative Seed requirement.
 Detailed grant-chain construction, canonical digest computation and static
 implementation neutrality are checked by the executable oracle and canon
 validators. The formal model abstracts validated Authority evidence through
-`authorityProofBindings`.
+`authorityProofBindings` and validated historical terminal-commitment recognition
+through `RecognizedTerminalCommitments`. Concrete accumulator construction,
+membership/update witnesses and retention are profile-level concerns.
 
-The proof does not establish:
+`SeedCanonProjection.tla` is a deterministic generated interpretation of the
+exact machine-readable Seed identity under
+`ASET-SEED-CANON-TLA-PROJECTION-V2`. `SeedCanonRefinementProofs.tla` proves
+behavioral equivalence between that generated projection and
+`SeedResolution.tla`. Projection parity and source/target digests are mandatory
+release checks.
 
-- refinement from the normative machine-readable canon to the TLA+ model;
+This canon-to-TLA relation preserves the declared abstractions. It does not
+establish:
+
+- equivalence of every natural-language sentence;
+- concrete Binding or digest construction;
 - refinement from the TLA+ model to an implementation;
 - correctness of any implementation;
-- concrete grant-chain construction;
+- concrete Authority grant-chain construction;
 - cryptographic primitive security;
+- concrete terminal-commitment accumulator or witness correctness;
 - liveness.
 
 `UNKNOWN` may remain unresolved indefinitely. This is intentional fail-closed
