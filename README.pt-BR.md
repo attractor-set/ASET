@@ -18,3 +18,9 @@ Somente um registro `ALLOW` único, válido, exatamente vinculado e reconhecido 
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — implementação de referência não normativa.
 
 Fonte normativa: [cânone Seed](seed/canonical/README.md).
+
+## Padrão de compatibilidade
+
+Releases publicados do Seed podem funcionar como padrões de compatibilidade imutáveis e versionados para implementações independentes. O primeiro baseline declarado é `seed-0.3.0-alpha.2`. A conformidade é avaliada pelo runner externo do ASET contra a identidade exata do release, o canonical package e todos os casos obrigatórios.
+
+Veja [ASET Seed Compatibility Standard](standards/seed-compatibility/README.md).

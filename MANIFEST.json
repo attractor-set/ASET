@@ -38,13 +38,13 @@
     },
     {
       "path": ".github/workflows/release-candidate.yml",
-      "sha256": "sha256:d78958be57ae35189aac8557b19db7404ebafbb42bd3fd2404d85c380ca9a870",
-      "size_bytes": 3360
+      "sha256": "sha256:22888623e0cdf2707380184aa05c3c83a0270b95e0eca1cef1cb0c9d6f420460",
+      "size_bytes": 3400
     },
     {
       "path": ".github/workflows/seed-ci.yml",
-      "sha256": "sha256:d64c6747250bfd337da41435302d3e6f08b2fd1712592a5c6a6c237949bf1a6c",
-      "size_bytes": 2397
+      "sha256": "sha256:6f81dc07fe0015e5243de588d65db79570cbfeddd58a6ae2d90a2d8886e926fa",
+      "size_bytes": 2682
     },
     {
       "path": ".gitignore",
@@ -138,18 +138,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:bd52cd5ff0ccb13464af5ddb1b0d2f0dca5ef030a1878d74b7481838bd24ce86",
-      "size_bytes": 1052
+      "sha256": "sha256:26fd6cadd5e27cc9623c89890d4e6ac02edba69ed355f1191a469bce8e879a9f",
+      "size_bytes": 1469
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:88408cc086e3d9ef64a1b3bf1a1edca86b96a0a9f71e41ef10828da1e2299f21",
-      "size_bytes": 1171
+      "sha256": "sha256:e824a4c5392cdfef7ad6ae969e4a63ebda1d1688d9b4171bad06916a59fdd43d",
+      "size_bytes": 1624
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:80d3bd0f9a0bfe6d3b1b34a3070c9a74271171bd17858d98219a58091e715d68",
-      "size_bytes": 1650
+      "sha256": "sha256:32f3007cb6900af91ea26b0128cd66096c51fd06a35060d687d91ed9c3133c8b",
+      "size_bytes": 2319
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -1877,6 +1877,21 @@
       "size_bytes": 796
     },
     {
+      "path": "standards/seed-compatibility/README.md",
+      "sha256": "sha256:1f159fc440826abc7cb4fe6d309bc1e2b1a27ec3631df8dc768f3b91736b2238",
+      "size_bytes": 2494
+    },
+    {
+      "path": "standards/seed-compatibility/compatibility-standard-profile-v1.json",
+      "sha256": "sha256:baf65fbdcf7d37ef1050b072063a36009c2bb9b393fd893c6f7c4fe1fb033fa2",
+      "size_bytes": 2188
+    },
+    {
+      "path": "standards/seed-compatibility/compatibility-standard-release.schema.json",
+      "sha256": "sha256:6e507c76b24f2a1301df470789a0c220ed008e0d56bd07656804796d82ad504f",
+      "size_bytes": 2659
+    },
+    {
       "path": "tests/test_audit_index_and_onboarding.py",
       "sha256": "sha256:f7cda775d32174262e05337f075a231898e8c88a93dce81b9d35deae6c50d3b5",
       "size_bytes": 2420
@@ -1947,6 +1962,11 @@
       "size_bytes": 825
     },
     {
+      "path": "tests/test_seed_compatibility_standard.py",
+      "sha256": "sha256:ef9cc942b1e3d2b18b228f3d0251d9974e85fa559f8bcc101968c5823f29f716",
+      "size_bytes": 2861
+    },
+    {
       "path": "tests/test_seed_extension_boundary.py",
       "sha256": "sha256:6f35f611ec8042dfedb07181bdd146c42538d33d9f4a343a955281472d35f5ea",
       "size_bytes": 2517
@@ -1982,6 +2002,11 @@
       "size_bytes": 2127
     },
     {
+      "path": "tools/build_seed_conformance_kit.py",
+      "sha256": "sha256:e99f63ec4e56b7c88cbd2da7e3e1b6f10887d2d4d0a428486a865545e1b50aeb",
+      "size_bytes": 17899
+    },
+    {
       "path": "tools/check_assurance_traceability.py",
       "sha256": "sha256:35e94c96b60bb19fd6c872a7d36ff707deca79443463656303a6c9e4ec01df8c",
       "size_bytes": 10421
@@ -2015,6 +2040,11 @@
       "path": "tools/check_proof_traceability.py",
       "sha256": "sha256:332c6055d77dac1c83c0491e82009b7bbaa7ed50ff844285255985fe468249df",
       "size_bytes": 9612
+    },
+    {
+      "path": "tools/check_seed_compatibility_profile_stability.py",
+      "sha256": "sha256:bb09a1e82f4487b6d05702dc0154bfe1b5c63e7cfca01aa72ebbe5691c9da311",
+      "size_bytes": 1567
     },
     {
       "path": "tools/generate_canon_tla_projection.py",
@@ -2083,8 +2113,8 @@
     },
     {
       "path": "tools/repository_release_gate.py",
-      "sha256": "sha256:cb6a0c04f492c1591ed6ca70e5a5c51b7749dc483e0ee2616afefdae4da30d6c",
-      "size_bytes": 5453
+      "sha256": "sha256:0aa7c396f1569c536bee7fd986ef2315fc2b5f152f6df7eb47733c24c638bb41",
+      "size_bytes": 5835
     },
     {
       "path": "tools/run_canon_tla_refinement.py",
@@ -2167,7 +2197,7 @@
       "size_bytes": 1035
     }
   ],
-  "files_count": 433,
+  "files_count": 439,
   "manifest_scope": "all repository regular files except MANIFEST.json, Git metadata, virtual environments, caches and dist",
   "package": "ASET-Seed-0.3.0-alpha.1-Minimal-Strong-Core",
   "repository_root": "ASET"

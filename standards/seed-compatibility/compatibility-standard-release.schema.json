@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canon_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "canon_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "canonical_package_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "conformance_profile_sha256": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "conformance_protocol": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "document_type": {
+      "const": "aset-seed-compatibility-standard-release"
+    },
+    "implementation_precedence": {
+      "const": "NONE"
+    },
+    "mandatory_conformance_cases": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "normative_source": {
+      "additionalProperties": false,
+      "properties": {
+        "package_path": {
+          "const": "seed/canonical/CANON_PACKAGE.json"
+        },
+        "release_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "release_tag": {
+          "pattern": "^seed-.+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "release_tag",
+        "release_commit",
+        "package_path"
+      ],
+      "type": "object"
+    },
+    "release_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "release_tag": {
+      "pattern": "^seed-.+$",
+      "type": "string"
+    },
+    "release_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "seed_semantic_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "standard_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "standard_profile_id": {
+      "const": "ASET-SEED-COMPATIBILITY-STANDARD-V1"
+    },
+    "standard_profile_sha256": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "standard_series_id": {
+      "const": "ASET-SEED-COMPATIBILITY-STANDARD"
+    },
+    "verdict_authority": {
+      "const": "external ASET conformance runner"
+    }
+  },
+  "required": [
+    "document_type",
+    "schema_version",
+    "standard_series_id",
+    "standard_profile_id",
+    "standard_profile_sha256",
+    "standard_id",
+    "release_tag",
+    "release_commit",
+    "release_version",
+    "seed_semantic_version",
+    "canon_id",
+    "canon_version",
+    "canonical_package_digest",
+    "conformance_protocol",
+    "conformance_profile_sha256",
+    "mandatory_conformance_cases",
+    "implementation_precedence",
+    "verdict_authority",
+    "normative_source"
+  ],
+  "type": "object"
+}

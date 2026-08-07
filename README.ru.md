@@ -18,3 +18,9 @@ UNKNOWN | ALLOW | BLOCK
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — ненормативная эталонная реализация.
 
 Нормативный источник: [канон Seed](seed/canonical/README.md).
+
+## Стандарт совместимости
+
+Опубликованные релизы Seed могут выступать как неизменяемые версионированные стандарты совместимости для независимых реализаций. Первый объявленный baseline — `seed-0.3.0-alpha.2`. Соответствие проверяется внешним ASET conformance runner относительно точной идентичности релиза, canonical package и всех обязательных cases.
+
+См. [ASET Seed Compatibility Standard](standards/seed-compatibility/README.md).

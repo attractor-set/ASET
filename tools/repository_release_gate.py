@@ -21,6 +21,14 @@ BASE_COMMANDS = [
     ["tools/validate_seed_canon.py"],
     ["tools/build_canon_package.py", "--check"],
     ["tools/validate_canon_package.py"],
+    [
+        "tools/build_seed_conformance_kit.py",
+        "--ref",
+        "HEAD",
+        "--output-dir",
+        "dist/seed-conformance-kit",
+        "--verify-determinism",
+    ],
     ["tools/verify_frozen_release.py"],
     ["tools/materialize_rc11.py", "--check"],
     ["tools/model_check_seed.py", "--output", "dist/seed-model-check.json"],
@@ -74,6 +82,13 @@ def commands() -> list[list[str]]:
         result.append(
             [
                 "tools/check_inpi_deposit_profile_stability.py",
+                "--approved-ref",
+                approved_ref,
+            ]
+        )
+        result.append(
+            [
+                "tools/check_seed_compatibility_profile_stability.py",
                 "--approved-ref",
                 approved_ref,
             ]
