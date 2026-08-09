@@ -12,10 +12,11 @@ UNKNOWN | ALLOW | BLOCK
 
 Только одна уникальная действительная и точно связанная запись `ALLOW`, признанная локальной Authority, разрешает связанный эффект. Отсутствие или конфликт действительного терминального материала даёт `UNKNOWN`; явный запрет — `BLOCK`. Внешний материал сам по себе не создаёт локальную Authority.
 
-## Эталонные артефакты
+## Экосистема
 
-- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — ненормативное эталонное расширение.
-- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — ненормативная эталонная реализация.
+- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — технологически нейтральное нормативное расширение ASET Seed для межконтекстного признания.
+- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — ненормативная эталонная реализация Seed.
+- [ASET Network Python SQLite](https://github.com/attractor-set/aset-network-python-sqlite) — ненормативная сетевая эталонная реализация Network Extension, расширяющая ASET Python SQLite посредством композиции.
 
 Нормативный источник: [канон Seed](seed/canonical/README.md).
 
