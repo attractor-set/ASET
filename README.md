@@ -12,10 +12,11 @@ UNKNOWN | ALLOW | BLOCK
 
 Only one unique valid, locally recognized and exact-binding `ALLOW` record permits the bound effect. Missing or conflicting valid terminal material is `UNKNOWN`; explicit prohibition is `BLOCK`. External material does not create local Authority by itself.
 
-## Reference artifacts
+## Ecosystem
 
-- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — non-normative reference extension.
-- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — non-normative reference implementation.
+- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — implementation-neutral normative extension of ASET Seed for cross-context recognition.
+- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — non-normative Seed reference implementation.
+- [ASET Network Python SQLite](https://github.com/attractor-set/aset-network-python-sqlite) — non-normative network reference implementation of the Network Extension, extending ASET Python SQLite by composition.
 
 Normative source: [Seed canon](seed/canonical/README.md).
 

@@ -138,18 +138,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:26fd6cadd5e27cc9623c89890d4e6ac02edba69ed355f1191a469bce8e879a9f",
-      "size_bytes": 1469
+      "sha256": "sha256:c80cef917cc0a87b1e9fe2ed3f6c91de5ebbcf00eb049cf21988a4ac0b93b1ec",
+      "size_bytes": 1730
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:e824a4c5392cdfef7ad6ae969e4a63ebda1d1688d9b4171bad06916a59fdd43d",
-      "size_bytes": 1624
+      "sha256": "sha256:5d7ce148e28b86cf72f9fb839da6a11304802f0f620fbd8fe5cbb55f5c772e37",
+      "size_bytes": 1895
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:32f3007cb6900af91ea26b0128cd66096c51fd06a35060d687d91ed9c3133c8b",
-      "size_bytes": 2319
+      "sha256": "sha256:910b2dd66e15d9ec3b5b08f4351c93c07fa18e46ef39f6f7b7d7ef193769ccb2",
+      "size_bytes": 2687
     },
     {
       "path": "REPOSITORY_STATUS.json",
