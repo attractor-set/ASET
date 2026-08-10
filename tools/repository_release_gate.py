@@ -15,6 +15,7 @@ REQUIRED_FORMAL_ENV = (
     "TLAPM_BIN",
 )
 BASE_COMMANDS = [
+    ["tools/check_repository_source_identity.py"],
     ["tools/generate_repository_views.py", "--check"],
     ["tools/check_language.py"],
     ["tools/build_conformance_profile.py", "--check"],
@@ -60,9 +61,9 @@ BASE_COMMANDS = [
     ["-m", "pytest", "-q"],
     ["-m", "ruff", "check", "tools", "tests"],
     ["tools/static_python_sanity.py"],
-    ["tools/build_release.py"],
+    ["tools/build_release.py", "--verify-determinism"],
     ["tools/blackbox_documentation_audit.py"],
-    ["tools/rebuild_manifest.py", "--check"],
+    ["tools/check_repository_source_identity.py"],
 ]
 
 

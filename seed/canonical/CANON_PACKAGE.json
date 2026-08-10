@@ -86,7 +86,7 @@
     },
     {
       "path": "seed/canonical/assurance/repository-release-gates.json",
-      "sha256": "sha256:511b36d060e72a5ae181b7c3de100d314efc2ed7f0a5de4498405f956e8e2fd8"
+      "sha256": "sha256:bacab0a62bd75fe8eaadbc20d2e1a9849e87ff474790e337827abddde865e9cd"
     },
     {
       "path": "seed/canonical/schemas/repository-release-gates.schema.json",
@@ -303,6 +303,6 @@
   ],
   "implementation_precedence": "NONE",
   "normative_source": "seed/canonical/source/seed-model.json",
-  "package_digest": "sha256:c5d48a418466ea7a60fccb7161adbd5ad568174bbc9a28fc03fd7e6e77955d31",
+  "package_digest": "sha256:0df0ab8ecc5a1e87a4004573a9e26b04b1301ca74f8db2606ff506d6e37b5010",
   "schema_version": 2
 }

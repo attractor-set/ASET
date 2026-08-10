@@ -8,7 +8,7 @@ Before opening a pull request:
 python -m pip install -r requirements-ci.txt
 python tools/generate_repository_views.py
 python tools/build_canon_package.py
-python tools/rebuild_manifest.py
+python tools/check_repository_source_identity.py
 python tools/repository_release_gate.py
 ```
 

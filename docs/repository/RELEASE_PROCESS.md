@@ -19,21 +19,20 @@
 4. make only changes traceable to those criteria;
 5. regenerate derived views with `python tools/generate_repository_views.py`;
 6. rebuild the canon package with `python tools/build_canon_package.py`;
-7. rebuild the repository manifest with `python tools/rebuild_manifest.py`;
+7. verify the exact Git source identity with `python tools/check_repository_source_identity.py`;
 8. run `python tools/repository_release_gate.py`;
-9. inspect compatibility, model-check, traceability and documentation evidence;
+9. inspect compatibility, model-check, traceability, deterministic artifact and documentation evidence;
 10. merge only after every mandatory CI contour succeeds.
 
 ## Seed candidate path
 
 1. preserve exact historical Seed release bytes;
-2. bind exact canon, schemas, conformance cases, protocol, formal projections and repository
-   manifest;
-3. verify candidate self-consistency and compatibility with the approved canon;
+2. bind the exact release commit/tree and exact canon, schemas, conformance cases, protocol and formal projections;
+3. verify candidate self-consistency, canonical package identity and compatibility with the approved canon;
 4. run the full gate in a clean checkout;
 5. retain external third-party audit status explicitly;
 6. create a protected annotated tag only after owner approval;
-7. publish immutable source snapshot, canon package, evidence and checksums;
+7. publish the deterministic source snapshot, canon package, evidence and artifact checksums;
 8. rerun mandatory workflows against the exact tag target.
 
 ## Extension and implementation releases

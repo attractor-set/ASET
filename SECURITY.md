@@ -16,7 +16,7 @@ Report suspected vulnerabilities privately to the repository owner through GitHu
 - least-privilege GitHub Actions permissions;
 - dependency monitoring;
 - deterministic repository snapshots and canon packages;
-- SHA-256-bound manifests;
+- SHA-256-bound canonical packages and deterministic release artifacts;
 - formal, conformance, mutation, traceability, and black-box assurance gates;
 - common secret-pattern scanning.
 

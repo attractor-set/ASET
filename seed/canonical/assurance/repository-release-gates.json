@@ -24,7 +24,7 @@
       "portable resolution conformance cases",
       "historical Seed release integrity",
       "external reference boundary integrity",
-      "release and manifest integrity",
+      "repository source and release-artifact integrity",
       "complete normative requirement and invariant coverage",
       "semantic mutation closure with zero surviving canonical mutants",
       "unbounded deductive safety closure of the abstract TLA+ Seed projection",
@@ -97,13 +97,13 @@
       "name": "static_tooling_sanity"
     },
     {
-      "evidence": "python tools/rebuild_manifest.py --check",
+      "evidence": "python tools/check_repository_source_identity.py",
       "id": "ASET-GATE-014",
       "mandatory": true,
-      "name": "manifest_parity"
+      "name": "git_repository_source_identity"
     },
     {
-      "evidence": "python tools/build_release.py",
+      "evidence": "python tools/build_release.py --verify-determinism",
       "id": "ASET-GATE-015",
       "mandatory": true,
       "name": "deterministic_repository_snapshot"

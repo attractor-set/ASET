@@ -31,7 +31,7 @@ jobs:
           python tools/validate_seed_canon.py
           python tools/build_canon_package.py --check
           python tools/validate_canon_package.py
-          python tools/rebuild_manifest.py --check
+          python tools/check_repository_source_identity.py
           python tools/validate_reference_boundary.py
       - name: Verify deterministic INPI deposit generation
         run: |
