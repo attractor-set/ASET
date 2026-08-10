@@ -10,7 +10,6 @@ COMMANDS = (
     ["tools/build_conformance_profile.py"],
     ["tools/build_canon_package.py"],
     ["tools/generate_repository_views.py"],
-    ["tools/rebuild_manifest.py"],
 )
 
 

@@ -29,8 +29,8 @@ The repository release gate independently requires:
 - TLC model checking;
 - TLAPS safety proofs;
 - TLAPS canon-to-TLA behavioral-equivalence proof;
-- specification tests, lint/sanity checks, archive construction and manifest
-  parity.
+- specification tests, lint/sanity checks, exact Git source identity and deterministic
+  repository-snapshot construction.
 
 These checks establish consistency and the declared safety properties of the
 exact candidate snapshot. They do not establish implementation production
