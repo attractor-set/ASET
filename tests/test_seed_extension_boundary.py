@@ -67,5 +67,6 @@ def test_reference_artifacts_are_readme_only_and_non_normative() -> None:
         for reference in references:
             assert text.count(reference) == 1
         assert "non-normative" in text or "ненорматив" in text or "não normativa" in text
+        assert "aset-network-python-sqlite" not in text
         assert "aset-ai-extension-template" not in text
         assert "aset-ai-local-stack" not in text

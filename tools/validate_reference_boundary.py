@@ -18,6 +18,7 @@ REFERENCE_URLS = (
     "https://github.com/attractor-set/aset-python-sqlite",
 )
 FORBIDDEN_PUBLIC_REFERENCES = (
+    "attractor-set/aset-network-python-sqlite",
     "attractor-set/aset-ai-extension-template",
     "attractor-set/aset-ai-local-stack",
 )

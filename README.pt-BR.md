@@ -12,11 +12,12 @@ UNKNOWN | ALLOW | BLOCK
 
 Somente um registro `ALLOW` único, válido, exatamente vinculado e reconhecido pela Authority local permite o efeito vinculado. A ausência ou o conflito de material terminal válido resulta em `UNKNOWN`; proibição explícita é `BLOCK`. Material externo não cria Authority local por si só.
 
-## Ecossistema
+## Projetos downstream diretos
 
 - [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — extensão normativa e neutra de implementação do ASET Seed para reconhecimento entre Contexts.
 - [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — implementação de referência não normativa do Seed.
-- [ASET Network Python SQLite](https://github.com/attractor-set/aset-network-python-sqlite) — implementação de referência de rede não normativa do Network Extension, estendendo ASET Python SQLite por composição.
+
+Somente relações downstream diretas são listadas aqui. Descendentes transitivos são descobertos por meio de seus projetos-pai imediatos.
 
 Fonte normativa: [cânone Seed](seed/canonical/README.md).
 

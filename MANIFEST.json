@@ -138,18 +138,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "sha256:c80cef917cc0a87b1e9fe2ed3f6c91de5ebbcf00eb049cf21988a4ac0b93b1ec",
-      "size_bytes": 1730
+      "sha256": "sha256:e8b87b6c678da1986d1b4b758eae1580bd0dcca24ffac370acbb6fcc0618da2d",
+      "size_bytes": 1669
     },
     {
       "path": "README.pt-BR.md",
-      "sha256": "sha256:5d7ce148e28b86cf72f9fb839da6a11304802f0f620fbd8fe5cbb55f5c772e37",
-      "size_bytes": 1895
+      "sha256": "sha256:2f51e28cb1c21138760d8cec8ff65c6090e228b975f827da765fd9b053e6f404",
+      "size_bytes": 1833
     },
     {
       "path": "README.ru.md",
-      "sha256": "sha256:910b2dd66e15d9ec3b5b08f4351c93c07fa18e46ef39f6f7b7d7ef193769ccb2",
-      "size_bytes": 2687
+      "sha256": "sha256:d2ebf5e17147fab7561ce8260650c04d11d7eeb78424642cc39812c0e91e0add",
+      "size_bytes": 2712
     },
     {
       "path": "REPOSITORY_STATUS.json",
@@ -1968,8 +1968,8 @@
     },
     {
       "path": "tests/test_seed_extension_boundary.py",
-      "sha256": "sha256:6f35f611ec8042dfedb07181bdd146c42538d33d9f4a343a955281472d35f5ea",
-      "size_bytes": 2517
+      "sha256": "sha256:01a3da9021325529c6a7c408face85c19486683ce090d470897c85ed94a1c0b6",
+      "size_bytes": 2573
     },
     {
       "path": "tools/__init__.py",
@@ -2183,8 +2183,8 @@
     },
     {
       "path": "tools/validate_reference_boundary.py",
-      "sha256": "sha256:7551e7e02395a59ba9d01f2fe0c783a7ca7ad351cdbdf1c5382ecb0cafc956bf",
-      "size_bytes": 1878
+      "sha256": "sha256:c936e4e1c6ed7a2ad1f08d0373cdbab65d48bdab1789afc9c79fc9fcc614f527",
+      "size_bytes": 1926
     },
     {
       "path": "tools/validate_seed_canon.py",
