@@ -1,6 +1,6 @@
 # ASET integrity model
 
-ASET keeps three identity domains separate. No repository-wide file manifest is part of the active integrity model.
+ASET keeps four identity domains separate. No repository-wide file manifest is part of the active integrity model.
 
 ## 1. Normative canon identity
 
@@ -20,6 +20,22 @@ Repository snapshots and other release artifacts are deterministic outputs from 
 
 Artifact checksums identify distributed bytes; they do not define Seed semantics.
 
+## 4. External assurance-perimeter identity
+
+`assurance/seed-recognition-boundary/ASSURANCE_PACKAGE.json` identifies a
+public non-normative v60 proof perimeter around the frozen Seed. Its digest covers only the
+perimeter documentation, publication provenance and all 34 active v60 TLA+ modules, while its subject binding points
+inward to the exact canonical package digest, machine-readable Seed model,
+`SeedResolution.tla` and existing canon-to-TLA relation.
+
+The direction is intentionally asymmetric: the assurance package depends on the
+canonical identity, but the canonical package does not contain or hash the
+assurance package. This prevents proof/tooling maintenance from redefining Seed
+semantics while making any change to the frozen subject fail the perimeter
+closed until deliberate re-baselining.
+
 ## Historical manifests
 
 Historical releases and Background IP records may reference earlier `MANIFEST.json` files and their SHA-256 values. Those references identify immutable historical commits and remain valid evidence. They are not an active repository-integrity mechanism and must not be rewritten merely because the current repository no longer maintains a repository-wide manifest.
+
+The external Seed recognition-boundary perimeter also pins the TLAPM toolchain-notice multiset. This is an assurance/output-integrity control only; it neither changes nor enters the canonical Seed identity.

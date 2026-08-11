@@ -31,6 +31,8 @@ jobs:
           python tools/validate_seed_canon.py
           python tools/build_canon_package.py --check
           python tools/validate_canon_package.py
+          python tools/build_seed_recognition_boundary_assurance.py --check
+          python tools/check_seed_recognition_boundary.py --output dist/seed-recognition-boundary-check.json
           python tools/check_repository_source_identity.py
           python tools/validate_reference_boundary.py
       - name: Verify deterministic INPI deposit generation
@@ -68,6 +70,7 @@ jobs:
             dist/assurance-traceability.json
             dist/proof-traceability-check.json
             dist/canon-tla-refinement-check.json
+            dist/seed-recognition-boundary-check.json
             dist/blackbox-documentation-audit.json
             dist/inpi-deposit-ci/**
             dist/seed-conformance-kit-ci/**

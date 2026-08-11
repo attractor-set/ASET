@@ -66,7 +66,7 @@ jobs:
           echo "TLAPM_BIN=$tlapm_bin" >> "$GITHUB_ENV"
 
       - name: Run approved-to-candidate compatibility and release gate
-        timeout-minutes: 30
+        timeout-minutes: 45
         env:
           ASET_APPROVED_REF: ${{ steps.approved.outputs.ref }}
         run: python tools/repository_release_gate.py
@@ -88,10 +88,12 @@ jobs:
             dist/assurance-traceability.json
             dist/proof-traceability-check.json
             dist/canon-tla-refinement-check.json
+            dist/seed-recognition-boundary-check.json
             dist/blackbox-documentation-audit.json
             dist/repository-release-gate.json
             dist/tlc-model-check.json
             dist/tlaps-proof.json
             dist/canon-tla-refinement-proof.json
+            dist/seed-recognition-boundary-tlaps.json
             dist/inpi-deposit-ci/**
             dist/seed-conformance-kit/**

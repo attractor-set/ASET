@@ -1,0 +1,35 @@
+{
+  "document_type": "aset-seed-recognition-boundary-toolchain-notices",
+  "notices": [
+    {
+      "classification": "PINNED_TLAPM_GENERATED_PATTERN_NOTICE",
+      "expected_by_module": {
+        "CanonicalLocalReachabilityProofs.tla": {
+          "WARNING: (1061,54): 'if' cannot be used in patterns.": 3,
+          "WARNING: (1176,54): 'if' cannot be used in patterns.": 3,
+          "WARNING: (1310,54): 'if' cannot be used in patterns.": 3
+        },
+        "ParametricLocalStateCardinalityProofs.tla": {
+          "WARNING: (1177,54): 'if' cannot be used in patterns.": 3,
+          "WARNING: (1209,54): 'if' cannot be used in patterns.": 3
+        }
+      },
+      "expected_total_occurrences": 15,
+      "id": "TLAPM-IF-PATTERN-NOTICE-001",
+      "message": "'if' cannot be used in patterns.",
+      "rationale": "Observed coordinates do not identify valid locations in the published proof sources: ParametricLocalStateCardinalityProofs.tla has 475 lines while the notice reports lines 1177 and 1209; in CanonicalLocalReachabilityProofs.tla the reported character 54 exceeds the source-line length at reported lines 1061, 1176 and 1310. The proof sources are therefore kept identical to the mechanically proved v60 formal program, and the pinned toolchain notices are classified at the runner boundary instead of rewriting proof logic."
+    }
+  ],
+  "policy": {
+    "formal_source_rewrite_for_toolchain_notice": false,
+    "missing_expected_notice": "FAIL",
+    "raw_known_notices_in_console": false,
+    "unexpected_warning": "FAIL"
+  },
+  "publication_baseline": "ASET-SEED-SEMANTIC-MINIMALITY-V60",
+  "schema_version": 1,
+  "toolchain": {
+    "tlapm_commit": "4600b24c6d95a25ff081ad37b63b2a01c29d43a5",
+    "tlapm_version": "4600b24"
+  }
+}
