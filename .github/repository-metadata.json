@@ -1,15 +1,18 @@
 {
-  "description": "ASET is an open, implementation-neutral specification for a minimal authority-scoped UNKNOWN, ALLOW or BLOCK resolution-recognition kernel.",
+  "description": "ASET is an open, implementation-neutral specification for a machine-interpretable semantic Seed with a minimal authority-scoped UNKNOWN, ALLOW or BLOCK resolution nucleus.",
   "repository": "attractor-set/ASET",
   "topics": [
     "authorization",
     "conformance-testing",
+    "evolutionary-systems",
     "formal-methods",
     "implementation-neutral",
     "json-schema",
+    "machine-readable-specification",
     "model-based-testing",
     "open-standard",
     "resolution-protocol",
+    "semantic-interoperability",
     "specification-first",
     "state-transitions",
     "tla-plus"

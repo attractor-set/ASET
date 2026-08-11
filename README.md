@@ -4,13 +4,19 @@
 
 **ASET — Authority-Seeded Evidence Trail.**
 
-ASET is an open, implementation-neutral specification for a minimal authority-scoped resolution kernel. Here, *seeded* means that admissibility originates from an explicitly recognized Authority binding; no particular cryptographic signature mechanism is required by the Seed.
+ASET is an open, implementation-neutral specification for a **minimal machine-interpretable semantic Seed**: a machine-readable, independently implementable and verifiable semantic vessel whose operational nucleus is authority-scoped resolution recognition. Here, *seeded* means both that admissibility originates from an explicitly recognized Authority binding and that the same public form can carry independently produced semantics forward without giving any producer recognition authority.
 
 ```text
 UNKNOWN | ALLOW | BLOCK
 ```
 
 Only one unique valid, locally recognized and exact-binding `ALLOW` record permits the bound effect. Missing or conflicting valid terminal material is `UNKNOWN`; explicit prohibition is `BLOCK`. External material does not create local Authority by itself.
+
+## Why Seed
+
+Seed is not a prescribed application architecture or evolution algorithm. It is the minimal public form that keeps normative meaning machine-readable, explicit enough for independent interpretation, independently implementable and externally verifiable. New candidate forms may be discovered by any external mechanism; producing, selecting or verifying a candidate never grants that mechanism Authority or recognition precedence.
+
+ASET therefore standardizes the **public boundary of evolution**, not a privileged search substrate. See [Role of ASET Seed](docs/architecture/SEED_ROLE.md) and [Evolution boundary](docs/architecture/EVOLUTION_BOUNDARY.md).
 
 ## Direct downstream projects
 
