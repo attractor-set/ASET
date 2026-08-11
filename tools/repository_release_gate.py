@@ -22,6 +22,12 @@ BASE_COMMANDS = [
     ["tools/validate_seed_canon.py"],
     ["tools/build_canon_package.py", "--check"],
     ["tools/validate_canon_package.py"],
+    ["tools/build_seed_recognition_boundary_assurance.py", "--check"],
+    [
+        "tools/check_seed_recognition_boundary.py",
+        "--output",
+        "dist/seed-recognition-boundary-check.json",
+    ],
     [
         "tools/build_seed_conformance_kit.py",
         "--ref",
@@ -127,6 +133,15 @@ def commands() -> list[list[str]]:
                 "dist/canon-tla-refinement-proof.json",
             ]
         )
+        result.append(
+            [
+                "tools/run_seed_recognition_boundary_tlaps.py",
+                "--tlapm",
+                tlapm_bin,
+                "--output",
+                "dist/seed-recognition-boundary-tlaps.json",
+            ]
+        )
 
     return result
 
@@ -143,6 +158,10 @@ def write_report(rows: list[dict[str, object]], verdict: str) -> None:
                 "tlc_executed": bool(os.environ.get("TLA2TOOLS_JAR")),
                 "tlaps_executed": bool(os.environ.get("TLAPM_BIN")),
                 "canon_tla_refinement_executed": bool(os.environ.get("TLAPM_BIN")),
+                "seed_recognition_boundary_perimeter_executed": True,
+                "seed_recognition_boundary_tlaps_executed": bool(
+                    os.environ.get("TLAPM_BIN")
+                ),
                 "verdict": verdict,
             },
             sort_keys=True,

@@ -1,0 +1,32 @@
+{
+  "canonical_gate_registry_relationship": "EXTERNAL_PRECONDITION_NOT_ASET_GATE",
+  "document_type": "aset-seed-recognition-boundary-perimeter-gate",
+  "fail_closed": true,
+  "id": "ASET-PERIMETER-SEED-RECOGNITION-001",
+  "mandatory_repository_precondition": true,
+  "name": "frozen_seed_recognition_boundary_protection",
+  "normative": false,
+  "normative_precedence": "NONE",
+  "publication_baseline": "ASET-SEED-SEMANTIC-MINIMALITY-V60",
+  "reason": "Protect the mechanically established recognition boundary of the frozen Seed and replay the complete active v60 assurance corpus without extending Seed semantics.",
+  "schema_version": 1,
+  "stages": [
+    {
+      "evidence": "python tools/build_seed_recognition_boundary_assurance.py --check",
+      "id": "PACKAGE_AND_PUBLICATION_IDENTITY"
+    },
+    {
+      "evidence": "python tools/check_seed_recognition_boundary.py --output dist/seed-recognition-boundary-check.json",
+      "id": "SUBJECT_TOPOLOGY_AND_ORACLE"
+    },
+    {
+      "evidence": "python tools/run_seed_recognition_boundary_tlaps.py --tlapm $TLAPM_BIN --output dist/seed-recognition-boundary-tlaps.json",
+      "expected_known_toolchain_notices": 15,
+      "expected_obligations": 2257,
+      "expected_unexpected_warnings": 0,
+      "id": "FULL_MECHANICAL_REPLAY"
+    }
+  ],
+  "toolchain_notice_policy_path": "assurance/seed-recognition-boundary/TOOLCHAIN_NOTICES.json",
+  "toolchain_warning_policy": "PIN_EXACT_KNOWN_NOTICE_MULTISET_FAIL_ON_ANY_DRIFT"
+}

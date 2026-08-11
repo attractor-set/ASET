@@ -13,6 +13,7 @@ aggregate command.
 - machine-canon and canon-package validity;
 - finite-state saturation output;
 - assurance, proof traceability and canon-to-TLA refinement integrity;
+- frozen-Seed recognition-boundary perimeter identity and executable oracle;
 - specification tests;
 - critical Ruff rules;
 - active-documentation claims.
@@ -28,7 +29,16 @@ normative change.
 - the checked formal-property registry;
 - TLC over the committed TLA+ model;
 - TLAPS over the committed safety proof module;
-- TLAPS over the source-locked canon-to-TLA behavioral-equivalence proof.
+- TLAPS over the source-locked canon-to-TLA behavioral-equivalence proof;
+- TLAPS replay of the complete active public v60 Seed recognition-boundary assurance corpus (20 proof modules, 2257 obligations).
+
+The recognition-boundary perimeter is deliberately outside the normative
+`seed/canonical/` package. It binds inward to the exact frozen canonical package,
+`SeedResolution.tla` and the existing canon-to-TLA relation. The repository
+release runner treats it as a mandatory precondition, but it is not assigned an
+`ASET-GATE-*` identifier because the canonical gate registry is itself frozen
+normative material. See
+`assurance/seed-recognition-boundary/README.md`.
 
 TLC is downloaded from the pinned upstream TLA+ v1.7.4 release and its
 configured identity is verified before execution.
@@ -80,7 +90,13 @@ The formal contour establishes:
 - exhaustive reachable-state assurance for the committed finite Python configuration, with saturation asserted and graph-edge counts deduplicated from equivalent action instantiations;
 - unbounded deductive safety for the committed abstract TLA+ projection;
 - byte-for-byte parity of a standalone deterministic canonical projection generated from the exact machine-readable Seed identity;
-- TLAPS-proved behavioral equivalence between that standalone projection and `SeedResolution.tla`.
+- TLAPS-proved behavioral equivalence between that standalone projection and `SeedResolution.tla`;
+- a public non-normative external v60 assurance corpus covering recognition cardinality/binding, independent and minimal recognition boundaries, bidirectional canonical-phase refinement, payload observability, exact reachable cardinality and the finite faithful-code lower bound.
+
+The recognition-boundary theorem is scoped to exact reachable local recognition
+semantics. It does not prove universal system minimality, minimum implementation
+variable count, Shannon entropy, global Seed bit size or implementation
+refinement without a separate witness.
 
 The canon-to-TLA theorem is scoped to the declared abstraction profile. It does not establish:
 
@@ -92,3 +108,7 @@ The canon-to-TLA theorem is scoped to the declared abstraction profile. It does 
 - cryptographic primitive security;
 - factual truth of external evidence;
 - external certification.
+
+### TLAPM notice hygiene
+
+The Seed recognition-boundary replay pins the exact TLAPM `4600b24` generated-pattern notice multiset in `assurance/seed-recognition-boundary/TOOLCHAIN_NOTICES.json`. Known raw notice lines are summarized; any missing or additional warning fails the perimeter. The formal v60 source is not rewritten merely to suppress toolchain-generated diagnostics.
