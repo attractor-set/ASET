@@ -1,6 +1,6 @@
-# ASET Seed 0.3 minimal resolution core
+# ASET Seed 0.3 minimal resolution nucleus
 
-ASET Seed is a local resolution-recognition kernel.
+ASET Seed is a local resolution-recognition kernel and the operational nucleus of the wider architectural role described as a **minimal machine-interpretable semantic vessel**. The architectural term does not add Seed state or behavior: the exact canon package below remains the complete operational conformance boundary.
 
     Resolution = UNKNOWN | ALLOW | BLOCK
     EffectPermitted(r) iff ResolutionOf(r) = ALLOW
@@ -24,6 +24,8 @@ Seed normatively defines:
 Concrete policy evaluation, evidence acquisition, signatures, delegation-chain
 construction, workflow, federation, persistence, retention/compaction,
 cryptographic accumulators and enforcement are outside Seed.
+
+Candidate discovery, evolutionary search, mutation, selection and synthesis are also outside Seed. Their public boundary is explained in [`docs/architecture/EVOLUTION_BOUNDARY.md`](../../docs/architecture/EVOLUTION_BOUNDARY.md); no search mechanism gains Authority or semantic precedence by producing a candidate.
 
 ## State boundary
 
