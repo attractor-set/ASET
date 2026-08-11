@@ -77,11 +77,20 @@ change; it does not make the change non-breaking.
 ## Implementation conformance boundary
 
 Implementation repositories consume the published canon package and are
-tested as external processes. The runner verifies mandatory operations,
+tested as external processes. The normative runner verifies mandatory operations,
 response schemas, exact case identity, timeout behaviour and deterministic
 replay.
 
 An implementation adapter cannot issue its own PASS verdict.
+
+A separate non-normative runner, `tools/run_seed_recognition_assurance.py`,
+reuses the same frozen external adapter protocol with a deterministic 24-case
+witness set derived from the public v60 recognition-boundary analysis. It checks
+protocol-observable binding, previous-commitment, terminal-authority, decision,
+idempotence, immutability and effective-conflict distinctions without modifying
+the canonical 25-case conformance corpus. Its verdict is
+`SEED_RECOGNITION_ASSURANCE_VERDICT`, not normative Seed conformance. See
+`assurance/seed-implementation-assurance/README.md`.
 
 ## Claim boundary
 
