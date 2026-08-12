@@ -218,7 +218,7 @@ def check_release_admission(
             "id": "ASET_ALPHA",
             "name": "Local Recognition Algebra",
         },
-        "line_id": profile_manifest.get("line_id"),
+        "subject_id": profile_manifest.get("subject_id"),
         "version": profile_manifest.get("version"),
         "representation_id": representation_id,
         "admission_relation": (

@@ -138,7 +138,7 @@ def build_tree(output: Path) -> dict[str, object]:
     ]
     manifest: dict[str, object] = {
         "document_type": "aset-seed-release-materialization",
-        "line_id": bindings.subject_id,
+        "subject_id": bindings.subject_id,
         "version": bindings.version,
         "semantic_algebra": {
             "id": "ASET_ALPHA",
@@ -259,7 +259,7 @@ def build_profiles_tree(
     manifest: dict[str, object] = {
         "document_type": "aset-ci-release-companion-materialization",
         "project": "Authority-Seeded Evidence Trail (ASET)",
-        "line_id": bindings.subject_id,
+        "subject_id": bindings.subject_id,
         "version": bindings.version,
         "semantic_algebra": {
             "id": "ASET_ALPHA",

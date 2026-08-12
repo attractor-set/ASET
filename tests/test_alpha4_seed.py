@@ -44,7 +44,7 @@ def materialized_proof_witnesses(tmp_path: Path) -> Path:
     return target
 
 
-def test_seed_line_identity_is_04alpha() -> None:
+def test_seed_subject_identity_is_04alpha() -> None:
     bindings = parse_seed_bindings(ROOT)
     assert bindings.subject_id == "ASET-SEED-0.4-ALPHA"
     assert bindings.version == "0.4alpha"

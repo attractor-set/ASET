@@ -20,7 +20,7 @@ Active structure:
 - `tools/alpha4_seed_gate.py` — complete verification and deterministic release gate.
 - `history/REFERENCES.aset` — immutable references to superseded public states; they are not active semantics.
 
-The 0.4alpha line claims no compatibility with the 0.3 canon.
+The 0.4alpha representation claims no compatibility with the 0.3 canon.
 
 Verify locally:
 
