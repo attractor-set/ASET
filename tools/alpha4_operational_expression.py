@@ -58,6 +58,7 @@ def _parse_words(text: str) -> dict[str, dict[str, Any]]:
     require(words, "no restricted operational words found")
     return words
 
+
 def _nodes_for(word: dict[str, Any]) -> list[dict[str, Any]]:
     rin = str(word["recognition_in"])
     rout = str(word["recognition_out"])
@@ -115,8 +116,12 @@ def derive_operational_graphs(root: Path = ROOT) -> dict[str, Any]:
                 "component_id": item.component_id,
                 "source_word": word,
                 "source_primitive": str(parsed["primitive"]),
-                "structural_in": [str(value).lower() for value in parsed["structural_in"]],
-                "structural_out": [str(value).lower() for value in parsed["structural_out"]],
+                "structural_in": [
+                    str(value).lower() for value in parsed["structural_in"]
+                ],
+                "structural_out": [
+                    str(value).lower() for value in parsed["structural_out"]
+                ],
                 "nodes": nodes,
                 "edges": [
                     [nodes[index]["id"], nodes[index + 1]["id"]]
@@ -197,7 +202,9 @@ def _compile_component(component: dict[str, Any]) -> Callable[..., dict[str, Any
         elif op == "RETURN_STATE":
             lines.append("    return result")
         else:
-            raise OperationalExpressionError(f"{component_id}: unsupported graph operation: {op}")
+            raise OperationalExpressionError(
+                f"{component_id}: unsupported graph operation: {op}"
+            )
     namespace: dict[str, Any] = {}
     source = "\n".join(lines) + "\n"
     exec(compile(source, f"<aset-alpha4-jit:{component_id}>", "exec"), namespace)

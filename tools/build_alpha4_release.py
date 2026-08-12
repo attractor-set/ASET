@@ -86,23 +86,31 @@ def build_tree(output: Path) -> dict[str, object]:
     bindings = parse_seed_bindings(ROOT)
     if output.exists():
         shutil.rmtree(output)
-    (output / "formal/foundation").mkdir(parents=True)
+    (output / "source").mkdir(parents=True)
+    (output / "operational").mkdir(parents=True)
+    (output / "formal").mkdir(parents=True)
     (output / "binding").mkdir(parents=True)
     (output / "expression/paired").mkdir(parents=True)
 
-    foundation_paths = [
+    shutil.copy2(ROOT / "LICENSE", output / "LICENSE")
+    shutil.copy2(ROOT / "NOTICE", output / "NOTICE")
+    shutil.copy2(ROOT / "seed/alpha4/SEED.aset", output / "source/SEED.aset")
+    shutil.copy2(
+        ROOT / bindings.abstract_machine, output / "operational/components.forth"
+    )
+
+    theory_sources = [
         bindings.foundation_model,
         bindings.foundation_proof.module,
-        bindings.foundation_assurance_path,
+        bindings.theory_algebra,
     ]
-    for relative in foundation_paths:
+    for relative in theory_sources:
         source = ROOT / relative
-        shutil.copy2(source, output / "formal/foundation" / source.name)
-
+        shutil.copy2(source, output / "formal" / source.name)
     formal_sources = [
-        "seed/alpha4/formal/ComponentRelations.tla",
+        bindings.correctness_model,
         "seed/alpha4/formal/ComponentCompositionProofs.tla",
-        "seed/alpha4/formal/RestrictedOperationalSemantics.tla",
+        bindings.formal_reflection,
         "seed/alpha4/formal/OperationalRelationalPairingProofs.tla",
     ]
     for relative in formal_sources:
@@ -119,9 +127,9 @@ def build_tree(output: Path) -> dict[str, object]:
     source_paths = [
         "seed/alpha4/SEED.aset",
         "seed/alpha4/binding/graph.cddl",
-        "seed/alpha4/operational/components.forth",
+        bindings.abstract_machine,
         *formal_sources,
-        *foundation_paths,
+        *theory_sources,
     ]
     artifacts = [
         {"path": path.relative_to(output).as_posix(), "sha256": sha256(path)}
@@ -134,6 +142,16 @@ def build_tree(output: Path) -> dict[str, object]:
         "version": bindings.version,
         "compatibility_with_0_3": bindings.compatibility,
         "source_byte_identity_digest": source_digest(source_paths),
+        "architecture": {
+            "theory_algebra": bindings.theory_algebra,
+            "minimality_theorem": bindings.foundation_proof.final_theorem,
+            "abstract_machine": "operational/components.forth",
+            "formal_reflection": Path(bindings.formal_reflection).name,
+            "correctness_model": Path(bindings.correctness_model).name,
+            "prediction_observation_relation": bindings.relation_map()[
+                "PAIRED_RUNTIME"
+            ],
+        },
         "binding_graph": {
             **binding_evidence,
             "path": "binding/graph.cbor",
@@ -150,6 +168,8 @@ def build_tree(output: Path) -> dict[str, object]:
             "relational_graph": "expression/paired/relational-graph.json",
             "jit_materialization": "EPHEMERAL_IN_MEMORY",
             "reference_materialization": "RELATIONAL_GRAPH_INTERPRETER",
+            "prediction_source": "THEORY_CONSTRAINED_RELATIONAL_CORRECTNESS_MODEL",
+            "observation_source": "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT",
             "semantic_precedence": "NONE",
         },
         "formal_assurance_requirement": {
@@ -190,7 +210,9 @@ def tree_digest(root: Path) -> str:
 def zip_tree(root: Path, output: Path, archive_root_name: str) -> None:
     if output.exists():
         output.unlink()
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+    with zipfile.ZipFile(
+        output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9
+    ) as archive:
         for path in sorted(root.rglob("*")):
             if not path.is_file():
                 continue
@@ -201,7 +223,18 @@ def zip_tree(root: Path, output: Path, archive_root_name: str) -> None:
             archive.writestr(info, path.read_bytes())
 
 
-def build_profiles_tree(output: Path, seed_release_tree_digest: str) -> dict[str, object]:
+def write_inpi_hash(archive: Path) -> Path:
+    target_dir = DIST / "inpi"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target = target_dir / f"{archive.name}.sha256"
+    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    target.write_text(f"{digest}  {archive.name}\n", encoding="utf-8")
+    return target
+
+
+def build_profiles_tree(
+    output: Path, seed_release_tree_digest: str
+) -> dict[str, object]:
     bindings = parse_seed_bindings(ROOT)
     build_release_profiles(ROOT, output)
     congruence = check_release_profile_congruence(ROOT, output)
@@ -240,12 +273,16 @@ def smoke_python(path: Path) -> None:
     if not callable(make_state) or not callable(apply_component):
         raise RuntimeError("generated Python entry points missing")
     current = make_state("subject-1", "authority-1")
-    current = apply_component(current, "ASET-COMPONENT-OBSERVE-UNKNOWN", evidence="evidence-1")
+    current = apply_component(
+        current, "ASET-COMPONENT-OBSERVE-UNKNOWN", evidence="evidence-1"
+    )
     current = apply_component(
         current,
         "ASET-COMPONENT-RECOGNIZE-ALLOW",
         evidence="evidence-1",
-        authority_recognition=frozenset({("authority-1", "subject-1", "evidence-1", "ALLOW")}),
+        authority_recognition=frozenset(
+            {("authority-1", "subject-1", "evidence-1", "ALLOW")}
+        ),
     )
     if current["recognition"] != "ALLOW":
         raise RuntimeError("generated Python smoke check failed")
@@ -309,6 +346,7 @@ def main(argv: list[str] | None = None) -> int:
     profiles_archive = DIST / f"{profiles_name}.zip"
     zip_tree(release_dir, archive, RELEASE_NAME)
     zip_tree(profiles_dir, profiles_archive, profiles_name)
+    inpi_hash_file = write_inpi_hash(archive)
     after = tracked_state()
     if before is not None and after != before:
         print("ALPHA4_TRACKED_TREE_UNCHANGED=FAIL")
@@ -321,13 +359,13 @@ def main(argv: list[str] | None = None) -> int:
     print("ALPHA4_SOURCE_CONTENT_CONGRUENCE=PASS")
     assembled_count = assembled["components_checked"]
     print(
-        "ALPHA4_ASSEMBLED_FORMAL_CONGRUENCE="
-        f"{assembled_count}/{assembled_count} PASS"
+        f"ALPHA4_ASSEMBLED_FORMAL_CONGRUENCE={assembled_count}/{assembled_count} PASS"
     )
     paired_count = paired["components_checked"]
     print(f"ALPHA4_PAIRED_GRAPH_CONGRUENCE={paired_count}/{paired_count} PASS")
     paired_cases = paired["cases_checked"]
     print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={paired_cases}/{paired_cases} PASS")
+    print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={paired_cases}/{paired_cases} PASS")
     print("ALPHA4_CONTENT_CONGRUENCE=PASS")
     english_count = english["components_checked"]
     print(
@@ -336,18 +374,25 @@ def main(argv: list[str] | None = None) -> int:
     )
     python_cases = python_profile["cases_checked"]
     print(
-        "ALPHA4_RELEASE_PYTHON_PROFILE_CONGRUENCE="
-        f"{python_cases}/{python_cases} PASS"
+        f"ALPHA4_RELEASE_PYTHON_PROFILE_CONGRUENCE={python_cases}/{python_cases} PASS"
     )
     print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
-    print(f"ALPHA4_SOURCE_BYTE_IDENTITY_DIGEST={manifest['source_byte_identity_digest']}")
+    print(
+        f"ALPHA4_SOURCE_BYTE_IDENTITY_DIGEST={manifest['source_byte_identity_digest']}"
+    )
     print(f"ALPHA4_RELEASE_TREE_DIGEST={digest}")
     print(f"ALPHA4_RELEASE_ARCHIVE={archive.relative_to(ROOT)}")
     print(f"ALPHA4_RELEASE_ARCHIVE_SHA256={sha256(archive)}")
+    print(f"ALPHA4_INPI_DEPOSIT_ARTIFACT={archive.relative_to(ROOT)}")
+    print("ALPHA4_INPI_DEPOSIT_ALGORITHM=SHA-256")
+    print(f"ALPHA4_INPI_DEPOSIT_SHA256={sha256(archive)}")
+    print(f"ALPHA4_INPI_DEPOSIT_HASH_FILE={inpi_hash_file.relative_to(ROOT)}")
     print(f"ALPHA4_RELEASE_PROFILE_TREE_DIGEST={profile_digest}")
     print(f"ALPHA4_RELEASE_PROFILE_ARCHIVE={profiles_archive.relative_to(ROOT)}")
     print(f"ALPHA4_RELEASE_PROFILE_ARCHIVE_SHA256={sha256(profiles_archive)}")
-    print(f"ALPHA4_RELEASE_PROFILE_SEED_BINDING={profile_manifest['seed_release_tree_digest']}")
+    print(
+        f"ALPHA4_RELEASE_PROFILE_SEED_BINDING={profile_manifest['seed_release_tree_digest']}"
+    )
     print("ALPHA4_TRACKED_TREE_UNCHANGED=PASS")
     print("ALPHA4_GENERATED_PYTHON_SMOKE=PASS")
     print("ALPHA4_EPHEMERAL_JIT_VALIDATION=PASS")

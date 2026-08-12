@@ -25,8 +25,12 @@ def _records(root: Path) -> list[dict[str, Any]]:
         component_id = str(component["component_id"])
         pair = pair_by_id[component_id]
         nodes = component["nodes"]
-        rin = next(str(node["value"]) for node in nodes if node["op"] == "CHECK_RECOGNITION")
-        set_values = [str(node["value"]) for node in nodes if node["op"] == "SET_RECOGNITION"]
+        rin = next(
+            str(node["value"]) for node in nodes if node["op"] == "CHECK_RECOGNITION"
+        )
+        set_values = [
+            str(node["value"]) for node in nodes if node["op"] == "SET_RECOGNITION"
+        ]
         rout = set_values[0] if set_values else rin
         ops = {str(node["op"]) for node in nodes}
         if "ADD_EVIDENCE" in ops:
@@ -78,10 +82,7 @@ def write_english(target: Path, records: list[dict[str, Any]]) -> None:
 
 
 def write_python(target: Path, records: list[dict[str, Any]]) -> None:
-    graph_data = {
-        item["component_id"]: item["nodes"]
-        for item in records
-    }
+    graph_data = {item["component_id"]: item["nodes"] for item in records}
     encoded = json.dumps(graph_data, indent=2, sort_keys=True)
     text = f'''"""Generated ASET 0.4alpha release companion. Semantic precedence: none."""
 

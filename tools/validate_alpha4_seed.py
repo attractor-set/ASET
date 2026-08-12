@@ -4,7 +4,11 @@ from __future__ import annotations
 from pathlib import Path
 
 try:
-    from tools.alpha4_binding_graph import binding_graph, encode_cbor, parse_seed_bindings
+    from tools.alpha4_binding_graph import (
+        binding_graph,
+        encode_cbor,
+        parse_seed_bindings,
+    )
     from tools.alpha4_congruence import check_source_congruence
     from tools.alpha4_operational_expression import derive_operational_graphs
     from tools.alpha4_relational_expression import derive_relational_graphs
@@ -32,14 +36,29 @@ def main() -> int:
     if bindings.compatibility != "NONE":
         errors.append("0.3 compatibility must remain NONE")
 
+    theory_text = (ROOT / bindings.theory_algebra).read_text(encoding="utf-8")
+    if "EXTENDS RecognitionCardinality" not in theory_text:
+        errors.append("local-recognition algebra is not grounded in cardinality theory")
+    for forbidden in (
+        "ComponentRelations",
+        "RestrictedOperationalSemantics",
+        "components.forth",
+    ):
+        if forbidden in theory_text:
+            errors.append(
+                f"theory improperly depends on Seed implementation: {forbidden}"
+            )
+
     disallowed = [
-        path for path in BASE.rglob("*")
+        path
+        for path in BASE.rglob("*")
         if path.is_file() and path.suffix.lower() in {".json", ".md", ".txt"}
     ]
     if disallowed:
-        errors.append("human/tree-document surface remains inside Seed: " + ", ".join(
-            path.relative_to(ROOT).as_posix() for path in disallowed
-        ))
+        errors.append(
+            "human/tree-document surface remains inside Seed: "
+            + ", ".join(path.relative_to(ROOT).as_posix() for path in disallowed)
+        )
 
     try:
         evidence = check_source_congruence(ROOT)
@@ -66,7 +85,11 @@ def main() -> int:
         errors.append("relational derivation imports operational derivation")
 
     pairing_module = next(
-        (item for item in bindings.proofs if item.proof_id == "OPERATIONAL_RELATIONAL_PAIRING"),
+        (
+            item
+            for item in bindings.proofs
+            if item.proof_id == "OPERATIONAL_RELATIONAL_PAIRING"
+        ),
         None,
     )
     if pairing_module is None:
@@ -89,6 +112,9 @@ def main() -> int:
         return 1
 
     print("ALPHA4_RECOGNITION_FOUNDATION=PASS")
+    print("ALPHA4_LOCAL_RECOGNITION_ALGEBRA=PASS")
+    print("ALPHA4_ABSTRACT_FORTH_MACHINE=PASS")
+    print("ALPHA4_FORMAL_CORRECTNESS_MODEL=PASS")
     print(f"ALPHA4_COMPONENT_PAIRS={len(bindings.pairs)}/{len(bindings.pairs)} PASS")
     print("ALPHA4_SOURCE_CONTENT_CONGRUENCE=PASS")
     print("ALPHA4_OPERATIONAL_RELATIONAL_SOURCE_PAIRING=PASS")

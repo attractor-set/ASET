@@ -47,6 +47,7 @@ def _component_index(root: Path) -> dict[str, Any]:
     bindings = parse_seed_bindings(root)
     return {item.formal_operator: item for item in bindings.pairs}
 
+
 def _recognition_input(body: str, operator: str) -> str:
     match = re.search(r's\.recognition="(?P<value>UNKNOWN|ALLOW|BLOCK)"', body)
     if match is None:
@@ -62,7 +63,10 @@ def _nodes_for(body: str, operator: str) -> list[dict[str, Any]]:
     ]
     evidence_update = compact("t = [s EXCEPT !.evidence = @ \\cup {e}]")
     if evidence_update in body:
-        require(compact("e \\in EvidenceItems") in body, f"{operator}: evidence domain missing")
+        require(
+            compact("e \\in EvidenceItems") in body,
+            f"{operator}: evidence domain missing",
+        )
         nodes += [
             {"id": "n2", "op": "REQUIRE_EVIDENCE_ARGUMENT"},
             {"id": "n3", "op": "ADD_EVIDENCE"},
@@ -70,9 +74,7 @@ def _nodes_for(body: str, operator: str) -> list[dict[str, Any]]:
         ]
         return nodes
 
-    update = re.search(
-        r't=\[sEXCEPT!\.recognition="(?P<value>ALLOW|BLOCK)"\]', body
-    )
+    update = re.search(r't=\[sEXCEPT!\.recognition="(?P<value>ALLOW|BLOCK)"\]', body)
     if update is not None:
         outcome = update.group("value")
         require(
@@ -102,7 +104,9 @@ def _nodes_for(body: str, operator: str) -> list[dict[str, Any]]:
 
 def derive_relational_graphs(root: Path = ROOT) -> dict[str, Any]:
     index = _component_index(root)
-    text = (root / "seed/alpha4/formal/ComponentRelations.tla").read_text(encoding="utf-8")
+    text = (root / "seed/alpha4/formal/ComponentRelations.tla").read_text(
+        encoding="utf-8"
+    )
     components = []
     for operator in sorted(index):
         item = index[operator]
@@ -202,5 +206,7 @@ def apply_reference_graph(
         elif op == "RETURN_STATE":
             return result
         else:
-            raise RelationalExpressionError(f"{component_id}: unsupported graph operation: {op}")
+            raise RelationalExpressionError(
+                f"{component_id}: unsupported graph operation: {op}"
+            )
     raise RelationalExpressionError(f"{component_id}: graph has no RETURN_STATE")

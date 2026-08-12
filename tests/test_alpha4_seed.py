@@ -20,7 +20,10 @@ from tools.alpha4_congruence import (
     check_source_congruence,
 )
 from tools.alpha4_operational_expression import derive_operational_graphs
-from tools.alpha4_paired_expression import PairedExpressionError, check_paired_expression
+from tools.alpha4_paired_expression import (
+    PairedExpressionError,
+    check_paired_expression,
+)
 from tools.alpha4_relational_expression import derive_relational_graphs
 from tools.alpha4_release_profile_congruence import (
     ReleaseProfileCongruenceError,
@@ -39,6 +42,19 @@ def test_seed_line_identity_is_04alpha() -> None:
     assert bindings.compatibility == "NONE"
 
 
+def test_recognition_foundation_is_theory_local() -> None:
+    bindings = parse_seed_bindings(ROOT)
+    assert (
+        bindings.foundation_model
+        == "theory/local-recognition/formal/RecognitionCardinality.tla"
+    )
+    assert (
+        bindings.foundation_proof.module
+        == "theory/local-recognition/formal/RecognitionCardinalityProofs.tla"
+    )
+    assert not (ROOT / "assurance").exists()
+
+
 def test_seed_tree_has_no_human_or_json_documents() -> None:
     disallowed = [
         path.relative_to(ROOT).as_posix()
@@ -54,7 +70,9 @@ def test_binding_source_is_relational_not_semantic_component_declaration() -> No
     pairs = [line.split() for line in lines if line.startswith("PAIR ")]
     assert len(pairs) == 6
     assert all(len(tokens) == 5 for tokens in pairs)
-    assert not any("recognition_in" in line or "recognition_out" in line for line in lines)
+    assert not any(
+        "recognition_in" in line or "recognition_out" in line for line in lines
+    )
 
 
 def test_binding_graph_is_deterministic_cbor_round_trip() -> None:
@@ -65,7 +83,9 @@ def test_binding_graph_is_deterministic_cbor_round_trip() -> None:
     decoded, offset = decode_cbor(encoded_a)
     assert offset == len(encoded_a)
     assert decoded == graph
-    assert hashlib.sha256(encoded_a).hexdigest() == hashlib.sha256(encoded_b).hexdigest()
+    assert (
+        hashlib.sha256(encoded_a).hexdigest() == hashlib.sha256(encoded_b).hexdigest()
+    )
 
 
 def test_binding_graph_contains_only_bindings_and_assurance_edges() -> None:
@@ -74,19 +94,64 @@ def test_binding_graph_contains_only_bindings_and_assurance_edges() -> None:
     assert relations == {
         "BINDS_OPERATIONAL",
         "BINDS_RELATIONAL",
+        "CHECKED_AGAINST",
         "CHECKED_BY",
+        "CONSTRAINED_BY",
         "DERIVED_BY",
         "FINAL_THEOREM",
+        "GROUNDED_IN",
         "HAS_COMPONENT",
+        "IMPLEMENTED_BY",
+        "IMPLEMENTS",
+        "MINIMALITY_PROVED_BY",
+        "REFLECTED_BY",
         "REQUIRES_PROOF",
         "USES_CONGRUENCE",
         "USES_MODULE",
+        "USES_THEORY_CODING",
         "VERIFIED_BY",
     }
 
 
-def test_operational_source_has_no_explanatory_or_component_annotation_comments() -> None:
-    text = (ROOT / "seed/alpha4/operational/components.forth").read_text(encoding="utf-8")
+def test_local_recognition_theory_precedes_seed_implementation() -> None:
+    bindings = parse_seed_bindings(ROOT)
+    theory = (ROOT / bindings.theory_algebra).read_text(encoding="utf-8")
+    assert bindings.theory_algebra.startswith("theory/local-recognition/")
+    assert "EXTENDS RecognitionCardinality" in theory
+    assert "ComponentRelations" not in theory
+    assert "RestrictedOperationalSemantics" not in theory
+    assert "components.forth" not in theory
+    assert bindings.theory_coding == ("U", "UNKNOWN", "A", "ALLOW", "B", "BLOCK")
+    assert bindings.abstract_machine == "seed/alpha4/operational/components.forth"
+    assert bindings.formal_reflection.endswith("RestrictedOperationalSemantics.tla")
+    assert bindings.correctness_model.endswith("ComponentRelations.tla")
+
+
+def test_correctness_model_is_explicitly_theory_constrained() -> None:
+    bindings = parse_seed_bindings(ROOT)
+    text = (ROOT / bindings.correctness_model).read_text(encoding="utf-8")
+    assert "EXTENDS FiniteSets, LocalRecognitionAlgebra" in text
+    assert "ToTheoryRecognition" in text
+    for operator in (
+        "TheoryObserveUnknown",
+        "TheoryRecognizeAllow",
+        "TheoryRecognizeBlock",
+        "TheoryPreserveUnknown",
+        "TheoryPreserveAllow",
+        "TheoryPreserveBlock",
+    ):
+        assert operator in text
+    theory_evidence = check_source_congruence(ROOT)["theory"]
+    assert theory_evidence["status"] == "PASS"
+    assert theory_evidence["relation"] == "THEORY_ALGEBRA_IMPLEMENTATION_CONGRUENCE"
+
+
+def test_operational_source_has_no_explanatory_or_component_annotation_comments() -> (
+    None
+):
+    text = (ROOT / "seed/alpha4/operational/components.forth").read_text(
+        encoding="utf-8"
+    )
     assert "\\ @component" not in text
     assert "semantic source representation" not in text
     assert text.count(": ") == 6
@@ -101,7 +166,9 @@ def test_operational_and_relational_sources_derive_same_six_components() -> None
 
 
 def test_preserve_actions_do_not_require_unused_evidence_argument() -> None:
-    text = (ROOT / "seed/alpha4/formal/ComponentRelations.tla").read_text(encoding="utf-8")
+    text = (ROOT / "seed/alpha4/formal/ComponentRelations.tla").read_text(
+        encoding="utf-8"
+    )
     for operator in ("PreserveUnknown", "PreserveAllow", "PreserveBlock"):
         body = text.split(f"{operator}(s, t, e) ==", 1)[1].split("\n\n", 1)[0]
         assert "e \\in EvidenceItems" not in body
@@ -130,8 +197,12 @@ def test_formal_assurance_total_is_38_obligations() -> None:
 
 
 def test_derivation_paths_are_physically_independent() -> None:
-    operational = (ROOT / "tools/alpha4_operational_expression.py").read_text(encoding="utf-8")
-    relational = (ROOT / "tools/alpha4_relational_expression.py").read_text(encoding="utf-8")
+    operational = (ROOT / "tools/alpha4_operational_expression.py").read_text(
+        encoding="utf-8"
+    )
+    relational = (ROOT / "tools/alpha4_relational_expression.py").read_text(
+        encoding="utf-8"
+    )
     assert "alpha4_relational_expression" not in operational
     assert "alpha4_operational_expression" not in relational
 
@@ -140,13 +211,22 @@ def test_paired_expression_remains_congruent() -> None:
     evidence = check_paired_expression(ROOT)
     assert evidence["components_checked"] == 6
     assert evidence["cases_checked"] == 1824
+    assert (
+        evidence["runtime_relation"]
+        == "THEORY_PREDICTION_BOUNDED_OBSERVATIONAL_CONGRUENCE"
+    )
+    assert (
+        evidence["prediction_source"]
+        == "THEORY_CONSTRAINED_RELATIONAL_CORRECTNESS_MODEL"
+    )
+    assert evidence["observation_source"] == "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT"
     assert evidence["status"] == "PASS"
 
 
 def test_operational_semantic_drift_is_rejected(tmp_path: Path) -> None:
     copied = tmp_path / "root"
     shutil.copytree(ROOT / "seed", copied / "seed")
-    shutil.copytree(ROOT / "assurance", copied / "assurance")
+    shutil.copytree(ROOT / "theory", copied / "theory")
     shutil.copytree(ROOT / "tools", copied / "tools")
     forth = copied / "seed/alpha4/operational/components.forth"
     text = forth.read_text(encoding="utf-8")
@@ -161,9 +241,9 @@ def test_operational_semantic_drift_is_rejected(tmp_path: Path) -> None:
 def test_foundation_congruence_survives_nonsemantic_byte_drift(tmp_path: Path) -> None:
     copied = tmp_path / "root"
     shutil.copytree(ROOT / "seed", copied / "seed")
-    shutil.copytree(ROOT / "assurance", copied / "assurance")
+    shutil.copytree(ROOT / "theory", copied / "theory")
     shutil.copytree(ROOT / "tools", copied / "tools")
-    proof = copied / "assurance/seed-recognition-boundary/formal/RecognitionCardinalityProofs.tla"
+    proof = copied / "theory/local-recognition/formal/RecognitionCardinalityProofs.tla"
     before = hashlib.sha256(proof.read_bytes()).hexdigest()
     proof.write_text(proof.read_text(encoding="utf-8") + "\n\n", encoding="utf-8")
     after = hashlib.sha256(proof.read_bytes()).hexdigest()
@@ -171,9 +251,16 @@ def test_foundation_congruence_survives_nonsemantic_byte_drift(tmp_path: Path) -
     assert check_source_congruence(copied)["status"] == "PASS"
 
 
-def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(tmp_path: Path) -> None:
+def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(
+    tmp_path: Path,
+) -> None:
     release = tmp_path / "release"
     manifest = build_tree(release)
+    assert (release / "LICENSE").is_file()
+    assert (release / "NOTICE").is_file()
+    assert (release / "source/SEED.aset").is_file()
+    assert (release / "operational/components.forth").is_file()
+    assert (release / "formal/LocalRecognitionAlgebra.tla").is_file()
     assert (release / "binding/graph.cbor").is_file()
     assert (release / "binding/graph.cddl").is_file()
     assert not (release / "en").exists()
@@ -181,6 +268,12 @@ def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(tmp_path
     assert not (release / "expression/en").exists()
     assert not (release / "expression/python").exists()
     assert manifest["version"] == "0.4alpha"
+    assert (
+        manifest["architecture"]["abstract_machine"] == "operational/components.forth"
+    )
+    assert manifest["architecture"]["prediction_observation_relation"] == (
+        "THEORY_PREDICTION_BOUNDED_OBSERVATIONAL_CONGRUENCE"
+    )
     assert manifest["binding_graph"]["semantic_precedence"] == "NONE"
 
 
@@ -224,12 +317,16 @@ def test_corrupt_english_companion_is_rejected(tmp_path: Path) -> None:
     build_profiles_tree(profiles, tree_digest(release))
     english = profiles / "en/Seed.md"
     text = english.read_text(encoding="utf-8")
-    english.write_text(text.replace("UNKNOWN -> ALLOW", "UNKNOWN -> BLOCK", 1), encoding="utf-8")
+    english.write_text(
+        text.replace("UNKNOWN -> ALLOW", "UNKNOWN -> BLOCK", 1), encoding="utf-8"
+    )
     with pytest.raises(ReleaseProfileCongruenceError):
         check_release_profile_congruence(ROOT, profiles)
 
 
-def test_release_content_congruence_is_independent_from_companion_profiles(tmp_path: Path) -> None:
+def test_release_content_congruence_is_independent_from_companion_profiles(
+    tmp_path: Path,
+) -> None:
     release = tmp_path / "release"
     build_tree(release)
     evidence = check_release_congruence(ROOT, release)
@@ -238,11 +335,12 @@ def test_release_content_congruence_is_independent_from_companion_profiles(tmp_p
     assert "python" not in evidence
 
 
-def test_release_candidate_workflow_uses_04alpha_names() -> None:
-    workflow = (ROOT / ".github/workflows/release-candidate.yml").read_text(encoding="utf-8")
-    assert "ASET-Seed-0.4alpha.zip" in workflow
-    assert "ASET-Seed-0.4alpha-profiles.zip" in workflow
-    assert "0.4.0-alpha.1-bootstrap" not in workflow
+def test_verify_workflow_uses_single_alpha4_gate() -> None:
+    workflows = sorted(path.name for path in (ROOT / ".github/workflows").glob("*.yml"))
+    assert workflows == ["verify.yml"]
+    workflow = (ROOT / ".github/workflows/verify.yml").read_text(encoding="utf-8")
+    assert "python tools/alpha4_seed_gate.py" in workflow
+    assert "dist/inpi/**" in workflow
 
 
 def test_old_semantic_json_sources_are_absent() -> None:
@@ -253,7 +351,7 @@ def test_old_semantic_json_sources_are_absent() -> None:
 def test_binding_parser_rejects_semantic_precedence(tmp_path: Path) -> None:
     copied = tmp_path / "root"
     shutil.copytree(ROOT / "seed", copied / "seed")
-    shutil.copytree(ROOT / "assurance", copied / "assurance")
+    shutil.copytree(ROOT / "theory", copied / "theory")
     shutil.copytree(ROOT / "tools", copied / "tools")
     path = copied / "seed/alpha4/SEED.aset"
     text = path.read_text(encoding="utf-8")
@@ -272,7 +370,10 @@ def test_binding_parser_rejects_semantic_precedence(tmp_path: Path) -> None:
 def test_release_manifest_uses_hash_only_as_byte_identity(tmp_path: Path) -> None:
     release = tmp_path / "release"
     manifest = build_tree(release)
-    assert manifest["integrity_policy"]["primary_relation"] == "DECLARED_CONTENT_CONGRUENCE"
+    assert (
+        manifest["integrity_policy"]["primary_relation"]
+        == "DECLARED_CONTENT_CONGRUENCE"
+    )
     assert manifest["integrity_policy"]["digest_role"] == "BYTE_IDENTITY_AND_CACHE_ONLY"
     assert manifest["source_byte_identity_digest"].startswith("sha256:")
     assert "semantic_source_digest" not in manifest

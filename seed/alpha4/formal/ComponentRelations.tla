@@ -1,5 +1,5 @@
 ------------------------ MODULE ComponentRelations ------------------------
-EXTENDS FiniteSets
+EXTENDS FiniteSets, LocalRecognitionAlgebra
 
 CONSTANTS Subjects, Authorities, EvidenceItems, AuthorityRecognition
 
@@ -18,9 +18,14 @@ StateType ==
    evidence : SUBSET EvidenceItems,
    recognition : RecognitionValues]
 
+ToTheoryRecognition(r) ==
+  CASE r = "UNKNOWN" -> TheoryUnknown
+    [] r = "ALLOW"   -> TheoryAllow
+    [] OTHER         -> TheoryBlock
+
 EffectPermitted(s) ==
   /\ s \in StateType
-  /\ s.recognition = "ALLOW"
+  /\ TheoryEffectPermitted(ToTheoryRecognition(s.recognition))
 
 ObserveUnknown(s, t, e) ==
   /\ s \in StateType
@@ -28,6 +33,9 @@ ObserveUnknown(s, t, e) ==
   /\ e \in EvidenceItems
   /\ s.recognition = "UNKNOWN"
   /\ t = [s EXCEPT !.evidence = @ \cup {e}]
+  /\ TheoryObserveUnknown(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 RecognizeAllow(s, t, e) ==
   /\ s \in StateType
@@ -36,6 +44,9 @@ RecognizeAllow(s, t, e) ==
   /\ s.recognition = "UNKNOWN"
   /\ <<s.authority, s.subject, e, "ALLOW">> \in AuthorityRecognition
   /\ t = [s EXCEPT !.recognition = "ALLOW"]
+  /\ TheoryRecognizeAllow(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 RecognizeBlock(s, t, e) ==
   /\ s \in StateType
@@ -44,20 +55,32 @@ RecognizeBlock(s, t, e) ==
   /\ s.recognition = "UNKNOWN"
   /\ <<s.authority, s.subject, e, "BLOCK">> \in AuthorityRecognition
   /\ t = [s EXCEPT !.recognition = "BLOCK"]
+  /\ TheoryRecognizeBlock(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 PreserveUnknown(s, t, e) ==
   /\ s \in StateType
   /\ s.recognition = "UNKNOWN"
   /\ t = s
+  /\ TheoryPreserveUnknown(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 PreserveAllow(s, t, e) ==
   /\ s \in StateType
   /\ s.recognition = "ALLOW"
   /\ t = s
+  /\ TheoryPreserveAllow(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 PreserveBlock(s, t, e) ==
   /\ s \in StateType
   /\ s.recognition = "BLOCK"
   /\ t = s
+  /\ TheoryPreserveBlock(
+       ToTheoryRecognition(s.recognition),
+       ToTheoryRecognition(t.recognition))
 
 =============================================================================

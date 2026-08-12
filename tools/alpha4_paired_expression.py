@@ -54,10 +54,14 @@ def load_graph(path: Path) -> dict[str, Any]:
 
 
 def write_graph(path: Path, value: dict[str, Any]) -> None:
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
-def write_release_graphs(root: Path, target: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+def write_release_graphs(
+    root: Path, target: Path
+) -> tuple[dict[str, Any], dict[str, Any]]:
     target.mkdir(parents=True, exist_ok=True)
     operational = derive_operational_graphs(root)
     relational = derive_relational_graphs(root)
@@ -94,13 +98,13 @@ def _witness_variants(
     ]
 
 
-def _outcome_by_component(projection: dict[str, list[dict[str, Any]]]) -> dict[str, str]:
+def _outcome_by_component(
+    projection: dict[str, list[dict[str, Any]]],
+) -> dict[str, str]:
     outcomes: dict[str, str] = {}
     for component_id, nodes in projection.items():
         values = [
-            str(node["value"])
-            for node in nodes
-            if node.get("op") == "SET_RECOGNITION"
+            str(node["value"]) for node in nodes if node.get("op") == "SET_RECOGNITION"
         ]
         if values:
             require(len(values) == 1, f"{component_id}: multiple recognition effects")
@@ -119,8 +123,12 @@ def check_paired_expression(
         operational = expected_operational
         relational = expected_relational
     else:
-        operational = load_graph(release_root / "expression/paired/operational-graph.json")
-        relational = load_graph(release_root / "expression/paired/relational-graph.json")
+        operational = load_graph(
+            release_root / "expression/paired/operational-graph.json"
+        )
+        relational = load_graph(
+            release_root / "expression/paired/relational-graph.json"
+        )
         require(
             operational == expected_operational,
             "release operational graph differs from actual operational source derivation",
@@ -173,20 +181,24 @@ def check_paired_expression(
             )
             for authority_recognition in variants:
                 fast = _observe(
-                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: jit_apply(
-                        c,
-                        cid,
-                        evidence=ev,
-                        authority_recognition=ar,
+                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
+                        jit_apply(
+                            c,
+                            cid,
+                            evidence=ev,
+                            authority_recognition=ar,
+                        )
                     )
                 )
                 reference = _observe(
-                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: apply_reference_graph(
-                        relational,
-                        c,
-                        cid,
-                        evidence=ev,
-                        authority_recognition=ar,
+                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
+                        apply_reference_graph(
+                            relational,
+                            c,
+                            cid,
+                            evidence=ev,
+                            authority_recognition=ar,
+                        )
                     )
                 )
                 require(
@@ -201,7 +213,9 @@ def check_paired_expression(
         "operational_derivation": "RESTRICTED_OPERATIONAL_SOURCE_TO_GRAPH",
         "relational_derivation": "FORMAL_RELATIONAL_SOURCE_TO_GRAPH",
         "graph_relation": "INDEPENDENT_DERIVATION_CROSS_CONGRUENCE",
-        "runtime_relation": "JIT_REFERENCE_BOUNDED_OBSERVATIONAL_CONGRUENCE",
+        "runtime_relation": "THEORY_PREDICTION_BOUNDED_OBSERVATIONAL_CONGRUENCE",
+        "prediction_source": "THEORY_CONSTRAINED_RELATIONAL_CORRECTNESS_MODEL",
+        "observation_source": "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT",
         "components_checked": len(operational_semantics),
         "cases_checked": cases,
         "jit_materialization": "EPHEMERAL_IN_MEMORY",
@@ -215,6 +229,7 @@ def print_evidence(evidence: dict[str, Any]) -> None:
     cases = evidence["cases_checked"]
     print(f"ALPHA4_PAIRED_GRAPH_CONGRUENCE={count}/{count} PASS")
     print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={cases}/{cases} PASS")
+    print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={cases}/{cases} PASS")
     print("ALPHA4_PAIRED_EXPRESSION=PASS")
 
 

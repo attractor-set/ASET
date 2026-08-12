@@ -1,34 +1,24 @@
-[English](README.md) · [Русский](README.ru.md) · [Português do Brasil](README.pt-BR.md)
-
 # ASET
 
-**ASET — Authority-Seeded Evidence Trail.**
+ASET 0.4alpha is a compact research specification built around a minimal local-recognition theory and an executable abstract Seed machine.
 
-ASET is an open, implementation-neutral specification for a **minimal machine-interpretable semantic Seed**: a machine-readable, independently implementable and verifiable semantic vessel whose operational nucleus is authority-scoped resolution recognition. Here, *seeded* means both that admissibility originates from an explicitly recognized Authority binding and that the same public form can carry independently produced semantics forward without giving any producer recognition authority.
+Active structure:
+
+- `theory/local-recognition/` — recognition algebra and its cardinality-minimality proof.
+- `seed/alpha4/operational/` — restricted-Forth abstract machine.
+- `seed/alpha4/formal/` — formal reflection, relational correctness model, composition and pairing proofs.
+- `seed/alpha4/SEED.aset` — non-semantic bindings between the active subjects.
+- `tools/alpha4_seed_gate.py` — complete verification and deterministic release gate.
+- `history/REFERENCES.aset` — immutable references to superseded public states; they are not active semantics.
+
+The 0.4alpha line claims no compatibility with the 0.3 canon.
+
+Verify locally:
 
 ```text
-UNKNOWN | ALLOW | BLOCK
+python tools/alpha4_seed_gate.py
 ```
 
-Only one unique valid, locally recognized and exact-binding `ALLOW` record permits the bound effect. Missing or conflicting valid terminal material is `UNKNOWN`; explicit prohibition is `BLOCK`. External material does not create local Authority by itself.
+The release pipeline materializes controlled English and Python as external companion profiles with semantic precedence `NONE`. SHA-256 identifies exact release bytes; semantic integrity is established by declared congruence and proof obligations.
 
-## Why Seed
-
-Seed is not a prescribed application architecture or evolution algorithm. It is the minimal public form that keeps normative meaning machine-readable, explicit enough for independent interpretation, independently implementable and externally verifiable. New candidate forms may be discovered by any external mechanism; producing, selecting or verifying a candidate never grants that mechanism Authority or recognition precedence.
-
-ASET therefore standardizes the **public boundary of evolution**, not a privileged search substrate. See [Role of ASET Seed](docs/architecture/SEED_ROLE.md) and [Evolution boundary](docs/architecture/EVOLUTION_BOUNDARY.md).
-
-## Direct downstream projects
-
-- [ASET Network Extension](https://github.com/attractor-set/aset-network-extension) — implementation-neutral normative extension of ASET Seed for cross-context recognition.
-- [ASET Python SQLite](https://github.com/attractor-set/aset-python-sqlite) — non-normative Seed reference implementation.
-
-Only direct downstream relationships are listed here. Transitive descendants are discoverable through their immediate parent projects.
-
-Normative source: [Seed canon](seed/canonical/README.md).
-
-## Compatibility standard
-
-Published Seed releases can serve as immutable, versioned compatibility standards for independent implementations. The first declared baseline is `seed-0.3.0-alpha.2`. Conformance is evaluated against the exact release identity, canonical package and mandatory cases by the external ASET conformance runner.
-
-See [ASET Seed Compatibility Standard](standards/seed-compatibility/README.md).
+Copyright and attribution are in `NOTICE`. Licensing terms are in `LICENSE`.

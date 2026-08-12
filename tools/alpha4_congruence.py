@@ -64,7 +64,6 @@ def load_json(path: Path) -> dict[str, Any]:
 def check_foundation_congruence(root: Path, bindings: SeedBindings) -> dict[str, Any]:
     model_path = root / bindings.foundation_model
     proof_path = root / bindings.foundation_proof.module
-    package_path = root / bindings.foundation_assurance_path
     model = compact_tla(model_path.read_text(encoding="utf-8"))
     proof = compact_tla(proof_path.read_text(encoding="utf-8"))
 
@@ -74,52 +73,104 @@ def check_foundation_congruence(root: Path, bindings: SeedBindings) -> dict[str,
         'ThreeValues=={"0","1","2"}',
         r'Terminal(s)==s\in{"A","B"}',
         'EffectPermitted(s)==s="A"',
-        'Observables(s)==[terminal|->Terminal(s),effect_permitted|->EffectPermitted(s)]',
-        'Faithful(f,codomain)==',
-        r'f\in[RecognitionStates->codomain]',
-        'Observables(x)#Observables(y)=>f[x]#f[y]',
-        'CanonicalThreeEncoding==',
+        "Observables(s)==[terminal|->Terminal(s),effect_permitted|->EffectPermitted(s)]",
+        "Faithful(f,codomain)==",
+        r"f\in[RecognitionStates->codomain]",
+        "Observables(x)#Observables(y)=>f[x]#f[y]",
+        "CanonicalThreeEncoding==",
         'CASEs="U"->"0"[]s="A"->"1"[]OTHER->"2"',
     )
     for claim in model_claims:
         require(compact(claim) in model, f"foundation model claim missing: {claim}")
 
     proof_claims = (
-        'THEOREMRecognitionObservablesPairwiseDistinct==',
-        'THEOREMNoFaithfulTwoValueEncoding==~\\Ef:Faithful(f,TwoValues)',
-        'THEOREMCanonicalThreeEncodingIsFaithful==Faithful(CanonicalThreeEncoding,ThreeValues)',
-        'THEOREMThreeRecognitionValuesAreCardinalityMinimal==',
-        '~\\Ef:Faithful(f,TwoValues)',
-        '\\Ef:Faithful(f,ThreeValues)',
+        "THEOREMRecognitionObservablesPairwiseDistinct==",
+        "THEOREMNoFaithfulTwoValueEncoding==~\\Ef:Faithful(f,TwoValues)",
+        "THEOREMCanonicalThreeEncodingIsFaithful==Faithful(CanonicalThreeEncoding,ThreeValues)",
+        "THEOREMThreeRecognitionValuesAreCardinalityMinimal==",
+        "~\\Ef:Faithful(f,TwoValues)",
+        "\\Ef:Faithful(f,ThreeValues)",
     )
     for claim in proof_claims:
         require(compact(claim) in proof, f"foundation proof claim missing: {claim}")
 
-    package = load_json(package_path)
-    require(
-        package.get("assurance_id") == bindings.foundation_assurance_id,
-        "foundation assurance id mismatch",
-    )
-    chain = package.get("proof_chain")
-    require(isinstance(chain, list), "foundation assurance proof chain missing")
-    matches = [
-        item for item in chain
-        if isinstance(item, dict) and item.get("id") == bindings.foundation_proof_chain_id
-    ]
-    require(len(matches) == 1, "foundation assurance proof-chain entry mismatch")
-    entry = matches[0]
-    require(
-        entry.get("final_theorem") == bindings.foundation_proof.final_theorem,
-        "foundation final theorem mismatch",
-    )
-    require(
-        entry.get("expected_obligations")
-        == bindings.foundation_proof.expected_obligations,
-        "foundation obligation count mismatch",
-    )
     return {
         "relation": bindings.relation_map()["FOUNDATION"],
-        "claims_checked": len(model_claims) + len(proof_claims) + 3,
+        "claims_checked": len(model_claims) + len(proof_claims),
+        "status": "PASS",
+    }
+
+
+def check_theory_congruence(root: Path, bindings: SeedBindings) -> dict[str, Any]:
+    theory_path = root / bindings.theory_algebra
+    correctness_path = root / bindings.correctness_model
+    theory = compact_tla(theory_path.read_text(encoding="utf-8"))
+    correctness = compact_tla(correctness_path.read_text(encoding="utf-8"))
+
+    theory_claims = (
+        "EXTENDSRecognitionCardinality",
+        "TheoryRecognitionValues==RecognitionStates",
+        'TheoryUnknown=="U"',
+        'TheoryAllow=="A"',
+        'TheoryBlock=="B"',
+        r"TheoryObserveUnknown(r,r2)==/\r=TheoryUnknown/\r2=TheoryUnknown",
+        r"TheoryRecognizeAllow(r,r2)==/\r=TheoryUnknown/\r2=TheoryAllow",
+        r"TheoryRecognizeBlock(r,r2)==/\r=TheoryUnknown/\r2=TheoryBlock",
+        r"TheoryPreserveUnknown(r,r2)==/\r=TheoryUnknown/\r2=TheoryUnknown",
+        r"TheoryPreserveAllow(r,r2)==/\r=TheoryAllow/\r2=TheoryAllow",
+        r"TheoryPreserveBlock(r,r2)==/\r=TheoryBlock/\r2=TheoryBlock",
+        "TheoryTerminal(r)==Terminal(r)",
+        "TheoryEffectPermitted(r)==EffectPermitted(r)",
+    )
+    for claim in theory_claims:
+        require(compact(claim) in theory, f"theory algebra claim missing: {claim}")
+
+    require(
+        bindings.theory_coding == ("U", "UNKNOWN", "A", "ALLOW", "B", "BLOCK"),
+        "theory coding differs from declared abstract implementation coding",
+    )
+    correctness_claims = (
+        "EXTENDSFiniteSets,LocalRecognitionAlgebra",
+        'CASEr="UNKNOWN"->TheoryUnknown[]r="ALLOW"->TheoryAllow[]OTHER->TheoryBlock',
+        "TheoryEffectPermitted(ToTheoryRecognition(s.recognition))",
+        (
+            "TheoryObserveUnknown(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+        (
+            "TheoryRecognizeAllow(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+        (
+            "TheoryRecognizeBlock(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+        (
+            "TheoryPreserveUnknown(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+        (
+            "TheoryPreserveAllow(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+        (
+            "TheoryPreserveBlock(ToTheoryRecognition(s.recognition),"
+            "ToTheoryRecognition(t.recognition))"
+        ),
+    )
+    for claim in correctness_claims:
+        require(
+            compact(claim) in correctness,
+            f"theory-constrained correctness claim missing: {claim}",
+        )
+
+    return {
+        "relation": bindings.relation_map()["THEORY"],
+        "theory_model": bindings.theory_algebra,
+        "abstract_machine": bindings.abstract_machine,
+        "formal_reflection": bindings.formal_reflection,
+        "correctness_model": bindings.correctness_model,
+        "claims_checked": len(theory_claims) + len(correctness_claims) + 1,
         "status": "PASS",
     }
 
@@ -154,6 +205,7 @@ def check_source_congruence(root: Path = ROOT) -> dict[str, Any]:
     source_pairing = check_source_pairing(root, bindings)
     return {
         "foundation": check_foundation_congruence(root, bindings),
+        "theory": check_theory_congruence(root, bindings),
         "operational_component": {
             "relation": bindings.relation_map()["OPERATIONAL"],
             "components_checked": source_pairing["components_checked"],
@@ -198,14 +250,18 @@ def check_release_congruence(root: Path, release_root: Path) -> dict[str, Any]:
         "primary_integrity_relation": "DECLARED_CONTENT_CONGRUENCE",
         "digest_role": bindings.digest_role,
         "source": source,
-        "assembled_formal": check_assembled_formal_congruence(root, release_root, bindings),
+        "assembled_formal": check_assembled_formal_congruence(
+            root, release_root, bindings
+        ),
         "paired_expression": check_paired_expression(root, release_root),
         "status": "PASS",
     }
 
 
 def write_evidence(path: Path, evidence: dict[str, Any]) -> None:
-    path.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def print_evidence(evidence: dict[str, Any]) -> None:
@@ -221,6 +277,7 @@ def print_evidence(evidence: dict[str, Any]) -> None:
         cases = paired["cases_checked"]
         print(f"ALPHA4_PAIRED_GRAPH_CONGRUENCE={components}/{components} PASS")
         print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={cases}/{cases} PASS")
+        print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={cases}/{cases} PASS")
     print("ALPHA4_CONTENT_CONGRUENCE=PASS")
 
 

@@ -10,10 +10,16 @@ from typing import Any, Callable
 
 try:
     from tools.alpha4_binding_graph import parse_seed_bindings
-    from tools.alpha4_relational_expression import apply_reference_graph, derive_relational_graphs
+    from tools.alpha4_relational_expression import (
+        apply_reference_graph,
+        derive_relational_graphs,
+    )
 except ModuleNotFoundError:
     from alpha4_binding_graph import parse_seed_bindings
-    from alpha4_relational_expression import apply_reference_graph, derive_relational_graphs
+    from alpha4_relational_expression import (
+        apply_reference_graph,
+        derive_relational_graphs,
+    )
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,8 +42,12 @@ def _expected_records(root: Path) -> list[dict[str, Any]]:
         component_id = str(component["component_id"])
         pair = pair_by_id[component_id]
         nodes = component["nodes"]
-        rin = next(str(node["value"]) for node in nodes if node["op"] == "CHECK_RECOGNITION")
-        set_values = [str(node["value"]) for node in nodes if node["op"] == "SET_RECOGNITION"]
+        rin = next(
+            str(node["value"]) for node in nodes if node["op"] == "CHECK_RECOGNITION"
+        )
+        set_values = [
+            str(node["value"]) for node in nodes if node["op"] == "SET_RECOGNITION"
+        ]
         rout = set_values[0] if set_values else rin
         ops = {str(node["op"]) for node in nodes}
         records.append(
@@ -48,8 +58,10 @@ def _expected_records(root: Path) -> list[dict[str, Any]]:
                 "recognition_in": rin,
                 "recognition_out": rout,
                 "operation_kind": (
-                    "OBSERVE_EVIDENCE" if "ADD_EVIDENCE" in ops
-                    else "RECOGNIZE" if "SET_RECOGNITION" in ops
+                    "OBSERVE_EVIDENCE"
+                    if "ADD_EVIDENCE" in ops
+                    else "RECOGNIZE"
+                    if "SET_RECOGNITION" in ops
                     else "PRESERVE"
                 ),
                 "authority_requirement": (
@@ -64,7 +76,10 @@ def _expected_records(root: Path) -> list[dict[str, Any]]:
 
 def parse_controlled_english(path: Path) -> dict[str, dict[str, str]]:
     text = path.read_text(encoding="utf-8")
-    require("Seed membership: external companion" in text, "English companion boundary missing")
+    require(
+        "Seed membership: external companion" in text,
+        "English companion boundary missing",
+    )
     parsed: dict[str, dict[str, str]] = {}
     for block in re.split(r"(?m)^### ", text)[1:]:
         lines = block.strip().splitlines()
@@ -90,7 +105,10 @@ def parse_controlled_english(path: Path) -> dict[str, dict[str, str]]:
 def check_english_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
     expected = {item["component_id"]: item for item in _expected_records(root)}
     actual = parse_controlled_english(profiles_root / "en/Seed.md")
-    require(actual == expected, "controlled English round-trip differs from relational source")
+    require(
+        actual == expected,
+        "controlled English round-trip differs from relational source",
+    )
     return {
         "relation": "CONTROLLED_ROUND_TRIP_CONGRUENCE",
         "components_checked": len(expected),
@@ -101,7 +119,9 @@ def check_english_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
 def execute_python(path: Path) -> dict[str, Any]:
     namespace: dict[str, Any] = {}
     source = path.read_text(encoding="utf-8")
-    require("release companion" in source, "generated Python companion boundary missing")
+    require(
+        "release companion" in source, "generated Python companion boundary missing"
+    )
     exec(compile(source, str(path), "exec"), namespace)
     return namespace
 
@@ -142,8 +162,7 @@ def check_python_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
     apply_component = namespace.get("apply_component")
     require(callable(apply_component), "generated Python apply_component missing")
     semantic_nodes = {
-        str(item["component_id"]): item["nodes"]
-        for item in relational["components"]
+        str(item["component_id"]): item["nodes"] for item in relational["components"]
     }
     outcomes = {
         component_id: next(
@@ -170,32 +189,37 @@ def check_python_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
                 "evidence": tuple(observed),
             }
             outcome = outcomes[component_id]
-            variants = witness_variants(current, evidence, outcome) if outcome else [frozenset()]
+            variants = (
+                witness_variants(current, evidence, outcome)
+                if outcome
+                else [frozenset()]
+            )
             for authority_recognition in variants:
                 expected = observe_call(
-                    lambda c=current,
-                    cid=component_id,
-                    ev=evidence,
-                    ar=authority_recognition: apply_reference_graph(
-                        relational,
-                        c,
-                        cid,
-                        evidence=ev,
-                        authority_recognition=ar,
+                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
+                        apply_reference_graph(
+                            relational,
+                            c,
+                            cid,
+                            evidence=ev,
+                            authority_recognition=ar,
+                        )
                     )
                 )
                 actual = observe_call(
-                    lambda c=current,
-                    cid=component_id,
-                    ev=evidence,
-                    ar=authority_recognition: apply_component(
-                        c,
-                        cid,
-                        evidence=ev,
-                        authority_recognition=ar,
+                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
+                        apply_component(
+                            c,
+                            cid,
+                            evidence=ev,
+                            authority_recognition=ar,
+                        )
                     )
                 )
-                require(actual == expected, "generated Python differs from relational reference")
+                require(
+                    actual == expected,
+                    "generated Python differs from relational reference",
+                )
                 cases += 1
     return {
         "relation": "BOUNDED_EXHAUSTIVE_OBSERVATIONAL_CONGRUENCE",
@@ -216,7 +240,9 @@ def check_release_profile_congruence(root: Path, profiles_root: Path) -> dict[st
 
 
 def write_evidence(path: Path, evidence: dict[str, Any]) -> None:
-    path.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -238,7 +264,13 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ALPHA4_RELEASE_PYTHON_PROFILE_CONGRUENCE={cases}/{cases} PASS")
         print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
         return 0
-    except (ReleaseProfileCongruenceError, KeyError, OSError, TypeError, ValueError) as error:
+    except (
+        ReleaseProfileCongruenceError,
+        KeyError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as error:
         print(f"ALPHA4_RELEASE_PROFILE_CONGRUENCE_ERROR={error}")
         print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=FAIL")
         return 1

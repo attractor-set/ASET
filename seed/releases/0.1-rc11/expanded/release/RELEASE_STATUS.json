@@ -1,9 +1,0 @@
-{
-  "documentation_freeze": "APPROVE",
-  "external_third_party_audit": "PENDING",
-  "owner_signature": "PENDING",
-  "production": "HOLD",
-  "reference_profile": "REFERENCE_STATE_MACHINE_CANDIDATE",
-  "release_id": "ASET-SEED-0.1-RC11",
-  "status": "DOCUMENTATION_FREEZE_READY"
-}

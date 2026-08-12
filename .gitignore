@@ -4,11 +4,13 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .coverage
-build/
-*.egg-info/
 dist/
+.tooling/
+.tlacache/
 .idea/
 .vscode/
-.tooling/
-states/
-.tlacache/
+
+# Local/generated artifacts outside the active repository surface.
+build/
+src/*.egg-info/
+seed/canonical/formal/states/

@@ -1,3 +1,0 @@
-Conformance: 55/55
-Case schema: 55/55
-Reachable state schema: 55/55

@@ -35,7 +35,14 @@ def run_subject(tlapm: str, subject: ProofBinding) -> tuple[int, int | None]:
     print(f"ALPHA4_TLAPS_EXPECTED_OBLIGATIONS={subject.expected_obligations}")
     try:
         result = subprocess.run(
-            [tlapm, subject.module],
+            [
+                tlapm,
+                "-I",
+                "theory/local-recognition/formal",
+                "-I",
+                "seed/alpha4/formal",
+                subject.module,
+            ],
             cwd=ROOT,
             check=False,
             capture_output=True,
