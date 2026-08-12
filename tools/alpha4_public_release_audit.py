@@ -14,7 +14,7 @@ SEMANTIC_ALGEBRA = {
     "name": "Local Recognition Algebra",
 }
 REPRESENTATION_ID = "0.4alpha"
-LINE_ID = "ASET-SEED-0.4-ALPHA"
+SUBJECT_ID = "ASET-SEED-0.4-ALPHA"
 
 
 class PublicReleaseAuditError(RuntimeError):
@@ -64,7 +64,9 @@ def check_public_release(
     profiles = load_json(profiles_root / "RELEASE_PROFILE_MANIFEST.json")
     certificate = load_json(certificate_path)
 
-    require(release.get("line_id") == LINE_ID, "release line identity mismatch")
+    require(
+        release.get("subject_id") == SUBJECT_ID, "release subject identity mismatch"
+    )
     require(release.get("version") == REPRESENTATION_ID, "release version mismatch")
     require(
         release.get("representation_id") == REPRESENTATION_ID,
@@ -76,7 +78,9 @@ def check_public_release(
     )
 
     require(profiles.get("project") == PROJECT, "profile project identity mismatch")
-    require(profiles.get("line_id") == LINE_ID, "profile line identity mismatch")
+    require(
+        profiles.get("subject_id") == SUBJECT_ID, "profile subject identity mismatch"
+    )
     require(
         profiles.get("representation_id") == REPRESENTATION_ID,
         "profile representation identity mismatch",
@@ -118,7 +122,7 @@ def check_public_release(
         "project": PROJECT,
         "semantic_algebra": SEMANTIC_ALGEBRA,
         "representation_id": REPRESENTATION_ID,
-        "line_id": LINE_ID,
+        "subject_id": SUBJECT_ID,
         "python_expression_role": "RELEASE_EXPRESSION",
         "python_sqlite_role": "PERSISTENCE_EXTENSION",
         "python_sqlite_semantic_delta": "NONE",
