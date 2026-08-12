@@ -229,12 +229,14 @@ def check_python_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
 
 
 def check_release_profile_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
+    witness_path = profiles_root / "assurance/proof-witnesses.json"
+    require(witness_path.is_file(), "materialized proof witness artifact missing")
     return {
         "document_type": "aset-release-profile-congruence-evidence",
         "profile_scope": "CI_RELEASE_COMPANIONS",
         "semantic_precedence": "NONE",
         "english": check_english_congruence(root, profiles_root),
-        "python": check_python_congruence(root, profiles_root),
+        "python_expression_assurance": "EXTERNAL_AIRGAP_VERIFIER_REQUIRED",
         "status": "PASS",
     }
 
@@ -257,11 +259,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         evidence = check_release_profile_congruence(ROOT, profiles_root)
         english = evidence["english"]
-        python = evidence["python"]
         count = english["components_checked"]
         print(f"ALPHA4_RELEASE_ENGLISH_PROFILE_CONGRUENCE={count}/{count} PASS")
-        cases = python["cases_checked"]
-        print(f"ALPHA4_RELEASE_PYTHON_PROFILE_CONGRUENCE={cases}/{cases} PASS")
+        print("ALPHA4_RELEASE_PYTHON_EXPRESSION_ASSURANCE=EXTERNAL_AIRGAP_REQUIRED")
         print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
         return 0
     except (

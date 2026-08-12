@@ -29,9 +29,19 @@ from tools.alpha4_release_profile_congruence import (
     ReleaseProfileCongruenceError,
     check_release_profile_congruence,
 )
+from tools.alpha4_proof_witness_materializer import (
+    materialize_witnesses,
+    write_witnesses,
+)
 from tools.build_alpha4_release import build_profiles_tree, build_tree, tree_digest
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def materialized_proof_witnesses(tmp_path: Path) -> Path:
+    target = tmp_path / "proof-derived-recognition-witnesses.json"
+    write_witnesses(target, materialize_witnesses(ROOT))
+    return target
 
 
 def test_seed_line_identity_is_04alpha() -> None:
@@ -282,20 +292,35 @@ def test_ci_profiles_are_separate_and_bound_to_seed_release(tmp_path: Path) -> N
     build_tree(release)
     digest = tree_digest(release)
     profiles = tmp_path / "profiles"
-    manifest = build_profiles_tree(profiles, digest)
+    manifest = build_profiles_tree(
+        profiles, digest, materialized_proof_witnesses(tmp_path)
+    )
     evidence = check_release_profile_congruence(ROOT, profiles)
     assert evidence["english"]["components_checked"] == 6
-    assert evidence["python"]["cases_checked"] == 1824
+    assert evidence["python_expression_assurance"] == (
+        "EXTERNAL_AIRGAP_VERIFIER_REQUIRED"
+    )
     assert manifest["seed_membership"] == "EXTERNAL_RELEASE_COMPANION"
     assert manifest["semantic_precedence"] == "NONE"
     assert manifest["seed_release_tree_digest"] == digest
+    assert manifest["proof_witness_artifact"]["role"] == (
+        "INDEPENDENT_PROOF_DERIVED_EXPRESSION_ORACLE"
+    )
+    build_source = (ROOT / "tools/build_alpha4_release.py").read_text(encoding="utf-8")
+    assert "alpha4_proof_witness_materializer" not in build_source
 
 
 def test_corrupt_python_companion_is_rejected(tmp_path: Path) -> None:
+    from tools.alpha4_expression_airgap_verifier import (
+        ExpressionAirgapError,
+        check_airgapped_expression,
+    )
+
     release = tmp_path / "release"
     build_tree(release)
     profiles = tmp_path / "profiles"
-    build_profiles_tree(profiles, tree_digest(release))
+    witnesses = materialized_proof_witnesses(tmp_path)
+    build_profiles_tree(profiles, tree_digest(release), witnesses)
     python_path = profiles / "python/aset_seed_alpha4.py"
     text = python_path.read_text(encoding="utf-8")
     python_path.write_text(
@@ -306,15 +331,17 @@ def test_corrupt_python_companion_is_rejected(tmp_path: Path) -> None:
         ),
         encoding="utf-8",
     )
-    with pytest.raises(ReleaseProfileCongruenceError):
-        check_release_profile_congruence(ROOT, profiles)
+    with pytest.raises(ExpressionAirgapError):
+        check_airgapped_expression(witnesses, python_path)
 
 
 def test_corrupt_english_companion_is_rejected(tmp_path: Path) -> None:
     release = tmp_path / "release"
     build_tree(release)
     profiles = tmp_path / "profiles"
-    build_profiles_tree(profiles, tree_digest(release))
+    build_profiles_tree(
+        profiles, tree_digest(release), materialized_proof_witnesses(tmp_path)
+    )
     english = profiles / "en/Seed.md"
     text = english.read_text(encoding="utf-8")
     english.write_text(
