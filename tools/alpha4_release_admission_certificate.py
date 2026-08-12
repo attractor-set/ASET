@@ -100,6 +100,13 @@ def check_release_admission(
         "release profile semantic algebra identity mismatch",
     )
 
+    representation_id = release_manifest.get("representation_id")
+    require(representation_id == "0.4alpha", "release representation mismatch")
+    require(
+        profile_manifest.get("representation_id") == representation_id,
+        "release profile representation mismatch",
+    )
+
     release_tree_digest = tree_digest(release_root)
     profile_tree_digest = tree_digest(profiles_root)
     require(
@@ -213,6 +220,7 @@ def check_release_admission(
         },
         "line_id": profile_manifest.get("line_id"),
         "version": profile_manifest.get("version"),
+        "representation_id": representation_id,
         "admission_relation": (
             "PROOF_WITNESS_TO_PYTHON_AIRGAP_TO_EXACT_SQLITE_PERSISTENCE"
         ),

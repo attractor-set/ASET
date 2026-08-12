@@ -533,7 +533,7 @@ def test_python_sqlite_rejects_semantic_logic_in_persistence_layer(
         check_python_sqlite_persistence(profiles)
 
 
-def test_python_sqlite_rejects_parent_byte_drift(tmp_path: Path) -> None:
+def test_python_sqlite_rejects_base_expression_byte_drift(tmp_path: Path) -> None:
     from tools.alpha4_python_sqlite_persistence_gate import (
         PythonSQLitePersistenceError,
         check_python_sqlite_persistence,
@@ -561,6 +561,7 @@ def test_verify_workflow_uploads_expression_and_persistence_evidence() -> None:
     assert "dist/airgap-expression-evidence.json" in workflow
     assert "dist/python-sqlite-persistence-evidence.json" in workflow
     assert "dist/release-admission-certificate.json" in workflow
+    assert "dist/public-release-audit.json" in workflow
 
 
 def test_release_admission_certificate_binds_independent_evidence(
@@ -629,7 +630,7 @@ def test_release_admission_certificate_binds_independent_evidence(
     assert certificate["status"] == "PASS"
 
 
-def test_release_admission_rejects_expression_parent_mismatch(tmp_path: Path) -> None:
+def test_release_admission_rejects_expression_base_mismatch(tmp_path: Path) -> None:
     from tools.alpha4_expression_airgap_verifier import check_airgapped_expression
     from tools.alpha4_python_sqlite_persistence_gate import (
         check_python_sqlite_persistence,
@@ -681,3 +682,78 @@ def test_release_admission_rejects_expression_parent_mismatch(tmp_path: Path) ->
             release_archive,
             profiles_archive,
         )
+
+
+def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> None:
+    from tools.alpha4_expression_airgap_verifier import check_airgapped_expression
+    from tools.alpha4_public_release_audit import check_public_release
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        check_python_sqlite_persistence,
+    )
+    from tools.alpha4_release_admission_certificate import check_release_admission
+    from tools.build_alpha4_release import zip_tree
+
+    release = tmp_path / "release"
+    build_tree(release)
+    witnesses = materialized_proof_witnesses(tmp_path)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(profiles, tree_digest(release), witnesses)
+
+    expression_evidence = tmp_path / "airgap.json"
+    expression_evidence.write_text(
+        json.dumps(
+            check_airgapped_expression(
+                witnesses,
+                profiles / "python/aset_seed_alpha4.py",
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    persistence_evidence = tmp_path / "persistence.json"
+    persistence_evidence.write_text(
+        json.dumps(
+            check_python_sqlite_persistence(profiles),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    release_archive = tmp_path / "release.zip"
+    profiles_archive = tmp_path / "profiles.zip"
+    zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
+    zip_tree(profiles, profiles_archive, "ASET-Seed-0.4alpha-profiles")
+
+    certificate_path = tmp_path / "certificate.json"
+    certificate_path.write_text(
+        json.dumps(
+            check_release_admission(
+                witnesses,
+                expression_evidence,
+                persistence_evidence,
+                release,
+                profiles,
+                release_archive,
+                profiles_archive,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    evidence = check_public_release(ROOT, release, profiles, certificate_path)
+    assert evidence["project"] == "Authority-Seeded Evidence Trail (ASET)"
+    assert evidence["semantic_algebra"] == {
+        "id": "ASET_ALPHA",
+        "name": "Local Recognition Algebra",
+    }
+    assert evidence["representation_id"] == "0.4alpha"
+    assert evidence["python_sqlite_role"] == "PERSISTENCE_EXTENSION"
+    assert evidence["python_sqlite_semantic_delta"] == "NONE"
+    assert evidence["status"] == "PASS"

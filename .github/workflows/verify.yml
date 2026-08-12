@@ -58,4 +58,5 @@ jobs:
             dist/airgap-expression-evidence.json
             dist/python-sqlite-persistence-evidence.json
             dist/release-admission-certificate.json
+            dist/public-release-audit.json
             dist/inpi/**

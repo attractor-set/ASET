@@ -66,6 +66,12 @@ COMMANDS = [
         "--output",
         "dist/release-admission-certificate.json",
     ],
+    [
+        sys.executable,
+        "tools/alpha4_public_release_audit.py",
+        "--output",
+        "dist/public-release-audit.json",
+    ],
     [sys.executable, "-m", "ruff", "format", "--check", "tools", "tests"],
     [sys.executable, "-m", "ruff", "check", "tools", "tests"],
 ]

@@ -1,15 +1,15 @@
 # ASET — Authority-Seeded Evidence Trail
 
-ASET Seed 0.4alpha is a compact specification built around **ASET Alpha**, the
-Local Recognition Algebra, and an executable abstract Seed machine.
+ASET Seed 0.4alpha is the current public representation of **ASET Alpha**, the
+Local Recognition Algebra, together with an executable abstract Seed machine.
 
 ## ASET Alpha
 
 **ASET Alpha** is the public name of the Local Recognition Algebra used by
 ASET Seed 0.4alpha. The name *Alpha* refers to α, the first letter of the Greek
 alphabet, as a concise metaphor for a minimal foundation and first principle.
-In ASET naming, `alpha` identifies this semantic line; release maturity is a
-separate property.
+In ASET naming, `0.4alpha` is the current representation identifier for this
+algebra.
 
 Active structure:
 

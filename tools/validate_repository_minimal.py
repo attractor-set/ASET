@@ -72,6 +72,7 @@ ALLOWED_ACTIVE_PATHS = {
     "tools/alpha4_operational_expression.py",
     "tools/alpha4_paired_expression.py",
     "tools/alpha4_proof_witness_materializer.py",
+    "tools/alpha4_public_release_audit.py",
     "tools/alpha4_python_sqlite_persistence_gate.py",
     "tools/alpha4_release_admission_certificate.py",
     "tools/alpha4_relational_expression.py",

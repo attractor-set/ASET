@@ -144,6 +144,7 @@ def build_tree(output: Path) -> dict[str, object]:
             "id": "ASET_ALPHA",
             "name": "Local Recognition Algebra",
         },
+        "representation_id": bindings.version,
         "compatibility_with_0_3": bindings.compatibility,
         "source_byte_identity_digest": source_digest(source_paths),
         "architecture": {
@@ -264,6 +265,7 @@ def build_profiles_tree(
             "id": "ASET_ALPHA",
             "name": "Local Recognition Algebra",
         },
+        "representation_id": bindings.version,
         "seed_membership": "EXTERNAL_RELEASE_COMPANION",
         "semantic_precedence": "NONE",
         "seed_release_tree_digest": seed_release_tree_digest,
