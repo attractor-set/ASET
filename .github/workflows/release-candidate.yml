@@ -77,6 +77,10 @@ jobs:
             --ref HEAD \
             --output-dir dist/inpi-deposit-ci \
             --verify-determinism
+
+      - name: Verify ASET 0.4alpha Seed gate and build release companions
+        run: python tools/alpha4_seed_gate.py
+
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -97,3 +101,7 @@ jobs:
             dist/seed-recognition-boundary-tlaps.json
             dist/inpi-deposit-ci/**
             dist/seed-conformance-kit/**
+            dist/ASET-Seed-0.4alpha/**
+            dist/ASET-Seed-0.4alpha.zip
+            dist/ASET-Seed-0.4alpha-profiles/**
+            dist/ASET-Seed-0.4alpha-profiles.zip

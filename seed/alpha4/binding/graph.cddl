@@ -1,0 +1,10 @@
+binding-graph = [
+  "ASET-BINDING-GRAPH",
+  1,
+  tstr,
+  tstr,
+  [* node],
+  [* edge]
+]
+node = [uint, tstr, tstr]
+edge = [uint, tstr, uint]
