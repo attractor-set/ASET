@@ -59,6 +59,10 @@ def check_public_release(
         "CITATION project identity mismatch",
     )
     require('version: "0.4alpha"' in citation, "CITATION representation mismatch")
+    require(
+        'repository-code: "https://github.com/attractor-set/aset-seed"' in citation,
+        "CITATION repository locator mismatch",
+    )
 
     release = load_json(release_root / "RELEASE_MANIFEST.json")
     profiles = load_json(profiles_root / "RELEASE_PROFILE_MANIFEST.json")

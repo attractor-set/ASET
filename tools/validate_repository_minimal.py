@@ -5,6 +5,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+REPOSITORY_URL = "https://github.com/attractor-set/aset-seed"
+OLD_REPOSITORY_URL = "https://github.com/attractor-set/" + "ASET"
+REPOSITORY_LOCATOR_SURFACES = (
+    "pyproject.toml",
+    "CITATION.cff",
+    "README.md",
+    "history/REFERENCES.aset",
+    ".github/workflows/verify.yml",
+)
+
 ALLOWED_ROOT_FILES = {
     ".editorconfig",
     ".gitattributes",
@@ -181,18 +191,25 @@ def main() -> int:
         'version: "0.4alpha"',
         'family-names: "Prychyna"',
         'given-names: "Dzmitry"',
+        f'repository-code: "{REPOSITORY_URL}"',
     ):
         if required not in citation:
             errors.append(f"citation attribution missing: {required}")
 
     history = (ROOT / "history/REFERENCES.aset").read_text(encoding="utf-8")
     for required in (
+        f"REPOSITORY {REPOSITORY_URL}",
         "COMMIT 633c130187b2a2bb42f24cfd66662d475de385d2",
         "COMMIT e89d984203a126f8bc62467224cdf6c5374dada7",
         "COMPATIBILITY ASET-SEED-0.4-ALPHA SEED-0.3.0-ALPHA.3 NONE",
     ):
         if required not in history:
             errors.append(f"historical reference missing: {required}")
+
+    for relative in REPOSITORY_LOCATOR_SURFACES:
+        surface = (ROOT / relative).read_text(encoding="utf-8")
+        if OLD_REPOSITORY_URL in surface:
+            errors.append(f"legacy repository locator present: {relative}")
 
     workflows = sorted(
         path.rsplit("/", 1)[-1]
