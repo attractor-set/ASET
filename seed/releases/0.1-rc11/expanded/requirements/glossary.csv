@@ -1,7 +1,0 @@
-term,definition
-AffectedSiblingSet,Minimal transitive set of active direct siblings normatively depending on a target.
-Context,Normative namespace with immutable ContextID.
-Context redefinition,Atomic replacement of exact affected siblings under parent Authority and member authorizations.
-Membership withdrawal,Standalone final member-signed exit without successor promise.
-Proposal,Canonical full replacement plan embedded in CONTEXT_REDEFINE.
-Trust Space,One stateful Genesis lineage.

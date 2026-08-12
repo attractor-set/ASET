@@ -1,12 +1,11 @@
 cff-version: 1.2.0
-message: "If you use ASET, cite the exact frozen release."
+message: "If you use ASET, cite the exact verified release."
 title: "ASET"
 type: software
 authors:
   - family-names: "Prychyna"
     given-names: "Dzmitry"
     alias: "Attractor Set"
-version: "0.3.0-alpha.1"
-date-released: 2026-08-06
+version: "0.4alpha"
 license: Apache-2.0
 repository-code: "https://github.com/attractor-set/ASET"

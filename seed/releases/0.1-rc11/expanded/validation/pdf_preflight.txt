@@ -1,6 +1,0 @@
-PDF: /mnt/data/aset_seed_rebuild/ASET-Seed-Documentation-v0.1-rc11/docs/ASET_Seed_Specification_0.1-rc11.pdf
-Pages: 16
-Encrypted: False
-Openable (PyMuPDF): True
-Likely scanned: False
-XFA present: False
