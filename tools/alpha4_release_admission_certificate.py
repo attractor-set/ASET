@@ -87,6 +87,18 @@ def check_release_admission(
         profile_manifest.get("project") == "Authority-Seeded Evidence Trail (ASET)",
         "ASET project identity mismatch",
     )
+    expected_algebra = {
+        "id": "ASET_ALPHA",
+        "name": "Local Recognition Algebra",
+    }
+    require(
+        release_manifest.get("semantic_algebra") == expected_algebra,
+        "Seed release semantic algebra identity mismatch",
+    )
+    require(
+        profile_manifest.get("semantic_algebra") == expected_algebra,
+        "release profile semantic algebra identity mismatch",
+    )
 
     release_tree_digest = tree_digest(release_root)
     profile_tree_digest = tree_digest(profiles_root)
@@ -121,15 +133,18 @@ def check_release_admission(
         "air-gap verifier used different Python expression bytes",
     )
 
-    persistence_parent = persistence.get("parent_binding")
+    persistence_base = persistence.get("base_expression_binding")
     persistence_extension = persistence.get("extension_binding")
-    require(isinstance(persistence_parent, dict), "persistence parent binding missing")
+    require(
+        isinstance(persistence_base, dict),
+        "persistence base expression binding missing",
+    )
     require(
         isinstance(persistence_extension, dict),
         "persistence extension binding missing",
     )
     require(
-        persistence_parent.get("sha256") == python_sha,
+        persistence_base.get("sha256") == python_sha,
         "persistence extension is not bound to admitted Python expression",
     )
     require(
@@ -173,8 +188,8 @@ def check_release_admission(
     require(isinstance(runtime, dict), "persistence runtime evidence missing")
     require(runtime.get("status") == "PASS", "persistence runtime is not PASS")
     require(
-        runtime.get("parent_congruence_cases") == 1824,
-        "persistence parent congruence coverage drifted",
+        runtime.get("base_expression_congruence_cases") == 1824,
+        "persistence base expression congruence coverage drifted",
     )
     require(
         runtime.get("restart_round_trip_components") == 6,
@@ -192,6 +207,10 @@ def check_release_admission(
     return {
         "document_type": "aset-release-admission-certificate",
         "project": "Authority-Seeded Evidence Trail (ASET)",
+        "semantic_algebra": {
+            "id": "ASET_ALPHA",
+            "name": "Local Recognition Algebra",
+        },
         "line_id": profile_manifest.get("line_id"),
         "version": profile_manifest.get("version"),
         "admission_relation": (
@@ -213,9 +232,11 @@ def check_release_admission(
             "python_sqlite_persistence": {
                 "path": persistence_evidence_path.name,
                 "sha256": sha256(persistence_evidence_path),
-                "parent_sha256": python_sha,
+                "base_expression_sha256": python_sha,
                 "extension_sha256": sqlite_sha,
-                "parent_congruence_cases": runtime["parent_congruence_cases"],
+                "base_expression_congruence_cases": runtime[
+                    "base_expression_congruence_cases"
+                ],
                 "restart_round_trip_components": runtime[
                     "restart_round_trip_components"
                 ],
@@ -263,8 +284,9 @@ def main(argv: list[str] | None = None) -> int:
             encoding="utf-8",
         )
         print("ALPHA4_RELEASE_ADMISSION_PROJECT=AUTHORITY_SEEDED_EVIDENCE_TRAIL")
+        print("ALPHA4_RELEASE_ADMISSION_SEMANTIC_ALGEBRA=ASET_ALPHA")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_AIRGAP=PASS")
-        print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_PARENT=EXACT")
+        print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_BASE_EXPRESSION=EXACT")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")
         print("ALPHA4_RELEASE_ADMISSION_CERTIFICATE=PASS")
         return 0

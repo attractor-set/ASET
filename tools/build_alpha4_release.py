@@ -140,6 +140,10 @@ def build_tree(output: Path) -> dict[str, object]:
         "document_type": "aset-seed-release-materialization",
         "line_id": bindings.subject_id,
         "version": bindings.version,
+        "semantic_algebra": {
+            "id": "ASET_ALPHA",
+            "name": "Local Recognition Algebra",
+        },
         "compatibility_with_0_3": bindings.compatibility,
         "source_byte_identity_digest": source_digest(source_paths),
         "architecture": {
@@ -256,6 +260,10 @@ def build_profiles_tree(
         "project": "Authority-Seeded Evidence Trail (ASET)",
         "line_id": bindings.subject_id,
         "version": bindings.version,
+        "semantic_algebra": {
+            "id": "ASET_ALPHA",
+            "name": "Local Recognition Algebra",
+        },
         "seed_membership": "EXTERNAL_RELEASE_COMPANION",
         "semantic_precedence": "NONE",
         "seed_release_tree_digest": seed_release_tree_digest,
@@ -264,7 +272,7 @@ def build_profiles_tree(
             "python": "python/aset_seed_alpha4.py",
             "python_sqlite": {
                 "role": "PERSISTENCE_EXTENSION",
-                "parent": "python",
+                "base_expression": "python",
                 "semantic_delta": "NONE",
                 "path": "python-sqlite/aset_seed_alpha4_sqlite.py",
                 "binding": "python-sqlite/PERSISTENCE_EXTENSION.json",

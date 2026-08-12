@@ -253,28 +253,35 @@ def check_python_sqlite_binding(profiles_root: Path) -> dict[str, Any]:
         binding.get("semantic_precedence") == "NONE",
         "Python SQLite cannot acquire semantic precedence",
     )
-    parent = binding.get("parent")
+    base_expression = binding.get("base_expression")
     extension = binding.get("extension")
-    require(isinstance(parent, dict), "Python SQLite parent binding missing")
+    require(
+        isinstance(base_expression, dict),
+        "Python SQLite base expression binding missing",
+    )
     require(isinstance(extension, dict), "Python SQLite extension binding missing")
-    parent_path = profiles_root / str(parent.get("path"))
+    base_expression_path = profiles_root / str(base_expression.get("path"))
     extension_path = profiles_root / str(extension.get("path"))
-    require(parent_path.is_file(), "bound Python parent missing")
+    require(base_expression_path.is_file(), "bound Python base expression missing")
     require(extension_path.is_file(), "Python SQLite extension missing")
-    require(parent.get("profile") == "python", "Python SQLite direct parent drifted")
+    require(
+        base_expression.get("profile") == "python",
+        "Python SQLite base expression identity drifted",
+    )
     require(
         extension.get("profile") == "python-sqlite",
         "Python SQLite profile identity drifted",
     )
     require(
-        parent.get("sha256") == sha256(parent_path), "Python parent binding drifted"
+        base_expression.get("sha256") == sha256(base_expression_path),
+        "Python base expression binding drifted",
     )
     require(
         extension.get("sha256") == sha256(extension_path),
         "Python SQLite extension binding drifted",
     )
     return {
-        "relation": "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_PARENT",
+        "relation": "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_EXPRESSION",
         "semantic_delta": "NONE",
         "assurance": "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED",
         "status": "PASS",

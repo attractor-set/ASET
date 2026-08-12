@@ -61,11 +61,14 @@ def load_binding(path: Path) -> dict[str, Any]:
         value.get("semantic_precedence") == "NONE",
         "persistence extension cannot acquire semantic precedence",
     )
-    parent = value.get("parent")
+    base_expression = value.get("base_expression")
     extension = value.get("extension")
-    require(isinstance(parent, dict), "parent binding missing")
+    require(isinstance(base_expression, dict), "base expression binding missing")
     require(isinstance(extension, dict), "extension binding missing")
-    require(parent.get("profile") == "python", "direct parent must be Python")
+    require(
+        base_expression.get("profile") == "python",
+        "base expression must be Python",
+    )
     require(
         extension.get("profile") == "python-sqlite",
         "extension profile must be python-sqlite",
@@ -81,7 +84,7 @@ def _literal_strings(tree: ast.AST) -> set[str]:
     }
 
 
-def check_source_boundary(path: Path, parent_sha256: str) -> None:
+def check_source_boundary(path: Path, base_expression_sha256: str) -> None:
     source = path.read_text(encoding="utf-8")
     tree = ast.parse(source)
     strings = _literal_strings(tree)
@@ -102,12 +105,12 @@ def check_source_boundary(path: Path, parent_sha256: str) -> None:
     }
     require("GRAPHS" not in assigned_names, "persistence extension defines semantics")
     require(
-        "_parent.apply_component" in source,
-        "persistence extension does not delegate transition semantics to parent",
+        "_base_expression.apply_component" in source,
+        "persistence extension does not delegate transition semantics to base expression",
     )
     require(
-        f"PARENT_SHA256 = {parent_sha256!r}" in source,
-        "extension source does not bind exact parent bytes",
+        f"BASE_EXPRESSION_SHA256 = {base_expression_sha256!r}" in source,
+        "extension source does not bind exact base expression bytes",
     )
 
 
@@ -155,17 +158,17 @@ def witness_variants(
     ]
 
 
-def check_parent_congruence(
-    parent_path: Path,
+def check_base_expression_congruence(
+    base_expression_path: Path,
     extension_path: Path,
 ) -> dict[str, Any]:
-    parent = execute_python(parent_path)
+    base_expression = execute_python(base_expression_path)
     extension = execute_extension(extension_path)
-    apply_component = parent.get("apply_component")
-    graphs = parent.get("GRAPHS")
+    apply_component = base_expression.get("apply_component")
+    graphs = base_expression.get("GRAPHS")
     store_type = extension.get("SQLiteStore")
-    require(callable(apply_component), "parent apply_component missing")
-    require(isinstance(graphs, dict), "parent graph table missing")
+    require(callable(apply_component), "base expression apply_component missing")
+    require(isinstance(graphs, dict), "base expression graph table missing")
     require(callable(store_type), "SQLiteStore missing")
 
     outcomes = {
@@ -242,7 +245,10 @@ def check_parent_congruence(
                             )
                         )
                     )
-                    require(actual == expected, "SQLite extension differs from parent")
+                    require(
+                        actual == expected,
+                        "SQLite extension differs from base expression",
+                    )
                     if actual[0] == "ok":
                         if component_id not in restart_seen:
                             reopened = store_type(database)
@@ -255,17 +261,17 @@ def check_parent_congruence(
                     else:
                         require(
                             store_type(database).load() == before,
-                            "parent rejection changed persistent state",
+                            "base expression rejection changed persistent state",
                         )
                         rollback_checks += 1
                     cases += 1
 
-    require(cases == 1824, f"unexpected parent congruence case count: {cases}")
+    require(cases == 1824, f"unexpected base expression congruence case count: {cases}")
     require(restart_checks == 6, "restart coverage must include all components")
     require(rollback_checks > 0, "rollback path was not exercised")
     return {
-        "relation": "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_PARENT",
-        "parent_congruence_cases": cases,
+        "relation": "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_EXPRESSION",
+        "base_expression_congruence_cases": cases,
         "restart_round_trip_components": restart_checks,
         "rollback_checks": rollback_checks,
         "semantic_delta": "NONE",
@@ -281,22 +287,25 @@ def check_python_sqlite_persistence(profiles_root: Path) -> dict[str, Any]:
     binding_path = profiles_root / "python-sqlite/PERSISTENCE_EXTENSION.json"
     try:
         binding = load_binding(binding_path)
-        parent_path = profiles_root / str(binding["parent"]["path"])
+        base_expression_path = profiles_root / str(binding["base_expression"]["path"])
         extension_path = profiles_root / str(binding["extension"]["path"])
-        require(parent_path.is_file(), "bound parent Python expression missing")
+        require(
+            base_expression_path.is_file(),
+            "bound base Python expression missing",
+        )
         require(extension_path.is_file(), "Python SQLite extension missing")
-        parent_digest = sha256(parent_path)
+        base_expression_digest = sha256(base_expression_path)
         extension_digest = sha256(extension_path)
         require(
-            parent_digest == binding["parent"]["sha256"],
-            "bound parent Python bytes differ",
+            base_expression_digest == binding["base_expression"]["sha256"],
+            "bound base Python expression bytes differ",
         )
         require(
             extension_digest == binding["extension"]["sha256"],
             "bound Python SQLite bytes differ",
         )
-        check_source_boundary(extension_path, parent_digest)
-        runtime = check_parent_congruence(parent_path, extension_path)
+        check_source_boundary(extension_path, base_expression_digest)
+        runtime = check_base_expression_congruence(base_expression_path, extension_path)
     finally:
         sys.dont_write_bytecode = previous_dont_write_bytecode
     require_no_bytecode(profiles_root)
@@ -309,9 +318,9 @@ def check_python_sqlite_persistence(profiles_root: Path) -> dict[str, Any]:
         "project": "Authority-Seeded Evidence Trail (ASET)",
         "relation": "PERSISTENCE_EXTENSION",
         "semantic_delta": "NONE",
-        "parent_binding": {
-            "path": str(binding["parent"]["path"]),
-            "sha256": parent_digest,
+        "base_expression_binding": {
+            "path": str(binding["base_expression"]["path"]),
+            "sha256": base_expression_digest,
         },
         "extension_binding": {
             "path": str(binding["extension"]["path"]),
@@ -343,10 +352,10 @@ def main(argv: list[str] | None = None) -> int:
                 encoding="utf-8",
             )
         runtime = evidence["runtime"]
-        cases = runtime["parent_congruence_cases"]
+        cases = runtime["base_expression_congruence_cases"]
         restarts = runtime["restart_round_trip_components"]
         rollbacks = runtime["rollback_checks"]
-        print(f"ALPHA4_PYTHON_SQLITE_PARENT_CONGRUENCE={cases}/{cases} PASS")
+        print(f"ALPHA4_PYTHON_SQLITE_BASE_EXPRESSION_CONGRUENCE={cases}/{cases} PASS")
         print(f"ALPHA4_PYTHON_SQLITE_RESTART_ROUND_TRIP={restarts}/6 PASS")
         print(f"ALPHA4_PYTHON_SQLITE_ROLLBACK_CHECKS={rollbacks} PASS")
         print("ALPHA4_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")

@@ -278,6 +278,10 @@ def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(
     assert not (release / "expression/en").exists()
     assert not (release / "expression/python").exists()
     assert manifest["version"] == "0.4alpha"
+    assert manifest["semantic_algebra"] == {
+        "id": "ASET_ALPHA",
+        "name": "Local Recognition Algebra",
+    }
     assert (
         manifest["architecture"]["abstract_machine"] == "operational/components.forth"
     )
@@ -406,14 +410,18 @@ def test_release_manifest_uses_hash_only_as_byte_identity(tmp_path: Path) -> Non
     assert "semantic_source_digest" not in manifest
 
 
-def test_project_identity_is_authority_seeded_evidence_trail() -> None:
+def test_public_identity_and_aset_alpha_are_bound() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     assert "ASET — Authority-Seeded Evidence Trail" in readme
     assert 'title: "ASET — Authority-Seeded Evidence Trail"' in citation
+    assert "ASET Alpha" in readme
+    assert "Local Recognition Algebra" in readme
 
 
-def test_python_sqlite_is_exact_parent_persistence_extension(tmp_path: Path) -> None:
+def test_python_sqlite_is_exact_base_expression_persistence_extension(
+    tmp_path: Path,
+) -> None:
     release = tmp_path / "release"
     build_tree(release)
     profiles = tmp_path / "profiles"
@@ -424,12 +432,16 @@ def test_python_sqlite_is_exact_parent_persistence_extension(tmp_path: Path) -> 
     )
     evidence = check_release_profile_congruence(ROOT, profiles)
     persistence = evidence["python_sqlite_persistence_extension"]
-    assert persistence["relation"] == "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_PARENT"
+    assert persistence["relation"] == "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_EXPRESSION"
     assert persistence["semantic_delta"] == "NONE"
     assert manifest["project"] == "Authority-Seeded Evidence Trail (ASET)"
+    assert manifest["semantic_algebra"] == {
+        "id": "ASET_ALPHA",
+        "name": "Local Recognition Algebra",
+    }
     python_sqlite = manifest["profiles"]["python_sqlite"]
     assert python_sqlite["role"] == "PERSISTENCE_EXTENSION"
-    assert python_sqlite["parent"] == "python"
+    assert python_sqlite["base_expression"] == "python"
     assert python_sqlite["semantic_delta"] == "NONE"
     assert python_sqlite["assurance"] == "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED"
 
@@ -438,25 +450,27 @@ def test_python_sqlite_is_exact_parent_persistence_extension(tmp_path: Path) -> 
             encoding="utf-8"
         )
     )
-    parent = profiles / binding["parent"]["path"]
+    base_expression = profiles / binding["base_expression"]["path"]
     extension = profiles / binding["extension"]["path"]
     assert binding["relation"] == "PERSISTENCE_EXTENSION"
     assert binding["semantic_delta"] == "NONE"
     assert binding["semantic_precedence"] == "NONE"
-    assert binding["parent"]["profile"] == "python"
+    assert binding["base_expression"]["profile"] == "python"
     assert binding["extension"]["profile"] == "python-sqlite"
-    assert binding["parent"]["sha256"] == (
-        "sha256:" + hashlib.sha256(parent.read_bytes()).hexdigest()
+    assert binding["base_expression"]["sha256"] == (
+        "sha256:" + hashlib.sha256(base_expression.read_bytes()).hexdigest()
     )
     source = extension.read_text(encoding="utf-8")
-    assert "_parent.apply_component" in source
+    assert "_base_expression.apply_component" in source
     assert "ASET-COMPONENT-" not in source
     assert '"UNKNOWN"' not in source
     assert '"ALLOW"' not in source
     assert '"BLOCK"' not in source
 
 
-def test_python_sqlite_persistence_gate_preserves_exact_parent(tmp_path: Path) -> None:
+def test_python_sqlite_persistence_gate_preserves_exact_base_expression(
+    tmp_path: Path,
+) -> None:
     from tools.alpha4_python_sqlite_persistence_gate import (
         check_python_sqlite_persistence,
     )
@@ -473,7 +487,7 @@ def test_python_sqlite_persistence_gate_preserves_exact_parent(tmp_path: Path) -
     runtime = evidence["runtime"]
     assert evidence["relation"] == "PERSISTENCE_EXTENSION"
     assert evidence["semantic_delta"] == "NONE"
-    assert runtime["parent_congruence_cases"] == 1824
+    assert runtime["base_expression_congruence_cases"] == 1824
     assert runtime["restart_round_trip_components"] == 6
     assert runtime["rollback_checks"] > 0
     assert runtime["status"] == "PASS"
@@ -533,8 +547,11 @@ def test_python_sqlite_rejects_parent_byte_drift(tmp_path: Path) -> None:
         tree_digest(release),
         materialized_proof_witnesses(tmp_path),
     )
-    parent = profiles / "python/aset_seed_alpha4.py"
-    parent.write_text(parent.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    base_expression = profiles / "python/aset_seed_alpha4.py"
+    base_expression.write_text(
+        base_expression.read_text(encoding="utf-8") + "\n",
+        encoding="utf-8",
+    )
     with pytest.raises(PythonSQLitePersistenceError):
         check_python_sqlite_persistence(profiles)
 
@@ -601,9 +618,13 @@ def test_release_admission_certificate_binds_independent_evidence(
         profiles_archive,
     )
     assert certificate["project"] == "Authority-Seeded Evidence Trail (ASET)"
+    assert certificate["semantic_algebra"] == {
+        "id": "ASET_ALPHA",
+        "name": "Local Recognition Algebra",
+    }
     assert certificate["evidence"]["python_airgap"]["cases_checked"] == 1824
     sqlite = certificate["evidence"]["python_sqlite_persistence"]
-    assert sqlite["parent_congruence_cases"] == 1824
+    assert sqlite["base_expression_congruence_cases"] == 1824
     assert sqlite["semantic_delta"] == "NONE"
     assert certificate["status"] == "PASS"
 
