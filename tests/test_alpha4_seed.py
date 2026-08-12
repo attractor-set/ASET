@@ -419,6 +419,24 @@ def test_public_identity_and_aset_alpha_are_bound() -> None:
     assert "Local Recognition Algebra" in readme
 
 
+def test_repository_locator_is_aset_seed_only() -> None:
+    repository_url = "https://github.com/attractor-set/aset-seed"
+    old_repository_url = "https://github.com/attractor-set/" + "ASET"
+    citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+    history = (ROOT / "history/REFERENCES.aset").read_text(encoding="utf-8")
+    assert f'repository-code: "{repository_url}"' in citation
+    assert f"REPOSITORY {repository_url}" in history
+
+    for relative in (
+        "pyproject.toml",
+        "CITATION.cff",
+        "README.md",
+        "history/REFERENCES.aset",
+        ".github/workflows/verify.yml",
+    ):
+        assert old_repository_url not in (ROOT / relative).read_text(encoding="utf-8")
+
+
 def test_python_sqlite_is_exact_base_expression_persistence_extension(
     tmp_path: Path,
 ) -> None:
