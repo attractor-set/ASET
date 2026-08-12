@@ -1,6 +1,7 @@
-# ASET
+# ASET — Authority-Seeded Evidence Trail
 
-ASET 0.4alpha is a compact research specification built around a minimal local-recognition theory and an executable abstract Seed machine.
+ASET 0.4alpha is a compact research specification built around a minimal
+local-recognition theory and an executable abstract Seed machine.
 
 Active structure:
 
@@ -19,6 +20,18 @@ Verify locally:
 python tools/alpha4_seed_gate.py
 ```
 
-The release pipeline materializes controlled English and Python as external companion profiles with semantic precedence `NONE`. SHA-256 identifies exact release bytes; semantic integrity is established by declared congruence and proof obligations.
+The release pipeline materializes controlled English and Python as external
+companion profiles with semantic precedence `NONE`. The Python+SQLite artifact
+is not a second Seed expression: it is a persistence extension of the exact
+generated Python expression, with `semantic_delta=NONE` and an exact parent
+byte binding.
+
+Generated Python is admitted against independently materialized proof-derived
+witnesses through the air-gap verifier. The SQLite persistence extension is
+then checked against its exact Python parent for observational preservation,
+transaction rollback, and restart round-trip behavior.
+
+SHA-256 identifies exact release bytes; semantic integrity is established by
+declared congruence and proof obligations.
 
 Copyright and attribution are in `NOTICE`. Licensing terms are in `LICENSE`.

@@ -404,3 +404,259 @@ def test_release_manifest_uses_hash_only_as_byte_identity(tmp_path: Path) -> Non
     assert manifest["integrity_policy"]["digest_role"] == "BYTE_IDENTITY_AND_CACHE_ONLY"
     assert manifest["source_byte_identity_digest"].startswith("sha256:")
     assert "semantic_source_digest" not in manifest
+
+
+def test_project_identity_is_authority_seeded_evidence_trail() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+    assert "ASET — Authority-Seeded Evidence Trail" in readme
+    assert 'title: "ASET — Authority-Seeded Evidence Trail"' in citation
+
+
+def test_python_sqlite_is_exact_parent_persistence_extension(tmp_path: Path) -> None:
+    release = tmp_path / "release"
+    build_tree(release)
+    profiles = tmp_path / "profiles"
+    manifest = build_profiles_tree(
+        profiles,
+        tree_digest(release),
+        materialized_proof_witnesses(tmp_path),
+    )
+    evidence = check_release_profile_congruence(ROOT, profiles)
+    persistence = evidence["python_sqlite_persistence_extension"]
+    assert persistence["relation"] == "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_PARENT"
+    assert persistence["semantic_delta"] == "NONE"
+    assert manifest["project"] == "Authority-Seeded Evidence Trail (ASET)"
+    python_sqlite = manifest["profiles"]["python_sqlite"]
+    assert python_sqlite["role"] == "PERSISTENCE_EXTENSION"
+    assert python_sqlite["parent"] == "python"
+    assert python_sqlite["semantic_delta"] == "NONE"
+    assert python_sqlite["assurance"] == "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED"
+
+    binding = json.loads(
+        (profiles / "python-sqlite/PERSISTENCE_EXTENSION.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    parent = profiles / binding["parent"]["path"]
+    extension = profiles / binding["extension"]["path"]
+    assert binding["relation"] == "PERSISTENCE_EXTENSION"
+    assert binding["semantic_delta"] == "NONE"
+    assert binding["semantic_precedence"] == "NONE"
+    assert binding["parent"]["profile"] == "python"
+    assert binding["extension"]["profile"] == "python-sqlite"
+    assert binding["parent"]["sha256"] == (
+        "sha256:" + hashlib.sha256(parent.read_bytes()).hexdigest()
+    )
+    source = extension.read_text(encoding="utf-8")
+    assert "_parent.apply_component" in source
+    assert "ASET-COMPONENT-" not in source
+    assert '"UNKNOWN"' not in source
+    assert '"ALLOW"' not in source
+    assert '"BLOCK"' not in source
+
+
+def test_python_sqlite_persistence_gate_preserves_exact_parent(tmp_path: Path) -> None:
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        check_python_sqlite_persistence,
+    )
+
+    release = tmp_path / "release"
+    build_tree(release)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(
+        profiles,
+        tree_digest(release),
+        materialized_proof_witnesses(tmp_path),
+    )
+    evidence = check_python_sqlite_persistence(profiles)
+    runtime = evidence["runtime"]
+    assert evidence["relation"] == "PERSISTENCE_EXTENSION"
+    assert evidence["semantic_delta"] == "NONE"
+    assert runtime["parent_congruence_cases"] == 1824
+    assert runtime["restart_round_trip_components"] == 6
+    assert runtime["rollback_checks"] > 0
+    assert runtime["status"] == "PASS"
+    boundary = evidence["materialization_boundary"]
+    assert boundary["profile_tree_unchanged"] is True
+    assert boundary["python_bytecode_written"] is False
+    assert (
+        boundary["profile_tree_digest_before"] == boundary["profile_tree_digest_after"]
+    )
+
+
+def test_python_sqlite_rejects_semantic_logic_in_persistence_layer(
+    tmp_path: Path,
+) -> None:
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        PythonSQLitePersistenceError,
+        check_python_sqlite_persistence,
+    )
+
+    release = tmp_path / "release"
+    build_tree(release)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(
+        profiles,
+        tree_digest(release),
+        materialized_proof_witnesses(tmp_path),
+    )
+    binding_path = profiles / "python-sqlite/PERSISTENCE_EXTENSION.json"
+    binding = json.loads(binding_path.read_text(encoding="utf-8"))
+    extension = profiles / binding["extension"]["path"]
+    extension.write_text(
+        extension.read_text(encoding="utf-8") + '\nSEMANTIC_DRIFT = "ALLOW"\n',
+        encoding="utf-8",
+    )
+    binding["extension"]["sha256"] = (
+        "sha256:" + hashlib.sha256(extension.read_bytes()).hexdigest()
+    )
+    binding_path.write_text(
+        json.dumps(binding, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(PythonSQLitePersistenceError):
+        check_python_sqlite_persistence(profiles)
+
+
+def test_python_sqlite_rejects_parent_byte_drift(tmp_path: Path) -> None:
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        PythonSQLitePersistenceError,
+        check_python_sqlite_persistence,
+    )
+
+    release = tmp_path / "release"
+    build_tree(release)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(
+        profiles,
+        tree_digest(release),
+        materialized_proof_witnesses(tmp_path),
+    )
+    parent = profiles / "python/aset_seed_alpha4.py"
+    parent.write_text(parent.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    with pytest.raises(PythonSQLitePersistenceError):
+        check_python_sqlite_persistence(profiles)
+
+
+def test_verify_workflow_uploads_expression_and_persistence_evidence() -> None:
+    workflow = (ROOT / ".github/workflows/verify.yml").read_text(encoding="utf-8")
+    assert "dist/airgap-expression-evidence.json" in workflow
+    assert "dist/python-sqlite-persistence-evidence.json" in workflow
+    assert "dist/release-admission-certificate.json" in workflow
+
+
+def test_release_admission_certificate_binds_independent_evidence(
+    tmp_path: Path,
+) -> None:
+    from tools.alpha4_expression_airgap_verifier import check_airgapped_expression
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        check_python_sqlite_persistence,
+    )
+    from tools.alpha4_release_admission_certificate import check_release_admission
+    from tools.build_alpha4_release import zip_tree
+
+    release = tmp_path / "release"
+    build_tree(release)
+    witnesses = materialized_proof_witnesses(tmp_path)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(profiles, tree_digest(release), witnesses)
+
+    expression_evidence = tmp_path / "airgap.json"
+    expression_evidence.write_text(
+        json.dumps(
+            check_airgapped_expression(
+                witnesses,
+                profiles / "python/aset_seed_alpha4.py",
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    persistence_evidence = tmp_path / "persistence.json"
+    persistence_evidence.write_text(
+        json.dumps(
+            check_python_sqlite_persistence(profiles),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    release_archive = tmp_path / "release.zip"
+    profiles_archive = tmp_path / "profiles.zip"
+    zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
+    zip_tree(profiles, profiles_archive, "ASET-Seed-0.4alpha-profiles")
+
+    certificate = check_release_admission(
+        witnesses,
+        expression_evidence,
+        persistence_evidence,
+        release,
+        profiles,
+        release_archive,
+        profiles_archive,
+    )
+    assert certificate["project"] == "Authority-Seeded Evidence Trail (ASET)"
+    assert certificate["evidence"]["python_airgap"]["cases_checked"] == 1824
+    sqlite = certificate["evidence"]["python_sqlite_persistence"]
+    assert sqlite["parent_congruence_cases"] == 1824
+    assert sqlite["semantic_delta"] == "NONE"
+    assert certificate["status"] == "PASS"
+
+
+def test_release_admission_rejects_expression_parent_mismatch(tmp_path: Path) -> None:
+    from tools.alpha4_expression_airgap_verifier import check_airgapped_expression
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        check_python_sqlite_persistence,
+    )
+    from tools.alpha4_release_admission_certificate import (
+        ReleaseAdmissionError,
+        check_release_admission,
+    )
+    from tools.build_alpha4_release import zip_tree
+
+    release = tmp_path / "release"
+    build_tree(release)
+    witnesses = materialized_proof_witnesses(tmp_path)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(profiles, tree_digest(release), witnesses)
+
+    expression_evidence = tmp_path / "airgap.json"
+    expression = check_airgapped_expression(
+        witnesses,
+        profiles / "python/aset_seed_alpha4.py",
+    )
+    expression["verifier_inputs"]["expression_artifact"]["sha256"] = "sha256:00"
+    expression_evidence.write_text(
+        json.dumps(expression, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    persistence_evidence = tmp_path / "persistence.json"
+    persistence_evidence.write_text(
+        json.dumps(
+            check_python_sqlite_persistence(profiles),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    release_archive = tmp_path / "release.zip"
+    profiles_archive = tmp_path / "profiles.zip"
+    zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
+    zip_tree(profiles, profiles_archive, "ASET-Seed-0.4alpha-profiles")
+
+    with pytest.raises(ReleaseAdmissionError):
+        check_release_admission(
+            witnesses,
+            expression_evidence,
+            persistence_evidence,
+            release,
+            profiles,
+            release_archive,
+            profiles_archive,
+        )

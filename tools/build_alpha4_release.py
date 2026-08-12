@@ -253,6 +253,7 @@ def build_profiles_tree(
     ]
     manifest: dict[str, object] = {
         "document_type": "aset-ci-release-companion-materialization",
+        "project": "Authority-Seeded Evidence Trail (ASET)",
         "line_id": bindings.subject_id,
         "version": bindings.version,
         "seed_membership": "EXTERNAL_RELEASE_COMPANION",
@@ -261,6 +262,14 @@ def build_profiles_tree(
         "profiles": {
             "controlled_english": "en/Seed.md",
             "python": "python/aset_seed_alpha4.py",
+            "python_sqlite": {
+                "role": "PERSISTENCE_EXTENSION",
+                "parent": "python",
+                "semantic_delta": "NONE",
+                "path": "python-sqlite/aset_seed_alpha4_sqlite.py",
+                "binding": "python-sqlite/PERSISTENCE_EXTENSION.json",
+                "assurance": "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED",
+            },
         },
         "proof_witness_artifact": {
             "path": "assurance/proof-witnesses.json",
@@ -399,6 +408,9 @@ def main(argv: list[str] | None = None) -> int:
         f"{english_count}/{english_count} PASS"
     )
     print("ALPHA4_RELEASE_PYTHON_EXPRESSION_ASSURANCE=EXTERNAL_AIRGAP_REQUIRED")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_RELATION=PERSISTENCE_EXTENSION_OF_PYTHON")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_ASSURANCE=EXTERNAL_PERSISTENCE_GATE_REQUIRED")
     print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
     print(
         f"ALPHA4_SOURCE_BYTE_IDENTITY_DIGEST={manifest['source_byte_identity_digest']}"

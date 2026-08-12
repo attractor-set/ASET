@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use ASET, cite the exact verified release."
-title: "ASET"
+title: "ASET — Authority-Seeded Evidence Trail"
 type: software
 authors:
   - family-names: "Prychyna"

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import itertools
 import json
 import re
@@ -22,6 +23,10 @@ except ModuleNotFoundError:
     )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def sha256(path: Path) -> str:
+    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class ReleaseProfileCongruenceError(RuntimeError):
@@ -228,6 +233,54 @@ def check_python_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
     }
 
 
+def check_python_sqlite_binding(profiles_root: Path) -> dict[str, Any]:
+    binding_path = profiles_root / "python-sqlite/PERSISTENCE_EXTENSION.json"
+    require(binding_path.is_file(), "Python SQLite persistence binding missing")
+    binding = json.loads(binding_path.read_text(encoding="utf-8"))
+    require(
+        binding.get("document_type") == "aset-python-persistence-extension-binding",
+        "unexpected Python SQLite persistence binding type",
+    )
+    require(
+        binding.get("relation") == "PERSISTENCE_EXTENSION",
+        "Python SQLite relation drifted",
+    )
+    require(
+        binding.get("semantic_delta") == "NONE",
+        "Python SQLite semantic delta must be NONE",
+    )
+    require(
+        binding.get("semantic_precedence") == "NONE",
+        "Python SQLite cannot acquire semantic precedence",
+    )
+    parent = binding.get("parent")
+    extension = binding.get("extension")
+    require(isinstance(parent, dict), "Python SQLite parent binding missing")
+    require(isinstance(extension, dict), "Python SQLite extension binding missing")
+    parent_path = profiles_root / str(parent.get("path"))
+    extension_path = profiles_root / str(extension.get("path"))
+    require(parent_path.is_file(), "bound Python parent missing")
+    require(extension_path.is_file(), "Python SQLite extension missing")
+    require(parent.get("profile") == "python", "Python SQLite direct parent drifted")
+    require(
+        extension.get("profile") == "python-sqlite",
+        "Python SQLite profile identity drifted",
+    )
+    require(
+        parent.get("sha256") == sha256(parent_path), "Python parent binding drifted"
+    )
+    require(
+        extension.get("sha256") == sha256(extension_path),
+        "Python SQLite extension binding drifted",
+    )
+    return {
+        "relation": "PERSISTENCE_EXTENSION_OF_EXACT_PYTHON_PARENT",
+        "semantic_delta": "NONE",
+        "assurance": "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED",
+        "status": "PASS",
+    }
+
+
 def check_release_profile_congruence(root: Path, profiles_root: Path) -> dict[str, Any]:
     witness_path = profiles_root / "assurance/proof-witnesses.json"
     require(witness_path.is_file(), "materialized proof witness artifact missing")
@@ -237,6 +290,9 @@ def check_release_profile_congruence(root: Path, profiles_root: Path) -> dict[st
         "semantic_precedence": "NONE",
         "english": check_english_congruence(root, profiles_root),
         "python_expression_assurance": "EXTERNAL_AIRGAP_VERIFIER_REQUIRED",
+        "python_sqlite_persistence_extension": check_python_sqlite_binding(
+            profiles_root
+        ),
         "status": "PASS",
     }
 
@@ -262,6 +318,11 @@ def main(argv: list[str] | None = None) -> int:
         count = english["components_checked"]
         print(f"ALPHA4_RELEASE_ENGLISH_PROFILE_CONGRUENCE={count}/{count} PASS")
         print("ALPHA4_RELEASE_PYTHON_EXPRESSION_ASSURANCE=EXTERNAL_AIRGAP_REQUIRED")
+        print("ALPHA4_RELEASE_PYTHON_SQLITE_RELATION=PERSISTENCE_EXTENSION_OF_PYTHON")
+        print("ALPHA4_RELEASE_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")
+        print(
+            "ALPHA4_RELEASE_PYTHON_SQLITE_ASSURANCE=EXTERNAL_PERSISTENCE_GATE_REQUIRED"
+        )
         print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
         return 0
     except (
