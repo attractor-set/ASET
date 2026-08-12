@@ -55,4 +55,8 @@ jobs:
             dist/ASET-Seed-0.4alpha.zip
             dist/ASET-Seed-0.4alpha-profiles/**
             dist/ASET-Seed-0.4alpha-profiles.zip
+            dist/airgap-expression-evidence.json
+            dist/python-sqlite-persistence-evidence.json
+            dist/release-admission-certificate.json
+            dist/public-release-audit.json
             dist/inpi/**

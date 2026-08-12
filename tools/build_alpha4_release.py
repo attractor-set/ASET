@@ -140,6 +140,11 @@ def build_tree(output: Path) -> dict[str, object]:
         "document_type": "aset-seed-release-materialization",
         "line_id": bindings.subject_id,
         "version": bindings.version,
+        "semantic_algebra": {
+            "id": "ASET_ALPHA",
+            "name": "Local Recognition Algebra",
+        },
+        "representation_id": bindings.version,
         "compatibility_with_0_3": bindings.compatibility,
         "source_byte_identity_digest": source_digest(source_paths),
         "architecture": {
@@ -233,10 +238,17 @@ def write_inpi_hash(archive: Path) -> Path:
 
 
 def build_profiles_tree(
-    output: Path, seed_release_tree_digest: str
+    output: Path,
+    seed_release_tree_digest: str,
+    proof_witnesses: Path,
 ) -> dict[str, object]:
     bindings = parse_seed_bindings(ROOT)
+    if not proof_witnesses.is_file():
+        raise RuntimeError("materialized proof witness artifact missing")
     build_release_profiles(ROOT, output)
+    witness_target = output / "assurance/proof-witnesses.json"
+    witness_target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(proof_witnesses, witness_target)
     congruence = check_release_profile_congruence(ROOT, output)
     write_release_profile_evidence(output / "RELEASE_PROFILE_EVIDENCE.json", congruence)
     artifacts = [
@@ -246,14 +258,33 @@ def build_profiles_tree(
     ]
     manifest: dict[str, object] = {
         "document_type": "aset-ci-release-companion-materialization",
+        "project": "Authority-Seeded Evidence Trail (ASET)",
         "line_id": bindings.subject_id,
         "version": bindings.version,
+        "semantic_algebra": {
+            "id": "ASET_ALPHA",
+            "name": "Local Recognition Algebra",
+        },
+        "representation_id": bindings.version,
         "seed_membership": "EXTERNAL_RELEASE_COMPANION",
         "semantic_precedence": "NONE",
         "seed_release_tree_digest": seed_release_tree_digest,
         "profiles": {
             "controlled_english": "en/Seed.md",
             "python": "python/aset_seed_alpha4.py",
+            "python_sqlite": {
+                "role": "PERSISTENCE_EXTENSION",
+                "base_expression": "python",
+                "semantic_delta": "NONE",
+                "path": "python-sqlite/aset_seed_alpha4_sqlite.py",
+                "binding": "python-sqlite/PERSISTENCE_EXTENSION.json",
+                "assurance": "EXTERNAL_PERSISTENCE_PROFILE_GATE_REQUIRED",
+            },
+        },
+        "proof_witness_artifact": {
+            "path": "assurance/proof-witnesses.json",
+            "sha256": sha256(witness_target),
+            "role": "INDEPENDENT_PROOF_DERIVED_EXPRESSION_ORACLE",
         },
         "congruence_evidence": "RELEASE_PROFILE_EVIDENCE.json",
         "artifacts": artifacts,
@@ -291,7 +322,17 @@ def smoke_python(path: Path) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--verify-determinism", action="store_true")
+    parser.add_argument(
+        "--proof-witnesses",
+        type=Path,
+        default=DIST / "proof-derived-recognition-witnesses.json",
+    )
     args = parser.parse_args(argv)
+    proof_witnesses = (
+        args.proof_witnesses
+        if args.proof_witnesses.is_absolute()
+        else ROOT / args.proof_witnesses
+    )
 
     validation = subprocess.run(
         [sys.executable, "tools/validate_alpha4_seed.py"],
@@ -313,7 +354,12 @@ def main(argv: list[str] | None = None) -> int:
 
     profiles_name = f"{RELEASE_NAME}-profiles"
     profiles_dir = DIST / profiles_name
-    profile_manifest = build_profiles_tree(profiles_dir, digest)
+    if not proof_witnesses.is_file():
+        print("ALPHA4_RELEASE_PROOF_WITNESS_INPUT=FAIL")
+        print("ALPHA4_RELEASE_BUILD=FAIL")
+        return 1
+
+    profile_manifest = build_profiles_tree(profiles_dir, digest, proof_witnesses)
     profile_evidence = check_release_profile_congruence(ROOT, profiles_dir)
     if profile_evidence.get("status") != "PASS":
         print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=FAIL")
@@ -334,8 +380,8 @@ def main(argv: list[str] | None = None) -> int:
             if first_digest != second_digest:
                 print("ALPHA4_RELEASE_DETERMINISM=FAIL")
                 return 1
-            build_profiles_tree(first_profiles, first_digest)
-            build_profiles_tree(second_profiles, second_digest)
+            build_profiles_tree(first_profiles, first_digest, proof_witnesses)
+            build_profiles_tree(second_profiles, second_digest, proof_witnesses)
             if tree_digest(first_profiles) != tree_digest(second_profiles):
                 print("ALPHA4_RELEASE_PROFILE_DETERMINISM=FAIL")
                 return 1
@@ -355,7 +401,6 @@ def main(argv: list[str] | None = None) -> int:
     assembled = congruence["assembled_formal"]
     paired = congruence["paired_expression"]
     english = profile_evidence["english"]
-    python_profile = profile_evidence["python"]
     print("ALPHA4_SOURCE_CONTENT_CONGRUENCE=PASS")
     assembled_count = assembled["components_checked"]
     print(
@@ -372,10 +417,10 @@ def main(argv: list[str] | None = None) -> int:
         "ALPHA4_RELEASE_ENGLISH_PROFILE_CONGRUENCE="
         f"{english_count}/{english_count} PASS"
     )
-    python_cases = python_profile["cases_checked"]
-    print(
-        f"ALPHA4_RELEASE_PYTHON_PROFILE_CONGRUENCE={python_cases}/{python_cases} PASS"
-    )
+    print("ALPHA4_RELEASE_PYTHON_EXPRESSION_ASSURANCE=EXTERNAL_AIRGAP_REQUIRED")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_RELATION=PERSISTENCE_EXTENSION_OF_PYTHON")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")
+    print("ALPHA4_RELEASE_PYTHON_SQLITE_ASSURANCE=EXTERNAL_PERSISTENCE_GATE_REQUIRED")
     print("ALPHA4_RELEASE_PROFILE_CONGRUENCE=PASS")
     print(
         f"ALPHA4_SOURCE_BYTE_IDENTITY_DIGEST={manifest['source_byte_identity_digest']}"

@@ -1,7 +1,8 @@
 cff-version: 1.2.0
 message: "If you use ASET, cite the exact verified release."
-title: "ASET"
+title: "ASET — Authority-Seeded Evidence Trail"
 type: software
+abstract: "ASET Alpha is the Local Recognition Algebra implemented by ASET Seed 0.4alpha."
 authors:
   - family-names: "Prychyna"
     given-names: "Dzmitry"
