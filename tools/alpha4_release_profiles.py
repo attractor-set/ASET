@@ -8,10 +8,10 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from tools.alpha4_binding_graph import parse_seed_bindings
+    from tools.alpha4_manifest import parse_seed_manifest
     from tools.alpha4_operational_expression import derive_operational_graphs
 except ModuleNotFoundError:
-    from alpha4_binding_graph import parse_seed_bindings
+    from alpha4_manifest import parse_seed_manifest
     from alpha4_operational_expression import derive_operational_graphs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,7 +22,7 @@ def sha256(path: Path) -> str:
 
 
 def _records(root: Path) -> list[dict[str, Any]]:
-    bindings = parse_seed_bindings(root)
+    bindings = parse_seed_manifest(root)
     pair_by_id = {item.component_id: item for item in bindings.pairs}
     graphs = derive_operational_graphs(root)
     records: list[dict[str, Any]] = []

@@ -6,9 +6,9 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from tools.alpha4_binding_graph import parse_seed_bindings
+    from tools.alpha4_manifest import BindingPlan, parse_seed_manifest
 except ModuleNotFoundError:
-    from alpha4_binding_graph import parse_seed_bindings
+    from alpha4_manifest import BindingPlan, parse_seed_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,9 +43,8 @@ def extract_operator_body(text: str, operator: str) -> str:
     return compact(match.group("body"))
 
 
-def _component_index(root: Path) -> dict[str, Any]:
-    bindings = parse_seed_bindings(root)
-    return {item.formal_operator: item for item in bindings.pairs}
+def _component_index(plan: BindingPlan) -> dict[str, Any]:
+    return {item.formal_operator: item for item in plan.pairs}
 
 
 def _recognition_input(body: str, operator: str) -> str:
@@ -102,8 +101,11 @@ def _nodes_for(body: str, operator: str) -> list[dict[str, Any]]:
     return nodes
 
 
-def derive_relational_graphs(root: Path = ROOT) -> dict[str, Any]:
-    index = _component_index(root)
+def derive_relational_graphs(
+    root: Path = ROOT, plan: BindingPlan | None = None
+) -> dict[str, Any]:
+    binding_plan = plan or parse_seed_manifest(root)
+    index = _component_index(binding_plan)
     text = (root / "seed/alpha4/formal/ComponentRelations.tla").read_text(
         encoding="utf-8"
     )

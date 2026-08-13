@@ -8,6 +8,13 @@ from pathlib import Path
 from typing import Any, Callable
 
 try:
+    from tools.alpha4_causal_expression import (
+        CausalExpressionError,
+        apply_causal_graph,
+        check_causal_invariant,
+        derive_causal_graphs,
+        semantic_projection as causal_projection,
+    )
     from tools.alpha4_manifest import BindingPlan
     from tools.alpha4_operational_expression import (
         OperationalExpressionError,
@@ -22,6 +29,13 @@ try:
         semantic_projection as relational_projection,
     )
 except ModuleNotFoundError:
+    from alpha4_causal_expression import (
+        CausalExpressionError,
+        apply_causal_graph,
+        check_causal_invariant,
+        derive_causal_graphs,
+        semantic_projection as causal_projection,
+    )
     from alpha4_manifest import BindingPlan
     from alpha4_operational_expression import (
         OperationalExpressionError,
@@ -39,37 +53,19 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class PairedExpressionError(RuntimeError):
+class TriangulatedExpressionError(RuntimeError):
     pass
 
 
 def require(condition: bool, message: str) -> None:
     if not condition:
-        raise PairedExpressionError(message)
+        raise TriangulatedExpressionError(message)
 
 
 def load_graph(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict):
-        raise PairedExpressionError(f"graph document must be an object: {path}")
+    require(isinstance(value, dict), f"graph document must be an object: {path}")
     return value
-
-
-def write_graph(path: Path, value: dict[str, Any]) -> None:
-    path.write_text(
-        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
-
-
-def write_release_graphs(
-    root: Path, target: Path, plan: BindingPlan | None = None
-) -> tuple[dict[str, Any], dict[str, Any]]:
-    target.mkdir(parents=True, exist_ok=True)
-    operational = derive_operational_graphs(root, plan)
-    relational = derive_relational_graphs(root, plan)
-    write_graph(target / "operational-graph.json", operational)
-    write_graph(target / "relational-graph.json", relational)
-    return operational, relational
 
 
 def _observe(call: Callable[[], dict[str, Any]]) -> tuple[str, Any]:
@@ -114,17 +110,19 @@ def _outcome_by_component(
     return outcomes
 
 
-def check_paired_expression(
+def check_triangulated_expression(
     root: Path = ROOT,
     release_root: Path | None = None,
     plan: BindingPlan | None = None,
 ) -> dict[str, Any]:
     expected_operational = derive_operational_graphs(root, plan)
     expected_relational = derive_relational_graphs(root, plan)
+    expected_causal = derive_causal_graphs(root, plan)
 
     if release_root is None:
         operational = expected_operational
         relational = expected_relational
+        causal = expected_causal
     else:
         operational = load_graph(
             release_root / "expression/paired/operational-graph.json"
@@ -132,22 +130,40 @@ def check_paired_expression(
         relational = load_graph(
             release_root / "expression/paired/relational-graph.json"
         )
+        causal = load_graph(release_root / "expression/causal/causal-graph.json")
         require(
             operational == expected_operational,
-            "release operational graph differs from actual operational source derivation",
+            (
+                "release operational graph differs from actual operational "
+                "source derivation"
+            ),
         )
         require(
             relational == expected_relational,
             "release relational graph differs from actual relational source derivation",
         )
+        require(
+            causal == expected_causal,
+            "release causal graph differs from actual causal source derivation",
+        )
 
     operational_semantics = operational_projection(operational)
     relational_semantics = relational_projection(relational)
+    causal_semantics = causal_projection(causal)
     require(
         operational_semantics == relational_semantics,
-        "independently derived expression graphs are not semantically congruent",
+        "operational and relational graph projections are incongruent",
+    )
+    require(
+        operational_semantics == causal_semantics,
+        "operational and causal graph projections are incongruent",
+    )
+    require(
+        relational_semantics == causal_semantics,
+        "relational and causal graph projections are incongruent",
     )
 
+    invariant = check_causal_invariant(causal)
     jit_apply = compile_operational_jit(operational)
     outcomes = _outcome_by_component(relational_semantics)
     subjects = ("subject-1", "subject-2")
@@ -183,17 +199,12 @@ def check_paired_expression(
                 else [frozenset()]
             )
             for authority_recognition in variants:
-                fast = _observe(
+                operational_result = _observe(
                     lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
-                        jit_apply(
-                            c,
-                            cid,
-                            evidence=ev,
-                            authority_recognition=ar,
-                        )
+                        jit_apply(c, cid, evidence=ev, authority_recognition=ar)
                     )
                 )
-                reference = _observe(
+                relational_result = _observe(
                     lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
                         apply_reference_graph(
                             relational,
@@ -204,24 +215,42 @@ def check_paired_expression(
                         )
                     )
                 )
+                causal_result = _observe(
+                    lambda c=current, cid=component_id, ev=evidence, ar=authority_recognition: (
+                        apply_causal_graph(
+                            causal,
+                            c,
+                            cid,
+                            evidence=ev,
+                            authority_recognition=ar,
+                        )
+                    )
+                )
                 require(
-                    fast == reference,
-                    "JIT operational expression differs from relational reference expression",
+                    operational_result == relational_result == causal_result,
+                    "operational, relational, and causal observations diverge",
                 )
                 cases += 1
 
     return {
-        "document_type": "aset-paired-expression-congruence-evidence",
-        "profile_id": "ASET-PAIRED-EXPRESSION-0.4-ALPHA",
-        "operational_derivation": "RESTRICTED_OPERATIONAL_SOURCE_TO_GRAPH",
-        "relational_derivation": "FORMAL_RELATIONAL_SOURCE_TO_GRAPH",
-        "graph_relation": "INDEPENDENT_DERIVATION_CROSS_CONGRUENCE",
-        "runtime_relation": "THEORY_PREDICTION_BOUNDED_OBSERVATIONAL_CONGRUENCE",
-        "prediction_source": "THEORY_CONSTRAINED_RELATIONAL_CORRECTNESS_MODEL",
-        "observation_source": "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT",
+        "document_type": "aset-triangulated-expression-congruence-evidence",
+        "profile_id": "ASET-TRIANGULATED-EXPRESSION-0.4-ALPHA",
+        "semantic_delta": "NONE",
+        "derivations": {
+            "operational": "RESTRICTED_OPERATIONAL_SOURCE_TO_GRAPH",
+            "relational": "FORMAL_RELATIONAL_SOURCE_TO_GRAPH",
+            "causal": "RESTRICTED_1_SAFE_CAUSAL_SOURCE_TO_GRAPH",
+        },
+        "pairwise_relations": {
+            "operational_relational": "PASS",
+            "operational_causal": "PASS",
+            "relational_causal": "PASS",
+        },
+        "graph_relation": "THREE_WAY_INDEPENDENT_DERIVATION_CONGRUENCE",
+        "runtime_relation": "THREE_WAY_BOUNDED_OBSERVATIONAL_CONGRUENCE",
+        "causal_invariant": invariant,
         "components_checked": len(operational_semantics),
         "cases_checked": cases,
-        "jit_materialization": "EPHEMERAL_IN_MEMORY",
         "semantic_precedence": "NONE",
         "status": "PASS",
     }
@@ -230,10 +259,14 @@ def check_paired_expression(
 def print_evidence(evidence: dict[str, Any]) -> None:
     count = evidence["components_checked"]
     cases = evidence["cases_checked"]
-    print(f"ALPHA4_PAIRED_GRAPH_CONGRUENCE={count}/{count} PASS")
-    print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={cases}/{cases} PASS")
-    print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={cases}/{cases} PASS")
-    print("ALPHA4_PAIRED_EXPRESSION=PASS")
+    invariant = evidence["causal_invariant"]
+    transitions = invariant["transitions_checked"]
+    print(f"ALPHA4_OPERATIONAL_RELATIONAL_GRAPH_CONGRUENCE={count}/{count} PASS")
+    print(f"ALPHA4_OPERATIONAL_CAUSAL_GRAPH_CONGRUENCE={count}/{count} PASS")
+    print(f"ALPHA4_RELATIONAL_CAUSAL_GRAPH_CONGRUENCE={count}/{count} PASS")
+    print(f"ALPHA4_CAUSAL_RECOGNITION_TOKEN_INVARIANT={transitions}/{transitions} PASS")
+    print(f"ALPHA4_TRIANGULATED_RUNTIME_CONGRUENCE={cases}/{cases} PASS")
+    print("ALPHA4_TRIANGULATED_EXPRESSION=PASS")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -244,19 +277,21 @@ def main(argv: list[str] | None = None) -> int:
         release_root = args.release_root
         if release_root is not None and not release_root.is_absolute():
             release_root = ROOT / release_root
-        evidence = check_paired_expression(ROOT, release_root)
+        evidence = check_triangulated_expression(ROOT, release_root)
         print_evidence(evidence)
         return 0
     except (
         KeyError,
+        OSError,
         TypeError,
         ValueError,
-        PairedExpressionError,
+        TriangulatedExpressionError,
+        CausalExpressionError,
         OperationalExpressionError,
         RelationalExpressionError,
     ) as error:
-        print(f"ALPHA4_PAIRED_EXPRESSION_ERROR={error}")
-        print("ALPHA4_PAIRED_EXPRESSION=FAIL")
+        print(f"ALPHA4_TRIANGULATED_EXPRESSION_ERROR={error}")
+        print("ALPHA4_TRIANGULATED_EXPRESSION=FAIL")
         return 1
 
 

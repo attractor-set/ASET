@@ -100,6 +100,41 @@ def check_release_admission(
         "release profile semantic algebra identity mismatch",
     )
 
+    causal_expression = release_manifest.get("causal_expression")
+    triangulated_assurance = release_manifest.get("triangulated_assurance")
+    congruence_assurance = release_manifest.get("congruence_assurance")
+    require(isinstance(causal_expression, dict), "causal release expression missing")
+    require(
+        causal_expression.get("semantic_delta") == "NONE"
+        and causal_expression.get("semantic_precedence") == "NONE",
+        "causal assurance representation changes Seed semantics",
+    )
+    require(
+        isinstance(triangulated_assurance, dict),
+        "triangulated release assurance missing",
+    )
+    require(
+        triangulated_assurance.get("representations")
+        == ["OPERATIONAL", "RELATIONAL", "CAUSAL"],
+        "triangulated release representation set mismatch",
+    )
+    require(
+        triangulated_assurance.get("semantic_delta") == "NONE"
+        and triangulated_assurance.get("semantic_precedence") == "NONE",
+        "triangulated assurance changes Seed semantics",
+    )
+    require(
+        isinstance(congruence_assurance, dict),
+        "release congruence assurance missing",
+    )
+    triangulated_evidence = congruence_assurance.get("triangulated_expression")
+    require(
+        isinstance(triangulated_evidence, dict)
+        and triangulated_evidence.get("status") == "PASS"
+        and triangulated_evidence.get("semantic_delta") == "NONE",
+        "release triangulated congruence is not admitted",
+    )
+
     representation_id = release_manifest.get("representation_id")
     require(representation_id == "0.4alpha", "release representation mismatch")
     require(
@@ -227,6 +262,13 @@ def check_release_admission(
         "semantic_source_runtime_dependency": "NONE",
         "expression_deriver_runtime_dependency": "NONE",
         "evidence": {
+            "triangulated_assurance": {
+                "representations": ["OPERATIONAL", "RELATIONAL", "CAUSAL"],
+                "components_checked": triangulated_evidence["components_checked"],
+                "cases_checked": triangulated_evidence["cases_checked"],
+                "causal_invariant": triangulated_evidence["causal_invariant"]["status"],
+                "semantic_delta": "NONE",
+            },
             "proof_witness": {
                 "path": witness_path.name,
                 "sha256": witness_sha,
@@ -293,6 +335,8 @@ def main(argv: list[str] | None = None) -> int:
         )
         print("ALPHA4_RELEASE_ADMISSION_PROJECT=AUTHORITY_SEEDED_EVIDENCE_TRAIL")
         print("ALPHA4_RELEASE_ADMISSION_SEMANTIC_ALGEBRA=ASET_ALPHA")
+        print("ALPHA4_RELEASE_ADMISSION_TRIANGULATED_ASSURANCE=PASS")
+        print("ALPHA4_RELEASE_ADMISSION_CAUSAL_SEMANTIC_DELTA=NONE")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_AIRGAP=PASS")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_BASE_EXPRESSION=EXACT")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_SEMANTIC_DELTA=NONE")

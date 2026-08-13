@@ -13,8 +13,9 @@ import zipfile
 from pathlib import Path
 
 try:
-    from tools.alpha4_binding_graph import parse_seed_bindings, write_binding_graph
+    from tools.alpha4_causal_expression import derive_causal_graphs, write_causal_graph
     from tools.alpha4_congruence import check_release_congruence, write_evidence
+    from tools.alpha4_manifest import parse_seed_manifest
     from tools.alpha4_paired_expression import write_release_graphs
     from tools.alpha4_release_profile_congruence import (
         check_release_profile_congruence,
@@ -22,8 +23,9 @@ try:
     )
     from tools.alpha4_release_profiles import build_release_profiles
 except ModuleNotFoundError:
-    from alpha4_binding_graph import parse_seed_bindings, write_binding_graph
+    from alpha4_causal_expression import derive_causal_graphs, write_causal_graph
     from alpha4_congruence import check_release_congruence, write_evidence
+    from alpha4_manifest import parse_seed_manifest
     from alpha4_paired_expression import write_release_graphs
     from alpha4_release_profile_congruence import (
         check_release_profile_congruence,
@@ -65,8 +67,7 @@ def tracked_state() -> str | None:
     return result.stdout if result.returncode == 0 else None
 
 
-def write_assembled_tla(target: Path) -> None:
-    bindings = parse_seed_bindings(ROOT)
+def write_assembled_tla(target: Path, bindings) -> None:
     lines = [
         "------------------------- MODULE AssembledSeed -------------------------",
         "EXTENDS ComponentRelations",
@@ -83,14 +84,15 @@ def write_assembled_tla(target: Path) -> None:
 
 
 def build_tree(output: Path) -> dict[str, object]:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     if output.exists():
         shutil.rmtree(output)
     (output / "source").mkdir(parents=True)
     (output / "operational").mkdir(parents=True)
     (output / "formal").mkdir(parents=True)
-    (output / "binding").mkdir(parents=True)
+    (output / "causal").mkdir(parents=True)
     (output / "expression/paired").mkdir(parents=True)
+    (output / "expression/causal").mkdir(parents=True)
 
     shutil.copy2(ROOT / "LICENSE", output / "LICENSE")
     shutil.copy2(ROOT / "NOTICE", output / "NOTICE")
@@ -98,6 +100,7 @@ def build_tree(output: Path) -> dict[str, object]:
     shutil.copy2(
         ROOT / bindings.abstract_machine, output / "operational/components.forth"
     )
+    shutil.copy2(ROOT / bindings.causal_model, output / "causal/components.petri")
 
     theory_sources = [
         bindings.foundation_model,
@@ -115,19 +118,21 @@ def build_tree(output: Path) -> dict[str, object]:
     ]
     for relative in formal_sources:
         shutil.copy2(ROOT / relative, output / "formal" / Path(relative).name)
-    write_assembled_tla(output / "formal/AssembledSeed.tla")
+    write_assembled_tla(output / "formal/AssembledSeed.tla", bindings)
 
-    shutil.copy2(ROOT / "seed/alpha4/binding/graph.cddl", output / "binding/graph.cddl")
-    binding_evidence = write_binding_graph(ROOT, output / "binding/graph.cbor")
-    write_release_graphs(ROOT, output / "expression/paired")
+    write_release_graphs(ROOT, output / "expression/paired", bindings)
+    write_causal_graph(
+        output / "expression/causal/causal-graph.json",
+        derive_causal_graphs(ROOT, bindings),
+    )
 
-    congruence = check_release_congruence(ROOT, output)
+    congruence = check_release_congruence(ROOT, output, bindings)
     write_evidence(output / "CONGRUENCE_EVIDENCE.json", congruence)
 
     source_paths = [
         "seed/alpha4/SEED.aset",
-        "seed/alpha4/binding/graph.cddl",
         bindings.abstract_machine,
+        bindings.causal_model,
         *formal_sources,
         *theory_sources,
     ]
@@ -153,14 +158,20 @@ def build_tree(output: Path) -> dict[str, object]:
             "abstract_machine": "operational/components.forth",
             "formal_reflection": Path(bindings.formal_reflection).name,
             "correctness_model": Path(bindings.correctness_model).name,
+            "causal_model": "causal/components.petri",
             "prediction_observation_relation": bindings.relation_map()[
                 "PAIRED_RUNTIME"
             ],
+            "triangulated_relation": bindings.relation_map()["TRIANGULATED_GRAPH"],
+            "triangulated_runtime_relation": bindings.relation_map()[
+                "TRIANGULATED_RUNTIME"
+            ],
         },
-        "binding_graph": {
-            **binding_evidence,
-            "path": "binding/graph.cbor",
-            "schema": "binding/graph.cddl",
+        "composition_manifest": {
+            "path": "source/SEED.aset",
+            "role": "NON_SEMANTIC_COMPOSITION_AND_IDENTITY_BINDING",
+            "materialization": "DIRECT_SOURCE_COPY",
+            "semantic_precedence": bindings.semantic_precedence,
         },
         "integrity_policy": {
             "primary_relation": "DECLARED_CONTENT_CONGRUENCE",
@@ -175,6 +186,21 @@ def build_tree(output: Path) -> dict[str, object]:
             "reference_materialization": "RELATIONAL_GRAPH_INTERPRETER",
             "prediction_source": "THEORY_CONSTRAINED_RELATIONAL_CORRECTNESS_MODEL",
             "observation_source": "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT",
+            "semantic_precedence": "NONE",
+        },
+        "causal_expression": {
+            "source": "causal/components.petri",
+            "graph": "expression/causal/causal-graph.json",
+            "derivation": "RESTRICTED_1_SAFE_CAUSAL_SOURCE_TO_GRAPH",
+            "recognition_invariant": "RECOGNITION_TOKEN_CONSERVATION",
+            "semantic_delta": "NONE",
+            "semantic_precedence": "NONE",
+        },
+        "triangulated_assurance": {
+            "representations": ["OPERATIONAL", "RELATIONAL", "CAUSAL"],
+            "graph_relation": bindings.relation_map()["TRIANGULATED_GRAPH"],
+            "runtime_relation": bindings.relation_map()["TRIANGULATED_RUNTIME"],
+            "semantic_delta": "NONE",
             "semantic_precedence": "NONE",
         },
         "formal_assurance_requirement": {
@@ -242,7 +268,7 @@ def build_profiles_tree(
     seed_release_tree_digest: str,
     proof_witnesses: Path,
 ) -> dict[str, object]:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     if not proof_witnesses.is_file():
         raise RuntimeError("materialized proof witness artifact missing")
     build_release_profiles(ROOT, output)
@@ -411,6 +437,22 @@ def main(argv: list[str] | None = None) -> int:
     paired_cases = paired["cases_checked"]
     print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={paired_cases}/{paired_cases} PASS")
     print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={paired_cases}/{paired_cases} PASS")
+    triangulated = congruence["triangulated_expression"]
+    triangulated_count = triangulated["components_checked"]
+    triangulated_cases = triangulated["cases_checked"]
+    invariant_count = triangulated["causal_invariant"]["transitions_checked"]
+    print(
+        "ALPHA4_TRIANGULATED_GRAPH_CONGRUENCE="
+        f"{triangulated_count}/{triangulated_count} PASS"
+    )
+    print(
+        "ALPHA4_CAUSAL_RECOGNITION_TOKEN_INVARIANT="
+        f"{invariant_count}/{invariant_count} PASS"
+    )
+    print(
+        "ALPHA4_TRIANGULATED_RUNTIME_CONGRUENCE="
+        f"{triangulated_cases}/{triangulated_cases} PASS"
+    )
     print("ALPHA4_CONTENT_CONGRUENCE=PASS")
     english_count = english["components_checked"]
     print(

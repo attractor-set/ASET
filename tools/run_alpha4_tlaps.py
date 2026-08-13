@@ -9,9 +9,9 @@ import sys
 from pathlib import Path
 
 try:
-    from tools.alpha4_binding_graph import ProofBinding, parse_seed_bindings
+    from tools.alpha4_manifest import ProofBinding, parse_seed_manifest
 except ModuleNotFoundError:
-    from alpha4_binding_graph import ProofBinding, parse_seed_bindings
+    from alpha4_manifest import ProofBinding, parse_seed_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -70,7 +70,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--tlapm", default=default_tlapm())
     args = parser.parse_args()
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     subjects = bindings.all_proofs
     total_expected = sum(item.expected_obligations for item in subjects)
     total_proved = 0

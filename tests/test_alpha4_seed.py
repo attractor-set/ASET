@@ -7,12 +7,11 @@ from pathlib import Path
 
 import pytest
 
-from tools.alpha4_binding_graph import (
-    BindingError,
-    binding_graph,
-    decode_cbor,
-    encode_cbor,
-    parse_seed_bindings,
+from tools.alpha4_manifest import ManifestError, parse_seed_manifest
+from tools.alpha4_causal_expression import (
+    CausalExpressionError,
+    check_causal_invariant,
+    derive_causal_graphs,
 )
 from tools.alpha4_congruence import (
     CongruenceError,
@@ -25,6 +24,10 @@ from tools.alpha4_paired_expression import (
     check_paired_expression,
 )
 from tools.alpha4_relational_expression import derive_relational_graphs
+from tools.alpha4_triangulated_expression import (
+    TriangulatedExpressionError,
+    check_triangulated_expression,
+)
 from tools.alpha4_release_profile_congruence import (
     ReleaseProfileCongruenceError,
     check_release_profile_congruence,
@@ -45,7 +48,7 @@ def materialized_proof_witnesses(tmp_path: Path) -> Path:
 
 
 def test_seed_subject_identity_is_04alpha() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     assert bindings.subject_id == "ASET-SEED-0.4-ALPHA"
     assert bindings.version == "0.4alpha"
     assert bindings.compatibility_base == "0.3"
@@ -53,7 +56,7 @@ def test_seed_subject_identity_is_04alpha() -> None:
 
 
 def test_recognition_foundation_is_theory_local() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     assert (
         bindings.foundation_model
         == "theory/local-recognition/formal/RecognitionCardinality.tla"
@@ -85,60 +88,62 @@ def test_binding_source_is_relational_not_semantic_component_declaration() -> No
     )
 
 
-def test_binding_graph_is_deterministic_cbor_round_trip() -> None:
-    graph = binding_graph(parse_seed_bindings(ROOT))
-    encoded_a = encode_cbor(graph)
-    encoded_b = encode_cbor(graph)
-    assert encoded_a == encoded_b
-    decoded, offset = decode_cbor(encoded_a)
-    assert offset == len(encoded_a)
-    assert decoded == graph
-    assert (
-        hashlib.sha256(encoded_a).hexdigest() == hashlib.sha256(encoded_b).hexdigest()
-    )
+def test_binding_plan_is_deterministic_and_ephemeral() -> None:
+    first = parse_seed_manifest(ROOT)
+    second = parse_seed_manifest(ROOT)
+    assert first == second
+    assert first.semantic_precedence == "NONE"
+    assert not (ROOT / "seed/alpha4/binding/graph.cddl").exists()
 
 
-def test_binding_graph_contains_only_bindings_and_assurance_edges() -> None:
-    graph = binding_graph(parse_seed_bindings(ROOT))
-    relations = {row[1] for row in graph[5]}
-    assert relations == {
-        "BINDS_OPERATIONAL",
-        "BINDS_RELATIONAL",
-        "CHECKED_AGAINST",
-        "CHECKED_BY",
-        "CONSTRAINED_BY",
-        "DERIVED_BY",
-        "FINAL_THEOREM",
-        "GROUNDED_IN",
-        "HAS_COMPONENT",
-        "IMPLEMENTED_BY",
-        "IMPLEMENTS",
-        "MINIMALITY_PROVED_BY",
-        "REFLECTED_BY",
-        "REQUIRES_PROOF",
-        "USES_CONGRUENCE",
-        "USES_MODULE",
-        "USES_THEORY_CODING",
-        "VERIFIED_BY",
+def test_binding_plan_contains_only_composition_metadata() -> None:
+    plan = parse_seed_manifest(ROOT)
+    fields = set(plan.__dataclass_fields__)
+    assert fields == {
+        "schema_version",
+        "subject_id",
+        "version",
+        "compatibility_base",
+        "compatibility",
+        "digest_role",
+        "semantic_precedence",
+        "theory_algebra",
+        "theory_coding",
+        "abstract_machine",
+        "formal_reflection",
+        "correctness_model",
+        "causal_model",
+        "pairs",
+        "causal_bindings",
+        "foundation_model",
+        "foundation_proof",
+        "proofs",
+        "checks",
+        "derivers",
+        "relations",
     }
+    assert "recognition_in" not in fields
+    assert "recognition_out" not in fields
 
 
 def test_local_recognition_theory_precedes_seed_implementation() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     theory = (ROOT / bindings.theory_algebra).read_text(encoding="utf-8")
     assert bindings.theory_algebra.startswith("theory/local-recognition/")
     assert "EXTENDS RecognitionCardinality" in theory
     assert "ComponentRelations" not in theory
     assert "RestrictedOperationalSemantics" not in theory
     assert "components.forth" not in theory
+    assert "components.petri" not in theory
     assert bindings.theory_coding == ("U", "UNKNOWN", "A", "ALLOW", "B", "BLOCK")
     assert bindings.abstract_machine == "seed/alpha4/operational/components.forth"
     assert bindings.formal_reflection.endswith("RestrictedOperationalSemantics.tla")
     assert bindings.correctness_model.endswith("ComponentRelations.tla")
+    assert bindings.causal_model == "seed/alpha4/causal/components.petri"
 
 
 def test_correctness_model_is_explicitly_theory_constrained() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     text = (ROOT / bindings.correctness_model).read_text(encoding="utf-8")
     assert "EXTENDS FiniteSets, LocalRecognitionAlgebra" in text
     assert "ToTheoryRecognition" in text
@@ -167,12 +172,17 @@ def test_operational_source_has_no_explanatory_or_component_annotation_comments(
     assert text.count(": ") == 6
 
 
-def test_operational_and_relational_sources_derive_same_six_components() -> None:
+def test_operational_relational_and_causal_sources_derive_same_six_components() -> None:
     operational = derive_operational_graphs(ROOT)
     relational = derive_relational_graphs(ROOT)
+    causal = derive_causal_graphs(ROOT)
     assert len(operational["components"]) == 6
     assert len(relational["components"]) == 6
-    assert check_source_congruence(ROOT)["source_pairing"]["components_checked"] == 6
+    assert len(causal["components"]) == 6
+    evidence = check_source_congruence(ROOT)
+    assert evidence["source_pairing"]["components_checked"] == 6
+    assert evidence["source_triangulation"]["components_checked"] == 6
+    assert evidence["source_triangulation"]["semantic_delta"] == "NONE"
 
 
 def test_preserve_actions_do_not_require_unused_evidence_argument() -> None:
@@ -186,7 +196,7 @@ def test_preserve_actions_do_not_require_unused_evidence_argument() -> None:
 
 
 def test_pairing_proof_binds_all_six_pairs_and_final_theorem() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     pairing = next(
         item
         for item in bindings.proofs
@@ -201,7 +211,7 @@ def test_pairing_proof_binds_all_six_pairs_and_final_theorem() -> None:
 
 
 def test_formal_assurance_total_is_38_obligations() -> None:
-    bindings = parse_seed_bindings(ROOT)
+    bindings = parse_seed_manifest(ROOT)
     assert [item.expected_obligations for item in bindings.all_proofs] == [14, 11, 13]
     assert sum(item.expected_obligations for item in bindings.all_proofs) == 38
 
@@ -213,8 +223,13 @@ def test_derivation_paths_are_physically_independent() -> None:
     relational = (ROOT / "tools/alpha4_relational_expression.py").read_text(
         encoding="utf-8"
     )
+    causal = (ROOT / "tools/alpha4_causal_expression.py").read_text(encoding="utf-8")
     assert "alpha4_relational_expression" not in operational
+    assert "alpha4_causal_expression" not in operational
     assert "alpha4_operational_expression" not in relational
+    assert "alpha4_causal_expression" not in relational
+    assert "alpha4_operational_expression" not in causal
+    assert "alpha4_relational_expression" not in causal
 
 
 def test_paired_expression_remains_congruent() -> None:
@@ -231,6 +246,87 @@ def test_paired_expression_remains_congruent() -> None:
     )
     assert evidence["observation_source"] == "ABSTRACT_FORTH_MACHINE_EPHEMERAL_JIT"
     assert evidence["status"] == "PASS"
+
+
+def test_causal_representation_is_one_safe_and_semantically_neutral() -> None:
+    causal = derive_causal_graphs(ROOT)
+    invariant = check_causal_invariant(causal)
+    assert causal["semantic_precedence"] == "NONE"
+    assert invariant["invariant_id"] == "RECOGNITION-ONEHOT"
+    assert invariant["transitions_checked"] == 6
+    assert invariant["one_safe"] is True
+    assert invariant["total"] == 1
+    assert invariant["status"] == "PASS"
+
+
+def test_triangulated_expression_remains_congruent() -> None:
+    evidence = check_triangulated_expression(ROOT)
+    assert evidence["components_checked"] == 6
+    assert evidence["cases_checked"] == 1824
+    assert evidence["semantic_delta"] == "NONE"
+    assert evidence["pairwise_relations"] == {
+        "operational_relational": "PASS",
+        "operational_causal": "PASS",
+        "relational_causal": "PASS",
+    }
+    assert evidence["causal_invariant"]["status"] == "PASS"
+    assert evidence["status"] == "PASS"
+
+
+def test_causal_arc_drift_is_rejected(tmp_path: Path) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    causal = copied / "seed/alpha4/causal/components.petri"
+    text = causal.read_text(encoding="utf-8")
+    causal.write_text(
+        text.replace(
+            "TRANSITION RECOGNIZE-ALLOW ASET-COMPONENT-RECOGNIZE-ALLOW\n"
+            "FROM U\n"
+            "REQUIRE EVIDENCE_ARGUMENT\n"
+            "REQUIRE OBSERVED_EVIDENCE\n"
+            "REQUIRE LOCAL_AUTHORITY_ALLOW\n"
+            "TO A",
+            "TRANSITION RECOGNIZE-ALLOW ASET-COMPONENT-RECOGNIZE-ALLOW\n"
+            "FROM U\n"
+            "REQUIRE EVIDENCE_ARGUMENT\n"
+            "REQUIRE OBSERVED_EVIDENCE\n"
+            "REQUIRE LOCAL_AUTHORITY_ALLOW\n"
+            "TO B",
+            1,
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(
+        (
+            TriangulatedExpressionError,
+            CausalExpressionError,
+            CongruenceError,
+            ValueError,
+        )
+    ):
+        check_triangulated_expression(copied)
+
+
+def test_causal_invariant_drift_is_rejected(tmp_path: Path) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    causal = copied / "seed/alpha4/causal/components.petri"
+    causal.write_text(
+        causal.read_text(encoding="utf-8").replace(
+            "INVARIANT RECOGNITION-ONEHOT U A B TOTAL 1",
+            "INVARIANT RECOGNITION-ONEHOT U A B TOTAL 2",
+            1,
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(
+        (CausalExpressionError, TriangulatedExpressionError, ValueError)
+    ):
+        check_triangulated_expression(copied)
 
 
 def test_operational_semantic_drift_is_rejected(tmp_path: Path) -> None:
@@ -261,7 +357,7 @@ def test_foundation_congruence_survives_nonsemantic_byte_drift(tmp_path: Path) -
     assert check_source_congruence(copied)["status"] == "PASS"
 
 
-def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(
+def test_seed_release_uses_manifest_directly_and_has_no_human_profiles(
     tmp_path: Path,
 ) -> None:
     release = tmp_path / "release"
@@ -271,8 +367,9 @@ def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(
     assert (release / "source/SEED.aset").is_file()
     assert (release / "operational/components.forth").is_file()
     assert (release / "formal/LocalRecognitionAlgebra.tla").is_file()
-    assert (release / "binding/graph.cbor").is_file()
-    assert (release / "binding/graph.cddl").is_file()
+    assert (release / "causal/components.petri").is_file()
+    assert (release / "expression/causal/causal-graph.json").is_file()
+    assert not (release / "binding").exists()
     assert not (release / "en").exists()
     assert not (release / "python").exists()
     assert not (release / "expression/en").exists()
@@ -288,7 +385,18 @@ def test_seed_release_contains_cbor_binding_graph_but_no_human_profiles(
     assert manifest["architecture"]["prediction_observation_relation"] == (
         "THEORY_PREDICTION_BOUNDED_OBSERVATIONAL_CONGRUENCE"
     )
-    assert manifest["binding_graph"]["semantic_precedence"] == "NONE"
+    assert manifest["composition_manifest"] == {
+        "path": "source/SEED.aset",
+        "role": "NON_SEMANTIC_COMPOSITION_AND_IDENTITY_BINDING",
+        "materialization": "DIRECT_SOURCE_COPY",
+        "semantic_precedence": "NONE",
+    }
+    assert manifest["causal_expression"]["semantic_delta"] == "NONE"
+    assert manifest["causal_expression"]["semantic_precedence"] == "NONE"
+    assert manifest["triangulated_assurance"]["semantic_delta"] == "NONE"
+    assert (
+        manifest["congruence_assurance"]["triangulated_expression"]["status"] == "PASS"
+    )
 
 
 def test_ci_profiles_are_separate_and_bound_to_seed_release(tmp_path: Path) -> None:
@@ -379,7 +487,7 @@ def test_old_semantic_json_sources_are_absent() -> None:
     assert not (ROOT / "seed/alpha4/source").exists()
 
 
-def test_binding_parser_rejects_semantic_precedence(tmp_path: Path) -> None:
+def test_manifest_parser_rejects_semantic_precedence(tmp_path: Path) -> None:
     copied = tmp_path / "root"
     shutil.copytree(ROOT / "seed", copied / "seed")
     shutil.copytree(ROOT / "theory", copied / "theory")
@@ -394,8 +502,8 @@ def test_binding_parser_rejects_semantic_precedence(tmp_path: Path) -> None:
         ),
         encoding="utf-8",
     )
-    with pytest.raises(BindingError):
-        parse_seed_bindings(copied)
+    with pytest.raises(ManifestError):
+        parse_seed_manifest(copied)
 
 
 def test_release_manifest_uses_hash_only_as_byte_identity(tmp_path: Path) -> None:
@@ -641,6 +749,12 @@ def test_release_admission_certificate_binds_independent_evidence(
         "id": "ASET_ALPHA",
         "name": "Local Recognition Algebra",
     }
+    triangulated = certificate["evidence"]["triangulated_assurance"]
+    assert triangulated["representations"] == ["OPERATIONAL", "RELATIONAL", "CAUSAL"]
+    assert triangulated["components_checked"] == 6
+    assert triangulated["cases_checked"] == 1824
+    assert triangulated["causal_invariant"] == "PASS"
+    assert triangulated["semantic_delta"] == "NONE"
     assert certificate["evidence"]["python_airgap"]["cases_checked"] == 1824
     sqlite = certificate["evidence"]["python_sqlite_persistence"]
     assert sqlite["base_expression_congruence_cases"] == 1824
@@ -772,6 +886,12 @@ def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> N
         "name": "Local Recognition Algebra",
     }
     assert evidence["representation_id"] == "0.4alpha"
+    assert evidence["assurance_representations"] == [
+        "OPERATIONAL",
+        "RELATIONAL",
+        "CAUSAL",
+    ]
+    assert evidence["assurance_semantic_delta"] == "NONE"
     assert evidence["python_sqlite_role"] == "PERSISTENCE_EXTENSION"
     assert evidence["python_sqlite_semantic_delta"] == "NONE"
     assert evidence["status"] == "PASS"
