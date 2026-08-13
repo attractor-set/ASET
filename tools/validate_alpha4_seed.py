@@ -29,26 +29,29 @@ def main() -> int:
     theory_text = (ROOT / bindings.theory_algebra).read_text(encoding="utf-8")
     if "EXTENDS RecognitionCardinality" not in theory_text:
         errors.append("local-recognition algebra is not grounded in cardinality theory")
-    for forbidden in (
+    for implementation_dependency in (
         "ComponentRelations",
         "RestrictedOperationalSemantics",
         "components.forth",
         "components.petri",
     ):
-        if forbidden in theory_text:
+        if implementation_dependency in theory_text:
             errors.append(
-                f"theory improperly depends on Seed implementation: {forbidden}"
+                f"theory improperly depends on Seed implementation: {implementation_dependency}"
             )
 
-    disallowed = [
+    unexpected_document_surface = [
         path
         for path in BASE.rglob("*")
         if path.is_file() and path.suffix.lower() in {".json", ".md", ".txt"}
     ]
-    if disallowed:
+    if unexpected_document_surface:
         errors.append(
             "human/tree-document surface remains inside Seed: "
-            + ", ".join(path.relative_to(ROOT).as_posix() for path in disallowed)
+            + ", ".join(
+                path.relative_to(ROOT).as_posix()
+                for path in unexpected_document_surface
+            )
         )
 
     op_tool = (ROOT / bindings.deriver_map()["OPERATIONAL"]).read_text(encoding="utf-8")
