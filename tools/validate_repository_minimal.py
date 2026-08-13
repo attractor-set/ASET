@@ -85,6 +85,7 @@ ALLOWED_ACTIVE_PATHS = {
     "tools/alpha4_triangulated_expression.py",
     "tools/build_alpha4_release.py",
     "tools/run_alpha4_tlaps.py",
+    "tools/run_alpha4_release_tlaps.py",
     "tools/validate_alpha4_seed.py",
     "tools/validate_repository_minimal.py",
 }

@@ -29,6 +29,14 @@ COMMANDS = [
     ],
     [
         sys.executable,
+        "tools/run_alpha4_release_tlaps.py",
+        "--release-root",
+        "dist/ASET-Seed-0.4alpha",
+        "--output",
+        "dist/release-assembled-tlaps-evidence.json",
+    ],
+    [
+        sys.executable,
         "tools/alpha4_expression_airgap_verifier.py",
         "--witnesses",
         "dist/proof-derived-recognition-witnesses.json",
@@ -54,6 +62,8 @@ COMMANDS = [
         "dist/airgap-expression-evidence.json",
         "--persistence-evidence",
         "dist/python-sqlite-persistence-evidence.json",
+        "--release-proof-evidence",
+        "dist/release-assembled-tlaps-evidence.json",
         "--release-root",
         "dist/ASET-Seed-0.4alpha",
         "--profiles-root",
