@@ -49,6 +49,7 @@ def check_release_admission(
     witness_path: Path,
     expression_evidence_path: Path,
     persistence_evidence_path: Path,
+    release_proof_evidence_path: Path,
     release_root: Path,
     profiles_root: Path,
     release_archive: Path,
@@ -65,6 +66,10 @@ def check_release_admission(
     persistence = load_json(
         persistence_evidence_path,
         "aset-python-sqlite-persistence-assurance-evidence",
+    )
+    release_proof = load_json(
+        release_proof_evidence_path,
+        "aset-release-assembled-tlaps-evidence",
     )
 
     release_manifest_path = release_root / "RELEASE_MANIFEST.json"
@@ -144,6 +149,46 @@ def check_release_admission(
 
     release_tree_digest = tree_digest(release_root)
     profile_tree_digest = tree_digest(profiles_root)
+
+    release_proof_binding = release_proof.get("release_binding")
+    require(
+        isinstance(release_proof_binding, dict),
+        "post-build formal release binding missing",
+    )
+    require(
+        release_proof_binding.get("tree_digest") == release_tree_digest,
+        "post-build formal proof is bound to a different release tree",
+    )
+    release_proof_assembled = release_proof_binding.get("assembled_formal")
+    require(
+        isinstance(release_proof_assembled, dict),
+        "post-build assembled formal binding missing",
+    )
+    assembled_path = release_root / "formal/AssembledSeed.tla"
+    require(assembled_path.is_file(), "materialized AssembledSeed.tla missing")
+    require(
+        release_proof_assembled.get("path") == "formal/AssembledSeed.tla"
+        and release_proof_assembled.get("sha256") == sha256(assembled_path),
+        "post-build formal proof used different assembled bytes",
+    )
+    release_proof_subject = release_proof.get("proof")
+    require(isinstance(release_proof_subject, dict), "post-build proof subject missing")
+    require(
+        release_proof_subject.get("final_theorem")
+        == "AssembledNextPreservesExactSubjectAndAuthority",
+        "post-build final theorem mismatch",
+    )
+    require(
+        isinstance(release_proof_subject.get("obligations_proved"), int)
+        and release_proof_subject["obligations_proved"] > 0,
+        "post-build proof obligation count missing",
+    )
+    require(
+        release_proof.get("scope") == "POST_BUILD_DEDUCTIVE_ASSURANCE"
+        and release_proof.get("semantic_delta") == "NONE"
+        and release_proof.get("semantic_source_runtime_dependency") == "NONE",
+        "post-build proof boundary mismatch",
+    )
     require(
         profile_manifest.get("seed_release_tree_digest") == release_tree_digest,
         "profile tree is not bound to exact Seed release tree",
@@ -257,7 +302,8 @@ def check_release_admission(
         "version": profile_manifest.get("version"),
         "representation_id": representation_id,
         "admission_relation": (
-            "PROOF_WITNESS_TO_PYTHON_AIRGAP_TO_EXACT_SQLITE_PERSISTENCE"
+            "POST_BUILD_FORMAL_TO_PROOF_WITNESS_TO_PYTHON_AIRGAP_"
+            "TO_EXACT_SQLITE_PERSISTENCE"
         ),
         "semantic_source_runtime_dependency": "NONE",
         "expression_deriver_runtime_dependency": "NONE",
@@ -268,6 +314,16 @@ def check_release_admission(
                 "cases_checked": triangulated_evidence["cases_checked"],
                 "causal_invariant": triangulated_evidence["causal_invariant"]["status"],
                 "semantic_delta": "NONE",
+            },
+            "post_build_formal_assurance": {
+                "path": release_proof_evidence_path.name,
+                "sha256": sha256(release_proof_evidence_path),
+                "release_tree_digest": release_tree_digest,
+                "assembled_formal_sha256": sha256(assembled_path),
+                "final_theorem": release_proof_subject["final_theorem"],
+                "obligations_proved": release_proof_subject["obligations_proved"],
+                "semantic_delta": "NONE",
+                "status": "PASS",
             },
             "proof_witness": {
                 "path": witness_path.name,
@@ -312,6 +368,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--witnesses", type=Path, required=True)
     parser.add_argument("--expression-evidence", type=Path, required=True)
     parser.add_argument("--persistence-evidence", type=Path, required=True)
+    parser.add_argument("--release-proof-evidence", type=Path, required=True)
     parser.add_argument("--release-root", type=Path, required=True)
     parser.add_argument("--profiles-root", type=Path, required=True)
     parser.add_argument("--release-archive", type=Path, required=True)
@@ -323,6 +380,7 @@ def main(argv: list[str] | None = None) -> int:
             args.witnesses,
             args.expression_evidence,
             args.persistence_evidence,
+            args.release_proof_evidence,
             args.release_root,
             args.profiles_root,
             args.release_archive,
@@ -336,6 +394,7 @@ def main(argv: list[str] | None = None) -> int:
         print("ALPHA4_RELEASE_ADMISSION_PROJECT=AUTHORITY_SEEDED_EVIDENCE_TRAIL")
         print("ALPHA4_RELEASE_ADMISSION_SEMANTIC_ALGEBRA=ASET_ALPHA")
         print("ALPHA4_RELEASE_ADMISSION_TRIANGULATED_ASSURANCE=PASS")
+        print("ALPHA4_RELEASE_ADMISSION_POST_BUILD_TLAPS=PASS")
         print("ALPHA4_RELEASE_ADMISSION_CAUSAL_SEMANTIC_DELTA=NONE")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_AIRGAP=PASS")
         print("ALPHA4_RELEASE_ADMISSION_PYTHON_SQLITE_BASE_EXPRESSION=EXACT")

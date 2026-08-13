@@ -47,6 +47,46 @@ def materialized_proof_witnesses(tmp_path: Path) -> Path:
     return target
 
 
+def materialized_release_proof_evidence(release: Path, tmp_path: Path) -> Path:
+    assembled = release / "formal/AssembledSeed.tla"
+    target = tmp_path / "release-assembled-tlaps-evidence.json"
+    target.write_text(
+        json.dumps(
+            {
+                "document_type": "aset-release-assembled-tlaps-evidence",
+                "schema_version": 1,
+                "scope": "POST_BUILD_DEDUCTIVE_ASSURANCE",
+                "semantic_delta": "NONE",
+                "semantic_precedence": "NONE",
+                "semantic_source_runtime_dependency": "NONE",
+                "release_binding": {
+                    "tree_digest": tree_digest(release),
+                    "assembled_formal": {
+                        "path": "formal/AssembledSeed.tla",
+                        "sha256": (
+                            "sha256:"
+                            + hashlib.sha256(assembled.read_bytes()).hexdigest()
+                        ),
+                    },
+                },
+                "proof": {
+                    "module": "AssembledSeedReleaseProofs",
+                    "module_materialization": "EPHEMERAL_VERIFIER_ONLY",
+                    "module_sha256": "sha256:test",
+                    "final_theorem": "AssembledNextPreservesExactSubjectAndAuthority",
+                    "obligations_proved": 1,
+                },
+                "status": "PASS",
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return target
+
+
 def test_seed_subject_identity_is_04alpha() -> None:
     bindings = parse_seed_manifest(ROOT)
     assert bindings.subject_id == "ASET-SEED-0.4-ALPHA"
@@ -730,6 +770,8 @@ def test_release_admission_certificate_binds_independent_evidence(
         encoding="utf-8",
     )
 
+    release_proof_evidence = materialized_release_proof_evidence(release, tmp_path)
+
     release_archive = tmp_path / "release.zip"
     profiles_archive = tmp_path / "profiles.zip"
     zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
@@ -739,6 +781,7 @@ def test_release_admission_certificate_binds_independent_evidence(
         witnesses,
         expression_evidence,
         persistence_evidence,
+        release_proof_evidence,
         release,
         profiles,
         release_archive,
@@ -749,6 +792,12 @@ def test_release_admission_certificate_binds_independent_evidence(
         "id": "ASET_ALPHA",
         "name": "Local Recognition Algebra",
     }
+    post_build = certificate["evidence"]["post_build_formal_assurance"]
+    assert post_build["status"] == "PASS"
+    assert post_build["final_theorem"] == (
+        "AssembledNextPreservesExactSubjectAndAuthority"
+    )
+    assert post_build["semantic_delta"] == "NONE"
     triangulated = certificate["evidence"]["triangulated_assurance"]
     assert triangulated["representations"] == ["OPERATIONAL", "RELATIONAL", "CAUSAL"]
     assert triangulated["components_checked"] == 6
@@ -799,6 +848,8 @@ def test_release_admission_rejects_expression_base_mismatch(tmp_path: Path) -> N
         + "\n",
         encoding="utf-8",
     )
+    release_proof_evidence = materialized_release_proof_evidence(release, tmp_path)
+
     release_archive = tmp_path / "release.zip"
     profiles_archive = tmp_path / "profiles.zip"
     zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
@@ -809,6 +860,7 @@ def test_release_admission_rejects_expression_base_mismatch(tmp_path: Path) -> N
             witnesses,
             expression_evidence,
             persistence_evidence,
+            release_proof_evidence,
             release,
             profiles,
             release_archive,
@@ -855,6 +907,8 @@ def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> N
         encoding="utf-8",
     )
 
+    release_proof_evidence = materialized_release_proof_evidence(release, tmp_path)
+
     release_archive = tmp_path / "release.zip"
     profiles_archive = tmp_path / "profiles.zip"
     zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
@@ -867,6 +921,7 @@ def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> N
                 witnesses,
                 expression_evidence,
                 persistence_evidence,
+                release_proof_evidence,
                 release,
                 profiles,
                 release_archive,
@@ -885,6 +940,7 @@ def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> N
         "id": "ASET_ALPHA",
         "name": "Local Recognition Algebra",
     }
+    assert evidence["post_build_formal_assurance"] == "PASS"
     assert evidence["representation_id"] == "0.4alpha"
     assert evidence["assurance_representations"] == [
         "OPERATIONAL",
@@ -895,3 +951,109 @@ def test_public_release_audit_binds_neutral_public_identity(tmp_path: Path) -> N
     assert evidence["python_sqlite_role"] == "PERSISTENCE_EXTENSION"
     assert evidence["python_sqlite_semantic_delta"] == "NONE"
     assert evidence["status"] == "PASS"
+
+
+def test_post_build_tlaps_verifier_binds_materialized_release(tmp_path: Path) -> None:
+    from tools.run_alpha4_release_tlaps import FINAL_THEOREM, check_release_tlaps
+
+    release = tmp_path / "release"
+    build_tree(release)
+    fake_tlapm = tmp_path / "tlapm"
+    fake_tlapm.write_text(
+        "#!/usr/bin/env python3\n"
+        "from pathlib import Path\n"
+        "import sys\n"
+        "verifier = Path(sys.argv[-1]).read_text(encoding='utf-8')\n"
+        "cache = Path('.tlacache')\n"
+        "cache.mkdir(parents=True, exist_ok=True)\n"
+        "(cache / 'probe').write_text('cache', encoding='utf-8')\n"
+        "assert 'EXTENDS AssembledSeed, TLAPS' in verifier\n"
+        "assert 'AssembledNextPreservesExactSubjectAndAuthority' in verifier\n"
+        "print('All 1 obligation proved.')\n",
+        encoding="utf-8",
+    )
+    fake_tlapm.chmod(0o755)
+
+    release_tree_before = tree_digest(release)
+    evidence = check_release_tlaps(release, str(fake_tlapm))
+    assembled = release / "formal/AssembledSeed.tla"
+    assert evidence["scope"] == "POST_BUILD_DEDUCTIVE_ASSURANCE"
+    assert evidence["semantic_delta"] == "NONE"
+    assert evidence["semantic_source_runtime_dependency"] == "NONE"
+    assert evidence["release_binding"]["tree_digest"] == release_tree_before
+    assert tree_digest(release) == release_tree_before
+    assert not (release / ".tlacache").exists()
+    assert evidence["release_binding"]["assembled_formal"]["sha256"] == (
+        "sha256:" + hashlib.sha256(assembled.read_bytes()).hexdigest()
+    )
+    assert evidence["proof"]["final_theorem"] == FINAL_THEOREM
+    assert evidence["proof"]["obligations_proved"] == 1
+    assert evidence["status"] == "PASS"
+
+
+def test_release_admission_rejects_post_build_proof_byte_mismatch(
+    tmp_path: Path,
+) -> None:
+    from tools.alpha4_expression_airgap_verifier import check_airgapped_expression
+    from tools.alpha4_python_sqlite_persistence_gate import (
+        check_python_sqlite_persistence,
+    )
+    from tools.alpha4_release_admission_certificate import (
+        ReleaseAdmissionError,
+        check_release_admission,
+    )
+    from tools.build_alpha4_release import zip_tree
+
+    release = tmp_path / "release"
+    build_tree(release)
+    witnesses = materialized_proof_witnesses(tmp_path)
+    profiles = tmp_path / "profiles"
+    build_profiles_tree(profiles, tree_digest(release), witnesses)
+
+    expression_evidence = tmp_path / "airgap.json"
+    expression_evidence.write_text(
+        json.dumps(
+            check_airgapped_expression(
+                witnesses,
+                profiles / "python/aset_seed_alpha4.py",
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    persistence_evidence = tmp_path / "persistence.json"
+    persistence_evidence.write_text(
+        json.dumps(
+            check_python_sqlite_persistence(profiles),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    release_proof_evidence = materialized_release_proof_evidence(release, tmp_path)
+    proof = json.loads(release_proof_evidence.read_text(encoding="utf-8"))
+    proof["release_binding"]["assembled_formal"]["sha256"] = "sha256:00"
+    release_proof_evidence.write_text(
+        json.dumps(proof, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    release_archive = tmp_path / "release.zip"
+    profiles_archive = tmp_path / "profiles.zip"
+    zip_tree(release, release_archive, "ASET-Seed-0.4alpha")
+    zip_tree(profiles, profiles_archive, "ASET-Seed-0.4alpha-profiles")
+
+    with pytest.raises(ReleaseAdmissionError):
+        check_release_admission(
+            witnesses,
+            expression_evidence,
+            persistence_evidence,
+            release_proof_evidence,
+            release,
+            profiles,
+            release_archive,
+            profiles_archive,
+        )

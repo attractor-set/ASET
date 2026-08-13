@@ -156,6 +156,17 @@ def check_public_release(
         "certificate representation identity mismatch",
     )
     require(certificate.get("status") == "PASS", "release admission is not PASS")
+    certificate_evidence = certificate.get("evidence")
+    require(isinstance(certificate_evidence, dict), "certificate evidence missing")
+    post_build = certificate_evidence.get("post_build_formal_assurance")
+    require(
+        isinstance(post_build, dict)
+        and post_build.get("status") == "PASS"
+        and post_build.get("final_theorem")
+        == "AssembledNextPreservesExactSubjectAndAuthority"
+        and post_build.get("semantic_delta") == "NONE",
+        "post-build formal assurance missing from release admission",
+    )
 
     return {
         "document_type": "aset-public-release-audit",
@@ -168,6 +179,7 @@ def check_public_release(
         "python_expression_role": "RELEASE_EXPRESSION",
         "python_sqlite_role": "PERSISTENCE_EXTENSION",
         "python_sqlite_semantic_delta": "NONE",
+        "post_build_formal_assurance": "PASS",
         "release_admission": "PASS",
         "status": "PASS",
     }
@@ -219,6 +231,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"ALPHA4_PUBLIC_REPRESENTATION={REPRESENTATION_ID}")
     print("ALPHA4_PUBLIC_ASSURANCE_REPRESENTATIONS=OPERATIONAL,RELATIONAL,CAUSAL")
     print("ALPHA4_PUBLIC_ASSURANCE_SEMANTIC_DELTA=NONE")
+    print("ALPHA4_PUBLIC_POST_BUILD_FORMAL_ASSURANCE=PASS")
     print("ALPHA4_PUBLIC_RELEASE_AUDIT=PASS")
     return 0
 
