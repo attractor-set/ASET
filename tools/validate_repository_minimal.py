@@ -44,15 +44,6 @@ IGNORED_ROOT_DIRS = {
     "__pycache__",
     "dist",
 }
-FORBIDDEN_ACTIVE_DIRS = {
-    "assurance",
-    "audit",
-    "docs",
-    "governance",
-    "metadata",
-    "standards",
-}
-
 ALLOWED_ACTIVE_PATHS = {
     ".editorconfig",
     ".gitattributes",
@@ -165,10 +156,6 @@ def main() -> int:
         errors.append(
             "required active root directories missing: " + ", ".join(missing_dirs)
         )
-
-    forbidden_present = sorted(FORBIDDEN_ACTIVE_DIRS & root_dirs)
-    for name in forbidden_present:
-        errors.append(f"legacy active surface present: {name}/")
 
     unexpected_active = sorted(active_files - ALLOWED_ACTIVE_PATHS)
     missing_active = sorted(ALLOWED_ACTIVE_PATHS - active_files)

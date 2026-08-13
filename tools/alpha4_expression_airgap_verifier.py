@@ -191,7 +191,7 @@ def check_python_expression(
                 if result[0] == "ok":
                     require(
                         recognition == expected_input,
-                        f"{component_id}: expression accepted forbidden recognition input",
+                        f"{component_id}: expression accepted non-admissible recognition input",
                     )
                     returned = result[1]
                     require(

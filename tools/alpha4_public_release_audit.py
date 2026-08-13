@@ -52,7 +52,7 @@ def check_public_release(
     )
     require(
         "current representation identifier" in readme,
-        "representation terminology missing from README",
+        "representation description missing from README",
     )
     require(
         'title: "ASET — Authority-Seeded Evidence Trail"' in citation,

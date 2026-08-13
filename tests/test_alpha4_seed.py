@@ -69,12 +69,12 @@ def test_recognition_foundation_is_theory_local() -> None:
 
 
 def test_seed_tree_has_no_human_or_json_documents() -> None:
-    disallowed = [
+    unexpected_documents = [
         path.relative_to(ROOT).as_posix()
         for path in (ROOT / "seed/alpha4").rglob("*")
         if path.is_file() and path.suffix.lower() in {".json", ".md", ".txt"}
     ]
-    assert disallowed == []
+    assert unexpected_documents == []
     assert not (ROOT / "docs/alpha4").exists()
 
 
