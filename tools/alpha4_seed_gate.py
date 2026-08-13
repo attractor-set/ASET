@@ -10,9 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 COMMANDS = [
     [sys.executable, "tools/validate_repository_minimal.py"],
     [sys.executable, "tools/validate_alpha4_seed.py"],
-    [sys.executable, "tools/alpha4_binding_graph.py"],
-    [sys.executable, "tools/alpha4_congruence.py"],
-    [sys.executable, "tools/alpha4_paired_expression.py"],
+    [sys.executable, "tools/alpha4_manifest.py"],
+    [sys.executable, "tools/alpha4_assurance.py"],
     [sys.executable, "-m", "pytest", "-q"],
     [sys.executable, "tools/run_alpha4_tlaps.py"],
     [

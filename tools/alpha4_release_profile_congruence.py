@@ -10,13 +10,13 @@ from pathlib import Path
 from typing import Any, Callable
 
 try:
-    from tools.alpha4_binding_graph import parse_seed_bindings
+    from tools.alpha4_manifest import parse_seed_manifest
     from tools.alpha4_relational_expression import (
         apply_reference_graph,
         derive_relational_graphs,
     )
 except ModuleNotFoundError:
-    from alpha4_binding_graph import parse_seed_bindings
+    from alpha4_manifest import parse_seed_manifest
     from alpha4_relational_expression import (
         apply_reference_graph,
         derive_relational_graphs,
@@ -39,7 +39,7 @@ def require(condition: bool, message: str) -> None:
 
 
 def _expected_records(root: Path) -> list[dict[str, Any]]:
-    bindings = parse_seed_bindings(root)
+    bindings = parse_seed_manifest(root)
     pair_by_id = {item.component_id: item for item in bindings.pairs}
     graphs = derive_relational_graphs(root)
     records: list[dict[str, Any]] = []

@@ -8,7 +8,12 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from tools.alpha4_binding_graph import SeedBindings, parse_seed_bindings
+    from tools.alpha4_causal_expression import (
+        check_causal_invariant,
+        derive_causal_graphs,
+        semantic_projection as causal_projection,
+    )
+    from tools.alpha4_manifest import BindingPlan, parse_seed_manifest
     from tools.alpha4_operational_expression import (
         derive_operational_graphs,
         semantic_projection as operational_projection,
@@ -18,8 +23,14 @@ try:
         derive_relational_graphs,
         semantic_projection as relational_projection,
     )
+    from tools.alpha4_triangulated_expression import check_triangulated_expression
 except ModuleNotFoundError:
-    from alpha4_binding_graph import SeedBindings, parse_seed_bindings
+    from alpha4_causal_expression import (
+        check_causal_invariant,
+        derive_causal_graphs,
+        semantic_projection as causal_projection,
+    )
+    from alpha4_manifest import BindingPlan, parse_seed_manifest
     from alpha4_operational_expression import (
         derive_operational_graphs,
         semantic_projection as operational_projection,
@@ -29,6 +40,7 @@ except ModuleNotFoundError:
         derive_relational_graphs,
         semantic_projection as relational_projection,
     )
+    from alpha4_triangulated_expression import check_triangulated_expression
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -61,7 +73,7 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def check_foundation_congruence(root: Path, bindings: SeedBindings) -> dict[str, Any]:
+def check_foundation_congruence(root: Path, bindings: BindingPlan) -> dict[str, Any]:
     model_path = root / bindings.foundation_model
     proof_path = root / bindings.foundation_proof.module
     model = compact_tla(model_path.read_text(encoding="utf-8"))
@@ -101,7 +113,7 @@ def check_foundation_congruence(root: Path, bindings: SeedBindings) -> dict[str,
     }
 
 
-def check_theory_congruence(root: Path, bindings: SeedBindings) -> dict[str, Any]:
+def check_theory_congruence(root: Path, bindings: BindingPlan) -> dict[str, Any]:
     theory_path = root / bindings.theory_algebra
     correctness_path = root / bindings.correctness_model
     theory = compact_tla(theory_path.read_text(encoding="utf-8"))
@@ -175,9 +187,9 @@ def check_theory_congruence(root: Path, bindings: SeedBindings) -> dict[str, Any
     }
 
 
-def check_source_pairing(root: Path, bindings: SeedBindings) -> dict[str, Any]:
-    operational = derive_operational_graphs(root)
-    relational = derive_relational_graphs(root)
+def check_source_pairing(root: Path, bindings: BindingPlan) -> dict[str, Any]:
+    operational = derive_operational_graphs(root, bindings)
+    relational = derive_relational_graphs(root, bindings)
     op_projection = operational_projection(operational)
     rel_projection = relational_projection(relational)
     expected_ids = {item.component_id for item in bindings.pairs}
@@ -200,9 +212,47 @@ def check_source_pairing(root: Path, bindings: SeedBindings) -> dict[str, Any]:
     }
 
 
-def check_source_congruence(root: Path = ROOT) -> dict[str, Any]:
-    bindings = parse_seed_bindings(root)
+def check_source_triangulation(root: Path, bindings: BindingPlan) -> dict[str, Any]:
+    operational = derive_operational_graphs(root, bindings)
+    relational = derive_relational_graphs(root, bindings)
+    causal = derive_causal_graphs(root, bindings)
+    op_projection = operational_projection(operational)
+    rel_projection = relational_projection(relational)
+    causal_semantics = causal_projection(causal)
+    expected_ids = {item.component_id for item in bindings.pairs}
+    require(
+        set(causal_semantics) == expected_ids,
+        "causal component identity set differs from binding relation",
+    )
+    require(
+        op_projection == causal_semantics,
+        "operational and causal source projections are incongruent",
+    )
+    require(
+        rel_projection == causal_semantics,
+        "relational and causal source projections are incongruent",
+    )
+    invariant = check_causal_invariant(causal)
+    return {
+        "relation": bindings.relation_map()["TRIANGULATED_GRAPH"],
+        "pairwise": {
+            "operational_relational": bindings.relation_map()["PAIRED_GRAPH"],
+            "operational_causal": bindings.relation_map()["OPERATIONAL_CAUSAL"],
+            "relational_causal": bindings.relation_map()["RELATIONAL_CAUSAL"],
+        },
+        "components_checked": len(expected_ids),
+        "causal_invariant": invariant,
+        "semantic_delta": "NONE",
+        "status": "PASS",
+    }
+
+
+def check_source_congruence(
+    root: Path = ROOT, plan: BindingPlan | None = None
+) -> dict[str, Any]:
+    bindings = plan or parse_seed_manifest(root)
     source_pairing = check_source_pairing(root, bindings)
+    source_triangulation = check_source_triangulation(root, bindings)
     return {
         "foundation": check_foundation_congruence(root, bindings),
         "theory": check_theory_congruence(root, bindings),
@@ -216,7 +266,14 @@ def check_source_congruence(root: Path = ROOT) -> dict[str, Any]:
             "components_checked": source_pairing["components_checked"],
             "status": "PASS",
         },
+        "causal_component": {
+            "relation": bindings.relation_map()["CAUSAL"],
+            "components_checked": source_triangulation["components_checked"],
+            "semantic_precedence": "NONE",
+            "status": "PASS",
+        },
         "source_pairing": source_pairing,
+        "source_triangulation": source_triangulation,
         "status": "PASS",
     }
 
@@ -229,7 +286,7 @@ def parse_assembled_operators(path: Path) -> list[str]:
 
 
 def check_assembled_formal_congruence(
-    root: Path, release_root: Path, bindings: SeedBindings
+    root: Path, release_root: Path, bindings: BindingPlan
 ) -> dict[str, Any]:
     expected = [item.formal_operator for item in bindings.pairs]
     actual = parse_assembled_operators(release_root / "formal/AssembledSeed.tla")
@@ -241,9 +298,11 @@ def check_assembled_formal_congruence(
     }
 
 
-def check_release_congruence(root: Path, release_root: Path) -> dict[str, Any]:
-    bindings = parse_seed_bindings(root)
-    source = check_source_congruence(root)
+def check_release_congruence(
+    root: Path, release_root: Path, plan: BindingPlan | None = None
+) -> dict[str, Any]:
+    bindings = plan or parse_seed_manifest(root)
+    source = check_source_congruence(root, bindings)
     return {
         "document_type": "aset-content-congruence-evidence",
         "profile_id": "ASET-CONTENT-CONGRUENCE-0.4-ALPHA",
@@ -253,7 +312,10 @@ def check_release_congruence(root: Path, release_root: Path) -> dict[str, Any]:
         "assembled_formal": check_assembled_formal_congruence(
             root, release_root, bindings
         ),
-        "paired_expression": check_paired_expression(root, release_root),
+        "paired_expression": check_paired_expression(root, release_root, bindings),
+        "triangulated_expression": check_triangulated_expression(
+            root, release_root, bindings
+        ),
         "status": "PASS",
     }
 
@@ -278,6 +340,17 @@ def print_evidence(evidence: dict[str, Any]) -> None:
         print(f"ALPHA4_PAIRED_GRAPH_CONGRUENCE={components}/{components} PASS")
         print(f"ALPHA4_JIT_REFERENCE_CONGRUENCE={cases}/{cases} PASS")
         print(f"ALPHA4_THEORY_PREDICTION_OBSERVATION={cases}/{cases} PASS")
+    triangulated = evidence.get("triangulated_expression")
+    if isinstance(triangulated, dict):
+        components = triangulated["components_checked"]
+        cases = triangulated["cases_checked"]
+        transitions = triangulated["causal_invariant"]["transitions_checked"]
+        print(f"ALPHA4_TRIANGULATED_GRAPH_CONGRUENCE={components}/{components} PASS")
+        print(
+            "ALPHA4_CAUSAL_RECOGNITION_TOKEN_INVARIANT="
+            f"{transitions}/{transitions} PASS"
+        )
+        print(f"ALPHA4_TRIANGULATED_RUNTIME_CONGRUENCE={cases}/{cases} PASS")
     print("ALPHA4_CONTENT_CONGRUENCE=PASS")
 
 

@@ -80,6 +80,42 @@ def check_public_release(
         release.get("semantic_algebra") == SEMANTIC_ALGEBRA,
         "release semantic algebra mismatch",
     )
+    composition_manifest = release.get("composition_manifest")
+    require(
+        isinstance(composition_manifest, dict),
+        "release composition manifest metadata missing",
+    )
+    require(
+        composition_manifest.get("path") == "source/SEED.aset"
+        and composition_manifest.get("semantic_precedence") == "NONE",
+        "release composition manifest binding mismatch",
+    )
+    require(
+        "binding_graph" not in release,
+        "derived binding graph must not be part of the release contract",
+    )
+    causal_expression = release.get("causal_expression")
+    triangulated_assurance = release.get("triangulated_assurance")
+    require(isinstance(causal_expression, dict), "causal release expression missing")
+    require(
+        causal_expression.get("semantic_delta") == "NONE"
+        and causal_expression.get("semantic_precedence") == "NONE",
+        "causal release expression changes semantic precedence",
+    )
+    require(
+        isinstance(triangulated_assurance, dict),
+        "triangulated release assurance missing",
+    )
+    require(
+        triangulated_assurance.get("representations")
+        == ["OPERATIONAL", "RELATIONAL", "CAUSAL"],
+        "triangulated representation set mismatch",
+    )
+    require(
+        triangulated_assurance.get("semantic_delta") == "NONE"
+        and triangulated_assurance.get("semantic_precedence") == "NONE",
+        "triangulated assurance changes semantic precedence",
+    )
 
     require(profiles.get("project") == PROJECT, "profile project identity mismatch")
     require(
@@ -127,6 +163,8 @@ def check_public_release(
         "semantic_algebra": SEMANTIC_ALGEBRA,
         "representation_id": REPRESENTATION_ID,
         "subject_id": SUBJECT_ID,
+        "assurance_representations": ["OPERATIONAL", "RELATIONAL", "CAUSAL"],
+        "assurance_semantic_delta": "NONE",
         "python_expression_role": "RELEASE_EXPRESSION",
         "python_sqlite_role": "PERSISTENCE_EXTENSION",
         "python_sqlite_semantic_delta": "NONE",
@@ -179,6 +217,8 @@ def main(argv: list[str] | None = None) -> int:
     print("ALPHA4_PUBLIC_IDENTITY=AUTHORITY_SEEDED_EVIDENCE_TRAIL")
     print("ALPHA4_PUBLIC_SEMANTIC_ALGEBRA=ASET_ALPHA")
     print(f"ALPHA4_PUBLIC_REPRESENTATION={REPRESENTATION_ID}")
+    print("ALPHA4_PUBLIC_ASSURANCE_REPRESENTATIONS=OPERATIONAL,RELATIONAL,CAUSAL")
+    print("ALPHA4_PUBLIC_ASSURANCE_SEMANTIC_DELTA=NONE")
     print("ALPHA4_PUBLIC_RELEASE_AUDIT=PASS")
     return 0
 

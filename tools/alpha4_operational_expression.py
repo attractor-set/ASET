@@ -6,9 +6,9 @@ from pathlib import Path
 from typing import Any, Callable
 
 try:
-    from tools.alpha4_binding_graph import parse_seed_bindings
+    from tools.alpha4_manifest import BindingPlan, parse_seed_manifest
 except ModuleNotFoundError:
-    from alpha4_binding_graph import parse_seed_bindings
+    from alpha4_manifest import BindingPlan, parse_seed_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,9 +22,8 @@ def require(condition: bool, message: str) -> None:
         raise OperationalExpressionError(message)
 
 
-def _component_index(root: Path) -> dict[str, Any]:
-    bindings = parse_seed_bindings(root)
-    return {item.operational_word: item for item in bindings.pairs}
+def _component_index(plan: BindingPlan) -> dict[str, Any]:
+    return {item.operational_word: item for item in plan.pairs}
 
 
 def _parse_words(text: str) -> dict[str, dict[str, Any]]:
@@ -97,8 +96,11 @@ def _nodes_for(word: dict[str, Any]) -> list[dict[str, Any]]:
     return nodes
 
 
-def derive_operational_graphs(root: Path = ROOT) -> dict[str, Any]:
-    index = _component_index(root)
+def derive_operational_graphs(
+    root: Path = ROOT, plan: BindingPlan | None = None
+) -> dict[str, Any]:
+    binding_plan = plan or parse_seed_manifest(root)
+    index = _component_index(binding_plan)
     words = _parse_words(
         (root / "seed/alpha4/operational/components.forth").read_text(encoding="utf-8")
     )
