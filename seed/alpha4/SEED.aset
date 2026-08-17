@@ -26,7 +26,7 @@ CAUSAL-BIND ASET-COMPONENT-PRESERVE-BLOCK PRESERVE-BLOCK
 
 FOUNDATION-MODEL theory/local-recognition/formal/RecognitionCardinality.tla
 FOUNDATION-PROOF theory/local-recognition/formal/RecognitionCardinalityProofs.tla ThreeRecognitionValuesAreCardinalityMinimal 14
-PROOF COMPONENT_COMPOSITION seed/alpha4/formal/ComponentCompositionProofs.tla RecognizedTransitionsPreserveExactSubjectAndAuthority 11
+PROOF COMPONENT_COMPOSITION seed/alpha4/formal/ComponentCompositionProofs.tla RecognizedTransitionsPreserveExactSubjectAndAuthority 22
 PROOF OPERATIONAL_RELATIONAL_PAIRING seed/alpha4/formal/OperationalRelationalPairingProofs.tla OperationalRelationalPairing 13
 
 CHECK ASSURANCE tools/alpha4_assurance.py

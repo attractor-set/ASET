@@ -20,6 +20,51 @@ THEOREM ObserveUnknownPreservesExactSubjectAndAuthority ==
 PROOF
   BY DEF ObserveUnknown, StateType
 
+THEOREM ObserveAndPreserveUnknownShareRecognitionProjection ==
+  \A r, r2 :
+    TheoryObserveUnknown(r, r2) <=> TheoryPreserveUnknown(r, r2)
+PROOF
+  BY DEF TheoryObserveUnknown, TheoryPreserveUnknown
+
+THEOREM FreshObserveUnknownIsNotPreserveUnknown ==
+  \A s, t, e :
+    /\ ObserveUnknown(s, t, e)
+    /\ e \notin s.evidence
+    => ~PreserveUnknown(s, t, e)
+PROOF
+  BY SMTT(30)
+     DEF ObserveUnknown,
+         PreserveUnknown,
+         TheoryObserveUnknown,
+         TheoryPreserveUnknown,
+         ToTheoryRecognition,
+         StateType
+
+THEOREM ReobserveUnknownIsPreserveUnknown ==
+  \A s, t, e :
+    /\ ObserveUnknown(s, t, e)
+    /\ e \in s.evidence
+    => PreserveUnknown(s, t, e)
+PROOF
+  <1> SUFFICES ASSUME NEW s, NEW t, NEW e,
+                       ObserveUnknown(s, t, e),
+                       e \in s.evidence
+                PROVE PreserveUnknown(s, t, e)
+    OBVIOUS
+  <1>1. s.evidence \cup {e} = s.evidence
+    BY SetExtensionality
+  <1>2. t = s
+    BY <1>1, SimplifyAndSolve
+       DEF ObserveUnknown, StateType
+  <1>. QED
+    BY <1>2
+       DEF ObserveUnknown,
+           PreserveUnknown,
+           TheoryObserveUnknown,
+           TheoryPreserveUnknown,
+           ToTheoryRecognition,
+           StateType
+
 THEOREM RecognizeAllowBoundary ==
   \A s, t, e : RecognizeAllow(s, t, e) =>
     /\ s.recognition = "UNKNOWN"
