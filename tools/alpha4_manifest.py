@@ -110,9 +110,42 @@ def parse_seed_manifest(root: Path = ROOT) -> BindingPlan:
     checks: list[tuple[str, str]] = []
     derivers: list[tuple[str, str]] = []
     relations: list[tuple[str, str]] = []
+    singleton_kinds = {
+        "COMPATIBILITY",
+        "DIGEST-ROLE",
+        "SEMANTIC-PRECEDENCE",
+        "THEORY-ALGEBRA",
+        "THEORY-CODING",
+        "ABSTRACT-MACHINE",
+        "FORMAL-REFLECTION",
+        "CORRECTNESS-MODEL",
+        "CAUSAL-MODEL",
+        "FOUNDATION-MODEL",
+        "FOUNDATION-PROOF",
+    }
+    seen_singletons: set[str] = set()
+    seen_keys: dict[str, set[str]] = {
+        "PROOF": set(),
+        "CHECK": set(),
+        "DERIVER": set(),
+        "RELATION": set(),
+    }
 
     for tokens in lines[1:]:
         kind = tokens[0]
+        if kind in singleton_kinds:
+            require(
+                kind not in seen_singletons,
+                f"duplicate Seed manifest declaration: {kind}",
+            )
+            seen_singletons.add(kind)
+        if kind in seen_keys:
+            require(len(tokens) >= 2, f"invalid {kind} declaration")
+            key = tokens[1]
+            require(
+                key not in seen_keys[kind], f"duplicate Seed manifest {kind} key: {key}"
+            )
+            seen_keys[kind].add(key)
         if kind == "COMPATIBILITY":
             require(len(tokens) == 3, "invalid COMPATIBILITY relation")
             compatibility_base, compatibility = tokens[1], tokens[2]

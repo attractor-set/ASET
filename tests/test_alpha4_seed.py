@@ -1108,3 +1108,36 @@ def test_release_admission_rejects_post_build_proof_byte_mismatch(
             release_archive,
             profiles_archive,
         )
+
+
+def test_manifest_parser_rejects_duplicate_scalar_declarations(tmp_path: Path) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    path = copied / "seed/alpha4/SEED.aset"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace(
+            "SEMANTIC-PRECEDENCE NONE",
+            "SEMANTIC-PRECEDENCE OPERATIONAL\nSEMANTIC-PRECEDENCE NONE",
+            1,
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(ManifestError, match="duplicate Seed manifest declaration"):
+        parse_seed_manifest(copied)
+
+
+def test_manifest_parser_rejects_duplicate_keyed_bindings(tmp_path: Path) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    path = copied / "seed/alpha4/SEED.aset"
+    text = path.read_text(encoding="utf-8")
+    line = "CHECK ASSURANCE tools/alpha4_assurance.py"
+    assert line in text
+    path.write_text(text.replace(line, f"{line}\n{line}", 1), encoding="utf-8")
+    with pytest.raises(ManifestError, match="duplicate Seed manifest CHECK key"):
+        parse_seed_manifest(copied)
