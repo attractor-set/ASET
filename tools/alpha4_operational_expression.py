@@ -58,6 +58,33 @@ def _parse_words(text: str) -> dict[str, dict[str, Any]]:
     return words
 
 
+def _validate_stack_contract(word_name: str, word: dict[str, Any]) -> None:
+    primitive = str(word["primitive"])
+    expected = {
+        "OBSERVE": (("state", "evidence"), ("state",)),
+        "LOCAL-ALLOW!": (("state", "evidence"), ("state",)),
+        "LOCAL-BLOCK!": (("state", "evidence"), ("state",)),
+        "NOP": (("state",), ("state",)),
+    }
+    expected_in, expected_out = expected[primitive]
+    actual_in = tuple(str(value).lower() for value in word["structural_in"])
+    actual_out = tuple(str(value).lower() for value in word["structural_out"])
+    require(
+        actual_in == expected_in,
+        (
+            f"{word_name}: stack input contract {actual_in!r} differs from "
+            f"{primitive} requirement {expected_in!r}"
+        ),
+    )
+    require(
+        actual_out == expected_out,
+        (
+            f"{word_name}: stack output contract {actual_out!r} differs from "
+            f"{primitive} requirement {expected_out!r}"
+        ),
+    )
+
+
 def _nodes_for(word: dict[str, Any]) -> list[dict[str, Any]]:
     rin = str(word["recognition_in"])
     rout = str(word["recognition_out"])
@@ -112,6 +139,7 @@ def derive_operational_graphs(
     for word in sorted(words):
         item = index[word]
         parsed = words[word]
+        _validate_stack_contract(word, parsed)
         nodes = _nodes_for(parsed)
         components.append(
             {

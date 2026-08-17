@@ -15,7 +15,7 @@ try:
         derive_causal_graphs,
         semantic_projection as causal_projection,
     )
-    from tools.alpha4_manifest import BindingPlan
+    from tools.alpha4_manifest import BindingPlan, parse_seed_manifest
     from tools.alpha4_operational_expression import (
         OperationalExpressionError,
         compile_operational_jit,
@@ -36,7 +36,7 @@ except ModuleNotFoundError:
         derive_causal_graphs,
         semantic_projection as causal_projection,
     )
-    from alpha4_manifest import BindingPlan
+    from alpha4_manifest import BindingPlan, parse_seed_manifest
     from alpha4_operational_expression import (
         OperationalExpressionError,
         compile_operational_jit,
@@ -110,14 +110,73 @@ def _outcome_by_component(
     return outcomes
 
 
+def _check_operational_causal_interface(
+    operational: dict[str, Any], causal: dict[str, Any]
+) -> int:
+    operational_components = operational.get("components")
+    causal_components = causal.get("components")
+    require(isinstance(operational_components, list), "operational components missing")
+    require(isinstance(causal_components, list), "causal components missing")
+    operational_by_id = {
+        str(item["component_id"]): item
+        for item in operational_components
+        if isinstance(item, dict)
+    }
+    causal_by_id = {
+        str(item["component_id"]): item
+        for item in causal_components
+        if isinstance(item, dict)
+    }
+    require(
+        operational_by_id.keys() == causal_by_id.keys(),
+        "operational and causal interface component sets differ",
+    )
+
+    checked = 0
+    for component_id in sorted(operational_by_id):
+        operational_item = operational_by_id[component_id]
+        causal_item = causal_by_id[component_id]
+        structural_in = operational_item.get("structural_in")
+        structural_out = operational_item.get("structural_out")
+        requirements = causal_item.get("requirements")
+        require(
+            isinstance(structural_in, list),
+            f"{component_id}: operational structural input missing",
+        )
+        require(
+            isinstance(structural_out, list),
+            f"{component_id}: operational structural output missing",
+        )
+        require(
+            isinstance(requirements, list),
+            f"{component_id}: causal requirements missing",
+        )
+        has_evidence_input = "evidence" in structural_in
+        requires_evidence = "EVIDENCE_ARGUMENT" in requirements
+        require(
+            has_evidence_input == requires_evidence,
+            (
+                f"{component_id}: operational evidence stack contract and "
+                "causal EVIDENCE_ARGUMENT requirement diverge"
+            ),
+        )
+        require(
+            structural_out == ["state"],
+            f"{component_id}: operational stack output must be exactly state",
+        )
+        checked += 1
+    return checked
+
+
 def check_triangulated_expression(
     root: Path = ROOT,
     release_root: Path | None = None,
     plan: BindingPlan | None = None,
 ) -> dict[str, Any]:
-    expected_operational = derive_operational_graphs(root, plan)
-    expected_relational = derive_relational_graphs(root, plan)
-    expected_causal = derive_causal_graphs(root, plan)
+    binding_plan = plan or parse_seed_manifest(root)
+    expected_operational = derive_operational_graphs(root, binding_plan)
+    expected_relational = derive_relational_graphs(root, binding_plan)
+    expected_causal = derive_causal_graphs(root, binding_plan)
 
     if release_root is None:
         operational = expected_operational
@@ -163,6 +222,7 @@ def check_triangulated_expression(
         "relational and causal graph projections are incongruent",
     )
 
+    interface_bindings = _check_operational_causal_interface(operational, causal)
     invariant = check_causal_invariant(causal)
     jit_apply = compile_operational_jit(operational)
     outcomes = _outcome_by_component(relational_semantics)
@@ -249,6 +309,11 @@ def check_triangulated_expression(
         "graph_relation": "THREE_WAY_INDEPENDENT_DERIVATION_CONGRUENCE",
         "runtime_relation": "THREE_WAY_BOUNDED_OBSERVATIONAL_CONGRUENCE",
         "causal_invariant": invariant,
+        "operational_causal_interface": {
+            "relation": binding_plan.relation_map()["OPERATIONAL_CAUSAL_INTERFACE"],
+            "components_checked": interface_bindings,
+            "status": "PASS",
+        },
         "components_checked": len(operational_semantics),
         "cases_checked": cases,
         "semantic_precedence": "NONE",
@@ -261,9 +326,15 @@ def print_evidence(evidence: dict[str, Any]) -> None:
     cases = evidence["cases_checked"]
     invariant = evidence["causal_invariant"]
     transitions = invariant["transitions_checked"]
+    interface = evidence["operational_causal_interface"]
+    interface_bindings = interface["components_checked"]
     print(f"ALPHA4_OPERATIONAL_RELATIONAL_GRAPH_CONGRUENCE={count}/{count} PASS")
     print(f"ALPHA4_OPERATIONAL_CAUSAL_GRAPH_CONGRUENCE={count}/{count} PASS")
     print(f"ALPHA4_RELATIONAL_CAUSAL_GRAPH_CONGRUENCE={count}/{count} PASS")
+    print(
+        "ALPHA4_OPERATIONAL_CAUSAL_INTERFACE_BINDING="
+        f"{interface_bindings}/{interface_bindings} PASS"
+    )
     print(f"ALPHA4_CAUSAL_RECOGNITION_TOKEN_INVARIANT={transitions}/{transitions} PASS")
     print(f"ALPHA4_TRIANGULATED_RUNTIME_CONGRUENCE={cases}/{cases} PASS")
     print("ALPHA4_TRIANGULATED_EXPRESSION=PASS")
