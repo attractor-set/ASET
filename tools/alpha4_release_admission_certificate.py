@@ -219,6 +219,16 @@ def check_release_admission(
         airgap_expression.get("sha256") == python_sha,
         "air-gap verifier used different Python expression bytes",
     )
+    airgap_dependencies = expression.get("runtime_dependencies")
+    require(
+        isinstance(airgap_dependencies, dict)
+        and airgap_dependencies.get("semantic_source") == "NONE"
+        and airgap_dependencies.get("proof_materializer") == "NONE"
+        and airgap_dependencies.get("expression_deriver") == "NONE"
+        and airgap_dependencies.get("expression_import_surface") == "NONE"
+        and airgap_dependencies.get("expression_file_access") == "NONE",
+        "Python air-gap runtime isolation boundary drift",
+    )
 
     persistence_base = persistence.get("base_expression_binding")
     persistence_extension = persistence.get("extension_binding")
@@ -334,6 +344,7 @@ def check_release_admission(
                 "sha256": sha256(expression_evidence_path),
                 "expression_sha256": python_sha,
                 "cases_checked": expression["python"]["cases_checked"],
+                "runtime_isolation": "PASS",
             },
             "python_sqlite_persistence": {
                 "path": persistence_evidence_path.name,

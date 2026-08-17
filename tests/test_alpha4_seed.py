@@ -1141,3 +1141,88 @@ def test_manifest_parser_rejects_duplicate_keyed_bindings(tmp_path: Path) -> Non
     path.write_text(text.replace(line, f"{line}\n{line}", 1), encoding="utf-8")
     with pytest.raises(ManifestError, match="duplicate Seed manifest CHECK key"):
         parse_seed_manifest(copied)
+
+
+def test_seed_relational_and_proof_scopes_are_closed_world(tmp_path: Path) -> None:
+    def copy_repo(name: str) -> Path:
+        target = tmp_path / name
+        shutil.copytree(
+            ROOT,
+            target,
+            ignore=shutil.ignore_patterns(
+                ".git", ".pytest_cache", "__pycache__", ".tlacache", "dist"
+            ),
+        )
+        return target
+
+    repo = copy_repo("relational")
+    relational = repo / "seed/alpha4/formal/ComponentRelations.tla"
+    text = relational.read_text(encoding="utf-8")
+    marker = "/\\ t = [s EXCEPT !.evidence = @ \\cup {e}]"
+    assert marker in text
+    relational.write_text(
+        text.replace(marker, marker + " /\\ FALSE", 1), encoding="utf-8"
+    )
+    with pytest.raises(ManifestError, match="formal source canonical scope drift"):
+        parse_seed_manifest(repo)
+
+    repo = copy_repo("reflection")
+    reflection = repo / "seed/alpha4/formal/RestrictedOperationalSemantics.tla"
+    text = reflection.read_text(encoding="utf-8")
+    marker = "OperationalObserveUnknown(s, t, e) =="
+    assert marker in text
+    reflection.write_text(
+        text.replace(marker, marker + "\n  /\\ TRUE", 1), encoding="utf-8"
+    )
+    with pytest.raises(ManifestError, match="formal source canonical scope drift"):
+        parse_seed_manifest(repo)
+
+    repo = copy_repo("proof")
+    proof = repo / "seed/alpha4/formal/ComponentCompositionProofs.tla"
+    text = proof.read_text(encoding="utf-8")
+    marker = "THEOREM RecognizedTransitionsPreserveExactSubjectAndAuthority =="
+    assert marker in text
+    proof.write_text(text.replace(marker, marker + "\n  /\\ TRUE", 1), encoding="utf-8")
+    with pytest.raises(ManifestError, match="proof canonical scope drift"):
+        parse_seed_manifest(repo)
+
+
+def test_seed_airgap_rejects_repository_semantic_import() -> None:
+    from tools.alpha4_expression_airgap_verifier import (
+        ExpressionAirgapError,
+        _validate_expression_ast,
+    )
+
+    source = (
+        '"""Generated ASET release companion."""\n'
+        "from tools.alpha4_relational_expression import derive_relational_graphs\n"
+    )
+    with pytest.raises(ExpressionAirgapError, match="import"):
+        _validate_expression_ast(source)
+
+
+def test_seed_airgap_rejects_object_traversal() -> None:
+    from tools.alpha4_expression_airgap_verifier import (
+        ExpressionAirgapError,
+        _validate_expression_ast,
+    )
+
+    with pytest.raises(ExpressionAirgapError, match="private attribute forbidden"):
+        _validate_expression_ast("value = ().__class__\n")
+
+
+def test_seed_tla_scope_preserves_comment_tokens_inside_strings(tmp_path: Path) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    relational = copied / "seed/alpha4/formal/ComponentRelations.tla"
+    text = relational.read_text(encoding="utf-8")
+    marker = 's.recognition = "UNKNOWN"'
+    assert marker in text
+    relational.write_text(
+        text.replace(marker, 's.recognition = "UNKNOWN(*scope-drift*)"', 1),
+        encoding="utf-8",
+    )
+    with pytest.raises(ManifestError, match="formal source canonical scope drift"):
+        parse_seed_manifest(copied)

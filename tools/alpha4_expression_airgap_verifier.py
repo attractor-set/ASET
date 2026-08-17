@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import builtins
 import hashlib
 import itertools
 import json
@@ -78,12 +79,123 @@ def load_witness_artifact(path: Path) -> dict[str, Any]:
     return value
 
 
+def _validate_expression_ast(source: str) -> None:
+    tree = ast.parse(source)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            raise ExpressionAirgapError("air-gap expression imports runtime dependency")
+        if isinstance(node, ast.ImportFrom):
+            require(
+                node.module == "__future__"
+                and all(alias.name == "annotations" for alias in node.names),
+                f"air-gap expression import forbidden: {node.module}",
+            )
+        if isinstance(node, ast.Name) and node.id == "__builtins__":
+            raise ExpressionAirgapError("air-gap expression accesses __builtins__")
+        if isinstance(node, ast.Attribute) and node.attr.startswith("_"):
+            raise ExpressionAirgapError(
+                f"air-gap expression private attribute forbidden: {node.attr}"
+            )
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+            if node.func.id in {
+                "__import__",
+                "breakpoint",
+                "compile",
+                "delattr",
+                "dir",
+                "eval",
+                "exec",
+                "getattr",
+                "globals",
+                "help",
+                "input",
+                "locals",
+                "open",
+                "setattr",
+                "type",
+                "vars",
+            }:
+                raise ExpressionAirgapError(
+                    f"air-gap expression dynamic capability forbidden: {node.func.id}"
+                )
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+            require(
+                node.func.attr
+                not in {
+                    "open",
+                    "read_text",
+                    "read_bytes",
+                    "write_text",
+                    "write_bytes",
+                    "unlink",
+                    "rename",
+                    "replace",
+                    "mkdir",
+                    "touch",
+                },
+                f"air-gap expression filesystem capability forbidden: {node.func.attr}",
+            )
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            lowered = node.value.lower()
+            require(
+                not any(
+                    marker in lowered
+                    for marker in ("tools.", "tools/", ".tla", ".forth", ".petri")
+                ),
+                "air-gap expression embeds repository semantic-source locator",
+            )
+
+
 def _execute_python(path: Path) -> dict[str, Any]:
-    namespace: dict[str, Any] = {}
     source = path.read_text(encoding="utf-8")
     require(
         "release companion" in source, "generated Python companion boundary missing"
     )
+    _validate_expression_ast(source)
+
+    def denied(*args: object, **kwargs: object) -> object:
+        raise ExpressionAirgapError(
+            "air-gap expression attempted forbidden runtime capability"
+        )
+
+    original_import = builtins.__import__
+
+    def guarded_import(
+        name: str,
+        globals: dict[str, Any] | None = None,
+        locals: dict[str, Any] | None = None,
+        fromlist: tuple[str, ...] = (),
+        level: int = 0,
+    ) -> Any:
+        if name != "__future__":
+            raise ImportError(f"air-gap expression import forbidden: {name}")
+        return original_import(name, globals, locals, fromlist, level)
+
+    safe_builtins = dict(vars(builtins))
+    safe_builtins["__import__"] = guarded_import
+    for name in (
+        "breakpoint",
+        "compile",
+        "delattr",
+        "dir",
+        "eval",
+        "exec",
+        "getattr",
+        "globals",
+        "help",
+        "input",
+        "locals",
+        "open",
+        "setattr",
+        "type",
+        "vars",
+    ):
+        safe_builtins[name] = denied
+    namespace: dict[str, Any] = {
+        "__name__": "aset_seed_alpha4_airgap_subject",
+        "__file__": str(path),
+        "__builtins__": safe_builtins,
+    }
     exec(compile(source, str(path), "exec"), namespace)
     return namespace
 
@@ -232,6 +344,8 @@ def check_python_expression(
         "semantic_source_dependency": "NONE",
         "proof_materializer_runtime_dependency": "NONE",
         "expression_deriver_dependency": "NONE",
+        "expression_import_surface": "NONE",
+        "expression_file_access": "NONE",
         "status": "PASS",
     }
 
@@ -260,6 +374,8 @@ def check_airgapped_expression(
             "semantic_source": "NONE",
             "proof_materializer": "NONE",
             "expression_deriver": "NONE",
+            "expression_import_surface": "NONE",
+            "expression_file_access": "NONE",
         },
         "python": python,
         "status": "PASS",
