@@ -235,6 +235,21 @@ def test_preserve_actions_do_not_require_unused_evidence_argument() -> None:
         assert "t = s" in body
 
 
+def test_observe_preserve_abstraction_boundary_is_explicitly_proved() -> None:
+    bindings = parse_seed_manifest(ROOT)
+    component = next(
+        item for item in bindings.proofs if item.proof_id == "COMPONENT_COMPOSITION"
+    )
+    assert component.expected_obligations == 22
+    text = (ROOT / component.module).read_text(encoding="utf-8")
+    for theorem in (
+        "ObserveAndPreserveUnknownShareRecognitionProjection",
+        "FreshObserveUnknownIsNotPreserveUnknown",
+        "ReobserveUnknownIsPreserveUnknown",
+    ):
+        assert f"THEOREM {theorem}" in text
+
+
 def test_pairing_proof_binds_all_six_pairs_and_final_theorem() -> None:
     bindings = parse_seed_manifest(ROOT)
     pairing = next(
@@ -250,10 +265,10 @@ def test_pairing_proof_binds_all_six_pairs_and_final_theorem() -> None:
     assert "THEOREM OperationalRelationalPairing" in text
 
 
-def test_formal_assurance_total_is_38_obligations() -> None:
+def test_formal_assurance_total_is_49_obligations() -> None:
     bindings = parse_seed_manifest(ROOT)
-    assert [item.expected_obligations for item in bindings.all_proofs] == [14, 11, 13]
-    assert sum(item.expected_obligations for item in bindings.all_proofs) == 38
+    assert [item.expected_obligations for item in bindings.all_proofs] == [14, 22, 13]
+    assert sum(item.expected_obligations for item in bindings.all_proofs) == 49
 
 
 def test_derivation_paths_are_physically_independent() -> None:
