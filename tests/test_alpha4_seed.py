@@ -18,7 +18,10 @@ from tools.alpha4_congruence import (
     check_release_congruence,
     check_source_congruence,
 )
-from tools.alpha4_operational_expression import derive_operational_graphs
+from tools.alpha4_operational_expression import (
+    OperationalExpressionError,
+    derive_operational_graphs,
+)
 from tools.alpha4_paired_expression import (
     PairedExpressionError,
     check_paired_expression,
@@ -325,7 +328,40 @@ def test_triangulated_expression_remains_congruent() -> None:
         "relational_causal": "PASS",
     }
     assert evidence["causal_invariant"]["status"] == "PASS"
+    assert evidence["operational_causal_interface"] == {
+        "relation": "STACK_EFFECT_EVIDENCE_REQUIREMENT_CONGRUENCE",
+        "components_checked": 6,
+        "status": "PASS",
+    }
     assert evidence["status"] == "PASS"
+
+
+@pytest.mark.parametrize(
+    ("before", "after"),
+    [
+        (
+            ": OBSERVE-UNKNOWN  ( state evidence -- state )  UNKNOWN? OBSERVE ;",
+            ": OBSERVE-UNKNOWN  ( state -- state )  UNKNOWN? OBSERVE ;",
+        ),
+        (
+            ": PRESERVE-UNKNOWN ( state -- state )  UNKNOWN? NOP ;",
+            ": PRESERVE-UNKNOWN ( state evidence -- state )  UNKNOWN? NOP ;",
+        ),
+    ],
+)
+def test_operational_stack_effect_drift_is_rejected(
+    tmp_path: Path, before: str, after: str
+) -> None:
+    copied = tmp_path / "root"
+    shutil.copytree(ROOT / "seed", copied / "seed")
+    shutil.copytree(ROOT / "theory", copied / "theory")
+    shutil.copytree(ROOT / "tools", copied / "tools")
+    forth = copied / "seed/alpha4/operational/components.forth"
+    text = forth.read_text(encoding="utf-8")
+    assert before in text
+    forth.write_text(text.replace(before, after, 1), encoding="utf-8")
+    with pytest.raises((OperationalExpressionError, TriangulatedExpressionError)):
+        check_triangulated_expression(copied)
 
 
 def test_causal_arc_drift_is_rejected(tmp_path: Path) -> None:
